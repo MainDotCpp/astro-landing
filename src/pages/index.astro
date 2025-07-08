@@ -1,49 +1,131 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Recursively get all pages in the pages directory
+function getPages() {
+  const pagesDir = path.join(process.cwd(), 'src/pages');
+  
+  // Recursively scan directories for Astro files
+  function scanDirectory(dir: string, basePath: string = ''): Array<{path: string, name: string, type: string}> {
+    const items = [];
+    try {
+      const files = fs.readdirSync(dir, { withFileTypes: true });
+      
+      for (const file of files) {
+        const fullPath = path.join(dir, file.name);
+        const relativePath = path.join(basePath, file.name);
+        
+        if (file.isDirectory()) {
+          // Recursively scan subdirectories
+          items.push(...scanDirectory(fullPath, relativePath));
+        } else if (file.name.endsWith('.astro') && file.name !== 'index.astro') {
+          // Regular Astro files (not index)
+          const routePath = `/${relativePath.replace(/\.astro$/, '').replace(/\\/g, '/')}`;
+          items.push({
+            path: routePath,
+            name: file.name.replace('.astro', ''),
+            type: 'page'
+          });
+        } else if (file.name === 'index.astro' && basePath) {
+          // Index files in subdirectories
+          const routePath = `/${basePath.replace(/\\/g, '/')}`;
+          items.push({
+            path: routePath,
+            name: basePath.split(path.sep).pop() || 'Page',
+            type: 'index'
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error scanning directory:', dir, error);
+    }
+    
+    return items;
+  }
+  
+  const pages = scanDirectory(pagesDir);
+  
+  return [
+    ...pages
+  ];
+}
+
+const pages = getPages();
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout>
+  <div class="menu-container">
+    <h1>导航菜单</h1>
+    <div class="menu-list">
+      {pages.map(page => (
+        <div class="menu-item">
+          <a href={page.path} class="menu-link">
+            <span class="menu-title">{page.name}</span>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .menu-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 0.5rem;
+  }
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .menu-item {
+    border-left: 3px solid #6366f1;
+    background-color: #fafafa;
+  }
+
+  .menu-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .menu-link:hover {
+    background-color: #f0f0f0;
+  }
+
+  .menu-title {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .menu-description {
+    color: #666;
+    margin-left: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .menu-container {
+      margin: 1rem auto;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

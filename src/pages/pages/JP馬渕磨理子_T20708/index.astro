@@ -1,0 +1,238 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import header from "./static/header.png";
+import img1 from "./static/img.png";
+import {
+  Check,
+  Star,
+  MessageCircle,
+  ArrowRight,
+  ChevronRight,
+  AlertTriangle,
+  Lock,
+  Camera,
+  Gift,
+  ArrowLeftRight,
+  Heart,
+  TrendingUp,
+} from "lucide-astro";
+---
+
+<BaseLayout title="馬渕磨理子" description="馬渕磨理子">
+  <div class="min-h-screen bg-gray-50">
+    <div class="w-full max-w-xl mx-auto px-4 py-6">
+      <!-- Urgency Banner -->
+      <div class="bg-orange-500 text-white text-center py-2 mb-4 rounded-lg">
+        <p class="text-xs font-bold flex items-center justify-center gap-1">
+          <Check class="w-3 h-3" />
+          私のお友達500名様限定！残り127名様だけ♪
+        </p>
+      </div>
+
+      <!-- Header -->
+      <div class="mb-6">
+        <Image src={header} alt="header" class="w-full rounded-lg" />
+      </div>
+
+      <!-- Social Proof -->
+      <div class="bg-green-50 border border-green-200 p-3 mb-6 rounded-lg">
+        <div class="flex items-center justify-center mb-2">
+          <div class="flex text-yellow-500 text-sm">
+            <Star class="w-4 h-4" fill="currentColor" />
+            <Star class="w-4 h-4" fill="currentColor" />
+            <Star class="w-4 h-4" fill="currentColor" />
+            <Star class="w-4 h-4" fill="currentColor" />
+            <Star class="w-4 h-4" fill="currentColor" />
+          </div>
+          <span class="text-green-700 text-xs ml-2 font-bold"
+            >既に12,847人の仲間が参加中！</span
+          >
+        </div>
+        <p class="text-green-800 text-xs text-center">
+          「磨理子さんのおかげで3日で8万円の利益が！本当にありがとうございます」-
+          田中様（会社員）
+        </p>
+      </div>
+      <!-- Feature Image -->
+      <div class="mb-6">
+        <Image src={img1} alt="img1" class="w-full rounded-lg" />
+      </div>
+      <!-- Main Text with Trust Elements -->
+      <div class="bg-white p-5 mb-6 rounded-lg border border-gray-200">
+        <div class="flex items-center mb-3">
+          <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded"
+            >磨理子からの特別オファー</span
+          >
+          <span class="bg-green-500 text-white text-xs px-2 py-1 rounded ml-2"
+            >完全無料</span
+          >
+        </div>
+        <p class="text-gray-800 text-sm leading-6 mb-3">
+          こんにちは！馬渕磨理子です。私のLINEを無料でお友達追加していただき、「受取」とメッセージを送るだけで、明日上がる銘柄をお教えします♪さらに、私が厳選した毎週60％の利益が期待できる特別な銘柄情報も、あなたにだけお届けします！
+        </p>
+        <div class="bg-yellow-50 border border-yellow-200 p-2 rounded">
+          <p
+            class="text-yellow-800 text-xs text-center font-bold flex items-center justify-center gap-2"
+          >
+            <Check class="w-3 h-3" />
+            リスクなし
+            <Check class="w-3 h-3" />
+            いつでも退会OK
+            <Check class="w-3 h-3" />
+            安心・安全対応
+          </p>
+        </div>
+      </div>
+
+      <!-- Enhanced CTA Text -->
+      <div
+        class="bg-gradient-to-br from-purple-50 to-pink-50 border-l-4 border-purple-400 p-4 mb-6 rounded-r-lg shadow-sm"
+      >
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0">
+            <Heart class="w-6 h-6 text-purple-500" />
+          </div>
+          <div class="flex-1">
+            <p class="text-purple-800 font-semibold text-base mb-1">
+              一緒に資産を増やしませんか？
+            </p>
+            <p class="text-purple-600 text-sm flex items-center gap-2">
+              <TrendingUp class="w-4 h-4" />
+              たった30秒でお友達追加・今すぐ始められます♪
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Enhanced CTA Button -->
+      <div class="mb-6">
+        <button
+          class="link-btn w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 relative overflow-hidden"
+        >
+          <div class="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+          <div class="relative z-10 flex flex-col items-center justify-center">
+            <span class="text-lg flex items-center justify-center gap-3">
+              <MessageCircle class="w-6 h-6 flex-shrink-0" />
+              磨理子とLINEでつながる
+            </span>
+            <span
+              class="text-sm opacity-90 flex items-center justify-center gap-2"
+            >
+              特別な銘柄情報をお届け♪
+              <ChevronRight class="w-4 h-4 flex-shrink-0" />
+            </span>
+          </div>
+        </button>
+      </div>
+      <!-- Value Stack -->
+      <div class="bg-blue-50 border border-blue-200 p-4 mb-6 rounded-lg">
+        <h3
+          class="text-blue-800 font-bold text-sm mb-3 text-center flex items-center justify-center gap-2"
+        >
+          <ArrowLeftRight class="w-4 h-4" />
+          私からの特別プレゼント♪
+        </h3>
+        <ul class="text-blue-700 text-xs space-y-1">
+          <li class="flex items-center gap-2">
+            <Check class="w-3 h-3" />
+            明日上がる銘柄を毎日配信
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="w-3 h-3" />
+            週60％利益の厳選銘柄情報
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="w-3 h-3" />
+            初心者さん向け投資ガイド
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="w-3 h-3" />
+            限定投資セミナーへご招待
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="w-3 h-3" />
+            私に何でも質問できます
+          </li>
+        </ul>
+      </div>
+
+      <!-- Info Text -->
+      <div class="bg-blue-500 p-4 mb-6 rounded-lg">
+        <p class="text-white text-center text-sm leading-6">
+          私とLINEでお友達になって<br />
+          「受取」って送ってくれたら<br />
+          特別な株式情報をプレゼント♪
+        </p>
+      </div>
+
+      <!-- Second Enhanced CTA Button -->
+      <div class="mb-6">
+        <button
+          class="link-btn w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-4 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 relative overflow-hidden"
+        >
+          <div class="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+          <div class="relative z-10 flex flex-col items-center justify-center">
+            <span class="text-lg flex items-center justify-center gap-3">
+              <Check class="w-6 h-6 flex-shrink-0" />
+              磨理子と一緒に始めよう
+            </span>
+            <span class="text-sm opacity-90">残り127名様・お早めに♪</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Final Urgency -->
+      <div class="bg-red-50 border border-red-200 p-3 mb-6 rounded-lg">
+        <p
+          class="text-red-700 text-xs text-center font-bold flex items-center justify-center gap-2"
+        >
+          <AlertTriangle class="w-4 h-4" />
+          今回限りの特別オファーです♪次回からは有料になってしまいます...
+        </p>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="flex justify-center items-center mb-6 space-x-4">
+        <div class="bg-white p-2 rounded border border-gray-200">
+          <p class="text-gray-600 text-xs flex items-center gap-1">
+            <Lock class="w-3 h-3" />
+            SSL暗号化
+          </p>
+        </div>
+        <div class="bg-white p-2 rounded border border-gray-200">
+          <p class="text-gray-600 text-xs flex items-center gap-1">
+            <Camera class="w-3 h-3" />
+            LINE公式
+          </p>
+        </div>
+        <div class="bg-white p-2 rounded border border-gray-200">
+          <p class="text-gray-600 text-xs flex items-center gap-1">
+            <Check class="w-3 h-3" />
+            無料保証
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center">
+        <span
+          class="text-gray-600 text-xs hover:text-gray-800 transition-colors cursor-pointer underline"
+        >
+          プライバシーポリシー
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating CTA (Sticky) -->
+  <div class="link-btn fixed bottom-4 left-4 right-4 max-w-sm mx-auto z-50">
+    <button
+      class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-6 rounded-full shadow-xl transform hover:scale-105 transition-all duration-200 animate-bounce"
+    >
+      <span class="flex items-center justify-center gap-3">
+        <MessageCircle class="w-5 h-5 flex-shrink-0" />
+        磨理子と無料でつながる♪ 
+      </span>
+    </button>
+  </div>
+</BaseLayout>

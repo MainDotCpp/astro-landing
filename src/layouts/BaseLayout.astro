@@ -1,0 +1,23 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import RedirectCode from "../components/RedirectCode.astro";
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Home", description = "Home" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={title} description={description} />
+    <RedirectCode />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
