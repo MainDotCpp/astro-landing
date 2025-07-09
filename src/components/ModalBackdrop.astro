@@ -1,0 +1,131 @@
+---
+interface Props {
+  modalId: string;
+  visible?: boolean;
+}
+
+const { modalId, visible = false } = Astro.props;
+---
+
+<!-- Modal Backdrop -->
+<div 
+  id={modalId}
+  class={`fixed inset-0 z-[9999] flex items-end justify-center bg-black/50 backdrop-blur-sm transition-all duration-300 ease-out md:items-center ${visible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+>
+  <slot />
+</div>
+
+<style>
+  /* Backdrop styles */
+  .modal-backdrop {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Prevent text selection during modal interactions */
+  .fixed.visible {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Reduce Motion for Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+
+<script define:vars={{ modalId }}>
+  // Backdrop Controller
+  const createBackdropController = (modalId) => {
+    let modalShown = false;
+
+    // Prevent background scrolling via event handling
+    function preventBackgroundScroll(e) {
+      // Always allow interactions with interactive elements
+      if (e.target.closest('button') || 
+          e.target.closest('a') || 
+          e.target.closest('.link-btn') ||
+          e.target.closest('.modal-cta-btn') ||
+          e.target.closest('.modal-close-btn') ||
+          e.target.closest('.modal-dismiss-btn')) {
+        return;
+      }
+      
+      // Allow scrolling inside modal content area
+      if (e.target.closest(`#${modalId}Content`)) {
+        return;
+      }
+      
+      // For touchmove, only prevent if target is document body or html
+      // This allows button interactions while preventing background scroll
+      if (e.type === 'touchmove') {
+        if (e.target.tagName !== 'BODY' && e.target.tagName !== 'HTML') {
+          return;
+        }
+      }
+      
+      // Prevent background scrolling
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    function enableScrollPrevention() {
+      modalShown = true;
+      
+      // Add scroll prevention via event listeners (only for scroll events)
+      document.addEventListener('wheel', preventBackgroundScroll, { passive: false });
+      document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
+      
+      // Store reference for removal  
+      window.modalKeyHandler = (e) => {
+        // Only prevent scrolling keys, not interaction keys
+        if ([32, 33, 34, 35, 36, 37, 38, 39, 40].includes(e.keyCode)) {
+          // Allow button interactions
+          if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.link-btn')) {
+            return;
+          }
+          preventBackgroundScroll(e);
+        }
+      };
+      document.addEventListener('keydown', window.modalKeyHandler);
+    }
+
+    function disableScrollPrevention() {
+      modalShown = false;
+      
+      // Remove scroll prevention event listeners
+      document.removeEventListener('wheel', preventBackgroundScroll);
+      document.removeEventListener('touchmove', preventBackgroundScroll);
+      if (window.modalKeyHandler) {
+        document.removeEventListener('keydown', window.modalKeyHandler);
+        window.modalKeyHandler = null;
+      }
+    }
+
+    function setupClickOutsideHandler(hideModalCallback) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      // Close modal when clicking outside (only on desktop)
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal && window.innerWidth > 768) {
+          hideModalCallback();
+        }
+      });
+    }
+
+    return { 
+      enableScrollPrevention, 
+      disableScrollPrevention, 
+      setupClickOutsideHandler,
+      isShown: () => modalShown
+    };
+  };
+
+  // Export controller for parent component
+  window.backdropController = window.backdropController || {};
+  window.backdropController[modalId] = createBackdropController(modalId);
+</script> 

@@ -1,0 +1,437 @@
+---
+import { X, Phone, Video } from "lucide-astro";
+
+interface Props {
+  modalId: string;
+  userName?: string;
+  userAvatar: string | ImageMetadata;
+  messageContent?: string;
+  ctaButtonText?: string;
+  dismissButtonText?: string;
+  chatHeight?: string;
+}
+
+const {
+  modalId,
+  userName = "馬渕磨理子",
+  userAvatar,
+  messageContent = "こんにちは！\n投資について相談したいことがあるんですが、今お時間ありますか？📊\n\n最近気になる銘柄があって...💭",
+  ctaButtonText = "返信する",
+  dismissButtonText = "後で",
+  chatHeight = "50vh",
+} = Astro.props;
+---
+
+<!-- LINE Chat Window Content -->
+<div 
+  class="relative w-full max-w-sm bg-white transform translate-y-full transition-all duration-300 ease-out md:translate-y-0 md:scale-95 md:rounded-xl shadow-2xl"
+  id={`${modalId}Content`}
+>
+  <!-- LINE Chat Header -->
+  <div class="bg-[#06c755] px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img 
+        src={typeof userAvatar === 'string' ? userAvatar : userAvatar.src} 
+        alt={userName}
+        class="w-10 h-10 rounded-full object-cover border-2 border-white/30"
+      />
+      <div>
+        <h3 class="text-white font-medium text-base">{userName}</h3>
+        <div class="flex items-center gap-1">
+          <div class="w-2 h-2 bg-white rounded-full"></div>
+          <span class="text-white/90 text-xs">オンライン</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="link-btn w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-all duration-200">
+        <Phone class="w-4 h-4 text-white" />
+      </button>
+      <button class="link-btn w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-all duration-200">
+        <Video class="w-4 h-4 text-white" />
+      </button>
+      <button 
+        class="modal-close-btn w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-all duration-200"
+      >
+        <X class="w-4 h-4 text-white" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Messages Area -->
+  <div class="bg-[#f8f9fa] px-4 py-6 overflow-y-auto flex flex-col" style={`height: ${chatHeight}; -webkit-overflow-scrolling: touch;`}>
+    <!-- Date Divider -->
+    <div class="text-center mb-4">
+      <span class="bg-white px-3 py-1 rounded-full text-xs text-gray-500 shadow-sm">
+        今日
+      </span>
+    </div>
+
+    <!-- Incoming Message -->
+    <div class="flex items-start gap-2 mb-4">
+      <img 
+        src={typeof userAvatar === 'string' ? userAvatar : userAvatar.src} 
+        alt={userName}
+        class="w-8 h-8 rounded-full object-cover flex-shrink-0"
+      />
+      <div class="flex-1">
+        <div class="bg-white p-3 rounded-2xl rounded-tl-md shadow-sm max-w-[85%] message-bubble">
+          <p class="text-gray-800 text-sm leading-relaxed whitespace-pre-line">
+            {messageContent}
+          </p>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-gray-400 mt-1 ml-1">
+          <span>たった今</span>
+          <span class="text-[#06c755] font-medium">既読</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Reply Buttons -->
+    <div class="mt-auto pt-4 quick-reply-area opacity-0 translate-y-2 transition-all duration-500 ease-out">
+      <div class="text-center mb-2">
+        <span class="text-xs text-gray-500">クイック返信</span>
+      </div>
+      <div class="flex flex-col gap-2 max-w-[280px] ml-auto md:mx-auto md:max-w-[300px]">
+        <button 
+          class="modal-cta-btn link-btn bg-[#06c755] text-white font-medium py-3 px-4 rounded-2xl transition-all duration-200 hover:bg-[#05b04d] shadow-sm text-sm transform hover:scale-[1.02] active:scale-[0.98]"
+        >
+          {ctaButtonText}
+        </button>
+        <button 
+          class="modal-dismiss-btn bg-white text-gray-600 font-medium py-2.5 px-4 rounded-2xl transition-all duration-200 hover:bg-gray-50 shadow-sm text-sm border border-gray-200 transform hover:scale-[1.02] active:scale-[0.98]"
+        >
+          {dismissButtonText}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Content animation styles */
+  
+  /* Mobile slide up animation */
+  @media (max-width: 768px) {
+    .modal-content-enter {
+      animation: slideUpMobile 0.3s ease-out forwards;
+    }
+  }
+
+  /* Desktop scale animation */
+  @media (min-width: 769px) {
+    .modal-content-enter {
+      animation: modalEnter 0.3s ease-out forwards;
+    }
+  }
+
+  @keyframes slideUpMobile {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes modalEnter {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes modalExit {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+    }
+  }
+
+  /* Message bubble styles */
+  .message-bubble {
+    position: relative;
+  }
+
+  /* Custom scrollbar for chat area */
+  .bg-\[\\#f8f9fa\]::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .bg-\[\\#f8f9fa\]::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .bg-\[\\#f8f9fa\]::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+  }
+
+  /* LINE green theme */
+  .bg-line-green {
+    background-color: #06c755;
+  }
+
+  .hover\:bg-line-green-dark:hover {
+    background-color: #05b04d;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 640px) {
+    .relative.w-full.max-w-sm {
+      max-width: 100%;
+      border-radius: 0;
+    }
+    
+    .bg-\[\\#06c755\] {
+      border-radius: 0;
+    }
+  }
+
+  /* Mobile Touch Optimizations */
+  .modal-close-btn,
+  .modal-dismiss-btn,
+  .modal-cta-btn,
+  .link-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Quick Reply Buttons Styling */
+  .modal-cta-btn,
+  .modal-dismiss-btn {
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .modal-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal-cta-btn:hover::before {
+    opacity: 1;
+  }
+
+  /* Desktop optimizations */
+  @media (min-width: 769px) {
+    .quick-reply-area {
+      padding: 24px 20px 16px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(248, 249, 250, 0.5) 100%);
+    }
+    
+    .quick-reply-area .text-center {
+      margin-bottom: 12px;
+    }
+    
+    .quick-reply-area .flex.flex-col {
+      gap: 12px;
+    }
+    
+    .modal-cta-btn,
+    .modal-dismiss-btn {
+      padding: 12px 24px;
+      font-size: 15px;
+      border-radius: 24px;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }
+    
+    .modal-cta-btn {
+      box-shadow: 0 4px 12px rgba(6, 199, 85, 0.3);
+    }
+    
+    .modal-dismiss-btn {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .modal-close-btn,
+    .link-btn {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    .modal-cta-btn,
+    .modal-dismiss-btn {
+      min-height: 44px;
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+    
+    /* 移动端快速回复按钮优化 */
+    .quick-reply-area {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    
+    .quick-reply-area .flex.flex-col {
+      max-width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+    }
+    
+    .modal-cta-btn,
+    .modal-dismiss-btn {
+      border-radius: 16px;
+      font-weight: 500;
+      width: 100%;
+    }
+  }
+</style>
+
+<script define:vars={{ modalId }}>
+  // Content Controller
+  const createContentController = (modalId) => {
+    function showContent() {
+      const modalContent = document.getElementById(`${modalId}Content`);
+      if (!modalContent) return;
+      
+      // Mobile: slide up from bottom, Desktop: scale in
+      const isMobile = window.innerWidth <= 768;
+      
+      setTimeout(() => {
+        if (isMobile) {
+          modalContent.classList.remove('translate-y-full');
+          modalContent.classList.add('translate-y-0');
+        } else {
+          modalContent.classList.remove('md:scale-95');
+          modalContent.classList.add('md:scale-100');
+        }
+      }, 50);
+      
+      // Add entrance animation class
+      modalContent.classList.add('modal-content-enter');
+      
+      // Show quick reply buttons after a delay
+      setTimeout(() => {
+        const quickReplyArea = modalContent.querySelector('.quick-reply-area');
+        if (quickReplyArea) {
+          quickReplyArea.classList.remove('opacity-0', 'translate-y-2');
+          quickReplyArea.classList.add('opacity-100', 'translate-y-0');
+        }
+      }, 800);
+    }
+
+    function hideContent() {
+      const modalContent = document.getElementById(`${modalId}Content`);
+      if (!modalContent) return;
+      
+      const isMobile = window.innerWidth <= 768;
+      
+      // Reset quick reply buttons
+      const quickReplyArea = modalContent.querySelector('.quick-reply-area');
+      if (quickReplyArea) {
+        quickReplyArea.classList.remove('opacity-100', 'translate-y-0');
+        quickReplyArea.classList.add('opacity-0', 'translate-y-2');
+      }
+      
+      // Animate out
+      if (isMobile) {
+        modalContent.classList.remove('translate-y-0');
+        modalContent.classList.add('translate-y-full');
+      } else {
+        modalContent.classList.remove('md:scale-100');
+        modalContent.classList.add('md:scale-95');
+      }
+    }
+
+    function setupButtonEvents(hideModalCallback) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      // Event handlers for close and dismiss buttons
+      const closeBtn = modal.querySelector('.modal-close-btn');
+      const dismissBtn = modal.querySelector('.modal-dismiss-btn');
+      const ctaBtn = modal.querySelector('.modal-cta-btn');
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', hideModalCallback);
+      }
+
+      if (dismissBtn) {
+        dismissBtn.addEventListener('click', hideModalCallback);
+      }
+
+      // Ensure CTA button events are not blocked
+      if (ctaBtn) {
+        ctaBtn.addEventListener('touchstart', (e) => {
+          // Prevent any interference with touch events
+          e.stopPropagation();
+          if (typeof onLinkBtnClick === 'function') onLinkBtnClick();
+        }, { passive: true });
+        
+        ctaBtn.addEventListener('click', (e) => {
+          // Ensure click events work properly
+          e.stopPropagation();
+          if (typeof onLinkBtnClick === 'function') onLinkBtnClick();
+        }, { passive: true });
+      }
+
+      // Ensure all link-btn elements in modal work properly
+      const linkBtns = modal.querySelectorAll('.link-btn');
+      linkBtns.forEach(btn => {
+        btn.addEventListener('touchstart', (e) => {
+          e.stopPropagation();
+          if (typeof onLinkBtnClick === 'function') onLinkBtnClick();
+        }, { passive: true });
+        
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (typeof onLinkBtnClick === 'function') onLinkBtnClick();
+        }, { passive: true });
+      });
+    }
+
+    function handleResize() {
+      const modalContent = document.getElementById(`${modalId}Content`);
+      if (!modalContent) return;
+      
+      // Adjust modal position on orientation change
+      modalContent.style.transform = '';
+      modalContent.classList.remove('translate-y-full', 'translate-y-0', 'md:scale-95', 'md:scale-100');
+      
+      // Re-apply appropriate classes
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        modalContent.classList.add('translate-y-0');
+      } else {
+        modalContent.classList.add('md:scale-100');
+      }
+    }
+
+    return { 
+      showContent, 
+      hideContent, 
+      setupButtonEvents, 
+      handleResize 
+    };
+  };
+
+  // Export controller for parent component
+  window.contentController = window.contentController || {};
+  window.contentController[modalId] = createContentController(modalId);
+</script> 

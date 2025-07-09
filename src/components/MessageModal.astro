@@ -1,0 +1,191 @@
+---
+import ModalBackdrop from "./ModalBackdrop.astro";
+import ModalContent from "./ModalContent.astro";
+
+interface Props {
+  // Modal configuration
+  triggerDelay?: number; // Delay in milliseconds before showing modal
+  userName?: string; // Name displayed in modal header
+  userAvatar: string | ImageMetadata; // User avatar import path or URL
+  
+  // Message content
+  messageContent?: string; // Message body content
+  
+  // Button text
+  ctaButtonText?: string; // Call-to-action button text
+  dismissButtonText?: string; // Dismiss button text
+  
+  // Styling
+  modalId?: string; // Custom modal ID
+  enableSound?: boolean; // Whether to play notification sound
+  chatHeight?: string; // Custom height for chat area (e.g., "200px", "15rem", "50vh")
+}
+
+const {
+  userAvatar,
+  triggerDelay = 5000,
+  userName = "馬渕磨理子",
+  messageContent = "こんにちは！\n投資について相談したいことがあるんですが、今お時間ありますか？📊\n\n最近気になる銘柄があって...💭",
+  ctaButtonText = "返信する",
+  dismissButtonText = "後で",
+  modalId = "messageModal",
+  enableSound = true,
+  chatHeight = "75vh",
+} = Astro.props;
+---
+
+<!-- LINE Chat Window Modal -->
+<ModalBackdrop modalId={modalId}>
+  <ModalContent 
+    modalId={modalId}
+    userName={userName}
+    userAvatar={userAvatar}
+    messageContent={messageContent}
+    ctaButtonText={ctaButtonText}
+    dismissButtonText={dismissButtonText}
+    chatHeight={chatHeight}
+  />
+</ModalBackdrop>
+
+<script define:vars={{ modalId, triggerDelay, enableSound }}>
+  // Main Modal Controller - coordinates backdrop and content
+  const createModalController = (modalId, triggerDelay, enableSound) => {
+    let modalShown = false;
+
+    function playNotificationSound() {
+      if (!enableSound) return;
+      
+      try {
+        const AudioContextClass = window.AudioContext || window['webkitAudioContext'];
+        if (AudioContextClass) {
+          const audioContext = new AudioContextClass();
+          
+          // Create LINE-style notification sound (two-tone)
+          const playTone = (frequency, startTime, duration) => {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+            gainNode.gain.setValueAtTime(0.1, startTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+            
+            oscillator.start(startTime);
+            oscillator.stop(startTime + duration);
+          };
+          
+          // Play two tones like LINE notification
+          playTone(800, audioContext.currentTime, 0.15);
+          playTone(600, audioContext.currentTime + 0.2, 0.15);
+        }
+      } catch (e) {
+        console.log('Notification sound failed:', e);
+      }
+    }
+
+    function showModal() {
+      if (modalShown) return;
+      
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      
+      modalShown = true;
+
+      // Get controllers from child components
+      const backdropController = window.backdropController?.[modalId];
+      const contentController = window.contentController?.[modalId];
+      
+      if (!backdropController || !contentController) {
+        console.error('Modal controllers not found');
+        return;
+      }
+
+      // Enable scroll prevention
+      backdropController.enableScrollPrevention();
+      
+      // Show modal backdrop
+      modal.classList.remove('opacity-0', 'invisible');
+      modal.classList.add('opacity-100', 'visible');
+      
+      // Show content with animation
+      contentController.showContent();
+      
+      // Play notification sound
+      playNotificationSound();
+    }
+
+    function hideModal() {
+      if (!modalShown) return;
+      
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      modalShown = false;
+
+      // Get controllers from child components
+      const backdropController = window.backdropController?.[modalId];
+      const contentController = window.contentController?.[modalId];
+      
+      if (backdropController && contentController) {
+        // Disable scroll prevention
+        backdropController.disableScrollPrevention();
+        
+        // Hide content with animation
+        contentController.hideContent();
+        
+        // Hide backdrop after content animation
+        setTimeout(() => {
+          modal.classList.remove('opacity-100', 'visible');
+          modal.classList.add('opacity-0', 'invisible');
+        }, 200);
+      }
+    }
+
+    function init() {
+      // Wait for child controllers to be ready
+      const checkControllers = () => {
+        const backdropController = window.backdropController?.[modalId];
+        const contentController = window.contentController?.[modalId];
+        
+        if (backdropController && contentController) {
+          // Setup click outside handler
+          backdropController.setupClickOutsideHandler(hideModal);
+          
+          // Setup button events  
+          contentController.setupButtonEvents(hideModal);
+          
+          // Setup resize handler
+          window.addEventListener('resize', () => {
+            if (modalShown) {
+              contentController.handleResize();
+            }
+          });
+          
+          // Show modal after delay
+          setTimeout(showModal, triggerDelay);
+        } else {
+          // Retry if controllers not ready
+          setTimeout(checkControllers, 100);
+        }
+      };
+      
+      checkControllers();
+    }
+
+    return { init, show: showModal, hide: hideModal };
+  };
+
+  // Auto-initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      const controller = createModalController(modalId, triggerDelay, enableSound);
+      controller.init();
+    });
+  } else {
+    const controller = createModalController(modalId, triggerDelay, enableSound);
+    controller.init();
+  }
+</script> 

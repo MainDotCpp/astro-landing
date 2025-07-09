@@ -1,0 +1,104 @@
+---
+type PluginName =
+  | "aos"
+  | "gsap"
+  | "animate"
+  | "swiper"
+  | "countup"
+  | "rellax"
+  | "jquery";
+
+interface PluginConfig {
+  css?: string;
+  js?: string;
+  loadStrategy?: "defer" | "async" | "blocking"; // 添加加载策略配置
+  [key: string]: any; // 支持其他自定义配置
+}
+
+export interface Props {
+  plugins?: Record<string, PluginConfig>;
+}
+
+const { plugins = { jquery: {} } } = Astro.props;
+
+// 预定义插件的默认配置
+const defaultPluginConfig: Record<
+  PluginName,
+  { css?: string; js?: string; loadStrategy?: "defer" | "async" | "blocking" }
+> = {
+  aos: {
+    css: "https://unpkg.com/aos@2.3.1/dist/aos.css",
+    js: "https://unpkg.com/aos@2.3.1/dist/aos.js",
+    loadStrategy: "defer", // UI库，需要DOM准备好
+  },
+  gsap: {
+    js: "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
+    loadStrategy: "defer", // 动画库，需要DOM元素
+  },
+  animate: {
+    css: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css",
+  },
+  swiper: {
+    css: "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css",
+    js: "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js",
+    loadStrategy: "defer", // 组件库，需要DOM结构
+  },
+  countup: {
+    js: "https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js",
+    loadStrategy: "defer", // 需要目标元素存在
+  },
+  rellax: {
+    js: "https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js",
+    loadStrategy: "defer", // 视差滚动，需要DOM准备好
+  },
+  jquery: {
+    js: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js",
+    loadStrategy: "defer", // 基础库，但通常也可以defer
+  },
+};
+
+// 处理插件配置，合并默认配置和用户配置
+const processedPlugins = Object.entries(plugins).map(
+  ([pluginName, userConfig]) => {
+    // 如果是预定义插件，合并默认配置
+    const defaultConfig = defaultPluginConfig[pluginName as PluginName] || {};
+    const finalConfig = { ...defaultConfig, ...userConfig };
+
+    return {
+      name: pluginName,
+      config: finalConfig,
+    };
+  }
+);
+
+// 收集需要的CSS和JS资源
+const cssLinks = processedPlugins
+  .map(({ config }) => config.css)
+  .filter((css): css is string => Boolean(css));
+
+const jsScripts = processedPlugins
+  .map(({ config }) => ({
+    src: config.js,
+    loadStrategy: config.loadStrategy || "defer", // 默认使用defer
+  }))
+  .filter(
+    (
+      script
+    ): script is {
+      src: string;
+      loadStrategy: "defer" | "async" | "blocking";
+    } => Boolean(script.src)
+  );
+---
+{cssLinks.map((href) => <link rel="stylesheet" href={href} />)}
+{
+  jsScripts.map(({ src, loadStrategy }) => {
+    if (loadStrategy === "async") {
+      return <script src={src} async />;
+    } else if (loadStrategy === "blocking") {
+      return <script src={src} />;
+    } else {
+      return <script src={src} defer />;
+    }
+  })
+}
