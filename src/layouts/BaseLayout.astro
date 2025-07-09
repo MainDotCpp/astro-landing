@@ -1,7 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import RedirectCode from "../components/RedirectCode.astro";
-import PluginLoader from "../components/PluginLoader.astro";
+import PluginLoader, { type PluginConfig } from "../components/PluginLoader.astro";
 import "../styles/global.css";
 import type { HTMLAttributes } from "astro/types";
 
@@ -10,10 +10,10 @@ type PluginName = 'aos' | 'gsap' | 'animate' | 'swiper' | 'countup' | 'rellax';
 export interface Props {
   title?: string;
   description?: string;
-  plugins?: PluginName[];
+  plugins?: Record<string, PluginConfig>;
 }
 
-const { title = "Home", description = "Home",  plugins = [] } = Astro.props;
+const { title = "Home", description = "Home",  plugins = {} } = Astro.props;
 ---
 
 <!doctype html>

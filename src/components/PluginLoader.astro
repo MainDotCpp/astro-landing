@@ -8,7 +8,7 @@ type PluginName =
   | "rellax"
   | "jquery";
 
-interface PluginConfig {
+export interface PluginConfig {
   css?: string;
   js?: string;
   loadStrategy?: "defer" | "async" | "blocking"; // 添加加载策略配置
@@ -19,7 +19,7 @@ export interface Props {
   plugins?: Record<string, PluginConfig>;
 }
 
-const { plugins = { jquery: {} } } = Astro.props;
+const { plugins = { } } = Astro.props;
 
 // 预定义插件的默认配置
 const defaultPluginConfig: Record<

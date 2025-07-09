@@ -13,7 +13,7 @@ export default defineConfig({
   vite: {
   },
   build: {
-    assetsPrefix: 'https://assetfun.top',
+    // assetsPrefix: 'https://assetfun.top',
     assets: 'static',
   },
 })
