@@ -1,0 +1,98 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Landing Page Development Patterns
+
+This project specializes in Korean investment advice landing pages with BAND integration.
+
+## Common Landing Page Sections
+
+### Hero Section
+- Modern hero design with grid layout
+- Expert card with stats and testimonials
+- Call-to-action buttons (BAND integration)
+- Responsive design with mobile-first approach
+
+### Success Cases (실적)
+- Performance tables showing investment returns
+- Animation effects for highlighting gains
+- Structured data presentation
+
+### Benefits (메리트)
+- Why choose this service explanations
+- Image + text combinations
+- Trust-building content
+
+### Testimonials (후기)
+- User success stories with photos
+- Age/occupation demographic info
+- Detailed user experiences
+
+### FAQ Section
+- Collapsible Q&A format
+- jQuery-powered interactions
+- Common questions about the service
+
+## BAND Integration Pattern
+
+```astro
+<a href="#" class="band-btn link-btn" target="_blank">
+  <div class="band-logo-official">
+    <img src={bandLogo.src} alt="BAND Logo" />
+  </div>
+  <div class="band-text">
+    <span class="band-text-main">BAND 친구 추가하고</span>
+    <span class="band-text-sub">즉시 주식 정보 받기!</span>
+  </div>
+</a>
+```
+
+## Styling Conventions
+
+### Color Scheme
+- Primary: `#007bff` (blue variations)
+- Success: `#1ccc21` (BAND green)
+- Accent: `#ff6b9d` (pink for highlights)
+
+### Typography
+- Korean text: `'Malgun Gothic', sans-serif`
+- System fonts: `-apple-system, BlinkMacSystemFont, 'Segoe UI'`
+
+### Responsive Breakpoints
+- Desktop: Default styles
+- Tablet: `@media screen and (max-width: 1024px)`
+- Mobile: `@media screen and (max-width: 768px)`
+- Small Mobile: `@media screen and (max-width: 480px)`
+
+## Animation Patterns
+
+### Button Animations
+```css
+@keyframes switch {
+  0%, 100% { transform: scale3d(1, 1, 1); }
+  50% { transform: scale3d(0.9, 0.9, 0.9); }
+}
+```
+
+### Glow Effects
+```css
+@keyframes bandGlow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0, 200, 81, 0.25); }
+  50% { box-shadow: 0 6px 25px rgba(0, 200, 81, 0.35); }
+}
+```
+
+## Content Structure
+
+### Korean Text Patterns
+- Friendly, conversational tone
+- Direct addressing ("너", "우리")
+- Emphasis on trust and results
+- Clear benefit statements
+
+### Call-to-Action Hierarchy
+1. Primary: BAND friend addition
+2. Secondary: Information requests
+3. Tertiary: FAQ engagement

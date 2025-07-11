@@ -1,0 +1,83 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Astro Development Guidelines
+
+## Astro File Structure
+
+Each `.astro` file follows this pattern:
+```astro
+---
+// TypeScript frontmatter
+import statements
+variable declarations
+---
+
+<!DOCTYPE html>
+<html>
+  <!-- HTML template with JSX-like syntax -->
+</html>
+
+<style>
+  /* Scoped CSS styles */
+</style>
+
+<script>
+  // Client-side JavaScript
+</script>
+
+## Import Patterns
+
+### Static Assets
+```astro
+---
+import imageName from "./static/picture/image.jpg";
+import cssFile from "./static/css/style.css";
+---
+```
+
+### Components
+```astro
+---
+import Component from "../../components/Component.astro";
+import { Icon } from 'lucide-astro';
+---
+```
+
+## Styling Approach
+
+This project uses:
+- **Embedded CSS** - Styles are included directly in `.astro` files
+- **Responsive Design** - Mobile-first approach with media queries
+- **Modern CSS** - CSS Grid, Flexbox, CSS Variables
+
+### Style Organization
+1. Global styles in `<style>` tags
+2. Component-specific styles scoped to the component
+3. Responsive breakpoints: 768px (tablet), 480px (mobile)
+
+## JavaScript Integration
+
+### Client-side Scripts
+Use `is:inline` for scripts that need to run immediately:
+```astro
+<script is:inline src="/static/js/script.js"></script>
+```
+
+### jQuery Integration
+- jQuery is loaded globally via script tags
+- Use TypeScript declarations for type safety
+- Wrap jQuery code in script tags within the component
+
+## Asset Management
+
+### Images
+- Store campaign-specific images in `src/pages/{CAMPAIGN}/static/picture/`
+- Import images in frontmatter: `import img from "./static/picture/img.jpg"`
+- Use `.src` property: `<img src={img.src} alt="description" />`
+
+### CSS
+- Campaign-specific CSS in `src/pages/{CAMPAIGN}/static/css/`
+- Import CSS files in frontmatter for processing

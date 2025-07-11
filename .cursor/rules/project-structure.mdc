@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project Structure Guide
+
+This is an Astro-based landing page project with multiple campaign variations. Each campaign has its own dedicated directory structure.
+
+## Core Structure
+
+- **[src/pages/](mdc:src/pages)** - Campaign landing pages, each in its own directory
+- **[src/components/](mdc:src/components)** - Reusable Astro components
+- **[src/layouts/](mdc:src/layouts)** - Page layout templates
+- **[package.json](mdc:package.json)** - Project dependencies and scripts
+- **[astro.config.mjs](mdc:astro.config.mjs)** - Astro configuration
+
+## Campaign Structure Pattern
+
+Each campaign follows this pattern (example: KRT20711):
+- **[src/pages/KRT20711/index.astro](mdc:src/pages/KRT20711/index.astro)** - Main landing page
+- **[src/pages/KRT20711/static/](mdc:src/pages/KRT20711/static)** - Campaign-specific assets
+  - `css/` - Stylesheets
+  - `picture/` - Images and graphics
+  - `image/` - Additional image assets
+
+## Key Components
+
+- **[src/components/RedirectCode.astro](mdc:src/components/RedirectCode.astro)** - Redirect handling
+- **[src/components/BaseHead.astro](mdc:src/components/BaseHead.astro)** - HTML head template
+- **[src/layouts/BaseLayout.astro](mdc:src/layouts/BaseLayout.astro)** - Base page layout
+
+## Development Commands
+
+- `bun dev` - Start development server
+- `bun build` - Build for production
+- `bun preview` - Preview production build
