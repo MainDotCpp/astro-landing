@@ -18,9 +18,10 @@ import imgVoice3 from "./static/picture/img_voice3.jpg";
 import imgVoice4 from "./static/picture/img_voice4.jpg";
 import imgVoice5 from "./static/picture/img_voice5.jpg";
 import imgVoice6 from "./static/picture/img_voice6.jpg";
+import bandLogo from "./static/Band.png";
 import RedirectCode from "../../components/RedirectCode.astro";
 
-// Import Lucide icons
+// Import Lucide icons (keeping for hero features)
 import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-astro';
 ---
 
@@ -30,7 +31,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <title>
-      매일 오를 주식 알려줄게 - 나 따라하면 돈 벌 수 있어
+      매일 오를 주식 알려줄게 - 나 따라하면 수익 올릴 수 있어
     </title>
     <RedirectCode />
     <meta
@@ -41,6 +42,9 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
     <script is:inline src="/static/js/df_smooth_scroll_m.js"></script>
     <script is:inline src="/static/js/jquery-3.2.1.min.js"></script>
     <script is:inline src="/static/js/index.js"></script>
+
+    <!-- FontAwesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
       @media screen and (max-width: 767px) {
         .webp .l-fv__inner {
@@ -678,6 +682,338 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
         }
       }
     </style>
+
+    <!-- 简约 BAND 버튼 스타일 -->
+    <style>
+      .band-btn {
+        background: #1ccc21;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 16px;
+        padding: 18px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 20px rgba(0, 200, 81, 0.25);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+        position: relative;
+        overflow: hidden;
+        min-width: 280px;
+        line-height: 1.4;
+        letter-spacing: -0.3px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .band-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .band-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 200, 81, 0.35);
+        background: #1ccc21;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .band-btn:hover::before {
+        left: 100%;
+      }
+
+      .band-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .band-btn-large {
+        padding: 22px 40px;
+        font-size: 18px;
+        border-radius: 18px;
+        min-width: 320px;
+        gap: 14px;
+      }
+
+      .band-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+      }
+
+      .band-icon-wrapper i {
+        font-size: 14px;
+        color: #FFFFFF;
+        transition: all 0.3s ease;
+      }
+
+      /* BAND 官方LOGO图片样式 */
+      .band-logo-official {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .band-logo-official img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: all 0.3s ease;
+      }
+
+      .band-btn-large .band-logo-official {
+        width: 28px;
+        height: 28px;
+      }
+
+      .band-btn:hover .band-logo-official {
+        transform: scale(1.1);
+      }
+
+      .band-btn:hover .band-icon-wrapper {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
+      }
+
+      .band-btn:hover .band-icon-wrapper i {
+        transform: scale(1.05);
+      }
+
+      .band-btn-large .band-icon-wrapper {
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+      }
+
+      .band-btn-large .band-icon-wrapper i {
+        font-size: 16px;
+      }
+
+      .band-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.3;
+      }
+
+      .band-text-main {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .band-text-sub {
+        font-size: 13px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .band-btn-large .band-text-main {
+        font-size: 18px;
+        margin-bottom: 3px;
+      }
+
+      .band-btn-large .band-text-sub {
+        font-size: 14px;
+      }
+
+      /* 简约脉冲动画 */
+      @keyframes bandGlow {
+        0%, 100% {
+          box-shadow: 0 4px 20px rgba(0, 200, 81, 0.25);
+        }
+        50% {
+          box-shadow: 0 6px 25px rgba(0, 200, 81, 0.35);
+        }
+      }
+
+      .band-btn {
+        animation: bandGlow 3s ease-in-out infinite;
+      }
+
+      @media screen and (max-width: 768px) {
+        .band-btn {
+          font-size: 15px;
+          padding: 16px 28px;
+          min-width: 95%;
+          gap: 10px;
+          border-radius: 14px;
+        }
+
+        .band-btn-large {
+          font-size: 16px;
+          padding: 20px 32px;
+          min-width: 280px;
+          gap: 12px;
+          border-radius: 16px;
+        }
+
+        .band-icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+        }
+
+        .band-btn-large .band-icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+        }
+
+        .band-text-main {
+          font-size: 14px;
+        }
+
+        .band-text-sub {
+          font-size: 12px;
+        }
+
+        .band-btn-large .band-text-main {
+          font-size: 16px;
+        }
+
+        .band-btn-large .band-text-sub {
+          font-size: 13px;
+        }
+
+        .band-icon-wrapper i {
+          font-size: 12px;
+        }
+
+        .band-btn-large .band-icon-wrapper i {
+          font-size: 14px;
+        }
+
+        .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-logo-official::before {
+          width: 14px;
+          height: 14px;
+        }
+
+        .band-logo-official::after {
+          font-size: 9px;
+        }
+
+        .band-btn-large .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-btn-large .band-logo-official::before {
+          width: 18px;
+          height: 18px;
+        }
+
+        .band-btn-large .band-logo-official::after {
+          font-size: 11px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .band-btn {
+          font-size: 14px;
+          padding: 14px 24px;
+          min-width: 95%;
+          gap: 8px;
+          border-radius: 12px;
+        }
+
+        .band-btn-large {
+          font-size: 15px;
+          padding: 18px 28px;
+          min-width: 95%;
+          gap: 10px;
+          border-radius: 14px;
+        }
+
+        .band-icon-wrapper {
+          width: 20px;
+          height: 20px;
+          border-radius: 5px;
+        }
+
+        .band-btn-large .band-icon-wrapper {
+          width: 24px;
+          height: 24px;
+          border-radius: 6px;
+        }
+
+        .band-text-main {
+          font-size: 13px;
+        }
+
+        .band-text-sub {
+          font-size: 11px;
+        }
+
+        .band-btn-large .band-text-main {
+          font-size: 15px;
+        }
+
+        .band-btn-large .band-text-sub {
+          font-size: 12px;
+        }
+
+        .band-icon-wrapper i {
+          font-size: 11px;
+        }
+
+        .band-btn-large .band-icon-wrapper i {
+          font-size: 13px;
+        }
+
+        .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-logo-official::before {
+          width: 12px;
+          height: 12px;
+        }
+
+        .band-logo-official::after {
+          font-size: 8px;
+        }
+
+        .band-btn-large .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-btn-large .band-logo-official::before {
+          width: 16px;
+          height: 16px;
+        }
+
+        .band-btn-large .band-logo-official::after {
+          font-size: 10px;
+        }
+      }
+    </style>
     <style>
       img.wp-smiley,
       img.emoji {
@@ -1075,37 +1411,42 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               <div class="hero-badge"><DollarSign size={14} /> 주식투자 전문가</div>
               
               <h1 class="hero-title">
-                매일 수익나는 주식을<br>
+                매일 상승하는 주식을<br>
                 알려드립니다
               </h1>
               
               <p class="hero-subtitle">
-                나 친구 추가하면 매일 오를 주식 알려줄게! 
-                어떤 주식 사야 할지 모르겠다면 그냥 나한테 물어봐. 같이 돈 벌어보자!
+                친구 추가만 하면 매일 오를 만한 주식 추천해줄게요! 어떤 주식을 사야 할지 고민된다면 언제든 편하게 물어봐주세요. 우리 같이 자산도 키우고, 투자도 배워봐요!
               </p>
 
               <div class="hero-features">
                 <div class="feature-item">
                   <div class="feature-icon"><BarChart3 size={20} /></div>
-                  <span>매일 오를 주식 알려줌</span>
+                  <span>매일 상승 가능성 높은 종목을 추천해드려요</span>
                 </div>
                 <div class="feature-item">
                   <div class="feature-icon"><Lightbulb size={20} /></div>
-                  <span>언제 사고 팔지 정확히 알려줌</span>
+                  <span>매수와 매도 시점도 정확하게 안내해드려요</span>
                 </div>
                 <div class="feature-item">
                   <div class="feature-icon"><TrendingUp size={20} /></div>
-                  <span>너한테 맞는 방법 알려줌</span>
+                  <span>회원님 투자 스타일에 맞는 투자 전략도 알려드려요</span>
                 </div>
                 <div class="feature-item">
                   <div class="feature-icon"><Target size={20} /></div>
-                  <span>손해 안 보고 돈 더 많이 버는 법</span>
+                  <span>손실은 최소화하고 자산을 안정적으로 늘릴 수 있는 방법을 함께 찾아봐요</span>
                 </div>
               </div>
 
               <div class="hero-cta">
-                <a href="#" class="btn-primary link-btn" target="_blank">
-                  친구 추가하고 돈 버는 주식 받기
+                <a href="#" class="band-btn link-btn" target="_blank">
+                  <div class="band-logo-official">
+                    <img src={bandLogo.src} alt="BAND Logo" />
+                  </div>
+                  <div class="band-text">
+                    <span class="band-text-main">BAND 친구 추가하고</span>
+                    <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                  </div>
                 </a>
               </div>
             </div>
@@ -1142,7 +1483,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                 </div>
 
                 <p class="expert-quote">
-                  15년 동안 주식으로 돈 벌어온 노하우로 매일 오를 주식 찾아서 알려줄게. 나 따라만 하면 너도 돈 벌 수 있어!
+                  15년 동안 주식 투자로 자산을 키워온 경험을 바탕으로, 매일 상승 여력이 있는 종목을 추천해드려요. 저와 함께하면 여러분도 꾸준히 수익을 올릴 수 있어요!
                 </p>
               </div>
             </div>
@@ -1153,8 +1494,8 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
         <div class="inner">
           <div class="jisseki_head clearfix">
             <div class="jisseki_copy">
-              <h2>내가 알려준 주식들이 계속 올랐어!</h2>
-              <p>진짜로 얼마나 벌었는지 한 번 봐봐.</p>
+              <h2>제가 추천드린 종목들이 계속해서 우상향했어요!</h2>
+              <p>실제로 얼마나 수익이 났는지 직접 한번 확인해보세요.</p>
             </div>
             <div class="jisseki_img">
               <img src={jissekiImg.src} alt="" />
@@ -1170,7 +1511,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2024/1/15</td>
+                        <td>2025/6/5</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1178,7 +1519,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2024/2/20</td>
+                        <td>2025/7/10</td>
                       </tr>
                       <tr>
                         <th>매도가</th>
@@ -1189,7 +1530,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                         <td>
                           <div class="up">
                             <p class="an2-fadeup">▲</p>
-                            +18.9% 수익!
+                            +18.9% 상승!
                           </div>
                         </td>
                       </tr>
@@ -1207,7 +1548,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2024/2/5</td>
+                        <td>2025/6/15</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1215,7 +1556,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2024/3/8</td>
+                        <td>2025/7/8</td>
                       </tr>
                       <tr>
                         <th>매도가</th>
@@ -1226,7 +1567,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                         <td>
                           <div class="up">
                             <p class="an2-fadeup">▲</p>
-                            +36.2% 수익!
+                            +36.2% 상승!
                           </div>
                         </td>
                       </tr>
@@ -1244,7 +1585,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2024/1/22</td>
+                        <td>2025/6/8</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1252,7 +1593,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2024/3/15</td>
+                        <td>2025/7/9</td>
                       </tr>
                       <tr>
                         <th>매도가</th>
@@ -1263,7 +1604,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                         <td>
                           <div class="up">
                             <p class="an2-fadeup">▲</p>
-                            +39.2% 수익!
+                            +39.2% 상승!
                           </div>
                         </td>
                       </tr>
@@ -1281,7 +1622,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2024/2/28</td>
+                        <td>2025/6/25</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1289,7 +1630,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2024/3/25</td>
+                        <td>2025/7/11</td>
                       </tr>
                       <tr>
                         <th>매도가</th>
@@ -1300,7 +1641,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                         <td>
                           <div class="up">
                             <p class="an2-fadeup">▲</p>
-                            +23.4% 수익!
+                            +23.4% 상승!
                           </div>
                         </td>
                       </tr>
@@ -1327,12 +1668,15 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               animation: switch 2s ease-out infinite;
             "
             >
-              <img
-                class="myClickimg"
-                src={imgKg0703_4.src}
-                alt=""
-                style="max-width: 100%; width: auto"
-              />
+              <div class="band-btn">
+                <div class="band-logo-official">
+                  <img src={bandLogo.src} alt="BAND Logo" />
+                </div>
+                <div class="band-text">
+                  <span class="band-text-main">BAND 친구 추가하고</span>
+                  <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                </div>
+              </div>
             </div>
           </a>
         </div>
@@ -1343,38 +1687,30 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
         </div>
     </section> -->
       <section class="merit">
-        <h2>왜 나한테 주식 배워야 할까?</h2>
+        <h2>왜 저에게 주식 투자를 배워야 할까요?</h2>
         <div class="merit_inner">
           <!-- box -->
           <div class="merit_box">
-            <h3><span class="back_line">1. 진짜 돈 되는 방법</span></h3>
+            <h3><span class="back_line">1. 검증된 투자 방법</span></h3>
             <div class="merit_wp clearfix">
               <div class="merit_left">
                 <img src={imgMerit1.src} alt="" />
               </div>
               <p>
-                주식은 어려워 보이지만 사실 간단해. 어떤 걸 언제 사야 하는지만 알면 돼. 
-                나는 15년 동안 주식으로 돈 벌어왔으니까
-                <strong class="bl">안전하게 돈 벌 수 있는 방법</strong>을
-                알고 있어.
-                <strong class="bl">주식 처음 하는 사람도 쉽게 따라할 수 있게</strong>
-                차근차근 알려줄게.
+                주식 투자가 어렵게 느껴질 수 있지만, 사실 원칙만 알면 누구나 할 수 있어요. 중요한 건 어떤 종목을 언제 매수하고 매도할지 아는 거죠. 저는 15년 동안 주식 투자를 하면서 안정적으로 자산을 늘려온 경험이 있습니다. 처음 투자하시는 분도 쉽게 따라올 수 있도록 기본부터 차근차근 알려드려요.
               </p>
             </div>
           </div>
           <!-- /box -->
           <!-- box -->
           <div class="merit_box">
-            <h3><span class="back_line">2. 금방 돈 벌 수 있어</span></h3>
+            <h3><span class="back_line">2. 빠르게 성과를 낼 수 있어요</span></h3>
             <div class="merit_wp clearfix">
               <div class="merit_right">
                 <img src={imgMerit2.src} />
               </div>
               <p>
-                내가 직접 분석해서 좋은 주식 찾아서 알려주면 금방 돈 벌 수 있어.
-                그냥 운빨로 하는 게 아니라, 제대로 분석해서
-                <strong class="bl">계속 돈 벌 수 있는 방법</strong>을 알려줄게.
-                언제 사고 팔지, 위험한 건 어떻게 피하는지까지 다 알려줄게.
+                제가 직접 시장을 분석해서 상승 모멘텀이 있는 종목을 추천해드리기 때문에, 단기간에 성과를 기대할 수 있습니다. 감이 아니라, 데이터와 차트 분석을 기반으로 꾸준히 수익 낼 수 있는 매매법을 알려드릴게요. 매수·매도 타이밍부터 리스크 관리 방법까지 실전에서 쓸 수 있는 노하우를 전달해드립니다.
               </p>
             </div>
           </div>
@@ -1391,12 +1727,15 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               animation: switch 2s ease-out infinite;
             "
             >
-              <img
-                class="myClickimg"
-                src={imgKg0703_4.src}
-                alt=""
-                style="max-width: 100%; width: auto"
-              />
+              <div class="band-btn">
+                <div class="band-logo-official">
+                  <img src={bandLogo.src} alt="BAND Logo" />
+                </div>
+                <div class="band-text">
+                  <span class="band-text-main">BAND 친구 추가하고</span>
+                  <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                </div>
+              </div>
             </div>
           </a>
         </div>
@@ -1416,9 +1755,9 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
       </section>
       <section class="voice">
         <h2>
-          주식 처음 하는 사람도 금방 돈 벌었어!
+          주식이 처음이신 분들도 짧은 시간 안에 수익을 내셨어요!
           <br />
-          <span class="or">나 따라한 사람들이 <span class="bl">직접 쓴 후기</span></span>
+          <span class="or">저와 함께 투자하신 분들의 실제 수익 인증 후기를 직접 확인해보세요.</span>
         </h2>
 
         <div class="voice_inner">
@@ -1431,25 +1770,23 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               <div class="voice_title">
                 <div class="age">50대 직장인 남성</div>
                 <h3>
-                  “예상을 뛰어넘는 수익, <br />
-                  더 이상 이것 없이 주식을 살 수 없어요.”
+                  "기대 이상의 수익,<br />
+                  이제는 멘토 없이 주식 매수는 상상할 수<br/>
+                  없습니다."
                 </h3>
               </div>
             </div>
             <div class="voice_text">
               <p>
-                1.멘토와 상담함으로써 종목을 선택하는데 예전에는 많은 시간이
-                소요되었던 프로세스가 훨씬 간단해져 스트레스가 사라졌습니다.
+                1. 멘토와 함께 종목을 상담하다 보니 예전에는 많은 시간을 들여야 했던 종목 선정이 훨씬 간편해져서 투자 스트레스가 크게 줄었습니다.
               </p>
               <p>
-                2.멘토가 추천한 주식에 관한 정보의 깊이는 저의 지식과 차이가
-                커서 정확도가 높고 예상하는 기대가 달라집니다.
+                2. 멘토가 추천해주는 종목 분석과 시장 정보는 제가 알고 있던 것과 비교해 깊이가 다르고, 덕분에 매수할 때 확신이 생깁니다.
               </p>
               <p>
-                3.이곳을 가입한 후로 저희 수익률은 70%를 초과하였고 , 이전에 살
-                수 없었던 메이져 주식도 시도 할수 있게 되었습니다.
+                3. 이곳에 가입한 후 누적 수익률이 70%를 넘었고, 예전에는 엄두도 못 냈던 주요 우량주에도 투자할 수 있게 됐습니다.
               </p>
-              <p>4.이제는 더 이상 멘토의 도움없이 주식을 살 수 가 없습니다.</p>
+              <p>4. 이제는 멘토의 추천과 리딩 없이 주식 매수 결정을 내리기가 어렵습니다.</p>
             </div>
           </div>
           <div class="voice_box">
@@ -1459,21 +1796,18 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               </div>
               <div class="voice_title">
                 <div class="age">40대 직장인 남성</div>
-                <h3>“5가지 시도한 주식 중 2개가 상한가에요!”</h3>
+                <h3>"처음 투자한 5종목 중 2개가 상한가를 기록했습니다!"</h3>
               </div>
             </div>
             <div class="voice_text">
               <p>
-                1.처음 투자한 5개 주식중 2개가 상한가에요!!현재까지 모든 손실은
-                회복 되었고 지금은 수익으로 전환 되었습니다.
+                1. 처음에 매수한 5개 종목 중 2종목이 상한가를 달성하면서, 이전에 봤던 손실도 모두 만회했고 지금은 전체 계좌가 수익 구간에 접어들었습니다.
               </p>
               <p>
-                2.사실 5개 주식을 시도 했는데 각각 1주일~2개월정도 짧은 시간에
-                수익을 냈으며 작은 주식 2개가 상한가를 찍어서 감동 받았습니다.
+                2. 다섯 종목 모두 1주일에서 최대 2개월 정도의 짧은 투자 기간에 수익 실현이 가능했으며, 특히 소형주 두 종목이 상한가에 진입해서 정말 놀랐습니다.
               </p>
               <p>
-                3.물론 모든 주식이 빠르게 올라간건 아니지만 대부분 높은 기대치가
-                있어 자신있게 보유 할 수 있습니다.
+                3. 물론 모든 종목이 단기간에 급등한 건 아니지만, 대부분 성장 가능성이 높아서 자신 있게 중장기 포트폴리오에 편입할 수 있었습니다.
               </p>
             </div>
           </div>
@@ -1486,21 +1820,18 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                 <img src={imgVoice3.src} alt="" />
               </div>
               <div class="voice_title">
-                <div class="age">60대 주부 여성</div>
+                <div class="age">60대 주부</div>
                 <h3>
-                  단 한 달 만에 아르바이트 수익의 반년치를 벌 수 있었어요!
+                  "한 달 만에 아르바이트 반년치 수익을 얻었어요!"
                 </h3>
               </div>
             </div>
             <div class="voice_text">
               <p>
-                아들의 추천으로 이 곳에 참여했는데, 딱 한 달 동안에 내가 다루고
-                있는 주식으로 반년치 아르바이트 수익과 동일한 수익을 올릴 수
-                있었어요.
+                아들의 추천으로 이곳에 참여하게 됐는데, 투자 시작한 지 한 달 만에 주식으로 반년 동안 아르바이트해서 벌던 만큼의 수익을 올릴 수 있었어요.
               </p>
               <p>
-                주식 시장에는 잘 몰라서 이런 것들은 피해왔는데, 주식 시장에 대해
-                더 많이 알 수 있도록 도와주어 도움이 되고 있어요.
+                사실 주식은 잘 몰라서 늘 멀리했던 분야였는데, 이곳에서 시장 흐름부터 투자 방법까지 쉽게 설명해주시니까 걱정 없이 투자할 수 있었습니다. 앞으로도 꾸준히 수익 내고 싶어요!
               </p>
             </div>
           </div>
@@ -1514,25 +1845,19 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               <div class="voice_title">
                 <div class="age">40대 자영업 남성</div>
                 <h3>
-                  “<em class="back_line2">시장을 주시할 시간이 없어도</em> 매달 월급보다
-                  더 벌어요!”
+                  "장시간 시장을 안 봐도 월급보다 높은 수익을 얻고 있습니다!"
                 </h3>
               </div>
             </div>
             <div class="voice_text">
               <p>
-                1.나는 식당을 운영하고 있지만 , 낮에는 점심 장사로 인해 매우
-                바빠서 주식을 확인 할 시간이 없었어요! 이전에는 메이져만 찾아
-                다니며 즐겼는데 , 지금은 일이 바빠서 할 시간이 부족합니다.
+                1. 식당을 운영하다 보니 점심시간에는 너무 바빠서 주가를 실시간으로 확인할 틈이 없었어요. 예전에는 대형주에만 관심이 있었지만, 바빠지면서 투자할 시간이 부족했습니다.
               </p>
+                              <p>
+                                2. 그러다 멘토의 리딩을 받아보고 투자해봤는데, 일하면서도 월급 이상으로 수익이 나고 있어 정말 도움을 많이 받고 있습니다.
+                </p>
               <p>
-                2.그떄 , 저의 멘토로부터 배우고 시도해봤는데 , 일은 하면서 식당
-                일보다 많은 수익을 볼 수 있었고 저의 멘토는 정말 큰 도움이
-                되었습니다.
-              </p>
-              <p>
-                3.전혀 몰랐던 멘토의 추천 주식들인데 멘토를 믿고 이익을
-                달성한거에 대해 너무 감사하고 기뻤습니다.
+                3. 사실 처음 접하는 종목이라 걱정했는데, 멘토의 추천을 믿고 투자해보니 좋은 결과가 나와서 정말 기쁘고 감사합니다.
               </p>
             </div>
           </div>
@@ -1544,23 +1869,19 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                 <img src={imgVoice5.src} alt="" />
               </div>
               <div class="voice_title">
-                <div class="age">60대 실업자 남성</div>
-                <h3>“일찍 시작했어야 했어요. 은퇴 후에 더 즐거워졌어요.”</h3>
+                <div class="age">60대 실업 남성</div>
+                <h3>"좀 더 일찍 시작했다면 하는 아쉬움이 남아요. 이제는 은퇴 후 삶이 더 즐거워졌습니다."</h3>
               </div>
             </div>
             <div class="voice_text">
               <p>
-                1.은퇴한 후에 나는 혼자서 주식 거래를 시작했지만 , 수익을 내지
-                못했어요 . 주식 투자에 대해 배우기 위해 여러가지 방법을 차고
-                있을때 , 저의 멘토를 만났습니다.
+                1. 은퇴 후 혼자 주식 투자를 시작했지만 쉽게 수익을 내지 못했습니다. 그러다 제대로 배우기 위해 여러 방법을 찾던 중 멘토를 만나게 됐어요.
               </p>
               <p>
-                2.저는 나이가 있어서 글을 읽는것도 어려운 일이지만 정보를
-                공유하고 설명해주는 멘토 덕분에 많은 도움이 되었습니다.
+                1. 은퇴 후 혼자 주식 투자를 시작했지만 쉽게 수익을 내지 못했습니다. 그러다 제대로 배우기 위해 여러 방법을 찾던 중 멘토를 만나게 됐어요.
               </p>
               <p>
-                3.지금까지 대략 3개 종목만 시도 해봤는데 각각 탄탄한 수익을
-                봤습니다.
+                3. 현재까지 세 종목에만 분산 투자했는데, 모두 안정적으로 플러스 수익을 기록 중입니다. 이제는 투자 덕분에 은퇴 후 일상이 훨씬 활기차고 즐겁게 변했습니다.
               </p>
             </div>
           </div>
@@ -1573,28 +1894,23 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
                 <img src={imgVoice6.src} alt="" />
               </div>
               <div class="voice_title">
-                <div class="age">40대 주부 여성</div>
+                <div class="age">40대 주부</div>
                 <h3>
-                  “주식 투자가 잘 안됐는데, 헌신적인 멘토의 지원 덕분에 안심하고
-                  시작할 수 있었어요!”
+                  "주식 투자가 늘 어렵게만 느껴졌는데, 멘토의 꼼꼼한 지원 덕분에 안심하고 시작할 수 있었습니다!"
                 </h3>
               </div>
             </div>
             <div class="voice_text">
               <p>
-                주변에서 자산 관리가 중요하다고 하는 이야기를 듣고 , 저도 직접
-                시도해보기로 결심했어요.
+                주위에서 자산 관리를 강조하는 말을 많이 들어 저도 직접 투자에 도전하기로 결심했어요.
               </p>
               <p>
-                남편은 투자에 큰 흥미가 없고 저는 투식투자가 잘 안되엇지만
-                헌신적인 멘토의 지원 덕분에 어려움 없이 시작할 수가 있었어요
+                남편은 투자에 큰 관심이 없고, 저 역시 주식투자가 늘 쉽지 않았지만, 멘토가 매번 친절하게 투자 전략부터 종목 선정까지 도와주셔서 걱정 없이 시작할 수 있었습니다.
               </p>
               <p>
-                나는 인도 주식과 미국 주식 둘다 거래하고 있고 , 저의 멘토는 어떤
-                주식으로 수익을 낼 수 있는지 조언에 주기 때문에 자신있게 주식을
-                구매 할 수 있습니다.
+                지금은 인도 주식과 미국 주식 모두 거래하고 있는데, 멘토가 유망 종목과 매수·매도 시점까지 꾸준히 조언해주셔서 자신 있게 포트폴리오를 구성하고 있습니다.
               </p>
-              <p>이걸 테니스 동호회 친구들에게 알려중 생각이에요</p>
+              <p>이런 좋은 경험을 테니스 동호회 친구들에게도 꼭 추천하고 싶어요!</p>
             </div>
           </div>
           <!-- /box -->
@@ -1609,12 +1925,15 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               animation: switch 2s ease-out infinite;
             "
             >
-              <img
-                class="myClickimg"
-                src={imgKg0703_4.src}
-                alt=""
-                style="max-width: 100%; width: auto"
-              />
+              <div class="band-btn">
+                <div class="band-logo-official">
+                  <img src={bandLogo.src} alt="BAND Logo" />
+                </div>
+                <div class="band-text">
+                  <span class="band-text-main">BAND 친구 추가하고</span>
+                  <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                </div>
+              </div>
             </div>
           </a>
         </div>
@@ -1628,16 +1947,16 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
         <div class="faq_inner">
           <div class="qa-list mts">
             <dl class="qa">
-              <dt>어떻게 하면 되나요?</dt>
+              <dt>어떻게 가입하면 되나요?</dt>
               <dd style="display: none">
                 <p>
-                  카카오톡으로 나 친구 추가만 하면 돼. 그러면 매일 오를 주식이랑
+                  BAND로 나 친구 추가만 하면 돼. 그러면 매일 오를 주식이랑
                   언제 사고 팔지 무료로 알려줄게.
                 </p>
               </dd>
             </dl>
             <dl class="qa">
-              <dt>어떤 주식 정보 알려주나요?</dt>
+              <dt>어떤 주식 정보를 알려주나요?</dt>
               <dd style="display: none">
                 <p>
                   내가 매일 분석해서 오를 것 같은 주식 알려줄게: 
@@ -1647,7 +1966,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               </dd>
             </dl>
             <dl class="qa">
-              <dt>주식 처음 해도 괜찮아요?</dt>
+              <dt>주식 처음 시작해도 괜찮을까요?</dt>
               <dd style="display: none">
                 <p>
                   당연하지! 주식 처음 하든 이미 하고 있든 상관없어. 
@@ -1656,7 +1975,7 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               </dd>
             </dl>
             <dl class="qa">
-              <dt>대신 주식 사고 팔아주나요?</dt>
+              <dt>대신 주식을 매매해주나요?</dt>
               <dd style="display: none">
                 <p>
                   직접 사고 파는 건 너가 해야 해. 근데 언제 사고 팔지는 
@@ -1666,20 +1985,20 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
               </dd>
             </dl>
             <dl class="qa">
-              <dt>돈 내야 하나요?</dt>
+              <dt>비용이 드나요?</dt>
               <dd style="display: none">
                 <p>
-                  기본으로 주식 정보 알려주는 건 완전 공짜야. 더 좋은 
+                  기본으로 주식 정보 알려주는 건 완전 무료야. 더 좋은 
                   서비스도 비싸지 않게 해주고, 숨겨진 비용 없이 
                   안심하고 쓸 수 있어.
                 </p>
               </dd>
             </dl>
             <dl class="qa">
-              <dt>돈 벌면 추가로 돈 내야 해요?</dt>
+              <dt>수익이 나면 추가 비용을 내야 하나요?</dt>
               <dd style="display: none">
                 <p>
-                  기본 서비스는 완전 공짜고, 너가 돈 벌어도 
+                  기본 서비스는 완전 무료고, 너가 수익 올려도 
                   추가로 내는 돈 없어. 숨겨진 거 없이 
                   안심하고 써도 돼.
                 </p>
@@ -1699,14 +2018,22 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
           <a href="#" class="link-btn" target="_blank">
             <div class="submit center banner">
               <div class="btna">
-                <img class="myimg" src={btnCta.src} />
+                                  <div class="band-btn band-btn-large">
+                    <div class="band-logo-official">
+                      <img src={bandLogo.src} alt="BAND Logo" />
+                    </div>
+                    <div class="band-text">
+                      <span class="band-text-main">BAND 친구 추가하고</span>
+                      <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                    </div>
+                  </div>
               </div>
             </div>
           </a>
           <div style="text-align: center">
             <p class="k_sp" style="font-weight: bold; font-size: 18px">
-              버튼 눌러서 카카오톡 친구 추가해! <br />
-              매일 주식 정보 알려주는 건 <span style="color: #fff300">완전 공짜</span>야.
+              버튼 눌러서 BAND 친구 추가해! <br />
+              매일 주식 정보 알려주는 건 <span style="color: #fff300">완전 무료</span>야.
             </p>
           </div>
         </div>
@@ -1714,14 +2041,14 @@ import { DollarSign, BarChart3, Lightbulb, TrendingUp, Target } from 'lucide-ast
           <div class="banner_pc fl_pc">
             <p class="animate__animated animate__headShake animate__infinite">
               <a href="#" class="link-btn" target="_blank"
-                >▶ 카톡 친구 추가하고 돈 버는 주식 받기</a
+                >▶ BAND 친구 추가하고 상승 주식 받기</a
               >
             </p>
           </div>
           <div class="banner_sp fl_sp">
             <p class="animate__animated animate__headShake animate__infinite">
               <a href="#" class="link-btn" target="_blank"
-                >▶ 카톡 친구 추가하고 돈 버는 주식 받기</a
+                >▶ BAND 친구 추가하고 상승 주식 받기</a
               >
             </p>
           </div>

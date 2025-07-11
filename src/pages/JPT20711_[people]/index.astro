@@ -1,10 +1,8 @@
 ---
+import type { ImageMetadata } from "astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import MessageModal from "../../components/MessageModal.astro";
-import header from "./static/header.png";
-import avatar from "./static/head.jpg";
-import img1 from "./static/img.png";
 import "@fontsource/noto-sans-jp/300.css";
 import "@fontsource/noto-sans-jp/400.css";
 import "@fontsource/noto-sans-jp/500.css";
@@ -26,29 +24,49 @@ import {
   Crown,
   Zap,
 } from "lucide-astro";
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: "三橋貴明", img_prefix: "sq_" } },
+    { params: { people: "馬渕磨理子", img_prefix: "mlz_" } },
+  ];
+}) satisfies GetStaticPaths;
+
+const { people } = Astro.params;
+const img_prefix = getStaticPaths().find(
+  (path) => path.params.people === people
+)?.params.img_prefix;
+const header = import(`./static/${img_prefix}header.png`);
+const avatar = import(`./static/${img_prefix}head.jpg`);
+const img1 = import(`./static/${img_prefix}img.png`);
 ---
 
-<BaseLayout title="馬渕磨理子" description="馬渕磨理子">
+<BaseLayout title={people} description={people}>
   <!-- Page-specific font configuration -->
   <style is:global>
     html {
-      font-family: 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+      font-family: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    
+
     body {
-      font-family: 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+      font-family: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
       font-weight: 400;
       line-height: 1.6;
     }
-    
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
       font-weight: 700;
       line-height: 1.2;
     }
-    
+
     * {
       font-family: inherit;
     }
@@ -124,8 +142,7 @@ import {
         <div class="text-emerald-700 text-sm ml-3 font-bold text-center">
           既に<span
             id="member-count"
-            class="text-emerald-600 font-black text-lg"
-            >12847</span
+            class="text-emerald-600 font-black text-lg">12847</span
           >人の仲間が参加中！
         </div>
         <div
@@ -134,7 +151,9 @@ import {
           <p
             class="text-emerald-800 text-sm text-center leading-relaxed font-medium"
           >
-            「磨理子さんのおかげで3日で8万円の利益が！本当にありがとうございます」
+            「{
+              people
+            }さんのおかげで3日で8万円の利益が！本当にありがとうございます」
           </p>
           <p class="text-emerald-600 text-center text-xs mt-2 font-semibold">
             - 田中様（会社員）
@@ -150,7 +169,11 @@ import {
           >
           </div>
           <div class="relative">
-            <Image src={img1} alt="img1" class="w-full rounded-2xl shadow-xl" />
+            <Image
+              src={img1}
+              alt="img1"
+              class="w-full rounded-2xl shadow-xl"
+            />
           </div>
         </div>
       </div>
@@ -168,7 +191,7 @@ import {
             <span
               class="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold shadow-lg whitespace-nowrap"
             >
-              磨理子からの特別オファー
+              {people}からの特別オファー
             </span>
             <span
               class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold shadow-lg whitespace-nowrap"
@@ -177,7 +200,9 @@ import {
             </span>
           </div>
           <p class="text-gray-800 text-base leading-relaxed mb-5 font-medium">
-            こんにちは！馬渕磨理子です。私のLINEを無料でお友達追加していただき、「受取」とメッセージを送るだけで、明日上がる銘柄をお教えします♪さらに、私が厳選した毎週60％の利益が期待できる特別な銘柄情報も、あなたにだけお届けします！
+            こんにちは！{
+              people
+            }です。私のLINEを無料でお友達追加していただき、「受取」とメッセージを送るだけで、明日上がる銘柄をお教えします♪さらに、私が厳選した毎週60％の利益が期待できる特別な銘柄情報も、あなたにだけお届けします！
           </p>
           <div
             class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 p-4 rounded-xl shadow-inner"
@@ -249,7 +274,7 @@ import {
             <div class="flex flex-col items-center justify-center">
               <span class="text-xl flex items-center justify-center gap-3 mb-2">
                 <MessageCircle class="w-7 h-7 flex-shrink-0" />
-                磨理子とLINEでつながる
+                {people}とLINEでつながる
               </span>
               <span
                 class="text-sm opacity-90 flex items-center justify-center gap-2 font-medium"
@@ -346,7 +371,7 @@ import {
             <div class="flex flex-col items-center justify-center">
               <span class="text-xl flex items-center justify-center gap-3 mb-2">
                 <Check class="w-7 h-7 flex-shrink-0" />
-                磨理子と一緒に始めよう
+                {people}と一緒に始めよう
               </span>
               <span class="text-sm opacity-90 font-medium"
                 >残り127名様・お早めに♪</span
@@ -373,9 +398,7 @@ import {
       </div>
 
       <!-- Enhanced Trust Badges -->
-      <div
-        class="flex justify-center items-center mb-8 gap-4"
-      >
+      <div class="flex justify-center items-center mb-8 gap-4">
         <div
           class="backdrop-blur-md bg-white/80 p-3 rounded-xl border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300"
         >
@@ -433,14 +456,14 @@ import {
       >
         <span class="flex items-center justify-center gap-3 text-lg">
           <MessageCircle class="w-6 h-6 flex-shrink-0" />
-          磨理子と無料でつながる♪
+          {people}と無料でつながる♪
         </span>
       </button>
     </div>
   </div>
 
   <!-- Message Modal Component -->
-  <MessageModal userAvatar={avatar} />
+  <MessageModal userAvatar={avatar} userName={people} />
 </BaseLayout>
 
 <style>

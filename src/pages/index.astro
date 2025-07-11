@@ -1,122 +1,411 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import fs from 'node:fs';
-import path from 'node:path';
 
-// Recursively get all pages in the pages directory
-function getPages() {
-  const pagesDir = path.join(process.cwd(), 'src/pages');
+// 定义页面类型
+interface PageInfo {
+  path: string;
+  name: string;
+  description?: string;
+  type: string;
+  isDynamic: boolean;
+  examplePath: string;
+  metadata?: any;
+}
+
+// 使用 import.meta.glob 获取所有页面文件
+function getPages(): PageInfo[] {
+  // 获取所有 .astro 页面文件（使用 Vite 的 import.meta.glob）
+  const pageFiles = import.meta.glob('./**/*.astro', { eager: true });
   
-  // Recursively scan directories for Astro files
-  function scanDirectory(dir: string, basePath: string = ''): Array<{path: string, name: string, type: string}> {
-    const items = [];
-    try {
-      const files = fs.readdirSync(dir, { withFileTypes: true });
-      
-      for (const file of files) {
-        const fullPath = path.join(dir, file.name);
-        const relativePath = path.join(basePath, file.name);
-        
-        if (file.isDirectory()) {
-          // Recursively scan subdirectories
-          items.push(...scanDirectory(fullPath, relativePath));
-        } else if (file.name.endsWith('.astro') && file.name !== 'index.astro') {
-          // Regular Astro files (not index)
-          const routePath = `/${relativePath.replace(/\.astro$/, '').replace(/\\/g, '/')}`;
-          items.push({
-            path: routePath,
-            name: file.name.replace('.astro', ''),
-            type: 'page'
-          });
-        } else if (file.name === 'index.astro' && basePath) {
-          // Index files in subdirectories
-          const routePath = `/${basePath.replace(/\\/g, '/')}`;
-          items.push({
-            path: routePath,
-            name: basePath.split(path.sep).pop() || 'Page',
-            type: 'index'
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Error scanning directory:', dir, error);
+  const pages: PageInfo[] = [];
+  
+  for (const [filePath, pageModule] of Object.entries(pageFiles as Record<string, any>)) {
+    // 只跳过根目录的index.astro文件和layouts目录
+    if ((filePath === './index.astro') || filePath.includes('/layouts/')) {
+      continue;
     }
     
-    return items;
+    // 获取模块的元数据（如果存在）
+    const metadata = (pageModule as any)?.metadata || {};
+    
+    // 从文件路径生成路由路径
+    let routePath = filePath
+      .replace('.', '')
+      .replace('.astro', '')
+      .replace(/\/index$/, ''); // 处理目录中的index文件
+    
+    // 确保路径以 / 开头
+    if (!routePath.startsWith('/')) {
+      routePath = '/' + routePath;
+    }
+    
+    // 如果路径是空的，设为根路径
+    if (routePath === '/') {
+      routePath = '/root';
+    }
+    
+    // 检查是否是动态路由
+    const isDynamic = routePath.includes('[') && routePath.includes(']');
+    
+    // 从文件路径提取页面名称
+    const segments = filePath.split('/');
+    const fileName = segments[segments.length - 1].replace('.astro', '');
+    let pageName = metadata.title || fileName;
+    
+    // 处理目录结构的页面名称
+    if (fileName === 'index') {
+      const parentDir = segments[segments.length - 2];
+      pageName = metadata.title || parentDir || 'Page';
+    }
+    
+    // 为动态路由生成示例路径
+    let examplePath = routePath;
+    if (isDynamic) {
+      examplePath = routePath.replace(/\[([^\]]+)\]/g, (match, param) => {
+        if (param.startsWith('...')) {
+          return 'example/path';
+        }
+        if (param.endsWith('?')) {
+          return param.slice(0, -1) + '-example';
+        }
+        return param + '-example';
+      });
+    }
+    
+    pages.push({
+      path: routePath,
+      name: isDynamic ? `${pageName} (动态路由)` : pageName,
+      description: metadata.description,
+      type: fileName === 'index' ? 'index' : 'page',
+      isDynamic,
+      examplePath: isDynamic ? examplePath : routePath,
+      metadata
+    });
   }
   
-  const pages = scanDirectory(pagesDir);
+  return pages;
+}
+
+// 方法2: 也可以获取特定的路由信息（如果页面导出了元数据）
+function getPagesWithMetadata() {
+  const pageFiles = import.meta.glob('./**/*.astro', { eager: true });
+  const pages = [];
   
-  return [
-    ...pages
-  ];
+  for (const [filePath, pageModule] of Object.entries(pageFiles as Record<string, any>)) {
+    if ((filePath === './index.astro') || filePath.includes('/layouts/')) {
+      continue;
+    }
+    
+    // 如果页面导出了元数据，可以使用它们
+    const metadata = (pageModule as any)?.metadata || {};
+    
+    let routePath = filePath
+      .replace('.', '')
+      .replace('.astro', '')
+      .replace(/\/index$/, '');
+    
+    if (!routePath.startsWith('/')) {
+      routePath = '/' + routePath;
+    }
+    
+    const isDynamic = routePath.includes('[') && routePath.includes(']');
+    const segments = filePath.split('/');
+    const fileName = segments[segments.length - 1].replace('.astro', '');
+    let pageName = metadata.title || fileName;
+    
+    if (fileName === 'index') {
+      const parentDir = segments[segments.length - 2];
+      pageName = metadata.title || parentDir || 'Page';
+    }
+    
+    let examplePath = routePath;
+    if (isDynamic) {
+      examplePath = routePath.replace(/\[([^\]]+)\]/g, (match, param) => {
+        if (param.startsWith('...')) return 'example/path';
+        if (param.endsWith('?')) return param.slice(0, -1) + '-example';
+        return param + '-example';
+      });
+    }
+    
+    pages.push({
+      path: routePath,
+      name: isDynamic ? `${pageName} (动态路由)` : pageName,
+      description: metadata.description,
+      type: fileName === 'index' ? 'index' : 'page',
+      isDynamic,
+      examplePath: isDynamic ? examplePath : routePath,
+      metadata
+    });
+  }
+  
+  return pages; 
 }
 
 const pages = getPages();
+
+// 调试信息：检查发现的页面
+console.log('发现的页面文件:', pages.length);
+pages.forEach(page => {
+  console.log(`- ${page.name}: ${page.path} (${page.isDynamic ? '动态' : '静态'})`);
+});
+
+// 可选：按类型和名称排序
+const sortedPages = pages.sort((a, b) => {
+  // 动态路由排在后面
+  if (a.isDynamic !== b.isDynamic) {
+    return a.isDynamic ? 1 : -1;
+  }
+  // 按名称排序
+  return a.name.localeCompare(b.name);
+});
 ---
 
 <BaseLayout>
   <div class="menu-container">
-    <h1>导航菜单</h1>
+    <h1>站点导航</h1>
+    <p class="subtitle">使用 Astro 官方 API 自动发现的页面</p>
+    
+    <div class="stats">
+      <span class="stat">
+        总页面: <strong>{pages.length}</strong>
+      </span>
+      <span class="stat">
+        静态页面: <strong>{pages.filter(p => !p.isDynamic).length}</strong>
+      </span>
+      <span class="stat">
+        动态路由: <strong>{pages.filter(p => p.isDynamic).length}</strong>
+      </span>
+    </div>
+
+    <!-- 调试信息 -->
+    {pages.length === 0 && (
+      <div class="debug-info">
+        <h3>调试信息</h3>
+        <p>没有发现任何页面。请检查：</p>
+        <ul>
+          <li>确保 src/pages/ 目录中有 .astro 文件</li>
+          <li>检查文件路径是否正确</li>
+          <li>查看浏览器控制台的调试日志</li>
+        </ul>
+        <p>当前glob模式: <code>./**/*.astro</code></p>
+      </div>
+    )}
+
     <div class="menu-list">
-      {pages.map(page => (
-        <div class="menu-item">
-          <a href={page.path} class="menu-link">
-            <span class="menu-title">{page.name}</span>
+      {sortedPages.map(page => (
+        <div class={`menu-item ${page.isDynamic ? 'dynamic-route' : 'static-route'}`}>
+          <a href={page.examplePath} class="menu-link">
+            <div class="menu-content">
+              <span class="menu-title">{page.name}</span>
+              
+              {page.isDynamic && (
+                <div class="route-info">
+                  <span class="route-pattern">模式: <code>{page.path}</code></span>
+                  <span class="example-path">示例: <code>{page.examplePath}</code></span>
+                </div>
+              )}
+              
+              {page.description && (
+                <span class="page-description">{page.description}</span>
+              )}
+              
+              <div class="page-meta">
+                <span class="page-type">{page.type}</span>
+                {page.isDynamic && <span class="dynamic-badge">动态</span>}
+              </div>
+            </div>
           </a>
         </div>
       ))}
+    </div>
+    
+    <div class="info-section">
+      <h2>关于页面发现</h2>
+      <ul>
+        <li><strong>import.meta.glob()</strong> - 使用 Vite 的 glob 导入自动发现页面文件</li>
+        <li><strong>动态路由支持</strong> - 自动识别 [param] 和 [...param] 路由</li>
+        <li><strong>示例路径生成</strong> - 为动态路由提供可访问的示例URL</li>
+        <li><strong>元数据支持</strong> - 如果页面导出元数据，将自动使用</li>
+      </ul>
     </div>
   </div>
 </BaseLayout>
 
 <style>
   .menu-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 2rem auto;
     padding: 0 1rem;
   }
 
   h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
     color: #333;
-    border-bottom: 2px solid #eaeaea;
-    padding-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    color: #555;
+  }
+
+  .stat strong {
+    color: #333;
+  }
+
+  .debug-info {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .debug-info h3 {
+    margin-top: 0;
+    color: #856404;
+  }
+
+  .debug-info ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .debug-info code {
+    background: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: monospace;
   }
 
   .menu-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
   }
 
   .menu-item {
-    border-left: 3px solid #6366f1;
-    background-color: #fafafa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .static-route {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .dynamic-route {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   }
 
   .menu-link {
     display: block;
-    padding: 0.75rem 1rem;
-    color: inherit;
+    padding: 1.25rem;
+    color: white;
     text-decoration: none;
-    transition: background-color 0.2s;
+    transition: opacity 0.2s;
   }
 
   .menu-link:hover {
-    background-color: #f0f0f0;
+    opacity: 0.9;
+  }
+
+  .menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .menu-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .route-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .route-pattern,
+  .example-path {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  }
+
+  .route-pattern code,
+  .example-path code {
+    background: rgba(255,255,255,0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+  }
+
+  .page-description {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+  }
+
+  .page-meta {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .page-type,
+  .dynamic-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
     font-weight: 500;
+  }
+
+  .info-section {
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+  }
+
+  .info-section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
     color: #333;
   }
 
-  .menu-description {
-    color: #666;
-    margin-left: 0.5rem;
+  .info-section ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .info-section li {
+    margin-bottom: 0.5rem;
+    color: #555;
   }
 
   @media (max-width: 640px) {
@@ -126,6 +415,20 @@ const pages = getPages();
     
     h1 {
       font-size: 1.5rem;
+    }
+    
+    .stats {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .route-info {
+      font-size: 0.8rem;
+    }
+    
+    .page-meta {
+      flex-direction: column;
+      gap: 0.5rem;
     }
   }
 </style>
