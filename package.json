@@ -30,6 +30,7 @@
     "@antfu/eslint-config": "^4.16.2",
     "@unocss/reset": "^66.3.3",
     "eslint": "^9.30.1",
+    "rollup-plugin-visualizer": "^6.0.3",
     "unocss": "^66.3.3"
   }
 }
