@@ -8,6 +8,7 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
+  "livePreview.serverRoot": "/dist",
 
   // Silent the stylistic rules in you IDE, but still auto fix them
   "eslint.rules.customizations": [
@@ -47,5 +48,6 @@
     "scss",
     "pcss",
     "postcss"
-  ]
+  ],
+  "livePreview.defaultPreviewPath": "/dist/JP/三橋貴明/T0711.0/index.html"
 }

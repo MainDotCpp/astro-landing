@@ -1,8 +1,9 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import react from '@astrojs/react'
 // @ts-check
 import { defineConfig } from 'astro/config'
 
-import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/astro'
 
 // https://astro.build/config
@@ -12,10 +13,11 @@ export default defineConfig({
   })],
   compressHTML: false,
   vite: {
-    plugins: [visualizer({
-      emitFile: true,
-      filename: 'stats.html',
-    })],
+    resolve: {
+      alias: {
+        '@': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src'),
+      },
+    },
   },
   build: {
     // assetsPrefix: 'https://assetfun.top',
