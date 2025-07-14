@@ -8,9 +8,7 @@ import UnoCSS from 'unocss/astro'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), UnoCSS({
-    injectReset: true,
-  })],
+  integrations: [react(), UnoCSS({ injectReset: true })],
   compressHTML: false,
   vite: {
     resolve: {
@@ -21,6 +19,6 @@ export default defineConfig({
   },
   build: {
     // assetsPrefix: 'https://assetfun.top',
-    assets: 'static',
+    assets: 'mjSFqQ',
   },
 })

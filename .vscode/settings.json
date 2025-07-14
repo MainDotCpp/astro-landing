@@ -1,5 +1,5 @@
 {
-  // Disable the default formatter, use eslint instead
+// Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
@@ -8,7 +8,6 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
-  "livePreview.serverRoot": "/dist",
 
   // Silent the stylistic rules in you IDE, but still auto fix them
   "eslint.rules.customizations": [
@@ -34,7 +33,6 @@
     "html",
     "markdown",
     "json",
-    "json5",
     "jsonc",
     "yaml",
     "toml",
@@ -49,5 +47,53 @@
     "pcss",
     "postcss"
   ],
-  "livePreview.defaultPreviewPath": "/dist/JP/三橋貴明/T0711.0/index.html"
+  "livePreview.serverRoot": "dist",
+  "sync-rsync.autoShowOutput": true,
+  "sync-rsync.autoHideOutput": true,
+  "sync-rsync.notification": true,
+  "sync-rsync.sites": [
+    {
+      "name": "HaishiJP16G",
+      "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/dist",
+      "remotePath": "root@Haishi16G:/www/wwwroot/richwise.top",
+      "exclude": [
+        "/index.html",
+        ".DS_Store",
+        "private"
+      ],
+      "options": [
+        ["--chown=www:www"],
+        ["--chmod=D755,F644"]
+      ]
+    },
+    {
+      "name": "HaishiKR16G",
+      "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/dist",
+      "remotePath": "root@HaishiKR16G:/www/wwwroot/coinwave.top",
+      "exclude": [
+        "/index.html",
+        ".DS_Store",
+        "private"
+      ],
+      "options": [
+        ["--chown=www:www"],
+        ["--chmod=D755,F644"]
+      ]
+    },
+    {
+      "name": "HaishiKR16G",
+      "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/www",
+      "remotePath": "root@Haishi16G:/www/wwwroot",
+      "exclude": [
+        ".DS_Store",
+        ".htaccess",
+        ".user.ini"
+      ],
+      "options": [
+        ["--chown=www:www"],
+        ["--chmod=D755,F644"]
+      ]
+    }
+  ],
+  "git.ignoreLimitWarning": true
 }

@@ -1,19 +1,20 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
-import RedirectCode from "@/components/RedirectCode.astro";
-import PluginLoader, { type PluginConfig } from "@/components/PluginLoader.astro";
-import "../styles/global.css";
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from 'astro/types'
+import type { PluginConfig } from '@/components/PluginLoader.astro'
+import BaseHead from '@/components/BaseHead.astro'
+import PluginLoader from '@/components/PluginLoader.astro'
+import RedirectCode from '@/components/RedirectCode.astro'
+import '@/styles/globals.css'
 
-type PluginName = 'aos' | 'gsap' | 'animate' | 'swiper' | 'countup' | 'rellax';
+type PluginName = 'aos' | 'gsap' | 'animate' | 'swiper' | 'countup' | 'rellax'
 
 export interface Props {
-  title?: string;
-  description?: string;
-  plugins?: Record<string, PluginConfig>;
+  title?: string
+  description?: string
+  plugins?: Record<string, PluginConfig>
 }
 
-const { title = "Home", description = "Home",  plugins = {} } = Astro.props;
+const { title = 'Home', description = 'Home', plugins = {} } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +22,7 @@ const { title = "Home", description = "Home",  plugins = {} } = Astro.props;
   <head>
     <BaseHead title={title} description={description} />
     <PluginLoader plugins={plugins} />
-    <RedirectCode />
+<RedirectCode />
   </head>
   <body>
       <slot />
