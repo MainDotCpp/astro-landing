@@ -69,7 +69,7 @@
     {
       "name": "HaishiKR16G",
       "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/dist",
-      "remotePath": "root@HaishiKR16G:/www/wwwroot/coinwave.top",
+      "remotePath": "root@HaishiKR16G:/www/wwwroot/coincool.top",
       "exclude": [
         "/index.html",
         ".DS_Store",
@@ -87,7 +87,8 @@
       "exclude": [
         ".DS_Store",
         ".htaccess",
-        ".user.ini"
+        ".user.ini",
+        "**/_**"
       ],
       "options": [
         ["--chown=www:www"],

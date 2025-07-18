@@ -1,5 +1,11 @@
 {
     "src/pages/JP/[people]/T0715.[version]": {
         "description": "学长模板"
+    },
+    "www/bankmove.top": {
+        "description": "[84]"
+    },
+    "www/bankpoint.top": {
+        "description": "[81]"
     }
 }

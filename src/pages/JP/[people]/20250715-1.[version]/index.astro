@@ -1,0 +1,74 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+// 导入图片
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import lineIcon from './static/line.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '高橋ダン', version: '0', img_prefix: 'gqd_' } },
+    { params: { people: '高橋ダン', version: '1', img_prefix: 'gqd_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { people, version = '0' } = Astro.params
+const img_prefix = getStaticPaths().find(
+  path => path.params.people === people && path.params.version === version,
+)?.params.img_prefix
+const avatar = import(`./static/${img_prefix}avatar.png`)
+const mainImg = import(`./static/${img_prefix}main.png`);
+---
+
+<BaseLayout title="LINEで友達追加">
+  <style>
+    @keyframes breathe {
+      0%,
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+    .animate-breathe {
+      animation: breathe 1s ease-in-out infinite;
+    }
+  </style>
+  <div class="flex flex-col items-center max-w-screen-sm mx-auto gap-8 px-4">
+    <div class="image-container w-[100px] rounded-full overflow-hidden">
+          <Image src={avatar} alt="高橋ダン" />
+    </div>
+    <div class="text-center">
+      <h1 class="text-2xl font-bold">高橋ダン</h1>
+      <p class="font-bold leading-6 text-gray-900">
+        皆さん、こんにちは。高橋ダンです。私はイェール大学でアシスタント・プロフェッサーを務めながら、半熟仮想株式会社の代表取締役として活動しています。データ・アルゴリズム・数学・ポエムを駆使したビジネスと公共政策のデザインが私の専門領域です。今日は従来の投資概念を覆す、データサイエンスに基づいた革新的な投資手法をお教えしましょう。感情に左右されない、純粋に数学的なアプローチで市場を征服する時代が来ました！
+      </p>
+      <div
+        class="button link-btn bg-green-500 text-white px-4 py-2 rounded-md py-4 shadow-xl text-xl mt-12"
+      >
+        高橋ダンのアルゴリズム投資戦略 – データが示す勝利の方程式
+      </div>
+    </div><div class="second-image-container">
+      <Image
+        class="w-full shadow-xl rounded-lg"
+        src={mainImg}
+        alt="投資チャート"
+      /><div class="second-text-overlay"></div>
+    </div>
+
+    <div class="h-32">
+
+    </div>
+    <div
+      class="second-button font-bold animate-breathe link-btn fixed bottom-8 max-w-screen-sm mx-auto flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-[80px] py-4 shadow-xl text-xl w-[90%] justify-center"
+      style="text-decoration: none;"
+    >
+      <Image class="w-[48px] h-[48px] rounded-full" src={lineIcon} alt="LINE" />
+
+      <span>LINE登録はこちらから</span>
+    </div>
+  </div>
+</BaseLayout>
