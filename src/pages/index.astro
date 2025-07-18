@@ -1,77 +1,77 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
 
 // 定义页面类型
 interface PageInfo {
-  path: string;
-  name: string;
-  description?: string;
-  type: string;
-  isDynamic: boolean;
-  examplePath: string;
-  metadata?: any;
+  path: string
+  name: string
+  description?: string
+  type: string
+  isDynamic: boolean
+  examplePath: string
+  metadata?: any
 }
 
 // 使用 import.meta.glob 获取所有页面文件
 function getPages(): PageInfo[] {
   // 获取所有 .astro 页面文件（使用 Vite 的 import.meta.glob）
-  const pageFiles = import.meta.glob('./**/*.astro', { eager: true });
-  
-  const pages: PageInfo[] = [];
-  
+  const pageFiles = import.meta.glob('./**/*.astro', { eager: true })
+
+  const pages: PageInfo[] = []
+
   for (const [filePath, pageModule] of Object.entries(pageFiles as Record<string, any>)) {
     // 只跳过根目录的index.astro文件和layouts目录
     if ((filePath === './index.astro') || filePath.includes('/layouts/')) {
-      continue;
+      continue
     }
-    
+
     // 获取模块的元数据（如果存在）
-    const metadata = (pageModule as any)?.metadata || {};
-    
+    const metadata = (pageModule as any)?.metadata || {}
+
     // 从文件路径生成路由路径
     let routePath = filePath
       .replace('.', '')
       .replace('.astro', '')
-      .replace(/\/index$/, ''); // 处理目录中的index文件
-    
+      .replace(/\/index$/, '') // 处理目录中的index文件
+
     // 确保路径以 / 开头
     if (!routePath.startsWith('/')) {
-      routePath = '/' + routePath;
+      routePath = `/${routePath}`
     }
-    
+
     // 如果路径是空的，设为根路径
     if (routePath === '/') {
-      routePath = '/root';
+      routePath = '/root'
     }
-    
+
     // 检查是否是动态路由
-    const isDynamic = routePath.includes('[') && routePath.includes(']');
-    
+    const isDynamic = routePath.includes('[') && routePath.includes(']')
+
     // 从文件路径提取页面名称
-    const segments = filePath.split('/');
-    const fileName = segments[segments.length - 1].replace('.astro', '');
-    let pageName = metadata.title || fileName;
-    
+    const segments = filePath.split('/')
+    const fileName = segments[segments.length - 1].replace('.astro', '')
+    let pageName = metadata.title || fileName
+
     // 处理目录结构的页面名称
     if (fileName === 'index') {
-      const parentDir = segments[segments.length - 2];
-      pageName = metadata.title || parentDir || 'Page';
+      const parentDir = segments[segments.length - 2]
+      pageName = metadata.title || parentDir || 'Page'
     }
-    
+
     // 为动态路由生成示例路径
-    let examplePath = routePath;
+    let examplePath = routePath
     if (isDynamic) {
       examplePath = routePath.replace(/\[([^\]]+)\]/g, (match, param) => {
         if (param.startsWith('...')) {
-          return 'example/path';
+          return 'example/path'
         }
         if (param.endsWith('?')) {
-          return param.slice(0, -1) + '-example';
+          return param.slice(0, -1)
         }
-        return param + '-example';
-      });
+        return param
+      })
     }
-    
+
     pages.push({
       path: routePath,
       name: isDynamic ? `${pageName} (动态路由)` : pageName,
@@ -79,54 +79,56 @@ function getPages(): PageInfo[] {
       type: fileName === 'index' ? 'index' : 'page',
       isDynamic,
       examplePath: isDynamic ? examplePath : routePath,
-      metadata
-    });
+      metadata,
+    })
   }
-  
-  return pages;
+
+  return pages
 }
 
 // 方法2: 也可以获取特定的路由信息（如果页面导出了元数据）
 function getPagesWithMetadata() {
-  const pageFiles = import.meta.glob('./**/*.astro', { eager: true });
-  const pages = [];
-  
+  const pageFiles = import.meta.glob('./**/*.astro', { eager: true })
+  const pages = []
+
   for (const [filePath, pageModule] of Object.entries(pageFiles as Record<string, any>)) {
     if ((filePath === './index.astro') || filePath.includes('/layouts/')) {
-      continue;
+      continue
     }
-    
+
     // 如果页面导出了元数据，可以使用它们
-    const metadata = (pageModule as any)?.metadata || {};
-    
+    const metadata = (pageModule as any)?.metadata || {}
+
     let routePath = filePath
       .replace('.', '')
       .replace('.astro', '')
-      .replace(/\/index$/, '');
-    
+      .replace(/\/index$/, '')
+
     if (!routePath.startsWith('/')) {
-      routePath = '/' + routePath;
+      routePath = `/${routePath}`
     }
-    
-    const isDynamic = routePath.includes('[') && routePath.includes(']');
-    const segments = filePath.split('/');
-    const fileName = segments[segments.length - 1].replace('.astro', '');
-    let pageName = metadata.title || fileName;
-    
+
+    const isDynamic = routePath.includes('[') && routePath.includes(']')
+    const segments = filePath.split('/')
+    const fileName = segments[segments.length - 1].replace('.astro', '')
+    let pageName = metadata.title || fileName
+
     if (fileName === 'index') {
-      const parentDir = segments[segments.length - 2];
-      pageName = metadata.title || parentDir || 'Page';
+      const parentDir = segments[segments.length - 2]
+      pageName = metadata.title || parentDir || 'Page'
     }
-    
-    let examplePath = routePath;
+
+    let examplePath = routePath
     if (isDynamic) {
       examplePath = routePath.replace(/\[([^\]]+)\]/g, (match, param) => {
-        if (param.startsWith('...')) return 'example/path';
-        if (param.endsWith('?')) return param.slice(0, -1) + '-example';
-        return param + '-example';
-      });
+        if (param.startsWith('...'))
+return 'example/path'
+        if (param.endsWith('?'))
+return `${param.slice(0, -1)}-example`
+        return `${param}-example`
+      })
     }
-    
+
     pages.push({
       path: routePath,
       name: isDynamic ? `${pageName} (动态路由)` : pageName,
@@ -134,29 +136,29 @@ function getPagesWithMetadata() {
       type: fileName === 'index' ? 'index' : 'page',
       isDynamic,
       examplePath: isDynamic ? examplePath : routePath,
-      metadata
-    });
+      metadata,
+    })
   }
-  
-  return pages; 
+
+  return pages
 }
 
-const pages = getPages();
+const pages = getPages()
 
 // 调试信息：检查发现的页面
-console.log('发现的页面文件:', pages.length);
-pages.forEach(page => {
-  console.log(`- ${page.name}: ${page.path} (${page.isDynamic ? '动态' : '静态'})`);
-});
+console.log('发现的页面文件:', pages.length)
+pages.forEach((page) => {
+  console.log(`- ${page.name}: ${page.path} (${page.isDynamic ? '动态' : '静态'})`)
+})
 
 // 可选：按类型和名称排序
 const sortedPages = pages.sort((a, b) => {
   // 动态路由排在后面
   if (a.isDynamic !== b.isDynamic) {
-    return a.isDynamic ? 1 : -1;
+    return a.isDynamic ? 1 : -1
   }
   // 按名称排序
-  return a.name.localeCompare(b.name);
+  return a.name.localeCompare(b.name)
 });
 ---
 
@@ -164,7 +166,7 @@ const sortedPages = pages.sort((a, b) => {
   <div class="menu-container">
     <h1>站点导航</h1>
     <p class="subtitle">使用 Astro 官方 API 自动发现的页面</p>
-    
+
     <div class="stats">
       <span class="stat">
         总页面: <strong>{pages.length}</strong>
@@ -197,18 +199,18 @@ const sortedPages = pages.sort((a, b) => {
           <a href={page.examplePath} class="menu-link">
             <div class="menu-content">
               <span class="menu-title">{page.name}</span>
-              
+
               {page.isDynamic && (
                 <div class="route-info">
                   <span class="route-pattern">模式: <code>{page.path}</code></span>
                   <span class="example-path">示例: <code>{page.examplePath}</code></span>
                 </div>
               )}
-              
+
               {page.description && (
                 <span class="page-description">{page.description}</span>
               )}
-              
+
               <div class="page-meta">
                 <span class="page-type">{page.type}</span>
                 {page.isDynamic && <span class="dynamic-badge">动态</span>}
@@ -218,7 +220,7 @@ const sortedPages = pages.sort((a, b) => {
         </div>
       ))}
     </div>
-    
+
     <div class="info-section">
       <h2>关于页面发现</h2>
       <ul>
@@ -412,20 +414,20 @@ const sortedPages = pages.sort((a, b) => {
     .menu-container {
       margin: 1rem auto;
     }
-    
+
     h1 {
       font-size: 1.5rem;
     }
-    
+
     .stats {
       flex-direction: column;
       gap: 0.5rem;
     }
-    
+
     .route-info {
       font-size: 0.8rem;
     }
-    
+
     .page-meta {
       flex-direction: column;
       gap: 0.5rem;
