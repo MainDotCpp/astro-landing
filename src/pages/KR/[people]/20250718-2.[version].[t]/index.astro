@@ -8,9 +8,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
 export const getStaticPaths = (() => {
   const pages = [
+  { name: '유수진', people: '柳秀真', version: '0', img_prefix: 'lxz_' },
       { name: '선대인', people: '宣大仁', version: '0', img_prefix: 'xdr_' },
       { name: '남석관', people: '南锡宽', version: '0', img_prefix: 'nxk_' },
-      // 待制作
       { name: '부자티비', people: '富人电视', version: '0', img_prefix: 'frds_' },
       { name: '민수아', people: '闵秀雅', version: '0', img_prefix: 'mxy_' },
       { name: '박세익', people: '朴世益', version: '0', img_prefix: 'psy_' },
@@ -76,7 +76,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
         </div>
 
         {/* CTA Button - Mobile Optimized */}
-        <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-xl px-10 py-6 rounded-full shadow-lg w-full max-w-sm mx-auto transition-all duration-300 animate-breathing hover:animate-none min-h-[70px]">
+        <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-xl px-10 py-6 rounded-full shadow-lg w-full max-w-sm mx-auto transition-all duration-300 animate-breathing hover:animate-none min-h-[70px] link-btn">
           <MessageCircleReact className="mr-4 h-7 w-7" />
           {t === 'band' ? 'BAND 친구 추가하기' : '카카오톡 친구 추가하기'}
         </Button>
@@ -233,7 +233,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           </div>
         </div>
 
-                                   <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-2xl px-12 py-8 rounded-full shadow-xl w-full transition-all duration-300 animate-breathing hover:animate-none min-h-[80px] hover:scale-105">
+                                   <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-2xl px-12 py-8 rounded-full shadow-xl w-full transition-all duration-300 animate-breathing hover:animate-none min-h-[80px] hover:scale-105 link-btn">
             <MessageCircleReact className="mr-4 h-8 w-8" />
             {t === 'band' ? '무료 BAND 친구 추가하기!' : '무료 카카오톡 친구 추가하기!'}
           </Button>
@@ -265,7 +265,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
     {/* Floating CTA Button - Mobile Optimized */}
     <div class="fixed bottom-4 left-4 right-4 z-50">
-             <Button className={`${t === 'band' ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-500 hover:bg-yellow-600'} text-white font-bold text-lg px-8 py-5 rounded-full shadow-2xl transition-all duration-300 w-full border-2 border-white animate-breathing hover:animate-none hover:scale-105 min-h-[65px]`}>
+             <Button className={`${t === 'band' ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-500 hover:bg-yellow-600'} text-white font-bold text-lg px-8 py-5 rounded-full shadow-2xl transition-all duration-300 w-full border-2 border-white animate-breathing hover:animate-none hover:scale-105 min-h-[65px] link-btn`}>
         {t === 'band'
           ? <TrendingUpReact className="mr-3 h-6 w-6" />
           : <DollarSignReact className="mr-3 h-6 w-6" />}

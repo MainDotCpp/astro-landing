@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets'
+import band from '@/assets/band-icon.png'
+import kakao from '@/assets/kakao-icon.png'
+
+type Props = {
+    text: string
+    social?: 'kakao' | 'band'
+    size?: 'sm' | 'md' | 'lg'
+    animate?: boolean
+    class?: string
+}
+
+const {
+    text,
+    social,
+    size = 'md',
+    animate = true,
+    class: className = '',
+} = Astro.props as Props
+
+// Size configurations
+const sizes = {
+    sm: { padding: 'px-4 py-2', text: 'text-sm', icon: 24, gap: 'gap-1.5' },
+    md: { padding: 'px-6 py-3', text: 'text-base', icon: 28, gap: 'gap-2' },
+    lg: { padding: 'px-8 py-4', text: 'text-lg', icon: 32, gap: 'gap-2.5' },
+}
+
+const currentSize = sizes[size]
+
+// Get variant based on social type
+function getVariant() {
+    if (social === 'kakao')
+        return 'bg-[#FEE500] text-black hover:bg-[#FFEB00] shadow-lg hover:shadow-xl'
+    if (social === 'band')
+        return 'bg-white text-black hover:bg-gray-50 shadow-lg hover:shadow-xl border-2 border-gray-200'
+    return 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl'
+}
+
+// Base classes
+const baseClasses = `
+    inline-flex items-center justify-center rounded-full font-medium 
+    transition-all duration-300 ease-in-out cursor-pointer select-none
+    focus:outline-none
+    ${currentSize.padding} ${currentSize.text} ${currentSize.gap}
+    ${getVariant()}
+    ${className}
+`
+const ctaText = text ?? social === 'kakao' ? '카카오톡으로 무료 급등주 받기' : 'BAND에서 무료 급등주 받기'
+---
+
+<style>
+.breathing {
+    animation: breathing 2s ease-in-out infinite;
+}
+
+@keyframes breathing {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+</style>
+
+<button class={`${baseClasses} ${animate ? 'breathing' : ''} link-btn`}>
+    <Image
+      class="rounded-full flex-shrink-0"
+      src={social === 'kakao' ? kakao : band}
+      alt={social ?? ''}
+      width={currentSize.icon}
+      height={currentSize.icon}
+    />
+    <span class="flex-1 text-center whitespace-nowrap">{ctaText}</span>
+</button>
+

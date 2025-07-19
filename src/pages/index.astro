@@ -196,7 +196,7 @@ const sortedPages = pages.sort((a, b) => {
     <div class="menu-list">
       {sortedPages.map(page => (
         <div class={`menu-item ${page.isDynamic ? 'dynamic-route' : 'static-route'}`}>
-          <a href={page.examplePath} class="menu-link">
+          <a href={page.examplePath} class="link-btn">
             <div class="menu-content">
               <span class="menu-title">{page.name}</span>
 
