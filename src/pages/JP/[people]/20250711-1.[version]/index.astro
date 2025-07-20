@@ -24,10 +24,12 @@ export const getStaticPaths = (() => {
     { params: { people: '三橋貴明', version: '1', img_prefix: 'sq1_' } },
     { params: { people: '三橋貴明', version: '2', img_prefix: 'sq2_' } },
     { params: { people: '三橋貴明', version: '3', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '4', img_prefix: 'sq3_' } },
     { params: { people: '馬渕磨理子', version: '0', img_prefix: 'mlz_' } },
+    { params: { people: '馬渕磨理子', version: '1', img_prefix: 'mlz1_' } },
+    { params: { people: '馬渕磨理子', version: '2', img_prefix: 'mlz2_' } },
     { params: { people: '片山 晃', version: '1', img_prefix: 'psh_' } },
     { params: { people: '前澤友作', version: '0', img_prefix: 'qzyz_' } },
-    // { params: { people: '前澤友作', version: '1', img_prefix: 'qzyz1_' } },
     { params: { people: '大前研一', version: '0', img_prefix: 'dq_' } },
 
   ]
@@ -45,7 +47,7 @@ const img1 = import(`./static/${img_prefix}img.png`);
   <main class="flex flex-col gap-8 items-center justify-center max-w-2xl mx-auto">
     <Image src={header} alt={people} />
     <div class="text-xl px-4">
-      {people}のLINEを無料で追加し、「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、毎週60％の利益が期待できる優良銘柄の情報も手に入れることができます。
+      {people}のLINEを無料で追加し、「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、毎週100％の利益が期待できる優良銘柄の情報も手に入れることができます。
     </div>
     <h3 class="text-xl font-bold text-center px-4">
       今すぐ参加して、優良株をゲ<br />

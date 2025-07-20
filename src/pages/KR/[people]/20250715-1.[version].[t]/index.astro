@@ -1,5 +1,4 @@
 ---
-import { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 // Import Lucide icons (keeping for hero features)
 import { BarChart3, DollarSign, Lightbulb, Target, TrendingUp } from 'lucide-astro'
@@ -38,9 +37,9 @@ export const getStaticPaths = (() => {
 ]
 return [
   ...pages.map(p => ({ params: { ...p, t: 'kakao' } })),
-      ...pages.map(p => ({ params: { ...p, t: 'band' } })),
+  ...pages.map(p => ({ params: { ...p, t: 'band' } })),
 ]
-}) satisfies GetStaticPaths
+})
 
 const { people, version = '0', t = 'band' } = Astro.params
 const { name, img_prefix } = getStaticPaths().find(
