@@ -17,8 +17,9 @@ import bandLogo from '../images/band.png'
 export function getStaticPaths() {
   const pages = [
       {
-        params: { people: '柳秀真', version: '0', name: '유수진' },
+        params: { people: '柳秀真', version: '0' },
         props: {
+          name: '유수진',
           img_prefix: 'lxz_',
           school: '서울대학교 경영학과',
           career: '前 삼성증권 리서치센터 · 現 개인투자컨설턴트',
@@ -26,8 +27,9 @@ export function getStaticPaths() {
         },
       },
       {
-        params: { people: '宣大仁', version: '0', name: '선대인' },
+        params: { people: '宣大仁', version: '0' },
         props: {
+          name: '선대인',
           img_prefix: 'xdr_',
           school: '연세대학교 경제학과',
           career: '前 한국은행 조사국 · 前 현대경제연구원 수석연구위원',
@@ -35,8 +37,9 @@ export function getStaticPaths() {
         },
       },
       {
-        params: { people: '南锡宽', version: '0', name: '남석관' },
+        params: { people: '南锡宽', version: '0' },
         props: {
+          name: '남석관',
           img_prefix: 'nxk_',
           school: '고려대학교 경제학과',
           career: '前 KB증권 투자전략팀장 · 現 독립투자자문사 대표',
@@ -44,8 +47,9 @@ export function getStaticPaths() {
         },
       },
       {
-        params: { people: '富人电视', version: '0', name: '부자티비' },
+        params: { people: '富人电视', version: '0' },
         props: {
+          name: '부자티비',
           img_prefix: 'frds_',
           school: '성균관대학교 경영학과',
           career: '前 유튜브 투자채널 운영 · 前 NH투자증권 PB센터',
@@ -53,8 +57,9 @@ export function getStaticPaths() {
         },
       },
       {
-        params: { people: '闵秀雅', version: '0', name: '민수아' },
+        params: { people: '闵秀雅', version: '0' },
         props: {
+          name: '민수아',
           img_prefix: 'mxy_',
           school: '이화여자대학교 경영학과',
           career: '前 미래에셋증권 WM사업부 · 現 여성전문 투자멘토',
@@ -62,8 +67,9 @@ export function getStaticPaths() {
         },
       },
       {
-        params: { people: '朴世益', version: '0', name: '박세익' },
+        params: { people: '朴世益', version: '0' },
         props: {
+          name: '박세익',
           img_prefix: 'psy_',
           school: '중앙대학교 경제학과',
           career: '前 대우증권 투자상품팀 · 前 키움증권 리서치센터',
@@ -71,8 +77,9 @@ export function getStaticPaths() {
         },
       },
       {
-        params: { people: '金光石', version: '0', name: '김광석' },
+        params: { people: '金光石', version: '0' },
         props: {
+          name: '김광석',
           img_prefix: 'jgs_',
           school: '부산대학교 경제학과',
           career: '前 신한금융투자 IB본부 · 現 벤처투자 전문가',
@@ -80,8 +87,9 @@ export function getStaticPaths() {
         },
       },
       {
-        params: { people: '金永益', version: '0', name: '김영익' },
+        params: { people: '金永益', version: '0' },
         props: {
+          name: '김영익',
           img_prefix: 'jyy_',
           school: '한양대학교 경제금융학과',
           career: '前 하나금융투자 리서치본부 · 前 교보증권 자산관리팀',
@@ -96,8 +104,9 @@ return [
 ]
 }
 
-const { t = '棒群', name } = Astro.params
+const { t = '棒群' } = Astro.params
 const {
+  name,
   img_prefix,
   school,
   career,

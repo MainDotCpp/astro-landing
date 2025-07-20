@@ -8,14 +8,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
 export function getStaticPaths() {
   const pages = [
-  { params: { people: '柳秀真', version: '0', name: '유수진' }, props: { img_prefix: 'lxz_' } },
-      { params: { people: '宣大仁', version: '0', name: '선대인' }, props: { img_prefix: 'xdr_' } },
-      { params: { people: '南锡宽', version: '0', name: '남석관' }, props: { img_prefix: 'nxk_' } },
-      { params: { people: '富人电视', version: '0', name: '부자티비' }, props: { img_prefix: 'frds_' } },
-      { params: { people: '闵秀雅', version: '0', name: '민수아' }, props: { img_prefix: 'mxy_' } },
-      { params: { people: '朴世益', version: '0', name: '박세익' }, props: { img_prefix: 'psy_' } },
-      { params: { people: '金永益', version: '0', name: '김영익' }, props: { img_prefix: 'jyy_' } },
-      { params: { people: '金光石', version: '0', name: '김광석' }, props: { img_prefix: 'jgs_' } },
+  { params: { people: '柳秀真', version: '0' }, props: { name: '유수진', img_prefix: 'lxz_' } },
+      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
+      { params: { people: '南锡宽', version: '0' }, props: { name: '남석관', img_prefix: 'nxk_' } },
+      { params: { people: '富人电视', version: '0' }, props: { name: '부자티비', img_prefix: 'frds_' } },
+      { params: { people: '闵秀雅', version: '0' }, props: { name: '민수아', img_prefix: 'mxy_' } },
+      { params: { people: '朴世益', version: '0' }, props: { name: '박세익', img_prefix: 'psy_' } },
+      { params: { people: '金永益', version: '0' }, props: { name: '김영익', img_prefix: 'jyy_' } },
+      { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
 ]
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
@@ -23,8 +23,8 @@ return [
 ]
 }
 
-const { t = '棒群', name } = Astro.params
-const { img_prefix } = Astro.props
+const { t = '棒群' } = Astro.params
+const { img_prefix, name } = Astro.props
 const headImg = import(`../images/${img_prefix}head.jpg`)
 const headerImg = import(`../images/${img_prefix}header.jpg`)
 const img1Img = import(`../images/${img_prefix}img1.jpg`)
