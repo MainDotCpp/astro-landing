@@ -26,25 +26,24 @@ import './static/css/slick-theme.css'
 
 
 
-export const getStaticPaths = (() => {
+export function getStaticPaths() {
   const pages = [
-      { name: '유수진', people: '柳秀真', version: '0', img_prefix: 'lxz_' },
-      { name: '선대인', people: '宣大仁', version: '0', img_prefix: 'xdr_' },
-      { name: '남석관', people: '南锡宽', version: '0', img_prefix: 'nxk_' },
-      { name: '부자티비', people: '富人电视', version: '0', img_prefix: 'frds_' },
-      { name: '민수아', people: '闵秀雅', version: '0', img_prefix: 'mxy_' },
-      { name: '박세익', people: '朴世益', version: '0', img_prefix: 'psy_' },
+      { params: { people: '柳秀真', version: '0' }, props: { name: '유수진', img_prefix: 'lxz_' } },
+      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
+      { params: { people: '南锡宽', version: '0' }, props: { name: '남석관', img_prefix: 'nxk_' } },
+      { params: { people: '富人电视', version: '0' }, props: { name: '부자티비', img_prefix: 'frds_' } },
+      { params: { people: '闵秀雅', version: '0' }, props: { name: '민수아', img_prefix: 'mxy_' } },
+      { params: { people: '朴世益', version: '0' }, props: { name: '박세익', img_prefix: 'psy_' } },
+      { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
 ]
 return [
-  ...pages.map(p => ({ params: { ...p, t: 'kakao' } })),
-  ...pages.map(p => ({ params: { ...p, t: 'band' } })),
+  ...pages.map(p => ({ params: { ...p.params, t: 'kakao' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: 'band' }, props: p.props })),
 ]
-})
+}
 
-const { people, version = '0', t = 'band' } = Astro.params
-const { name, img_prefix } = getStaticPaths().find(
-  path => path.params.people === people && path.params.version === version && path.params.t === t,
-)?.params!!
+const { t = 'band' } = Astro.params
+const { name, img_prefix } = Astro.props
 const headImg = import(`../images/${img_prefix}head.jpg`);
 ---
 
@@ -66,7 +65,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
     <script is:inline src="/mjSFqQ/js/jquery-3.2.1.min.js"></script>
     <script is:inline src="/mjSFqQ/js/index.js"></script>
 
-    <!-- FontAwesome 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
       @media screen and (max-width: 767px) {
@@ -161,7 +159,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
       }
     </style>
 
-    <!-- 全新现代化设计 -->
     <style>
       .modern-hero {
         position: relative;
@@ -706,7 +703,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
       }
     </style>
 
-    <!-- 简约 BAND 버튼 스타일 -->
     <style>
       .band-btn {
         background: #1ccc21;
@@ -1038,7 +1034,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
       }
     </style>
 
-    <!-- Kakao 버튼 스타일 -->
     <style>
       .kakao-btn {
         position: relative;
@@ -1494,9 +1489,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
 
   <body>
     <div id="wrapper">
-      <!-- 全新现代化Header设计 -->
       <header id="header_pc" class="modern-hero">
-        <!-- 浮动装饰元素 -->
         <div class="floating-elements">
           <div class="floating-element"></div>
           <div class="floating-element"></div>
@@ -1505,7 +1498,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
 
         <div class="hero-container">
           <div class="hero-grid">
-            <!-- 左侧内容区 -->
             <div class="hero-content">
               <div class="hero-badge"><DollarSign size={14} /> 주식투자 전문가</div>
 
@@ -1559,7 +1551,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
               </div>
             </div>
 
-            <!-- 右侧专家卡片 -->
             <div class="hero-visual">
               <div class="expert-card">
                 <Image
@@ -1609,7 +1600,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
               <img src={jissekiImg.src} alt="" />
             </div>
           </div>
-          <!-- PC -->
           <div class="jisseki_wp">
             <div class="jisseki_box">
               <h3>삼성전자 추천 수익</h3>

@@ -9,25 +9,24 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 // Import simple CSS
 import './static/css/simple.css'
 
-export const getStaticPaths = (() => {
+export function getStaticPaths() {
   const pages = [
-    { name: '유수진', people: '柳秀真', version: '0', img_prefix: 'lxz_' },
-    { name: '선대인', people: '宣大仁', version: '0', img_prefix: 'xdr_' },
-    { name: '남석관', people: '南锡宽', version: '0', img_prefix: 'nxk_' },
-    { name: '부자티비', people: '富人电视', version: '0', img_prefix: 'frds_' },
-    { name: '민수아', people: '闵秀雅', version: '0', img_prefix: 'mxy_' },
-    { name: '박세익', people: '朴世益', version: '0', img_prefix: 'psy_' },
-  ]
-  return [
-    ...pages.map(p => ({ params: { ...p, t: 'kakao' } })),
-    ...pages.map(p => ({ params: { ...p, t: 'band' } })),
-  ]
-}) satisfies GetStaticPaths
+      { params: { people: '柳秀真', version: '0' }, props: { name: '유수진', img_prefix: 'lxz_' } },
+      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
+      { params: { people: '南锡宽', version: '0' }, props: { name: '남석관', img_prefix: 'nxk_' } },
+      { params: { people: '富人电视', version: '0' }, props: { name: '부자티비', img_prefix: 'frds_' } },
+      { params: { people: '闵秀雅', version: '0' }, props: { name: '민수아', img_prefix: 'mxy_' } },
+      { params: { people: '朴世益', version: '0' }, props: { name: '박세익', img_prefix: 'psy_' } },
+      { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
+]
+return [
+  ...pages.map(p => ({ params: { ...p.params, t: 'kakao' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: 'band' }, props: p.props })),
+]
+}
 
-const { people, version = '0', t = 'band' } = Astro.params
-const { name, img_prefix } = getStaticPaths().find(
-  path => path.params.people === people && path.params.version === version && path.params.t === t,
-)?.params!!
+const { t = 'band' } = Astro.params
+const { name, img_prefix } = Astro.props
 
 const headImg = import(`../images/${img_prefix}head.jpg`)
 const img1Img = import(`../images/${img_prefix}img1.jpg`)
