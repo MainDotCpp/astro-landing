@@ -1,0 +1,2218 @@
+---
+import { Image } from 'astro:assets'
+// Import Lucide icons (keeping for hero features)
+import { BarChart3, DollarSign, Lightbulb, Target, TrendingUp } from 'lucide-astro'
+
+import RedirectCode from '@/components/RedirectCode.astro'
+import bandLogo from '../images/Band.png'
+// Import images
+import headerText from '../images/header_text.png'
+import btnCta from './static/picture/btn_cta.png'
+import imgKg0703_4 from './static/picture/img_kg0703_4.png'
+import imgMerit1 from './static/picture/img_merit1.jpg'
+import imgMerit2 from './static/picture/img_merit2.jpg'
+import imgVoice1 from './static/picture/img_voice1.jpg'
+import imgVoice2 from './static/picture/img_voice2.jpg'
+import imgVoice3 from './static/picture/img_voice3.jpg'
+import imgVoice4 from './static/picture/img_voice4.jpg'
+import imgVoice5 from './static/picture/img_voice5.jpg'
+import imgVoice6 from './static/picture/img_voice6.jpg'
+import jissekiImg from './static/picture/jisseki_img.jpg'
+
+// Import CSS files
+import './static/css/style2.css'
+import './static/css/animate.min.css'
+import './static/css/slick-theme.css'
+
+
+
+export function getStaticPaths() {
+  const pages = [
+      { params: { people: '柳秀真', version: '0', name: '유수진' }, props: { img_prefix: 'lxz_' } },
+      { params: { people: '宣大仁', version: '0', name: '선대인' }, props: { img_prefix: 'xdr_' } },
+      { params: { people: '南锡宽', version: '0', name: '남석관' }, props: { img_prefix: 'nxk_' } },
+      { params: { people: '富人电视', version: '0', name: '부자티비' }, props: { img_prefix: 'frds_' } },
+      { params: { people: '闵秀雅', version: '0', name: '민수아' }, props: { img_prefix: 'mxy_' } },
+      { params: { people: '朴世益', version: '0', name: '박세익' }, props: { img_prefix: 'psy_' } },
+      { params: { people: '金永益', version: '0', name: '김영익' }, props: { img_prefix: 'jyy_' } },
+      { params: { people: '金光石', version: '0', name: '김광석' }, props: { img_prefix: 'jgs_' } },
+]
+return [
+  ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+]
+}
+
+const { t = '棒群', name } = Astro.params
+const { img_prefix } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`);
+---
+
+<!doctype html>
+<html lang="ko">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>
+      매일 오를 주식 알려줄게 - 나 따라하면 수익 올릴 수 있어
+    </title>
+    <RedirectCode />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0"
+    />
+
+    <script is:inline src="/mjSFqQ/js/df_smooth_scroll_m.js"></script>
+    <script is:inline src="/mjSFqQ/js/jquery-3.2.1.min.js"></script>
+    <script is:inline src="/mjSFqQ/js/index.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @media screen and (max-width: 767px) {
+        .webp .l-fv__inner {
+          padding-bottom: 20px;
+        }
+
+        .l-fv__inner img {
+          width: 100% !important;
+        }
+
+        .btn_line {
+          font-size: 16px !important;
+          padding: 10px 40px !important;
+        }
+
+        .bt_h1 {
+          font-size: 18px !important;
+        }
+
+        .bt_wh1 {
+          font-size: 24px !important;
+        }
+
+        .bt_wp {
+          font-size: 14px !important;
+          line-height: 24px !important;
+        }
+      }
+    </style>
+    <style>
+      .n_num {
+        width: 33%;
+        float: left;
+      }
+
+      .n_num h1 {
+        font-size: 60px;
+        color: #ff6b9d;
+        margin-bottom: 0;
+        display: block;
+        line-height: 40px;
+      }
+
+      .n_num p {
+        font-size: 30px;
+        color: #000;
+        font-weight: bold;
+        display: block;
+      }
+
+      @media screen and (max-width: 767px) {
+        .n_num h1 {
+          font-size: 30px;
+          color: #ff6b9d;
+          margin-bottom: 0;
+          display: block;
+          line-height: 30px;
+        }
+
+        .n_num p {
+          font-size: 18px;
+          color: #000;
+          font-weight: bold;
+          display: block;
+        }
+      }
+    </style>
+    <style type="text/css">
+      .textright {
+        text-align: right;
+      }
+
+      .textleft {
+        text-align: left;
+      }
+
+      .floatright {
+        float: right;
+      }
+
+      .folatleft {
+        float: left;
+      }
+
+      .paddingright {
+        padding-right: 50px;
+      }
+
+      .marginright {
+        margin-right: 100px;
+      }
+    </style>
+
+    <style>
+      .modern-hero {
+        position: relative;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f9fa 100%);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      .modern-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+          radial-gradient(circle at 20% 20%, rgba(0, 123, 255, 0.02) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 123, 255, 0.015) 0%, transparent 50%);
+        pointer-events: none;
+      }
+
+      .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 20px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        min-height: 80vh;
+      }
+
+      .hero-content {
+        color: #2d3748;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(0, 123, 255, 0.08);
+        color: #0056b3;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 32px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        border: 1px solid rgba(0, 123, 255, 0.15);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .hero-badge:hover {
+        background: rgba(0, 123, 255, 0.12);
+        border-color: rgba(0, 123, 255, 0.25);
+        transform: translateY(-1px);
+      }
+
+      .hero-title {
+        font-size: clamp(36px, 5.5vw, 64px);
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 28px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.025em;
+        position: relative;
+      }
+
+      .hero-title::before {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        border-radius: 2px;
+      }
+
+      .hero-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background: rgba(0, 123, 255, 0.3);
+        border-radius: 1px;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(16px, 2vw, 20px);
+        font-weight: 400;
+        line-height: 1.6;
+        margin-bottom: 32px;
+        color: #6c757d;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      .hero-features {
+        margin-bottom: 40px;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #2d3748;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.5;
+        transition: all 0.2s ease;
+        position: relative;
+      }
+
+      .feature-item span {
+        position: relative;
+        background: linear-gradient(135deg, transparent 0%, rgba(49, 130, 206, 0.05) 50%, transparent 100%);
+        padding: 2px 0;
+        border-radius: 4px;
+      }
+
+      .feature-icon {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.05) 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        color: #007bff;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 123, 255, 0.15);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-icon::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .feature-item:hover .feature-icon {
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.15) 0%, rgba(0, 123, 255, 0.08) 100%);
+        border-color: rgba(0, 123, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .feature-item:hover .feature-icon::before {
+        opacity: 1;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: #ffffff;
+        padding: 18px 36px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 123, 255, 0.25);
+        letter-spacing: 0.3px;
+      }
+
+      .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 123, 255, 0.35);
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.9);
+        color: #007bff;
+        padding: 18px 36px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        border: 2px solid rgba(0, 123, 255, 0.2);
+        cursor: pointer;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+        backdrop-filter: blur(10px);
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .btn-secondary:hover {
+        background: #007bff;
+        color: #ffffff;
+        border-color: #007bff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(0, 123, 255, 0.2);
+      }
+
+      .hero-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .expert-card {
+        background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+        border-radius: 20px;
+        padding: 40px 32px;
+        border: 1px solid rgba(0, 123, 255, 0.1);
+        text-align: center;
+        max-width: 380px;
+        margin: 0 auto;
+        position: relative;
+        box-shadow:
+          0 10px 40px rgba(0, 123, 255, 0.08),
+          0 4px 20px rgba(0, 0, 0, 0.02);
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .expert-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        border-radius: 20px 20px 0 0;
+      }
+
+      .expert-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, rgba(0, 123, 255, 0.03) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .expert-card:hover {
+        transform: translateY(-8px);
+        box-shadow:
+          0 20px 60px rgba(0, 123, 255, 0.15),
+          0 8px 30px rgba(0, 0, 0, 0.04);
+        border-color: rgba(0, 123, 255, 0.2);
+      }
+
+      .expert-avatar {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        margin: 0 auto 24px;
+        border: 5px solid #ffffff;
+        object-fit: cover;
+        outline: 3px solid #007bff;
+        outline-offset: 3px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+      }
+
+      .expert-card:hover .expert-avatar {
+        transform: scale(1.05);
+        outline-color: #0056b3;
+        box-shadow: 0 12px 35px rgba(0, 123, 255, 0.25);
+      }
+
+      .expert-name {
+        font-size: 26px;
+        font-weight: 800;
+        color: #1a202c;
+        margin-bottom: 8px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        letter-spacing: -0.3px;
+        position: relative;
+      }
+
+      .expert-title {
+        font-size: 15px;
+        color: #3182ce;
+        margin-bottom: 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-weight: 600;
+        background: linear-gradient(135deg, rgba(49, 130, 206, 0.1), rgba(79, 172, 254, 0.1));
+        padding: 6px 16px;
+        border-radius: 20px;
+        display: inline-block;
+        border: 1px solid rgba(49, 130, 206, 0.15);
+      }
+
+      .expert-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 28px;
+        padding: 20px 16px;
+        background: linear-gradient(135deg, rgba(49, 130, 206, 0.02), rgba(79, 172, 254, 0.04));
+        border-radius: 12px;
+        border: 1px solid rgba(49, 130, 206, 0.08);
+        position: relative;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 28px;
+        font-weight: 800;
+        color: #2d3748;
+        display: block;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.1;
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: #718096;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-weight: 600;
+      }
+
+      .expert-quote {
+        font-size: 15px;
+        color: #4a5568;
+        font-style: italic;
+        line-height: 1.7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        position: relative;
+        padding: 16px 20px;
+        background: linear-gradient(135deg, rgba(49, 130, 206, 0.02), rgba(79, 172, 254, 0.03));
+        border-radius: 12px;
+        border-left: 3px solid #3182ce;
+        margin-top: 8px;
+      }
+
+      .expert-quote::before {
+        content: '"';
+        font-size: 32px;
+        color: rgba(49, 130, 206, 0.2);
+        position: absolute;
+        left: 8px;
+        top: -4px;
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .floating-elements {
+        display: none;
+      }
+
+
+
+      @media screen and (max-width: 1024px) {
+        .hero-grid {
+          gap: 60px;
+        }
+
+        .hero-title {
+          font-size: clamp(28px, 4vw, 48px);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .modern-hero {
+          min-height: auto;
+          padding: 60px 0;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          text-align: center;
+        }
+
+        .hero-cta {
+          justify-content: center;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .expert-card {
+          padding: 30px 20px;
+        }
+
+        .expert-stats {
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          gap: 16px;
+        }
+
+        .stat-number {
+          font-size: 20px;
+        }
+
+        .stat-label {
+          font-size: 10px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .hero-container {
+          padding: 16px 16px;
+        }
+
+        .modern-hero {
+          padding: 40px 0;
+        }
+
+        .hero-badge {
+          font-size: 11px;
+          padding: 8px 16px;
+          letter-spacing: 0.5px;
+        }
+
+        .hero-subtitle {
+          font-size: 16px;
+          padding-left: 16px;
+        }
+
+        .hero-subtitle::before {
+          width: 3px;
+          top: 6px;
+        }
+
+        .feature-item {
+          margin-bottom: 16px;
+          font-size: 15px;
+        }
+
+        .feature-icon {
+          width: 48px;
+          height: 48px;
+          margin-right: 16px;
+          border-radius: 12px;
+        }
+
+        .expert-card {
+          padding: 32px 24px;
+          border-radius: 16px;
+        }
+
+        .expert-avatar {
+          width: 90px;
+          height: 90px;
+        }
+
+        .expert-card {
+          padding: 40px 20px;
+          max-width: 100%;
+          margin: 0 auto;
+        }
+
+        .expert-avatar {
+          width: 95px;
+          height: 95px;
+        }
+
+        .expert-name {
+          font-size: 22px;
+        }
+
+        .expert-stats {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .stat-number {
+          font-size: 20px;
+        }
+
+        .expert-quote {
+          font-size: 14px;
+          padding: 12px 16px;
+        }
+      }
+    </style>
+
+    <style>
+      .band-btn {
+        background: #1ccc21;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 16px;
+        padding: 18px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 20px rgba(0, 200, 81, 0.25);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+        position: relative;
+        overflow: hidden;
+        min-width: 280px;
+        line-height: 1.4;
+        letter-spacing: -0.3px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .band-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .band-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 200, 81, 0.35);
+        background: #1ccc21;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .band-btn:hover::before {
+        left: 100%;
+      }
+
+      .band-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .band-btn-large {
+        padding: 22px 40px;
+        font-size: 18px;
+        border-radius: 18px;
+        min-width: 320px;
+        gap: 14px;
+      }
+
+      .band-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+      }
+
+      .band-icon-wrapper i {
+        font-size: 14px;
+        color: #FFFFFF;
+        transition: all 0.3s ease;
+      }
+
+      /* BAND 官方LOGO图片样式 */
+      .band-logo-official {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .band-logo-official img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: all 0.3s ease;
+      }
+
+      .band-btn-large .band-logo-official {
+        width: 28px;
+        height: 28px;
+      }
+
+      .band-btn:hover .band-logo-official {
+        transform: scale(1.1);
+      }
+
+      .band-btn:hover .band-icon-wrapper {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
+      }
+
+      .band-btn:hover .band-icon-wrapper i {
+        transform: scale(1.05);
+      }
+
+      .band-btn-large .band-icon-wrapper {
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+      }
+
+      .band-btn-large .band-icon-wrapper i {
+        font-size: 16px;
+      }
+
+      .band-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.3;
+      }
+
+      .band-text-main {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .band-text-sub {
+        font-size: 13px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .band-btn-large .band-text-main {
+        font-size: 18px;
+        margin-bottom: 3px;
+      }
+
+      .band-btn-large .band-text-sub {
+        font-size: 14px;
+      }
+
+      /* 简约脉冲动画 */
+      @keyframes bandGlow {
+        0%, 100% {
+          box-shadow: 0 4px 20px rgba(0, 200, 81, 0.25);
+        }
+        50% {
+          box-shadow: 0 6px 25px rgba(0, 200, 81, 0.35);
+        }
+      }
+
+      .band-btn {
+        animation: bandGlow 3s ease-in-out infinite;
+      }
+
+      @media screen and (max-width: 768px) {
+        .band-btn {
+          font-size: 15px;
+          padding: 16px 28px;
+          min-width: 95%;
+          gap: 10px;
+          border-radius: 14px;
+        }
+
+        .band-btn-large {
+          font-size: 16px;
+          padding: 20px 32px;
+          min-width: 280px;
+          gap: 12px;
+          border-radius: 16px;
+        }
+
+        .band-icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+        }
+
+        .band-btn-large .band-icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+        }
+
+        .band-text-main {
+          font-size: 14px;
+        }
+
+        .band-text-sub {
+          font-size: 12px;
+        }
+
+        .band-btn-large .band-text-main {
+          font-size: 16px;
+        }
+
+        .band-btn-large .band-text-sub {
+          font-size: 13px;
+        }
+
+        .band-icon-wrapper i {
+          font-size: 12px;
+        }
+
+        .band-btn-large .band-icon-wrapper i {
+          font-size: 14px;
+        }
+
+        .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-logo-official::before {
+          width: 14px;
+          height: 14px;
+        }
+
+        .band-logo-official::after {
+          font-size: 9px;
+        }
+
+        .band-btn-large .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-btn-large .band-logo-official::before {
+          width: 18px;
+          height: 18px;
+        }
+
+        .band-btn-large .band-logo-official::after {
+          font-size: 11px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .band-btn {
+          font-size: 14px;
+          padding: 14px 24px;
+          min-width: 95%;
+          gap: 8px;
+          border-radius: 12px;
+        }
+
+        .band-btn-large {
+          font-size: 15px;
+          padding: 18px 28px;
+          min-width: 95%;
+          gap: 10px;
+          border-radius: 14px;
+        }
+
+        .band-icon-wrapper {
+          width: 20px;
+          height: 20px;
+          border-radius: 5px;
+        }
+
+        .band-btn-large .band-icon-wrapper {
+          width: 24px;
+          height: 24px;
+          border-radius: 6px;
+        }
+
+        .band-text-main {
+          font-size: 13px;
+        }
+
+        .band-text-sub {
+          font-size: 11px;
+        }
+
+        .band-btn-large .band-text-main {
+          font-size: 15px;
+        }
+
+        .band-btn-large .band-text-sub {
+          font-size: 12px;
+        }
+
+        .band-icon-wrapper i {
+          font-size: 11px;
+        }
+
+        .band-btn-large .band-icon-wrapper i {
+          font-size: 13px;
+        }
+
+        .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-logo-official::before {
+          width: 12px;
+          height: 12px;
+        }
+
+        .band-logo-official::after {
+          font-size: 8px;
+        }
+
+        .band-btn-large .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-btn-large .band-logo-official::before {
+          width: 16px;
+          height: 16px;
+        }
+
+        .band-btn-large .band-logo-official::after {
+          font-size: 10px;
+        }
+      }
+    </style>
+
+    <style>
+      .kakao-btn {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 280px;
+        text-decoration: none;
+      }
+
+      .kakao-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .kakao-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .kakao-btn img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .kakao-btn:hover img {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .kakao-btn-large {
+        min-width: 320px;
+      }
+
+      .kakao-btn-large img {
+        border-radius: 18px;
+      }
+
+      /* 简约脉冲动画 */
+      @keyframes kakaoGlow {
+        0%, 100% {
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        50% {
+          box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      .kakao-btn img {
+        animation: kakaoGlow 3s ease-in-out infinite;
+      }
+
+      @media screen and (max-width: 768px) {
+        .kakao-btn {
+          min-width: 95%;
+        }
+
+        .kakao-btn-large {
+          min-width: 280px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .kakao-btn {
+          min-width: 95%;
+        }
+
+        .kakao-btn-large {
+          min-width: 95%;
+        }
+      }
+    </style>
+
+    <style>
+      img.wp-smiley,
+      img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 0.07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+      }
+    </style>
+    <style data-id="immersive-translate-input-injected-css">
+      .immersive-translate-input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 2147483647;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .immersive-translate-loading-spinner {
+        vertical-align: middle !important;
+        width: 10px !important;
+        height: 10px !important;
+        display: inline-block !important;
+        margin: 0 4px !important;
+        border: 2px rgba(221, 244, 255, 0.6) solid !important;
+        border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+        border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        -webkit-animation: immersive-translate-loading-animation 0.6s infinite
+          linear !important;
+        animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+      }
+
+      @-webkit-keyframes immersive-translate-loading-animation {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+
+        to {
+          -webkit-transform: rotate(359deg);
+        }
+      }
+
+      @keyframes immersive-translate-loading-animation {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(359deg);
+        }
+      }
+
+      .immersive-translate-input-loading {
+        --loading-color: #f78fb6;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: block;
+        margin: 12px auto;
+        position: relative;
+        color: white;
+        left: -100px;
+        box-sizing: border-box;
+        animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+      }
+
+      @keyframes immersiveTranslateShadowRolling {
+        0% {
+          box-shadow:
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        12% {
+          box-shadow:
+            100px 0 var(--loading-color),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        25% {
+          box-shadow:
+            110px 0 var(--loading-color),
+            100px 0 var(--loading-color),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        36% {
+          box-shadow:
+            120px 0 var(--loading-color),
+            110px 0 var(--loading-color),
+            100px 0 var(--loading-color),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        50% {
+          box-shadow:
+            130px 0 var(--loading-color),
+            120px 0 var(--loading-color),
+            110px 0 var(--loading-color),
+            100px 0 var(--loading-color);
+        }
+
+        62% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            130px 0 var(--loading-color),
+            120px 0 var(--loading-color),
+            110px 0 var(--loading-color);
+        }
+
+        75% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            130px 0 var(--loading-color),
+            120px 0 var(--loading-color);
+        }
+
+        87% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            130px 0 var(--loading-color);
+        }
+
+        100% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0);
+        }
+      }
+
+      .immersive-translate-search-recomend {
+        border: 1px solid #dadce0;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 16px;
+        position: relative;
+        font-size: 16px;
+      }
+
+      .immersive-translate-search-search-enhancement-en-title {
+        color: #4d5156;
+      }
+
+      /* dark */
+      @media (prefers-color-scheme: dark) {
+        .immersive-translate-search-recomend {
+          border: 1px solid #3c4043;
+        }
+
+        .immersive-translate-close-action svg {
+          fill: #bdc1c6;
+        }
+
+        .immersive-translate-search-enhancement-en-title {
+          color: #bdc1c6;
+        }
+      }
+
+      .immersive-translate-search-settings {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        cursor: pointer;
+      }
+
+      .immersive-translate-search-recomend::before {
+      }
+
+      .immersive-translate-search-title {
+      }
+
+      .immersive-translate-search-title-wrapper {
+      }
+
+      .immersive-translate-search-time {
+        font-size: 12px;
+        margin: 4px 0 24px;
+        color: #70757a;
+      }
+
+      .immersive-translate-expand-items {
+        display: none;
+      }
+
+      .immersive-translate-search-more {
+        margin-top: 16px;
+        font-size: 14px;
+      }
+
+      .immersive-translate-modal {
+        display: none;
+        position: fixed;
+        z-index: 2147483647;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        font-size: 15px;
+      }
+
+      .immersive-translate-modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 40px 24px 24px;
+        border: 1px solid #888;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 270px;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          "Roboto",
+          "Ubuntu",
+          "Cantarell",
+          "Noto Sans",
+          sans-serif,
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji";
+        position: relative;
+      }
+
+      .immersive-translate-modal .immersive-translate-modal-content-in-input {
+        max-width: 500px;
+      }
+
+      .immersive-translate-modal-content-in-input
+        .immersive-translate-modal-body {
+        text-align: left;
+        max-height: unset;
+      }
+
+      .immersive-translate-modal-title {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: #333333;
+      }
+
+      .immersive-translate-modal-body {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        word-break: break-all;
+        margin-top: 24px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .immersive-translate-modal-body {
+          max-height: 250px;
+          overflow-y: auto;
+        }
+      }
+
+      .immersive-translate-close {
+        color: #666666;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .immersive-translate-close:hover,
+      .immersive-translate-close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .immersive-translate-modal-footer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .immersive-translate-btn {
+        width: fit-content;
+        color: #fff;
+        background-color: #ea4c89;
+        border: none;
+        font-size: 16px;
+        margin: 0 8px;
+        padding: 9px 30px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .immersive-translate-btn:hover {
+        background-color: #f082ac;
+      }
+
+      .immersive-translate-cancel-btn {
+        /* gray color */
+        background-color: rgb(89, 107, 120);
+      }
+
+      .immersive-translate-cancel-btn:hover {
+        background-color: hsl(205, 20%, 32%);
+      }
+
+      .immersive-translate-action-btn {
+        background-color: transparent;
+        color: #ea4c89;
+        border: 1px solid #ea4c89;
+      }
+
+      .immersive-translate-btn svg {
+        margin-right: 5px;
+      }
+
+      .immersive-translate-link {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+        text-decoration: none;
+        color: #007bff;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .immersive-translate-primary-link {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+        text-decoration: none;
+        color: #ea4c89;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .immersive-translate-modal input[type="radio"] {
+        margin: 0 6px;
+        cursor: pointer;
+      }
+
+      .immersive-translate-modal label {
+        cursor: pointer;
+      }
+
+      .immersive-translate-close-action {
+        position: absolute;
+        top: 2px;
+        right: 0px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <header id="header_pc" class="modern-hero">
+        <div class="floating-elements">
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+        </div>
+
+        <div class="hero-container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="hero-badge"><DollarSign size={14} /> 주식투자 전문가</div>
+
+              <h1 class="hero-title">
+                매일 기대되는 상승 종목, 편하게 받아보세요!
+              </h1>
+
+              <p class="hero-subtitle">
+                친구 추가만 해두시면, 매일 기대해볼 만한 종목을 편하게 받아보실 수 있어요.
+요즘 어떤 주식을 사야 할지 고민되신다면, 언제든지 편하게 문의 주세요.
+함께 투자도 배우고 자산도 천천히 키워가보아요!
+              </p>
+
+              <div class="hero-features">
+                <div class="feature-item">
+                  <div class="feature-icon"><BarChart3 size={20} /></div>
+                  <span>매일 상승 가능성 높은 종목을 추천해드려요</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><Lightbulb size={20} /></div>
+                  <span>매수와 매도 시점도 정확하게 안내해드려요</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><TrendingUp size={20} /></div>
+                  <span>회원님 투자 스타일에 맞는 투자 전략도 알려드려요</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><Target size={20} /></div>
+                  <span>손실은 최소화하고 자산을 안정적으로 늘릴 수 있는 방법을 함께 찾아봐요</span>
+                </div>
+              </div>
+
+              <div class="hero-cta">
+                {t === '棒群'
+? (
+                  <a class="band-btn link-btn">
+                    <div class="band-logo-official">
+                      <img src={bandLogo.src} alt="BAND Logo" />
+                    </div>
+                    <div class="band-text">
+                      <span class="band-text-main">BAND 친구 추가하고</span>
+                      <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                    </div>
+                  </a>
+                )
+: (
+                  <a class="kakao-btn link-btn">
+                    <img src={btnCta.src} alt="카카오톡 친구 추가" />
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="expert-card">
+                <Image
+                  src={headImg}
+                  alt="주식 전문가"
+                  class="expert-avatar"
+                />
+
+                <h3 class="expert-name">{name}</h3>
+                <p class="expert-title">주식투자 전문가</p>
+
+                <div class="expert-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">년</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">회원</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">승률</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">300%</span>
+                    <span class="stat-label">평균수익률</span>
+                  </div>
+                </div>
+
+                <p class="expert-quote">
+                  15년 동안 주식 투자로 자산을 키워온 경험을 바탕으로, 매일 상승 여력이 있는 종목을 추천해드려요. 저와 함께하면 여러분도 꾸준히 수익을 올릴 수 있어요!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+              <section class="jisseki" id="success-cases">
+        <div class="inner">
+          <div class="jisseki_head clearfix">
+            <div class="jisseki_copy">
+              <h2>제가 추천드린 종목들이 계속해서 우상향했어요!</h2>
+              <p>제가 추천드린 종목들이 꾸준한 상승 흐름을 이어가고 있어요.</p>
+            </div>
+            <div class="jisseki_img">
+              <img src={jissekiImg.src} alt="" />
+            </div>
+          </div>
+          <div class="jisseki_wp">
+            <div class="jisseki_box">
+              <h3>삼성전자 추천 수익</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>추천일</th>
+                        <td>2025/6/5</td>
+                      </tr>
+                      <tr>
+                        <th>매수가</th>
+                        <td>72,000원</td>
+                      </tr>
+                      <tr>
+                        <th>매도일</th>
+                        <td>2025/7/10</td>
+                      </tr>
+                      <tr>
+                        <th>매도가</th>
+                        <td>85,600원</td>
+                      </tr>
+                      <tr>
+                        <th>수익률</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +18.9% 상승!
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="jisseki_box">
+              <h3>카카오 추천 수익</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>추천일</th>
+                        <td>2025/6/15</td>
+                      </tr>
+                      <tr>
+                        <th>매수가</th>
+                        <td>58,300원</td>
+                      </tr>
+                      <tr>
+                        <th>매도일</th>
+                        <td>2025/7/8</td>
+                      </tr>
+                      <tr>
+                        <th>매도가</th>
+                        <td>79,400원</td>
+                      </tr>
+                      <tr>
+                        <th>수익률</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +36.2% 상승!
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="jisseki_box">
+              <h3>SK하이닉스 추천 수익</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>추천일</th>
+                        <td>2025/6/8</td>
+                      </tr>
+                      <tr>
+                        <th>매수가</th>
+                        <td>134,000원</td>
+                      </tr>
+                      <tr>
+                        <th>매도일</th>
+                        <td>2025/7/9</td>
+                      </tr>
+                      <tr>
+                        <th>매도가</th>
+                        <td>186,500원</td>
+                      </tr>
+                      <tr>
+                        <th>수익률</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +39.2% 상승!
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="jisseki_box">
+              <h3>NAVER 추천 수익</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>추천일</th>
+                        <td>2025/6/25</td>
+                      </tr>
+                      <tr>
+                        <th>매수가</th>
+                        <td>198,500원</td>
+                      </tr>
+                      <tr>
+                        <th>매도일</th>
+                        <td>2025/7/11</td>
+                      </tr>
+                      <tr>
+                        <th>매도가</th>
+                        <td>245,000원</td>
+                      </tr>
+                      <tr>
+                        <th>수익률</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +23.4% 상승!
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div style="text-align: center">
+                <div style="margin: 0 auto"><img
+                        src=static/picture/img_k75_1.png" alt=""
+                        style="max-width: 100%;width: auto"></div>
+            </div> -->
+        </div>
+        <br />
+        <div style="text-align: center">
+          <a class="link-btn">
+            <div
+              style="
+              display: inline-block;
+              max-width: 100%;
+              animation: switch 2s ease-out infinite;
+            "
+            >
+              {t === '棒群'
+? (
+                <div class="band-btn">
+                  <div class="band-logo-official">
+                    <img src={bandLogo.src} alt="BAND Logo" />
+                  </div>
+                  <div class="band-text">
+                    <span class="band-text-main">BAND 친구 추가하고</span>
+                    <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                  </div>
+                </div>
+              )
+: (
+                <div class="kakao-btn">
+                  <img src={btnCta.src} alt="카카오톡 친구 추가" />
+                </div>
+              )}
+            </div>
+          </a>
+        </div>
+      </section>
+      <!-- <section class="ai">
+        <div class="ai_inner">
+            <h2><img src="static/picture/img_ai.jpg"></h2>
+        </div>
+    </section> -->
+      <section class="merit">
+        <h2>왜 저에게 주식 투자를 배워야 할까요?</h2>
+        <div class="merit_inner">
+          <!-- box -->
+          <div class="merit_box">
+            <h3><span class="back_line">1. 검증된 투자 방법</span></h3>
+            <div class="merit_wp clearfix">
+              <div class="merit_left">
+                <img src={imgMerit1.src} alt="" />
+              </div>
+              <p>
+                주식 투자가 어렵게 느껴질 수 있지만, 사실 원칙만 알면 누구나 할 수 있어요. 중요한 건 어떤 종목을 언제 매수하고 매도할지 아는 거죠. 저는 15년 동안 주식 투자를 하면서 안정적으로 자산을 늘려온 경험이 있습니다. 처음 투자하시는 분도 쉽게 따라올 수 있도록 기본부터 차근차근 알려드려요.
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+          <!-- box -->
+          <div class="merit_box">
+            <h3><span class="back_line">2. 빠르게 성과를 낼 수 있어요</span></h3>
+            <div class="merit_wp clearfix">
+              <div class="merit_right">
+                <img src={imgMerit2.src} />
+              </div>
+              <p>
+                제가 직접 시장을 분석해서 상승 모멘텀이 있는 종목을 추천해드리기 때문에, 단기간에 성과를 기대할 수 있습니다. 감이 아니라, 데이터와 차트 분석을 기반으로 꾸준히 수익 낼 수 있는 매매법을 알려드릴게요. 매수·매도 타이밍부터 리스크 관리 방법까지 실전에서 쓸 수 있는 노하우를 전달해드립니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- /box -->
+        </div>
+        <br />
+        <div style="text-align: center">
+          <a class="link-btn">
+            <div
+              style="
+              display: inline-block;
+              max-width: 100%;
+              animation: switch 2s ease-out infinite;
+            "
+            >
+              {t === '棒群'
+? (
+                <div class="band-btn">
+                  <div class="band-logo-official">
+                    <img src={bandLogo.src} alt="BAND Logo" />
+                  </div>
+                  <div class="band-text">
+                    <span class="band-text-main">BAND 친구 추가하고</span>
+                    <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                  </div>
+                </div>
+              )
+: (
+                <div class="kakao-btn">
+                  <img src={btnCta.src} alt="카카오톡 친구 추가" />
+                </div>
+              )}
+            </div>
+          </a>
+        </div>
+      </section>
+      <!-- <section style="background: #f2f2f2;padding: 20px 0">
+        <div class="inner">
+            <div style="max-width: 100%;width: 900px;margin: 0 auto">
+                <img src=static/picture/img_kg0703_2.png" alt=""
+                    style="max-width: 100%">
+                <img src=static/picture/img_kg0703_3.png" alt=""
+                    style="max-width: 100%">
+            </div>
+        </div>
+    </section> -->
+      <section class="tool">
+        <!-- <h2><img src=static/picture/img_tool.jpg"></h2> -->
+      </section>
+      <section class="voice">
+        <h2>
+          주식이 처음이신 분들도 짧은 시간 안에 수익을 내셨어요!
+          <br />
+          <span class="or">저와 함께 투자하신 분들의 실제 수익 인증 후기를 직접 확인해보세요.</span>
+        </h2>
+
+        <div class="voice_inner">
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice1.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">50대 직장인 남성</div>
+                <h3>
+                  "기대 이상의 수익,<br />
+                  이제는 멘토 없이 주식 매수는 상상할 수<br />
+                  없습니다."
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 멘토와 함께 종목을 상담하다 보니 예전에는 많은 시간을 들여야 했던 종목 선정이 훨씬 간편해져서 투자 스트레스가 크게 줄었습니다.
+              </p>
+              <p>
+                2. 멘토가 추천해주는 종목 분석과 시장 정보는 제가 알고 있던 것과 비교해 깊이가 다르고, 덕분에 매수할 때 확신이 생깁니다.
+              </p>
+              <p>
+                3. 이곳에 가입한 후 누적 수익률이 70%를 넘었고, 예전에는 엄두도 못 냈던 주요 우량주에도 투자할 수 있게 됐습니다.
+              </p>
+              <p>4. 이제는 멘토의 추천과 리딩 없이 주식 매수 결정을 내리기가 어렵습니다.</p>
+            </div>
+          </div>
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice2.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">40대 직장인 남성</div>
+                <h3>"처음 투자한 5종목 중 2개가 상한가를 기록했습니다!"</h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 처음에 매수한 5개 종목 중 2종목이 상한가를 달성하면서, 이전에 봤던 손실도 모두 만회했고 지금은 전체 계좌가 수익 구간에 접어들었습니다.
+              </p>
+              <p>
+                2. 다섯 종목 모두 1주일에서 최대 2개월 정도의 짧은 투자 기간에 수익 실현이 가능했으며, 특히 소형주 두 종목이 상한가에 진입해서 정말 놀랐습니다.
+              </p>
+              <p>
+                3. 물론 모든 종목이 단기간에 급등한 건 아니지만, 대부분 성장 가능성이 높아서 자신 있게 중장기 포트폴리오에 편입할 수 있었습니다.
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice3.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">60대 주부</div>
+                <h3>
+                  "한 달 만에 아르바이트 반년치 수익을 얻었어요!"
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                아들의 추천으로 이곳에 참여하게 됐는데, 투자 시작한 지 한 달 만에 주식으로 반년 동안 아르바이트해서 벌던 만큼의 수익을 올릴 수 있었어요.
+              </p>
+              <p>
+                사실 주식은 잘 몰라서 늘 멀리했던 분야였는데, 이곳에서 시장 흐름부터 투자 방법까지 쉽게 설명해주시니까 걱정 없이 투자할 수 있었습니다. 앞으로도 꾸준히 수익 내고 싶어요!
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice4.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">40대 자영업 남성</div>
+                <h3>
+                  "장시간 시장을 안 봐도 월급보다 높은 수익을 얻고 있습니다!"
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 식당을 운영하다 보니 점심시간에는 너무 바빠서 주가를 실시간으로 확인할 틈이 없었어요. 예전에는 대형주에만 관심이 있었지만, 바빠지면서 투자할 시간이 부족했습니다.
+              </p>
+                              <p>
+                                2. 그러다 멘토의 리딩을 받아보고 투자해봤는데, 일하면서도 월급 이상으로 수익이 나고 있어 정말 도움을 많이 받고 있습니다.
+                </p>
+              <p>
+                3. 사실 처음 접하는 종목이라 걱정했는데, 멘토의 추천을 믿고 투자해보니 좋은 결과가 나와서 정말 기쁘고 감사합니다.
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice5.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">60대 실업 남성</div>
+                <h3>"좀 더 일찍 시작했다면 하는 아쉬움이 남아요. 이제는 은퇴 후 삶이 더 즐거워졌습니다."</h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 은퇴 후 혼자 주식 투자를 시작했지만 쉽게 수익을 내지 못했습니다. 그러다 제대로 배우기 위해 여러 방법을 찾던 중 멘토를 만나게 됐어요.
+              </p>
+              <p>
+                1. 은퇴 후 혼자 주식 투자를 시작했지만 쉽게 수익을 내지 못했습니다. 그러다 제대로 배우기 위해 여러 방법을 찾던 중 멘토를 만나게 됐어요.
+              </p>
+              <p>
+                3. 현재까지 세 종목에만 분산 투자했는데, 모두 안정적으로 플러스 수익을 기록 중입니다. 이제는 투자 덕분에 은퇴 후 일상이 훨씬 활기차고 즐겁게 변했습니다.
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice6.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">40대 주부</div>
+                <h3>
+                  "주식 투자가 늘 어렵게만 느껴졌는데, 멘토의 꼼꼼한 지원 덕분에 안심하고 시작할 수 있었습니다!"
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                주위에서 자산 관리를 강조하는 말을 많이 들어 저도 직접 투자에 도전하기로 결심했어요.
+              </p>
+              <p>
+                남편은 투자에 큰 관심이 없고, 저 역시 주식투자가 늘 쉽지 않았지만, 멘토가 매번 친절하게 투자 전략부터 종목 선정까지 도와주셔서 걱정 없이 시작할 수 있었습니다.
+              </p>
+              <p>
+                지금은 인도 주식과 미국 주식 모두 거래하고 있는데, 멘토가 유망 종목과 매수·매도 시점까지 꾸준히 조언해주셔서 자신 있게 포트폴리오를 구성하고 있습니다.
+              </p>
+              <p>이런 좋은 경험을 테니스 동호회 친구들에게도 꼭 추천하고 싶어요!</p>
+            </div>
+          </div>
+          <!-- /box -->
+        </div>
+        <br />
+        <div style="text-align: center">
+          <a class="link-btn">
+            <div
+              style="
+              display: inline-block;
+              max-width: 100%;
+              animation: switch 2s ease-out infinite;
+            "
+            >
+              {t === '棒群'
+? (
+                <div class="band-btn">
+                  <div class="band-logo-official">
+                    <img src={bandLogo.src} alt="BAND Logo" />
+                  </div>
+                  <div class="band-text">
+                    <span class="band-text-main">BAND 친구 추가하고</span>
+                    <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                  </div>
+                </div>
+              )
+: (
+                <div class="kakao-btn">
+                  <img src={btnCta.src} alt="카카오톡 친구 추가" />
+                </div>
+              )}
+            </div>
+          </a>
+        </div>
+      </section>
+      <section class="faq">
+        <h2>
+          궁금한 거 다 답해줄게! <br />
+          주식 하고 싶은 사람들이<br />
+          <span class="or">자주 묻는 질문</span>
+        </h2>
+        <div class="faq_inner">
+          <div class="qa-list mts">
+            <dl class="qa">
+              <dt>어떻게 가입하면 되나요?</dt>
+              <dd style="display: none">
+                <p>
+                  {t === '棒群' ? 'BAND로 나 친구 추가만 하면 돼' : '카카오톡으로 나 친구 추가만 하면 돼'}. 그러면 매일 오를 주식이랑
+                  언제 사고 팔지 무료로 알려줄게.
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>어떤 주식 정보를 알려주나요?</dt>
+              <dd style="display: none">
+                <p>
+                  내가 매일 분석해서 오를 것 같은 주식 알려줄게:
+                  - 매일 좋은 주식 추천 - 언제 사고 팔지 알림
+                  - 너한테 맞는 방법 알려줌 - 손해 안 보는 법
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>주식 처음 시작해도 괜찮을까요?</dt>
+              <dd style="display: none">
+                <p>
+                  당연하지! 주식 처음 하든 이미 하고 있든 상관없어.
+                  차근차근 쉽게 알려줄게.
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>대신 주식을 매매해주나요?</dt>
+              <dd style="display: none">
+                <p>
+                  직접 사고 파는 건 너가 해야 해. 근데 언제 사고 팔지는
+                  정확히 알려줄게. 증권계좌 만드는 것부터
+                  다 도와줄게.
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>비용이 드나요?</dt>
+              <dd style="display: none">
+                <p>
+                  기본으로 주식 정보 알려주는 건 완전 무료야. 더 좋은
+                  서비스도 비싸지 않게 해주고, 숨겨진 비용 없이
+                  안심하고 쓸 수 있어.
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>수익이 나면 추가 비용을 내야 하나요?</dt>
+              <dd style="display: none">
+                <p>
+                  기본 서비스는 완전 무료고, 너가 수익 올려도
+                  추가로 내는 돈 없어. 숨겨진 거 없이
+                  안심하고 써도 돼.
+                </p>
+              </dd>
+            </dl>
+          </div>
+        </div>
+
+        <!-- <div style="text-align: center;margin: 40px auto 0 auto;width: 1200px;max-width: 100%">
+            <img src="static/picture/img_k75_2.png" alt="" style="max-width: 100%;width: auto">
+        </div> -->
+      </section>
+      <a name="offer" id="offer"></a>
+      <div class="cta" style="background-color: #5589c3">
+        <div class="ctainner">
+          <!-- <h2><img src=static/picture/cta_title_r.png"></h2> -->
+          <a class="link-btn">
+            <div class="submit center banner">
+              <div class="btna">
+                {t === '棒群'
+? (
+                  <div class="band-btn band-btn-large">
+                    <div class="band-logo-official">
+                      <img src={bandLogo.src} alt="BAND Logo" />
+                    </div>
+                    <div class="band-text">
+                      <span class="band-text-main">BAND 친구 추가하고</span>
+                      <span class="band-text-sub">즉시 주식 정보 받기!</span>
+                    </div>
+                  </div>
+                )
+: (
+                  <div class="kakao-btn kakao-btn-large">
+                    <img src={btnCta.src} alt="카카오톡 친구 추가" />
+                  </div>
+                )}
+              </div>
+            </div>
+          </a>
+          <div style="text-align: center">
+            <p class="k_sp" style="font-weight: bold; font-size: 18px">
+              {t === '棒群' ? '버튼 눌러서 BAND 친구 추가해!' : '버튼 눌러서 카카오톡 친구 추가해!'} <br />
+              매일 주식 정보 알려주는 건 <span style="color: #fff300">완전 무료</span>야.
+            </p>
+          </div>
+        </div>
+        <div class="floating banner" style="display: block;z-index: 1000;">
+          <div class="banner_pc fl_pc">
+            <p class="animate__animated animate__headShake animate__infinite">
+              <a class="link-btn">▶ {t === '棒群' ? 'BAND친구 추가하고 유망주 받기' : '카카오톡 친구 추가하고 상승 주식 받기'}</a
+              >
+            </p>
+          </div>
+          <div class="banner_sp fl_sp">
+            <p class="animate__animated animate__headShake animate__infinite">
+              <a class="link-btn">▶ {t === '棒群' ? 'BAND친구 추가하고 유망주 받기' : '카카오톡 친구 추가하고 상승 주식 받기'}</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <script>
+$('.qa-list dd').hide()
+$('.qa-list dl').on('click', function (_e) {
+  $('dd', this).slideToggle('fast')
+  if ($(this).hasClass('open')) {
+    $(this).removeClass('open')
+  }
+  else {
+    $(this).addClass('open')
+  }
+})
+</script>
+      <style>
+        @keyframes switch {
+          0% {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+          }
+
+          50% {
+            -webkit-transform: scale3d(0.9, 0.9, 0.9);
+            transform: scale3d(0.9, 0.9, 0.9);
+          }
+
+          100% {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+          }
+        }
+      </style>
+    </div>
+  </body>
+</html>

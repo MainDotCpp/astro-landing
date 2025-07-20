@@ -5,7 +5,7 @@ import kakao from '@/assets/kakao-icon.png'
 
 type Props = {
     text: string
-    social?: 'kakao' | 'band'
+    social?: '卡扣' | '棒群'
     size?: 'sm' | 'md' | 'lg'
     animate?: boolean
     class?: string
@@ -30,9 +30,9 @@ const currentSize = sizes[size]
 
 // Get variant based on social type
 function getVariant() {
-    if (social === 'kakao')
+    if (social === '卡扣')
         return 'bg-[#FEE500] text-black hover:bg-[#FFEB00] shadow-lg hover:shadow-xl'
-    if (social === 'band')
+    if (social === '棒群')
         return 'bg-white text-black hover:bg-gray-50 shadow-lg hover:shadow-xl border-2 border-gray-200'
     return 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl'
 }
@@ -46,7 +46,7 @@ const baseClasses = `
     ${getVariant()}
     ${className}
 `
-const ctaText = text ?? social === 'kakao' ? '카카오톡으로 무료 급등주 받기' : 'BAND에서 무료 급등주 받기'
+const ctaText = text ?? social === '卡扣' ? '카카오톡으로 무료 급등주 받기' : 'BAND에서 무료 급등주 받기'
 ---
 
 <style>
@@ -69,7 +69,7 @@ const ctaText = text ?? social === 'kakao' ? '카카오톡으로 무료 급등�
 <button class={`${baseClasses} ${animate ? 'breathing' : ''} link-btn`}>
     <Image
       class="rounded-full flex-shrink-0"
-      src={social === 'kakao' ? kakao : band}
+      src={social === '卡扣' ? kakao : band}
       alt={social ?? ''}
       width={currentSize.icon}
       height={currentSize.icon}

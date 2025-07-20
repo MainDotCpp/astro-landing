@@ -1,0 +1,498 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { ArrowRight, CheckCircle, Clock, Eye, Lock, Mail, MessageCircle, Phone, PlayCircle, Shield, Sparkles, Star, TrendingUp, Trophy, Unlock, Users, Zap } from 'lucide-astro'
+import { Button } from '@/components/ui/button'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+// Import unique CSS
+import './static/css/modern-landing.css'
+
+export function getStaticPaths() {
+  const pages = [
+  { params: { people: '柳秀真', version: '0', name: '유수진' }, props: { img_prefix: 'lxz_' } },
+      { params: { people: '宣大仁', version: '0', name: '선대인' }, props: { img_prefix: 'xdr_' } },
+      { params: { people: '南锡宽', version: '0', name: '남석관' }, props: { img_prefix: 'nxk_' } },
+      { params: { people: '富人电视', version: '0', name: '부자티비' }, props: { img_prefix: 'frds_' } },
+      { params: { people: '闵秀雅', version: '0', name: '민수아' }, props: { img_prefix: 'mxy_' } },
+      { params: { people: '朴世益', version: '0', name: '박세익' }, props: { img_prefix: 'psy_' } },
+      { params: { people: '金永益', version: '0', name: '김영익' }, props: { img_prefix: 'jyy_' } },
+      { params: { people: '金光石', version: '0', name: '김광석' }, props: { img_prefix: 'jgs_' } },
+]
+return [
+  ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+]
+}
+
+const { t = '棒群', name } = Astro.params
+const { img_prefix } = Astro.props
+
+const headImg = import(`../images/${img_prefix}head.jpg`)
+const headerImg = import(`../images/${img_prefix}header.jpg`)
+const img1Img = import(`../images/${img_prefix}img1.jpg`)
+---
+
+<BaseLayout title={`${name} - 스마트 투자 플랫폼`} description={`${name}과 함께하는 혁신적인 투자 경험`}>
+  <div class="modern-landing">
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <Sparkles class="brand-icon" />
+          <span class="brand-text">InvestSmart</span>
+        </div>
+        <div class="nav-actions">
+          <Button className="nav-cta-btn link-btn">
+            <MessageCircle class="btn-icon" />
+            {t === '棒群' ? 'BAND 시작' : '카톡 시작'}
+          </Button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-background">
+        <div class="hero-gradient"></div>
+        <div class="hero-pattern"></div>
+      </div>
+
+      <div class="hero-container">
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="hero-badge">
+            <Trophy class="badge-icon" />
+            <span>전문가 인증</span>
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="hero-title">
+            <span class="title-line">스마트한 투자의</span>
+            <span class="title-highlight">새로운 시작</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="hero-subtitle">
+            AI와 전문가가 함께하는 개인 맞춤형 투자 솔루션으로<br >
+            당신의 재정 목표를 달성해보세요
+          </p>
+
+          <!-- Expert Info -->
+          <div class="hero-expert">
+            <div class="expert-avatar">
+              <Image src={headImg} alt={name} class="avatar-img" />
+              <div class="expert-badge">
+                <Star class="star-icon" />
+              </div>
+            </div>
+            <div class="expert-details">
+              <h3 class="expert-name">{name}</h3>
+              <p class="expert-role">수석 투자전략가</p>
+              <div class="expert-stats">
+                <span class="stat-item">경력 15년+</span>
+                <span class="stat-divider">•</span>
+                <span class="stat-item">성공률 89%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="hero-actions">
+            <Button className="primary-btn link-btn">
+              <PlayCircle class="btn-icon" />
+              무료 상담 신청
+            </Button>
+            <Button className="secondary-btn link-btn">
+              <Eye class="btn-icon" />
+              투자 성과 보기
+            </Button>
+          </div>
+
+          <!-- Trust Indicators -->
+          <div class="trust-indicators">
+            <div class="trust-item">
+              <CheckCircle class="trust-icon" />
+              <span>100% 무료</span>
+            </div>
+            <div class="trust-item">
+              <Shield class="trust-icon" />
+              <span>안전 보장</span>
+            </div>
+            <div class="trust-item">
+              <Clock class="trust-icon" />
+              <span>24시간 지원</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="features-container">
+        <div class="section-header">
+          <h2 class="section-title">왜 우리를 선택해야 할까요?</h2>
+          <p class="section-subtitle">차별화된 투자 서비스로 당신의 성공을 도와드립니다</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card feature-primary">
+            <div class="feature-icon">
+              <Zap class="icon" />
+            </div>
+            <h3 class="feature-title">실시간 시그널</h3>
+            <p class="feature-description">AI 분석을 통한 실시간 매매 신호와 전문가의 검증된 투자 아이디어를 제공합니다.</p>
+            <div class="feature-benefits">
+              <span class="benefit-tag">즉시 알림</span>
+              <span class="benefit-tag">정확도 높음</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <Users class="icon" />
+            </div>
+            <h3 class="feature-title">1:1 개인상담</h3>
+            <p class="feature-description">개인의 투자 성향과 목표에 맞춘 맞춤형 포트폴리오 설계 및 관리 서비스.</p>
+            <div class="feature-benefits">
+              <span class="benefit-tag">개인 맞춤</span>
+              <span class="benefit-tag">전문가 직접</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <TrendingUp class="icon" />
+            </div>
+            <h3 class="feature-title">성과 분석</h3>
+            <p class="feature-description">투자 성과를 시각화하고 개선점을 찾아 지속적인 수익 향상을 도모합니다.</p>
+            <div class="feature-benefits">
+              <span class="benefit-tag">데이터 기반</span>
+              <span class="benefit-tag">지속 개선</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Showcase -->
+    <section class="results-section">
+      <div class="results-container">
+        <div class="results-content">
+          <div class="results-text">
+            <h2 class="results-title">검증된 투자 성과</h2>
+            <p class="results-subtitle">실제 고객들이 경험한 투자 수익률을 확인해보세요</p>
+
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <div class="metric-number">+32.5%</div>
+                <div class="metric-label">평균 수익률</div>
+                <div class="metric-period">최근 6개월</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-number">89%</div>
+                <div class="metric-label">성공률</div>
+                <div class="metric-period">지난 1년</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-number">12,847</div>
+                <div class="metric-label">만족 고객</div>
+                <div class="metric-period">누적</div>
+              </div>
+            </div>
+
+            <Button className="results-btn link-btn">
+              <ArrowRight class="btn-icon" />
+              상세 성과 보기
+            </Button>
+          </div>
+
+          <div class="results-visual">
+            <div class="chart-container">
+              <Image src={img1Img} alt="투자 성과 차트" class="chart-image" />
+              <div class="chart-overlay">
+                <div class="overlay-badge">
+                  <TrendingUp class="overlay-icon" />
+                  <span>+24% 이번 달</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <div class="testimonials-container">
+        <div class="section-header">
+          <h2 class="section-title">고객 후기</h2>
+          <p class="section-subtitle">실제 경험한 고객들의 생생한 이야기를 들어보세요</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card testimonial-featured">
+            <div class="testimonial-rating">
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+            </div>
+            <blockquote class="testimonial-quote">
+              "처음에는 반신반의했는데, 3개월 만에 20% 이상 수익을 냈어요. 특히 개인 맞춤 상담이 정말 도움이 되었습니다."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar">김</div>
+              <div class="author-info">
+                <div class="author-name">김○○님</div>
+                <div class="author-desc">IT 개발자 • 투자 경력 2년</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+            </div>
+            <blockquote class="testimonial-quote">
+              "실시간 시그널 덕분에 타이밍을 놓치지 않게 되었어요. 수익률도 크게 개선되었습니다."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar">박</div>
+              <div class="author-info">
+                <div class="author-name">박○○님</div>
+                <div class="author-desc">자영업 • 투자 경력 5년</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+              <Star class="star filled" />
+            </div>
+            <blockquote class="testimonial-quote">
+              "투자 초보인 저도 쉽게 따라할 수 있는 명확한 가이드를 제공해주셔서 감사합니다."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar">이</div>
+              <div class="author-info">
+                <div class="author-name">이○○님</div>
+                <div class="author-desc">주부 • 투자 초보</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expert Profile -->
+    <section class="expert-section">
+      <div class="expert-container">
+        <div class="expert-profile">
+          <div class="expert-image-wrapper">
+            <Image src={headerImg} alt={`${name} 전문가`} class="expert-image" />
+            <div class="expert-credentials">
+              <div class="credential-badge">
+                <span class="credential-number">15+</span>
+                <span class="credential-text">년 경력</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="expert-info">
+            <h2 class="expert-title">{name} 수석 투자전략가</h2>
+            <p class="expert-intro">
+              금융업계에서 15년 이상의 경험을 쌓은 투자 전문가로, 개인 투자자들을 위한
+              체계적이고 실용적인 투자 전략을 제공합니다.
+            </p>
+
+            <div class="expert-highlights">
+              <div class="highlight-item">
+                <CheckCircle class="highlight-icon" />
+                <div class="highlight-content">
+                  <h4>검증된 실력</h4>
+                  <p>15년간 다양한 시장 상황에서 쌓은 투자 노하우</p>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <CheckCircle class="highlight-icon" />
+                <div class="highlight-content">
+                  <h4>개인 맞춤 서비스</h4>
+                  <p>각자의 상황에 맞는 개별화된 투자 전략 제공</p>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <CheckCircle class="highlight-icon" />
+                <div class="highlight-content">
+                  <h4>지속적인 관리</h4>
+                  <p>투자 후에도 지속적인 모니터링과 조정 서비스</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="expert-quote">
+              <blockquote>
+                "투자는 단순한 수익 창출이 아닌, 미래를 위한 체계적인 자산 관리입니다.
+                개인의 목표와 상황에 맞는 최적의 전략을 함께 만들어가겠습니다."
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="process-section">
+      <div class="process-container">
+        <div class="section-header">
+          <h2 class="section-title">시작하는 방법</h2>
+          <p class="section-subtitle">간단한 3단계로 투자 여정을 시작하세요</p>
+        </div>
+
+        <div class="process-steps">
+          <div class="step-item">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3 class="step-title">상담 신청</h3>
+              <p class="step-description">{t === '棒群' ? '棒群' : '카카오톡'}을 통해 간단하게 상담을 신청하세요</p>
+            </div>
+            <div class="step-arrow">
+              <ArrowRight class="arrow-icon" />
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3 class="step-title">맞춤 분석</h3>
+              <p class="step-description">투자 성향과 목표를 분석하여 개인 맞춤 전략을 수립합니다</p>
+            </div>
+            <div class="step-arrow">
+              <ArrowRight class="arrow-icon" />
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3 class="step-title">투자 시작</h3>
+              <p class="step-description">실시간 시그널과 지속적인 관리로 성공적인 투자를 시작하세요</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+      <div class="cta-background">
+        <div class="cta-gradient"></div>
+      </div>
+
+      <div class="cta-container">
+        <div class="cta-content">
+          <h2 class="cta-title">지금 바로 시작하세요</h2>
+          <p class="cta-subtitle">
+            전문가와 함께하는 스마트한 투자로<br >
+            당신의 재정 목표를 달성해보세요
+          </p>
+
+          <div class="cta-benefits">
+            <div class="benefit-item">
+              <Unlock class="benefit-icon" />
+              <span>무료 상담</span>
+            </div>
+            <div class="benefit-item">
+              <Shield class="benefit-icon" />
+              <span>안전 보장</span>
+            </div>
+            <div class="benefit-item">
+              <Clock class="benefit-icon" />
+              <span>즉시 시작</span>
+            </div>
+          </div>
+
+          <div class="cta-actions">
+            <Button className="cta-primary-btn link-btn">
+              <MessageCircle class="btn-icon" />
+              {t === '棒群' ? 'BAND에서 상담 시작' : '카카오톡으로 상담 시작'}
+            </Button>
+            <Button className="cta-secondary-btn link-btn">
+              <Phone class="btn-icon" />
+              전화 상담 신청
+            </Button>
+          </div>
+
+          <p class="cta-note">
+            ※ 상담 신청 후 24시간 내에 연락드립니다
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <Sparkles class="footer-logo-icon" />
+              <span class="footer-logo-text">InvestSmart</span>
+            </div>
+            <p class="footer-description">
+              스마트한 투자를 통해 더 나은 미래를 만들어가는<br >
+              개인 맞춤형 투자 플랫폼입니다.
+            </p>
+          </div>
+
+          <div class="footer-contact">
+            <h4 class="footer-heading">연락처</h4>
+            <div class="contact-list">
+              <div class="contact-item">
+                <MessageCircle class="contact-icon" />
+                <span>{t === '棒群' ? '棒群' : '카카오톡'} 상담</span>
+              </div>
+              <div class="contact-item">
+                <Mail class="contact-icon" />
+                <span>이메일 상담</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2024 {name} InvestSmart. All rights reserved.
+          </p>
+          <p class="footer-disclaimer">
+            투자에는 원금 손실의 위험이 있으며, 과거 성과가 미래 수익을 보장하지 않습니다.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="floating-action">
+      <Button className={`floating-btn ${t === '棒群' ? 'band-theme' : 'kakao-theme'} link-btn`}>
+        <MessageCircle class="floating-icon" />
+        <span class="floating-text">
+          {t === '棒群' ? '무료 상담' : '카톡 상담'}
+        </span>
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>
