@@ -1,20 +1,21 @@
 ﻿---
+import RedirectCode from '@/components/RedirectCode.astro'
+import tradingStrategies from './static/1111.mp4'
+// Video path for trading steps
+import tradingStepsVideo from './static/2222.mp4'
+import bgImage from './static/image/bgt.jpg'
+import investmentAnalysis from './static/picture/aa.jpg'
+import fingerIcon from './static/picture/finger.png'
 // Astro frontmatter
 // Import images
-import whatsappIcon from './static/picture/small-whatsapp.gif';
-import heroImage from './static/picture/white-without-background-2.png';
-import tradingStrategy from './static/picture/ts.jpg';
-import investmentAnalysis from './static/picture/aa.jpg';
-import tradingStrategies from './static/1111.mp4';
-// Video path for trading steps
-import tradingStepsVideo from './static/2222.mp4';
-import fingerIcon from './static/picture/finger.png';
-import bgImage from './static/image/bgt.jpg';
-import './static/css/style-static.min.css';
-import './static/css/et-core-unified-tb-229743-deferred-10.min.css';
-import './static/css/bootstrap.min.css';
-import RedirectCode from '@/components/RedirectCode.astro';
-const pageTitle = 'Stock Market Recommendations';
+import whatsappIcon from './static/picture/small-whatsapp.gif'
+import tradingStrategy from './static/picture/ts.jpg'
+import heroImage from './static/picture/white-without-background-2.png'
+import './static/css/style-static.min.css'
+import './static/css/et-core-unified-tb-229743-deferred-10.min.css'
+import './static/css/bootstrap.min.css'
+
+const pageTitle = 'Stock Market Recommendations'
 const pageDescription = 'Professional stock market analysis and investment recommendations';
 
 
@@ -24,11 +25,11 @@ const pageDescription = 'Professional stock market analysis and investment recom
 <html lang="en-US">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
     <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription}>
+    <meta name="description" content={pageDescription} >
     <RedirectCode />
 </head>
 
@@ -41,13 +42,17 @@ const pageDescription = 'Professional stock market analysis and investment recom
                         <div class="entry-content" style="background: #111;">
                             <div class="et-l et-l--post">
                                 <div class="et_builder_inner_content et_pb_gutters3">
-                                    <div class="et_pb_section et_pb_section_1 et_pb_with_background et_section_regular"
-                                        style="overflow: hidden;">
+                                    <div
+                                      class="et_pb_section et_pb_section_1 et_pb_with_background et_section_regular"
+                                      style="overflow: hidden;"
+                                    >
                                         <div class="et_pb_row et_pb_row_1">
                                             <div
-                                                class="et_pb_column et_pb_column_3_5 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough">
+                                              class="et_pb_column et_pb_column_3_5 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough"
+                                            >
                                                 <div
-                                                    class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_text_align_center-tablet et_pb_bg_layout_dark">
+                                                  class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_text_align_center-tablet et_pb_bg_layout_dark"
+                                                >
                                                     <div class="et_pb_text_inner">
                                                         <h1>Regular People Are Making $20,000+ Per Month
                                                         </h1>
@@ -59,32 +64,42 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="et_pb_button_module_wrapper et_pb_button_0_wrapper et_pb_button_alignment_tablet_center et_pb_button_alignment_phone_center et_pb_module ">
-                                                    <a class="morewhatsapp link-btn"
-                                                        style="background: #33bc2f; color: #fff;">
-                                                        <img style="width:30px;"
-                                                            src={whatsappIcon.src} alt="WhatsApp">
+                                                  class="et_pb_button_module_wrapper et_pb_button_0_wrapper et_pb_button_alignment_tablet_center et_pb_button_alignment_phone_center et_pb_module "
+                                                >
+                                                    <a
+                                                      class="morewhatsapp link-btn flex items-center justify-center w-[250px]"
+                                                      style="background: #33bc2f; color: #fff;"
+                                                    >
+                                                        <img
+                                                          style="width:30px;"
+                                                          src={whatsappIcon.src}
+                                                          alt="WhatsApp">
                                                         Add WhatsApp Now
                                                     </a>
                                                 </div>
                                             </div>
                                             <div
-                                                class="et_pb_column et_pb_column_2_5 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough et-last-child">
+                                              class="et_pb_column et_pb_column_2_5 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough et-last-child"
+                                            >
                                                 <div class="et_pb_module et_pb_image et_pb_image_0">
-                                                    <span class="et_pb_image_wrap "><img decoding="async" width="477"
-                                                            height="423"
-                                                            src={heroImage.src}
-                                                            alt="white without background 2"
-                                                            title="white-without-background-2"
-                                                            class="wp-image-242815"></span>
+                                                    <span class="et_pb_image_wrap "><img
+                                                      decoding="async"
+                                                      width="477"
+                                                      height="423"
+                                                      src={heroImage.src}
+                                                      alt="white without background 2"
+                                                      title="white-without-background-2"
+                                                      class="wp-image-242815"></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="et_pb_row et_pb_row_2 et_pb_gutters2">
                                             <div
-                                                class="et_pb_column et_pb_column_1_3 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough">
+                                              class="et_pb_column et_pb_column_1_3 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough"
+                                            >
                                                 <div
-                                                    class="et_pb_modulekk et_pb_text et_pb_text_1  et_pb_text_align_left et_pb_bg_layout_dark">
+                                                  class="et_pb_modulekk et_pb_text et_pb_text_1  et_pb_text_align_left et_pb_bg_layout_dark"
+                                                >
                                                     <div class="et_pb_text_inner">
                                                         <h3>Smarter & Faster Trading</h3>
                                                         <p>Learn to navigate market challenges with confidence
@@ -94,9 +109,11 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                                 </div>
                                             </div>
                                             <div
-                                                class="et_pb_column et_pb_column_1_3 et_pb_column_4  et_pb_css_mix_blend_mode_passthrough">
+                                              class="et_pb_column et_pb_column_1_3 et_pb_column_4  et_pb_css_mix_blend_mode_passthrough"
+                                            >
                                                 <div
-                                                    class="et_pb_modulekk et_pb_text et_pb_text_2  et_pb_text_align_left et_pb_bg_layout_dark">
+                                                  class="et_pb_modulekk et_pb_text et_pb_text_2  et_pb_text_align_left et_pb_bg_layout_dark"
+                                                >
                                                     <div class="et_pb_text_inner">
                                                         <h3>Investment Trend Analysis</h3>
                                                         <p>Our chart annotations help investors spot profitable
@@ -106,9 +123,11 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                                 </div>
                                             </div>
                                             <div
-                                                class="et_pb_column et_pb_column_1_3 et_pb_column_5  et_pb_css_mix_blend_mode_passthrough et-last-child">
+                                              class="et_pb_column et_pb_column_1_3 et_pb_column_5  et_pb_css_mix_blend_mode_passthrough et-last-child"
+                                            >
                                                 <div
-                                                    class="et_pb_modulekk et_pb_text et_pb_text_3  et_pb_text_align_left et_pb_bg_layout_light">
+                                                  class="et_pb_modulekk et_pb_text et_pb_text_3  et_pb_text_align_left et_pb_bg_layout_light"
+                                                >
                                                     <div class="et_pb_text_inner">
                                                         <h3>Real-Time Market Alerts</h3>
                                                         <p>Expert analysis from seasoned professionals combined with
@@ -122,18 +141,20 @@ const pageDescription = 'Professional stock market analysis and investment recom
 
 
 
-                                    <div class="et_pb_section et_pb_section_2 et_section_regular"
-                                        style={`background: url('${bgImage.src}'); overflow: hidden`}>
+                                    <div
+                                      class="et_pb_section et_pb_section_2 et_section_regular"
+                                      style={`background: url('${bgImage.src}'); overflow: hidden`}
+                                    >
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-lg-5 col-12">
-                                                    <img src={tradingStrategy.src} alt="Trading Strategy">
+                                                    <img src={tradingStrategy.src} alt="Trading Strategy" >
                                                 </div>
                                                 <div class="col-lg-7 col-12">
-                                                    <h2 style="color: #b29d74 ;" class="pkgz mt-4 mt-lg-0 h4">6k Investor, a famous YouTube investment blogger, is also a member of our community, including well-known financial masters</h2>
+                                                    <h2 style="color: #b29d74 ;" class="pkgz mt-4 mt-lg-0 h4 h-auto">6k Investor, a famous YouTube investment blogger, is also a member of our community, including well-known financial masters</h2>
                                                     <ul style="color:#fff;">
                                                         <li>
-                                                            ✓ Build your own dividend portfolio - 
+                                                            ✓ Build your own dividend portfolio -
                                                             completely FREE access
 
                                                         </li>
@@ -142,7 +163,7 @@ const pageDescription = 'Professional stock market analysis and investment recom
 
                                                         </li>
                                                         <li>
-                                                            ✓ Exclusive pre-market insights from 
+                                                            ✓ Exclusive pre-market insights from
                                                             senior analysts - FREE & members-only
                                                         </li>
                                                         <li>
@@ -155,12 +176,18 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                                             ✓ Members averaging 300% gains in 4 months!
                                                         </li>
                                                     </ul>
-                                                    <div class="et_pb_button_module_wrapper et_pb_button_1_wrapper et_pb_module et_had_animation"
-                                                        style="">
-                                                        <a class="morewhatsapp link-btn"
-                                                            style="background: #33bc2f; color: #fff;">
-                                                            <img style="width:30px;"
-                                                                src={whatsappIcon.src} alt="WhatsApp">
+                                                    <div
+                                                      class="et_pb_button_module_wrapper et_pb_button_1_wrapper et_pb_module et_had_animation"
+                                                      style=""
+                                                    >
+                                                        <a
+                                                          class="morewhatsapp link-btn flex items-center justify-center w-[250px]"
+                                                          style="background: #33bc2f; color: #fff;"
+                                                        >
+                                                            <img
+                                                              style="width:30px;"
+                                                              src={whatsappIcon.src}
+                                                              alt="WhatsApp">
                                                             Add WhatsApp Now
                                                         </a>
                                                         <p class="text-white mt-2"> <small class="">*Private community for serious investors only.
@@ -182,7 +209,7 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                                 </h2>
                                                 <p>Our team brings over 10 years of advanced technical analysis
                                                     and deep market expertise to every recommendation.
-                                                    <br>Watch profitable trades unfold in real-time!
+                                                    <br >Watch profitable trades unfold in real-time!
                                                 </p>
                                             </div>
                                             <div class="row seolist1">
@@ -228,7 +255,7 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                                 </div>
                                             </div>
                                             <div class="col-md-5 order-md-1 wapimg">
-                                                <img src={investmentAnalysis.src} alt="Investment Analysis" title="">
+                                                <img src={investmentAnalysis.src} alt="Investment Analysis" title="" >
                                             </div>
                                         </div>
                                         <div class="row featurette" style="padding-top:20px;">
@@ -262,25 +289,31 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                                 </div>
                                                 <div class="col-md-6 order-md-2">
                                                     <div class="se_7" style="color: #fff;">
-                                                        <h2 class="featurettezz" style="color: #b29d74">
+                                                        <h2 class="featurettezz" style="color: #b29d74;height:auto">
                                                             7 Steps to Trading Success
                                                         </h2>
                                                         <p>1. Follow expert analysis and professional insights
-                                                            <br>
-                                                            2. Identify strong market trends early <br>
-                                                            3. Find optimal entry points for maximum profit <br>
-                                                            4. Hold winning positions and let profits compound <br>
-                                                            5. Network with successful traders and investors <br>
-                                                            6. Master technical and fundamental analysis <br>
+                                                            <br >
+                                                            2. Identify strong market trends early <br >
+                                                            3. Find optimal entry points for maximum profit <br >
+                                                            4. Hold winning positions and let profits compound <br >
+                                                            5. Network with successful traders and investors <br >
+                                                            6. Master technical and fundamental analysis <br >
                                                             7. Develop a winning mindset for long-term success
                                                         </p>
                                                     </div>
-                                                    <div class="et_pb_button_module_wrapper et_pb_button_1_wrapper et_pb_module et_had_animation"
-                                                        style="">
-                                                        <a class="morewhatsapp link-btn"
-                                                            style="background: #33bc2f; color: #fff;">
-                                                            <img style="width:30px;"
-                                                                src={whatsappIcon.src} alt="WhatsApp">
+                                                    <div
+                                                      class="et_pb_button_module_wrapper et_pb_button_1_wrapper et_pb_module et_had_animation"
+                                                      style=""
+                                                    >
+                                                        <a
+                                                          class="morewhatsapp link-btn flex items-center justify-center w-[250px]"
+                                                          style="background: #33bc2f; color: #fff;"
+                                                        >
+                                                            <img
+                                                              style="width:30px;"
+                                                              src={whatsappIcon.src}
+                                                              alt="WhatsApp">
                                                             Add WhatsApp Now
                                                         </a>
                                                     </div>
@@ -294,7 +327,7 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                             <div class="htitle text-center">
                                                 <h2>Real Success Stories from Our Members
                                                 </h2>
-                                                <p>See how our community members are achieving incredible results <br>with our
+                                                <p>See how our community members are achieving incredible results <br >with our
                                                     proven investment strategies!</p>
                                             </div>
                                             <div class="row seolist2">
@@ -333,20 +366,20 @@ const pageDescription = 'Professional stock market analysis and investment recom
                                     </div>
 
                                     <div class="container text-center" style="padding-bottom:50px; color: #fff; ">
-                                        <h2 class="text-center h3" style="color:#fff;">
+                                        <h2 class="text-center h3" style="color:#fff;height:auto">
                                             "It takes 20 years to build a reputation and 5 minutes to destroy it."
                                             - Warren Buffett
                                         </h2>
                                         <h4 class="fbt_4" style="color:#fff;">
-                                            Our track record speaks for itself. <br>We've built our reputation
+                                            Our track record speaks for itself. <br >We've built our reputation
                                             through consistent results and transparent communication.
-                                            <br>That's why we're the trusted choice for serious investors.
+                                            <br >That's why we're the trusted choice for serious investors.
                                         </h4>
                                         <p>Ready to join thousands of successful traders who've transformed
                                             their financial future? Start your wealth-building journey today.
                                         </p>
-                                        <a class="morewhatsapp link-btn">
-                                            <img style="width:30px;" src={whatsappIcon.src} alt="WhatsApp"> Join Our WhatsApp Community </a>
+                                        <a class="morewhatsapp link-btn flex items-center justify-center w-[300px]">
+                                            <img style="width:30px;" src={whatsappIcon.src} alt="WhatsApp" > Join Our WhatsApp Community </a>
                                     </div>
                                     <div class="bq_footer">
                                         <div class="container">© 2024 Elite Trading Community. All rights reserved.</div>
@@ -364,12 +397,15 @@ const pageDescription = 'Professional stock market analysis and investment recom
     <div class="pcnome ">
         <div style="position: fixed; z-index: 100; width: 100%;bottom: 0; ">
             <div
-                style="font-size:0.9rem;color: white;background:rgba(0,0,0,0.5);width: 100%;text-align: center;display: flex;align-items: center;justify-content: center;flex-direction: row; ">
+              style="font-size:0.9rem;color: white;background:rgba(0,0,0,0.5);width: 100%;text-align: center;display: flex;align-items: center;justify-content: center;flex-direction: row; "
+            >
                 <span style="font-size: 1rem">Start making your investments with us</span>
-                <img class="animate__heartBeat" src={fingerIcon.src} style="height:40px; width: 40px;" alt="Finger">
+                <img class="animate__heartBeat" src={fingerIcon.src} style="height:40px; width: 40px;" alt="Finger" >
             </div>
             <div
-                style="background:#33bc2f;width: 100%;height: 3.5rem;text-align: center;display: flex;align-items: center;justify-content: center;flex-direction: row;">
+              class="link-btn"
+              style="background:#33bc2f;width: 100%;height: 3.5rem;text-align: center;display: flex;align-items: center;justify-content: center;flex-direction: row;"
+            >
                 <span>
                     <a class="btntext">JOIN WHATSAPP COMMUNITY</a>
                 </span>

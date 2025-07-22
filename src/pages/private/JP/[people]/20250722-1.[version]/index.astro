@@ -1,0 +1,1660 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { Clock, Shield, Smartphone, Star, TrendingUp, Users } from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+// 页面元数据
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '2' }, props: { img_prefix: 'sq2_' } },
+    { params: { people: '三橋貴明', version: '5' }, props: { img_prefix: 'sq5_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { people } = Astro.params
+const { img_prefix } = Astro.props
+const headImage = await import(`./static/${img_prefix}head.jpg`)
+const headerImage = await import(`./static/${img_prefix}header.png`)
+const contentImage = await import(`./static/${img_prefix}img.png`)
+
+---
+
+<BaseLayout title={`${people}の投資講座 | 無料オンライン投資情報`} description={`経済評論家・${people}による投資情報のご提供。実績ある運用方法を無料でご紹介。スマートフォンで手軽に、初心者の方でも安心してご利用いただけます。`} track={true}>
+  <!-- メインコンテナ -->
+  <div class="main-container">
+    <!-- ヘッダー：講師紹介エリア -->
+    <section class="hero-section">
+      <div class="instructor-card">
+        <div class="avatar-container">
+                    <Image
+                      src={headImage.default}
+                      alt={people}
+                      class="avatar-image"
+                      width={120}
+                      height={120}
+                      data-track-load
+                    />
+        </div>
+                  <div class="instructor-info">
+            <h1 class="instructor-name">{people}</h1>
+            <p class="instructor-title">経済評論家・作家</p>
+            <div class="greeting-text">
+              <p>こんにちは、{people}です。</p>
+              <p class="value-proposition-text">LINE友達追加をしていただくだけで<br>効率的な資産運用の方法をご紹介いたします</p>
+            </div>
+
+            <!-- 顶部CTA按钮 -->
+            <div class="hero-cta-container">
+              <button
+                class="line-cta-button link-btn hero-cta"
+                data-umami-event="contact"
+                data-umami-event-method="line"
+                data-umami-event-position="hero-cta"
+                data-umami-event-instructor={people}
+              >
+                <div class="line-icon">
+                  <span class="line-text">LINE</span>
+                </div>
+                <div class="cta-text">
+                  <span class="cta-main">無料で投資情報を受け取る</span>
+                  <span class="cta-sub">厳選した投資銘柄の情報をお届けいたします</span>
+                </div>
+              </button>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- 価値提案エリア -->
+    <section class="value-proposition" data-umami-event="success-cases-view" data-umami-event-instructor={people}>
+      <div class="announcement-card">
+        <h2 class="announcement-title">LINE友達追加をいただいた方限定！実際の投資実績をご紹介</h2>
+        <div class="header-image-container">
+          <Image
+            src={headerImage.default}
+            alt="投資実績"
+            class="header-image"
+            width={400}
+            height={200}
+          />
+        </div>
+                  <div class="success-highlight">
+            <div class="success-item" data-umami-event="success-case-click" data-umami-event-percentage="100" data-umami-event-period="5-days">
+              <span class="success-number">100%</span>
+              <span class="success-description">5日間で<br>資産が2倍になりました</span>
+            </div>
+            <div class="success-item" data-umami-event="success-case-click" data-umami-event-percentage="300" data-umami-event-period="2-weeks">
+              <span class="success-number">300%</span>
+              <span class="success-description">2週間で<br>資産が4倍になりました</span>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- 講座紹介エリア -->
+    <section class="course-intro" data-umami-event="features-view" data-umami-event-instructor={people}>
+      <div class="course-card">
+        <h2 class="course-title">すぐに始められる効率的な投資方法を無料でご紹介</h2>
+        <div class="content-image-container">
+          <Image
+            src={contentImage.default}
+            alt="講座内容"
+            class="content-image"
+            width={500}
+            height={300}
+          />
+        </div>
+        <div class="course-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <TrendingUp size={24} />
+            </div>
+            <div class="feature-text">
+              <h3>厳選された投資銘柄情報</h3>
+              <p>運用実績のある具体的な銘柄情報を定期的に配信いたします</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <Smartphone size={24} />
+            </div>
+            <div class="feature-text">
+              <h3>スマートフォンで簡単投資</h3>
+              <p>複雑な手続きは不要。お手持ちのスマホですぐに始められます</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <Clock size={24} />
+            </div>
+            <div class="feature-text">
+              <h3>1日わずか5分の効率運用</h3>
+              <p>お忙しい方でも短時間で効率的な投資運用が可能です</p>
+            </div>
+          </div>
+
+          <!-- 中间CTA按钮 -->
+          <div class="mid-cta-container">
+            <button
+              class="line-cta-button link-btn mid-cta"
+              data-umami-event="contact"
+              data-umami-event-method="line"
+              data-umami-event-position="mid-cta"
+              data-umami-event-instructor={people}
+            >
+              <div class="line-icon">
+                <span class="line-text">LINE</span>
+              </div>
+              <div class="cta-text">
+                <span class="cta-main">同様の実績を目指しませんか</span>
+                <span class="cta-sub">LINE友達追加で投資銘柄情報をお受け取りください</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社会证明区域 -->
+    <section class="social-proof" data-umami-event="social-proof-view" data-umami-event-instructor={people}>
+      <div class="social-proof-card">
+        <h2 class="social-proof-title">多くの方にご参加いただき、良好な成果を収めています</h2>
+
+        <!-- 实时统计 -->
+        <div class="live-stats">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <Users size={28} />
+            </div>
+            <div class="stat-content">
+              <span class="stat-number" id="participant-count">2,847</span>
+              <span class="stat-label">今月の参加者数</span>
+            </div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon">
+              <Star size={28} fill="currentColor" />
+            </div>
+            <div class="stat-content">
+              <span class="stat-number">4.8/5.0</span>
+              <span class="stat-label">満足度評価</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 用户评价 -->
+        <div class="testimonials">
+          <div class="testimonial-item">
+            <div class="testimonial-header">
+              <div class="testimonial-info">
+                <span class="testimonial-name">田中さん (会社員・45歳)</span>
+                <div class="testimonial-rating">
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                </div>
+              </div>
+            </div>
+            <p class="testimonial-text">「最初は半信半疑でしたが、本当に2週間で投資資金が3倍になりました。{people}さんの情報は的確で、タイミングも適切だと思います。」</p>
+            <span class="testimonial-result">実際の利益：+285%</span>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="testimonial-header">
+              <div class="testimonial-info">
+                <span class="testimonial-name">佐藤さん (主婦・38歳)</span>
+                <div class="testimonial-rating">
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                </div>
+              </div>
+            </div>
+            <p class="testimonial-text">「投資初心者の私でも簡単に始めることができました。スマートフォンで操作できるので、家事の合間にも投資を続けられています。」</p>
+            <span class="testimonial-result">実際の利益：+156%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 参加方法エリア -->
+    <section class="participation">
+      <div class="participation-card">
+        <h2 class="participation-title">効率的な投資をお考えの方へ 参加方法について</h2>
+        <p class="participation-description">
+          下のボタンからLINE友達追加をしていただくだけで、厳選した投資銘柄の情報をお送りいたします。
+        </p>
+      </div>
+    </section>
+
+            <!-- 风险消除和保障区域 -->
+    <section class="guarantee" data-umami-event="guarantee-view" data-umami-event-instructor={people}>
+      <div class="guarantee-card">
+        <h2 class="guarantee-title">安心してご参加いただける理由</h2>
+        <div class="guarantee-features">
+          <div class="guarantee-item">
+            <div class="guarantee-icon">
+              <Shield size={32} />
+            </div>
+            <div class="guarantee-content">
+              <h3>完全無料保証</h3>
+              <p>LINE友達追加も情報提供も完全無料。一切の費用は発生いたしません。</p>
+            </div>
+          </div>
+
+          <div class="guarantee-item">
+            <div class="guarantee-icon">
+              <Shield size={32} />
+            </div>
+            <div class="guarantee-content">
+              <h3>いつでも退出可能</h3>
+              <p>ご不要になればいつでもブロックや退出が可能です。強引な勧誘は一切いたしません。</p>
+            </div>
+          </div>
+
+          <div class="guarantee-item">
+            <div class="guarantee-icon">
+              <Shield size={32} />
+            </div>
+            <div class="guarantee-content">
+              <h3>個人情報保護</h3>
+              <p>お客様の個人情報は厳重に管理し、第三者への提供は一切いたしません。</p>
+            </div>
+          </div>
+
+          <div class="guarantee-item">
+            <div class="guarantee-icon">
+              <Shield size={32} />
+            </div>
+            <div class="guarantee-content">
+              <h3>実績と信頼性</h3>
+              <p>これまで多くの参加者の方が良好な成果を実現されています。透明性のある情報提供を心がけております。</p>
+            </div>
+          </div>
+
+          <div class="guarantee-item">
+            <div class="guarantee-icon">
+              <Shield size={32} />
+            </div>
+            <div class="guarantee-content">
+              <h3>24時間サポート</h3>
+              <p>ご不明な点がございましたら、いつでもLINEでお気軽にお問い合わせください。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 稀缺性和紧急性区域 -->
+    <section class="scarcity" data-umami-event="scarcity-view" data-umami-event-instructor={people}>
+      <div class="scarcity-card">
+        <div class="countdown-container">
+          <h2 class="countdown-title">本日限定の特別なご案内</h2>
+          <p class="countdown-subtitle">本日中にLINE友達追加をしていただいた方限定で、注目の投資銘柄情報を無料でご提供いたします</p>
+
+          <div class="countdown-timer" id="countdown">
+            <div class="time-unit">
+              <span class="time-number" id="hours">23</span>
+              <span class="time-label">時間</span>
+            </div>
+            <div class="time-unit">
+              <span class="time-number" id="minutes">45</span>
+              <span class="time-label">分</span>
+            </div>
+            <div class="time-unit">
+              <span class="time-number" id="seconds">30</span>
+              <span class="time-label">秒</span>
+            </div>
+          </div>
+
+          <div class="remaining-spots">
+            <p class="spots-text">残り枠数: <span class="spots-number" id="remaining-spots">27</span>名様</p>
+            <div class="spots-bar">
+              <div class="spots-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ区域 -->
+    <section class="faq" data-umami-event="faq-view" data-umami-event-instructor={people}>
+      <div class="faq-card">
+        <h2 class="faq-title">よくあるご質問</h2>
+        <div class="faq-items">
+          <div class="faq-item">
+            <div class="faq-question">Q. 本当に無料ですか？後から料金請求されませんか？</div>
+            <div class="faq-answer">A. はい、完全無料でご利用いただけます。LINE友達追加も情報提供も一切費用は発生いたしません。後から料金をご請求することもございません。</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Q. 投資初心者でも大丈夫ですか？</div>
+            <div class="faq-answer">A. もちろんです。初心者の方にも分かりやすく、具体的な銘柄と投資タイミングをご説明いたします。スマートフォン一つで簡単に始めていただけます。</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Q. 本当に利益が出るのですか？</div>
+            <div class="faq-answer">A. 投資にはリスクが伴いますが、実際に多くの参加者の方が良好な運用成果を上げていらっしゃいます。過去の実績をご参考にしていただけます。</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Q. LINE友達追加後、どのような情報が送られてきますか？</div>
+            <div class="faq-answer">A. 厳選された投資銘柄情報、売買タイミング、市場分析など、効率的な投資運用に役立つ具体的な情報をタイムリーにお送りいたします。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 緊急性エリア -->
+    <section class="urgency" data-umami-event="urgency-view" data-umami-event-message="immediate-action">
+      <div class="urgency-card">
+        <p class="urgency-text">多くの方が既に投資を始めて、良好な結果を得ています。</p>
+        <p class="urgency-highlight">この機会に、あなたも効率的な投資を始めてみませんか。</p>
+      </div>
+    </section>
+
+    <!-- CTA エリア -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <button
+          class="line-cta-button link-btn"
+          data-umami-event="contact"
+          data-umami-event-method="line"
+          data-umami-event-position="main-cta"
+          data-umami-event-instructor={people}
+        >
+          <div class="line-icon">
+            <span class="line-text">LINE</span>
+          </div>
+          <div class="cta-text">
+            <span class="cta-main">本日限定で無料ご利用可能</span>
+            <span class="cta-sub">お早めにLINE友達追加で注目銘柄情報をお受け取りください</span>
+          </div>
+        </button>
+        <p class="cta-note">※完全無料・個人情報不要</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  /* 基本設定 */
+  * {
+    box-sizing: border-box;
+  }
+
+  .main-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #F8F9FA;
+    min-height: 100vh;
+    font-family: 'Hiragino Sans', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Yu Gothic Medium', 'メイリオ', Meiryo, 'MS PGothic', sans-serif;
+  }
+
+  /* ヘッダー：講師紹介 */
+  .hero-section {
+    margin-bottom: 30px;
+  }
+
+  .instructor-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+    text-align: center;
+    border: 1px solid #E8E9EA;
+  }
+
+  .avatar-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .avatar-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #E8E9EA;
+  }
+
+  .instructor-name {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2C3E50;
+    margin: 0 0 5px 0;
+  }
+
+  .instructor-title {
+    font-size: 16px;
+    color: #7F8C8D;
+    margin: 0 0 15px 0;
+  }
+
+  .greeting-text {
+    color: #2C3E50;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .value-proposition-text {
+    margin-top: 15px;
+    color: #E67E22;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* 顶部CTA */
+  .hero-cta-container {
+    margin-top: 20px;
+  }
+
+  .hero-cta {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  /* 価値提案 */
+  .value-proposition {
+    margin-bottom: 30px;
+  }
+
+  .announcement-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+    border: 1px solid #E8E9EA;
+  }
+
+  .announcement-title {
+    font-size: 20px;
+    color: #2C3E50;
+    line-height: 1.6;
+    margin: 0 0 25px 0;
+    font-weight: normal;
+  }
+
+  .success-highlight {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .success-item {
+    text-align: center;
+    flex: 1;
+  }
+
+  .success-number {
+    display: block;
+    font-size: 48px;
+    font-weight: bold;
+    color: #E67E22;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .success-description {
+    font-size: 16px;
+    color: #2C3E50;
+    line-height: 1.4;
+  }
+
+  .header-image-container {
+    margin: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: block;
+  }
+
+  /* 講座紹介 */
+  .course-intro {
+    margin-bottom: 30px;
+  }
+
+  .course-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+    border: 1px solid #E8E9EA;
+  }
+
+  .course-title {
+    font-size: 20px;
+    color: #2C3E50;
+    margin: 0 0 25px 0;
+    font-weight: normal;
+    line-height: 1.6;
+  }
+
+  .course-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #E67E22;
+    background: rgba(230, 126, 34, 0.1);
+    border-radius: 8px;
+  }
+
+  .feature-text h3 {
+    font-size: 16px;
+    color: #2C3E50;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+  }
+
+  .feature-text p {
+    font-size: 14px;
+    color: #7F8C8D;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .content-image-container {
+    margin: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: block;
+  }
+
+  /* 参加方法 */
+  .participation {
+    margin-bottom: 30px;
+  }
+
+  .participation-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+    border: 1px solid #E8E9EA;
+    text-align: center;
+  }
+
+  .participation-title {
+    font-size: 20px;
+    color: #2C3E50;
+    margin: 0 0 15px 0;
+    font-weight: normal;
+    line-height: 1.6;
+  }
+
+  .participation-description {
+    font-size: 16px;
+    color: #7F8C8D;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* 緊急性 */
+  .urgency {
+    margin-bottom: 30px;
+  }
+
+  .urgency-card {
+    background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+  }
+
+  .urgency-text {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+  }
+
+  .urgency-highlight {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* CTA */
+  .cta-section {
+    margin-bottom: 40px;
+  }
+
+  .cta-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .line-cta-button {
+    width: 100%;
+    max-width: 400px;
+    background: #00C300;
+    border: none;
+    border-radius: 50px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 25px rgba(0, 195, 0, 0.3);
+  }
+
+  .line-cta-button:hover {
+    background: #00B300;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 195, 0, 0.4);
+  }
+
+  .line-icon {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .line-text {
+    color: #00C300;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .cta-text {
+    flex: 1;
+    text-align: left;
+  }
+
+  .cta-main {
+    display: block;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+
+  .cta-sub {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    margin-top: 2px;
+  }
+
+  .cta-note {
+    font-size: 14px;
+    color: #7F8C8D;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* 中间CTA */
+  .mid-cta-container {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .mid-cta {
+    max-width: 400px;
+    background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+  }
+
+  .mid-cta:hover {
+    background: linear-gradient(135deg, #D35400 0%, #C0392B 100%);
+  }
+
+  /* 社会证明区域 */
+  .social-proof {
+    margin-bottom: 30px;
+  }
+
+  .social-proof-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+    border: 1px solid #E8E9EA;
+  }
+
+  .social-proof-title {
+    font-size: 20px;
+    color: #2C3E50;
+    margin: 0 0 25px 0;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .live-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #F8F9FA;
+    padding: 20px;
+    border-radius: 12px;
+    flex: 1;
+    width: 100%;
+  }
+
+  .stat-icon {
+    color: #27AE60;
+    background: rgba(39, 174, 96, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2C3E50;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: #7F8C8D;
+    margin-top: 5px;
+  }
+
+  .testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .testimonial-item {
+    background: #F8F9FA;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid #E67E22;
+  }
+
+  .testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+
+
+  .testimonial-info {
+    flex: 1;
+  }
+
+  .testimonial-name {
+    font-weight: bold;
+    color: #2C3E50;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .testimonial-rating {
+    display: flex;
+    gap: 2px;
+    color: #F39C12;
+  }
+
+  .testimonial-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #2C3E50;
+    margin: 0 0 10px 0;
+    font-style: italic;
+  }
+
+  .testimonial-result {
+    font-weight: bold;
+    color: #27AE60;
+    font-size: 16px;
+  }
+
+  /* 保障区域 */
+  .guarantee {
+    margin-bottom: 30px;
+  }
+
+  .guarantee-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+    border: 1px solid #E8E9EA;
+  }
+
+  .guarantee-title {
+    font-size: 20px;
+    color: #2C3E50;
+    margin: 0 0 25px 0;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .guarantee-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .guarantee-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: #F8F9FA;
+    border-radius: 8px;
+  }
+
+  .guarantee-icon {
+    color: #27AE60;
+    background: rgba(39, 174, 96, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .guarantee-content h3 {
+    font-size: 16px;
+    color: #2C3E50;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+  }
+
+  .guarantee-content p {
+    font-size: 14px;
+    color: #7F8C8D;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* 稀缺性区域 */
+  .scarcity {
+    margin-bottom: 30px;
+  }
+
+  .scarcity-card {
+    background: linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+  }
+
+  .countdown-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .countdown-subtitle {
+    font-size: 16px;
+    margin: 0 0 20px 0;
+    opacity: 0.9;
+  }
+
+  .countdown-timer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 60px;
+  }
+
+  .time-number {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .time-label {
+    font-size: 14px;
+    margin-top: 5px;
+    opacity: 0.8;
+  }
+
+  /* 倒计时紧急状态 */
+  .countdown-timer.urgent .time-unit {
+    background: rgba(255, 87, 34, 0.3);
+    animation: urgentPulse 2s ease-in-out infinite;
+  }
+
+  .countdown-timer.critical .time-unit {
+    background: rgba(244, 67, 54, 0.4);
+    animation: criticalFlash 1s ease-in-out infinite;
+  }
+
+  @keyframes urgentPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(255, 87, 34, 0);
+    }
+  }
+
+  @keyframes criticalFlash {
+    0%, 100% {
+      background: rgba(244, 67, 54, 0.4);
+    }
+    50% {
+      background: rgba(244, 67, 54, 0.8);
+    }
+  }
+
+  .remaining-spots {
+    margin-top: 20px;
+  }
+
+  .spots-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+  }
+
+  .spots-number {
+    color: #FFEB3B;
+    font-size: 20px;
+  }
+
+  .spots-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .spots-fill {
+    width: 15%;
+    height: 100%;
+    background: #FFEB3B;
+    border-radius: 4px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* FAQ区域 */
+  .faq {
+    margin-bottom: 30px;
+  }
+
+  .faq-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.1);
+    border: 1px solid #E8E9EA;
+  }
+
+  .faq-title {
+    font-size: 20px;
+    color: #2C3E50;
+    margin: 0 0 25px 0;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .faq-item {
+    border: 1px solid #E8E9EA;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 15px 20px;
+    background: #F8F9FA;
+    font-weight: bold;
+    color: #2C3E50;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .faq-question:hover {
+    background: #E8E9EA;
+  }
+
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #E67E22;
+  }
+
+  .faq-answer {
+    padding: 15px 20px;
+    background: white;
+    color: #2C3E50;
+    line-height: 1.6;
+    border-top: 1px solid #E8E9EA;
+    display: none;
+    transition: all 0.3s ease;
+  }
+
+  .faq-answer.open {
+    display: block;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    to {
+      opacity: 1;
+      max-height: 200px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+
+  .faq-question.active {
+    background: #E8E9EA;
+  }
+
+  .faq-question.active::after {
+    content: '−';
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  /* 最终行动召唤 */
+  .final-call-container {
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #FF4757 0%, #FF3742 100%);
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+  }
+
+  .final-call-text {
+    margin-bottom: 20px;
+  }
+
+  .final-call-text p {
+    margin: 5px 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .final-call-text strong {
+    font-size: 18px;
+  }
+
+  .final-cta {
+    background: white;
+    color: #2C3E50;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  }
+
+  .final-cta:hover {
+    background: #F8F9FA;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  }
+
+  .final-cta .line-icon {
+    background: #00C300;
+  }
+
+  .final-cta .cta-text .cta-main {
+    color: #FF4757;
+    font-weight: bold;
+  }
+
+  .final-cta .cta-text .cta-sub {
+    color: #7F8C8D;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 480px) {
+    .main-container {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .instructor-card,
+    .announcement-card,
+    .course-card,
+    .participation-card {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .instructor-name {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .instructor-title {
+      text-align: center;
+    }
+
+    .greeting-text {
+      text-align: center;
+    }
+
+    .value-proposition-text {
+      font-size: 15px;
+      margin-top: 12px;
+    }
+
+    .success-highlight {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .success-item {
+      width: 100%;
+      max-width: 280px;
+      text-align: center;
+    }
+
+    .success-number {
+      font-size: 36px;
+    }
+
+    .announcement-title,
+    .course-title,
+    .participation-title {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .participation-description {
+      text-align: center;
+    }
+
+    .cta-main {
+      font-size: 18px;
+    }
+
+    .feature-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .feature-text {
+      text-align: center;
+    }
+
+    .avatar-image {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+    }
+
+    .header-image,
+    .content-image {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .header-image-container,
+    .content-image-container {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .urgency-card {
+      text-align: center;
+      padding: 20px 15px;
+    }
+
+    .line-cta-button {
+      padding: 15px;
+      justify-content: center;
+      max-width: 350px;
+    }
+
+    .cta-text {
+      text-align: center;
+    }
+  }
+
+  /* 更小屏幕优化 */
+  @media (max-width: 360px) {
+    .main-container {
+      padding: 10px;
+    }
+
+    .instructor-card,
+    .announcement-card,
+    .course-card,
+    .participation-card,
+    .urgency-card {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .instructor-name {
+      font-size: 22px;
+    }
+
+    .success-number {
+      font-size: 32px;
+    }
+
+    .announcement-title,
+    .course-title,
+    .participation-title {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .feature-text h3 {
+      font-size: 15px;
+    }
+
+    .feature-text p {
+      font-size: 13px;
+    }
+
+    .avatar-image {
+      width: 80px;
+      height: 80px;
+    }
+
+    .line-cta-button {
+      padding: 12px;
+      gap: 10px;
+      max-width: 320px;
+    }
+
+    .line-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .cta-main {
+      font-size: 16px;
+    }
+
+    .cta-sub {
+      font-size: 12px;
+    }
+
+    .feature-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .value-proposition-text {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .hero-cta,
+    .mid-cta {
+      max-width: 100%;
+      padding: 12px;
+    }
+
+    .live-stats {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .countdown-timer {
+      gap: 10px;
+    }
+
+    .time-unit {
+      padding: 10px;
+      min-width: 50px;
+    }
+
+    .time-number {
+      font-size: 24px;
+    }
+
+    .countdown-title {
+      font-size: 20px;
+    }
+
+    .testimonial-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .guarantee-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .faq-question {
+      padding: 12px 15px;
+      font-size: 15px;
+    }
+
+    .faq-answer {
+      padding: 12px 15px;
+      font-size: 14px;
+    }
+
+    .final-call-container {
+      padding: 20px 15px;
+      margin-top: 20px;
+    }
+
+    .final-call-text p {
+      font-size: 15px;
+    }
+
+    .final-call-text strong {
+      font-size: 16px;
+    }
+
+    .final-cta {
+      max-width: 100%;
+      padding: 12px;
+    }
+
+
+
+    .time-number {
+      font-size: 24px;
+    }
+
+    .countdown-title {
+      font-size: 18px;
+    }
+
+    .countdown-subtitle {
+      font-size: 14px;
+    }
+  }
+
+  /* アニメーション */
+  @keyframes gentle-pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  .line-cta-button {
+    animation: gentle-pulse 3s ease-in-out infinite;
+  }
+
+  .line-cta-button:hover {
+    animation: none;
+  }
+</style>
+
+<script is:inline>
+// 页面加载完成后追踪漏斗起始步骤
+document.addEventListener('DOMContentLoaded', () => {
+  // 倒计时功能
+  function startCountdown() {
+    const hoursEl = document.getElementById('hours')
+    const minutesEl = document.getElementById('minutes')
+    const secondsEl = document.getElementById('seconds')
+
+    if (!hoursEl || !minutesEl || !secondsEl)
+      return
+
+    // 设置结束时间为今天23:59:59
+    const now = new Date()
+    const endTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59)
+
+    function updateCountdown() {
+      const now = new Date().getTime()
+      const distance = endTime.getTime() - now
+
+      if (distance < 0) {
+        // 倒计时结束，重置为第二天
+        endTime.setDate(endTime.getDate() + 1)
+        return
+      }
+
+      const hours = Math.floor(distance / (1000 * 60 * 60))
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+      // 添加数字变化动画效果
+      if (hoursEl.textContent !== hours.toString().padStart(2, '0')) {
+        hoursEl.style.transform = 'scale(1.1)'
+        setTimeout(() => {
+          hoursEl.style.transform = 'scale(1)'
+        }, 200)
+      }
+      if (minutesEl.textContent !== minutes.toString().padStart(2, '0')) {
+        minutesEl.style.transform = 'scale(1.1)'
+        setTimeout(() => {
+          minutesEl.style.transform = 'scale(1)'
+        }, 200)
+      }
+      if (secondsEl.textContent !== seconds.toString().padStart(2, '0')) {
+        secondsEl.style.transform = 'scale(1.1)'
+        setTimeout(() => {
+          secondsEl.style.transform = 'scale(1)'
+        }, 200)
+      }
+
+      hoursEl.textContent = hours.toString().padStart(2, '0')
+      minutesEl.textContent = minutes.toString().padStart(2, '0')
+      secondsEl.textContent = seconds.toString().padStart(2, '0')
+
+      // 最后10分钟增加紧急感
+      if (hours === 0 && minutes < 10) {
+        document.querySelector('.countdown-timer').classList.add('urgent')
+      }
+
+      // 最后1分钟闪烁效果
+      if (hours === 0 && minutes === 0) {
+        document.querySelector('.countdown-timer').classList.add('critical')
+      }
+    }
+
+    updateCountdown()
+    setInterval(updateCountdown, 1000)
+  }
+
+  // 实时参与者数量更新
+  function updateParticipantCount() {
+    const countEl = document.getElementById('participant-count')
+    const spotsEl = document.getElementById('remaining-spots')
+
+    if (!countEl || !spotsEl)
+      return
+
+    // 模拟实时增长
+    let currentCount = 2847
+    let remainingSpots = 27
+
+    setInterval(() => {
+      // 随机增加参与者
+      if (Math.random() > 0.7) {
+        currentCount += Math.floor(Math.random() * 3) + 1
+        remainingSpots = Math.max(0, remainingSpots - 1)
+
+        countEl.textContent = currentCount.toLocaleString()
+        spotsEl.textContent = remainingSpots
+
+        // 更新进度条
+        const fillEl = document.querySelector('.spots-fill')
+        if (fillEl) {
+          const percentage = Math.max(5, (remainingSpots / 100) * 100)
+          fillEl.style.width = `${percentage}%`
+        }
+      }
+    }, 8000 + Math.random() * 12000) // 8-20秒随机间隔
+  }
+
+  // FAQ交互功能
+  function initFAQ() {
+    const faqQuestions = document.querySelectorAll('.faq-question')
+
+    faqQuestions.forEach((question) => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling
+        const isActive = question.classList.contains('active')
+
+        // 关闭所有其他答案
+        document.querySelectorAll('.faq-answer').forEach((ans) => {
+          ans.classList.remove('open')
+          setTimeout(() => {
+            if (!ans.classList.contains('open')) {
+              ans.style.display = 'none'
+            }
+          }, 300)
+        })
+        document.querySelectorAll('.faq-question').forEach((q) => {
+          q.classList.remove('active')
+        })
+
+        // 切换当前答案
+        if (!isActive) {
+          question.classList.add('active')
+          answer.style.display = 'block'
+          setTimeout(() => {
+            answer.classList.add('open')
+          }, 10)
+
+          // 平滑滚动到FAQ项目
+          question.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          })
+
+          // 追踪FAQ点击
+          if (window.umami && window.umami.track) {
+            umami.track('faq-click', {
+              question: question.textContent.trim(),
+              page: window.location.pathname,
+            })
+          }
+        }
+      })
+    })
+  }
+
+  // 启动所有功能
+  startCountdown()
+  updateParticipantCount()
+  initFAQ()
+})
+</script>

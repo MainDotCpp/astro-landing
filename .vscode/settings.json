@@ -83,7 +83,7 @@
     {
       "name": "HaishiKR16G",
       "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/www",
-      "remotePath": "root@HaishiKR16G:/www/wwwroot",
+      "remotePath": "root@Haishi16G:/www/wwwroot",
       "exclude": [
         ".DS_Store",
         ".htaccess",

@@ -1,18 +1,9 @@
 ---
 import { Image } from 'astro:assets'
-import { Award, BarChart3, DollarSign, GraduationCap, Lightbulb, LineChart, Target, TrendingUp } from 'lucide-astro'
+import { Award, GraduationCap } from 'lucide-astro'
 
-// Import background images
-import bgCity from '@/assets/bg_1.jpg'
-import bgWave from '@/assets/bg_7.jpg'
-
-import bgGeometric from '@/assets/bg_10.jpg'
-import bgLines from '@/assets/bg_14.jpg'
-import bgTech from '@/assets/bg_15.jpg'
-import bgNetwork from '@/assets/bg_18.jpg'
 import CtaButton from '@/components/CtaButton.astro'
 import RedirectCode from '@/components/RedirectCode.astro'
-import bandLogo from '../images/band.png'
 
 export function getStaticPaths() {
   const pages = [
@@ -22,7 +13,7 @@ export function getStaticPaths() {
           name: '유수진',
           img_prefix: 'lxz_',
           school: '서울대학교 경영학과',
-          career: '前 삼성증권 리서치센터 · 現 개인투자컨설턴트',
+          career: '전 삼성증권 리서치센터 · 현 개인투자컨설턴트',
           description: '15년간 기업분석 및 투자자문 업무를 담당하며 중소형주 발굴의 전문가로 인정받고 있습니다. 특히 성장주 투자와 테마주 선별에 뛰어난 능력을 보유하고 있습니다.',
         },
       },
@@ -32,7 +23,7 @@ export function getStaticPaths() {
           name: '선대인',
           img_prefix: 'xdr_',
           school: '연세대학교 경제학과',
-          career: '前 한국은행 조사국 · 前 현대경제연구원 수석연구위원',
+          career: '전 한국은행 조사국 · 전 현대경제연구원 수석연구위원',
           description: '거시경제 분석 전문가로서 18년간 경제정책과 금융시장을 연구해왔습니다. 경제 사이클을 읽는 뛰어난 능력으로 시장 타이밍을 정확히 포착하는 것으로 유명합니다.',
         },
       },
@@ -42,7 +33,7 @@ export function getStaticPaths() {
           name: '남석관',
           img_prefix: 'nxk_',
           school: '고려대학교 경제학과',
-          career: '前 KB증권 투자전략팀장 · 現 독립투자자문사 대표',
+          career: '전 KB증권 투자전략팀장 · 현 독립투자자문사 대표',
           description: '22년간 증권사에서 투자전략 수립과 자산관리 업무를 담당했습니다. 안정적인 포트폴리오 구성과 리스크 관리에 특화되어 보수적 투자성향의 고객들에게 높은 신뢰를 받고 있습니다.',
         },
       },
@@ -52,7 +43,7 @@ export function getStaticPaths() {
           name: '부자티비',
           img_prefix: 'frds_',
           school: '성균관대학교 경영학과',
-          career: '前 유튜브 투자채널 운영 · 前 NH투자증권 PB센터',
+          career: '전 유튜브 투자채널 운영 · 전 NH투자증권 PB센터',
           description: '10년간 개인투자자들을 대상으로 투자교육과 멘토링을 진행해왔습니다. 특히 초보투자자도 쉽게 따라할 수 있는 실전 투자기법과 심리적 접근법으로 많은 성공사례를 만들어냈습니다.',
         },
       },
@@ -62,7 +53,7 @@ export function getStaticPaths() {
           name: '민수아',
           img_prefix: 'mxy_',
           school: '이화여자대학교 경영학과',
-          career: '前 미래에셋증권 WM사업부 · 現 여성전문 투자멘토',
+          career: '전 미래에셋증권 WM사업부 · 현 여성전문 투자멘토',
           description: '12년간 여성 고객 전담 자산관리사로 활동하며 여성 투자자들의 특성을 깊이 이해하고 있습니다. 안전하면서도 수익성 있는 투자전략으로 많은 여성 투자자들의 재정목표 달성을 도왔습니다.',
         },
       },
@@ -72,7 +63,7 @@ export function getStaticPaths() {
           name: '박세익',
           img_prefix: 'psy_',
           school: '중앙대학교 경제학과',
-          career: '前 대우증권 투자상품팀 · 前 키움증권 리서치센터',
+          career: '전 대우증권 투자상품팀 · 전 키움증권 리서치센터',
           description: '16년간 증권사에서 파생상품과 해외투자 전문가로 활동했습니다. 특히 선물옵션과 해외주식, 원자재 투자에 특화되어 있으며 고위험고수익 투자를 선호하는 투자자들에게 인기가 높습니다.',
         },
       },
@@ -82,7 +73,7 @@ export function getStaticPaths() {
           name: '김광석',
           img_prefix: 'jgs_',
           school: '부산대학교 경제학과',
-          career: '前 신한금융투자 IB본부 · 現 벤처투자 전문가',
+          career: '전 신한금융투자 IB본부 · 현 벤처투자 전문가',
           description: '14년간 기업공개(IPO)와 벤처투자 업무를 담당하며 성장기업 발굴의 달인으로 불립니다. 특히 바이오, IT, 신재생에너지 분야의 숨은 보석 같은 기업들을 조기에 발견하는 능력이 뛰어납니다.',
         },
       },
@@ -92,11 +83,30 @@ export function getStaticPaths() {
           name: '김영익',
           img_prefix: 'jyy_',
           school: '한양대학교 경제금융학과',
-          career: '前 하나금융투자 리서치본부 · 前 교보증권 자산관리팀',
+          career: '전 하나금융투자 리서치본부 · 전 교보증권 자산관리팀',
           description: '17년간 증권업계에서 시장분석과 자산관리 업무를 담당하며 기관투자자들의 포트폴리오 운용을 책임져왔습니다. 특히 시장 변동성이 큰 시기에도 안정적인 수익을 창출하는 위험관리 전문가로 평가받고 있습니다.',
         },
       },
-
+      {
+        params: { people: '廉承煥', version: '0' },
+        props: {
+          name: '염승환',
+          img_prefix: 'lch_',
+          school: '서강대학교 경제학과',
+          career: '전 LG투자증권 리서치센터 · 현 독립투자자문사 운영',
+          description: '19년간 증권사에서 시장분석과 투자전략 업무를 담당하며 특히 IT·바이오 분야의 성장주 발굴에 특화된 전문가입니다. 데이터 기반의 정량분석과 기업 펀더멘털 분석을 통해 높은 투자 성과를 거두고 있습니다.',
+        },
+      },
+      {
+        params: { people: '洪春旭', version: '0' },
+        props: {
+          name: '홍춘욱',
+          img_prefix: 'hcx_',
+          school: '연세대학교 경제학과',
+          career: '전 국제금융센터 연구위원 · 전 한국투자신탁운용 투자전략팀',
+          description: '15년간 거시경제 분석과 자산배분 전략 수립을 담당하며 글로벌 금융시장 동향에 정통한 전문가입니다. 특히 환율과 금리 변동을 통한 자산배분 최적화와 위험관리에 뛰어난 능력을 보유하고 있습니다.',
+        },
+      },
 ]
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
@@ -112,6 +122,9 @@ const {
   career,
   description,
 } = Astro.props
+
+// Ensure t is the correct type for CtaButton
+const socialType = (t === '卡扣' || t === '棒群') ? t : '棒群'
 
 // Import avatar image dynamically based on img_prefix
 const headImg = await import(`../images/${img_prefix}head.jpg`)
@@ -1250,7 +1263,8 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
 
         <div class="hero-cta">
           <CtaButton
-            social={t}
+            text=""
+            social={socialType}
             size="lg"
             animate={true}
             class="hero-cta-button"
@@ -1306,7 +1320,8 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
 
         <div style="text-align: center; margin-top: 50px;">
           <CtaButton
-            social={t}
+            text=""
+            social={socialType}
             size="md"
             animate={false}
           />
@@ -1351,7 +1366,8 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
             회원님도 이런 수익률을 경험해보세요!
           </p>
           <CtaButton
-            social={t}
+            text=""
+            social={socialType}
             size="lg"
             animate={true}
           />
@@ -1441,7 +1457,8 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
 
         <div style="text-align: center;">
           <CtaButton
-            social={t}
+            text=""
+            social={socialType}
             size="lg"
             animate={true}
             class="direction-cta-button"
@@ -1462,7 +1479,8 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
         </p>
 
         <CtaButton
-          social={t}
+          text=""
+          social={socialType}
           size="lg"
           animate={true}
           class="main-contact-button"
@@ -1527,16 +1545,12 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
         <div class="contact-info">
           <h4>지금 바로 상담 신청하세요</h4>
           <div class="contact-methods">
-            {t === 'line'
+            {socialType === '卡扣'
 ? (
-              <span class="contact-method link-btn">LINE 상담 신청</span>
-            )
-: t === '棒群'
-? (
-              <span class="contact-method link-btn">BAND 상담 신청</span>
+              <span class="contact-method link-btn">카카오톡 상담 신청</span>
             )
 : (
-              <span class="contact-method link-btn">카카오톡 상담 신청</span>
+              <span class="contact-method link-btn">BAND 상담 신청</span>
             )}
           </div>
         </div>
@@ -1551,7 +1565,8 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
     <!-- Floating CTA Button -->
     <div class="link-btn cta-section w-full flex justify-center fixed bottom-8 left-0 right-0 z-50 px-4">
       <CtaButton
-        social={t}
+        text=""
+        social={socialType}
         size="lg"
         animate={true}
         class="floating-cta-button"

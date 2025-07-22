@@ -1,0 +1,180 @@
+<!-- Umami Analytics -->
+<script
+  defer
+  is:inline
+  src="https://umami.ddiwo.com/random-string.js"
+  data-website-id="4a72b39b-e570-4376-b627-d74760cb3c51"
+  data-auto-track="true"
+  data-cache="true"
+></script>
+
+
+<!-- Custom Tracking Events -->
+<script defer>
+// 页面加载完成后初始化追踪
+document.addEventListener('DOMContentLoaded', () => {
+  // Umami tracking utilities
+  window.umami = window.umami || {}
+  // 追踪页面停留时间
+  const startTime = Date.now()
+  let maxScroll = 0
+
+  // 滚动深度追踪
+  function trackScrollDepth() {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
+    if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+      maxScroll = scrollPercent
+      umami.track('scroll-depth', { depth: `${scrollPercent}%` })
+    }
+  }
+
+  // 页面停留时间追踪
+  function trackTimeOnPage() {
+    const timeSpent = Math.round((Date.now() - startTime) / 1000)
+    if (timeSpent > 0) {
+      umami.track('time-on-page', { seconds: timeSpent })
+    }
+  }
+
+  // 添加滚动监听
+  window.addEventListener('scroll', trackScrollDepth)
+
+  // 页面离开时追踪停留时间
+  window.addEventListener('beforeunload', trackTimeOnPage)
+
+  // 自动追踪所有带 data-umami-event 的元素点击
+  document.addEventListener('click', (e) => {
+    const element = e.target.closest('[data-umami-event]')
+    if (element) {
+      const eventName = element.getAttribute('data-umami-event')
+      const eventData = {}
+
+      // 收集额外的事件数据
+      const dataAttrs = element.attributes
+      for (let i = 0; i < dataAttrs.length; i++) {
+        const attr = dataAttrs[i]
+        if (attr.name.startsWith('data-umami-event-')) {
+          const key = attr.name.replace('data-umami-event-', '')
+          eventData[key] = attr.value
+        }
+      }
+
+      // 添加默认的上下文信息
+      eventData.page = window.location.pathname
+      eventData.timestamp = new Date().toISOString()
+
+      umami.track(eventName, eventData)
+    }
+  })
+
+  // 表单交互追踪
+  const forms = document.querySelectorAll('form')
+  forms.forEach((form) => {
+    form.addEventListener('submit', () => {
+      umami.track('form-submit', {
+        form: form.id || 'unnamed',
+        page: window.location.pathname,
+      })
+    })
+  })
+
+  // 输入框焦点追踪
+  const inputs = document.querySelectorAll('input[type="email"], input[type="tel"], input[type="text"], textarea')
+  inputs.forEach((input) => {
+    let hasFocused = false
+    input.addEventListener('focus', () => {
+      if (!hasFocused) {
+        hasFocused = true
+        umami.track('input-focus', {
+          type: input.type || 'text',
+          name: input.name || 'unnamed',
+          page: window.location.pathname,
+        })
+      }
+    })
+  })
+
+  // 视频播放追踪
+  const videos = document.querySelectorAll('video')
+  videos.forEach((video) => {
+    video.addEventListener('play', () => {
+      umami.track('video-play', {
+        src: video.src || 'unknown',
+        duration: video.duration || 0,
+      })
+    })
+
+    video.addEventListener('ended', () => {
+      umami.track('video-complete', {
+        src: video.src || 'unknown',
+        duration: video.duration || 0,
+      })
+    })
+  })
+
+  // 图片加载追踪（针对重要图片）
+  const importantImages = document.querySelectorAll('img[data-track-load]')
+  importantImages.forEach((img) => {
+    if (img.complete) {
+      umami.track('image-load', { src: img.src })
+    }
+    else {
+      img.addEventListener('load', () => {
+        umami.track('image-load', { src: img.src })
+      })
+    }
+  })
+
+  // 错误追踪
+  window.addEventListener('error', (e) => {
+    umami.track('javascript-error', {
+      message: e.message,
+      filename: e.filename,
+      line: e.lineno,
+      page: window.location.pathname,
+    })
+  })
+
+  // 页面可见性变化追踪
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      umami.track('page-hidden', { page: window.location.pathname })
+    }
+    else {
+      umami.track('page-visible', { page: window.location.pathname })
+    }
+  })
+})
+
+// 自定义追踪函数
+window.trackCustomEvent = function (eventName, eventData = {}) {
+  if (window.umami && window.umami.track) {
+    eventData.page = window.location.pathname
+    eventData.timestamp = new Date().toISOString()
+    umami.track(eventName, eventData)
+  }
+}
+
+// 转化漏斗追踪
+window.trackFunnelStep = function (step, additionalData = {}) {
+  umami.track('funnel-step', {
+    step,
+    page: window.location.pathname,
+    ...additionalData,
+  })
+}
+
+// A/B测试追踪
+window.trackABTest = function (testName, variant, additionalData = {}) {
+  umami.track('ab-test', {
+    test: testName,
+    variant,
+    page: window.location.pathname,
+    ...additionalData,
+  })
+}
+</script>
+
+<!-- Original tracking script -->
+<script is:inline defer src="../../public/mjSFqQ/js/WmWzkpHd.js" />
+

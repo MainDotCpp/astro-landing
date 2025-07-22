@@ -25,13 +25,18 @@ export const getStaticPaths = (() => {
     { params: { people: '三橋貴明', version: '2', img_prefix: 'sq2_' } },
     { params: { people: '三橋貴明', version: '3', img_prefix: 'sq3_' } },
     { params: { people: '三橋貴明', version: '4', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '5', img_prefix: 'sq5_' } },
     { params: { people: '馬渕磨理子', version: '0', img_prefix: 'mlz_' } },
     { params: { people: '馬渕磨理子', version: '1', img_prefix: 'mlz1_' } },
     { params: { people: '馬渕磨理子', version: '2', img_prefix: 'mlz2_' } },
-    { params: { people: '片山 晃', version: '1', img_prefix: 'psh_' } },
+    { params: { people: '片山 晃', version: '0', img_prefix: 'psh_' } },
+    { params: { people: '片山 晃', version: '1', img_prefix: 'psh1_' } },
     { params: { people: '前澤友作', version: '0', img_prefix: 'qzyz_' } },
     { params: { people: '大前研一', version: '0', img_prefix: 'dq_' } },
-
+    { params: { people: '大前研一', version: '1', img_prefix: 'dq1_' } },
+    { params: { people: '村上世彰', version: '0', img_prefix: 'cssz_' } },
+    { params: { people: '高橋洋一', version: '1', img_prefix: 'gqyy_' } },
+    { params: { people: '本田健', version: '0', img_prefix: 'btj_' } },
   ]
 }) satisfies GetStaticPaths
 
@@ -44,10 +49,14 @@ const img1 = import(`./static/${img_prefix}img.png`);
 ---
 
 <BaseLayout title={people} description={people}>
-  <main class="flex flex-col gap-8 items-center justify-center max-w-2xl mx-auto">
+  <main
+    class="flex flex-col gap-8 items-center justify-center max-w-2xl mx-auto"
+  >
     <Image src={header} alt={people} />
     <div class="text-xl px-4">
-      {people}のLINEを無料で追加し、「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、毎週100％の利益が期待できる優良銘柄の情報も手に入れることができます。
+      {
+        people
+      }のLINEを無料で追加し、「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、毎週300％の利益が期待できる優良銘柄の情報も手に入れることができます。
     </div>
     <h3 class="text-xl font-bold text-center px-4">
       今すぐ参加して、優良株をゲ<br />
@@ -61,11 +70,14 @@ const img1 = import(`./static/${img_prefix}img.png`);
     </h3>
     <Image src={img1} alt="img1" />
     <Image class="link-btn animate-breathe" src={btn} alt="btn" />
-    <h3 class="text-xl font-bold text-center mb-10 px-4">プライバシーポリシー</h3>
+    <h3 class="text-xl font-bold text-center mb-10 px-4">
+      プライバシーポリシー
+    </h3>
   </main>
   <style>
     @keyframes breathe {
-      0%, 100% {
+      0%,
+      100% {
         transform: scale(1);
         opacity: 1;
       }
@@ -80,17 +92,47 @@ const img1 = import(`./static/${img_prefix}img.png`);
     }
 
     /* 日文字体设置 */
-    body, html {
-      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
-      font-feature-settings: 'palt' 1; /* 日文字符间距优化 */
+    body,
+    html {
+      font-family:
+        "Noto Sans JP",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "palt" 1; /* 日文字符间距优化 */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
     /* 确保所有文本元素都使用日文字体 */
-    main, div, h1, h2, h3, h4, h5, h6, p, span {
-      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
-      font-feature-settings: 'palt' 1;
+    main,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      font-family:
+        "Noto Sans JP",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "palt" 1;
     }
 
     /* 日文文本的行高优化 */
