@@ -1,0 +1,508 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { Clock, TrendingUp, Users, Zap, Target, BarChart3, Star, AlertTriangle, CheckCircle, Award, Crown, Flame, ArrowUp } from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import lineIcon from '@/assets/line-icon.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '1' }, props: { img_prefix: 'sq5_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { people } = Astro.params
+const { img_prefix } = Astro.props
+
+// Import images dynamically based on img_prefix
+const headImage = await import(`./static/${img_prefix}head.jpg`)
+const headerImage = await import(`./static/${img_prefix}header.png`)
+const contentImage = await import(`./static/${img_prefix}img.png`)
+
+---
+
+<BaseLayout title={`${people}の投資講座 | 短期間高収益投資法`} description={`経済専門家・${people}による実績ある投資情報を無料提供`} track={true}>
+  <style>
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+      }
+    }
+
+    @keyframes breathe-yellow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+      }
+    }
+
+    @keyframes breathe-gradient {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+      }
+    }
+
+    .animate-breathe {
+      animation: breathe 2s ease-in-out infinite;
+    }
+
+    .animate-breathe-yellow {
+      animation: breathe-yellow 2.5s ease-in-out infinite;
+    }
+
+    .animate-breathe-gradient {
+      animation: breathe-gradient 3s ease-in-out infinite;
+    }
+  </style>
+  <!-- Hero Section -->
+  <section class="py-20 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-yellow-500/5"></div>
+    <div class="max-w-md mx-auto text-center relative z-10">
+      <div class="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium mb-6">
+        <Flame size={14} class="mr-2 text-red-600" />今だけ限定公開中
+      </div>
+      
+      <div class="w-28 h-28 mx-auto mb-6 rounded-full overflow-hidden border-4 border-red-200 shadow-xl ring-4 ring-red-100">
+        <Image
+          src={headImage.default}
+          alt={people}
+          width={112}
+          height={112}
+          class="w-full h-full object-cover"
+        />
+      </div>
+      
+      <h1 class="text-3xl font-bold text-slate-900 mb-3 tracking-tight leading-tight">
+        <span class="text-red-600">{people}が教える</span>
+      </h1>
+      <div class="text-xl text-slate-800 mb-3">たった2週間で</div>
+      <div class="text-5xl text-red-600 font-black mb-3">300%利益</div>
+      <div class="text-xl text-slate-800 mb-8">を狙う投資法</div>
+      
+      <div class="space-y-4 mb-8 flex flex-col items-center">
+        <div class="flex items-start text-base text-slate-700">
+          <Zap size={20} class="mr-3 text-red-600 flex-shrink-0 mt-0.5" />
+          <div class="text-left">
+            <span class="text-red-600 font-bold">驚愕の実績！</span><br>
+            14日間で資産が<span class="text-red-600 font-black">4倍</span>に急増
+          </div>
+        </div>
+        <div class="flex items-start text-base text-slate-700">
+          <Target size={20} class="mr-3 text-orange-600 flex-shrink-0 mt-0.5" />
+          <div class="text-left">
+            <span class="text-orange-600 font-bold">成功率96%</span>の秘密手法を<br>
+            今だけ<span class="text-red-600 font-bold underline">完全無料</span>で公開
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-4 mb-8 inline-flex items-center">
+        <Clock size={18} class="mr-2 text-yellow-800" />
+        <div class="text-yellow-800 font-bold text-base">
+          限定残り: <span class="text-red-600" id="countdown">02:15</span>
+        </div>
+      </div>
+      
+      <button
+        class="link-btn w-full max-w-sm px-10 py-5 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-full hover:from-red-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-xl text-xl font-bold animate-breathe"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="hero"
+        data-umami-event-instructor={people}
+      >
+        <div class="flex items-center justify-center">
+          <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-3" />
+          <span>秘密を受け取る</span>
+        </div>
+      </button>
+      
+      <p class="text-sm text-slate-600 mt-4">✅ 完全無料 ✅ 登録30秒 ✅ いつでも退出OK</p>
+    </div>
+  </section>
+
+  <!-- Success Showcase -->
+  <section class="py-12 px-4 bg-white">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-6">
+        <span class="inline-flex items-center px-3 py-2 bg-red-100 text-red-700 rounded-full text-xs font-bold mb-3">
+          <BarChart3 size={14} class="mr-2" />実証済みの成果
+        </span>
+        <h2 class="text-2xl font-bold text-center text-slate-900 mb-3">これが<span class="text-red-600">現実の利益</span>です</h2>
+        <p class="text-sm text-slate-600">会員様の実際の取引結果（直近30日間）</p>
+      </div>
+      
+      <div class="mb-8 text-center">
+        <Image
+          src={headerImage.default}
+          alt="投資実績グラフ"
+          width={340}
+          height={170}
+          class="mx-auto rounded-lg shadow-md"
+        />
+      </div>
+      
+      <div class="space-y-6 mb-8">
+        <div class="text-center p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border-2 border-red-200 shadow-lg">
+          <div class="text-4xl font-black text-red-600 mb-2 animate-bounce">+387%</div>
+          <div class="flex items-center justify-center text-slate-800 font-bold text-sm">
+            <Crown size={16} class="mr-2 text-red-600" />最高記録：14日間
+          </div>
+          <p class="text-xs text-slate-600 mt-2">資産が<span class="font-bold text-red-600">4.87倍</span>に急増</p>
+        </div>
+        <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border-2 border-orange-200 shadow-lg">
+          <div class="text-4xl font-black text-orange-600 mb-2">+245%</div>
+          <div class="flex items-center justify-center text-slate-800 font-bold text-sm">
+            <Award size={16} class="mr-2 text-orange-600" />平均収益率
+          </div>
+          <p class="text-xs text-slate-600 mt-2">資産が<span class="font-bold text-orange-600">3.45倍</span>に成長</p>
+        </div>
+      </div>
+      
+      <div class="bg-slate-900 text-white p-6 rounded-2xl">
+        <div class="flex items-center justify-center mb-4">
+          <Star size={20} class="mr-2 text-yellow-400" />
+          <h3 class="text-xl font-bold text-yellow-400">今月の爆益銘柄</h3>
+        </div>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between p-3 bg-green-600/20 rounded-lg border border-green-400">
+            <div class="flex items-center">
+              <ArrowUp size={14} class="mr-2 text-green-400" />
+              <div class="relative">
+                <span class="font-bold text-sm blur-sm select-none">エヌビエåディア株</span>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="bg-green-400/90 text-green-900 px-2 py-1 rounded text-xs font-bold flex items-center">
+                    <svg width="12" height="12" class="mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
+                    </svg>
+                    LINE限定
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="text-green-400 font-black text-lg">+387%</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-yellow-600/20 rounded-lg border border-yellow-400">
+            <div class="flex items-center">
+              <TrendingUp size={14} class="mr-2 text-yellow-400" />
+              <div class="relative">
+                <span class="font-bold text-sm blur-sm select-none">エヌビエビエヌビ</span>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="bg-yellow-400/90 text-yellow-900 px-2 py-1 rounded text-xs font-bold flex items-center">
+                    <svg width="12" height="12" class="mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
+                    </svg>
+                    LINE限定
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="text-yellow-400 font-black text-lg">+245%</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-blue-600/20 rounded-lg border border-blue-400">
+            <div class="flex items-center">
+              <BarChart3 size={14} class="mr-2 text-blue-400" />
+              <div class="relative">
+                <span class="font-bold text-sm blur-sm select-none">エヌビエヌビ株</span>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="bg-blue-400/90 text-blue-900 px-2 py-1 rounded text-xs font-bold flex items-center">
+                    <svg width="12" height="12" class="mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
+                    </svg>
+                    LINE限定
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="text-blue-400 font-black text-lg">+156%</span>
+          </div>
+          <div class="text-center mt-4">
+            <div class="flex items-center justify-center">
+              <Zap size={16} class="mr-2 text-yellow-300" />
+              <p class="text-yellow-300 font-bold text-sm">次の爆益銘柄は会員限定で配信中！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investment Method -->
+  <section class="py-20 px-4 bg-slate-50">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold mb-4">
+          <Target size={16} class="mr-2" />成功の秘密
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-red-600">短期間で300%</span>が可能なのか？</h2>
+        <p class="text-lg text-slate-600">他では教えてもらえない3つの極秘テクニック</p>
+      </div>
+      
+      <div class="mb-6 text-center">
+        <Image
+          src={contentImage.default}
+          alt="投資手法説明"
+          width={320}
+          height={192}
+          class="mx-auto rounded-lg shadow-md"
+        />
+      </div>
+      
+      <div class="space-y-5">
+        <div class="text-center p-5 bg-white rounded-2xl shadow-md">
+          <div class="w-12 h-12 bg-red-600 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+            <TrendingUp size={24} class="text-white" />
+          </div>
+          <div class="flex items-center justify-center mb-3">
+            <Zap size={16} class="mr-2 text-red-600" />
+            <h3 class="text-lg font-bold text-slate-900">爆速リターン術</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-medium text-sm">AI解析×独自アルゴリズムで急騰銘柄を事前察知。平均14日で300%達成</p>
+        </div>
+        
+        <div class="text-center p-5 bg-white rounded-2xl shadow-md">
+          <div class="w-12 h-12 bg-red-600 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+            <Clock size={24} class="text-white" />
+          </div>
+          <div class="flex items-center justify-center mb-3">
+            <Clock size={16} class="mr-2 text-red-600" />
+            <h3 class="text-lg font-bold text-slate-900">ワンクリック投資</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-medium text-sm">LINEで銘柄配信→スマホでポチッ→利益確定。忙しいサラリーマンでも実践可能</p>
+        </div>
+        
+        <div class="text-center p-5 bg-white rounded-2xl shadow-md">
+          <div class="w-12 h-12 bg-red-600 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+            <Users size={24} class="text-white" />
+          </div>
+          <div class="flex items-center justify-center mb-3">
+            <Users size={16} class="mr-2 text-red-600" />
+            <h3 class="text-lg font-bold text-slate-900">成功率96%</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-medium text-sm">月収30万円の会社員が3ヶ月で2000万円達成など、奇跡の成功事例が続出中</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics -->
+  <section class="py-12 px-4 bg-white">
+    <div class="max-w-md mx-auto text-center">
+      <div class="mb-8">
+        <span class="inline-flex items-center px-3 py-2 bg-green-100 text-green-700 rounded-full text-xs font-bold mb-3">
+          <BarChart3 size={14} class="mr-2" />驚愕の数字
+        </span>
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">会員様の<span class="text-red-600">リアルな成果</span></h2>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-4 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-200">
+          <div class="text-3xl font-black text-red-600 mb-1">5,847</div>
+          <p class="text-slate-800 font-bold text-xs">成功者数</p>
+        </div>
+        <div class="p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border border-orange-200">
+          <div class="text-3xl font-black text-orange-600 mb-1">96%</div>
+          <p class="text-slate-800 font-bold text-xs">利益達成率</p>
+        </div>
+        <div class="p-4 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl border border-green-200">
+          <div class="text-3xl font-black text-green-600 mb-1">+287%</div>
+          <p class="text-slate-800 font-bold text-xs">平均利益率</p>
+        </div>
+        <div class="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl border border-blue-200">
+          <div class="text-3xl font-black text-blue-600 mb-1">14日</div>
+          <p class="text-slate-800 font-bold text-xs">平均達成期間</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Urgency Section -->
+  <section class="py-12 px-4 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+    <div class="max-w-md mx-auto text-center">
+      <div class="flex items-center justify-center mb-6">
+        <AlertTriangle size={24} class="mr-2 text-yellow-300" />
+        <h2 class="text-xl font-bold">今すぐ行動しないと後悔します</h2>
+      </div>
+      
+      <div class="space-y-6 mb-8">
+        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-sm">
+          <div class="flex items-center mb-3">
+            <TrendingUp size={20} class="mr-2 text-yellow-300" />
+            <h3 class="text-lg font-bold text-yellow-300">機会損失の恐怖</h3>
+          </div>
+          <p class="text-sm leading-relaxed">今月だけで会員の資産が平均<span class="font-bold text-yellow-200">3.87倍</span>に急増。あなたが迷っている間にも、他の人は資産を増やし続けています。</p>
+        </div>
+        
+        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-sm">
+          <div class="flex items-center mb-3">
+            <Clock size={20} class="mr-2 text-yellow-300" />
+            <h3 class="text-lg font-bold text-yellow-300">限定公開終了まで</h3>
+          </div>
+          <div class="text-2xl font-bold text-yellow-200 mb-2 countdown-timer">02:15</div>
+          <p class="text-sm leading-relaxed">この秘密の投資法は本日限定公開。明日には一般公開を停止します。</p>
+        </div>
+      </div>
+
+      <button
+        class="link-btn inline-flex items-center px-8 py-4 bg-yellow-400 text-red-600 rounded-full hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg font-black animate-breathe-yellow"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="urgency-cta"
+        data-umami-event-instructor={people}
+      >
+        <AlertTriangle size={20} class="mr-2 text-red-600" />
+        <span>今すぐ無料で受け取る！</span>
+      </button>
+      
+      <p class="text-yellow-200 mt-3 text-sm font-bold">残り枠数：あと17名様限定</p>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">
+          <Users size={16} class="mr-2" />会員様の声
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">実際に<span class="text-red-600">人生が変わった</span>人たち</h2>
+      </div>
+      
+      <div class="space-y-6">
+        <div class="p-8 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl border-2 border-green-200 shadow-lg">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">田</div>
+            <div class="ml-4">
+              <p class="font-bold text-slate-800">田中様 (会社員・42歳)</p>
+              <p class="text-green-600 font-bold text-lg">実際の収益: +387% (資産4.87倍)</p>
+            </div>
+          </div>
+          <p class="text-slate-700 mb-4 italic text-lg leading-relaxed">
+            「正直、最初は詐欺だと思いました。でも{people}さんの手法を試したら、本当に2週間で資産が4.87倍に！387%のリターンなんて信じられません。妻も驚いています。もう会社を辞めようか本気で悩んでいます。」
+          </p>
+          <div class="flex items-center text-yellow-500">
+            ⭐⭐⭐⭐⭐ <span class="ml-2 text-slate-600">5つ星評価</span>
+          </div>
+        </div>
+        
+        <div class="p-8 bg-gradient-to-br from-pink-50 to-orange-50 rounded-2xl border-2 border-pink-200 shadow-lg">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl">佐</div>
+            <div class="ml-4">
+              <p class="font-bold text-slate-800">佐藤様 (主婦・35歳)</p>
+              <p class="text-pink-600 font-bold text-lg">実際の収益: +245% (資産3.45倍)</p>
+            </div>
+          </div>
+          <p class="text-slate-700 mb-4 italic text-lg leading-relaxed">
+            「子育てしながらでもスマホ一つで資産が3.45倍に！245%のリターンなんて夢のようです。主人の年収を超えてしまいました。今では私が家計を支えています。{people}さん、本当にありがとうございます！」
+          </p>
+          <div class="flex items-center text-yellow-500">
+            ⭐⭐⭐⭐⭐ <span class="ml-2 text-slate-600">5つ星評価</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-16 px-4 bg-gradient-to-br from-slate-900 to-red-900 text-white">
+    <div class="max-w-md mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">
+        あなたも<span class="text-yellow-400">次の成功者</span>になりませんか？
+      </h2>
+      
+      <p class="text-lg mb-8 leading-relaxed text-gray-200">
+        {people}の秘密の投資法で、普通のサラリーマンが2週間で<span class="text-yellow-400 font-bold">資産を4倍</span>に急増。<span class="text-yellow-400 font-bold">今なら完全無料</span>でこの手法を公開中です。
+      </p>
+      
+      <div class="bg-yellow-400 text-red-600 p-5 rounded-2xl mb-6 inline-block">
+        <div class="flex items-center justify-center">
+          <AlertTriangle size={20} class="mr-2 text-red-600" />
+          <p class="text-xl font-black">本日23:59まで限定公開</p>
+        </div>
+        <p class="text-sm font-bold mt-2">明日からは有料コンサルのみ（月額50万円）</p>
+      </div>
+
+      <button
+        class="link-btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-red-600 rounded-full hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg font-black mb-5 animate-breathe-gradient"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="final-cta"
+        data-umami-event-instructor={people}
+      >
+        <Target size={24} class="mr-2 text-red-600" />
+        <span>今すぐ無料で投資法を受け取る</span>
+      </button>
+      
+      <div class="text-center">
+        <p class="text-green-400 text-sm font-bold">✅ 登録者数：5,847名突破</p>
+        <p class="text-yellow-300 text-sm font-bold">✅ 満足度：98.7%</p>
+        <p class="text-blue-400 text-sm font-bold">✅ 平均収益率：+287%（資産3.87倍）</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Unified countdown timer - 135 seconds from first page entry
+  function initCountdown() {
+    const storageKey = 'countdown_start_time';
+    let startTime = localStorage.getItem(storageKey);
+    
+    if (!startTime) {
+      startTime = new Date().getTime();
+      localStorage.setItem(storageKey, startTime.toString());
+    } else {
+      startTime = parseInt(startTime);
+    }
+    
+    const countdownDuration = 135 * 1000; // 135 seconds in milliseconds
+    const endTime = startTime + countdownDuration;
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+      
+      if (distance < 0) {
+        // Time expired - show 00:00:00
+        const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer');
+        countdownElements.forEach(element => {
+          element.innerHTML = "00:00:00";
+        });
+        return;
+      }
+      
+      const minutes = Math.floor(distance / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      // Update all countdown elements
+      const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer');
+      countdownElements.forEach(element => {
+        element.innerHTML = timeString;
+      });
+    }
+    
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  }
+  
+  // Initialize countdown when page loads
+  initCountdown();
+</script>
