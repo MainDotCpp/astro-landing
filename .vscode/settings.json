@@ -81,8 +81,8 @@
       ]
     },
     {
-      "name": "HaishiKR16G",
-      "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/www",
+      "name": "Haishi16G",
+      "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/www_jp",
       "remotePath": "root@Haishi16G:/www/wwwroot",
       "exclude": [
         ".DS_Store",
@@ -96,13 +96,30 @@
       ]
     },
     {
+      "name": "HaishiKR16G",
+      "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/www_kr",
+      "remotePath": "root@141.164.43.115:/www/wwwroot",
+      "shell": "ssh -p 5522",
+      "password": "Haishi@1688",
+      "exclude": [
+        ".DS_Store",
+        ".htaccess",
+        ".user.ini",
+        "**/_**"
+      ],
+      "options": [
+        ["--password-file=./rsync-password.txt"],
+        ["--chown=www:www"],
+        ["--chmod=D755,F644"]
+      ]
+    },
+    {
       "name": "JP_T",
       "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/dist",
       "remotePath": "root@JP_T:/www/wwwroot/xn--ces516hyxm.com",
       "exclude": [
         "/index.html",
-        ".DS_Store",
-        "private"
+        ".DS_Store"
       ],
       "options": [
         ["--chown=www:www"],

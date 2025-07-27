@@ -1,0 +1,26 @@
+---
+// Import images
+import mvBgPcPngImg from './static/mv_bg_pc.png'
+import m0PngImg from './static/M0.png'
+import btn1PngImg from './static/BTN1.png'
+
+const {
+  mvBgPcPng = mvBgPcPngImg.src,
+  m0Png = m0PngImg.src,
+  btn1Png = btn1PngImg.src,
+} = Astro.props;
+---
+
+<section id="mv" style={`background-image: url('${mvBgPcPng}')`}>
+  <div class="h1_con">
+    <h1>
+      <picture>
+        <source srcset={m0Png} media="(min-width: 811px)" />
+        <img decoding="async" src={m0Png} alt="老舗投資顧問「株マイスター」の新サービス 銘柄相談スパッと回答くんで株のお悩みを解決！ 累計会員数20万件以上 | サイト運営期間14年 | 銘柄相談件数10万件以上" width={1274} height={1223} />
+      </picture>
+    </h1>
+    <a href="#popup1" rel="noopener">
+      <img decoding="async" src={btn1Png} alt="無料診断はコチラ" width={870} height={217} />
+    </a>
+  </div>
+</section>

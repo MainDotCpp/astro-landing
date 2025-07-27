@@ -20,30 +20,30 @@ import btn from './static/btn.png'
 
 export const getStaticPaths = (() => {
   return [
-    { params: { people: '三橋貴明', version: '0', img_prefix: 'sq_' } },
-    { params: { people: '三橋貴明', version: '1', img_prefix: 'sq1_' } },
-    { params: { people: '三橋貴明', version: '2', img_prefix: 'sq2_' } },
-    { params: { people: '三橋貴明', version: '3', img_prefix: 'sq3_' } },
-    { params: { people: '三橋貴明', version: '4', img_prefix: 'sq3_' } },
-    { params: { people: '三橋貴明', version: '5', img_prefix: 'sq5_' } },
-    { params: { people: '馬渕磨理子', version: '0', img_prefix: 'mlz_' } },
-    { params: { people: '馬渕磨理子', version: '1', img_prefix: 'mlz1_' } },
-    { params: { people: '馬渕磨理子', version: '2', img_prefix: 'mlz2_' } },
-    { params: { people: '片山 晃', version: '0', img_prefix: 'psh_' } },
-    { params: { people: '片山 晃', version: '1', img_prefix: 'psh1_' } },
-    { params: { people: '前澤友作', version: '0', img_prefix: 'qzyz_' } },
-    { params: { people: '大前研一', version: '0', img_prefix: 'dq_' } },
-    { params: { people: '大前研一', version: '1', img_prefix: 'dq1_' } },
-    { params: { people: '村上世彰', version: '0', img_prefix: 'cssz_' } },
-    { params: { people: '高橋洋一', version: '1', img_prefix: 'gqyy_' } },
-    { params: { people: '本田健', version: '0', img_prefix: 'btj_' } },
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq_' } },
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
+    { params: { people: '三橋貴明', version: '2' }, props: { name: '三橋貴明', img_prefix: 'sq2_' } },
+    { params: { people: '三橋貴明', version: '3' }, props: { name: '三橋貴明', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '4' }, props: { name: '三橋貴明', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '5' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '馬渕磨理子', version: '0' }, props: { name: '馬渕磨理子', img_prefix: 'mlz_' } },
+    { params: { people: '馬渕磨理子', version: '1' }, props: { name: '馬渕磨理子', img_prefix: 'mlz1_' } },
+    { params: { people: '馬渕磨理子', version: '2' }, props: { name: '馬渕磨理子', img_prefix: 'mlz2_' } },
+    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh_' } },
+    { params: { people: '片山 晃', version: '1' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
+    { params: { people: '前澤友作', version: '0' }, props: { name: '前澤友作', img_prefix: 'qzyz_' } },
+    { params: { people: '大前研一', version: '0' }, props: { name: '大前研一', img_prefix: 'dq_' } },
+    { params: { people: '大前研一', version: '1' }, props: { name: '大前研一', img_prefix: 'dq1_' } },
+    { params: { people: '村上世彰', version: '0' }, props: { name: '', img_prefix: 'cssz_' } },
+    { params: { people: '高橋洋一', version: '1' }, props: { name: '', img_prefix: 'gqyy_' } },
+    { params: { people: '本田健', version: '0' }, props: { name: '', img_prefix: 'btj_' } },
+    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz_' } },
+    { params: { people: '小谷真生子', version: '1' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+
   ]
 }) satisfies GetStaticPaths
 
-const { people, version = '0' } = Astro.params
-const img_prefix = getStaticPaths().find(
-  path => path.params.people === people && path.params.version === version,
-)?.params.img_prefix
+const { img_prefix, name: people } = Astro.props
 const header = import(`./static/${img_prefix}header.png`)
 const img1 = import(`./static/${img_prefix}img.png`);
 ---

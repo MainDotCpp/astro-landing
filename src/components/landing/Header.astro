@@ -1,0 +1,29 @@
+---
+// Import images
+import logoImg from './static/header-logo.jpg'
+import headerImgImg from './static/header-img.png'
+
+const {
+  logo = logoImg.src,
+  headerImg = headerImgImg.src,
+  companyName = '株式会社SQIジャパン (金融商品取引業者)',
+  registerNo = '関東財務局長（金商）第850号',
+  association = '一般社団法人 日本投資顧問業協会 会員番号：第012-02468号',
+} = Astro.props;
+---
+
+<header class="l-header">
+  <div class="l-header--pc">
+    <div class="l-header__inner--pc">
+      <div class="l-header__logo-wrapper">
+        <img src={logo} alt="初心者から上級者まで株マイスター" />
+      </div>
+      <div class="l-header__company-info">
+        <p>運営元：{companyName}</p>
+        <p>登録番号：{registerNo}</p>
+        <p>加入協会：{association}</p>
+      </div>
+    </div>
+  </div>
+  <img class="l-header__img" src={headerImg} alt="初心者から上級者まで株マイスター" />
+</header>

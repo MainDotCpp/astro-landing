@@ -1,0 +1,232 @@
+.l-header {
+  background-color: white;
+}
+
+.l-header__inner--pc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 16px;
+}
+
+.l-header__company-info {
+  font-size: 12px;
+  text-align: right;
+  font-weight: 300;
+}
+
+.l-header__img {
+  display: none;
+}
+
+.l-footer {
+  background-color: black;
+  color: white;
+}
+
+.l-footer__content {
+  max-width: 760px;
+  margin: auto;
+  padding: 0 16px 20px;
+}
+
+.l-footer__nav {
+  padding-top: 30px;
+}
+
+.l-footer__ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  row-gap: 1px;
+  margin: 0 0 25px;
+  padding: 0;
+}
+
+.l-footer__ul > * {
+  position: relative;
+  padding-left: 5px;
+  font-size: 14px;
+  list-style: none;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.l-footer__ul > * a {
+  color: white;
+  text-decoration: none;
+}
+
+.l-footer__ul > * a:hover {
+  background-color: #6c6c6c;
+}
+
+.l-footer__ul > *::before {
+  content: "";
+  position: relative;
+  bottom: 1px;
+  display: inline-block;
+  margin: 0 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2771ae;
+}
+
+.l-footer__ul > *::after {
+  content: "";
+  display: none;
+  background-image: url("../../../../../../assets/images/downloaded/chevron-white.svg");
+  background-repeat: no-repeat;
+  position: absolute;
+  background-size: contain;
+  top: calc(50% - 9px);
+  right: 0;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  width: 16px;
+  height: 16px;
+}
+
+.l-footer__logo {
+  display: block;
+  width: 267px;
+  height: 36px;
+  margin: 0 auto 30px;
+}
+
+.l-footer__company-info {
+  padding-left: 10px;
+  padding-bottom: 20px;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.l-footer__external-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 16px;
+     -moz-column-gap: 16px;
+          column-gap: 16px;
+  padding-bottom: 25px;
+}
+
+.l-footer__external-links > * {
+  display: inline-block;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 300;
+  color: #dbedff;
+}
+
+.l-footer__external-links > *::after {
+  content: "";
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-left: 3px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.l-footer__copyright--pc {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 300;
+  font-weight: 300;
+}
+
+.l-footer__copyright--sp {
+  display: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 300;
+  font-weight: 300;
+}
+
+
+@media (max-width: 768px) {
+  .l-header--pc {
+    display: none;
+  }
+  .l-header__inner--pc {
+    display: none;
+  }
+  .l-header__img {
+    display: block;
+    width: 100%;
+  }
+  .l-footer {
+    line-height: 12px;
+    background-color: #757575;
+  }
+  .l-footer__content {
+    padding: 0;
+  }
+  .l-footer__nav {
+    padding-top: 10px;
+  }
+  .l-footer__ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .l-footer__ul > * a {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: block;
+    font-size: 12px;
+    border-bottom: 1px solid white;
+    width: 100%;
+    padding: 10px 0 10px 10px;
+  }
+  .l-footer__ul > *::before {
+    display: none;
+  }
+  .l-footer__ul > *::after {
+    display: inline-block;
+  }
+  .l-footer__logo {
+    display: none;
+  }
+  .l-footer__company-info {
+    padding-bottom: 10px;
+    font-size: 10px;
+  }
+  .l-footer__external-links {
+    -webkit-column-gap: 8px;
+       -moz-column-gap: 8px;
+            column-gap: 8px;
+    padding-bottom: 10px;
+  }
+  .l-footer__external-links > * {
+    font-size: 10px;
+    padding-left: 10px;
+  }
+  .l-footer__copyright--pc {
+    display: none;
+  }
+  .l-footer__copyright--sp {
+    display: block;
+    padding: 10px;
+    background-color: black;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .l-footer__ul > * {
+    padding-left: 0;
+  }
+}

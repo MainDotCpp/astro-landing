@@ -7,12 +7,14 @@ import lineIcon from '@/assets/line-icon.png'
 
 export const getStaticPaths = (() => {
   return [
-    { params: { people: '三橋貴明', version: '1' }, props: { img_prefix: 'sq5_' } },
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '小谷真生子', version: '1' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+
   ]
 }) satisfies GetStaticPaths
 
-const { people } = Astro.params
-const { img_prefix } = Astro.props
+const { name:people, img_prefix } = Astro.props
 
 // Import images dynamically based on img_prefix
 const headImage = await import(`./static/${img_prefix}head.jpg`)

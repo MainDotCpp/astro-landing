@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/mjSFqQ/favicon.svg">
+<title>三橋貴明の投資講座 | 短期間高収益投資法</title>
+<meta name="title" content="三橋貴明の投資講座 | 短期間高収益投資法">
+<meta name="description" content="経済専門家・三橋貴明による実績ある投資情報を無料提供">
+<meta name="generator" content="/private/JP/%E4%B8%89%E6%A9%8B%E8%B2%B4%E6%98%8E/20250722-2.1/">
+<!--------------------------- ↓ ↓ ↓ ↓ ↓ ↓ 跟踪代码粘贴在下面 ↓ ↓ ↓ ↓ ↓ ↓ ----------------------------------->
+    
+
+<script>
+  const link = 'https://besteous.com/mGJ9Bi'
+</script>
+<script type="module">document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".link-btn").forEach(n=>{n.addEventListener("click",t)})});function t(){typeof gtag_report_conversion=="function"?gtag_report_conversion(link):window.location.href=link}</script>
+<!-- Umami Analytics --><script defer src="https://umami.ddiwo.com/random-string.js" data-website-id="4a72b39b-e570-4376-b627-d74760cb3c51" data-auto-track="true" data-cache="true"></script>
+
+
+<!-- Custom Tracking Events --><script defer>
+// 页面加载完成后初始化追踪
+document.addEventListener('DOMContentLoaded', () => {
+  // Umami tracking utilities
+  window.umami = window.umami || {}
+  // 追踪页面停留时间
+  const startTime = Date.now()
+  let maxScroll = 0
+
+  // 滚动深度追踪
+  function trackScrollDepth() {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
+    if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+      maxScroll = scrollPercent
+      umami.track('scroll-depth', { depth: `${scrollPercent}%` })
+    }
+  }
+
+  // 页面停留时间追踪
+  function trackTimeOnPage() {
+    const timeSpent = Math.round((Date.now() - startTime) / 1000)
+    if (timeSpent > 0) {
+      umami.track('time-on-page', { seconds: timeSpent })
+    }
+  }
+
+  // 添加滚动监听
+  window.addEventListener('scroll', trackScrollDepth)
+
+  // 页面离开时追踪停留时间
+  window.addEventListener('beforeunload', trackTimeOnPage)
+
+  // 自动追踪所有带 data-umami-event 的元素点击
+  document.addEventListener('click', (e) => {
+    const element = e.target.closest('[data-umami-event]')
+    if (element) {
+      const eventName = element.getAttribute('data-umami-event')
+      const eventData = {}
+
+      // 收集额外的事件数据
+      const dataAttrs = element.attributes
+      for (let i = 0; i < dataAttrs.length; i++) {
+        const attr = dataAttrs[i]
+        if (attr.name.startsWith('data-umami-event-')) {
+          const key = attr.name.replace('data-umami-event-', '')
+          eventData[key] = attr.value
+        }
+      }
+
+      // 添加默认的上下文信息
+      eventData.page = window.location.pathname
+      eventData.timestamp = new Date().toISOString()
+
+      umami.track(eventName, eventData)
+    }
+  })
+
+  // 表单交互追踪
+  const forms = document.querySelectorAll('form')
+  forms.forEach((form) => {
+    form.addEventListener('submit', () => {
+      umami.track('form-submit', {
+        form: form.id || 'unnamed',
+        page: window.location.pathname,
+      })
+    })
+  })
+
+  // 输入框焦点追踪
+  const inputs = document.querySelectorAll('input[type="email"], input[type="tel"], input[type="text"], textarea')
+  inputs.forEach((input) => {
+    let hasFocused = false
+    input.addEventListener('focus', () => {
+      if (!hasFocused) {
+        hasFocused = true
+        umami.track('input-focus', {
+          type: input.type || 'text',
+          name: input.name || 'unnamed',
+          page: window.location.pathname,
+        })
+      }
+    })
+  })
+
+  // 视频播放追踪
+  const videos = document.querySelectorAll('video')
+  videos.forEach((video) => {
+    video.addEventListener('play', () => {
+      umami.track('video-play', {
+        src: video.src || 'unknown',
+        duration: video.duration || 0,
+      })
+    })
+
+    video.addEventListener('ended', () => {
+      umami.track('video-complete', {
+        src: video.src || 'unknown',
+        duration: video.duration || 0,
+      })
+    })
+  })
+
+  // 图片加载追踪（针对重要图片）
+  const importantImages = document.querySelectorAll('img[data-track-load]')
+  importantImages.forEach((img) => {
+    if (img.complete) {
+      umami.track('image-load', { src: img.src })
+    }
+    else {
+      img.addEventListener('load', () => {
+        umami.track('image-load', { src: img.src })
+      })
+    }
+  })
+
+  // 错误追踪
+  window.addEventListener('error', (e) => {
+    umami.track('javascript-error', {
+      message: e.message,
+      filename: e.filename,
+      line: e.lineno,
+      page: window.location.pathname,
+    })
+  })
+
+  // 页面可见性变化追踪
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      umami.track('page-hidden', { page: window.location.pathname })
+    }
+    else {
+      umami.track('page-visible', { page: window.location.pathname })
+    }
+  })
+})
+
+// 自定义追踪函数
+window.trackCustomEvent = function (eventName, eventData = {}) {
+  if (window.umami && window.umami.track) {
+    eventData.page = window.location.pathname
+    eventData.timestamp = new Date().toISOString()
+    umami.track(eventName, eventData)
+  }
+}
+
+// 转化漏斗追踪
+window.trackFunnelStep = function (step, additionalData = {}) {
+  umami.track('funnel-step', {
+    step,
+    page: window.location.pathname,
+    ...additionalData,
+  })
+}
+
+// A/B测试追踪
+window.trackABTest = function (testName, variant, additionalData = {}) {
+  umami.track('ab-test', {
+    test: testName,
+    variant,
+    page: window.location.pathname,
+    ...additionalData,
+  })
+}
+</script>
+
+<!-- Original tracking script --><script defer src="../../public/mjSFqQ/js/WmWzkpHd.js"></script>
+  <link rel="stylesheet" href="/mjSFqQ/index.CvCZsYPH.css">
+<style>@keyframes breathe{0%,to{transform:scale(1);box-shadow:0 0 20px #ef444466}50%{transform:scale(1.05);box-shadow:0 0 30px #ef444499}}@keyframes breathe-yellow{0%,to{transform:scale(1);box-shadow:0 0 20px #fbbf2466}50%{transform:scale(1.05);box-shadow:0 0 30px #fbbf2499}}@keyframes breathe-gradient{0%,to{transform:scale(1);box-shadow:0 0 20px #fbbf2466}50%{transform:scale(1.05);box-shadow:0 0 30px #fbbf2499}}.animate-breathe[data-astro-cid-jhwnzsbm]{animation:breathe 2s ease-in-out infinite}.animate-breathe-yellow[data-astro-cid-jhwnzsbm]{animation:breathe-yellow 2.5s ease-in-out infinite}.animate-breathe-gradient[data-astro-cid-jhwnzsbm]{animation:breathe-gradient 3s ease-in-out infinite}
+.link-btn{cursor:pointer}
+</style></head>
+  <body>
+      
+  
+  
+  <section class="py-20 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 relative overflow-hidden" data-astro-cid-jhwnzsbm>
+    <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-yellow-500/5" data-astro-cid-jhwnzsbm></div>
+    <div class="max-w-md mx-auto text-center relative z-10" data-astro-cid-jhwnzsbm>
+      <div class="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium mb-6" data-astro-cid-jhwnzsbm>
+        <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="14" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-flame mr-2 text-red-600">
+	
+	<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+
+</svg>今だけ限定公開中
+      </div>
+      
+      <div class="w-28 h-28 mx-auto mb-6 rounded-full overflow-hidden border-4 border-red-200 shadow-xl ring-4 ring-red-100" data-astro-cid-jhwnzsbm>
+        
+<img src="/mjSFqQ/sq5_head.BIBREtoS_1r6KtB.webp" alt="三橋貴明" data-astro-cid-jhwnzsbm="true" loading="lazy" decoding="async" fetchpriority="auto" width="112" height="112" class="w-full h-full object-cover">
+      </div>
+      
+      <h1 class="text-3xl font-bold text-slate-900 mb-3 tracking-tight leading-tight" data-astro-cid-jhwnzsbm>
+        <span class="text-red-600" data-astro-cid-jhwnzsbm>三橋貴明が教える</span>
+      </h1>
+      <div class="text-xl text-slate-800 mb-3" data-astro-cid-jhwnzsbm>たった2週間で</div>
+      <div class="text-5xl text-red-600 font-black mb-3" data-astro-cid-jhwnzsbm>300%利益</div>
+      <div class="text-xl text-slate-800 mb-8" data-astro-cid-jhwnzsbm>を狙う投資法</div>
+      
+      <div class="space-y-4 mb-8 flex flex-col items-center" data-astro-cid-jhwnzsbm>
+        <div class="flex items-start text-base text-slate-700" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="20" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-zap mr-3 text-red-600 flex-shrink-0 mt-0.5">
+	
+	<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+
+</svg>
+          <div class="text-left" data-astro-cid-jhwnzsbm>
+            <span class="text-red-600 font-bold" data-astro-cid-jhwnzsbm>驚愕の実績！</span><br data-astro-cid-jhwnzsbm>
+            14日間で資産が<span class="text-red-600 font-black" data-astro-cid-jhwnzsbm>4倍</span>に急増
+          </div>
+        </div>
+        <div class="flex items-start text-base text-slate-700" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="20" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-target mr-3 text-orange-600 flex-shrink-0 mt-0.5">
+	
+	<circle cx="12" cy="12" r="10"></circle>
+	<circle cx="12" cy="12" r="6"></circle>
+	<circle cx="12" cy="12" r="2"></circle>
+
+</svg>
+          <div class="text-left" data-astro-cid-jhwnzsbm>
+            <span class="text-orange-600 font-bold" data-astro-cid-jhwnzsbm>成功率96%</span>の秘密手法を<br data-astro-cid-jhwnzsbm>
+            今だけ<span class="text-red-600 font-bold underline" data-astro-cid-jhwnzsbm>完全無料</span>で公開
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-4 mb-8 inline-flex items-center" data-astro-cid-jhwnzsbm>
+        <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="18" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-clock mr-2 text-yellow-800">
+	
+	<path d="M12 6v6l4 2"></path>
+	<circle cx="12" cy="12" r="10"></circle>
+
+</svg>
+        <div class="text-yellow-800 font-bold text-base" data-astro-cid-jhwnzsbm>
+          限定残り: <span class="text-red-600" id="countdown" data-astro-cid-jhwnzsbm>02:15</span>
+        </div>
+      </div>
+      
+      <button class="link-btn w-full max-w-sm px-10 py-5 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-full hover:from-red-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-xl text-xl font-bold animate-breathe" data-umami-event="contact" data-umami-event-method="line" data-umami-event-position="hero" data-umami-event-instructor="三橋貴明" data-astro-cid-jhwnzsbm>
+        <div class="flex items-center justify-center" data-astro-cid-jhwnzsbm>
+          
+<img src="/mjSFqQ/line-icon.CY1cnzw3_1FoYwC.webp" alt="LINE" data-astro-cid-jhwnzsbm="true" loading="lazy" decoding="async" fetchpriority="auto" width="24" height="24" class="mr-3">
+          <span data-astro-cid-jhwnzsbm>秘密を受け取る</span>
+        </div>
+      </button>
+      
+      <p class="text-sm text-slate-600 mt-4" data-astro-cid-jhwnzsbm>✅ 完全無料 ✅ 登録30秒 ✅ いつでも退出OK</p>
+    </div>
+  </section>
+
+  
+  <section class="py-12 px-4 bg-white" data-astro-cid-jhwnzsbm>
+    <div class="max-w-md mx-auto" data-astro-cid-jhwnzsbm>
+      <div class="text-center mb-6" data-astro-cid-jhwnzsbm>
+        <span class="inline-flex items-center px-3 py-2 bg-red-100 text-red-700 rounded-full text-xs font-bold mb-3" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="14" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-chart-column mr-2">
+	
+	<path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+	<path d="M18 17V9"></path>
+	<path d="M13 17V5"></path>
+	<path d="M8 17v-3"></path>
+
+</svg>実証済みの成果
+        </span>
+        <h2 class="text-2xl font-bold text-center text-slate-900 mb-3" data-astro-cid-jhwnzsbm>これが<span class="text-red-600" data-astro-cid-jhwnzsbm>現実の利益</span>です</h2>
+        <p class="text-sm text-slate-600" data-astro-cid-jhwnzsbm>会員様の実際の取引結果（直近30日間）</p>
+      </div>
+      
+      <div class="mb-8 text-center" data-astro-cid-jhwnzsbm>
+        
+<img src="/mjSFqQ/sq4_header.GaHdySgb_1Wifpc.webp" alt="投資実績グラフ" data-astro-cid-jhwnzsbm="true" loading="lazy" decoding="async" fetchpriority="auto" width="340" height="170" class="mx-auto rounded-lg shadow-md">
+      </div>
+      
+      <div class="space-y-6 mb-8" data-astro-cid-jhwnzsbm>
+        <div class="text-center p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border-2 border-red-200 shadow-lg" data-astro-cid-jhwnzsbm>
+          <div class="text-4xl font-black text-red-600 mb-2 animate-bounce" data-astro-cid-jhwnzsbm>+387%</div>
+          <div class="flex items-center justify-center text-slate-800 font-bold text-sm" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-crown mr-2 text-red-600">
+	
+	<path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path>
+	<path d="M5 21h14"></path>
+
+</svg>最高記録：14日間
+          </div>
+          <p class="text-xs text-slate-600 mt-2" data-astro-cid-jhwnzsbm>資産が<span class="font-bold text-red-600" data-astro-cid-jhwnzsbm>4.87倍</span>に急増</p>
+        </div>
+        <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border-2 border-orange-200 shadow-lg" data-astro-cid-jhwnzsbm>
+          <div class="text-4xl font-black text-orange-600 mb-2" data-astro-cid-jhwnzsbm>+245%</div>
+          <div class="flex items-center justify-center text-slate-800 font-bold text-sm" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-award mr-2 text-orange-600">
+	
+	<path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
+	<circle cx="12" cy="8" r="6"></circle>
+
+</svg>平均収益率
+          </div>
+          <p class="text-xs text-slate-600 mt-2" data-astro-cid-jhwnzsbm>資産が<span class="font-bold text-orange-600" data-astro-cid-jhwnzsbm>3.45倍</span>に成長</p>
+        </div>
+      </div>
+      
+      <div class="bg-slate-900 text-white p-6 rounded-2xl" data-astro-cid-jhwnzsbm>
+        <div class="flex items-center justify-center mb-4" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="20" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-star mr-2 text-yellow-400">
+	
+	<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+
+</svg>
+          <h3 class="text-xl font-bold text-yellow-400" data-astro-cid-jhwnzsbm>今月の爆益銘柄</h3>
+        </div>
+        <div class="space-y-3" data-astro-cid-jhwnzsbm>
+          <div class="flex items-center justify-between p-3 bg-green-600/20 rounded-lg border border-green-400" data-astro-cid-jhwnzsbm>
+            <div class="flex items-center" data-astro-cid-jhwnzsbm>
+              <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="14" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-arrow-up mr-2 text-green-400">
+	
+	<path d="m5 12 7-7 7 7"></path>
+	<path d="M12 19V5"></path>
+
+</svg>
+              <div class="relative" data-astro-cid-jhwnzsbm>
+                <span class="font-bold text-sm blur-sm select-none" data-astro-cid-jhwnzsbm>エヌビエåディア株</span>
+                <div class="absolute inset-0 flex items-center justify-center" data-astro-cid-jhwnzsbm>
+                  <div class="bg-green-400/90 text-green-900 px-2 py-1 rounded text-xs font-bold flex items-center" data-astro-cid-jhwnzsbm>
+                    <svg width="12" height="12" class="mr-1" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-jhwnzsbm>
+                      <path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" data-astro-cid-jhwnzsbm></path>
+                    </svg>
+                    LINE限定
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="text-green-400 font-black text-lg" data-astro-cid-jhwnzsbm>+387%</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-yellow-600/20 rounded-lg border border-yellow-400" data-astro-cid-jhwnzsbm>
+            <div class="flex items-center" data-astro-cid-jhwnzsbm>
+              <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="14" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-trending-up mr-2 text-yellow-400">
+	
+	<path d="M16 7h6v6"></path>
+	<path d="m22 7-8.5 8.5-5-5L2 17"></path>
+
+</svg>
+              <div class="relative" data-astro-cid-jhwnzsbm>
+                <span class="font-bold text-sm blur-sm select-none" data-astro-cid-jhwnzsbm>エヌビエビエヌビ</span>
+                <div class="absolute inset-0 flex items-center justify-center" data-astro-cid-jhwnzsbm>
+                  <div class="bg-yellow-400/90 text-yellow-900 px-2 py-1 rounded text-xs font-bold flex items-center" data-astro-cid-jhwnzsbm>
+                    <svg width="12" height="12" class="mr-1" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-jhwnzsbm>
+                      <path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" data-astro-cid-jhwnzsbm></path>
+                    </svg>
+                    LINE限定
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="text-yellow-400 font-black text-lg" data-astro-cid-jhwnzsbm>+245%</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-blue-600/20 rounded-lg border border-blue-400" data-astro-cid-jhwnzsbm>
+            <div class="flex items-center" data-astro-cid-jhwnzsbm>
+              <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="14" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-chart-column mr-2 text-blue-400">
+	
+	<path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+	<path d="M18 17V9"></path>
+	<path d="M13 17V5"></path>
+	<path d="M8 17v-3"></path>
+
+</svg>
+              <div class="relative" data-astro-cid-jhwnzsbm>
+                <span class="font-bold text-sm blur-sm select-none" data-astro-cid-jhwnzsbm>エヌビエヌビ株</span>
+                <div class="absolute inset-0 flex items-center justify-center" data-astro-cid-jhwnzsbm>
+                  <div class="bg-blue-400/90 text-blue-900 px-2 py-1 rounded text-xs font-bold flex items-center" data-astro-cid-jhwnzsbm>
+                    <svg width="12" height="12" class="mr-1" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-jhwnzsbm>
+                      <path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" data-astro-cid-jhwnzsbm></path>
+                    </svg>
+                    LINE限定
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="text-blue-400 font-black text-lg" data-astro-cid-jhwnzsbm>+156%</span>
+          </div>
+          <div class="text-center mt-4" data-astro-cid-jhwnzsbm>
+            <div class="flex items-center justify-center" data-astro-cid-jhwnzsbm>
+              <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-zap mr-2 text-yellow-300">
+	
+	<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+
+</svg>
+              <p class="text-yellow-300 font-bold text-sm" data-astro-cid-jhwnzsbm>次の爆益銘柄は会員限定で配信中！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+  </section>
+
+  
+  <section class="py-20 px-4 bg-slate-50" data-astro-cid-jhwnzsbm>
+    <div class="max-w-4xl mx-auto" data-astro-cid-jhwnzsbm>
+      <div class="text-center mb-16" data-astro-cid-jhwnzsbm>
+        <span class="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold mb-4" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-target mr-2">
+	
+	<circle cx="12" cy="12" r="10"></circle>
+	<circle cx="12" cy="12" r="6"></circle>
+	<circle cx="12" cy="12" r="2"></circle>
+
+</svg>成功の秘密
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 mb-4" data-astro-cid-jhwnzsbm>なぜ<span class="text-red-600" data-astro-cid-jhwnzsbm>短期間で300%</span>が可能なのか？</h2>
+        <p class="text-lg text-slate-600" data-astro-cid-jhwnzsbm>他では教えてもらえない3つの極秘テクニック</p>
+      </div>
+      
+      <div class="mb-6 text-center" data-astro-cid-jhwnzsbm>
+        
+<img src="/mjSFqQ/sq5_img.DwvMelAi_Z2fxXk6.webp" alt="投資手法説明" data-astro-cid-jhwnzsbm="true" loading="lazy" decoding="async" fetchpriority="auto" width="320" height="192" class="mx-auto rounded-lg shadow-md">
+      </div>
+      
+      <div class="space-y-5" data-astro-cid-jhwnzsbm>
+        <div class="text-center p-5 bg-white rounded-2xl shadow-md" data-astro-cid-jhwnzsbm>
+          <div class="w-12 h-12 bg-red-600 rounded-2xl mx-auto mb-3 flex items-center justify-center" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-trending-up text-white">
+	
+	<path d="M16 7h6v6"></path>
+	<path d="m22 7-8.5 8.5-5-5L2 17"></path>
+
+</svg>
+          </div>
+          <div class="flex items-center justify-center mb-3" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-zap mr-2 text-red-600">
+	
+	<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+
+</svg>
+            <h3 class="text-lg font-bold text-slate-900" data-astro-cid-jhwnzsbm>爆速リターン術</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-medium text-sm" data-astro-cid-jhwnzsbm>AI解析×独自アルゴリズムで急騰銘柄を事前察知。平均14日で300%達成</p>
+        </div>
+        
+        <div class="text-center p-5 bg-white rounded-2xl shadow-md" data-astro-cid-jhwnzsbm>
+          <div class="w-12 h-12 bg-red-600 rounded-2xl mx-auto mb-3 flex items-center justify-center" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-clock text-white">
+	
+	<path d="M12 6v6l4 2"></path>
+	<circle cx="12" cy="12" r="10"></circle>
+
+</svg>
+          </div>
+          <div class="flex items-center justify-center mb-3" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-clock mr-2 text-red-600">
+	
+	<path d="M12 6v6l4 2"></path>
+	<circle cx="12" cy="12" r="10"></circle>
+
+</svg>
+            <h3 class="text-lg font-bold text-slate-900" data-astro-cid-jhwnzsbm>ワンクリック投資</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-medium text-sm" data-astro-cid-jhwnzsbm>LINEで銘柄配信→スマホでポチッ→利益確定。忙しいサラリーマンでも実践可能</p>
+        </div>
+        
+        <div class="text-center p-5 bg-white rounded-2xl shadow-md" data-astro-cid-jhwnzsbm>
+          <div class="w-12 h-12 bg-red-600 rounded-2xl mx-auto mb-3 flex items-center justify-center" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-users text-white">
+	
+	<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+	<path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+	<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+	<circle cx="9" cy="7" r="4"></circle>
+
+</svg>
+          </div>
+          <div class="flex items-center justify-center mb-3" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-users mr-2 text-red-600">
+	
+	<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+	<path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+	<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+	<circle cx="9" cy="7" r="4"></circle>
+
+</svg>
+            <h3 class="text-lg font-bold text-slate-900" data-astro-cid-jhwnzsbm>成功率96%</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-medium text-sm" data-astro-cid-jhwnzsbm>月収30万円の会社員が3ヶ月で2000万円達成など、奇跡の成功事例が続出中</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-12 px-4 bg-white" data-astro-cid-jhwnzsbm>
+    <div class="max-w-md mx-auto text-center" data-astro-cid-jhwnzsbm>
+      <div class="mb-8" data-astro-cid-jhwnzsbm>
+        <span class="inline-flex items-center px-3 py-2 bg-green-100 text-green-700 rounded-full text-xs font-bold mb-3" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="14" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-chart-column mr-2">
+	
+	<path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+	<path d="M18 17V9"></path>
+	<path d="M13 17V5"></path>
+	<path d="M8 17v-3"></path>
+
+</svg>驚愕の数字
+        </span>
+        <h2 class="text-2xl font-bold text-slate-900 mb-3" data-astro-cid-jhwnzsbm>会員様の<span class="text-red-600" data-astro-cid-jhwnzsbm>リアルな成果</span></h2>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4" data-astro-cid-jhwnzsbm>
+        <div class="p-4 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-200" data-astro-cid-jhwnzsbm>
+          <div class="text-3xl font-black text-red-600 mb-1" data-astro-cid-jhwnzsbm>5,847</div>
+          <p class="text-slate-800 font-bold text-xs" data-astro-cid-jhwnzsbm>成功者数</p>
+        </div>
+        <div class="p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border border-orange-200" data-astro-cid-jhwnzsbm>
+          <div class="text-3xl font-black text-orange-600 mb-1" data-astro-cid-jhwnzsbm>96%</div>
+          <p class="text-slate-800 font-bold text-xs" data-astro-cid-jhwnzsbm>利益達成率</p>
+        </div>
+        <div class="p-4 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl border border-green-200" data-astro-cid-jhwnzsbm>
+          <div class="text-3xl font-black text-green-600 mb-1" data-astro-cid-jhwnzsbm>+287%</div>
+          <p class="text-slate-800 font-bold text-xs" data-astro-cid-jhwnzsbm>平均利益率</p>
+        </div>
+        <div class="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl border border-blue-200" data-astro-cid-jhwnzsbm>
+          <div class="text-3xl font-black text-blue-600 mb-1" data-astro-cid-jhwnzsbm>14日</div>
+          <p class="text-slate-800 font-bold text-xs" data-astro-cid-jhwnzsbm>平均達成期間</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-12 px-4 bg-gradient-to-r from-red-600 to-orange-600 text-white" data-astro-cid-jhwnzsbm>
+    <div class="max-w-md mx-auto text-center" data-astro-cid-jhwnzsbm>
+      <div class="flex items-center justify-center mb-6" data-astro-cid-jhwnzsbm>
+        <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-triangle-alert mr-2 text-yellow-300">
+	
+	<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path>
+	<path d="M12 9v4"></path>
+	<path d="M12 17h.01"></path>
+
+</svg>
+        <h2 class="text-xl font-bold" data-astro-cid-jhwnzsbm>今すぐ行動しないと後悔します</h2>
+      </div>
+      
+      <div class="space-y-6 mb-8" data-astro-cid-jhwnzsbm>
+        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-sm" data-astro-cid-jhwnzsbm>
+          <div class="flex items-center mb-3" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="20" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-trending-up mr-2 text-yellow-300">
+	
+	<path d="M16 7h6v6"></path>
+	<path d="m22 7-8.5 8.5-5-5L2 17"></path>
+
+</svg>
+            <h3 class="text-lg font-bold text-yellow-300" data-astro-cid-jhwnzsbm>機会損失の恐怖</h3>
+          </div>
+          <p class="text-sm leading-relaxed" data-astro-cid-jhwnzsbm>今月だけで会員の資産が平均<span class="font-bold text-yellow-200" data-astro-cid-jhwnzsbm>3.87倍</span>に急増。あなたが迷っている間にも、他の人は資産を増やし続けています。</p>
+        </div>
+        
+        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-sm" data-astro-cid-jhwnzsbm>
+          <div class="flex items-center mb-3" data-astro-cid-jhwnzsbm>
+            <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="20" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-clock mr-2 text-yellow-300">
+	
+	<path d="M12 6v6l4 2"></path>
+	<circle cx="12" cy="12" r="10"></circle>
+
+</svg>
+            <h3 class="text-lg font-bold text-yellow-300" data-astro-cid-jhwnzsbm>限定公開終了まで</h3>
+          </div>
+          <div class="text-2xl font-bold text-yellow-200 mb-2 countdown-timer" data-astro-cid-jhwnzsbm>02:15</div>
+          <p class="text-sm leading-relaxed" data-astro-cid-jhwnzsbm>この秘密の投資法は本日限定公開。明日には一般公開を停止します。</p>
+        </div>
+      </div>
+
+      <button class="link-btn inline-flex items-center px-8 py-4 bg-yellow-400 text-red-600 rounded-full hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg font-black animate-breathe-yellow" data-umami-event="contact" data-umami-event-method="line" data-umami-event-position="urgency-cta" data-umami-event-instructor="三橋貴明" data-astro-cid-jhwnzsbm>
+        <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="20" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-triangle-alert mr-2 text-red-600">
+	
+	<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path>
+	<path d="M12 9v4"></path>
+	<path d="M12 17h.01"></path>
+
+</svg>
+        <span data-astro-cid-jhwnzsbm>今すぐ無料で受け取る！</span>
+      </button>
+      
+      <p class="text-yellow-200 mt-3 text-sm font-bold" data-astro-cid-jhwnzsbm>残り枠数：あと17名様限定</p>
+    </div>
+  </section>
+
+  
+  <section class="py-20 px-4 bg-white" data-astro-cid-jhwnzsbm>
+    <div class="max-w-4xl mx-auto" data-astro-cid-jhwnzsbm>
+      <div class="text-center mb-16" data-astro-cid-jhwnzsbm>
+        <span class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="16" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-users mr-2">
+	
+	<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+	<path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+	<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+	<circle cx="9" cy="7" r="4"></circle>
+
+</svg>会員様の声
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 mb-4" data-astro-cid-jhwnzsbm>実際に<span class="text-red-600" data-astro-cid-jhwnzsbm>人生が変わった</span>人たち</h2>
+      </div>
+      
+      <div class="space-y-6" data-astro-cid-jhwnzsbm>
+        <div class="p-8 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl border-2 border-green-200 shadow-lg" data-astro-cid-jhwnzsbm>
+          <div class="flex items-center mb-4" data-astro-cid-jhwnzsbm>
+            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl" data-astro-cid-jhwnzsbm>田</div>
+            <div class="ml-4" data-astro-cid-jhwnzsbm>
+              <p class="font-bold text-slate-800" data-astro-cid-jhwnzsbm>田中様 (会社員・42歳)</p>
+              <p class="text-green-600 font-bold text-lg" data-astro-cid-jhwnzsbm>実際の収益: +387% (資産4.87倍)</p>
+            </div>
+          </div>
+          <p class="text-slate-700 mb-4 italic text-lg leading-relaxed" data-astro-cid-jhwnzsbm>
+            「正直、最初は詐欺だと思いました。でも三橋貴明さんの手法を試したら、本当に2週間で資産が4.87倍に！387%のリターンなんて信じられません。妻も驚いています。もう会社を辞めようか本気で悩んでいます。」
+          </p>
+          <div class="flex items-center text-yellow-500" data-astro-cid-jhwnzsbm>
+            ⭐⭐⭐⭐⭐ <span class="ml-2 text-slate-600" data-astro-cid-jhwnzsbm>5つ星評価</span>
+          </div>
+        </div>
+        
+        <div class="p-8 bg-gradient-to-br from-pink-50 to-orange-50 rounded-2xl border-2 border-pink-200 shadow-lg" data-astro-cid-jhwnzsbm>
+          <div class="flex items-center mb-4" data-astro-cid-jhwnzsbm>
+            <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl" data-astro-cid-jhwnzsbm>佐</div>
+            <div class="ml-4" data-astro-cid-jhwnzsbm>
+              <p class="font-bold text-slate-800" data-astro-cid-jhwnzsbm>佐藤様 (主婦・35歳)</p>
+              <p class="text-pink-600 font-bold text-lg" data-astro-cid-jhwnzsbm>実際の収益: +245% (資産3.45倍)</p>
+            </div>
+          </div>
+          <p class="text-slate-700 mb-4 italic text-lg leading-relaxed" data-astro-cid-jhwnzsbm>
+            「子育てしながらでもスマホ一つで資産が3.45倍に！245%のリターンなんて夢のようです。主人の年収を超えてしまいました。今では私が家計を支えています。三橋貴明さん、本当にありがとうございます！」
+          </p>
+          <div class="flex items-center text-yellow-500" data-astro-cid-jhwnzsbm>
+            ⭐⭐⭐⭐⭐ <span class="ml-2 text-slate-600" data-astro-cid-jhwnzsbm>5つ星評価</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-16 px-4 bg-gradient-to-br from-slate-900 to-red-900 text-white" data-astro-cid-jhwnzsbm>
+    <div class="max-w-md mx-auto text-center" data-astro-cid-jhwnzsbm>
+      <h2 class="text-3xl font-bold mb-6" data-astro-cid-jhwnzsbm>
+        あなたも<span class="text-yellow-400" data-astro-cid-jhwnzsbm>次の成功者</span>になりませんか？
+      </h2>
+      
+      <p class="text-lg mb-8 leading-relaxed text-gray-200" data-astro-cid-jhwnzsbm>
+        三橋貴明の秘密の投資法で、普通のサラリーマンが2週間で<span class="text-yellow-400 font-bold" data-astro-cid-jhwnzsbm>資産を4倍</span>に急増。<span class="text-yellow-400 font-bold" data-astro-cid-jhwnzsbm>今なら完全無料</span>でこの手法を公開中です。
+      </p>
+      
+      <div class="bg-yellow-400 text-red-600 p-5 rounded-2xl mb-6 inline-block" data-astro-cid-jhwnzsbm>
+        <div class="flex items-center justify-center" data-astro-cid-jhwnzsbm>
+          <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="20" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-triangle-alert mr-2 text-red-600">
+	
+	<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path>
+	<path d="M12 9v4"></path>
+	<path d="M12 17h.01"></path>
+
+</svg>
+          <p class="text-xl font-black" data-astro-cid-jhwnzsbm>本日23:59まで限定公開</p>
+        </div>
+        <p class="text-sm font-bold mt-2" data-astro-cid-jhwnzsbm>明日からは有料コンサルのみ（月額50万円）</p>
+      </div>
+
+      <button class="link-btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-red-600 rounded-full hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg font-black mb-5 animate-breathe-gradient" data-umami-event="contact" data-umami-event-method="line" data-umami-event-position="final-cta" data-umami-event-instructor="三橋貴明" data-astro-cid-jhwnzsbm>
+        <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" data-astro-cid-jhwnzsbm="true" class="lucide lucide-target mr-2 text-red-600">
+	
+	<circle cx="12" cy="12" r="10"></circle>
+	<circle cx="12" cy="12" r="6"></circle>
+	<circle cx="12" cy="12" r="2"></circle>
+
+</svg>
+        <span data-astro-cid-jhwnzsbm>今すぐ無料で投資法を受け取る</span>
+      </button>
+      
+      <div class="text-center" data-astro-cid-jhwnzsbm>
+        <p class="text-green-400 text-sm font-bold" data-astro-cid-jhwnzsbm>✅ 登録者数：5,847名突破</p>
+        <p class="text-yellow-300 text-sm font-bold" data-astro-cid-jhwnzsbm>✅ 満足度：98.7%</p>
+        <p class="text-blue-400 text-sm font-bold" data-astro-cid-jhwnzsbm>✅ 平均収益率：+287%（資産3.87倍）</p>
+      </div>
+    </div>
+  </section>
+
+  </body></html>
+
+<script type="module">function m(){const e="countdown_start_time";let t=localStorage.getItem(e);t?t=parseInt(t):(t=new Date().getTime(),localStorage.setItem(e,t.toString()));const r=135*1e3,i=t+r;function o(){const s=new Date().getTime(),n=i-s;if(n<0){document.querySelectorAll('[id="countdown"], .countdown-timer').forEach(l=>{l.innerHTML="00:00:00"});return}const a=Math.floor(n/(1e3*60)),d=Math.floor(n%(1e3*60)/1e3),u=`${a.toString().padStart(2,"0")}:${d.toString().padStart(2,"0")}`;document.querySelectorAll('[id="countdown"], .countdown-timer').forEach(c=>{c.innerHTML=u})}setInterval(o,1e3),o()}m();</script>

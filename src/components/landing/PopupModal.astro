@@ -1,0 +1,24 @@
+---
+// Import images
+import stocksPngImg from './static/stocks.png'
+
+const {
+  stocksPng = stocksPngImg.src,
+} = Astro.props;
+---
+
+<div id="popup1" class="popup">
+  <div class="popup-content">
+    <span class="close-popup">×</span>
+    <p><br /></p>
+    <p style="text-align: center; font-weight: bold; font-size: larger;">LINEの友達を追加で即無料入手</p>
+    <img src={stocksPng} alt="Report Image" style="display: block; margin: 15px auto; max-width: 100%;" />
+    ✅独自の市場分析<br />✅リアルタイム取引戦略<br />✅毎月5つの高精度有望株を提供<br />⏱️<span style="color: red;">時間限定 / 人数限定</span>
+    <br /><br />
+    <p></p>
+    <div class="popup-buttons">
+      <button id="confirm-button">友だち追加</button>
+      <button id="cancel-button" style="float: right;">放棄</button>
+    </div>
+  </div>
+</div>

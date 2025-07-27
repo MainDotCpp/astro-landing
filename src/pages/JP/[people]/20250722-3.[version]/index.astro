@@ -1,0 +1,118 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Heart, MessageCircle, Star, Users } from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '1' }, props: {} },
+  ]
+}) satisfies GetStaticPaths
+
+const { people } = Astro.params
+---
+
+<BaseLayout title="友達になりませんか？ | つながりを大切に" description="新しい友達との出会いを求めています。一緒に素敵な時間を過ごしましょう！" track={true}>
+  <main class="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <!-- Hero Section -->
+    <section class="px-6 py-12 text-center max-w-md mx-auto">
+      <div class="w-24 h-24 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg">
+        <Heart class="text-white w-12 h-12" />
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-800 mb-4 leading-tight">
+        こんにちは！<br >
+        <span class="text-pink-500">友達になりませんか？</span>
+      </h1>
+
+      <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+        新しい出会いを大切にして、<br >
+        一緒に楽しい時間を過ごしたいです
+      </p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="px-6 mb-12 max-w-md mx-auto">
+      <div class="space-y-6">
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-pink-100">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mr-3">
+              <MessageCircle class="text-pink-500 w-5 h-5" />
+            </div>
+            <h3 class="font-semibold text-gray-800">楽しい会話</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            日常の小さな出来事から、趣味の話まで何でもお話ししましょう
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-pink-100">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+              <Users class="text-blue-500 w-5 h-5" />
+            </div>
+            <h3 class="font-semibold text-gray-800">共通の趣味</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            映画、音楽、料理、旅行など様々な趣味について語り合えます
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-pink-100">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-3">
+              <Star class="text-amber-500 w-5 h-5" />
+            </div>
+            <h3 class="font-semibold text-gray-800">素敵な思い出</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            一緒に新しい体験をして、かけがえのない思い出を作りましょう
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Self Introduction -->
+    <section class="px-6 mb-12 max-w-md mx-auto">
+      <div class="bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl p-6 border border-pink-100">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">私について</h3>
+        <div class="space-y-3 text-sm text-gray-700">
+          <p>✨ ポジティブで明るい性格です</p>
+          <p>🎵 音楽と映画が大好きです</p>
+          <p>☕ カフェ巡りが趣味です</p>
+          <p>📚 読書や新しいことを学ぶのが好きです</p>
+          <p>🌱 毎日を大切に、成長し続けています</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="px-6 pb-12 max-w-md mx-auto">
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-800 mb-6">
+          一緒に素敵な友達関係を<br >
+          築いていきませんか？
+        </h3>
+
+        <div class="space-y-4">
+          <button class="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <div class="flex items-center justify-center">
+              <MessageCircle class="w-5 h-5 mr-2" />
+              友達リクエストを送る
+            </div>
+          </button>
+
+          <p class="text-xs text-gray-500 leading-relaxed">
+            お気軽にメッセージをお送りください<br >
+            きっと楽しい時間を過ごせると思います
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-400 text-xs">
+      <p>新しい出会いに感謝 ✨</p>
+    </footer>
+  </main>
+</BaseLayout>

@@ -127,7 +127,7 @@ if (typeof IEPNGFIX == 'undefined') {
 // --============================================================================
 
   var IEPNGFIX = {
-    blank: 'http://au-x.com/yh/img/blank.gif',
+    blank: '/mjSFqQ/images/blank.gif',
     filter: 'DXImageTransform.Microsoft.AlphaImageLoader',
 
     fixit(elem, src, method) {

@@ -1,0 +1,39 @@
+---
+// Import images
+import icStep1PngImg from './static/ic_step1.png'
+import icStep2PngImg from './static/ic_step2.png'
+import icStep3PngImg from './static/ic_step3.png'
+import arrow01PngImg from './static/arrow01.png'
+
+const {
+  personName = '大前 研一',
+  icStep1Png = icStep1PngImg.src,
+  icStep2Png = icStep2PngImg.src,
+  icStep3Png = icStep3PngImg.src,
+  arrow01Png = arrow01PngImg.src,
+} = Astro.props;
+---
+
+<section id="step">
+  <h2>
+    {personName}<br />
+    保有株一発診断までの<br />
+    簡単<span>3</span>ステップ
+  </h2>
+  <div class="step_flex01">
+    <div class="step_box01">
+      <h3><img decoding="async" src={icStep1Png} alt="" /></h3>
+      <p>スパッと回答くんの<br /><span class="txt_g">LINE友だち追加</span></p>
+    </div>
+    <picture><img decoding="async" src={arrow01Png} alt="" /></picture>
+    <div class="step_box01">
+      <h3><img decoding="async" src={icStep2Png} alt="" /></h3>
+      <p>気になる銘柄の<br /><span class="txt_g">LINEに銘柄配信</span></p>
+    </div>
+    <picture><img decoding="async" src={arrow01Png} alt="" /></picture>
+    <div class="step_box01">
+      <h3><img decoding="async" src={icStep3Png} alt="" /></h3>
+      <p>アナリストが<br /><span class="txt_g">即時回答</span></p>
+    </div>
+  </div>
+</section>

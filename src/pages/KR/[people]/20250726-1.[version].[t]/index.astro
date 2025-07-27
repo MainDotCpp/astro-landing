@@ -1,0 +1,2380 @@
+---
+import type { GetStaticPaths } from 'astro'
+import bgAbout02Pc from '@/assets/images/downloaded/bg_about02_pc.png'
+
+import bgAboutPc from '@/assets/images/downloaded/bg_about_pc.png'
+import bgCase from '@/assets/images/downloaded/bg_case.png'
+import bgCasePc from '@/assets/images/downloaded/bg_case_pc.png'
+import bgContact02 from '@/assets/images/downloaded/bg_contact02.png'
+import bgContact02Pc from '@/assets/images/downloaded/bg_contact02_pc.png'
+import bgContactPc from '@/assets/images/downloaded/bg_contact_pc.png'
+import bgCustomer from '@/assets/images/downloaded/bg_customer.png'
+import bgCustomerPc from '@/assets/images/downloaded/bg_customer_pc.png'
+import bgMerit from '@/assets/images/downloaded/bg_merit.png'
+import bgMeritPc from '@/assets/images/downloaded/bg_merit_pc.png'
+import bgMvBottom from '@/assets/images/downloaded/bg_mv_bottom.png'
+import bgMvBottomPc from '@/assets/images/downloaded/bg_mv_bottom_pc.png'
+import bgQuestion from '@/assets/images/downloaded/bg_question.png'
+import bgQuestionPc from '@/assets/images/downloaded/bg_question_pc.png'
+import bgStep from '@/assets/images/downloaded/bg_step.png'
+import bgStepPc from '@/assets/images/downloaded/bg_step_pc.png'
+import chevronWhite from '@/assets/images/downloaded/chevron-white.svg'
+// Import downloaded network images
+import mvBgPc from '@/assets/images/downloaded/mv_bg_pc.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import a1 from './static/A1.png'
+import a2 from './static/A2.png'
+import a3 from './static/A3.png'
+import a4 from './static/A4.png'
+import a5 from './static/A5.png'
+import about02Img01 from './static/about02_img01.png'
+import aidd4 from './static/AIDD4.png'
+import arrow01 from './static/arrow01.png'
+import btn1 from './static/BTN1.png'
+import contactImg01 from './static/contact_img01.png'
+import contactImg02 from './static/contact_img02.png'
+import contactImg03 from './static/contact_img03.png'
+import footerLogo from './static/footer-logo.png'
+
+import headerImg from './static/header-img.png'
+// Import all static images
+import headerLogo from './static/header-logo.jpg'
+import icStep1 from './static/ic_step1.png'
+import icStep2 from './static/ic_step2.png'
+import icStep3 from './static/ic_step3.png'
+import m0 from './static/M0.png'
+import m2 from './static/M2.png'
+import m4 from './static/M4.png'
+import m6 from './static/M6.png'
+import m7 from './static/M7.png'
+import m8 from './static/M8.png'
+import m9 from './static/M9.png'
+import mvBottomImg01 from './static/mv_bottom_img01.png'
+import r1 from './static/R1.png'
+import r2 from './static/R2.png'
+import r3 from './static/R3.png'
+import r4 from './static/R4.png'
+import r5 from './static/R5.png'
+import r6 from './static/R6.png'
+
+export function getStaticPaths() {
+  const pages = [
+    { params: { people: 'test', version: '0' }, props: { name: 'Test User' } },
+  ]
+  return [
+    ...pages.map(p => ({ params: { ...p.params, t: 'g' }, props: p.props })),
+    ...pages.map(p => ({ params: { ...p.params, t: '밴드' }, props: p.props })),
+  ]
+}
+
+const { t = '밴드' } = Astro.params
+const { name } = Astro.props
+---
+
+<BaseLayout title="주식 종목 전문 분석 서비스" plugins={{ jquery: {} }}>
+  <Fragment slot="head">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="description"
+      content="주식 종목 전문 분석 서비스입니다. 카카오톡 친구를 추가하고 '3'만 보내주시면, 관심 있는 주식 종목에 대한 전문적인 분석 결과와 매매 전략을 즉시 받아보실 수 있습니다."
+    />
+    <meta name="copyright" content="" />
+
+    <!-- OGP -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="주식 종목 전문 분석 서비스 | 주식 마이스터" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:site_name" content="주식 종목 전문 분석 서비스 | 주식 마이스터" />
+    <meta property="og:image" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/style.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="static/style(1).css" type="text/css" media="all" />
+    <link rel="stylesheet" href="static/common.css" />
+    <link rel="stylesheet" href="static/style(2).css" />
+
+    <style>
+      #mv {
+  background-image: url(./static/A5.png);
+}
+      @media (min-width: 768px) {
+  #mv {
+    background-image: url(@/assets/images/downloaded/mv_bg_pc.png);
+  }
+}
+
+      img.wp-smiley,
+      img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 0.07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+      }
+
+      .wp-block-button__link {
+        color: #fff;
+        background-color: #32373c;
+        border-radius: 9999px;
+        box-shadow: none;
+        text-decoration: none;
+        padding: calc(0.667em + 2px) calc(1.333em + 2px);
+        font-size: 1.125em;
+      }
+      .wp-block-file__button {
+        background: #32373c;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      body {
+        --wp--preset--color--black: #000000;
+        --wp--preset--color--cyan-bluish-gray: #abb8c3;
+        --wp--preset--color--white: #ffffff;
+        --wp--preset--color--pale-pink: #f78da7;
+        --wp--preset--color--vivid-red: #cf2e2e;
+        --wp--preset--color--luminous-vivid-orange: #ff6900;
+        --wp--preset--color--luminous-vivid-amber: #fcb900;
+        --wp--preset--color--light-green-cyan: #7bdcb5;
+        --wp--preset--color--vivid-green-cyan: #00d084;
+        --wp--preset--color--pale-cyan-blue: #8ed1fc;
+        --wp--preset--color--vivid-cyan-blue: #0693e3;
+        --wp--preset--color--vivid-purple: #9b51e0;
+        --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(
+          135deg,
+          rgba(6, 147, 227, 1) 0%,
+          rgb(155, 81, 224) 100%
+        );
+        --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(
+          135deg,
+          rgb(122, 220, 180) 0%,
+          rgb(0, 208, 130) 100%
+        );
+        --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(
+          135deg,
+          rgba(252, 185, 0, 1) 0%,
+          rgba(255, 105, 0, 1) 100%
+        );
+        --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(
+          135deg,
+          rgba(255, 105, 0, 1) 0%,
+          rgb(207, 46, 46) 100%
+        );
+        --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(
+          135deg,
+          rgb(238, 238, 238) 0%,
+          rgb(169, 184, 195) 100%
+        );
+        --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(
+          135deg,
+          rgb(74, 234, 220) 0%,
+          rgb(151, 120, 209) 20%,
+          rgb(207, 42, 186) 40%,
+          rgb(238, 44, 130) 60%,
+          rgb(251, 105, 98) 80%,
+          rgb(254, 248, 76) 100%
+        );
+        --wp--preset--gradient--blush-light-purple: linear-gradient(
+          135deg,
+          rgb(255, 206, 236) 0%,
+          rgb(152, 150, 240) 100%
+        );
+        --wp--preset--gradient--blush-bordeaux: linear-gradient(
+          135deg,
+          rgb(254, 205, 165) 0%,
+          rgb(254, 45, 45) 50%,
+          rgb(107, 0, 62) 100%
+        );
+        --wp--preset--gradient--luminous-dusk: linear-gradient(
+          135deg,
+          rgb(255, 203, 112) 0%,
+          rgb(199, 81, 192) 50%,
+          rgb(65, 88, 208) 100%
+        );
+        --wp--preset--gradient--pale-ocean: linear-gradient(
+          135deg,
+          rgb(255, 245, 203) 0%,
+          rgb(182, 227, 212) 50%,
+          rgb(51, 167, 181) 100%
+        );
+        --wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+        --wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+        --wp--preset--font-size--small: 13px;
+        --wp--preset--font-size--medium: 20px;
+        --wp--preset--font-size--large: 36px;
+        --wp--preset--font-size--x-large: 42px;
+        --wp--preset--spacing--20: 0.44rem;
+        --wp--preset--spacing--30: 0.67rem;
+        --wp--preset--spacing--40: 1rem;
+        --wp--preset--spacing--50: 1.5rem;
+        --wp--preset--spacing--60: 2.25rem;
+        --wp--preset--spacing--70: 3.38rem;
+        --wp--preset--spacing--80: 5.06rem;
+        --wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+        --wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+        --wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+        --wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);
+        --wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);
+      }
+      :where(.is-layout-flex) {
+        gap: 0.5em;
+      }
+      :where(.is-layout-grid) {
+        gap: 0.5em;
+      }
+      body .is-layout-flex {
+        display: flex;
+      }
+      body .is-layout-flex {
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      body .is-layout-flex > * {
+        margin: 0;
+      }
+      body .is-layout-grid {
+        display: grid;
+      }
+      body .is-layout-grid > * {
+        margin: 0;
+      }
+      :where(.wp-block-columns.is-layout-flex) {
+        gap: 2em;
+      }
+      :where(.wp-block-columns.is-layout-grid) {
+        gap: 2em;
+      }
+      :where(.wp-block-post-template.is-layout-flex) {
+        gap: 1.25em;
+      }
+      :where(.wp-block-post-template.is-layout-grid) {
+        gap: 1.25em;
+      }
+      .has-black-color {
+        color: var(--wp--preset--color--black) !important;
+      }
+      .has-cyan-bluish-gray-color {
+        color: var(--wp--preset--color--cyan-bluish-gray) !important;
+      }
+      .has-white-color {
+        color: var(--wp--preset--color--white) !important;
+      }
+      .has-pale-pink-color {
+        color: var(--wp--preset--color--pale-pink) !important;
+      }
+      .has-vivid-red-color {
+        color: var(--wp--preset--color--vivid-red) !important;
+      }
+      .has-luminous-vivid-orange-color {
+        color: var(--wp--preset--color--luminous-vivid-orange) !important;
+      }
+      .has-luminous-vivid-amber-color {
+        color: var(--wp--preset--color--luminous-vivid-amber) !important;
+      }
+      .has-light-green-cyan-color {
+        color: var(--wp--preset--color--light-green-cyan) !important;
+      }
+      .has-vivid-green-cyan-color {
+        color: var(--wp--preset--color--vivid-green-cyan) !important;
+      }
+      .has-pale-cyan-blue-color {
+        color: var(--wp--preset--color--pale-cyan-blue) !important;
+      }
+      .has-vivid-cyan-blue-color {
+        color: var(--wp--preset--color--vivid-cyan-blue) !important;
+      }
+      .has-vivid-purple-color {
+        color: var(--wp--preset--color--vivid-purple) !important;
+      }
+      .has-black-background-color {
+        background-color: var(--wp--preset--color--black) !important;
+      }
+      .has-cyan-bluish-gray-background-color {
+        background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+      }
+      .has-white-background-color {
+        background-color: var(--wp--preset--color--white) !important;
+      }
+      .has-pale-pink-background-color {
+        background-color: var(--wp--preset--color--pale-pink) !important;
+      }
+      .has-vivid-red-background-color {
+        background-color: var(--wp--preset--color--vivid-red) !important;
+      }
+      .has-luminous-vivid-orange-background-color {
+        background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+      }
+      .has-luminous-vivid-amber-background-color {
+        background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+      }
+      .has-light-green-cyan-background-color {
+        background-color: var(--wp--preset--color--light-green-cyan) !important;
+      }
+      .has-vivid-green-cyan-background-color {
+        background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+      }
+      .has-pale-cyan-blue-background-color {
+        background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+      }
+      .has-vivid-cyan-blue-background-color {
+        background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+      }
+      .has-vivid-purple-background-color {
+        background-color: var(--wp--preset--color--vivid-purple) !important;
+      }
+      .has-black-border-color {
+        border-color: var(--wp--preset--color--black) !important;
+      }
+      .has-cyan-bluish-gray-border-color {
+        border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+      }
+      .has-white-border-color {
+        border-color: var(--wp--preset--color--white) !important;
+      }
+      .has-pale-pink-border-color {
+        border-color: var(--wp--preset--color--pale-pink) !important;
+      }
+      .has-vivid-red-border-color {
+        border-color: var(--wp--preset--color--vivid-red) !important;
+      }
+      .has-luminous-vivid-orange-border-color {
+        border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+      }
+      .has-luminous-vivid-amber-border-color {
+        border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+      }
+      .has-light-green-cyan-border-color {
+        border-color: var(--wp--preset--color--light-green-cyan) !important;
+      }
+      .has-vivid-green-cyan-border-color {
+        border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+      }
+      .has-pale-cyan-blue-border-color {
+        border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+      }
+      .has-vivid-cyan-blue-border-color {
+        border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+      }
+      .has-vivid-purple-border-color {
+        border-color: var(--wp--preset--color--vivid-purple) !important;
+      }
+      .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+        background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+      }
+      .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+        background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+      }
+      .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+        background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+      }
+      .has-luminous-vivid-orange-to-vivid-red-gradient-background {
+        background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+      }
+      .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+        background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+      }
+      .has-cool-to-warm-spectrum-gradient-background {
+        background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+      }
+      .has-blush-light-purple-gradient-background {
+        background: var(--wp--preset--gradient--blush-light-purple) !important;
+      }
+      .has-blush-bordeaux-gradient-background {
+        background: var(--wp--preset--gradient--blush-bordeaux) !important;
+      }
+      .has-luminous-dusk-gradient-background {
+        background: var(--wp--preset--gradient--luminous-dusk) !important;
+      }
+      .has-pale-ocean-gradient-background {
+        background: var(--wp--preset--gradient--pale-ocean) !important;
+      }
+      .has-electric-grass-gradient-background {
+        background: var(--wp--preset--gradient--electric-grass) !important;
+      }
+      .has-midnight-gradient-background {
+        background: var(--wp--preset--gradient--midnight) !important;
+      }
+      .has-small-font-size {
+        font-size: var(--wp--preset--font-size--small) !important;
+      }
+      .has-medium-font-size {
+        font-size: var(--wp--preset--font-size--medium) !important;
+      }
+      .has-large-font-size {
+        font-size: var(--wp--preset--font-size--large) !important;
+      }
+      .has-x-large-font-size {
+        font-size: var(--wp--preset--font-size--x-large) !important;
+      }
+      :where(.wp-block-post-template.is-layout-flex) {
+        gap: 1.25em;
+      }
+      :where(.wp-block-post-template.is-layout-grid) {
+        gap: 1.25em;
+      }
+      :where(.wp-block-columns.is-layout-flex) {
+        gap: 2em;
+      }
+      :where(.wp-block-columns.is-layout-grid) {
+        gap: 2em;
+      }
+      .wp-block-pullquote {
+        font-size: 1.5em;
+        line-height: 1.6;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+      }
+
+      .popup-content {
+        background: #fff;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+        width: 340px;
+        max-width: 600px;
+      }
+
+      .close-popup {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      #confirm-button {
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        padding: 0 34px;
+        line-height: 51px;
+        -webkit-transition: all 200ms linear 0ms;
+        -khtml-transition: all 200ms linear 0ms;
+        -moz-transition: all 200ms linear 0ms;
+        -ms-transition: all 200ms linear 0ms;
+        -o-transition: all 200ms linear 0ms;
+        transition: all 200ms linear 0ms;
+        font-family: 'Poppins', sans-serif;
+        -webkit-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0 8px 10px rgb(12 12 12 / 10%);
+        -khtml-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        -moz-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        -ms-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        -o-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        box-shadow: 0 8px 10px rgb(12 12 12 / 10%);
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        background-color: #28a745;
+        height: auto;
+      }
+
+      #cancel-button {
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        padding: 0 34px;
+        line-height: 51px;
+        -webkit-transition: all 200ms linear 0ms;
+        -khtml-transition: all 200ms linear 0ms;
+        -moz-transition: all 200ms linear 0ms;
+        -ms-transition: all 200ms linear 0ms;
+        -o-transition: all 200ms linear 0ms;
+        transition: all 200ms linear 0ms;
+        font-family: 'Poppins', sans-serif;
+        -webkit-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0 8px 10px rgb(12 12 12 / 10%);
+        -khtml-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        -moz-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        -ms-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        -o-box-shadow: 0 8px 10px rgba(12, 12, 12, 0.1);
+        box-shadow: 0 8px 10px rgb(12 12 12 / 10%);
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        background-color: #dc3545;
+        height: auto;
+      }
+    </style>
+  </Fragment>
+
+  <!-- Popup Modal -->
+  <div id="popup1" class="popup">
+    <div class="popup-content">
+      <span class="close-popup">×</span>
+      <p>
+        <br />
+        카카오톡 친구추가 후 <span style="color: #ff0000">'3'</span> 전송하면<br />
+        무료 주식 분석을 받아보세요!
+        <br />
+        <br />
+      </p>
+      <div class="popup-buttons">
+        <button id="confirm-button">친구추가</button>
+        <button id="cancel-button" style="float: right">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="l-header">
+    <img class="l-header__img" src={headerImg.src} alt="초보자부터 고급자까지 주식 마이스터" />
+  </header>
+
+  <!-- Main Content -->
+  <div>
+    <main>
+      <!-- Hero Section -->
+      <section id="mv">
+        <div class="h1_con">
+          <h1>
+            <picture>
+              <source srcset={m0.src} media="(min-width: 811px)" />
+              <img
+                fetchpriority="high"
+                decoding="async"
+                src={m0.src}
+                alt="노후 투자자문 '주식 마이스터'의 신규 서비스 종목 상담 스페셜 답변 서비스로 주식 고민을 해결! 누적 회원수 20만건 이상 | 사이트 운영기간 14년 | 종목 상담 건수 10만건 이상"
+                width="1274"
+                height="1223"
+              />
+            </picture>
+          </h1>
+          <a
+            onclick="gofun()"
+            target="_blank"
+            rel="noopener"
+          ><img
+            decoding="async"
+            src={btn1.src}
+            alt="無料診断はコチラ"
+            width="870"
+            height="217"
+          /></a>
+        </div>
+      </section>
+
+      <!-- Steps Section -->
+      <section id="step">
+        <h2>보유 주식 증시 분석까지<br />간단한 <span>3단계</span></h2>
+        <div class="step_flex01">
+          <div class="step_box01">
+            <h3><img decoding="async" src={icStep1.src} alt="" /></h3>
+            <p>주식 마이스터의<br /><span class="txt_g">카카오톡 친구 추가</span></p>
+          </div>
+          <picture>
+            <img decoding="async" src={arrow01.src} alt="" />
+          </picture>
+          <div class="step_box01">
+            <h3><img decoding="async" src={icStep2.src} alt="" /></h3>
+            <p>기다리지 말고<br /><span class="txt_g">'3' 전송하기</span></p>
+          </div>
+          <picture>
+            <img decoding="async" src={arrow01.src} alt="" />
+          </picture>
+          <div class="step_box01">
+            <h3><img decoding="async" src={icStep3.src} alt="" /></h3>
+            <p>
+              주식 상세 분석과 매매<br class="pcOnly" />전략을 즉시 확인<br /><span class="txt_g">전문 분석 완료</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problems Section -->
+      <section id="mv_bottom">
+        <h2>주식 투자에<br class="pcOnly" />이런<br class="spOnly" />고민이 있으신가요?</h2>
+        <picture>
+          <img decoding="async" src={mvBottomImg01.src} alt="" width="691" height="582" />
+        </picture>
+        <picture>
+          <img loading="lazy" decoding="async" src={a2.src} alt="" width="1385" height="770" />
+        </picture>
+      </section>
+
+      <!-- Merit Section -->
+      <section id="merit">
+        <h2>최신 AI 분석 종목들이<br class="spOnly" />연이어 단기 상승 중!</h2>
+        <picture>
+          <img loading="lazy" decoding="async" src={m2.src} alt="" width="690" height="999" />
+        </picture>
+        <picture>
+          <img loading="lazy" decoding="async" src={m4.src} alt="" width="690" height="999" />
+        </picture>
+        <picture>
+          <img loading="lazy" decoding="async" src={m6.src} alt="" width="690" height="999" />
+        </picture>
+        <a
+          onclick="gofun()"
+          target="_blank"
+          rel="noopener"
+        ><img
+          decoding="async"
+          src="static/BTN1.png"
+          alt="無料診断はコチラ"
+          width="870"
+          height="217"
+        /></a>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <div class="contact_flex">
+          <img
+            loading="lazy"
+            decoding="async"
+            src={contactImg01.src}
+            alt=""
+            class="pcOnly"
+            width="105"
+            height="330"
+          />
+          <img loading="lazy" decoding="async" src={a3.src} alt="" class="pcOnly" width="99" height="316" />
+          <img loading="lazy" decoding="async" src={a4.src} alt="" class="pcOnly" width="99" height="316" />
+        </div>
+        <img loading="lazy" decoding="async" src={aidd4.src} alt="" class="spOnly" width="277" height="330" />
+        <img loading="lazy" decoding="async" src={a3.src} alt="" class="spOnly" width="277" height="330" />
+        <img loading="lazy" decoding="async" src={a4.src} alt="" class="spOnly" width="277" height="330" />
+      </section>
+
+      <!-- About Section -->
+      <section id="about">
+        <img loading="lazy" decoding="async" src={m7.src} alt="" class="spOnly" width="277" height="330" />
+        <img loading="lazy" decoding="async" src={m8.src} alt="" class="spOnly" width="277" height="330" />
+        <img loading="lazy" decoding="async" src={m9.src} alt="" class="spOnly" width="277" height="330" />
+      </section>
+
+      <!-- Customer Reviews Section -->
+      <section id="customer">
+        <div>
+          <h2>고객님들의 후기</h2>
+          <picture>
+            <img loading="lazy" decoding="async" src={r1.src} alt="" width="690" height="999" />
+            <img loading="lazy" decoding="async" src={r2.src} alt="" width="690" height="482" />
+            <img loading="lazy" decoding="async" src={r3.src} alt="" width="690" height="482" />
+            <img loading="lazy" decoding="async" src={r4.src} alt="" width="690" height="482" />
+            <img loading="lazy" decoding="async" src={r5.src} alt="" width="690" height="482" />
+            <img loading="lazy" decoding="async" src={r6.src} alt="" width="690" height="482" />
+          </picture>
+        </div>
+      </section>
+
+      <!-- Contact Section 2 -->
+      <section id="contact02">
+        <div class="contact02_flex">
+          <img
+            loading="lazy"
+            decoding="async"
+            src={contactImg01.src}
+            alt=""
+            class="pcOnly"
+            width="105"
+            height="330"
+          />
+          <div>
+            <p>
+              <span><span>10</span>초만에 무료 분석 가능!</span><br />카카오톡 친구추가 후 '3' 전송하기
+            </p>
+            <a onclick="gofun()" target="_blank" rel="noopener">
+              <picture>
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src={btn1.src}
+                  alt="무료 분석 받기"
+                  width="560"
+                  height="108"
+                />
+              </picture>
+            </a>
+            <ul>
+              <li>
+                ※카카오톡 친구추가 후 '3'만 보내주시면, 전문적인 주식 분석 보고서와 투자 전략을 무료로 받아보실 수 있습니다.
+              </li>
+              <li>※본 서비스는 완전 무료로 운영되고 있으니 안심하고 이용하세요.</li>
+            </ul>
+          </div>
+          <img
+            loading="lazy"
+            decoding="async"
+            src={contactImg02.src}
+            alt=""
+            class="pcOnly"
+            width="99"
+            height="316"
+          />
+        </div>
+        <img
+          loading="lazy"
+          decoding="async"
+          src={contactImg03.src}
+          alt=""
+          class="spOnly"
+          width="277"
+          height="330"
+        />
+      </section>
+
+      <!-- About Section 2 -->
+      <section id="about02">
+        <h2>주식 마이스터에 대하여</h2>
+        <div class="about02_flex">
+          <p>
+            <span>주식 마이스터는 종목 상담 건수<br class="spOnly" />10만 건 이상을 자랑하는<br
+              class="pcOnly"
+                                                                      />노후 투자자문</span
+            >
+            이므로,<br class="spOnly" />
+            【종목 상담 스페셜 답변 서비스】<br class="pcOnly" />에서는 종목의 개요나<br class="spOnly" />
+            시장 동향뿐만 아니라,<br class="pcOnly" />지금까지의 지식을 바탕으로<br class="spOnly" />
+            주가 분석을 포함한<br class="pcOnly" />매매 조언까지<br class="spOnly" />
+            도와드립니다.<br /><br class="pcOnly" />
+            또한, 보다 구체적인 질문에 대해서는<br />
+            카카오톡에서 '3'만 보내주시면,<br />
+            저희 애널리스트가 답변드리겠습니다.
+          </p>
+          <picture>
+            <img loading="lazy" decoding="async" src={about02Img01.src} alt="" width="653" height="571" />
+          </picture>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="question">
+        <h2>
+          자주 묻는 질문<br />
+          저희 서비스를 이용하신 분들의<br />
+          <span class="or">고객 후기</span>
+        </h2>
+        <div class="ac">
+          <div class="option">
+            <input type="checkbox" id="toggle1" class="toggle" />
+            <label class="ac_title" for="toggle1">
+              <span class="q_ttl_flex">
+                <span><span class="txt_q">Q.&nbsp;</span>서비스 이용 절차는 어떻게 하면 되나요?</span>
+              </span>
+            </label>
+            <div class="ac_content">
+              <ul>
+                <li>
+                  <span class="txt_a">A.&nbsp;</span>
+                  카카오톡 친구추가 후 '3'만 보내주시면, 전문적인 주식 분석 보고서를 완전 무료로 받아보실 수 있습니다!
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="ac">
+          <div class="option">
+            <input type="checkbox" id="toggle2" class="toggle" />
+            <label class="ac_title" for="toggle2">
+              <span class="q_ttl_flex">
+                <span><span class="txt_q">Q.&nbsp;</span>왜 무료로 체험할 수 있나요?</span>
+              </span>
+            </label>
+            <div class="ac_content">
+              <ul>
+                <li>
+                  <span class="txt_a">A.&nbsp;</span>
+                  당사는 고객님들이 수익을 내시고, AI를 활용한 자산운용을 올바르게 하실 수 있도록 무료 서비스를 제공하고 있습니다.
+                  먼저 AI의 실력을 체험해 보시기 위해, 부담 없이 주식 투자를 시작해보세요.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="ac">
+          <div class="option">
+            <input type="checkbox" id="toggle3" class="toggle" />
+            <label class="ac_title" for="toggle3">
+              <span class="q_ttl_flex">
+                <span><span class="txt_q">Q.&nbsp;</span>투자 경험이 없어도 괜찮을까요?</span>
+              </span>
+            </label>
+            <div class="ac_content">
+              <ul>
+                <li>
+                  <span class="txt_a">A.&nbsp;</span> 안심하세요!
+                  당사에서는 전담 직원이 친절하고 알기 쉽게 거래소 이용법을 안내해드리고 있습니다.<br />
+                  이메일이나 전화로 언제든 부담 없이 문의하실 수 있는 지원센터를 운영하고 있으며, 사후 폴로우도 완벽하게 지원하고 있으니 안심하세요.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="ac">
+          <div class="option">
+            <input type="checkbox" id="toggle4" class="toggle" />
+            <label class="ac_title" for="toggle4">
+              <span class="q_ttl_flex">
+                <span><span class="txt_q">Q.&nbsp;</span>주식 매매를 대신 해주시나요?</span>
+              </span>
+            </label>
+            <div class="ac_content">
+              <ul>
+                <li>
+                  <span class="txt_a">A.&nbsp;</span>
+                  실제 매매는 고객님의 증권계좌에서 고객님이 직접 진행하셔야 합니다. 증권계좌이 없으신 분들은 계좌 개설을 먼저 해주시기 바랍니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="ac">
+          <div class="option">
+            <input type="checkbox" id="toggle5" class="toggle" />
+            <label class="ac_title" for="toggle5">
+              <span class="q_ttl_flex">
+                <span><span class="txt_q">Q.&nbsp;</span>자금은 얼마나 필요한가요?</span>
+              </span>
+            </label>
+            <div class="ac_content">
+              <ul>
+                <li>
+                  <span class="txt_a">A.&nbsp;</span>
+                  고객님의 상황에 따라 다릅니다.
+                  수만원의 소액으로도 충분히 수익을 낼 수 있지만, 종목의 주가에 따라 매수가 어려울 수도 있습니다. 자신의 투자 자금에 맞게 무리하지 않는 선에서 추천 주식의 매매를 시도해보세요.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="ac">
+          <div class="option">
+            <input type="checkbox" id="toggle6" class="toggle" />
+            <label class="ac_title" for="toggle6">
+              <span class="q_ttl_flex">
+                <span><span class="txt_q">Q.&nbsp;</span>
+                  추천 주식에서 수익이 났을 경우, 성공보수나 기타 비용을 내야 하나요?
+                </span>
+              </span>
+            </label>
+            <div class="ac_content">
+              <ul>
+                <li>
+                  <span class="txt_a">A.&nbsp;</span>
+                  당사의 서비스는 원칙적으로 고객님으로부터 성공보수 등을 받지 않습니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Contact Section -->
+      <section id="contact03">
+        <div class="contact02_flex">
+          <img
+            loading="lazy"
+            decoding="async"
+            src={contactImg01.src}
+            alt=""
+            class="pcOnly"
+            width="105"
+            height="330"
+          />
+          <div>
+            <p>
+              <img
+                loading="lazy"
+                decoding="async"
+                src={a1.src}
+                alt=""
+                class="spOnly"
+                width="277"
+                height="330"
+              />
+            </p>
+            <a onclick="gofun()" target="_blank" rel="noopener">
+              <picture>
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src={btn1.src}
+                  alt="무료 분석 받기"
+                  width="560"
+                  height="108"
+                />
+              </picture>
+            </a>
+            <p class="k_sp" style="font-weight: bold; font-size: 18px">
+              버튼을 클릭해서 카카오톡 친구를 추가하고, '3'만 보내주시면 전문 주식 분석을 받아보실 수 있습니다. <br />
+              본 서비스는<span style="color: #fff300"> 완전 무료 </span>로 운영되고 있으니 안심하고 이용하세요.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <style>
+      @charset "UTF-8";
+
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-weight: inherit;
+        font-style: inherit;
+        font-size: 100%;
+        vertical-align: baseline;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+        vertical-align: middle;
+      }
+
+      a img {
+        border: none;
+      }
+
+      article,
+      aside,
+      canvas,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section,
+      summary,
+      main {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        display: block;
+      }
+
+      audio,
+      canvas,
+      video {
+        display: inline-block;
+      }
+
+      audio:not([controls]),
+      [hidden] {
+        display: none;
+      }
+
+      section {
+        box-sizing: border-box;
+      }
+
+      img {
+        height: auto;
+        width: 100%;
+        display: block;
+      }
+
+      .mv,
+      .btn,
+      .con01,
+      .con02,
+      .con03,
+      .con04,
+      .con05 {
+        font-family: 'Noto Sans JP', sans-serif;
+      }
+
+      body {
+        font-family: 'Noto Sans JP', sans-serif;
+        color: #555555;
+        font-size: 1.6rem;
+        line-height: 1.4;
+        font-weight: 400;
+        background-color: #fff;
+      }
+
+      a {
+        transition: 0.5s;
+      }
+
+      a:hover {
+        opacity: 0.8;
+      }
+
+      main * {
+        box-sizing: border-box;
+      }
+
+      .pcOnly,
+      .pcOnly.block,
+      .sp_none {
+        display: none !important;
+      }
+
+      .spOnly {
+        display: inline !important;
+      }
+
+      .spOnly.block {
+        display: block !important;
+      }
+
+      @media screen and (min-width: 811px) {
+        .pcOnly {
+          display: inline !important;
+        }
+
+        .pcOnly.block,
+        .sp_none {
+          display: block !important;
+        }
+
+        .spOnly,
+        .spOnly.block {
+          display: none !important;
+        }
+      }
+
+      #mv {
+        background-size: cover;
+        background-position: center center;
+        padding-top: 70px;
+        padding-bottom: 1px;
+      }
+
+      .logo {
+        position: absolute;
+        margin: auto;
+        top: 10px;
+        left: 10px;
+        width: 30%;
+      }
+
+      .h1_con {
+        margin: 0 auto 30px;
+        width: 80%;
+      }
+
+      .h1_con a {
+        margin: 20px auto 360px;
+        display: block;
+        width: 80%;
+        min-width: 107px;
+      }
+
+      .h1_con ul {
+        font-size: 10px;
+      }
+
+      @media screen and (min-width: 811px) {
+        #mv {
+          /* Background applied via inline style in HTML */
+          position: relative;
+          padding-top: 120px;
+          padding-bottom: 120px;
+        }
+
+        .logo {
+          width: 10%;
+        }
+
+        .h1_con {
+          position: relative;
+          margin: 0 auto;
+          margin-left: 10%;
+          width: 32%;
+        }
+
+        .h1_con a {
+          position: absolute;
+          top: 76%;
+          width: 70%;
+          min-width: 100px;
+          margin: auto;
+        }
+      }
+
+      #mv_bottom {
+        padding: 40px 0 40px;
+        /* Background applied via inline style in HTML */
+        background-size: cover;
+        background-position: center center;
+      }
+
+      h2 {
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1.3;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      #mv_bottom picture {
+        width: 90%;
+        display: block;
+        margin: 0 auto 20px;
+      }
+
+      @media screen and (min-width: 811px) {
+        #mv_bottom {
+          padding: 100px 0 100px;
+          /* Background applied via inline style in HTML */
+        }
+
+        h2 {
+          font-size: 60px;
+          font-weight: bold;
+          line-height: 1.3;
+          margin-bottom: 100px;
+          text-align: center;
+        }
+
+        #mv_bottom picture:nth-of-type(1) {
+          width: 90%;
+          max-width: 1000px;
+          display: block;
+          margin: 0 auto 70px;
+        }
+
+        #mv_bottom picture:nth-of-type(2) {
+          width: 90%;
+          max-width: 920px;
+          display: block;
+          margin: 0 auto 70px;
+        }
+      }
+
+      #merit {
+        padding: 50px 0 60px;
+        /* Background applied via inline style in HTML */
+        background-size: cover;
+        background-position: center center;
+      }
+
+      #merit picture {
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+      }
+
+      @media screen and (min-width: 811px) {
+        #merit {
+          padding: 100px 0 100px;
+          /* Background applied via inline style in HTML */
+        }
+
+        #merit picture {
+          width: 90%;
+          max-width: 1000px;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+
+      #customer {
+        padding: 50px 0 60px;
+        /* Background applied via inline style in HTML */
+        background-size: cover;
+        background-position: center center;
+      }
+
+      #customer h2 {
+        margin: 0 auto 30px;
+      }
+
+      .customer_flex01,
+      .customer_flex02 {
+        width: 90%;
+        margin: 0 auto 50px;
+      }
+
+      .customer_flex01 h3 {
+        width: 80%;
+        margin-bottom: 25px;
+      }
+
+      .customer_flex02 h3 {
+        width: 50%;
+        margin-bottom: 25px;
+      }
+
+      .customer_flex01 div > img,
+      .customer_flex02 div > img {
+        width: 10%;
+        margin-bottom: 25px;
+      }
+
+      .customer_flex01 div > p,
+      .customer_flex02 div > p {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+        text-align: left !important;
+      }
+
+      p.customer_txt {
+        font-size: 23px;
+        font-weight: bold;
+        line-height: 1.3;
+        text-align: center;
+      }
+
+      p.customer_txt span {
+        font-size: 130%;
+      }
+
+      @media screen and (min-width: 811px) {
+        #customer {
+          padding: 100px 0 100px;
+          /* Background applied via inline style in HTML */
+        }
+
+        #customer h2 {
+          margin: 0 auto 80px;
+        }
+
+        .customer_flex01 {
+          width: 90%;
+          max-width: 1000px;
+          margin: 0 auto 50px;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .customer_flex02 {
+          width: 90%;
+          max-width: 1000px;
+          margin: 0 auto 50px;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row-reverse;
+        }
+
+        .customer_flex01 picture,
+        .customer_flex02 picture {
+          width: 400px;
+        }
+
+        .customer_flex01 div,
+        .customer_flex02 div {
+          width: 50%;
+        }
+
+        .customer_flex01 h3 {
+          width: 80%;
+          max-width: 380px;
+          margin-bottom: 25px;
+        }
+
+        .customer_flex02 h3 {
+          width: 50%;
+          margin-bottom: 25px;
+        }
+
+        .customer_flex01 div > img,
+        .customer_flex02 div > img {
+          width: 36px;
+          margin-bottom: 25px;
+        }
+
+        .customer_flex01 div > p,
+        .customer_flex02 div > p {
+          font-size: 18px;
+          line-height: 1.7;
+          margin-bottom: 30px;
+        }
+
+        p.customer_txt {
+          font-size: 46px;
+          font-weight: bold;
+          line-height: 1.3;
+          text-align: center;
+        }
+
+        p.customer_txt span {
+          font-size: 130%;
+        }
+      }
+
+      #contact {
+        padding: 40px 0 30px;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .contact_flex {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .contact_flex div p {
+        text-align: center;
+        line-height: 1.2;
+        font-size: 20px;
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 25px;
+      }
+
+      .contact_flex div p span {
+        font-size: 150%;
+        color: #fff96e;
+      }
+
+      .contact_flex div p span span {
+        font-size: 140%;
+      }
+
+      .contact_flex div a {
+        display: block;
+        width: 80%;
+        max-width: 435px;
+        margin: 0 auto 25px;
+      }
+
+      @media screen and (min-width: 811px) {
+        #contact {
+          padding: 100px 0 100px;
+          /* Background applied via inline style in HTML */
+        }
+
+        .contact_flex {
+          display: flex;
+          width: 80%;
+          max-width: 1075px;
+          margin: 0 auto;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+
+        .contact_flex > img {
+          width: 100px;
+        }
+
+        .contact_flex div p {
+          font-size: 40px;
+          margin-bottom: 40px;
+        }
+      }
+
+      #about p {
+        font-size: 15px;
+        line-height: 2;
+        display: block;
+        margin: 0 auto;
+      }
+
+      @media screen and (min-width: 811px) {
+        #about {
+          padding: 150px 0 650px;
+          /* Background applied via inline style in HTML */
+        }
+
+        #about p {
+          font-size: 24px;
+        }
+      }
+
+      #step {
+        padding: 75px 0 75px;
+        /* Background applied via inline style in HTML */
+        background-size: cover;
+        background-position: center center;
+        text-align: center;
+      }
+
+      .step_flex01 {
+        margin-top: 40px;
+      }
+
+      .step_flex01 picture {
+        width: 35px;
+        display: block;
+        margin: 0 auto 35px;
+      }
+
+      .step_box01 {
+        position: relative;
+        border-radius: 20px;
+        background-color: #fff;
+        display: block;
+        width: 90%;
+        margin: 0 auto 20px;
+        padding: 32px 0 14px;
+        box-shadow: 0px 1px 16px 0px rgba(139 181 209 / 35%);
+      }
+
+      .step_box01 h3 {
+        width: 40px;
+        position: absolute;
+        top: -20px;
+        margin: 0 auto;
+        right: 0;
+        left: 0;
+      }
+
+      .step_box01 p {
+        text-align: center;
+        line-height: 1.5;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .step_box01 p span {
+        font-size: 200%;
+      }
+
+      @media screen and (min-width: 811px) {
+        #step {
+          padding: 150px 0 100px;
+          /* Background applied via inline style in HTML */
+        }
+
+        .step_flex01 {
+          margin: auto;
+          display: flex;
+          justify-content: space-between;
+          width: 90%;
+          max-width: 1000px;
+          align-items: center;
+        }
+
+        .step_flex01 picture {
+          width: 20px;
+          display: block;
+          margin: 0 auto;
+        }
+
+        .step_box01 {
+          border-radius: 40px;
+          width: 280px;
+          height: 220px;
+          margin: 0 auto;
+          padding: 62px 0 14px;
+        }
+
+        .step_box01 h3 {
+          width: 80px;
+          top: -40px;
+        }
+
+        .step_box01 p {
+          line-height: 1.5;
+          font-size: 24px;
+        }
+
+        .step_box01 p span {
+          font-size: 160%;
+          line-height: 1;
+        }
+      }
+
+      #case {
+        padding: 0px 0 35px;
+        /* Background applied via inline style in HTML */
+        background-size: cover;
+        background-position: center center;
+      }
+
+      #case h2 {
+        margin-bottom: 50px;
+      }
+
+      .case_box01 {
+        position: relative;
+        border-radius: 20px;
+        background-color: #fff;
+        display: block;
+        width: 90%;
+        margin: 0 auto 45px;
+        padding: 40px 20px 30px;
+        box-shadow: 0px 1px 16px 0px rgba(139 181 209 / 35%);
+      }
+
+      .case_box01 h3 {
+        width: 80px;
+        position: absolute;
+        top: -14px;
+        margin: 0 auto;
+        right: 0;
+        left: 0;
+      }
+
+      .case_flex01 {
+        margin-bottom: 15px;
+      }
+
+      .case_flex01 p {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .case_flex01 img {
+        margin-bottom: 10px;
+        height: 25px;
+        width: auto;
+      }
+
+      .case_flex01 p {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .case_flex02 div {
+        padding: 22px 0 25px;
+        border-bottom: solid 1px #bbbbbb;
+      }
+
+      .case_flex02 div:nth-of-type(2) {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .case_flex02 div h4 {
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .case_flex02 div p {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      @media screen and (min-width: 811px) {
+        #case {
+          padding: 40px 0 80px;
+          /* Background applied via inline style in HTML */
+        }
+
+        #case h2 {
+          margin-bottom: 100px;
+        }
+
+        .case_box01 {
+          position: relative;
+          border-radius: 40px;
+          background-color: #fff;
+          display: block;
+          width: 90%;
+          max-width: 1000px;
+          margin: 0 auto 85px;
+          padding: 75px 50px 50px;
+          box-shadow: 0px 1px 16px 0px rgba(139 181 209 / 35%);
+        }
+
+        .case_box01 h3 {
+          width: 160px;
+          position: absolute;
+          top: -28px;
+          margin: 0 auto;
+          right: 0;
+          left: 0;
+        }
+
+        .case_flex01 {
+          margin-bottom: 55px;
+          display: flex;
+          align-items: center;
+        }
+
+        .case_flex01 p {
+          font-size: 15px;
+          line-height: 1.6;
+        }
+
+        .case_flex01 img {
+          margin-bottom: 10px;
+          height: 43px;
+          width: auto;
+        }
+
+        .case_flex01 p {
+          font-size: 18px;
+          line-height: 1.6;
+        }
+        .case_flex02 {
+          display: flex;
+          justify-content: center;
+        }
+        .case_flex02 div {
+          padding: 0px 0 0px;
+          border-bottom: none;
+          text-align: center;
+          width: 47%;
+        }
+        .case_flex02 div:nth-of-type(1) {
+          padding-right: 50px;
+        }
+        .case_flex02 div:nth-of-type(2) {
+          padding-left: 50px;
+          padding-bottom: 0;
+          border-bottom: none;
+          border-left: solid 1px #bbbbbb;
+        }
+
+        .case_flex02 div h4 {
+          font-size: 24px;
+          line-height: 1.6;
+          font-weight: 600;
+          margin-bottom: 25px;
+        }
+
+        .case_flex02 div p {
+          font-size: 18px;
+          line-height: 1.6;
+          text-align: left;
+        }
+
+        .case_box01:nth-of-type(2) .case_flex01 img {
+          height: 47px;
+        }
+      }
+
+      #contact02,
+      #contact03 {
+        padding: 40px 0 30px;
+        /* Background applied via inline style in HTML */
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .contact02_flex {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .contact02_flex div p {
+        text-align: center;
+        line-height: 1.2;
+        font-size: 30px;
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 25px;
+      }
+
+      .contact02_flex div p span {
+        color: #fff96e;
+      }
+
+      .contact02_flex div p span span {
+        font-size: 140%;
+      }
+
+      .contact02_flex div a {
+        display: block;
+        width: 80%;
+        max-width: 435px;
+        margin: 0 auto 25px;
+      }
+      .contact02_flex div ul {
+        font-size: 10px;
+        color: #fff;
+        line-height: 1.5;
+        width: 80%;
+        margin: 0 auto 20px;
+      }
+
+      @media screen and (min-width: 811px) {
+        #contact2,
+        #contact3 {
+          padding: 100px 0 100px;
+          /* Background applied via inline style in HTML */
+        }
+
+        .contact02_flex {
+          display: flex;
+          width: 80%;
+          max-width: 935px;
+          margin: 0 auto;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .contact02_flex > img {
+          width: 100px;
+        }
+
+        .contact02_flex div p {
+          font-size: 60px;
+          margin-bottom: 35px;
+        }
+        .contact02_flex div p span {
+          font-size: 80%;
+          color: #fff96e;
+        }
+
+        .contact02_flex div p span span {
+          font-size: 140%;
+        }
+        .contact02_flex div ul {
+          font-size: 16px;
+          color: #fff;
+          line-height: 1.5;
+          width: 91%;
+          margin: 0 auto 20px;
+        }
+      }
+
+      #about02 {
+        padding: 50px 0 10px;
+        background-size: cover;
+        background-position: center center;
+      }
+      .about02_flex {
+        margin: 30px auto 0;
+        width: 90%;
+      }
+      .about02_flex p {
+        font-size: 15px;
+        line-height: 2;
+        display: block;
+        font-weight: bold;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .about02_flex p span {
+        color: #ffa902;
+      }
+      .about02_flex picture {
+        width: 95%;
+        max-width: 440px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      @media screen and (min-width: 811px) {
+        #about02 {
+          padding: 100px 0 20px;
+          /* Background applied via inline style in HTML */
+        }
+        .about02_flex {
+          display: flex;
+          margin: -50px auto 0;
+          width: 90%;
+          max-width: 1000px;
+          align-items: center;
+        }
+        .about02_flex p {
+          font-size: 22px;
+          line-height: 2;
+          margin: 0 auto;
+          text-align: left;
+          margin-bottom: 0px;
+        }
+        .about02_flex picture {
+          width: 440px;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+
+      .toggle {
+        display: none;
+      }
+      .ac_title,
+      .ac_content {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        transition: all 0.3s;
+      }
+      .ac_title::after,
+      .ac_title::before {
+        content: '';
+        position: absolute;
+        background-color: #464646;
+        transition: all 0.3s;
+      }
+      .ac_title::after {
+        transform: rotate(90deg);
+      }
+      .toggle:checked + .ac_title::before {
+        transform: rotate(90deg) !important;
+      }
+      .ac {
+        margin: 0 auto;
+      }
+      .option {
+        position: relative;
+      }
+      .ac_title {
+        display: flex;
+        position: relative;
+        justify-content: center;
+      }
+      .ac_content {
+        max-height: 0;
+        overflow: hidden;
+      }
+      .toggle:checked + .ac_title + .ac_content {
+        max-height: 100px;
+      }
+
+      #question {
+        padding: 50px 0 50px;
+        /* Background applied via inline style in HTML */
+        background-size: cover;
+        background-position: center bottom;
+      }
+      #question h2 {
+        margin-bottom: 30px;
+      }
+      #question .ac {
+        width: 94%;
+        max-width: 850px;
+      }
+      #question .ac_title::after,
+      #question .ac_title::before {
+        right: 15px;
+        top: 45%;
+        width: 1px;
+        height: 15px;
+      }
+      #question .option {
+        margin-bottom: 1em;
+        border-top: solid 1px #dcdcdc;
+        margin-bottom: 0;
+      }
+      #question .ac_title {
+        display: flex;
+        position: relative;
+        justify-content: flex-start;
+        padding: 4%;
+        align-items: flex-start;
+        padding: 30px 0 10px;
+      }
+      #question .ac_content {
+        padding: 0 27px 0 0px;
+      }
+      #question .ac_content {
+        margin-bottom: 20px;
+      }
+      .q_ttl_flex {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 18px;
+        width: 88%;
+        align-items: flex-start;
+      }
+      .ac_title img {
+        width: 42px;
+        margin-right: 3%;
+      }
+      .ac_question {
+        width: 90%;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 30px;
+      }
+      .ac_content ul li {
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.5;
+        text-indent: -1.3em;
+        padding-left: 20px;
+        list-style: none;
+      }
+      .ac_content ul {
+        padding-left: 0px;
+      }
+      .q_ttl_flex > span {
+        text-indent: -1.3em;
+        padding-left: 20px;
+        font-size: 15px;
+      }
+      .txt_q {
+        color: #0281ff;
+      }
+      .txt_a {
+        color: #ffa902;
+        font-weight: 400;
+      }
+      .or {
+        color: #ffa902;
+      }
+      @media screen and (min-width: 811px) {
+        #question {
+          padding: 100px 0 80px;
+          /* Background applied via inline style in HTML */
+          background-position: center top;
+        }
+        #question h2 {
+          margin-bottom: 80px;
+        }
+        #question .ac_title::after,
+        #question .ac_title::before {
+          right: 22px;
+          top: 75%;
+          width: 1px;
+          height: 18px;
+        }
+        #question .option {
+          margin-bottom: 1em;
+          background-color: #fff;
+          border-top: solid 1px #dcdcdc;
+          margin-bottom: 0;
+        }
+        #question .ac_title {
+          display: flex;
+          position: relative;
+          justify-content: flex-start;
+          padding: 4%;
+          align-items: flex-start;
+          padding: 50px 0 0px;
+          margin-bottom: 0px;
+        }
+        #question .ac_content {
+          padding: 0 10px 0 0px;
+        }
+        #question .ac_content {
+          margin-bottom: 50px;
+        }
+        .q_ttl_flex {
+          font-size: 18px;
+          width: 88%;
+        }
+        .ac_title img {
+          width: 42px;
+          margin-right: 3%;
+        }
+        .ac_question {
+          width: 90%;
+          border-radius: 30px;
+        }
+        .ac_content ul li {
+          font-size: 14px;
+          text-indent: -1.3em;
+          padding-left: 20px;
+          padding-top: 30px;
+          text-align: left !important;
+        }
+        .q_ttl_flex > span {
+          text-indent: -1.3em;
+          padding-left: 20px;
+          font-size: 15px;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      main {
+        position: relative;
+        margin: 0 auto;
+        padding: 0;
+        background-color: #fff;
+      }
+
+      .txt_y {
+        padding: 0;
+        color: #ff2e00;
+        background-color: #fff;
+        font-weight: bold;
+      }
+
+      .txt_g {
+        background: linear-gradient(90deg, #48ffbd, #007fff);
+        background: -webkit-linear-gradient(0deg, #48ffbd, #007fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+      }
+
+      .box_g {
+        background: linear-gradient(to right, #48ffbd, #007fff);
+      }
+
+      /* Footer Styles - Simple & Clean */
+      .l-footer {
+        background-color: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+        padding: 40px 0 20px;
+        color: #6c757d;
+        font-size: 14px;
+      }
+
+      .l-footer__content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .l-footer__nav {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .l-footer__logo {
+        max-width: 180px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .l-footer__ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+      }
+
+      .l-footer__li a {
+        color: #6c757d;
+        text-decoration: none;
+        font-size: 13px;
+        padding: 4px 8px;
+        transition: color 0.2s ease;
+      }
+
+      .l-footer__li a:hover {
+        color: #007fff;
+        text-decoration: underline;
+      }
+
+      .l-footer__company-info {
+        background-color: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 25px;
+        margin: 30px 0;
+        text-align: center;
+      }
+
+      .l-footer__company-info-text {
+        margin: 0 0 12px 0;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #495057;
+      }
+
+      .l-footer__company-info-text:last-child {
+        margin-bottom: 0;
+      }
+
+      .l-footer__company-info-text:first-child {
+        font-weight: 600;
+        color: #343a40;
+        font-size: 13px;
+        margin-bottom: 15px;
+      }
+
+      .l-footer__external-links {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      .l-footer__external-link {
+        color: #007fff;
+        text-decoration: none;
+        font-size: 13px;
+        margin: 0 10px;
+        transition: color 0.2s ease;
+      }
+
+      .l-footer__external-link:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+
+      .l-footer__copyright--pc,
+      .l-footer__copyright--sp {
+        text-align: center;
+        color: #adb5bd;
+        font-size: 11px;
+        margin: 0;
+        padding-top: 20px;
+        border-top: 1px solid #e9ecef;
+      }
+
+      .l-footer__copyright--sp {
+        display: none;
+      }
+
+      .u-br--sp-only {
+        display: none;
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 768px) {
+        .l-footer {
+          padding: 30px 0 15px;
+        }
+
+        .l-footer__content {
+          padding: 0 15px;
+        }
+
+        .l-footer__logo {
+          max-width: 140px;
+          margin-bottom: 15px;
+        }
+
+        .l-footer__ul {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .l-footer__li a {
+          font-size: 12px;
+        }
+
+        .l-footer__company-info {
+          padding: 20px;
+          margin: 25px 0;
+          text-align: left;
+        }
+
+        .l-footer__company-info-text {
+          font-size: 11px;
+        }
+
+        .l-footer__external-links {
+          margin-bottom: 20px;
+        }
+
+        .l-footer__external-link {
+          display: block;
+          margin: 5px 0;
+          font-size: 12px;
+        }
+
+        .l-footer__copyright--pc {
+          display: none;
+        }
+
+        .l-footer__copyright--sp {
+          display: block;
+          font-size: 10px;
+          padding-top: 15px;
+        }
+
+        .u-br--sp-only {
+          display: inline;
+        }
+      }
+    </style>
+  </div>
+
+  <!-- Floating Button -->
+  <div class="floating-button">
+    <a href="javascript:{showline()}" class="btn-line"> ▶카카오톡 친구추가 후 '3' 전송 </a>
+  </div>
+  <style>
+    .floating-button {
+      position: fixed;
+      bottom: 20px;
+      right: 0;
+      left: 0;
+      text-align: center;
+      margin: 0;
+      z-index: 1000;
+    }
+
+    .floating-button .btn-line {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ff0158;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 5px;
+      text-decoration: none;
+      animation: switch 2s ease-out infinite;
+    }
+
+    @keyframes switch {
+      0% {
+        transform: translateY(-5px);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+      100% {
+        transform: translateY(-5px);
+      }
+    }
+  </style>
+
+  <div id="comment_area"></div>
+
+  <!-- Footer -->
+  <footer class="l-footer">
+    <div class="l-footer__content">
+      <nav class="l-footer__nav">
+        <img class="l-footer__logo" src={footerLogo.src} alt="SQI Korea Superior Quality Investment" />
+        <ul class="l-footer__ul">
+          <li class="l-footer__li"><a href="https://kabumai.kr/visitor/0sp00sb000/">홈</a></li>
+          <li class="l-footer__li"><a href="https://kabumai.kr/visitor/0sp00sb000/service">제공 서비스 현황</a></li>
+          <li class="l-footer__li"><a href="https://kabumai.kr/visitor/0sp00sb000/article/terms">이용약관</a></li>
+          <li class="l-footer__li">
+            <a href="https://kabumai.kr/visitor/0sp00sb000/article/privacy">개인정보처리방침</a>
+          </li>
+          <li class="l-footer__li">
+            <a href="https://kabumai.kr/visitor/0sp00sb000/article/fiduciary">고객 중심 업무 운영 기본방침</a>
+          </li>
+          <li class="l-footer__li">
+            <a href="https://kabumai.kr/visitor/0sp00sb000/contract/">계약체결 전 교부서면</a>
+          </li>
+          <li class="l-footer__li">
+            <a href="https://kabumai.kr/visitor/0sp00sb000/article/outline">전자상거래법에 관한 표기</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="l-footer__company-info">
+        <p class="l-footer__company-info-text">[자본시장법 제37조에 근거한 표시]</p>
+        <p class="l-footer__company-info-text">
+          상호: 주식회사 SQI 코리아 (금융상품거래업자) <br class="u-br--sp-only" />업무내용: 투자자문·대리업
+        </p>
+        <p class="l-footer__company-info-text">
+          등록번호: 금융위원회 등록번호 제850호 <br class="u-br--sp-only" />가입협회: 한국투자자문업협회
+          <br class="u-br--sp-only" />회원번호: 제012-02468호
+        </p>
+        <p class="l-footer__company-info-text">
+주소: 서울특별시 강남구 테헤란로 152 강남파이난스센터 <br class="u-br--sp-only" />고객지원센터 전화번호: 02-850-7300
+          ※상담시간(평일 09:00~18:00)
+        </p>
+      </div>
+      <div class="l-footer__external-links">
+        <a
+          class="l-footer__external-link"
+          href="https://www.fsc.go.kr/"
+          target="_blank"
+        >금융감독원 웹사이트</a
+        ><a
+          class="l-footer__external-link"
+          href="https://www.kiaa.or.kr/"
+          target="_blank"
+        >한국투자자문업협회
+        </a>
+      </div>
+      <small class="l-footer__copyright--pc">Copyright © 2024 주식 마이스터 All Rights Reserved.</small
+      ><small class="l-footer__copyright--sp">Copyright (c)&nbsp;SQI Korea Co.,Ltd. <br />All Rights Reserved.</small>
+    </div>
+  </footer>
+
+  <script is:inline defer>
+    function showline() {
+      $('#popup1').show()
+    }
+    function gofun() {
+      $('#popup1').show()
+    }
+    window.addEventListener('load', () => {
+    $('.close-popup').click(() => {
+        $('#popup1').hide()
+    })
+    })
+  </script>
+</BaseLayout>

@@ -1,0 +1,334 @@
+---
+import type { GetStaticPaths, ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import btn from './static/btn.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '広瀬隆雄', version: '0' }, props: { img_prefix: 'llx_' } },
+  ]
+}) satisfies GetStaticPaths
+const { people } = Astro.params
+const { img_prefix } = Astro.props
+const main_img = import(`./static/${img_prefix}img.png`)
+---
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+  <title>【無料公開】{people} の「10倍株投資術」で年収1億円を実現!</title>
+  <RedirectCode />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 100%;
+      padding: 15px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white;
+      padding: 20px 15px;
+      text-align: center;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      background-color: #ffeb3b;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-weight: bold;
+      color: #c0392b;
+    }
+
+    .main-image {
+      width: 100%;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.5s;
+    }
+
+    .content-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: slideUp 1s;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #e74c3c;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .testimonial {
+      font-style: italic;
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .testimonial:before {
+      content: "“";
+      font-size: 60px;
+      color: #e74c3c;
+      position: absolute;
+      left: 5px;
+      top: -15px;
+      opacity: 0.3;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      border-radius: 10px;
+      margin: 30px 0;
+      animation: pulse 2s infinite;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #ffeb3b;
+      color: #c0392b;
+      font-weight: 900;
+      font-size: 30px;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+
+    .line-button {
+      display: block;
+      background-color: #06c755;
+      color: white;
+      font-weight: 700;
+      font-size: 36px;
+      padding: 15px;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .line-button:hover {
+      transform: scale(1.02);
+    }
+
+    .countdown {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e74c3c;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .bonus-box {
+      border: 2px dashed #e74c3c;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.01);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .tail-gif {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-align: center;
+      width: 100%;
+    }
+
+    .tail-gif-img {
+      display: block;
+      margin: 0 auto;
+      max-width: 28%;
+      border-radius: 115px;
+      animation: scaleAnimation 0.5s infinite alternate;
+    }
+
+    .tail-gif img {
+      max-width: 100%;
+    }
+
+    @keyframes scaleAnimation {
+      0% {
+        transform: scale(0.9);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <Image src={main_img} alt="{people}の投資セミナー" class="main-image" />
+
+      <h1>{people}の<span class="highlight">「10倍株投資術」</span>無料公開中！</h1>
+      <p>年収1億円を達成した投資家が教える<span class="highlight">「誰でも使える株の黄金法則」</span></p>
+    </header>
+
+
+    <div class="content-box">
+      <h2>📈 なぜ99%の投資家は損をするのか？</h2>
+      <p>{people}が明かす<span class="highlight">「3つの致命的な間違い」</span>をあなたは知っていますか？</p>
+      <ul>
+        <li><span class="highlight">「買い時」と「売り時」</span>を見極める科学的な方法</li>
+        <li>プロだけが知っている<span class="highlight">「休眠株」の見つけ方</span></li>
+        <li>市場の<span class="highlight">「裏の動き」</span>を読み取る技術</li>
+      </ul>
+    </div>
+
+    <div class="testimonial">
+      <p>"{people}先生のメソッドで、3ヶ月で500万円→1500万円になりました！会社員の私でもできたんです！"</p>
+      <p style="text-align:right;margin-top:10px;">- 神奈川県 佐藤様（42歳）</p>
+    </div>
+
+    <div class="content-box">
+      <h2>🎁 今なら無料でプレゼント！</h2>
+      <ul>
+        <li><span class="highlight">「広瀬式10倍株選定マニュアル」</span>（PDF 38ページ）</li>
+        <li><span class="highlight">「2025年 絶対買いの3銘柄」</span>特別レポート</li>
+        <li><span class="highlight">「LINE限定」</span>毎週相場分析配信</li>
+      </ul>
+    </div>
+
+    <div class="bonus-box">
+      <h2>✨ 先着100名限定特典！</h2>
+      <p><span class="highlight">「主力資金が動く銘柄予測シート」</span>をプレゼント！</p>
+      <p>※LINE登録後すぐにダウンロード可能</p>
+    </div>
+
+    <div class="cta-section">
+      <h2>今すぐ無料で学び、資産を10倍に！</h2>
+      <p>1日たった10分でできる<span class="highlight">「ストレスフリー投資法」</span></p>
+      <a class="link-btn cta-button">今すぐ無料で受け取る</a>
+    </div>
+
+    <a class="link-btn line-button">
+      <span style="font-size:20px;">📱</span> LINEで今すぐ登録
+    </a>
+
+    <div class="content-box">
+      <h2>📢 {people}とは？</h2>
+      <p>・25年の投資経験を持つ<span class="highlight">「日本一の個人投資家」</span></p>
+      <p>・NHK「おはよう日本」で特集された投資手法</p>
+      <p>・著書「10倍株の見つけ方」がAmazonランキング1位</p>
+      <p>・累計受講者<span class="highlight">10,000人以上</span>の実績</p>
+    </div>
+
+    <footer style="padding-bottom: 150px;">
+      <p>© 2025 {people}投資研究所 | 特定商取引法に基づく表記 | プライバシーポリシー</p>
+    </footer>
+  </div>
+
+
+  <div class="tail-gif" style="max-width: 840px;">
+    <a class="link-btn">
+      <Image src={btn} alt="" class="tail-gif-img" />
+    </a>
+  </div>
+
+
+</body>
+
+</html>

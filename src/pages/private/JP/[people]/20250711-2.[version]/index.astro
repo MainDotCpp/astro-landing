@@ -1,0 +1,131 @@
+---
+import type { GetStaticPaths, ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import {
+  AlertTriangle,
+  Camera,
+  Check,
+  ChevronRight,
+  Crown,
+  Gift,
+  Heart,
+  Lock,
+  MessageCircle,
+  Star,
+  TrendingUp,
+  Zap,
+} from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import btn from './static/btn.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '堀江貴文', version: '0', img_prefix: 'jjgw_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { people, version = '0' } = Astro.params
+const img_prefix = getStaticPaths().find(
+  path => path.params.people === people && path.params.version === version,
+)?.params.img_prefix
+const header = import(`./static/${img_prefix}header.png`)
+const img1 = import(`./static/${img_prefix}img.png`);
+---
+
+<BaseLayout title={people} description={people}>
+  <main
+    class="flex flex-col gap-8 items-center justify-center max-w-2xl mx-auto"
+  >
+    <Image src={header} alt={people} />
+    <div class="text-xl px-4">
+      堀江貴文 ホリエモンのLINEを無料で追加して、「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、！LINEを追加するだけで、無料で受け取れます。さらに、グループにも参加可能！無料の投資関連書籍や、毎週60％の利益が期待できる優良銘柄の情報も手に入れることができます。
+    </div>
+    <h3 class="text-xl font-bold text-center px-4">
+      今すぐ参加して、優良株をゲ<br />
+      ットしましょう！
+    </h3>
+    <Image class="link-btn animate-breathe" src={btn} alt="btn" />
+    <h3 class="text-xl font-bold text-center px-4">
+      LINEを追加して「受取」を送信する<br />
+      と、最新の株価上昇ニュースを<br />
+      無料で入手できる！
+    </h3>
+    <Image src={img1} alt="img1" />
+    <Image class="link-btn animate-breathe" src={btn} alt="btn" />
+    <h3 class="text-xl font-bold text-center mb-10 px-4">
+      プライバシーポリシー
+    </h3>
+  </main>
+  <style>
+    @keyframes breathe {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .animate-breathe {
+      animation: breathe 1s ease-in-out infinite;
+    }
+
+    /* 日文字体设置 */
+    body,
+    html {
+      font-family:
+        "Noto Sans JP",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "palt" 1; /* 日文字符间距优化 */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 确保所有文本元素都使用日文字体 */
+    main,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      font-family:
+        "Noto Sans JP",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "palt" 1;
+    }
+
+    /* 日文文本的行高优化 */
+    .text-xl {
+      line-height: 1.7;
+      letter-spacing: 0.05em;
+    }
+
+    /* 加强日文字体权重 */
+    .font-bold {
+      font-weight: 700;
+    }
+  </style>
+</BaseLayout>

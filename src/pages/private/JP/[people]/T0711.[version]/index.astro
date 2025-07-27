@@ -27,16 +27,14 @@ import '@fontsource/noto-sans-jp/700.css'
 
 export const getStaticPaths = (() => {
   return [
-    { params: { people: '三橋貴明', version: '0', img_prefix: 'sq_' } },
-    { params: { people: '三橋貴明', version: '1', img_prefix: 'sq1_' } },
-    { params: { people: '馬渕磨理子', version: '0', img_prefix: 'mlz_' } },
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq_' } },
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
+    { params: { people: '小谷真生子', version: '1' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
   ]
 }) satisfies GetStaticPaths
 
-const { people, version = '0' } = Astro.params
-const img_prefix = getStaticPaths().find(
-  path => path.params.people === people && path.params.version === version,
-)?.params.img_prefix
+const { people } = Astro.params
+const { img_prefix } = Astro.props
 const header = import(`./static/${img_prefix}header.png`)
 const avatar = import(`./static/${img_prefix}head.jpg`)
 const img1 = import(`./static/${img_prefix}img.png`);

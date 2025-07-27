@@ -4,6 +4,7 @@ import { Image } from 'astro:assets'
 // 导入图片
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import lineIcon from './static/line.png'
+import bgImage from './static/bg.png'
 
 export const getStaticPaths = (() => {
   return [
@@ -95,7 +96,7 @@ const mainImg = import(`./static/${img_prefix}main.jpg`);
       height: 100%;
       background-image:
         linear-gradient(rgba(22, 49, 114, 0.85), rgba(22, 49, 114, 0.85)),
-        url("./static/bg.png");
+        url(${bgImage.src});
       background-size: cover;
       background-position: center;
       z-index: -1;
