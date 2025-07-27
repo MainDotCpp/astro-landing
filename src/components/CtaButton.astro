@@ -4,19 +4,23 @@ import band from '@/assets/band-icon.png'
 import kakao from '@/assets/kakao-icon.png'
 
 type Props = {
-    text: string
+    text?: string
     social?: '卡扣' | '棒群'
     size?: 'sm' | 'md' | 'lg'
     animate?: boolean
     class?: string
+    redirect?: boolean
+    onclick?: () => void
 }
 
 const {
     text,
     social,
+    onclick,
     size = 'md',
     animate = true,
     class: className = '',
+    redirect = true,
 } = Astro.props as Props
 
 // Size configurations
@@ -46,7 +50,10 @@ const baseClasses = `
     ${getVariant()}
     ${className}
 `
-const ctaText = text ?? social === '卡扣' ? '카카오톡으로 무료 급등주 받기' : 'BAND에서 무료 급등주 받기'
+let ctaText = text
+if (!ctaText) {
+    ctaText = social === '卡扣' ? '친구추가 후 \'3\' 전송으로 급등주 정보 받기' : 'BAND에서 무료 급등주 받기'
+}
 ---
 
 <style>
@@ -66,7 +73,7 @@ const ctaText = text ?? social === '卡扣' ? '카카오톡으로 무료 급등�
 }
 </style>
 
-<button class={`${baseClasses} ${animate ? 'breathing' : ''} link-btn`}>
+<button class={`${baseClasses} ${animate ? 'breathing' : ''} ${redirect ? 'link-btn' : ''}`} onclick={onclick}>
     <Image
       class="rounded-full flex-shrink-0"
       src={social === '卡扣' ? kakao : band}

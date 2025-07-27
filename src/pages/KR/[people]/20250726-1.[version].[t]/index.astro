@@ -1,26 +1,10 @@
 ---
 import type { GetStaticPaths } from 'astro'
-import bgAbout02Pc from '@/assets/images/downloaded/bg_about02_pc.png'
-
-import bgAboutPc from '@/assets/images/downloaded/bg_about_pc.png'
-import bgCase from '@/assets/images/downloaded/bg_case.png'
-import bgCasePc from '@/assets/images/downloaded/bg_case_pc.png'
-import bgContact02 from '@/assets/images/downloaded/bg_contact02.png'
-import bgContact02Pc from '@/assets/images/downloaded/bg_contact02_pc.png'
-import bgContactPc from '@/assets/images/downloaded/bg_contact_pc.png'
-import bgCustomer from '@/assets/images/downloaded/bg_customer.png'
-import bgCustomerPc from '@/assets/images/downloaded/bg_customer_pc.png'
-import bgMerit from '@/assets/images/downloaded/bg_merit.png'
-import bgMeritPc from '@/assets/images/downloaded/bg_merit_pc.png'
-import bgMvBottom from '@/assets/images/downloaded/bg_mv_bottom.png'
-import bgMvBottomPc from '@/assets/images/downloaded/bg_mv_bottom_pc.png'
-import bgQuestion from '@/assets/images/downloaded/bg_question.png'
-import bgQuestionPc from '@/assets/images/downloaded/bg_question_pc.png'
-import bgStep from '@/assets/images/downloaded/bg_step.png'
-import bgStepPc from '@/assets/images/downloaded/bg_step_pc.png'
-import chevronWhite from '@/assets/images/downloaded/chevron-white.svg'
+import Image from 'astro:assets'
 // Import downloaded network images
 import mvBgPc from '@/assets/images/downloaded/mv_bg_pc.png'
+import CtaButton from '@/components/CtaButton.astro'
+import RedirectCode from '@/components/RedirectCode.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import a1 from './static/A1.png'
 import a2 from './static/A2.png'
@@ -30,12 +14,11 @@ import a5 from './static/A5.png'
 import about02Img01 from './static/about02_img01.png'
 import aidd4 from './static/AIDD4.png'
 import arrow01 from './static/arrow01.png'
-import btn1 from './static/BTN1.png'
 import contactImg01 from './static/contact_img01.png'
 import contactImg02 from './static/contact_img02.png'
 import contactImg03 from './static/contact_img03.png'
-import footerLogo from './static/footer-logo.png'
 
+import footerLogo from './static/footer-logo.png'
 import headerImg from './static/header-img.png'
 // Import all static images
 import headerLogo from './static/header-logo.jpg'
@@ -59,15 +42,14 @@ import r6 from './static/R6.png'
 
 export function getStaticPaths() {
   const pages = [
-    { params: { people: 'test', version: '0' }, props: { name: 'Test User' } },
+  { params: { people: '测试', version: '0' }, props: { name: '홍춘욱' } },
   ]
   return [
-    ...pages.map(p => ({ params: { ...p.params, t: 'g' }, props: p.props })),
-    ...pages.map(p => ({ params: { ...p.params, t: '밴드' }, props: p.props })),
+    ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
+    ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
   ]
 }
 
-const { t = '밴드' } = Astro.params
 const { name } = Astro.props
 ---
 
@@ -80,6 +62,7 @@ const { name } = Astro.props
       content="주식 종목 전문 분석 서비스입니다. 카카오톡 친구를 추가하고 '3'만 보내주시면, 관심 있는 주식 종목에 대한 전문적인 분석 결과와 매매 전략을 즉시 받아보실 수 있습니다."
     />
     <meta name="copyright" content="" />
+    <RedirectCode />
 
     <!-- OGP -->
     <meta property="og:type" content="article" />
@@ -98,18 +81,26 @@ const { name } = Astro.props
       rel="stylesheet"
     />
 
+
+
     <!-- CSS -->
     <link rel="stylesheet" href="static/style.min.css" type="text/css" media="all" />
     <link rel="stylesheet" href="static/style(1).css" type="text/css" media="all" />
     <link rel="stylesheet" href="static/common.css" />
     <link rel="stylesheet" href="static/style(2).css" />
 
+
     <style>
       #mv {
+        height:700px;
   background-image: url(./static/A5.png);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
       @media (min-width: 768px) {
   #mv {
+    height:700px;
     background-image: url(@/assets/images/downloaded/mv_bg_pc.png);
   }
 }
@@ -538,7 +529,20 @@ const { name } = Astro.props
       }
     </style>
   </Fragment>
-
+  <script src="@/utils/main.js"></script>
+  <script is:inline defer>
+    function showline() {
+      $('#popup1').show()
+    }
+    function gofun() {
+      $('#popup1').show()
+    }
+    window.addEventListener('load', () => {
+    $('.close-popup, #cancel-button').click(() => {
+        $('#popup1').hide()
+    })
+    })
+  </script>
   <!-- Popup Modal -->
   <div id="popup1" class="popup">
     <div class="popup-content">
@@ -551,8 +555,8 @@ const { name } = Astro.props
         <br />
       </p>
       <div class="popup-buttons">
-        <button id="confirm-button">친구추가</button>
-        <button id="cancel-button" style="float: right">닫기</button>
+        <a id="confirm-button" class="link-btn">친구추가</a>
+        <a id="cancel-button" style="float: right">닫기</a>
       </div>
     </div>
   </div>
@@ -581,22 +585,15 @@ const { name } = Astro.props
               />
             </picture>
           </h1>
-          <a
-            onclick="gofun()"
-            target="_blank"
-            rel="noopener"
-          ><img
-            decoding="async"
-            src={btn1.src}
-            alt="無料診断はコチラ"
-            width="870"
-            height="217"
-          /></a>
+
         </div>
+        <CtaButton class="mx-auto" social="卡扣" size="md" redirect={false} onclick="gofun()" />
+
       </section>
 
       <!-- Steps Section -->
       <section id="step">
+        <h2>{name}</h2>
         <h2>보유 주식 증시 분석까지<br />간단한 <span>3단계</span></h2>
         <div class="step_flex01">
           <div class="step_box01">
@@ -645,17 +642,9 @@ const { name } = Astro.props
         <picture>
           <img loading="lazy" decoding="async" src={m6.src} alt="" width="690" height="999" />
         </picture>
-        <a
-          onclick="gofun()"
-          target="_blank"
-          rel="noopener"
-        ><img
-          decoding="async"
-          src="static/BTN1.png"
-          alt="無料診断はコチラ"
-          width="870"
-          height="217"
-        /></a>
+        <div style="text-align: center">
+          <CtaButton social="卡扣" size="md" redirect={false} onclick="gofun()" />
+        </div>
       </section>
 
       <!-- Contact Section -->
@@ -716,18 +705,9 @@ const { name } = Astro.props
             <p>
               <span><span>10</span>초만에 무료 분석 가능!</span><br />카카오톡 친구추가 후 '3' 전송하기
             </p>
-            <a onclick="gofun()" target="_blank" rel="noopener">
-              <picture>
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src={btn1.src}
-                  alt="무료 분석 받기"
-                  width="560"
-                  height="108"
-                />
-              </picture>
-            </a>
+            <div onclick="gofun()" style="text-align: center">
+              <CtaButton social="卡扣" size="md" redirect={false} onclick="gofun()" />
+            </div>
             <ul>
               <li>
                 ※카카오톡 친구추가 후 '3'만 보내주시면, 전문적인 주식 분석 보고서와 투자 전략을 무료로 받아보실 수 있습니다.
@@ -931,18 +911,9 @@ const { name } = Astro.props
                 height="330"
               />
             </p>
-            <a onclick="gofun()" target="_blank" rel="noopener">
-              <picture>
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src={btn1.src}
-                  alt="무료 분석 받기"
-                  width="560"
-                  height="108"
-                />
-              </picture>
-            </a>
+            <div onclick="gofun()" style="text-align: center">
+              <CtaButton social="卡扣" size="md" redirect={false} onclick="gofun()" />
+            </div>
             <p class="k_sp" style="font-weight: bold; font-size: 18px">
               버튼을 클릭해서 카카오톡 친구를 추가하고, '3'만 보내주시면 전문 주식 분석을 받아보실 수 있습니다. <br />
               본 서비스는<span style="color: #fff300"> 완전 무료 </span>로 운영되고 있으니 안심하고 이용하세요.
@@ -2364,17 +2335,5 @@ const { name } = Astro.props
     </div>
   </footer>
 
-  <script is:inline defer>
-    function showline() {
-      $('#popup1').show()
-    }
-    function gofun() {
-      $('#popup1').show()
-    }
-    window.addEventListener('load', () => {
-    $('.close-popup').click(() => {
-        $('#popup1').hide()
-    })
-    })
-  </script>
+
 </BaseLayout>
