@@ -250,7 +250,7 @@ class CountdownTimer {
   }
 
   constructor(container: HTMLElement) {
-    const targetDate = container.dataset.target || '2024-12-31 23:59:59'
+    const targetDate = container.dataset.target || '2025-12-31 23:59:59'
     this.targetTime = new Date(targetDate).getTime()
     this.endedText = container.dataset.endedText || 'キャンペーン終了'
 

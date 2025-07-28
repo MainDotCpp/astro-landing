@@ -48,6 +48,7 @@ return [
 const { t = '棒群' } = Astro.params
 const { img_prefix, name } = Astro.props
 const headImg = import(`../images/${img_prefix}head.jpg`);
+const timestamp = Date.now();
 ---
 
 <!doctype html>
@@ -58,6 +59,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
     <title>
       매일 오를 주식 알려줄게 - 나 따라하면 수익 올릴 수 있어
     </title>
+    <meta name="timestamp" content={timestamp.toString()} />
     <RedirectCode />
     <meta
       name="viewport"
@@ -1320,7 +1322,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
         margin-top: 16px;
         font-size: 14px;
       }
-
+      
       .immersive-translate-modal {
         display: none;
         position: fixed;

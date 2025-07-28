@@ -98,9 +98,7 @@
     {
       "name": "HaishiKR16G",
       "localPath": "/Volumes/ACASIS/100_Work/Haishi/astro-landing/www_kr",
-      "remotePath": "root@141.164.43.115:/www/wwwroot",
-      "shell": "ssh -p 5522",
-      "password": "Haishi@1688",
+      "remotePath": "root@Haishi16GKR:/www/wwwroot",
       "exclude": [
         ".DS_Store",
         ".htaccess",
@@ -108,7 +106,6 @@
         "**/_**"
       ],
       "options": [
-        ["--password-file=./rsync-password.txt"],
         ["--chown=www:www"],
         ["--chmod=D755,F644"]
       ]

@@ -1,0 +1,30 @@
+---
+import BaseHead from '@/components/BaseHead.astro'
+import RedirectCode from '@/components/RedirectCode.astro'
+import Body from './body.jsx'
+
+export function getStaticPaths() {
+  const pages = [
+  { params: { people: '金永益', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
+  ]
+  return [
+    ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
+  ]
+}
+---
+<html lang="ko">
+	<BaseHead />
+	<RedirectCode />
+	<script>
+		function jump() {
+		  if (typeof gtag_report_conversion === 'function') { gtag_report_conversion(link) }
+		  else { window.location.href = link }
+		}
+	</script>
+<body>
+<Body client:only="react" />
+
+
+</body>
+
+</html>

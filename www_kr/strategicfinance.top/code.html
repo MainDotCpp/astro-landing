@@ -1,0 +1,52 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17385494536"></script>
+<script>
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+
+  gtag('config', 'AW-17385494536')
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16989331252"></script>
+<script>
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+
+  gtag('config', 'AW-16989331252')
+</script>
+
+<!-- Event snippet for 购买 conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof url != 'undefined') {
+        window.location = url
+      }
+    }
+    gtag('event', 'conversion', { send_to: 'AW-16989331252/zB--CIui-_kaELS-kqU_', value: 1.0, currency: 'USD' })
+    gtag('event', 'conversion', {
+      send_to: 'AW-17385494536/scw_COrB9_kaEIiwhuJA',
+      value: 1.0,
+      currency: 'USD',
+      transaction_id: '',
+      event_callback: callback,
+    })
+
+    return false
+  }
+</script>
+<script
+  defer
+  src="https://umami.ddiwo.com/random-string.js"
+  data-website-id="fa1c252d-4691-4c86-b625-2971645d25c0"
+></script>
+<script>
+  const link = 'https://sdun.io/vVp7G7'
+</script>

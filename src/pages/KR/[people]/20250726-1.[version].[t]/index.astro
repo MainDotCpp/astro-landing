@@ -6,12 +6,12 @@ import mvBgPc from '@/assets/images/downloaded/mv_bg_pc.png'
 import CtaButton from '@/components/CtaButton.astro'
 import RedirectCode from '@/components/RedirectCode.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import popPng from './static/222.png'
 import a1 from './static/A1.png'
 import a2 from './static/A2.png'
 import a3 from './static/A3.png'
 import a4 from './static/A4.png'
 import a5 from './static/A5.png'
-import about02Img01 from './static/about02_img01.png'
 import aidd4 from './static/AIDD4.png'
 import arrow01 from './static/arrow01.png'
 import contactImg01 from './static/contact_img01.png'
@@ -39,18 +39,18 @@ import r3 from './static/R3.png'
 import r4 from './static/R4.png'
 import r5 from './static/R5.png'
 import r6 from './static/R6.png'
+import about02Img01 from './static/xdr_about02_img01.png'
 
 export function getStaticPaths() {
   const pages = [
-  { params: { people: '测试', version: '0' }, props: { name: '홍춘욱' } },
+  { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
   ]
   return [
     ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
     ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
   ]
 }
-
-const { name } = Astro.props
+const { img_prefix, name } = Astro.props
 ---
 
 <BaseLayout title="주식 종목 전문 분석 서비스" plugins={{ jquery: {} }}>
@@ -93,7 +93,7 @@ const { name } = Astro.props
     <style>
       #mv {
         height:700px;
-  background-image: url(./static/A5.png);
+  background-image: url(./static/xdr_A5.png);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +101,7 @@ const { name } = Astro.props
       @media (min-width: 768px) {
   #mv {
     height:700px;
-    background-image: url(@/assets/images/downloaded/mv_bg_pc.png);
+    background-image: url(./static/xdr_mv_bg_pc.png);
   }
 }
 
@@ -441,12 +441,12 @@ const { name } = Astro.props
       }
 
       .popup-content {
-        background: #fff;
+        background: #000;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        padding: 20px;
+        /* padding: 20px;   */
         border-radius: 15px;
         box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
         width: 340px;
@@ -548,13 +548,9 @@ const { name } = Astro.props
     <div class="popup-content">
       <span class="close-popup">×</span>
       <p>
-        <br />
-        카카오톡 친구추가 후 <span style="color: #ff0000">'3'</span> 전송하면<br />
-        무료 주식 분석을 받아보세요!
-        <br />
-        <br />
+        <img src={popPng.src} alt="" width="100%" />
       </p>
-      <div class="popup-buttons">
+      <div class="popup-buttons " style="padding: 0 20px 10px 20px;">
         <a id="confirm-button" class="link-btn">친구추가</a>
         <a id="cancel-button" style="float: right">닫기</a>
       </div>
@@ -684,7 +680,6 @@ const { name } = Astro.props
             <img loading="lazy" decoding="async" src={r3.src} alt="" width="690" height="482" />
             <img loading="lazy" decoding="async" src={r4.src} alt="" width="690" height="482" />
             <img loading="lazy" decoding="async" src={r5.src} alt="" width="690" height="482" />
-            <img loading="lazy" decoding="async" src={r6.src} alt="" width="690" height="482" />
           </picture>
         </div>
       </section>
@@ -888,7 +883,7 @@ const { name } = Astro.props
       </section>
 
       <!-- Final Contact Section -->
-      <section id="contact03">
+      <section id="contact03" class="bg-[#69c0ff]">
         <div class="contact02_flex">
           <img
             loading="lazy"
@@ -2284,22 +2279,21 @@ const { name } = Astro.props
   <footer class="l-footer">
     <div class="l-footer__content">
       <nav class="l-footer__nav">
-        <img class="l-footer__logo" src={footerLogo.src} alt="SQI Korea Superior Quality Investment" />
         <ul class="l-footer__ul">
-          <li class="l-footer__li"><a href="https://kabumai.kr/visitor/0sp00sb000/">홈</a></li>
-          <li class="l-footer__li"><a href="https://kabumai.kr/visitor/0sp00sb000/service">제공 서비스 현황</a></li>
-          <li class="l-footer__li"><a href="https://kabumai.kr/visitor/0sp00sb000/article/terms">이용약관</a></li>
+          <li class="l-footer__li"><a href="/">홈</a></li>
+          <li class="l-footer__li"><a href="/service">제공 서비스 현황</a></li>
+          <li class="l-footer__li"><a href="/terms">이용약관</a></li>
           <li class="l-footer__li">
-            <a href="https://kabumai.kr/visitor/0sp00sb000/article/privacy">개인정보처리방침</a>
+            <a href="/privacy">개인정보처리방침</a>
           </li>
           <li class="l-footer__li">
-            <a href="https://kabumai.kr/visitor/0sp00sb000/article/fiduciary">고객 중심 업무 운영 기본방침</a>
+            <a href="/fiduciary">고객 중심 업무 운영 기본방침</a>
           </li>
           <li class="l-footer__li">
-            <a href="https://kabumai.kr/visitor/0sp00sb000/contract/">계약체결 전 교부서면</a>
+            <a href="/contract">계약체결 전 교부서면</a>
           </li>
           <li class="l-footer__li">
-            <a href="https://kabumai.kr/visitor/0sp00sb000/article/outline">전자상거래법에 관한 표기</a>
+            <a href="/outline">전자상거래법에 관한 표기</a>
           </li>
         </ul>
       </nav>
@@ -2318,19 +2312,10 @@ const { name } = Astro.props
         </p>
       </div>
       <div class="l-footer__external-links">
-        <a
-          class="l-footer__external-link"
-          href="https://www.fsc.go.kr/"
-          target="_blank"
-        >금융감독원 웹사이트</a
-        ><a
-          class="l-footer__external-link"
-          href="https://www.kiaa.or.kr/"
-          target="_blank"
-        >한국투자자문업협회
-        </a>
+        <span class="l-footer__external-link">금융감독원 웹사이트</span>
+        <span class="l-footer__external-link">한국투자자문업협회</span>
       </div>
-      <small class="l-footer__copyright--pc">Copyright © 2024 주식 마이스터 All Rights Reserved.</small
+      <small class="l-footer__copyright--pc">Copyright © 2025 주식 마이스터 All Rights Reserved.</small
       ><small class="l-footer__copyright--sp">Copyright (c)&nbsp;SQI Korea Co.,Ltd. <br />All Rights Reserved.</small>
     </div>
   </footer>

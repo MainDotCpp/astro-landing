@@ -1,0 +1,301 @@
+---
+import type { GetStaticPaths } from 'astro'
+import {
+  AlertTriangle,
+  BarChart3,
+  Clock,
+  FileText,
+  Target,
+  TrendingDown,
+  TrendingUp,
+  Users,
+} from 'lucide-astro'
+import CtaButton from '@/components/CtaButton.astro'
+import RedirectCode from '@/components/RedirectCode.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export function getStaticPaths() {
+  const pages = [
+    { params: { people: '测试', version: '0' }, props: { name: '김민수' } },
+  ]
+  return [
+    ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
+    ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ]
+}
+
+const { t = '卡扣' } = Astro.params
+---
+
+<BaseLayout title="시장 동향 개인 기록 노트" plugins={{ jquery: {} }}>
+  <Fragment slot="head">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="description"
+      content="개인이 매일 기록하는 시장 흐름과 관심 종목들의 정리 노트를 공유합니다."
+    />
+    <RedirectCode />
+
+    <!-- Fonts with system fallbacks -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', '맑은 고딕', sans-serif;
+        line-height: 1.6;
+        letter-spacing: -0.01em;
+      }
+
+      /* 한국어 최적화 */
+      h1, h2, h3, h4 {
+        word-break: keep-all;
+        line-height: 1.4;
+      }
+
+      p {
+        word-break: keep-all;
+        line-height: 1.7;
+      }
+
+      /* 한국 금융 스타일 색상 */
+      .kr-financial-primary {
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      }
+
+      .kr-financial-accent {
+        color: #059669;
+      }
+    </style>
+  </Fragment>
+
+  <!-- 메인 컨테이너 -->
+  <div class="min-h-screen bg-gray-50" style="font-feature-settings: 'kern' 1, 'liga' 1;" id="main-content">
+    <!-- 헤더 -->
+    <header class="bg-white border-b border-gray-200">
+      <div class="max-w-md mx-auto px-5 py-14 text-center">
+        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6 touch-manipulation">
+          <BarChart3 class="w-8 h-8 text-blue-600" />
+        </div>
+
+        <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-tight">
+          매일 시장 흐름을<br>기록하는 사람
+        </h1>
+        <p class="text-base text-gray-600 leading-relaxed mb-4">
+          개인적으로 정리하는 주식 시장 데이터와<br>
+          관심 종목들의 기록을 공유합니다
+        </p>
+
+        <!-- 시간 정보 및 참여자 수 -->
+        <div class="flex items-center justify-center space-x-4 text-sm text-gray-500">
+          <div class="flex items-center space-x-1">
+            <Clock class="w-4 h-4" />
+            <span>개장 전 매일 공유</span>
+          </div>
+          <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
+          <div class="flex items-center space-x-1">
+            <Users class="w-4 h-4" />
+            <span>현재 1,247명 참여중</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 소개 섹션 -->
+    <section class="px-5 py-6">
+      <div class="max-w-md mx-auto">
+        <div class="bg-white rounded-xl p-6 border border-gray-200">
+          <div class="flex items-start space-x-4 mb-5">
+            <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+              <FileText class="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <h2 class="text-lg font-semibold text-gray-900 mb-2">
+                매일 기록하는 내용들
+              </h2>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                개인적으로 관심있게 지켜보는 종목들과 시장 흐름을 정리해서 매일 기록하고 있습니다.
+              </p>
+              <div class="text-xs text-green-600 bg-green-50 px-3 py-2 rounded-lg">
+                <strong>오늘 주목:</strong> 삼성전자, SK하이닉스, LG에너지솔루션
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-600">
+            <p class="text-sm text-blue-800 leading-relaxed">
+              이런 개인 기록들이 혹시 다른 분들에게도 참고가 될까 해서 공유하려고 합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 기록 내용 섹션 -->
+    <section class="px-5 py-3">
+      <div class="max-w-md mx-auto">
+        <div class="bg-white rounded-xl border border-gray-200">
+          <div class="p-6 border-b border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 text-center">주로 정리하는 것들</h3>
+          </div>
+
+          <div class="p-6 space-y-5">
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <TrendingUp class="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-1">지수 동향 관찰</h4>
+                <p class="text-sm text-gray-600 leading-relaxed mb-2">
+                  코스피/코스닥 지수 움직임과 개인적인 시장 관찰 내용을 정리합니다
+                </p>
+                <div class="text-xs text-blue-600">
+                  예: 코스피 2,450선 지지, 외국인 순매수 전환 관찰
+                </div>
+              </div>
+            </div>
+
+            <div class="h-px bg-gray-100"></div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <BarChart3 class="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-1">섹터별 흐름</h4>
+                <p class="text-sm text-gray-600 leading-relaxed mb-2">
+                  관심있게 보고 있는 업종별 동향과 흐름을 개인적으로 정리합니다
+                </p>
+                <div class="text-xs text-blue-600">
+                  예: 반도체↗ 바이오↘ 배터리↗ 자동차부품→
+                </div>
+              </div>
+            </div>
+
+            <div class="h-px bg-gray-100"></div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <FileText class="w-5 h-5 text-purple-600" />
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-1">기업 정보 메모</h4>
+                <p class="text-sm text-gray-600 leading-relaxed mb-2">
+                  뉴스나 공시에서 눈에 띄는 기업들과 이슈 사항들을 메모합니다
+                </p>
+                <div class="text-xs text-purple-600">
+                  예: A기업 신제품 출시, B사 해외진출 발표 등
+                </div>
+              </div>
+            </div>
+
+            <div class="h-px bg-gray-100"></div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Target class="w-5 h-5 text-orange-600" />
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 mb-1">차트 패턴 기록</h4>
+                <p class="text-sm text-gray-600 leading-relaxed mb-2">
+                  기술적 분석에서 발견한 패턴이나 신호들을 개인적으로 기록합니다
+                </p>
+                <div class="text-xs text-orange-600">
+                  예: 골든크로스 형성, 지지선 돌파 등 차트 신호
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="px-5 py-6" id="cta-section">
+      <div class="max-w-md mx-auto">
+        <!-- 참여자 수 표시 -->
+        <div class="bg-gray-50 rounded-lg p-4 mb-4 text-center min-h-[64px] flex flex-col justify-center">
+          <div class="flex items-center justify-center space-x-2 text-sm text-gray-600">
+            <Users class="w-4 h-4 text-green-600" />
+            <span class="text-green-600 font-semibold">1,247명</span>
+            <span>이 이미 참여하고 있습니다</span>
+          </div>
+          <div class="flex items-center justify-center mt-2 space-x-1">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-xs text-gray-500">실시간 활동 중</span>
+          </div>
+        </div>
+
+        <div class="kr-financial-primary rounded-xl p-8 text-white text-center shadow-lg">
+          <div class="w-14 h-14 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <TrendingUp class="w-7 h-7 text-white" />
+          </div>
+
+          <h3 class="text-xl font-semibold mb-3">
+            기록 공유 채널 참여하기
+          </h3>
+          <p class="text-green-100 text-sm mb-8 leading-relaxed">
+            매일 정리하는 개인 시장 기록을<br>
+            실시간으로 공유받고 싶으시다면
+          </p>
+
+          <div class="space-y-4">
+            <div class="relative touch-manipulation">
+              <CtaButton
+                social={t}
+                size="lg"
+                redirect={false}
+                text="채널 참여하기"
+                class="w-full min-h-[56px] transform transition-all duration-300 hover:scale-105 active:scale-95 text-lg font-semibold"
+              />
+              <!-- 로딩 상태 오버레이 (JavaScript로 제어) -->
+              <div class="absolute inset-0 bg-yellow-400 bg-opacity-20 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300" id="loading-overlay">
+                <div class="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            </div>
+
+            <p class="text-xs text-green-100 leading-relaxed">
+              버튼을 눌러 채널에 참여하시면 개인 기록을 실시간으로 공유받을 수 있습니다<br>
+              <span class="text-green-200">• 개장 전 매일 공유 • 무료 참여 • 언제나 탈퇴 가능</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 면책 고지 -->
+    <section class="px-5 py-6 pb-12">
+      <div class="max-w-md mx-auto">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 min-h-[44px]">
+          <div class="flex items-start space-x-3 mb-4 min-h-[44px]">
+            <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <AlertTriangle class="w-5 h-5 text-amber-600" />
+            </div>
+            <h4 class="font-semibold text-amber-900 mt-1">
+              면책 고지
+            </h4>
+          </div>
+
+          <div class="space-y-3 text-sm text-amber-800 leading-relaxed pl-13">
+            <p class="font-medium">
+              이 페이지의 모든 내용은 개인의 시장 관찰 기록이며, 투자에 대한 조언이나 권유가 아닙니다.
+            </p>
+            <p>
+              개인적인 정리 목적으로 작성된 내용이며, 어떠한 수익도 보장하지 않습니다.
+            </p>
+            <p>
+              투자에는 항상 위험이 따르므로, 모든 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
+            </p>
+            <p class="font-medium">
+              채널 참여는 단순한 개인 기록 공유 목적이며, 투자 성과를 약속하거나 보장하지 않습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

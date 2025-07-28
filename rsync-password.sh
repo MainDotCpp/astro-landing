@@ -1,1 +1,2 @@
 rsync -rlptzv --chown=www:www --chmod=D755,F644 --progress --exclude=/index.html --exclude=.DS_Store --exclude=private /Volumes/ACASIS/100_Work/Haishi/astro-landing/dist/ -e 'ssh -p 5522' root@141.164.43.115:/www/wwwroot/coincool.top/ 
+# rsync -rlptzv --chown=www:www --chmod=D755,F644 --progress --exclude=.DS_Store --exclude=.htaccess --exclude=.user.ini --exclude=**/_** /Volumes/ACASIS/100_Work/Haishi/astro-landing/www_kr/strategicfinance.top/ -e 'ssh -p 5522' root@141.164.43.115:/www/wwwroot/strategicfinance.top/ 
