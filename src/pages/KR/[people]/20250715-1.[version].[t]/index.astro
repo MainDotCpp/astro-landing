@@ -38,6 +38,16 @@ export function getStaticPaths() {
       { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
       { params: { people: '廉承煥', version: '0' }, props: { name: '염승환', img_prefix: 'lch_' } },
       { params: { people: '洪春旭', version: '0' }, props: { name: '홍춘욱', img_prefix: 'hcx_' } },
+      { params: { people: '总理猴', version: '0' }, props: { name: '소수몽키', img_prefix: 'zlh_' } },
+      { params: { people: '国家人口和经济研究所', version: '0' }, props: { name: '전인구경제연구소', img_prefix: 'yjs_' } },
+      
+      { params: { people: '小猴属', version: '0' }, props: { name: '소수몽키', img_prefix: 'xhs_' } },
+      { params: { people: '金美京', version: '0' }, props: { name: '김미경', img_prefix: 'jmj_' } },
+      { params: { people: '洪春旭', version: '1' }, props: { name: '홍춘욱', img_prefix: 'hcx1_' } },
+      { params: { people: '朴世益', version: '1' }, props: { name: '박세익', img_prefix: 'psy1_' } },
+      { params: { people: '富人电视', version: '1' }, props: { name: '부자티비', img_prefix: 'frds1_' } },
+      { params: { people: '舒卡世界漫画', version: '0' }, props: { name: '슈카월드 코믹스', img_prefix: 'yu_' } },
+      { params: { people: '常言道语', version: '0' }, props: { name: '노말이', img_prefix: 'cydy_' } },
 ]
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
@@ -48,7 +58,6 @@ return [
 const { t = '棒群' } = Astro.params
 const { img_prefix, name } = Astro.props
 const headImg = import(`../images/${img_prefix}head.jpg`);
-const timestamp = Date.now();
 ---
 
 <!doctype html>
@@ -59,7 +68,6 @@ const timestamp = Date.now();
     <title>
       매일 오를 주식 알려줄게 - 나 따라하면 수익 올릴 수 있어
     </title>
-    <meta name="timestamp" content={timestamp.toString()} />
     <RedirectCode />
     <meta
       name="viewport"

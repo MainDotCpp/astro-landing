@@ -20,15 +20,13 @@ import btn from './static/btn.png'
 
 export const getStaticPaths = (() => {
   return [
-    { params: { people: '村上世彰', version: '0', img_prefix: 'cssz_' } },
-    { params: { people: '広瀬隆雄', version: '0', img_prefix: 'llx_' } },
+    { params: { people: '村上世彰', version: '0' }, props: { name: '村上世彰', img_prefix: 'cssz_' } },
+    { params: { people: '広瀬隆雄', version: '0' }, props: { name: '広瀬隆雄', img_prefix: 'llx_' } },
+    { params: { people: '测试器', version: '0' }, props: { name: 'テスタ', img_prefix: 'csq_' } },
   ]
 }) satisfies GetStaticPaths
 
-const { people, version = '0' } = Astro.params
-const img_prefix = getStaticPaths().find(
-  path => path.params.people === people && path.params.version === version,
-)?.params.img_prefix
+const { name: people, img_prefix } = Astro.props
 const header = import(`./static/${img_prefix}header.png`)
 const img1 = import(`./static/${img_prefix}img.png`);
 ---
