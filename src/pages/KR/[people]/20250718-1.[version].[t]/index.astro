@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import { Award, BarChart3, Clock, DollarSign, MessageCircle, Phone, Shield, Target, TrendingUp } from 'lucide-react'
+import CtaButton from '@/components/CtaButton.astro'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import BaseLayout from '@/layouts/BaseLayout.astro'
@@ -33,6 +34,7 @@ export function getStaticPaths() {
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
   ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
 ]
 }
 
@@ -88,10 +90,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
             </div>
 
             {/* CTA Button */}
-            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg md:text-xl lg:text-2xl px-8 py-5 md:px-12 md:py-6 lg:px-16 lg:py-7 rounded-xl shadow-lg transition-all duration-300 w-full md:w-auto min-h-[60px] md:min-h-[70px] link-btn">
-              <MessageCircle className="mr-3 md:mr-4 h-6 w-6 md:h-7 md:w-7" />
-              {t === '棒群' ? 'BAND 친구 추가하고 즉시 주식 정보 받기!' : '카카오톡으로 무료 상담받기'}
-            </Button>
+            <CtaButton social={t} />
           </div>
 
           {/* Right Expert Card */}
@@ -386,10 +385,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           </div>
         </div>
 
-        <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-xl md:text-2xl lg:text-3xl px-10 py-6 md:px-16 md:py-8 lg:px-20 lg:py-10 rounded-2xl shadow-xl transition-all duration-300 w-full md:w-auto min-h-[70px] md:min-h-[80px] lg:min-h-[90px] link-btn">
-          <MessageCircle className="mr-4 md:mr-5 h-7 w-7 md:h-8 md:w-8 lg:h-9 lg:w-9" />
-          {t === '棒群' ? 'BAND 친구 추가하고 종목 정보 받기!' : '카카오톡 친구 추가하고 종목 정보 받기!'}
-        </Button>
+        <CtaButton social={t} />
 
         <p class="mt-6 text-blue-100 text-xl md:text-2xl">✓ 완전 무료 ✓ 매일 종목 추천 ✓ 언제든 문의 가능</p>
       </div>
@@ -441,15 +437,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
     {/* Floating CTA Button */}
     <div class="fixed bottom-6 right-6 z-50">
-      <div class="relative">
-        {/* 주按钮 */}
-        <Button className={`${t === '棒群' ? 'bg-green-600 hover:bg-blue-700' : 'bg-yellow-500 hover:bg-yellow-600'} hover:(scale-110 shadow-3xl) text-white font-bold text-lg md:text-xl px-6 py-4 md:px-8 md:py-5 rounded-full shadow-2xl transition-all duration-300 animate-bounce hover:animate-none min-w-[180px] md:min-w-[220px] min-h-[60px] md:min-h-[70px] border-2 border-white link-btn`}>
-          {t === '棒群'
-            ? <TrendingUp className="mr-3 h-6 w-6 md:h-7 md:w-7" />
-            : <DollarSign className="mr-3 h-6 w-6 md:h-7 md:w-7" />}
-          <span class="whitespace-nowrap">{t === '棒群' ? '무료 종목 정보 받기!' : '수익 정보 바로 받기!'}</span>
-        </Button>
-      </div>
+      <CtaButton social={t} />
     </div>
   </div>
 </BaseLayout>

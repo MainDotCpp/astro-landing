@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets'
 // Import Lucide icons (keeping for hero features)
 import { BarChart3, DollarSign, Lightbulb, Target, TrendingUp } from 'lucide-astro'
-
+import ButtonAction from '@/components/ButtonAction.astro'
+import CtaButton from '@/components/CtaButton.astro'
 import RedirectCode from '@/components/RedirectCode.astro'
 import bandLogo from '../images/Band.png'
 // Import images
@@ -40,7 +41,7 @@ export function getStaticPaths() {
       { params: { people: '洪春旭', version: '0' }, props: { name: '홍춘욱', img_prefix: 'hcx_' } },
       { params: { people: '总理猴', version: '0' }, props: { name: '소수몽키', img_prefix: 'zlh_' } },
       { params: { people: '国家人口和经济研究所', version: '0' }, props: { name: '전인구경제연구소', img_prefix: 'yjs_' } },
-      
+
       { params: { people: '小猴属', version: '0' }, props: { name: '소수몽키', img_prefix: 'xhs_' } },
       { params: { people: '金美京', version: '0' }, props: { name: '김미경', img_prefix: 'jmj_' } },
       { params: { people: '洪春旭', version: '1' }, props: { name: '홍춘욱', img_prefix: 'hcx1_' } },
@@ -52,6 +53,7 @@ export function getStaticPaths() {
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
   ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
 ]
 }
 
@@ -1330,7 +1332,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
         margin-top: 16px;
         font-size: 14px;
       }
-      
+
       .immersive-translate-modal {
         display: none;
         position: fixed;
@@ -1543,24 +1545,8 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                 </div>
               </div>
 
-              <div class="hero-cta">
-                {t === '棒群'
-? (
-                  <a class="band-btn link-btn">
-                    <div class="band-logo-official">
-                      <img src={bandLogo.src} alt="BAND Logo" />
-                    </div>
-                    <div class="band-text">
-                      <span class="band-text-main">BAND 친구 추가하고</span>
-                      <span class="band-text-sub">즉시 주식 정보 받기!</span>
-                    </div>
-                  </a>
-                )
-: (
-                  <a class="kakao-btn link-btn">
-                    <img src={btnCta.src} alt="카카오톡 친구 추가" />
-                  </a>
-                )}
+              <div class="hero-cta h-20">
+                <CtaButton social={t} />
               </div>
             </div>
 
@@ -1771,33 +1757,16 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
         </div>
         <br />
         <div style="text-align: center">
-          <a class="link-btn">
-            <div
-              style="
-              display: inline-block;
-              max-width: 100%;
-              animation: switch 2s ease-out infinite;
-            "
-            >
-              {t === '棒群'
-? (
-                <div class="band-btn">
-                  <div class="band-logo-official">
-                    <img src={bandLogo.src} alt="BAND Logo" />
-                  </div>
-                  <div class="band-text">
-                    <span class="band-text-main">BAND 친구 추가하고</span>
-                    <span class="band-text-sub">즉시 주식 정보 받기!</span>
-                  </div>
-                </div>
-              )
-: (
-                <div class="kakao-btn">
-                  <img src={btnCta.src} alt="카카오톡 친구 추가" />
-                </div>
-              )}
-            </div>
-          </a>
+          <div
+            class="w-full h-20"
+            style="
+            display: inline-block;
+            max-width: 100%;
+            animation: switch 2s ease-out infinite;
+          "
+          >
+            <CtaButton social={t} />
+          </div>
         </div>
       </section>
       <!-- <section class="ai">
@@ -1838,33 +1807,16 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
         </div>
         <br />
         <div style="text-align: center">
-          <a class="link-btn">
-            <div
-              style="
-              display: inline-block;
-              max-width: 100%;
-              animation: switch 2s ease-out infinite;
-            "
-            >
-              {t === '棒群'
-? (
-                <div class="band-btn">
-                  <div class="band-logo-official">
-                    <img src={bandLogo.src} alt="BAND Logo" />
-                  </div>
-                  <div class="band-text">
-                    <span class="band-text-main">BAND 친구 추가하고</span>
-                    <span class="band-text-sub">즉시 주식 정보 받기!</span>
-                  </div>
-                </div>
-              )
-: (
-                <div class="kakao-btn">
-                  <img src={btnCta.src} alt="카카오톡 친구 추가" />
-                </div>
-              )}
-            </div>
-          </a>
+          <div
+            class="w-full h-20"
+            style="
+            display: inline-block;
+            max-width: 100%;
+            animation: switch 2s ease-out infinite;
+          "
+          >
+            <CtaButton social={t} />
+          </div>
         </div>
       </section>
       <!-- <section style="background: #f2f2f2;padding: 20px 0">
@@ -2044,33 +1996,16 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
         </div>
         <br />
         <div style="text-align: center">
-          <a class="link-btn">
-            <div
-              style="
-              display: inline-block;
-              max-width: 100%;
-              animation: switch 2s ease-out infinite;
-            "
-            >
-              {t === '棒群'
-? (
-                <div class="band-btn">
-                  <div class="band-logo-official">
-                    <img src={bandLogo.src} alt="BAND Logo" />
-                  </div>
-                  <div class="band-text">
-                    <span class="band-text-main">BAND 친구 추가하고</span>
-                    <span class="band-text-sub">즉시 주식 정보 받기!</span>
-                  </div>
-                </div>
-              )
-: (
-                <div class="kakao-btn">
-                  <img src={btnCta.src} alt="카카오톡 친구 추가" />
-                </div>
-              )}
-            </div>
-          </a>
+          <div
+            class="w-full h-20"
+            style="
+            display: inline-block;
+            max-width: 100%;
+            animation: switch 2s ease-out infinite;
+          "
+          >
+            <CtaButton social={t} />
+          </div>
         </div>
       </section>
       <section class="faq">
@@ -2142,37 +2077,17 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
           </div>
         </div>
 
-        <!-- <div style="text-align: center;margin: 40px auto 0 auto;width: 1200px;max-width: 100%">
-            <!-- TODO: Missing image file - <img src="static/picture/img_k75_2.png" alt="" style="max-width: 100%;width: auto"> -->
-        </div> -->
+
       </section>
       <a name="offer" id="offer"></a>
       <div class="cta" style="background-color: #5589c3">
         <div class="ctainner">
           <!-- <h2><img src=static/picture/cta_title_r.png"></h2> -->
-          <a class="link-btn">
-            <div class="submit center banner">
-              <div class="btna">
-                {t === '棒群'
-? (
-                  <div class="band-btn band-btn-large">
-                    <div class="band-logo-official">
-                      <img src={bandLogo.src} alt="BAND Logo" />
-                    </div>
-                    <div class="band-text">
-                      <span class="band-text-main">BAND 친구 추가하고</span>
-                      <span class="band-text-sub">즉시 주식 정보 받기!</span>
-                    </div>
-                  </div>
-                )
-: (
-                  <div class="kakao-btn kakao-btn-large">
-                    <img src={btnCta.src} alt="카카오톡 친구 추가" />
-                  </div>
-                )}
-              </div>
+          <div class="submit center banner">
+            <div class="btna">
+              <CtaButton social={t} />
             </div>
-          </a>
+          </div>
           <div style="text-align: center">
             <p class="k_sp" style="font-weight: bold; font-size: 18px">
               {t === '棒群' ? '버튼 눌러서 BAND 친구 추가해!' : '버튼 눌러서 카카오톡 친구 추가해!'} <br />
@@ -2181,16 +2096,14 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
           </div>
         </div>
         <div class="floating banner" style="display: block;z-index: 1000;">
-          <div class="banner_pc fl_pc">
+          <div class="banner_pc fl_pc" style="background-color: rgba(0,0,0,0)">
             <p class="animate__animated animate__headShake animate__infinite">
-              <a class="link-btn">▶ {t === '棒群' ? 'BAND친구 추가하고 유망주 받기' : '카카오톡 친구 추가하고 상승 주식 받기'}</a
-              >
+              <CtaButton social={t} />
             </p>
           </div>
-          <div class="banner_sp fl_sp">
+          <div class="banner_sp fl_sp" style="background-color: rgba(0,0,0,0)">
             <p class="animate__animated animate__headShake animate__infinite">
-              <a class="link-btn">▶ {t === '棒群' ? 'BAND친구 추가하고 유망주 받기' : '카카오톡 친구 추가하고 상승 주식 받기'}</a
-              >
+            <CtaButton social={t} />
             </p>
           </div>
         </div>
@@ -2226,5 +2139,6 @@ $('.qa-list dl').on('click', function (_e) {
         }
       </style>
     </div>
+    <ButtonAction />
   </body>
 </html>

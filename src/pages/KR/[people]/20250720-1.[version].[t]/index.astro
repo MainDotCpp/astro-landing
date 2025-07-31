@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import { Award, GraduationCap } from 'lucide-astro'
-
+import ButtonAction from '@/components/ButtonAction.astro'
 import CtaButton from '@/components/CtaButton.astro'
 import RedirectCode from '@/components/RedirectCode.astro'
 
@@ -161,6 +161,7 @@ export function getStaticPaths() {
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
   ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
 ]
 }
 
@@ -1314,7 +1315,7 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
         <div class="hero-cta">
           <CtaButton
             text=""
-            social={socialType}
+            social={t}
             size="lg"
             animate={true}
             class="hero-cta-button"
@@ -1371,7 +1372,7 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
         <div style="text-align: center; margin-top: 50px;">
           <CtaButton
             text=""
-            social={socialType}
+            social={t}
             size="md"
             animate={false}
           />
@@ -1417,7 +1418,7 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
           </p>
           <CtaButton
             text=""
-            social={socialType}
+            social={t}
             size="lg"
             animate={true}
           />
@@ -1508,7 +1509,7 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
         <div style="text-align: center;">
           <CtaButton
             text=""
-            social={socialType}
+            social={t}
             size="lg"
             animate={true}
             class="direction-cta-button"
@@ -1530,7 +1531,7 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
 
         <CtaButton
           text=""
-          social={socialType}
+          social={t}
           size="lg"
           animate={true}
           class="main-contact-button"
@@ -1595,13 +1596,12 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
         <div class="contact-info">
           <h4>지금 바로 상담 신청하세요</h4>
           <div class="contact-methods">
-            {socialType === '卡扣'
-? (
-              <span class="contact-method link-btn">카카오톡 상담 신청</span>
-            )
-: (
-              <span class="contact-method link-btn">BAND 상담 신청</span>
-            )}
+            <CtaButton
+              text={socialType === '卡扣' ? '카카오톡 상담 신청' : 'BAND 상담 신청'}
+              social={t}
+              size="md"
+              class="contact-method"
+            />
           </div>
         </div>
 
@@ -1613,10 +1613,10 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
     </section>
 
     <!-- Floating CTA Button -->
-    <div class="link-btn cta-section w-full flex justify-center fixed bottom-8 left-0 right-0 z-50 px-4">
+    <div class="cta-section w-full flex justify-center fixed bottom-8 left-0 right-0 z-50 px-4">
       <CtaButton
         text=""
-        social={socialType}
+        social={t}
         size="lg"
         animate={true}
         class="floating-cta-button"
@@ -1635,5 +1635,6 @@ const headImg = await import(`../images/${img_prefix}head.jpg`)
         box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       }
     </style>
+    <ButtonAction />
   </body>
 </html>

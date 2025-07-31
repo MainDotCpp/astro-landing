@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from 'astro/types'
 import type { PluginConfig } from '@/components/PluginLoader.astro'
 import BaseHead from '@/components/BaseHead.astro'
+import ButtonAction from '@/components/ButtonAction.astro'
 import PluginLoader from '@/components/PluginLoader.astro'
 import RedirectCode from '@/components/RedirectCode.astro'
 import '@/styles/globals.css'
@@ -27,5 +28,6 @@ const { title = 'Home', description = 'Home', plugins = {}, track = false } = As
   </head>
   <body>
       <slot />
+      <ButtonAction />
   </body>
 </html>

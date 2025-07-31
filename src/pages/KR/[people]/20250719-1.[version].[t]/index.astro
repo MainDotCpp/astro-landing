@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import { Award, BarChart3, BookOpen, CheckCircle, Clock, DollarSign, Heart, MessageCircle, Shield, Star, Target, TrendingUp, Users } from 'lucide-astro'
+import CtaButton from '@/components/CtaButton.astro'
 import { Button } from '@/components/ui/button'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
@@ -31,6 +32,7 @@ export function getStaticPaths() {
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
   ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
 ]
 }
 
@@ -118,10 +120,12 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
           <!-- Primary CTA -->
           <div class="hero-cta">
-            <Button className="btn-hero link-btn">
-              <MessageCircle class="btn-icon" />
-              {t === '棒群' ? 'BAND에서 무료 급등주 받기' : '카카오톡으로 무료 급등주 받기'}
-            </Button>
+            <CtaButton
+              social={t}
+              text={t === '棒群' ? 'BAND에서 무료 급등주 받기' : '카카오톡으로 무료 급등주 받기'}
+              size="lg"
+              class="btn-hero"
+            />
             <div class="cta-benefits">
               <div class="benefit">
                 <CheckCircle class="benefit-icon" />
@@ -461,10 +465,12 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
             </div>
           </div>
 
-          <Button className="btn-final-cta link-btn">
-            <MessageCircle class="btn-icon" />
-            {t === '棒群' ? 'BAND에서 무료 급등주 받기' : '카카오톡으로 무료 급등주 받기'}
-          </Button>
+          <CtaButton
+            social={t}
+            text={t === '棒群' ? 'BAND에서 무료 급등주 받기' : '카카오톡으로 무료 급등주 받기'}
+            size="lg"
+            class="btn-final-cta"
+          />
 
           <p class="cta-guarantee">
             💡 지금 시작하면 즉시 오늘의 투자 포인트를 받아보실 수 있습니다
@@ -506,12 +512,12 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
     <!-- Floating CTA -->
     <div class="floating-cta">
-      <Button className={`floating-btn ${t === '棒群' ? 'band-style' : 'kakao-style'} link-btn`}>
-        <DollarSign class="floating-icon" />
-        <span class="floating-text">
-          {t === '棒群' ? '지금 바로 무료 급등주 받기' : '지금 바로 무료 급등주 받기'}
-        </span>
-      </Button>
+      <CtaButton
+        social={t}
+        text="지금 바로 무료 급등주 받기"
+        size="md"
+        class={`floating-btn ${t === '棒群' ? 'band-style' : 'kakao-style'}`}
+      />
     </div>
 
   </div>

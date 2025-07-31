@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import { Award, BarChart3, Clock, DollarSign, MessageCircle, Shield, Target, TrendingUp, Users } from 'lucide-astro'
 import { DollarSign as DollarSignReact, MessageCircle as MessageCircleReact, TrendingUp as TrendingUpReact } from 'lucide-react'
+import CtaButton from '@/components/CtaButton.astro'
 import { Button } from '@/components/ui/button'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
@@ -29,6 +30,7 @@ export function getStaticPaths() {
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
   ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
 ]
 }
 
@@ -242,10 +244,12 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           </div>
         </div>
 
-                                   <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-2xl px-12 py-8 rounded-full shadow-xl w-full transition-all duration-300 animate-breathing hover:animate-none min-h-[80px] hover:scale-105 link-btn">
-            <MessageCircleReact className="mr-4 h-8 w-8" />
-            {t === '棒群' ? '무료 BAND 친구 추가하기!' : '무료 카카오톡 친구 추가하기!'}
-          </Button>
+                                   <CtaButton
+            social={t}
+            text={t === '棒群' ? '무료 BAND 친구 추가하기!' : '무료 카카오톡 친구 추가하기!'}
+            size="lg"
+            class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-2xl px-12 py-8 rounded-full shadow-xl w-full transition-all duration-300 min-h-[80px] hover:scale-105"
+          />
 
         <p class="mt-4 text-blue-100 text-sm">✓ 완전 무료 ✓ 매일 추천 ✓ 언제든 문의 가능</p>
       </div>
@@ -274,12 +278,12 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
     {/* Floating CTA Button - Mobile Optimized */}
     <div class="fixed bottom-4 left-4 right-4 z-50">
-             <Button className={`${t === '棒群' ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-500 hover:bg-yellow-600'} text-white font-bold text-lg px-8 py-5 rounded-full shadow-2xl transition-all duration-300 w-full border-2 border-white animate-breathing hover:animate-none hover:scale-105 min-h-[65px] link-btn`}>
-        {t === '棒群'
-          ? <TrendingUpReact className="mr-3 h-6 w-6" />
-          : <DollarSignReact className="mr-3 h-6 w-6" />}
-        <span>{t === '棒群' ? '지금 무료 종목 받기!' : '지금 무료 상담 받기!'}</span>
-      </Button>
+             <CtaButton
+               social={t}
+               text={t === '棒群' ? '지금 무료 종목 받기!' : '지금 무료 상담 받기!'}
+               size="lg"
+               class={`${t === '棒群' ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-500 hover:bg-yellow-600'} text-white font-bold text-lg px-8 py-5 rounded-full shadow-2xl transition-all duration-300 w-full border-2 border-white hover:scale-105 min-h-[65px]`}
+             />
     </div>
 
   </div>

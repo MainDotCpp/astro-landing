@@ -48,6 +48,7 @@ export function getStaticPaths() {
   return [
     ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
     ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+    ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
   ]
 }
 const { img_prefix, name } = Astro.props
@@ -551,7 +552,12 @@ const { img_prefix, name } = Astro.props
         <img src={popPng.src} alt="" width="100%" />
       </p>
       <div class="popup-buttons " style="padding: 0 20px 10px 20px;">
-        <a id="confirm-button" class="link-btn">친구추가</a>
+        <CtaButton
+          social="卡扣"
+          text="친구추가"
+          unstyled={true}
+          class="confirm-button"
+        />
         <a id="cancel-button" style="float: right">닫기</a>
       </div>
     </div>

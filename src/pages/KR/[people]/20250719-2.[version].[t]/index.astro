@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import { ArrowRight, CheckCircle, Clock, Eye, Lock, Mail, MessageCircle, Phone, PlayCircle, Shield, Sparkles, Star, TrendingUp, Trophy, Unlock, Users, Zap } from 'lucide-astro'
+import CtaButton from '@/components/CtaButton.astro'
 import { Button } from '@/components/ui/button'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
@@ -31,6 +32,7 @@ export function getStaticPaths() {
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
   ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
 ]
 }
 
@@ -53,10 +55,12 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           <span class="brand-text">InvestSmart</span>
         </div>
         <div class="nav-actions">
-          <Button className="nav-cta-btn link-btn">
-            <MessageCircle class="btn-icon" />
-            {t === '棒群' ? 'BAND 시작' : '카톡 시작'}
-          </Button>
+          <CtaButton
+            social={t}
+            text={t === '棒群' ? 'BAND 시작' : '카톡 시작'}
+            size="sm"
+            class="nav-cta-btn"
+          />
         </div>
       </div>
     </nav>
@@ -109,14 +113,19 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
           <!-- CTA Buttons -->
           <div class="hero-actions">
-            <Button className="primary-btn link-btn">
-              <PlayCircle class="btn-icon" />
-              무료 상담 신청
-            </Button>
-            <Button className="secondary-btn link-btn">
-              <Eye class="btn-icon" />
-              투자 성과 보기
-            </Button>
+            <CtaButton
+              social={t}
+              text="무료 상담 신청"
+              size="lg"
+              class="primary-btn"
+            />
+            <CtaButton
+              social={t}
+              text="투자 성과 보기"
+              size="lg"
+              variant="custom"
+              class="secondary-btn"
+            />
           </div>
 
           <!-- Trust Indicators -->
@@ -212,10 +221,13 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
               </div>
             </div>
 
-            <Button className="results-btn link-btn">
-              <ArrowRight class="btn-icon" />
-              상세 성과 보기
-            </Button>
+            <CtaButton
+              social={t}
+              text="상세 성과 보기"
+              size="md"
+              variant="custom"
+              class="results-btn"
+            />
           </div>
 
           <div class="results-visual">
@@ -435,14 +447,19 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           </div>
 
           <div class="cta-actions">
-            <Button className="cta-primary-btn link-btn">
-              <MessageCircle class="btn-icon" />
-              {t === '棒群' ? 'BAND에서 상담 시작' : '카카오톡으로 상담 시작'}
-            </Button>
-            <Button className="cta-secondary-btn link-btn">
-              <Phone class="btn-icon" />
-              전화 상담 신청
-            </Button>
+            <CtaButton
+              social={t}
+              text={t === '棒群' ? 'BAND에서 상담 시작' : '카카오톡으로 상담 시작'}
+              size="lg"
+              class="cta-primary-btn"
+            />
+            <CtaButton
+              social={t}
+              text="전화 상담 신청"
+              size="lg"
+              variant="custom"
+              class="cta-secondary-btn"
+            />
           </div>
 
           <p class="cta-note">
@@ -495,10 +512,12 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
     <!-- Floating Action Button -->
     <div class="floating-action">
-      <Button className={`floating-btn ${t === '棒群' ? 'band-theme' : 'kakao-theme'} link-btn`}>
-        <MessageCircle class="floating-icon" />
-        <span class="floating-text">
-          {t === '棒群' ? '무료 상담' : '카톡 상담'}
+      <CtaButton
+        social={t}
+        text={t === '棒群' ? '무료 상담' : '카톡 상담'}
+        size="md"
+        class={`floating-btn ${t === '棒群' ? 'band-theme' : 'kakao-theme'}`}
+      />
         </span>
       </Button>
     </div>

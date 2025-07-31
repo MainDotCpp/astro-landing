@@ -286,7 +286,7 @@ export default function Body() {
                 </div>
                 <a
                   onClick={jump}
-                  className="link-btn"
+                  className=""
                   style={{
                     display: 'inline-block',
                     backgroundColor: '#fee500',
@@ -422,7 +422,7 @@ export default function Body() {
                     </div>
                   </div>
                 </div>
-                <a onClick={jump} className="link-btn">
+                <a onClick={jump} className="">
                   <img
                     src={kakaoBtn.src}
                     alt=""
@@ -528,7 +528,7 @@ export default function Body() {
                     </span>
                     <br />
                   </div>
-                  <a onClick={jump} className="link-btn">
+                  <a onClick={jump} className="">
                     <img
                       src={kakaoBtn.src}
                       alt=""
@@ -539,7 +539,7 @@ export default function Body() {
                   </a>
                   <a
                     onClick={jump}
-                    className="link-btn"
+                    className=""
                   >
                   </a>
                   <div style={{ padding: '10px', fontSize: '26px', fontWeight: 700, color: '#374151' }}>
@@ -580,7 +580,7 @@ export default function Body() {
           >
             <a
               onClick={jump}
-              className="responsive-button link-btn"
+              className="responsive-button"
               style={{
                 display: 'flex',
                 alignItems: 'center',

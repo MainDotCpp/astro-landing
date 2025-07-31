@@ -32,6 +32,7 @@ export function getStaticPaths() {
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
   ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
 ]
 }
 
@@ -101,7 +102,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
 
     <!-- Button -->
-    <div class="link-btn cta-section w-full flex justify-center fixed bottom-8 left-0 right-0">
+    <div class="cta-section w-full flex justify-center fixed bottom-8 left-0 right-0">
      <CtaButton social={t} />
     </div>
 

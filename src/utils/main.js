@@ -6,6 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function onLinkBtnClick() {
-  if (typeof gtag_report_conversion === 'function') { gtag_report_conversion(link) }
-  else { window.location.href = link }
+  if (typeof gtag_report_conversion === 'function') { gtag_report_conversion(kakao_link ?? band_link) }
+  else { window.location.href = kakao_link ?? band_link }
 }
