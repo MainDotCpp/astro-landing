@@ -1,9 +1,14 @@
 function jump() {
-  if (typeof gtag_report_conversion === 'function') {
-    gtag_report_conversion(link)
+  try {
+    gtag_report_conversion()
   }
-  else {
-    window.location.href = link
+  catch (error) {
+    console.error(error)
+  }
+  finally {
+    setTimeout(() => {
+      window.location.href = link
+    }, 100)
   }
 }
 
