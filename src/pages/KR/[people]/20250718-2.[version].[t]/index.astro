@@ -1,56 +1,134 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
-import { Award, BarChart3, Clock, DollarSign, MessageCircle, Shield, Target, TrendingUp, Users } from 'lucide-astro'
-import { DollarSign as DollarSignReact, MessageCircle as MessageCircleReact, TrendingUp as TrendingUpReact } from 'lucide-react'
+import {
+  Award,
+  BarChart3,
+  Clock,
+  DollarSign,
+  MessageCircle,
+  Shield,
+  Target,
+  TrendingUp,
+  Users,
+} from 'lucide-astro'
+import {
+  DollarSign as DollarSignReact,
+  MessageCircle as MessageCircleReact,
+  TrendingUp as TrendingUpReact,
+} from 'lucide-react'
 import CtaButton from '@/components/CtaButton.astro'
 import { Button } from '@/components/ui/button'
-import BaseLayout from '@/layouts/BaseLayout.astro'
+import BaseLayout from '@/layouts/KRBaseLayout.astro'
 
 export function getStaticPaths() {
   const pages = [
-  { params: { people: '柳秀真', version: '0' }, props: { name: '유수진', img_prefix: 'lxz_' } },
-      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
-      { params: { people: '南锡宽', version: '0' }, props: { name: '남석관', img_prefix: 'nxk_' } },
-      { params: { people: '富人电视', version: '0' }, props: { name: '부자티비', img_prefix: 'frds_' } },
-      { params: { people: '闵秀雅', version: '0' }, props: { name: '민수아', img_prefix: 'mxy_' } },
-      { params: { people: '朴世益', version: '0' }, props: { name: '박세익', img_prefix: 'psy_' } },
-      { params: { people: '金永益', version: '0' }, props: { name: '김영익', img_prefix: 'jyy_' } },
-      { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
-      { params: { people: '廉承煥', version: '0' }, props: { name: '염승환', img_prefix: 'lch_' } },
-      { params: { people: '洪春旭', version: '0' }, props: { name: '홍춘욱', img_prefix: 'hcx_' } },
-      { params: { people: '小猴属', version: '0' }, props: { name: '소수몽키', img_prefix: 'xhs_' } },
-      { params: { people: '金美京', version: '0' }, props: { name: '김미경', img_prefix: 'jmj_' } },
-      { params: { people: '洪春旭', version: '1' }, props: { name: '홍춘욱', img_prefix: 'hcx1_' } },
-      { params: { people: '朴世益', version: '1' }, props: { name: '박세익', img_prefix: 'psy1_' } },
-      { params: { people: '富人电视', version: '1' }, props: { name: '부자티비', img_prefix: 'frds1_' } },
-      { params: { people: '舒卡世界漫画', version: '0' }, props: { name: '슈카월드 코믹스', img_prefix: 'yu_' } },
-      { params: { people: '常言道语', version: '0' }, props: { name: '노말이', img_prefix: 'cydy_' } },
-]
-return [
-  ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
-]
+    {
+      params: { people: '柳秀真', version: '0' },
+      props: { name: '유수진', img_prefix: 'lxz_' },
+    },
+    {
+      params: { people: '宣大仁', version: '0' },
+      props: { name: '선대인', img_prefix: 'xdr_' },
+    },
+    {
+      params: { people: '南锡宽', version: '0' },
+      props: { name: '남석관', img_prefix: 'nxk_' },
+    },
+    {
+      params: { people: '富人电视', version: '0' },
+      props: { name: '부자티비', img_prefix: 'frds_' },
+    },
+    {
+      params: { people: '闵秀雅', version: '0' },
+      props: { name: '민수아', img_prefix: 'mxy_' },
+    },
+    {
+      params: { people: '朴世益', version: '0' },
+      props: { name: '박세익', img_prefix: 'psy_' },
+    },
+    {
+      params: { people: '金永益', version: '0' },
+      props: { name: '김영익', img_prefix: 'jyy_' },
+    },
+    {
+      params: { people: '金光石', version: '0' },
+      props: { name: '김광석', img_prefix: 'jgs_' },
+    },
+    {
+      params: { people: '廉承煥', version: '0' },
+      props: { name: '염승환', img_prefix: 'lch_' },
+    },
+    {
+      params: { people: '洪春旭', version: '0' },
+      props: { name: '홍춘욱', img_prefix: 'hcx_' },
+    },
+    {
+      params: { people: '小猴属', version: '0' },
+      props: { name: '소수몽키', img_prefix: 'xhs_' },
+    },
+    {
+      params: { people: '金美京', version: '0' },
+      props: { name: '김미경', img_prefix: 'jmj_' },
+    },
+    {
+      params: { people: '洪春旭', version: '1' },
+      props: { name: '홍춘욱', img_prefix: 'hcx1_' },
+    },
+    {
+      params: { people: '朴世益', version: '1' },
+      props: { name: '박세익', img_prefix: 'psy1_' },
+    },
+    {
+      params: { people: '富人电视', version: '1' },
+      props: { name: '부자티비', img_prefix: 'frds1_' },
+    },
+    {
+      params: { people: '舒卡世界漫画', version: '0' },
+      props: { name: '슈카월드 코믹스', img_prefix: 'yu_' },
+    },
+    {
+      params: { people: '常言道语', version: '0' },
+      props: { name: '노말이', img_prefix: 'cydy_' },
+    },
+  ]
+  return [
+    ...pages.map(p => ({
+      params: { ...p.params, t: '卡扣' },
+      props: p.props,
+    })),
+    ...pages.map(p => ({
+      params: { ...p.params, t: '棒群' },
+      props: p.props,
+    })),
+    ...pages.map(p => ({
+      params: { ...p.params, t: '混合' },
+      props: p.props,
+    })),
+  ]
 }
 
 const { t = '棒群' } = Astro.params
 const { img_prefix, name } = Astro.props
 const headImg = import(`../images/${img_prefix}head.jpg`)
 const headerImg = import(`../images/${img_prefix}header.jpg`)
-const img1Img = import(`../images/${img_prefix}img1.jpg`)
+const img1Img = import(`../images/${img_prefix}img1.jpg`);
 ---
 
 <BaseLayout title={`${name} 주식투자`} description={`${name} 주식투자 전문가`}>
   <div class="min-h-screen bg-gradient-to-b from-slate-900 to-blue-900">
-
     {/* Mobile-Optimized Hero Section */}
-    <section class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white py-12 px-4">
+    <section
+      class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white py-12 px-4"
+    >
       <div class="max-w-md mx-auto text-center">
         {/* Expert Profile - Mobile First */}
         <div class="mb-8">
-          <Image src={headImg} alt={name} class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-yellow-400 shadow-lg">
-          </Image>
+          <Image
+            src={headImg}
+            alt={name}
+            class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-yellow-400 shadow-lg"
+          />
           <h1 class="text-2xl font-bold text-white mb-2">{name}</h1>
           <p class="text-yellow-400 text-lg font-medium">주식투자 전문가</p>
         </div>
@@ -87,10 +165,14 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
         </div>
 
         {/* CTA Button - Mobile Optimized */}
-        <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-xl px-10 py-6 rounded-full shadow-lg w-full max-w-sm mx-auto transition-all duration-300 animate-breathing hover:animate-none min-h-[70px] link-btn">
-          <MessageCircleReact className="mr-4 h-7 w-7" />
-          {t === '棒群' ? 'BAND 친구 추가하기' : '카카오톡 친구 추가하기'}
-        </Button>
+        <CtaButton
+          social={t}
+          text={t === '棒群'
+            ? '무료 BAND 친구 추가하기!'
+            : '무료 카카오톡 친구 추가하기!'}
+          size="lg"
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-2xl px-12 py-8 rounded-full shadow-xl w-full transition-all duration-300 min-h-[80px] hover:scale-105"
+        />
       </div>
     </section>
 
@@ -103,32 +185,48 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
         <div class="space-y-6">
           <div class="flex items-start gap-4 bg-blue-50 p-4 rounded-lg">
-            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <div
+              class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"
+            >
               <TrendingUp class="h-6 w-6 text-white" />
             </div>
             <div>
-              <h4 class="text-lg font-bold text-slate-800 mb-1">매일 종목 추천</h4>
-              <p class="text-slate-600 text-sm">상승 여력이 높은 종목을 매일 분석하여 추천</p>
+              <h4 class="text-lg font-bold text-slate-800 mb-1">
+                매일 종목 추천
+              </h4>
+              <p class="text-slate-600 text-sm">
+                상승 여력이 높은 종목을 매일 분석하여 추천
+              </p>
             </div>
           </div>
 
           <div class="flex items-start gap-4 bg-green-50 p-4 rounded-lg">
-            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <div
+              class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0"
+            >
               <Target class="h-6 w-6 text-white" />
             </div>
             <div>
-              <h4 class="text-lg font-bold text-slate-800 mb-1">정확한 타이밍</h4>
-              <p class="text-slate-600 text-sm">최적의 매수/매도 시점을 정확하게 안내</p>
+              <h4 class="text-lg font-bold text-slate-800 mb-1">
+                정확한 타이밍
+              </h4>
+              <p class="text-slate-600 text-sm">
+                최적의 매수/매도 시점을 정확하게 안내
+              </p>
             </div>
           </div>
 
           <div class="flex items-start gap-4 bg-purple-50 p-4 rounded-lg">
-            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <div
+              class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0"
+            >
               <Shield class="h-6 w-6 text-white" />
             </div>
             <div>
               <h4 class="text-lg font-bold text-slate-800 mb-1">맞춤형 전략</h4>
-              <p class="text-slate-600 text-sm">개인 투자 스타일에 맞는 전략 제공</p>
+              <p class="text-slate-600 text-sm">
+                개인 투자 스타일에 맞는 전략 제공
+              </p>
             </div>
           </div>
         </div>
@@ -138,7 +236,9 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
     {/* Success Stories - Mobile */}
     <section class="bg-gray-50 py-12 px-4">
       <div class="max-w-md mx-auto">
-        <h3 class="text-2xl font-bold text-center mb-8 text-slate-800">실제 투자 성과</h3>
+        <h3 class="text-2xl font-bold text-center mb-8 text-slate-800">
+          실제 투자 성과
+        </h3>
 
         <div class="bg-white rounded-xl p-6 shadow-lg mb-6">
           <Image src={img1Img} alt="투자 성과" class="w-full rounded-lg mb-4" />
@@ -158,7 +258,9 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           </div>
         </div>
 
-        <div class="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-6 text-center text-white">
+        <div
+          class="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-6 text-center text-white"
+        >
           <h4 class="text-xl font-bold mb-2">✨ 이번 주 핫 종목</h4>
           <p class="text-lg mb-3">매일 아침 9시에 받아보세요!</p>
           <p class="text-sm opacity-90">친구 추가하면 즉시 확인 가능</p>
@@ -175,8 +277,14 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
         <div class="bg-slate-800 rounded-xl p-6 text-white mb-6">
           <div class="text-center mb-6">
-            <Image src={headerImg} alt="전문가 소개" class="w-full rounded-lg mb-4" />
-            <h4 class="text-xl font-bold text-yellow-400 mb-2">{name} 투자 전문가</h4>
+            <Image
+              src={headerImg}
+              alt="전문가 소개"
+              class="w-full rounded-lg mb-4"
+            />
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">
+              {name} 투자 전문가
+            </h4>
             <p class="text-blue-200 text-sm">15년 주식 투자 경험 보유</p>
           </div>
 
@@ -219,39 +327,51 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
       <div class="max-w-md mx-auto text-center text-white">
         <h3 class="text-2xl font-bold mb-4">지금 바로 시작하세요!</h3>
         <p class="text-lg mb-6 text-blue-100">
-          {t === '棒群' ? 'BAND 친구 추가만 하면' : '카카오톡 친구 추가만 하면'}<br />
+          {
+            t === '棒群' ? 'BAND 친구 추가만 하면' : '카카오톡 친구 추가만 하면'
+          }<br />
           매일 유망 종목을 받아보실 수 있어요
         </p>
 
         <div class="grid grid-cols-3 gap-4 mb-8 text-center">
           <div>
-            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
+            <div
+              class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2"
+            >
               <MessageCircle class="h-6 w-6 text-blue-600" />
             </div>
             <p class="text-xs text-blue-100">친구추가</p>
           </div>
           <div>
-            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
+            <div
+              class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2"
+            >
               <TrendingUp class="h-6 w-6 text-blue-600" />
             </div>
             <p class="text-xs text-blue-100">종목받기</p>
           </div>
           <div>
-            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
+            <div
+              class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2"
+            >
               <DollarSign class="h-6 w-6 text-blue-600" />
             </div>
             <p class="text-xs text-blue-100">수익실현</p>
           </div>
         </div>
 
-                                   <CtaButton
-            social={t}
-            text={t === '棒群' ? '무료 BAND 친구 추가하기!' : '무료 카카오톡 친구 추가하기!'}
-            size="lg"
-            class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-2xl px-12 py-8 rounded-full shadow-xl w-full transition-all duration-300 min-h-[80px] hover:scale-105"
-          />
+        <CtaButton
+          social={t}
+          text={t === '棒群'
+            ? '무료 BAND 친구 추가하기!'
+            : '무료 카카오톡 친구 추가하기!'}
+          size="lg"
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-2xl px-12 py-8 rounded-full shadow-xl w-full transition-all duration-300 min-h-[80px] hover:scale-105"
+        />
 
-        <p class="mt-4 text-blue-100 text-sm">✓ 완전 무료 ✓ 매일 추천 ✓ 언제든 문의 가능</p>
+        <p class="mt-4 text-blue-100 text-sm">
+          ✓ 완전 무료 ✓ 매일 추천 ✓ 언제든 문의 가능
+        </p>
       </div>
     </section>
 
@@ -259,9 +379,13 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
     <footer class="bg-slate-800 text-white py-8 px-4">
       <div class="max-w-md mx-auto text-center">
         <h4 class="text-lg font-bold mb-4 text-yellow-400">{name} 주식투자</h4>
-        <p class="text-slate-300 text-sm mb-4">매일 상승 가능성 높은 종목 추천 서비스</p>
+        <p class="text-slate-300 text-sm mb-4">
+          매일 상승 가능성 높은 종목 추천 서비스
+        </p>
 
-        <div class="flex justify-center items-center gap-6 text-sm text-slate-300">
+        <div
+          class="flex justify-center items-center gap-6 text-sm text-slate-300"
+        >
           <div class="flex items-center gap-2">
             <MessageCircle class="h-4 w-4" />
             <span>{t === '棒群' ? '棒群' : '카카오톡'} 상담</span>
@@ -272,19 +396,20 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           </div>
         </div>
 
-        <p class="text-slate-400 text-xs mt-6">&copy; 2025 {name} 주식투자. 모든 권리 보유.</p>
+        <p class="text-slate-400 text-xs mt-6">
+          &copy; 2025 {name} 주식투자. 모든 권리 보유.
+        </p>
       </div>
     </footer>
 
     {/* Floating CTA Button - Mobile Optimized */}
     <div class="fixed bottom-4 left-4 right-4 z-50">
-             <CtaButton
-               social={t}
-               text={t === '棒群' ? '지금 무료 종목 받기!' : '지금 무료 상담 받기!'}
-               size="lg"
-               class={`${t === '棒群' ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-500 hover:bg-yellow-600'} text-white font-bold text-lg px-8 py-5 rounded-full shadow-2xl transition-all duration-300 w-full border-2 border-white hover:scale-105 min-h-[65px]`}
-             />
+      <CtaButton
+        social={t}
+        text={t === '棒群' ? '지금 무료 종목 받기!' : '지금 무료 상담 받기!'}
+        size="lg"
+        class={`${t === '棒群' ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-500 hover:bg-yellow-600'}  font-bold text-lg px-8 py-5 rounded-full shadow-2xl transition-all duration-300 w-full border-2 border-white hover:scale-105 min-h-[65px]`}
+      />
     </div>
-
   </div>
 </BaseLayout>

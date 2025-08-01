@@ -1,0 +1,224 @@
+---
+import { ArrowRight, Clock, MessageCircle, TrendingUp, Users } from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+// 配置参数
+// const kakaoLink = 'https://www.baidu.com' // 请替换为实际的Kakao邀请链接
+const countdownSeconds = 5
+
+const title = '급등주 정보 무료 제공'
+const subtitle = '친구추가 후 \'7\' 전송으로 즉시 받기'
+---
+
+<BaseLayout title={title} description={subtitle} track={true}>
+  <!-- 单屏落地页容器 -->
+  <div class="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex flex-col relative overflow-hidden">
+
+    <!-- 背景装饰 -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full animate-pulse"></div>
+      <div class="absolute bottom-20 right-10 w-16 h-16 bg-yellow-400 rounded-full animate-bounce"></div>
+      <div class="absolute top-1/2 left-1/4 w-12 h-12 bg-green-400 rounded-full animate-ping"></div>
+    </div>
+
+    <!-- 顶部区域 - 品牌和紧迫感 -->
+    <div class="flex-1 flex flex-col justify-center items-center px-6 text-center relative z-10">
+
+      <!-- 主要标题 -->
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+        {title}
+      </h1>
+
+      <!-- 副标题和核心指令 -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 max-w-md">
+        <p class="text-xl text-white mb-4">
+          {subtitle}
+        </p>
+
+        <!-- 核心指令 - 发送7 -->
+        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl p-4 mb-4 transform hover:scale-105 transition-transform">
+          <div class="flex items-center justify-center gap-3">
+            <Users class="w-8 h-8 text-gray-800" />
+            <span class="text-lg font-semibold text-gray-800">친구추가 후</span>
+            <span class="text-3xl font-bold text-white bg-red-500 px-3 py-1 rounded-lg animate-pulse">7</span>
+            <span class="text-lg font-semibold text-gray-800">전송</span>
+          </div>
+        </div>
+
+        <!-- 操作步骤可视化 -->
+        <div class="flex items-center justify-center gap-1 text-white text-xs">
+          <span class="bg-white/20 px-2 py-1 rounded-full">친구추가</span>
+          <ArrowRight class="w-4 h-4" />
+          <span class="bg-white/20 px-2 py-1 rounded-full">'7' 전송</span>
+          <ArrowRight class="w-4 h-4" />
+          <span class="bg-green-500 px-2 py-1 rounded-full">정보받기</span>
+        </div>
+      </div>
+
+      <!-- 社会证明 -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6 max-w-sm">
+        <div class="flex items-center justify-center gap-2 text-white mb-2">
+          <TrendingUp class="w-5 h-5 text-yellow-400" />
+          <span class="font-semibold">실시간 가입 현황</span>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-yellow-400 mb-1">
+            <span id="liveCount">-</span>명
+          </div>
+          <div class="text-sm text-white/80">오늘 가입한 사용자</div>
+        </div>
+      </div>
+
+      <!-- 倒计时区域 -->
+      <div class="bg-red-500/90 backdrop-blur-sm rounded-2xl p-6 mb-6 max-w-sm">
+        <div class="text-center text-white">
+          <div class="flex items-center justify-center gap-2 text-sm mb-2">
+            <Clock class="w-4 h-4" />
+            <span>자동으로 이동합니다</span>
+          </div>
+          <div class="text-3xl font-bold mb-2">
+            <span id="countdown">{countdownSeconds}</span>초
+          </div>
+          <div class="flex items-center justify-center gap-2 text-sm opacity-80">
+            <MessageCircle class="w-4 h-4" />
+            <span>친구추가 후 '7' 전송 잊지마세요!</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 进度条 -->
+      <div class="w-full max-w-sm bg-white/20 rounded-full h-2 mb-4">
+        <div id="progressBar" class="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
+      </div>
+
+      <!-- 手动跳转按钮 -->
+      <button id="manualJump" class="bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+        지금 바로 이동하기
+      </button>
+
+    </div>
+
+    <!-- 底部提示 -->
+    <div class="text-center pb-6 text-white/70 text-sm">
+      <p>안전한 연결을 위해 자동으로 이동됩니다</p>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+import { mixinJump } from '@/utils/jump'
+
+const countdownSeconds = 5
+
+// 自动跳转逻辑
+let countdown = countdownSeconds
+let countdownInterval: number
+let progressInterval: number
+
+// 实时数据更新
+function updateLiveCount() {
+  const countElement = document.getElementById('liveCount')
+  if (countElement) {
+    // 从localStorage获取当前计数，如果没有则从页面元素获取
+    let currentCount = localStorage.getItem('liveCount')
+    if (!currentCount) {
+      currentCount = countElement.textContent.replace(',', '')
+    }
+    else {
+      currentCount = Number.parseInt(currentCount).toString()
+    }
+
+    // 增加随机数量
+    const newCount = Number.parseInt(currentCount) + Math.floor(Math.random() * 3) + 1
+
+    // 更新页面显示和localStorage
+    countElement.textContent = newCount.toLocaleString()
+    localStorage.setItem('liveCount', newCount.toString())
+  }
+}
+
+// 倒计时和自动跳转
+function startCountdown() {
+  const countdownElement = document.getElementById('countdown')
+  const progressBar = document.getElementById('progressBar')
+
+  countdownInterval = setInterval(() => {
+    countdown--
+    if (countdownElement) {
+      countdownElement.textContent = countdown
+    }
+
+    // 更新进度条
+    const progress = ((countdownSeconds - countdown) / countdownSeconds) * 100
+    if (progressBar) {
+      progressBar.style.width = `${progress}%`
+    }
+
+    // 倒计时结束，自动跳转
+    if (countdown <= 0) {
+      clearInterval(countdownInterval)
+      clearInterval(progressInterval)
+      mixinJump()
+    }
+  }, 1000)
+}
+
+// 手动跳转按钮
+document.getElementById('manualJump')?.addEventListener('click', () => {
+  clearInterval(countdownInterval)
+  clearInterval(progressInterval)
+  mixinJump()
+})
+
+// 页面加载完成后启动
+document.addEventListener('DOMContentLoaded', () => {
+  // 初始化localStorage数据并立即显示
+  if (!localStorage.getItem('liveCount')) {
+    localStorage.setItem('liveCount', '1247')
+  }
+
+  // 立即显示当前数值
+  const countElement = document.getElementById('liveCount')
+  if (countElement) {
+    const currentCount = localStorage.getItem('liveCount')
+    countElement.textContent = Number.parseInt(currentCount).toLocaleString()
+  }
+
+  // 启动倒计时
+  startCountdown()
+
+  // 启动实时数据更新
+  setInterval(updateLiveCount, 3000)
+
+  // 页面可见性变化时暂停/恢复倒计时
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(countdownInterval)
+      clearInterval(progressInterval)
+    }
+    else {
+      startCountdown()
+    }
+  })
+})
+</script>
+
+<style>
+  /* 自定义动画 */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.6); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* 确保在390px以上设备上的优化 */
+  @media (min-width: 390px) {
+    .min-h-screen {
+      min-height: 100vh;
+    }
+  }
+</style>

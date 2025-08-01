@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import img1 from './static/media/1.png'
+import img2 from './static/media/2.png'
+import img3 from './static/media/3.png'
+import img4 from './static/media/4.png'
+import img5 from './static/media/5.png'
+import img6 from './static/media/6.png'
+import btn from './static/media/btn.png'
+---
+
+<BaseLayout>
+  <div class="content w-full overflow-hidden">
+    <Image src={img1} alt="img1" class="link-btn" />
+    <Image src={img2} alt="img2" />
+    <Image src={img3} alt="img3" />
+    <Image src={img4} alt="img4" />
+    <Image class="btn link-btn animate_breath" src={btn} alt="btn" />
+    <Image src={img5} alt="img5" />
+    <div class="relative">
+      <Image src={img6} alt="img6" />
+      <Image class="btn link-btn animate_breath absolute left-0 right-0 bottom-[35%]" src={btn} alt="btn" />
+    </div>
+  </div>
+  <style>
+    .animate_breath {
+      animation: animate_breath 2s ease-in-out infinite;
+    }
+    @keyframes animate_breath {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</BaseLayout>

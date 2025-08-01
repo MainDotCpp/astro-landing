@@ -43,7 +43,12 @@ html {
 body {
   width: 100%;
   color: #111111;
-  font-family: -apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu,
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Trebuchet MS,
+    Roboto,
+    Ubuntu,
     sans-serif;
   font-size: 1.8rem;
   line-height: 1.7;
@@ -624,7 +629,7 @@ width: 100%;
 
 /* æº€è¶³ã®ã‚µãƒãƒ¼ãƒˆ */
 .support {
-  background-image: url("../images/img_support_back.jpg");
+  background-image: url('../images/img_support_back.jpg');
   background-repeat: no-repeat;
   background-position: center top;
 }
@@ -1090,9 +1095,6 @@ footer a:active {
     display: block;
     width: 70%;
   }
-  .submit img {
-    width: 100%;
-  }
 
   #header_pc {
     display: block;
@@ -1370,7 +1372,7 @@ footer a:active {
 
   /* æº€è¶³ã®ã‚µãƒãƒ¼ãƒˆ */
   .support {
-    background-image: url("../images/img_support_back.jpg");
+    background-image: url('../images/img_support_back.jpg');
     background-repeat: no-repeat;
     background-position: center top;
   }
@@ -1857,9 +1859,6 @@ footer a:active {
     display: block;
     width: 80%;
   }
-  .submit img {
-    width: 100%;
-  }
 
   #header_pc {
     display: block;
@@ -2106,7 +2105,7 @@ footer a:active {
 
   /* æº€è¶³ã®ã‚µãƒãƒ¼ãƒˆ */
   .support {
-    background-image: url("../images/img_support_back.jpg");
+    background-image: url('../images/img_support_back.jpg');
     background-repeat: no-repeat;
     background-position: center top;
   }
@@ -2598,9 +2597,6 @@ footer a:active {
     display: block;
     width: 90%;
   }
-  .submit img {
-    width: 100%;
-  }
 
   #header_pc {
     display: block;
@@ -2920,7 +2916,7 @@ footer a:active {
 
   /* æº€è¶³ã®ã‚µãƒãƒ¼ãƒˆ */
   .support {
-    background-image: url("../images/img_support_back.jpg");
+    background-image: url('../images/img_support_back.jpg');
     background-repeat: no-repeat;
     background-position: center top;
   }
@@ -3747,13 +3743,14 @@ strong {
 }
 
 .font_M {
-  font-family: "æ¸¸æ˜Žæœ", YuMincho, "ãƒ’ãƒ©ã‚®ãƒŽæ˜Žæœ ProN W3",
-    "Hiragino Mincho ProN", "HGæ˜ŽæœE", "ï¼­ï¼³ ï¼°æ˜Žæœ", "ï¼­ï¼³ æ˜Žæœ", serif;
+  font-family:
+    'æ¸¸æ˜Žæœ', YuMincho, 'ãƒ’ãƒ©ã‚®ãƒŽæ˜Žæœ ProN W3', 'Hiragino Mincho ProN', 'HGæ˜ŽæœE', 'ï¼­ï¼³ ï¼°æ˜Žæœ',
+    'ï¼­ï¼³ æ˜Žæœ', serif;
 }
 
 /* CLEAR FIX*/
 .clearfix:after {
-  content: ".";
+  content: '.';
   display: block;
   height: 0;
   clear: both;
@@ -3793,7 +3790,7 @@ strong {
   width: 7px;
   height: 7px;
   margin: auto;
-  content: "";
+  content: '';
   transform: rotate(135deg);
   border-top: 2px solid #000;
   border-right: 2px solid #000;
@@ -3815,7 +3812,7 @@ strong {
   top: 20px;
   left: 20px;
   display: block;
-  content: "Q.";
+  content: 'Q.';
   color: #5589c3;
 }
 .qa-list dl dd::before {
@@ -3824,7 +3821,7 @@ strong {
   position: absolute;
   left: 20px;
   display: block;
-  content: "A.";
+  content: 'A.';
   font-weight: bold;
   color: #ed844b;
 }
@@ -3872,7 +3869,7 @@ strong {
     top: 10px;
     left: 20px;
     display: block;
-    content: "Q.";
+    content: 'Q.';
     color: #5589c3;
   }
   .qa-list dl dd::before {
@@ -3881,7 +3878,7 @@ strong {
     position: absolute;
     left: 20px;
     display: block;
-    content: "A.";
+    content: 'A.';
     font-weight: bold;
     color: #ed844b;
   }
@@ -3931,7 +3928,7 @@ strong {
     top: 10px;
     left: 10px;
     display: block;
-    content: "Q.";
+    content: 'Q.';
     color: #5589c3;
   }
   .qa-list dl dd::before {
@@ -3940,7 +3937,7 @@ strong {
     position: absolute;
     left: 10px;
     display: block;
-    content: "A.";
+    content: 'A.';
     font-weight: bold;
     color: #ed844b;
   }
