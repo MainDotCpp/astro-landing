@@ -1,6 +1,514 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 ---
-<BaseLayout title="20250813-1" description="20250813-1">
+<BaseLayout title="한국 시장" description="한국 주식 시장 개요">
+  <header id="page-header" class="hdr">
+    <div class="hdr-wrap">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brand-text">
+          <div class="title">KR Market · 컨설팅</div>
+          <div class="hdr-sub">카카오 채널 추가 후 '7'을 보내면 실시간 핵심 데이터와 무료 전문 분석을 받아보세요</div>
+        </div>
+      </div>
+      <nav class="nav-desktop">
+        <a class="nav-link" href="#ticker">시세 테이프</a>
+        <a class="nav-link" href="#overview">지수·블루칩</a>
+        <a class="nav-link" href="#compare">KOSPI 비교</a>
+        <a class="nav-link" href="#mini">인기 미니 차트</a>
+        <a class="nav-link" href="#quotes">시세 표</a>
+        <a class="nav-link" href="#calendar">경제 캘린더</a>
+      </nav>
+      <button id="menuBtn" class="hamburger" aria-controls="mobileMenu" aria-expanded="false" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="nav-mobile" hidden>
+      <div class="panel">
+        <a class="nav-link" href="#ticker">시세 테이프</a>
+        <a class="nav-link" href="#overview">지수·블루칩</a>
+        <a class="nav-link" href="#compare">KOSPI 비교</a>
+        <a class="nav-link" href="#mini">인기 미니 차트</a>
+        <a class="nav-link" href="#quotes">시세 표</a>
+        <a class="nav-link" href="#calendar">경제 캘린더</a>
+      </div>
+    </div>
+  </header>
+  <script>
+(function () {
+  const btn = document.getElementById('menuBtn')
+  const panel = document.getElementById('mobileMenu')
+  if (btn && panel) {
+    btn.addEventListener('click', () => {
+      const open = !panel.hasAttribute('hidden')
+      if (open) { panel.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false') }
+      else { panel.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true') }
+    })
+    panel.addEventListener('click', (e) => {
+      const t = e.target
+      if (t instanceof Element && t.matches('a.nav-link')) {
+        panel.setAttribute('hidden', '')
+        btn.setAttribute('aria-expanded', 'false')
+      }
+    })
+  }
+  const ids = ['ticker', 'overview', 'compare', 'mini', 'quotes', 'calendar']
+  const links = Array.from(document.querySelectorAll('#page-header a.nav-link'))
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const id = e.target.id
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${id}`))
+      }
+    })
+  }, { rootMargin: '-40% 0% -55% 0%', threshold: 0.01 })
+  ids.forEach((id) => {
+    const el = document.getElementById(id); if (el)
+      io.observe(el)
+  })
+})()
+</script>
+  <main id="kr-page" class="container mx-auto p-4" style="max-width:1080px;color:#e5e7eb;">
+    <section class="k-card" style="padding:16px 20px;border-radius:16px;background:linear-gradient(135deg,#0b1220 0%,#111827 100%);border:1px solid #1f2937;">
+      <h1 style="font-size:28px;margin:0 0 6px;">카카오 추가 + '7' → 더 자세하고 빠른 시세·알림·무료 분석</h1>
+      <p style="margin:0;color:#cbd5e1;">카카오 채널을 추가하고 '7'을 보내면 실시간에 가까운 시세 스냅샷, 핵심 이벤트 알림, 그리고 전문가 관점의 무료 분석 요약을 바로 받아보실 수 있습니다.</p>
 
+    </section>
+
+    <!-- New: Intro / Value Proposition -->
+    <section id="intro" style="margin-top:20px;display:grid;grid-template-columns:1.1fr 1fr;gap:16px;align-items:stretch;">
+      <div style="padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+        <h2 style="font-size:18px;margin:0 0 8px;color:#e5e7eb;">카카오에 '7'을 보내면 무엇을 받나요?</h2>
+          <p style="margin:8px 0 0;color:#cbd5e1;line-height:1.7;">
+            - 실시간에 가까운 코스피·대표 종목 흐름 요약과 핵심 레벨 알림
+            <br />- 장중/마감 핵심 포인트 요약, 이벤트 일정 사전 체크
+            <br />- 애널리스트 관점의 무료 인사이트: 구조적 트렌드 vs. 단기 모멘텀 구분
+          </p>
+        <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div style="padding:12px;border:1px solid #1f2937;border-radius:10px;background:#111827;color:#e5e7eb;">
+            <div style="font-weight:600;">'7' 한 번으로</div>
+            <div style="font-size:12px;color:#94a3b8;margin-top:4px;">코스피·ETF·ADR 핵심 레벨/요약을 즉시 수신</div>
+          </div>
+          <div style="padding:12px;border:1px solid #1f2937;border-radius:10px;background:#111827;color:#e5e7eb;">
+            <div style="font-weight:600;">장중 알림</div>
+            <div style="font-size:12px;color:#94a3b8;margin-top:4px;">중요 변동/뉴스 시 '7' 구독자 우선 안내</div>
+          </div>
+          <div style="padding:12px;border:1px solid #1f2937;border-radius:10px;background:#111827;color:#e5e7eb;">
+            <div style="font-weight:600;">무료 분석</div>
+            <div style="font-size:12px;color:#94a3b8;margin-top:4px;">애널리스트 요약/핵심 포인트를 카톡으로 간단히</div>
+          </div>
+        </div>
+      </div>
+      <aside style="padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;color:#e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+        <div style="font-size:14px;opacity:.9;">빠르게 시작하기</div>
+        <ul style="margin:10px 0 0;padding-left:18px;line-height:1.7;color:#cbd5e1;">
+          <li>카카오 채널 추가 후 '7'을 전송</li>
+          <li>실시간 핵심 데이터/알림/무료 분석 수신</li>
+          <li>관심 종목 맞춤 요약 요청 가능</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Ticker Tape -->
+    <section id="ticker" style="margin-top:20px;padding:12px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {
+          "symbols": [
+            { "proName": "OTC:SSNLF", "title": "Samsung Elec ADR" },
+            { "proName": "AMEX:EWY", "title": "iShares MSCI South Korea" },
+            { "proName": "NYSE:SKM", "title": "SK Telecom" },
+            { "proName": "NYSE:KB", "title": "KB Financial ADR" },
+            { "proName": "NYSE:SHG", "title": "Shinhan Financial ADR" },
+            { "proName": "NYSE:PKX", "title": "POSCO ADR" }
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "dark",
+          "isTransparent": true,
+          "displayMode": "adaptive",
+          "locale": "ko"
+        }
+        </script>
+      </div>
+    </section>
+
+    <!-- Market Overview (Indices + Blue Chips) -->
+    <section id="overview" style="margin-top:20px;padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+      <h2 style="font-size:18px;margin:0 0 8px;color:#e5e7eb;">주요 지수·블루칩</h2>
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <div class="tradingview-widget-copyright">
+          <a href="https://www.tradingview.com/" rel="noopener noreferrer" target="_blank" style="color:#60a5fa;">Quotes by TradingView</a>
+        </div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+        {
+          "colorTheme": "dark",
+          "isTransparent": true,
+          "dateRange": "12M",
+          "showChart": true,
+          "locale": "ko",
+          "width": "100%",
+          "height": "520",
+          "tabs": [
+                            {
+                  "title": "Korea Benchmarks",
+                  "symbols": [
+                    { "s": "AMEX:EWY", "d": "MSCI Korea ETF" }
+                  ]
+                },
+            {
+              "title": "Large Caps (ADR/ETF)",
+              "symbols": [
+                { "s": "OTC:SSNLF", "d": "Samsung Elec ADR" },
+                { "s": "NYSE:PKX", "d": "POSCO ADR" },
+                { "s": "NYSE:KB", "d": "KB Financial ADR" },
+                { "s": "NYSE:SHG", "d": "Shinhan Financial ADR" }
+              ]
+            }
+          ]
+        }
+        </script>
+      </div>
+    </section>
+
+    <!-- KOSPI vs Leaders Overview -->
+    <section id="compare" style="margin-top:20px;padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+      <h2 style="font-size:18px;margin:0 0 8px;color:#e5e7eb;">KOSPI 비교</h2>
+      <div class="tradingview-widget-container" style="margin-top:8px;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {
+          "symbols": [ ["AMEX:EWY|1D"], ["OTC:SSNLF|1D"] ],
+          "chartOnly": false,
+          "width": "100%",
+          "height": "480",
+          "locale": "ko",
+          "colorTheme": "dark",
+          "isTransparent": true,
+          "autosize": false,
+          "showVolume": true,
+          "showMA": true,
+          "hideDateRanges": false,
+          "scalePosition": "right",
+          "scaleMode": "Normal",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif",
+          "noTimeScale": false,
+          "chartType": "area"
+        }
+        </script>
+      </div>
+    </section>
+
+    <!-- Mini Symbol Overview Grid -->
+    <section id="mini" style="margin-top:20px;padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+      <h2 style="font-size:18px;margin:0 0 8px;color:#e5e7eb;">인기 종목 스냅샷 (ADR/ETF)</h2>
+      <div id="mini-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+        <div class="tradingview-widget-container" style="min-width:240px;">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "OTC:SSNLF",
+            "width": "100%",
+            "height": "220",
+            "locale": "ko",
+            "dateRange": "1M",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "trendLineColor": "#37a6ef",
+            "underLineColor": "rgba(55, 166, 239, 0.15)"
+          }
+          </script>
+        </div>
+        <div class="tradingview-widget-container" style="min-width:240px;">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "AMEX:EWY",
+            "width": "100%",
+            "height": "220",
+            "locale": "ko",
+            "dateRange": "1M",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "trendLineColor": "#37a6ef",
+            "underLineColor": "rgba(55, 166, 239, 0.15)"
+          }
+          </script>
+        </div>
+        <div class="tradingview-widget-container" style="min-width:240px;">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "NYSE:SKM",
+            "width": "100%",
+            "height": "220",
+            "locale": "ko",
+            "dateRange": "1M",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "trendLineColor": "#37a6ef",
+            "underLineColor": "rgba(55, 166, 239, 0.15)"
+          }
+          </script>
+        </div>
+        <div class="tradingview-widget-container" style="min-width:240px;">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "NYSE:PKX",
+            "width": "100%",
+            "height": "220",
+            "locale": "ko",
+            "dateRange": "1M",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "trendLineColor": "#37a6ef",
+            "underLineColor": "rgba(55, 166, 239, 0.15)"
+          }
+          </script>
+        </div>
+        <div class="tradingview-widget-container" style="min-width:240px;">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "NYSE:KB",
+            "width": "100%",
+            "height": "220",
+            "locale": "ko",
+            "dateRange": "1M",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "trendLineColor": "#37a6ef",
+            "underLineColor": "rgba(55, 166, 239, 0.15)"
+          }
+          </script>
+        </div>
+        <div class="tradingview-widget-container" style="min-width:240px;">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "NYSE:SHG",
+            "width": "100%",
+            "height": "220",
+            "locale": "ko",
+            "dateRange": "1M",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "trendLineColor": "#37a6ef",
+            "underLineColor": "rgba(55, 166, 239, 0.15)"
+          }
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market Quotes Table (custom group) -->
+    <section id="quotes" style="margin-top:20px;padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+      <h2 style="font-size:18px;margin:0 0 8px;color:#e5e7eb;">시세 표 (Korea ADR/ETF)</h2>
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+        {
+          "width": "100%",
+          "height": "460",
+          "colorTheme": "dark",
+          "isTransparent": true,
+          "symbolsGroups": [
+            {
+              "name": "Korea ADR/ETF",
+              "originalName": "Korea ADR/ETF",
+              "symbols": [
+                { "name": "AMEX:EWY", "displayName": "EWY" },
+                { "name": "AMEX:EWY", "displayName": "EWY" },
+                { "name": "OTC:SSNLF", "displayName": "SSNLF" },
+                { "name": "NYSE:SKM", "displayName": "SKM" },
+                { "name": "NYSE:PKX", "displayName": "PKX" },
+                { "name": "NYSE:KB", "displayName": "KB" },
+                { "name": "NYSE:SHG", "displayName": "SHG" }
+              ]
+            }
+          ],
+          "showSymbolLogo": true,
+          "locale": "ko"
+        }
+        </script>
+      </div>
+    </section>
+
+    <!-- News Timeline -->
+    <!-- <section id="news" style="margin-top:20px;padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+      <h2 style="font-size:18px;margin:0 0 8px;color:#e5e7eb;">市场新闻</h2>
+      <div class="tradingview-widget-container w-full">
+        <div class="tradingview-widget-container__widget w-full"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+        {
+          "feedMode": "market",
+          "market": "korea",
+          "colorTheme": "dark",
+          "displayMode": "normal",
+          "width": "100%",
+          "height": "560",
+          "locale": "ko"
+        }
+        </script>
+      </div>
+    </section> -->
+
+    <!-- Economic Calendar -->
+    <section id="calendar" style="margin-top:20px;padding:16px;border-radius:12px;background:#0f172a;border:1px solid #1f2937;box-shadow:0 1px 2px rgba(0,0,0,.25)">
+      <h2 style="font-size:18px;margin:0 0 8px;color:#e5e7eb;">경제 캘린더</h2>
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+        {
+          "width": "100%",
+          "height": "560",
+          "colorTheme": "dark",
+          "isTransparent": true,
+          "locale": "ko",
+          "importanceFilter": "-1,0,1"
+        }
+        </script>
+      </div>
+        </section>
+
+
+
+     <!-- Bottom Fixed CTA -->
+     <div class="bottom-cta">
+       <div class="wrap">
+         <div class="txt">카카오 추가 후 '7' 전송 시 더 자세하고 빠른 시세·알림·무료 분석 제공</div>
+          <a class="kakao link-btn" rel="noopener noreferrer">카카오 채널 추가</a>
+       </div>
+     </div>
+
+    <style is:global>
+      /* 多层背景：两束径向高光 + 竖向深色渐变 */
+      html, body {
+        background:
+          radial-gradient(1000px 600px at 80% -120px, rgba(96,165,250,.10), transparent 60%),
+          radial-gradient(800px 500px at -10% 0%, rgba(34,197,94,.08), transparent 60%),
+          linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%);
+        color: #e5e7eb;
+        scroll-behavior: smooth;
+        scroll-padding-top: 72px;
+      }
+      section[id] { scroll-margin-top: 72px; }
+      /* 细噪点（极轻），覆盖全屏 */
+      html::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: .03;
+        mix-blend-mode: soft-light;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.65'/></svg>");
+      }
+      /* 微网格（24px间距极细线） */
+      html::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: .04;
+        background-image:
+          repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 24px),
+          repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 24px);
+      }
+      /* 移动端降噪隐藏网格 */
+      @media (max-width: 768px) {
+        html::before { opacity: .02; }
+        html::after { display: none; }
+      }
+
+      /* Header (modern, mobile-first) */
+      .hdr { position: sticky; top: 0; z-index: 50; background: rgba(11,18,32,.85); backdrop-filter: saturate(120%) blur(8px); border-bottom: 1px solid #1f2937; }
+      .hdr-wrap { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; }
+      .brand { display:flex; align-items:center; gap:10px; }
+      .brand .logo { width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,#60a5fa,#22c55e); box-shadow:0 0 0 1px rgba(255,255,255,.06) inset; }
+      .brand .brand-text { line-height: 1; }
+      .brand .title { font-weight:700; letter-spacing:.2px; color:#e5e7eb; }
+      .brand .hdr-sub { font-size:12px; color:#93a3b8; opacity:.9; margin-top:4px; }
+
+      .nav-desktop { display:flex; gap:12px; align-items:center; min-width:0; }
+      .nav-link { color:#93c5fd; text-decoration:none; white-space:nowrap; padding:8px 10px; border-radius:10px; transition: background .2s ease, color .2s ease; }
+      .nav-link:hover { background: rgba(255,255,255,.06); }
+      .nav-link.active { background: rgba(96,165,250,.18); color:#bfdbfe; }
+
+      .hamburger { display:none; width:40px; height:36px; align-items:center; justify-content:center; gap:3px; border:1px solid rgba(148,163,184,.25); border-radius:10px; background:rgba(15,23,42,.6); color:#e5e7eb; }
+      .hamburger span { display:block; width:18px; height:2px; background:#e5e7eb; border-radius:2px; }
+
+      .nav-mobile { position: fixed; top: 56px; left:0; right:0; z-index: 49; background: rgba(11,18,32,.95); border-bottom: 1px solid #1f2937; }
+      .nav-mobile .panel { max-width:1080px; margin:0 auto; display:flex; flex-wrap:wrap; gap:8px; padding:10px 16px; }
+
+      @media (max-width: 920px) {
+        .nav-desktop { display:none; }
+        .hamburger { display:inline-flex; flex-direction: column; }
+      }
+
+      /* Bottom fixed CTA styles */
+      .bottom-cta {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+        display: flex; justify-content: center;
+        padding: 10px 12px; background: linear-gradient(180deg, rgba(2,6,23,.0), rgba(2,6,23,.65) 40%, rgba(2,6,23,.85));
+        backdrop-filter: blur(8px) saturate(120%);
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+      }
+      .bottom-cta .wrap {
+        width: 100%; max-width: 1080px;
+        display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center;
+        background: rgba(15,23,42,.88); border: 1px solid rgba(148,163,184,.16);
+        border-radius: 14px; padding: 12px 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+      }
+      .bottom-cta .txt { color:#e5e7eb; font-size: 14px; opacity:.95; line-height:1.5; white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
+      .bottom-cta .kakao {
+        display:inline-flex;align-items:center;gap:8px;
+        padding:10px 16px;border-radius:12px;
+        background:linear-gradient(135deg,#FFE812,#FEDA00);
+        color:#111827;font-weight:800;
+        box-shadow:0 6px 18px rgba(250,204,21,.25), inset 0 1px 0 rgba(255,255,255,.55);
+      }
+      @media (max-width: 768px) {
+        #kr-page { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+        .bottom-cta .wrap { padding: 10px; grid-template-columns: 1fr; row-gap: 10px; }
+        .bottom-cta .txt { font-size: 13px; text-wrap: balance; }
+        .bottom-cta .kakao { width: 100%; justify-content: center; text-align: center; padding: 12px 16px; }
+      }
+
+      /* Card unify */
+      #intro, #follow, #ticker, #overview, #compare, #mini, #quotes, #calendar {
+        background: rgba(15,23,42,.88) !important;
+        border: 1px solid rgba(148,163,184,.12) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.02) !important;
+      }
+      section h2 { font-weight: 600; letter-spacing: .2px; }
+
+      /* Smooth scroll offset for sticky header with safe-area */
+      html, body { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top)); }
+      section[id] { scroll-margin-top: calc(72px + env(safe-area-inset-top)); }
+
+      /* Responsive tweaks */
+      @media (max-width: 768px) {
+        #page-header .container { padding: 8px 12px !important; gap: 8px !important; }
+        #intro { display: block !important; }
+        #intro > aside { margin-top: 12px !important; }
+        #mini-grid { grid-template-columns: 1fr !important; }
+        h1 { font-size: 22px !important; }
+      }
+    </style>
+
+    <style>
+      @media (max-width: 768px) {
+        #intro { display: block; }
+        #intro > aside { margin-top: 12px; }
+        #mini-grid { grid-template-columns: 1fr; }
+        nav a { font-size: 13px; }
+        h1 { font-size: 22px; }
+        #compare script, #overview script, #news script, #calendar script { height: auto; }
+      }
+    </style>
+  </main>
 </BaseLayout>

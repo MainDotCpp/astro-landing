@@ -19,12 +19,14 @@ if (!window.hybridModalInitialized) {
   // 等待DOM加载完成
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('global-hybrid-modal')
+
     document.querySelectorAll('.global-modal-band').forEach((btn) => {
       btn.addEventListener('click', () => {
         modal.style.display = 'none'
         redirect(band_link)
       })
     })
+
     document.querySelectorAll('.global-modal-kakao').forEach((btn) => {
       btn.addEventListener('click', () => {
         modal.style.display = 'none'
