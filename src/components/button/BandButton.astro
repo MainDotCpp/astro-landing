@@ -1,0 +1,191 @@
+---
+// TypeScript Props定义
+type Props = {
+  text?: string
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  icon?: boolean
+  loading?: boolean
+  disabled?: boolean
+  fullWidth?: boolean
+  class?: string
+  href?: string
+  target?: '_blank' | '_self'
+}
+
+// 解构Props并设置默认值
+const {
+  text = 'BAND에서 무료 급등주 받기',
+  size = 'md',
+  icon = true,
+  loading = false,
+  disabled = false,
+  fullWidth = false,
+  class: className = '',
+  href,
+  target = '_self',
+} = Astro.props as Props
+
+// 尺寸配置
+const sizes = {
+  sm: { padding: 'px-3 py-1.5', text: 'text-sm', icon: 16, radius: 'rounded-md', gap: 'gap-1.5' },
+  md: { padding: 'px-4 py-2', text: 'text-base', icon: 20, radius: 'rounded-lg', gap: 'gap-2' },
+  lg: { padding: 'px-6 py-3', text: 'text-lg', icon: 24, radius: 'rounded-xl', gap: 'gap-2.5' },
+  xl: { padding: 'px-8 py-4', text: 'text-xl', icon: 28, radius: 'rounded-2xl', gap: 'gap-3' },
+}
+
+const currentSize = sizes[size]
+
+// 基础样式配置
+const baseStyle = 'bg-gradient-to-r from-[#00C651] to-[#00B347] text-white hover:from-[#00B347] hover:to-[#009F3D] shadow-lg hover:shadow-xl'
+
+// 基础类名构建
+const baseClasses = `
+  band-button
+  inline-flex items-center justify-center font-medium
+  transition-all duration-300 ease-in-out
+  cursor-pointer select-none
+  focus:outline-none focus:ring-2 focus:ring-[#00C651] focus:ring-offset-2
+  disabled:opacity-50 disabled:cursor-not-allowed
+  ${currentSize.padding} ${currentSize.text} ${currentSize.radius} ${currentSize.gap}
+  ${baseStyle}
+  ${fullWidth ? 'w-full' : ''}
+  ${loading ? 'cursor-wait' : ''}
+  ${className}
+`
+---
+
+<style>
+  /* Band按钮基础样式 */
+  .band-button {
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+    letter-spacing: -0.3px;
+    line-height: 1.4;
+  }
+
+  /* 悬停效果 */
+  .band-button:not(:disabled):hover {
+    transform: translateY(-2px);
+  }
+
+  /* 激活效果 */
+  .band-button:not(:disabled):active {
+    transform: translateY(0);
+  }
+
+  /* 加载动画 */
+  .band-button.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* 脉冲动画 */
+  .band-button.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* 图标样式 */
+  .band-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .band-button:hover .band-icon {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 640px) {
+    .band-button {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  /* 高对比度模式支持 */
+  @media (prefers-contrast: high) {
+    .band-button {
+      border: 2px solid currentColor;
+    }
+  }
+
+  /* 减少动画偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .band-button {
+      transition: none;
+    }
+
+    .band-button:hover {
+      transform: none;
+    }
+  }
+</style>
+
+{/* 按钮元素 */}
+{href
+? (
+  <a
+    href={href}
+    target={target}
+    rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+    class={`${baseClasses} ${loading ? 'loading' : ''} ${disabled ? 'disabled' : ''}`}
+    aria-disabled={disabled}
+    role="button"
+  >
+    {icon && !loading && (
+      <div class="band-icon" style={`width: ${currentSize.icon}px; height: ${currentSize.icon}px;`}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg>
+      </div>
+    )}
+    <span class={loading ? 'opacity-0' : ''}>{text}</span>
+  </a>
+)
+: (
+  <button
+    class={`${baseClasses} ${loading ? 'loading' : ''} ${disabled ? 'disabled' : ''}`}
+    disabled={disabled || loading}
+    type="button"
+  >
+    {icon && !loading && (
+      <div class="band-icon" style={`width: ${currentSize.icon}px; height: ${currentSize.icon}px;`}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg>
+      </div>
+    )}
+    <span class={loading ? 'opacity-0' : ''}>{text}</span>
+  </button>
+)}
+
+{/* 插槽支持 */}
+<slot />
+

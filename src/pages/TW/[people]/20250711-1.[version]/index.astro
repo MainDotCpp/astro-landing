@@ -1,0 +1,120 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import btn from './static/btn.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '杜金龍', version: '0' }, props: { name: '杜金龍', img_prefix: 'sq_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { img_prefix, name: people } = Astro.props
+// 使用靜態導入來避免動態導入問題
+const header = await import(`./static/${img_prefix}header.png`)
+const img1 = await import(`./static/${img_prefix}img.png`);
+---
+
+<BaseLayout title={people} description={people} lang="zh-TW">
+  <main
+    class="flex flex-col gap-8 items-center justify-center max-w-2xl mx-auto"
+  >
+    <Image src={header.default} alt={people} />
+    <div class="text-xl px-4">
+      免費加入{people}的LINE，只要傳送「領取」訊息，就能知道明天會上漲的股票。此外，還能獲得每週預期300%獲利的優質股票資訊。
+    </div>
+    <h3 class="text-xl font-bold text-center px-4">
+      立即參加，獲得優質股票！
+    </h3>
+    <Image class="link-btn animate-breathe" src={btn} alt="按鈕" />
+    <h3 class="text-xl font-bold text-center px-4">
+      加入LINE並傳送「領取」訊息<br />
+      就能免費獲得最新的股票上漲<br />
+      新聞資訊！
+    </h3>
+    <Image src={img1.default} alt="圖片1" />
+    <Image class="link-btn animate-breathe" src={btn} alt="按鈕" />
+    <h3 class="text-xl font-bold text-center mb-10 px-4">
+      隱私權政策
+    </h3>
+  </main>
+  <style>
+    @keyframes breathe {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .animate-breathe {
+      animation: breathe 1s ease-in-out infinite;
+    }
+
+    /* 繁體中文字體設定 */
+    body,
+    html {
+      font-family:
+        "Noto Sans TC",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        "微軟正黑體",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "liga" 1, "kern" 1; /* 繁體中文字符優化 */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 確保所有文本元素都使用繁體中文字體 */
+    main,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      font-family:
+        "Noto Sans TC",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        "微軟正黑體",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "liga" 1, "kern" 1;
+    }
+
+    /* 繁體中文文本的行高優化 */
+    .text-xl {
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    /* 加強繁體中文字體權重 */
+    .font-bold {
+      font-weight: 700;
+    }
+  </style>
+</BaseLayout>

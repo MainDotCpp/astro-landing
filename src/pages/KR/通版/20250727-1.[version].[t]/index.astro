@@ -11,8 +11,7 @@ import {
   Users,
 } from 'lucide-astro'
 import CtaButton from '@/components/CtaButton.astro'
-import RedirectCode from '@/components/RedirectCode.astro'
-import BaseLayout from '@/layouts/BaseLayout.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
 
 export function getStaticPaths() {
   const pages = [
@@ -27,7 +26,7 @@ export function getStaticPaths() {
 const { t = '卡扣' } = Astro.params
 ---
 
-<BaseLayout title="시장 동향 개인 기록 노트" plugins={{ jquery: {} }}>
+<KRBaseLayout title="시장 동향 개인 기록 노트" plugins={{ jquery: {} }}>
   <Fragment slot="head">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
@@ -35,7 +34,6 @@ const { t = '卡扣' } = Astro.params
       name="description"
       content="개인이 매일 기록하는 시장 흐름과 관심 종목들의 정리 노트를 공유합니다."
     />
-    <RedirectCode />
 
     <!-- Fonts with system fallbacks -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
@@ -83,10 +81,10 @@ const { t = '卡扣' } = Astro.params
         </div>
 
         <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-tight">
-          매일 시장 흐름을<br>기록하는 사람
+          매일 시장 흐름을<br >기록하는 사람
         </h1>
         <p class="text-base text-gray-600 leading-relaxed mb-4">
-          개인적으로 정리하는 주식 시장 데이터와<br>
+          개인적으로 정리하는 주식 시장 데이터와<br >
           관심 종목들의 기록을 공유합니다
         </p>
 
@@ -239,7 +237,7 @@ const { t = '卡扣' } = Astro.params
             기록 공유 채널 참여하기
           </h3>
           <p class="text-green-100 text-sm mb-8 leading-relaxed">
-            매일 정리하는 개인 시장 기록을<br>
+            매일 정리하는 개인 시장 기록을<br >
             실시간으로 공유받고 싶으시다면
           </p>
 
@@ -248,17 +246,13 @@ const { t = '卡扣' } = Astro.params
               <CtaButton
                 social={t}
                 size="lg"
-                redirect={false}
                 class="w-full min-h-[56px] transform transition-all duration-300 hover:scale-105 active:scale-95 text-lg font-semibold"
               />
-              <!-- 로딩 상태 오버레이 (JavaScript로 제어) -->
-              <div class="absolute inset-0 bg-yellow-400 bg-opacity-20 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300" id="loading-overlay">
-                <div class="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-              </div>
+
             </div>
 
             <p class="text-xs text-green-100 leading-relaxed">
-              버튼을 눌러 채널에 참여하시면 개인 기록을 실시간으로 공유받을 수 있습니다<br>
+              버튼을 눌러 채널에 참여하시면 개인 기록을 실시간으로 공유받을 수 있습니다<br >
               <span class="text-green-200">• 개장 전 매일 공유 • 무료 참여 • 언제나 탈퇴 가능</span>
             </p>
           </div>
@@ -297,4 +291,4 @@ const { t = '卡扣' } = Astro.params
       </div>
     </section>
   </div>
-</BaseLayout>
+</KRBaseLayout>

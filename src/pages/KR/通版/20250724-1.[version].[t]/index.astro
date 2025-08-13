@@ -1,0 +1,437 @@
+---
+import type { GetStaticPaths } from 'astro'
+// import { Image } from 'astro:assets' // 不再需要图片
+import { Award, BarChart3, Clock, DollarSign, MessageCircle, Phone, Shield, Target, TrendingUp } from 'lucide-react'
+import CtaButton from '@/components/CtaButton.astro'
+import { Card, CardContent } from '@/components/ui/card'
+import BaseLayout from '@/layouts/KRBaseLayout.astro'
+// Import CSS files
+import './static/css/style2.css'
+import './static/css/animate.min.css'
+import './static/css/slick-theme.css'
+
+export function getStaticPaths() {
+  const campaigns = [
+    { params: { version: '0' } },
+  ]
+  return [
+    ...campaigns.map(p => ({ params: { ...p.params, t: '卡扣' } })),
+    ...campaigns.map(p => ({ params: { ...p.params, t: '棒群' } })),
+  ]
+}
+
+const { t = '卡扣' } = Astro.params
+// 已移除人设信息，使用通用内容
+---
+
+
+<BaseLayout title="시장 데이터 학습 커뮤니티" description="시장 데이터 분석 방법 학습 및 공유">
+  <div class="min-h-screen bg-slate-900">
+        {/* Hero Section */}
+    <section class="bg-slate-900 text-white py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div>
+            <div class="flex items-center gap-2 mb-6">
+              <DollarSign className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+              <span class="text-yellow-400 font-medium text-lg md:text-xl">데이터 분석 학습</span>
+            </div>
+
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+              시장 데이터 분석 방법을 함께 학습합니다
+            </h1>
+
+            <p class="text-xl md:text-2xl lg:text-3xl mb-10 text-blue-200 leading-relaxed">
+              매일 정리하는 시장 데이터와 개인 기록을 공유합니다.
+              투자 결정은 본인의 신중한 판단에 따라 이루어져야 하며,
+              제공되는 정보는 참고 목적일 뿐입니다.
+            </p>
+
+            {/* Features */}
+            <div class="space-y-6 mb-10">
+              <div class="flex items-start gap-4">
+                <BarChart3 className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">시장 데이터를 학습 목적으로 기록합니다</span>
+              </div>
+              <div class="flex items-start gap-4">
+                <TrendingUp className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">개인적인 차트 분석 내용을 공유합니다</span>
+              </div>
+              <div class="flex items-start gap-4">
+                <Target className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">시장 데이터 정리 방법을 공유합니다</span>
+              </div>
+              <div class="flex items-start gap-4">
+                <Shield className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">개인 경험과 학습 내용을 기록하여 공유합니다</span>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <CtaButton
+              social={t as '卡扣' | '棒群'}
+              size="lg"
+              class="w-full md:w-auto"
+            />
+          </div>
+
+          {/* Right Expert Card */}
+          <div class="bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-sm">
+            <div class="text-center">
+              <div class="w-32 h-32 mx-auto mb-6 bg-slate-200 rounded-full flex items-center justify-center">
+                <BarChart3 className="h-16 w-16 text-slate-600" />
+              </div>
+
+              <h3 class="text-3xl md:text-4xl font-bold text-white mb-2">시장 데이터 분석</h3>
+              <p class="text-yellow-400 mb-6 text-lg md:text-xl">시장 데이터 기록자</p>
+
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">매일</div>
+                  <div class="text-base md:text-lg text-blue-200">기록</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">학습</div>
+                  <div class="text-base md:text-lg text-blue-200">중심</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">참고</div>
+                  <div class="text-base md:text-lg text-blue-200">목적</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">공유</div>
+                  <div class="text-base md:text-lg text-blue-200">정신</div>
+                </div>
+              </div>
+
+              <p class="text-blue-100 text-base md:text-lg italic">
+시장에서 관찰한 데이터와 개인적인 경험을 기록하여 공유합니다. 모든 정보는 참고 목적이며, 투자 결정은 본인의 신중한 판단에 따라 이루어져야 합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Services Section */}
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-slate-800">
+데이터 분석 학습 커뮤니티
+          </h2>
+          <p class="text-xl md:text-2xl lg:text-3xl text-slate-600 max-w-4xl mx-auto">
+매일 정리한 시장 데이터와 개인 기록을 공유하며, 학습 목적으로 정보를 제공합니다
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <Card className="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
+            <CardContent className="p-8 text-center">
+              <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-blue-500 rounded-full flex items-center justify-center">
+                <TrendingUp className="h-10 w-10 md:h-12 md:w-12 text-white" />
+              </div>
+              <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-slate-800">매일 데이터 기록</h3>
+              <p class="text-slate-600 leading-relaxed text-lg md:text-xl">
+                시장 데이터를 학습 목적으로 수집하고 분석 방법을 공유합니다
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
+            <CardContent className="p-8 text-center">
+              <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-green-500 rounded-full flex items-center justify-center">
+                <Target className="h-10 w-10 md:h-12 md:w-12 text-white" />
+              </div>
+              <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-slate-800">차트 분석</h3>
+              <p class="text-slate-600 leading-relaxed text-lg md:text-xl">
+                개인적인 차트 분석 내용과 학습 과정을 공유합니다
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
+            <CardContent className="p-8 text-center">
+              <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                <BarChart3 className="h-10 w-10 md:h-12 md:w-12 text-white" />
+              </div>
+              <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-slate-800">데이터 정리 방법</h3>
+              <p class="text-slate-600 leading-relaxed text-lg md:text-xl">
+                시장 데이터를 정리하고 분석하는 개인적인 방법을 공유합니다
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+        {/* Expert Introduction Section */}
+    <section class="bg-gray-50 py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-slate-800">학습 커뮤니티 소개</h2>
+          <p class="text-xl md:text-2xl lg:text-3xl text-slate-600 max-w-4xl mx-auto">
+            시장 데이터 분석 방법을 학습하고 경험을 공유하는 교육 공간입니다
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div class="bg-white rounded-2xl p-10 shadow-lg">
+            <h3 class="text-4xl md:text-5xl font-bold mb-8 text-slate-800">데이터 분석 학습 커뮤니티</h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-4 h-4 md:w-5 md:h-5 bg-blue-500 rounded-full mt-2"></div>
+                <div>
+                  <p class="text-xl md:text-2xl font-bold text-slate-800 mb-1">데이터 수집 및 정리</p>
+                  <p class="text-slate-600 text-lg md:text-xl">시장 데이터를 체계적으로 수집하고 학습용으로 정리</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-4 h-4 md:w-5 md:h-5 bg-green-500 rounded-full mt-2"></div>
+                <div>
+                  <p class="text-xl md:text-2xl font-bold text-slate-800 mb-1">분석 방법 공유</p>
+                  <p class="text-slate-600 text-lg md:text-xl">데이터 분석 방법과 학습 경험을 공유하는 공간</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-4 h-4 md:w-5 md:h-5 bg-purple-500 rounded-full mt-2"></div>
+                <div>
+                  <p class="text-xl md:text-2xl font-bold text-slate-800 mb-1">학습 중심 접근</p>
+                  <p class="text-slate-600 text-lg md:text-xl">시장 데이터 분석 방법을 학습하고 경험을 공유합니다</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-4 h-4 md:w-5 md:h-5 bg-yellow-500 rounded-full mt-2"></div>
+                <div>
+                  <p class="text-xl md:text-2xl font-bold text-slate-800 mb-1">지속적인 학습</p>
+                  <p class="text-slate-600 text-lg md:text-xl">꾸준한 데이터 분석과 학습을 통한 지식 축적</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500">
+              <h4 class="font-bold text-xl md:text-2xl mb-2 text-slate-800">데이터 정리 철학</h4>
+              <p class="text-slate-700 italic text-lg md:text-xl">
+"시장 데이터 분석 방법과 학습 경험을 교육 목적으로 공유합니다. 모든 내용은 학습 목적이며, 개인적인 공부 과정과 경험을 나누는 공간입니다."
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Success Story Highlight */}
+        <div class="bg-white rounded-2xl p-10 shadow-lg">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h3 class="text-4xl md:text-5xl font-bold mb-6 text-slate-800">데이터 기록 과정</h3>
+              <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                  <div class="w-5 h-5 md:w-6 md:h-6 bg-green-500 rounded-full"></div>
+                  <span class="text-xl md:text-2xl text-slate-700">
+                    매일 시장 데이터 <strong class="text-green-600">성실한 기록</strong>
+                  </span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-5 h-5 md:w-6 md:h-6 bg-blue-500 rounded-full"></div>
+                  <span class="text-xl md:text-2xl text-slate-700">
+                    개인 경험과 <strong class="text-blue-600">학습 내용 공유</strong>
+                  </span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-5 h-5 md:w-6 md:h-6 bg-purple-500 rounded-full"></div>
+                  <span class="text-xl md:text-2xl text-slate-700">
+                    참고 목적의 <strong class="text-purple-600">정보 정리 및 공유</strong>
+                  </span>
+                </div>
+              </div>
+              <p class="mt-6 text-slate-600 italic text-xl md:text-2xl">"매일 정리한 데이터를 통해 함께 시장을 공부해보아요"</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+        {/* Trust Section */}
+    <section class="bg-white py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-16 text-slate-800">
+          데이터 기록 방식
+        </h2>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-4xl md:text-5xl font-bold mb-10 text-slate-800">데이터 정리 방법</h3>
+            <div class="space-y-8">
+              <div class="flex items-center gap-6">
+                <div class="w-20 h-20 md:w-24 md:h-24 bg-green-500 rounded-xl flex items-center justify-center font-bold text-white text-lg md:text-xl">
+                  매일
+                </div>
+                <div>
+                  <p class="text-2xl md:text-3xl font-bold text-slate-800 mb-1">성실한 데이터 기록</p>
+                  <p class="text-slate-600 text-lg md:text-xl">매일 시장에서 관찰한 데이터를 성실하게 기록합니다</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-6">
+                <div class="w-20 h-20 md:w-24 md:h-24 bg-blue-500 rounded-xl flex items-center justify-center font-bold text-white text-lg md:text-xl">
+                  정리
+                </div>
+                <div>
+                  <p class="text-2xl md:text-3xl font-bold text-slate-800 mb-1">체계적 데이터 정리</p>
+                  <p class="text-slate-600 text-lg md:text-xl">시장 데이터를 체계적으로 정리하여 공유합니다</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-6">
+                <div class="w-20 h-20 md:w-24 md:h-24 bg-yellow-500 rounded-xl flex items-center justify-center font-bold text-white text-lg md:text-xl">
+                  공유
+                </div>
+                <div>
+                  <p class="text-2xl md:text-3xl font-bold text-slate-800 mb-1">학습 내용 공유</p>
+                  <p class="text-slate-600 text-lg md:text-xl">개인 학습 과정과 데이터 정리 방법을 공유합니다</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-4xl md:text-5xl font-bold mb-10 text-slate-800">참고 자료 활용</h3>
+            <div class="bg-gray-50 rounded-2xl p-10 text-center">
+              <div class="text-7xl md:text-8xl font-bold text-blue-500 mb-4">학습</div>
+              <p class="text-2xl md:text-3xl text-slate-600 mb-8">참고 목적</p>
+
+              <div class="space-y-6">
+                <div class="bg-white rounded-xl p-6 border-l-4 border-blue-500">
+                  <p class="text-xl md:text-2xl text-slate-700 italic mb-2">
+                    "제공되는 모든 정보는 참고 목적이며, 투자 결정은 개인의 신중한 판단에 따라 이루어져야 합니다."
+                  </p>
+                  <p class="text-slate-500 text-base md:text-lg">- 중요 안내사항</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA Section */}
+    <section class="bg-blue-600 py-20 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white">데이터 정리 내용을 공유합니다</h2>
+        <p class="text-xl md:text-2xl lg:text-3xl mb-12 text-blue-100 max-w-4xl mx-auto">
+          {t === '棒群' ? 'BAND에서 매일 정리한 시장 데이터와 개인 기록을 참고용으로 공유합니다' : '카카오톡에서 매일 정리한 데이터와 학습 내용을 참고용으로 공유합니다'}
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
+          <div class="bg-white bg-opacity-10 rounded-xl p-6 text-center">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">1. 간편 친구 추가</h3>
+            <p class="text-blue-100 text-lg md:text-xl">버튼 클릭으로 쉽게 그룹 참여</p>
+          </div>
+
+          <div class="bg-white bg-opacity-10 rounded-xl p-6 text-center">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <TrendingUp className="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">2. 매일 데이터 공유</h3>
+            <p class="text-blue-100 text-lg md:text-xl">데이터 분석 방법 공유</p>
+          </div>
+
+          <div class="bg-white bg-opacity-10 rounded-xl p-6 text-center">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <Award className="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">3. 학습 및 참고</h3>
+            <p class="text-blue-100 text-lg md:text-xl">개인 학습과 참고 내용</p>
+          </div>
+        </div>
+
+        <CtaButton
+          social={t as '卡扣' | '棒群'}
+          size="lg"
+          class="mx-auto"
+        />
+
+        <p class="mt-6 text-blue-100 text-xl md:text-2xl">✓ 교육용 자료 ✓ 매일 학습 내용 ✓ 커뮤니티 학습</p>
+      </div>
+    </section>
+
+        {/* Footer */}
+    <footer class="bg-slate-800 text-white py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-400">시장 데이터 기록</h3>
+            <p class="text-slate-300 text-lg md:text-xl">매일 시장 데이터를 기록하고 개인 학습 내용을 공유하는 참고 서비스</p>
+          </div>
+
+          <div>
+            <h4 class="text-2xl md:text-3xl font-bold mb-4 text-white">제공 내용</h4>
+            <ul class="space-y-3 text-slate-300 text-lg md:text-xl">
+              <li>• 매일 데이터 기록</li>
+              <li>• 개인 차트 분석</li>
+              <li>• 학습 내용 정리</li>
+              <li>• 참고 자료 공유</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-2xl md:text-3xl font-bold mb-4 text-white">연락처</h4>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <MessageCircle className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+                <span class="text-slate-300 text-lg md:text-xl">{t === '棒群' ? 'BAND' : '카카오톡'} 상담</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <Phone className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+                <span class="text-slate-300 text-lg md:text-xl">학습 질문 응답</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <Clock className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+                <span class="text-slate-300 text-lg md:text-xl">연중무휴 서비스</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-700 mt-8 pt-8">
+          {/* Educational Disclaimer */}
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+            <h4 class="text-blue-800 font-bold text-xl mb-4">학습 목적 커뮤니티 안내</h4>
+            <div class="text-blue-700 text-base space-y-2">
+              <p>• 본 커뮤니티는 시장 데이터 분석 방법을 학습하고 공유하는 교육 목적의 공간입니다.</p>
+              <p>• 제공되는 모든 내용은 학습 및 연구 목적이며, 투자 권유나 매매 추천이 아닙니다.</p>
+              <p>• 개인의 투자 결정은 본인의 신중한 판단과 책임 하에 이루어져야 합니다.</p>
+              <p>• 투자에는 원금 손실의 위험이 있으며, 과거 데이터는 미래 결과를 보장하지 않습니다.</p>
+              <p>• 중요한 투자 결정 전에는 반드시 전문가와 상담하시기 바랍니다.</p>
+              <p>• 본 공간에서 공유되는 경험과 방법은 개인의 학습 과정이며 참고 목적입니다.</p>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <p class="text-slate-400 text-lg md:text-xl">&copy; 2025 시장 데이터 학습 커뮤니티. 모든 권리 보유.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    {/* Floating CTA Button */}
+    <div class="fixed bottom-6 right-6 z-50">
+      <div class="relative">
+        <CtaButton
+          social={t as '卡扣' | '棒群'}
+          size="md"
+          class="animate-bounce hover:animate-none"
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

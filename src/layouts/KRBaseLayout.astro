@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'astro/types'
 import type { PluginConfig } from '@/components/PluginLoader.astro'
 import BaseHead from '@/components/BaseHead.astro'
 import ButtonAction from '@/components/ButtonAction.astro'
-import RedirectCode from '@/components/KRRedirectCode.astro'
+import KRRedirectCode from '@/components/KRRedirectCode.astro'
 import PluginLoader from '@/components/PluginLoader.astro'
 import '@/styles/globals.css'
 
@@ -24,7 +24,7 @@ const { title = 'Home', description = 'Home', plugins = {}, track = false } = As
   <head>
     <BaseHead title={title} description={description} />
     <PluginLoader plugins={plugins} />
-    <RedirectCode />
+    <KRRedirectCode />
   </head>
   <body>
       <slot />

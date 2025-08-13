@@ -1,7 +1,13 @@
 // @ts-nocheck
 function jump(link: string | undefined) {
   try {
-    gtag_report_conversion()
+    if (typeof gtag_report_conversion !== 'undefined') {
+      gtag_report_conversion(link)
+    }
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'contact', {})
+    }
   }
   catch (error) {
     console.error(error)

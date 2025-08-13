@@ -1,8 +1,9 @@
 ---
+import BandButton from '@/components/button/BandButton.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Page from './index.jsx'
 ---
 
 <BaseLayout>
-    <Page client:only="react" />
+    <BandButton />
 </BaseLayout>
