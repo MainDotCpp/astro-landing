@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const widgetHtml = `<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<div class="tradingview-widget-copyright">
+  <a href="https://www.tradingview.com/" rel="noopener noreferrer" target="_blank">Quotes by TradingView</a>
+</div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+{
+  "colorTheme": "light",
+  "dateRange": "12M",
+  "showChart": true,
+  "locale": "en",
+  "width": "100%",
+  "height": "660",
+  "tabs": [
+    {
+      "title": "US",
+      "symbols": [
+        { "s": "INDEX:DJI", "d": "Dow Jones" },
+        { "s": "NASDAQ:IXIC", "d": "NASDAQ" },
+        { "s": "SP:SPX", "d": "S&P 500" }
+      ]
+    }
+  ]
+}
+</script>
+</div>`
+---
+<BaseLayout title="US Market" description="US market overview">
+  <main class="container mx-auto p-4">
+    <h1>US Indices</h1>
+    <div set:html={widgetHtml} />
+  </main>
+</BaseLayout>

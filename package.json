@@ -23,6 +23,7 @@
     "astro-icon": "^1.1.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "lightweight-charts": "^4.1.1",
     "lucide-astro": "^0.525.0",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
@@ -30,7 +31,8 @@
     "sharp": "^0.34.2",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.16.2",
