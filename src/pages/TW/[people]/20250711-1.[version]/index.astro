@@ -6,14 +6,14 @@ import btn from './static/btn.png'
 
 export const getStaticPaths = (() => {
   return [
-    { params: { people: '杜金龍', version: '0' }, props: { name: '杜金龍', img_prefix: 'sq_' } },
+    { params: { people: '杜金龍', version: '0' }, props: { name: '杜金龍', img_prefix: 'djl_' } },
   ]
 }) satisfies GetStaticPaths
 
 const { img_prefix, name: people } = Astro.props
 // 使用靜態導入來避免動態導入問題
-const header = await import(`./static/${img_prefix}header.png`)
-const img1 = await import(`./static/${img_prefix}img.png`);
+const header = await import(`../../images/${img_prefix}header.png`)
+const img1 = await import(`../../images/${img_prefix}img.png`);
 ---
 
 <BaseLayout title={people} description={people} lang="zh-TW">

@@ -1,0 +1,137 @@
+---
+import type { GetStaticPaths, ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import {
+  AlertTriangle,
+  Camera,
+  Check,
+  ChevronRight,
+  Crown,
+  Gift,
+  Heart,
+  Lock,
+  MessageCircle,
+  Star,
+  TrendingUp,
+  Zap,
+} from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import btn from './static/btn.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '村上世彰', version: '0' }, props: { name: '村上世彰', img_prefix: 'cssz_' } },
+    { params: { people: '広瀬隆雄', version: '0' }, props: { name: '広瀬隆雄', img_prefix: 'llx_' } },
+    { params: { people: '测试器', version: '0' }, props: { name: 'テスタ', img_prefix: 'csq_' } },
+    { params: { people: '大前研一', version: '0' }, props: { name: '大前研一', img_prefix: 'dqyy_' } },
+    { params: { people: '永濱利廣', version: '0' }, props: { name: '永濱利廣', img_prefix: 'yb_' } },
+    { params: { people: 'kenmoさん', version: '0' }, props: { name: 'kenmoさん', img_prefix: 'ken_' } },
+    { params: { people: '朝倉 慶', version: '0' }, props: { name: '朝倉 慶', img_prefix: 'ccq_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { name: people, img_prefix } = Astro.props
+const header = import(`./static/${img_prefix}header.png`)
+const img1 = import(`./static/${img_prefix}img.png`);
+---
+
+<BaseLayout title={people} description={people}>
+  <main
+    class="flex flex-col gap-8 items-center justify-center max-w-2xl mx-auto"
+  >
+    <Image src={header} alt={people} />
+    <div class="text-xl px-4">
+      朝倉 慶が特別公開する無料オンライン講座で、今、日本株市場で急上昇のサインを出している特定の3銘柄の詳細と、エントリーから利益確定までの戦略をお届けします！
+      <br />
+      過去、同じパターンを持つ銘柄は、わずか数週間で500万円以上の利益を生み出した事例があります。さらに、参加者全員に「今、押さえておくべき日本株リスト」をプレゼントします
+    </div>
+    <h3 class="text-xl font-bold text-center px-4">
+      今すぐ参加して、無料の特別講座と
+      <br />
+      注目株情報をゲットしましょう！
+    </h3>
+    <Image class="link-btn animate-breathe" src={btn} alt="btn" />
+    <h3 class="text-xl font-bold text-center px-4">
+       LINEを追加するだけで
+      <br />
+      無料の特別講座と注目株情報をゲットしましょう
+    </h3>
+    <Image src={img1} alt="img1" />
+    <Image class="link-btn animate-breathe" src={btn} alt="btn" />
+    <h3 class="text-xl font-bold text-center mb-10 px-4">
+      プライバシーポリシー
+    </h3>
+  </main>
+  <style>
+    @keyframes breathe {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .animate-breathe {
+      animation: breathe 1s ease-in-out infinite;
+    }
+
+    /* 日文字体设置 */
+    body,
+    html {
+      font-family:
+        "Noto Sans JP",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "palt" 1; /* 日文字符间距优化 */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 确保所有文本元素都使用日文字体 */
+    main,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      font-family:
+        "Noto Sans JP",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Helvetica Neue",
+        sans-serif;
+      font-feature-settings: "palt" 1;
+    }
+
+    /* 日文文本的行高优化 */
+    .text-xl {
+      line-height: 1.7;
+      letter-spacing: 0.05em;
+    }
+
+    /* 加强日文字体权重 */
+    .font-bold {
+      font-weight: 700;
+    }
+  </style>
+</BaseLayout>

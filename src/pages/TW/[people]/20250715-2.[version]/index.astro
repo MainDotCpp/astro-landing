@@ -8,12 +8,12 @@ import lineIcon from './static/line.png'
 
 export const getStaticPaths = (() => {
   return [
-  { params: { people: '杜金龍', version: '0' }, props: { name: '杜金龍', img_prefix: 'sqgm_' } },
+  { params: { people: '杜金龍', version: '0' }, props: { name: '杜金龍', img_prefix: 'djl_' } },
   ]
 }) satisfies GetStaticPaths
 
 const { name: people, img_prefix } = Astro.props
-const mainImg = import(`./static/${img_prefix}main.jpg`);
+const mainImg = import(`../../images/${img_prefix}img.png`);
 ---
 
 
