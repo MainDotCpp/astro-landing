@@ -6,10 +6,11 @@ import bandButton from '@/pages/KR/[people]/images/band_button.png'
 import kakaoButton from '@/pages/KR/[people]/images/kakao_button.png'
 // Import modal images
 import modalContent from '@/pages/KR/[people]/images/modal_content.png'
+import KakaoCopyButton from './button/KaKaoCopyButton.tsx'
 
 type Props = {
     text?: string
-    social?: '卡扣' | '棒群' | '混合'
+    social?: '卡扣' | '棒群' | '混合' | '引导弹窗'
     size?: 'sm' | 'md' | 'lg'
     animate?: boolean
     class?: string
@@ -50,6 +51,7 @@ function getVariant() {
     return 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl'
 }
 
+
 // Base classes - conditional styling based on variant
 const baseClasses = unstyled
 ? `cta-button cursor-pointer select-none ${className}`
@@ -73,221 +75,222 @@ if (!ctaText) {
     else
         ctaText = '정보 받기'
 }
+
 ---
-
-<style>
-.breathing {
-    animation: breathing 2s ease-in-out infinite;
-}
-
-@keyframes breathing {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
+{social === '引导弹窗' && <KakaoCopyButton client:only="react" />}
+{social !== '引导弹窗' && <style>
+    .breathing {
+        animation: breathing 2s ease-in-out infinite;
     }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.9;
+
+    @keyframes breathing {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
     }
-}
 
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease-out;
-}
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease-out;
+    }
 
-.modal-content {
-    background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
-    border-radius: 20px;
-    padding: 1.5rem;
-    max-width: 360px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8);
-    margin: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.slide-in {
-    animation: modalSlide 0.3s ease-out;
-}
-
-@media (max-width: 475px) {
     .modal-content {
-        padding: 1.25rem;
-        margin: 0.75rem;
-        max-width: none;
-        width: calc(100% - 1.5rem);
+        background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+        border-radius: 20px;
+        padding: 1.5rem;
+        max-width: 360px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8);
+        margin: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    .modal-buttons {
-        flex-direction: column;
-        gap: 1.5rem !important;
+    .slide-in {
+        animation: modalSlide 0.3s ease-out;
     }
 
-    .modal-button {
-        width: 100% !important;
-        flex: none !important;
-        padding: 0 !important;
-        background: none !important;
-        border: none !important;
+    @media (max-width: 475px) {
+        .modal-content {
+            padding: 1.25rem;
+            margin: 0.75rem;
+            max-width: none;
+            width: calc(100% - 1.5rem);
+        }
+
+        .modal-buttons {
+            flex-direction: column;
+            gap: 1.5rem !important;
+        }
+
+        .modal-button {
+            width: 100% !important;
+            flex: none !important;
+            padding: 0 !important;
+            background: none !important;
+            border: none !important;
+        }
+
+        .modal-button img {
+            width: 100% !important;
+            height: auto !important;
+        }
     }
 
-    .modal-button img {
-        width: 100% !important;
-        height: auto !important;
+    .modal-emphasis {
+        animation: emphasisPulse 2s ease-in-out infinite;
+        background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f9ff 100%);
+        background-size: 200% 200%;
+        animation: emphasisPulse 2s ease-in-out infinite, gradientShift 4s ease-in-out infinite;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(79, 70, 229, 0.1);
     }
-}
 
-.modal-emphasis {
-    animation: emphasisPulse 2s ease-in-out infinite;
-    background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f9ff 100%);
-    background-size: 200% 200%;
-    animation: emphasisPulse 2s ease-in-out infinite, gradientShift 4s ease-in-out infinite;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(79, 70, 229, 0.1);
-}
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+    @keyframes modalSlide {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 
-@keyframes modalSlide {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
+    @keyframes emphasisPulse {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.7);
+        }
+        50% {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 10px rgba(254, 229, 0, 0);
+        }
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
-@keyframes emphasisPulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.7);
+    @keyframes gradientShift {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
     }
-    50% {
-        transform: scale(1.02);
-        box-shadow: 0 0 0 10px rgba(254, 229, 0, 0);
-    }
-}
 
-@keyframes gradientShift {
-    0%, 100% {
-        background-position: 0% 50%;
+    .instruction-text {
+        background: linear-gradient(135deg, #f3f4f6, #ffffff);
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
-    50% {
-        background-position: 100% 50%;
-    }
-}
 
-.instruction-text {
-    background: linear-gradient(135deg, #f3f4f6, #ffffff);
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
+    .number-highlight {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 0.75rem;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+        animation: inherit;
+    }
 
-.number-highlight {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    color: white;
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 0.75rem;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
-    animation: inherit;
-}
+    @keyframes textShake {
+        0%, 90%, 100% {
+            transform: translateX(0) translateY(0);
+        }
+        92% {
+            transform: translateX(2px) translateY(-1px);
+        }
+        94% {
+            transform: translateX(-2px) translateY(1px);
+        }
+        96% {
+            transform: translateX(1px) translateY(-1px);
+        }
+        98% {
+            transform: translateX(-1px) translateY(1px);
+        }
+    }
+    </style>
 
-@keyframes textShake {
-    0%, 90%, 100% {
-        transform: translateX(0) translateY(0);
-    }
-    92% {
-        transform: translateX(2px) translateY(-1px);
-    }
-    94% {
-        transform: translateX(-2px) translateY(1px);
-    }
-    96% {
-        transform: translateX(1px) translateY(-1px);
-    }
-    98% {
-        transform: translateX(-1px) translateY(1px);
-    }
-}
-</style>
+    <button
+      class={`${baseClasses} ${animate && !unstyled ? 'breathing' : ''} ${redirect && social !== '混合' ? 'link-btn' : ''}`}
+      id="cta-button"
+      data-social={social}
+    >
+      <!-- 默认内容或自定义slot -->
+      <slot name="content">
+        <!-- 默认内容 -->
+        {!unstyled && social !== '混合' && (
+          <Image
+            class="rounded-full flex-shrink-0"
+            src={social === '卡扣' ? kakao : band}
+            alt={social ?? ''}
+            width={currentSize.icon}
+            height={currentSize.icon}
+          />
+        )}
+        <span class={unstyled ? '' : 'flex-1 text-center whitespace-nowrap'}>{ctaText}</span>
+      </slot>
+    </button>
 
-<button
-  class={`${baseClasses} ${animate && !unstyled ? 'breathing' : ''} ${redirect && social !== '混合' ? 'link-btn' : ''}`}
-  id="cta-button"
-  data-social={social}
->
-  <!-- 默认内容或自定义slot -->
-  <slot name="content">
-    <!-- 默认内容 -->
-    {!unstyled && social !== '混合' && (
-      <Image
-        class="rounded-full flex-shrink-0"
-        src={social === '卡扣' ? kakao : band}
-        alt={social ?? ''}
-        width={currentSize.icon}
-        height={currentSize.icon}
-      />
+    <!-- Modal Content Slot -->
+    <slot name="modal">
+      <!-- 只在第一个混合按钮时添加弹窗 -->
+    {social === '混合' && (
+      <div id="global-hybrid-modal" class="modal-overlay" style="display: none;" data-modal-type="hybrid">
+        <div class="modal-content ">
+            <!-- 주요 이미지 컨텐츠 -->
+            <div class="mb-4">
+                <Image src={modalContent} alt="친구 추가 안내" class="w-full h-auto rounded-lg" />
+            </div>
+
+            <!-- 강조 설명 텍스트 -->
+            <div class="instruction-text mb-5 modal-emphasis">
+                <p class="text-slate-700 leading-relaxed text-[1.25rem] font-medium">
+                    <span class="inline-block">'친구 추가' 후 즉시</span>
+                    <span class="number-highlight mx-1">7</span>
+                    <span class="inline-block">을 전송하고</span><br >
+                    <span class="inline-block">첫 응답을 완료해 주세요.</span>
+                </p>
+            </div>
+            <!-- 이미지 버튼들 -->
+            <div class="flex gap-3 modal-buttons">
+                <button class="global-modal-band modal-button flex-1 hover:scale-105 transition-all duration-200 hover:shadow-lg">
+                    <Image src={bandButton} alt="BAND 친구 추가" class="h-full h-auto rounded-lg" />
+                </button>
+                <button class="global-modal-kakao modal-button flex-1 hover:scale-105 transition-all duration-200 hover:shadow-lg">
+                    <Image src={kakaoButton} alt="카카오톡 친구 추가" class="h-full h-auto rounded-lg" />
+                </button>
+            </div>
+        </div>
+      </div>
     )}
-    <span class={unstyled ? '' : 'flex-1 text-center whitespace-nowrap'}>{ctaText}</span>
-  </slot>
-</button>
-
-<!-- Modal Content Slot -->
-<slot name="modal">
-  <!-- 只在第一个混合按钮时添加弹窗 -->
-{social === '混合' && (
-  <div id="global-hybrid-modal" class="modal-overlay" style="display: none;" data-modal-type="hybrid">
-    <div class="modal-content ">
-        <!-- 주요 이미지 컨텐츠 -->
-        <div class="mb-4">
-            <Image src={modalContent} alt="친구 추가 안내" class="w-full h-auto rounded-lg" />
-        </div>
-
-        <!-- 강조 설명 텍스트 -->
-        <div class="instruction-text mb-5 modal-emphasis">
-            <p class="text-slate-700 leading-relaxed text-[1.25rem] font-medium">
-                <span class="inline-block">'친구 추가' 후 즉시</span>
-                <span class="number-highlight mx-1">7</span>
-                <span class="inline-block">을 전송하고</span><br>
-                <span class="inline-block">첫 응답을 완료해 주세요.</span>
-            </p>
-        </div>
-        <!-- 이미지 버튼들 -->
-        <div class="flex gap-3 modal-buttons">
-            <button class="global-modal-band modal-button flex-1 hover:scale-105 transition-all duration-200 hover:shadow-lg">
-                <Image src={bandButton} alt="BAND 친구 추가" class="h-full h-auto rounded-lg" />
-            </button>
-            <button class="global-modal-kakao modal-button flex-1 hover:scale-105 transition-all duration-200 hover:shadow-lg">
-                <Image src={kakaoButton} alt="카카오톡 친구 추가" class="h-full h-auto rounded-lg" />
-            </button>
-        </div>
-    </div>
-  </div>
-)}
-</slot>
+    </slot>}
 
 
 

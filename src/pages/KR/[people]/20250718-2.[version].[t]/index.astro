@@ -105,6 +105,7 @@ export function getStaticPaths() {
       params: { ...p.params, t: '混合' },
       props: p.props,
     })),
+    ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
   ]
 }
 
