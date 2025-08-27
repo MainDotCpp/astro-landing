@@ -1,0 +1,1457 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Next Big Stock Alert</title>
+    <meta name='robots' content='max-image-preview:large'>
+    <style>
+        img:is([sizes="auto" i], [sizes^="auto," i]) {
+            contain-intrinsic-size: 3000px 1500px
+        }
+    </style>
+    <link rel='dns-prefetch'>
+
+    <link rel="alternate" type="application/rss+xml" title="The Next Big Stock Alert &raquo; Feed">
+    <link rel="alternate" type="application/rss+xml" title="The Next Big Stock Alert &raquo; Comments Feed">
+    <style id='wp-emoji-styles-inline-css'>
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 0.07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel='stylesheet' id='wp-block-library-css' href='static/css/style.min-6.7.2.css' media='all'>
+    <style id='wp-block-library-theme-inline-css'>
+        .wp-block-audio :where(figcaption) {
+            color: #555;
+            font-size: 13px;
+            text-align: center
+        }
+
+        .is-dark-theme .wp-block-audio :where(figcaption) {
+            color: #ffffffa6
+        }
+
+        .wp-block-audio {
+            margin: 0 0 1em
+        }
+
+        .wp-block-code {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Menlo, Consolas, monaco, monospace;
+            padding: .8em 1em
+        }
+
+        .wp-block-embed :where(figcaption) {
+            color: #555;
+            font-size: 13px;
+            text-align: center
+        }
+
+        .is-dark-theme .wp-block-embed :where(figcaption) {
+            color: #ffffffa6
+        }
+
+        .wp-block-embed {
+            margin: 0 0 1em
+        }
+
+        .blocks-gallery-caption {
+            color: #555;
+            font-size: 13px;
+            text-align: center
+        }
+
+        .is-dark-theme .blocks-gallery-caption {
+            color: #ffffffa6
+        }
+
+        :root :where(.wp-block-image figcaption) {
+            color: #555;
+            font-size: 13px;
+            text-align: center
+        }
+
+        .is-dark-theme :root :where(.wp-block-image figcaption) {
+            color: #ffffffa6
+        }
+
+        .wp-block-image {
+            margin: 0 0 1em
+        }
+
+        .wp-block-pullquote {
+            border-bottom: 4px solid;
+            border-top: 4px solid;
+            color: currentColor;
+            margin-bottom: 1.75em
+        }
+
+        .wp-block-pullquote cite,
+        .wp-block-pullquote footer,
+        .wp-block-pullquote__citation {
+            color: currentColor;
+            font-size: .8125em;
+            font-style: normal;
+            text-transform: uppercase
+        }
+
+        .wp-block-quote {
+            border-left: .25em solid;
+            margin: 0 0 1.75em;
+            padding-left: 1em
+        }
+
+        .wp-block-quote cite,
+        .wp-block-quote footer {
+            color: currentColor;
+            font-size: .8125em;
+            font-style: normal;
+            position: relative
+        }
+
+        .wp-block-quote:where(.has-text-align-right) {
+            border-left: none;
+            border-right: .25em solid;
+            padding-left: 0;
+            padding-right: 1em
+        }
+
+        .wp-block-quote:where(.has-text-align-center) {
+            border: none;
+            padding-left: 0
+        }
+
+        .wp-block-quote.is-large,
+        .wp-block-quote.is-style-large,
+        .wp-block-quote:where(.is-style-plain) {
+            border: none
+        }
+
+        .wp-block-search .wp-block-search__label {
+            font-weight: 700
+        }
+
+        .wp-block-search__button {
+            border: 1px solid #ccc;
+            padding: .375em .625em
+        }
+
+        :where(.wp-block-group.has-background) {
+            padding: 1.25em 2.375em
+        }
+
+        .wp-block-separator.has-css-opacity {
+            opacity: .4
+        }
+
+        .wp-block-separator {
+            border: none;
+            border-bottom: 2px solid;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .wp-block-separator.has-alpha-channel-opacity {
+            opacity: 1
+        }
+
+        .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+            width: 100px
+        }
+
+        .wp-block-separator.has-background:not(.is-style-dots) {
+            border-bottom: none;
+            height: 1px
+        }
+
+        .wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots) {
+            height: 2px
+        }
+
+        .wp-block-table {
+            margin: 0 0 1em
+        }
+
+        .wp-block-table td,
+        .wp-block-table th {
+            word-break: normal
+        }
+
+        .wp-block-table :where(figcaption) {
+            color: #555;
+            font-size: 13px;
+            text-align: center
+        }
+
+        .is-dark-theme .wp-block-table :where(figcaption) {
+            color: #ffffffa6
+        }
+
+        .wp-block-video :where(figcaption) {
+            color: #555;
+            font-size: 13px;
+            text-align: center
+        }
+
+        .is-dark-theme .wp-block-video :where(figcaption) {
+            color: #ffffffa6
+        }
+
+        .wp-block-video {
+            margin: 0 0 1em
+        }
+
+        :root :where(.wp-block-template-part.has-background) {
+            margin-bottom: 0;
+            margin-top: 0;
+            padding: 1.25em 2.375em
+        }
+    </style>
+    <style id='classic-theme-styles-inline-css'>
+        /*! This file is auto-generated */
+        .wp-block-button__link {
+            color: #fff;
+            background-color: #32373c;
+            border-radius: 9999px;
+            box-shadow: none;
+            text-decoration: none;
+            padding: calc(.667em + 2px) calc(1.333em + 2px);
+            font-size: 1.125em
+        }
+
+        .wp-block-file__button {
+            background: #32373c;
+            color: #fff;
+            text-decoration: none
+        }
+    </style>
+    <style id='global-styles-inline-css'>
+        :root {
+            --wp--preset--aspect-ratio--square: 1;
+            --wp--preset--aspect-ratio--4-3: 4/3;
+            --wp--preset--aspect-ratio--3-4: 3/4;
+            --wp--preset--aspect-ratio--3-2: 3/2;
+            --wp--preset--aspect-ratio--2-3: 2/3;
+            --wp--preset--aspect-ratio--16-9: 16/9;
+            --wp--preset--aspect-ratio--9-16: 9/16;
+            --wp--preset--color--black: #000000;
+            --wp--preset--color--cyan-bluish-gray: #abb8c3;
+            --wp--preset--color--white: #FFFFFF;
+            --wp--preset--color--pale-pink: #f78da7;
+            --wp--preset--color--vivid-red: #cf2e2e;
+            --wp--preset--color--luminous-vivid-orange: #ff6900;
+            --wp--preset--color--luminous-vivid-amber: #fcb900;
+            --wp--preset--color--light-green-cyan: #7bdcb5;
+            --wp--preset--color--vivid-green-cyan: #00d084;
+            --wp--preset--color--pale-cyan-blue: #8ed1fc;
+            --wp--preset--color--vivid-cyan-blue: #0693e3;
+            --wp--preset--color--vivid-purple: #9b51e0;
+            --wp--preset--color--dark-gray: #28303D;
+            --wp--preset--color--gray: #39414D;
+            --wp--preset--color--green: #D1E4DD;
+            --wp--preset--color--blue: #D1DFE4;
+            --wp--preset--color--purple: #D1D1E4;
+            --wp--preset--color--red: #E4D1D1;
+            --wp--preset--color--orange: #E4DAD1;
+            --wp--preset--color--yellow: #EEEADD;
+            --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6, 147, 227, 1) 0%, rgb(155, 81, 224) 100%);
+            --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+            --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgba(252, 185, 0, 1) 0%, rgba(255, 105, 0, 1) 100%);
+            --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgba(255, 105, 0, 1) 0%, rgb(207, 46, 46) 100%);
+            --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+            --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+            --wp--preset--gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+            --wp--preset--gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+            --wp--preset--gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+            --wp--preset--gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+            --wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+            --wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+            --wp--preset--gradient--purple-to-yellow: linear-gradient(160deg, #D1D1E4 0%, #EEEADD 100%);
+            --wp--preset--gradient--yellow-to-purple: linear-gradient(160deg, #EEEADD 0%, #D1D1E4 100%);
+            --wp--preset--gradient--green-to-yellow: linear-gradient(160deg, #D1E4DD 0%, #EEEADD 100%);
+            --wp--preset--gradient--yellow-to-green: linear-gradient(160deg, #EEEADD 0%, #D1E4DD 100%);
+            --wp--preset--gradient--red-to-yellow: linear-gradient(160deg, #E4D1D1 0%, #EEEADD 100%);
+            --wp--preset--gradient--yellow-to-red: linear-gradient(160deg, #EEEADD 0%, #E4D1D1 100%);
+            --wp--preset--gradient--purple-to-red: linear-gradient(160deg, #D1D1E4 0%, #E4D1D1 100%);
+            --wp--preset--gradient--red-to-purple: linear-gradient(160deg, #E4D1D1 0%, #D1D1E4 100%);
+            --wp--preset--font-size--small: 18px;
+            --wp--preset--font-size--medium: 20px;
+            --wp--preset--font-size--large: 24px;
+            --wp--preset--font-size--x-large: 42px;
+            --wp--preset--font-size--extra-small: 16px;
+            --wp--preset--font-size--normal: 20px;
+            --wp--preset--font-size--extra-large: 40px;
+            --wp--preset--font-size--huge: 96px;
+            --wp--preset--font-size--gigantic: 144px;
+            --wp--preset--spacing--20: 0.44rem;
+            --wp--preset--spacing--30: 0.67rem;
+            --wp--preset--spacing--40: 1rem;
+            --wp--preset--spacing--50: 1.5rem;
+            --wp--preset--spacing--60: 2.25rem;
+            --wp--preset--spacing--70: 3.38rem;
+            --wp--preset--spacing--80: 5.06rem;
+            --wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+            --wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+            --wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+            --wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);
+            --wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);
+        }
+
+        :where(.is-layout-flex) {
+            gap: 0.5em;
+        }
+
+        :where(.is-layout-grid) {
+            gap: 0.5em;
+        }
+
+        body .is-layout-flex {
+            display: flex;
+        }
+
+        .is-layout-flex {
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .is-layout-flex> :is(*, div) {
+            margin: 0;
+        }
+
+        body .is-layout-grid {
+            display: grid;
+        }
+
+        .is-layout-grid> :is(*, div) {
+            margin: 0;
+        }
+
+        :where(.wp-block-columns.is-layout-flex) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-columns.is-layout-grid) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-post-template.is-layout-flex) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-post-template.is-layout-grid) {
+            gap: 1.25em;
+        }
+
+        .has-black-color {
+            color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-color {
+            color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-color {
+            color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-color {
+            color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-color {
+            color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-color {
+            color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-color {
+            color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-color {
+            color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-color {
+            color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-color {
+            color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-color {
+            color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-color {
+            color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-background-color {
+            background-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-background-color {
+            background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-background-color {
+            background-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-background-color {
+            background-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-background-color {
+            background-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-background-color {
+            background-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-background-color {
+            background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-background-color {
+            background-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-border-color {
+            border-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-border-color {
+            border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-border-color {
+            border-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-border-color {
+            border-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-border-color {
+            border-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-border-color {
+            border-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-border-color {
+            border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-border-color {
+            border-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+            background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+        }
+
+        .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+            background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+        }
+
+        .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-orange-to-vivid-red-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+        }
+
+        .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+            background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+        }
+
+        .has-cool-to-warm-spectrum-gradient-background {
+            background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+        }
+
+        .has-blush-light-purple-gradient-background {
+            background: var(--wp--preset--gradient--blush-light-purple) !important;
+        }
+
+        .has-blush-bordeaux-gradient-background {
+            background: var(--wp--preset--gradient--blush-bordeaux) !important;
+        }
+
+        .has-luminous-dusk-gradient-background {
+            background: var(--wp--preset--gradient--luminous-dusk) !important;
+        }
+
+        .has-pale-ocean-gradient-background {
+            background: var(--wp--preset--gradient--pale-ocean) !important;
+        }
+
+        .has-electric-grass-gradient-background {
+            background: var(--wp--preset--gradient--electric-grass) !important;
+        }
+
+        .has-midnight-gradient-background {
+            background: var(--wp--preset--gradient--midnight) !important;
+        }
+
+        .has-small-font-size {
+            font-size: var(--wp--preset--font-size--small) !important;
+        }
+
+        .has-medium-font-size {
+            font-size: var(--wp--preset--font-size--medium) !important;
+        }
+
+        .has-large-font-size {
+            font-size: var(--wp--preset--font-size--large) !important;
+        }
+
+        .has-x-large-font-size {
+            font-size: var(--wp--preset--font-size--x-large) !important;
+        }
+
+        :where(.wp-block-post-template.is-layout-flex) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-post-template.is-layout-grid) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-columns.is-layout-flex) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-columns.is-layout-grid) {
+            gap: 2em;
+        }
+
+        :root :where(.wp-block-pullquote) {
+            font-size: 1.5em;
+            line-height: 1.6;
+        }
+    </style>
+    <link rel='stylesheet' id='contact-form-7-css' href='static/css/styles.css' media='all'>
+    <link rel='stylesheet' id='tss-css' href='static/css/wptestimonial.css' media='all'>
+    <link rel='stylesheet' id='twenty-twenty-one-style-css' href='static/css/style.css' media='all'>
+    <link rel='stylesheet' id='twenty-twenty-one-print-style-css' href='static/css/print.css' media='print'>
+
+    <meta name="generator" content="WordPress 6.7.2">
+    <link rel="canonical" href="">
+    <link rel='shortlink' href=''>
+    <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"
+        href="https://www.apkshop.vip/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2F">
+    <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"
+        href="https://www.apkshop.vip/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2F&amp;format=xml">
+    <noscript>
+        <style>
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+    <link rel="stylesheet" type="text/css" href="static/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="static/css/responsive.css">
+
+    <!-- fevi icon -->
+    <link rel="shortcut icon" href="https://www.apkshop.vip/wp-content/themes/bigstockalert/assets/images/fev.png"
+        type="image/x-icon">
+    <link rel="icon" href="https://www.apkshop.vip/wp-content/themes/bigstockalert/assets/images/fev.png"
+        type="image/x-icon">
+    <!--PROOF PIXEL-->
+    <script src="static/js/proof.js" async=""></script><!--END PROOF PIXEL-->
+
+</head>
+
+<body
+    class="home page-template page-template-home-page page-template-home-page-php page page-id-27 wp-custom-logo wp-embed-responsive is-light-theme no-js singular has-main-navigation no-widgets wpb-js-composer js-comp-ver-7.6 vc_responsive">
+
+    <div id="page" class="site">
+        <header id="masthead" class="site-header has-logo has-title-and-tagline has-menu">
+            <div class="container">
+                <div class="top-strip d-flex flex-wrap jsb aic">
+
+                    <div class="site-logo"><span class="custom-logo-link"><img width="265" height="142"
+                                src="static/picture/logo.png" class="custom-logo" alt="" decoding="async"></span>
+                    </div>
+
+                    <div class="site-branding">
+
+                        <h1 class="site-title">The Next Big Stock Alert</h1>
+
+                    </div><!-- .site-branding -->
+
+                    <nav id="site-navigation" class="primary-navigation" aria-label="Primary menu">
+                        <div class="menu-button-container">
+                            <button id="primary-mobile-menu" class="button" aria-controls="primary-menu-list"
+                                aria-expanded="false">
+                                <span class="dropdown-icon open">Menu <svg class="svg-icon" width="24" height="24"
+                                        aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M4.5 6H19.5V7.5H4.5V6ZM4.5 12H19.5V13.5H4.5V12ZM19.5 18H4.5V19.5H19.5V18Z"
+                                            fill="currentColor"></path>
+                                    </svg> </span>
+                                <span class="dropdown-icon close">Close <svg class="svg-icon" width="24" height="24"
+                                        aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 10.9394L5.53033 4.46973L4.46967 5.53039L10.9393 12.0001L4.46967 18.4697L5.53033 19.5304L12 13.0607L18.4697 19.5304L19.5303 18.4697L13.0607 12.0001L19.5303 5.53039L18.4697 4.46973L12 10.9394Z"
+                                            fill="currentColor"></path>
+                                    </svg> </span>
+                            </button><!-- #primary-mobile-menu -->
+                        </div><!-- .menu-button-container -->
+
+                    </nav>
+                </div> <!-- #site-navigation -->
+            </div>
+        </header>
+    </div>
+    <!-- #masthead -->
+
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+
+                <section class="hero-sec">
+
+                    <div class="container">
+
+                        <div class="hero-inner">
+
+                            <section id="block-3" class="widget widget_block">
+                                <div class="text-sec">
+                                    <h1 class="heading">The “Secret” Stock Alert Group taking Wall Street
+                                        by <span class="clr-or">Storm!</span></h1>
+                                    <p class="prgr">Don’t be fooled by those overpriced “AI” subscriptions and empty
+                                        promises!</p>
+                                    <p class="prgr sec">Join us now to receive real-time, exclusive stock alerts –
+                                        completely free.</p>
+                                    <p class="prgr sec">Seize this perfect opportunity to break free from the ordinary
+                                        and take your wealth to the next level.</p>
+                                    <p class="prgr third">Life-changing gains are just one click away!</p>
+
+                                </div>
+                            </section>
+                            <div class="timer-sec">
+
+                                <h2 class="sub-heading"><span class="clr-or">Seize the Opportunity!</span><br>
+
+                                    Our Next Big Stock Alert is Coming Soon!</h2>
+
+                                <div class="countdown callback"></div>
+
+                            </div>
+
+                        </div>
+
+                        <section id="block-9" class="widget widget_block">
+                            <div class="join-whatsap">
+                                <div class="container">
+                                    <div class="what-sec">
+                                        <a class="link-btn">
+                                            <img decoding="async" class="img-whts" src="static/picture/whtsp-btn3.gif"
+                                                alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </section>
+
+                <section class="whatch-sec">
+
+                    <div class="container">
+
+                        <div class="grid-vd">
+
+                            <section id="block-4" class="widget widget_block">
+                                <div class="left-sec" style="padding-bottom: 0;">
+                                    <h3 style="margin-bottom: 80px;">We'll keep watch on the Street, so you can focus on
+                                        Life-Changing GAINS!</h3>
+                                    <!--                                <div class="video-sec">-->
+                                    <!--                                    <div id="scroll-to" class="video-section">-->
+                                    <!--                                        <video id="video_player" class="video"-->
+                                    <!--                                               poster="static/picture/The-Next-Big-Stock.mp" autoplay="autoplay"-->
+                                    <!--                                               muted="" controls="controls" width="100%" height="380">-->
+                                    <!--                                            <source type="video/mp4" src="static/picture/The-Next-Big-Stock.mp4">-->
+                                    <!--                                        </video>-->
+                                    <!--                                        <button id="unmuteButton"></button>-->
+                                    <!--                                        <div class="playpause"></div>-->
+                                    <!--                                    </div>-->
+
+                                    <!--                                </div>-->
+                                    <img src="static/picture/aaa.jpg" />
+                                </div>
+                            </section>
+                            <section id="block-10" class="widget widget_block">
+                                <div class="right-sec">
+                                    <div class="content-box">
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            Explosive Stock Alerts in REAL TIME right to your Mobile Phone
+                                        </div>
+                                    </div>
+                                    <div class="content-box">
+
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            You will NEVER be charged. Our Service is
+                                            100% FREE – Always.
+                                        </div>
+                                    </div>
+                                    <div class="content-box">
+
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            Exclusive Technical Analysis & in-depth
+                                            research you won’t get anywhere else
+                                        </div>
+                                    </div>
+                                    <div class="content-box">
+
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            Learn how to become a better Trader.
+                                            Visit our <span class="orng-color"><a href="">Trading School</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="content-box">
+
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            We cover All Sectors from Tech, BioTech, and Gold Mining to Pharmaceuticals
+                                            seeking Game-Changing FDA APPROVAL!
+                                        </div>
+                                    </div>
+                                    <div class="content-box">
+
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            Hidden Gem Penny Stocks capable of up to 1000% GAINS to NASDAQ and NYSE
+                                            Stocks
+                                            ready to go VIRAL
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="how-work">
+
+                    <div class="container">
+
+                        <div class="grid-work">
+
+                            <section id="block-5" class="widget widget_block">
+                                <div class="left-work">
+                                    <h3>How it Works</h3>
+                                    <div class="row-ul">
+                                        <div class="list fr">
+                                            <div class="icon-img">
+                                                <img decoding="async" src="static/picture/icon1.png" alt="">
+                                                <div class="nm-count">1</div>
+                                            </div>
+                                            <p>Download Whatsapp on
+                                                your Mobile Device</p>
+                                        </div>
+                                        <div class="list sc">
+                                            <img decoding="async" src="static/picture/arrow-right.png" alt="">
+                                        </div>
+                                        <div class="list th">
+                                            <div class="icon-img">
+                                                <img decoding="async" src="static/picture/icon2.png" alt="">
+                                                <div class="nm-count">2</div>
+                                            </div>
+                                            <p>Click the Link above to
+                                                Join our Community </p>
+                                        </div>
+                                    </div>
+                                    <div class="row-ul">
+                                        <div class="list fr">
+                                            <div class="icon-img">
+                                                <img decoding="async" src="static/picture/icon3.png" alt="">
+                                                <div class="nm-count">3</div>
+                                            </div>
+                                            <p>Wait for our Next Alert to be announced in the Chat</p>
+                                        </div>
+                                        <div class="list sc">
+                                            <img decoding="async" src="static/picture/arrow-right.png" alt="">
+                                        </div>
+                                        <div class="list th">
+                                            <div class="icon-img">
+                                                <img decoding="async" src="static/picture/icon4.png" alt="">
+                                                <div class="nm-count">4</div>
+                                            </div>
+                                            <p>Open your Trading
+                                                Platform & Watch it GO!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section id="block-11" class="widget widget_block">
+                                <div class="right-work">
+                                    <h3>Stocks that OUTPERFORM the Market</h3>
+                                    <div class="market-img">
+                                        <img decoding="async" src="static/picture/stocks.gif" alt="">
+                                    </div>
+                                    <h4>Latest Stock Alerts</h4>
+                                    <div class="box-stock-row">
+                                        <div class="box-inner fn">
+                                            <div class="box-hd">
+                                                FNMA
+                                                <p>ALERTED:$0.071</p>
+                                                <p>JUMPED:$1.136</p>
+                                            </div>
+                                            <div class="box-ft">
+                                                <h5><i class="fa-solid fa-arrow-up"></i> 1600%</h5>
+                                            </div>
+                                            <img decoding="async" class="fn-img" src="static/picture/breakout.jpg"
+                                                alt="">
+                                        </div>
+                                        <div class="box-inner cr">
+                                            <div class="box-hd">
+                                                CGRW
+                                                <p>ALERTED:$0.013</p>
+                                                <p>JUMPED:$0.0658</p>
+                                            </div>
+                                            <div class="box-ft">
+                                                <h5><i class="fa-solid fa-arrow-up"></i> 506%</h5>
+                                            </div>
+                                            <img decoding="async" class="cr-img" src="static/picture/market.jpg" alt="">
+
+                                        </div>
+                                        <div class="box-inner thz">
+                                            <div class="box-hd">
+                                                THCZ
+                                                <p>ALERTED:$0.521</p>
+                                                <p>JUMPED:$1.214</p>
+                                            </div>
+                                            <div class="box-ft">
+                                                <h5><i class="fa-solid fa-arrow-up"></i> 233%</h5>
+                                            </div>
+                                            <img decoding="async" class="thz-img" src="static/picture/breakout.jpg"
+                                                alt="">
+
+                                        </div>
+                                        <div class="box-inner btl">
+                                            <div class="box-hd">
+                                                BTLLF
+                                                <p>ALERTED:$3.111</p>
+                                                <p>JUMPED:$6.235</p>
+                                            </div>
+                                            <div class="box-ft">
+                                                <h5><i class="fa-solid fa-arrow-up"></i> 201%</h5>
+                                            </div>
+                                            <img decoding="async" class="btl-img" src="static/picture/market.jpg"
+                                                alt="">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="leading-sec">
+
+                    <div class="container">
+
+                        <div class="grid-leading">
+
+                            <div class="left-leading">
+
+                                <section id="block-12" class="widget widget_block">
+                                    <h3>Our<br>
+                                        <span>“Track Record is our”</span> <br>
+                                        Reputation
+                                    </h3>
+                                    <p id="counters-nm" class="number-sp">
+                                        <span class="bl-text-nu counter-value" data-count="8">0 </span><b>/10</b>
+                                    </p>
+                                    <span class="bg-sp">Eight out of our last ten Stock Alerts rallied for Huge
+                                        Gains</span>
+                                    <script src="static/js/jquery-ui.min.js"></script>
+
+                                    <script>
+
+                                        var a = 0;
+                                        jQuery(window).scroll(function () {
+
+                                            var oTop = jQuery('#counters-nm').offset().top - window.innerHeight;
+                                            if (a == 0 && jQuery(window).scrollTop() > oTop) {
+                                                jQuery('.counter-value').each(function () {
+                                                    var $this = jQuery(this),
+                                                        countTo = $this.attr('data-count');
+                                                    jQuery({
+                                                        countNum: $this.text()
+                                                    }).animate({
+                                                        countNum: countTo
+                                                    },
+
+                                                        {
+
+                                                            duration: 2500,
+                                                            easing: 'swing',
+                                                            step: function () {
+                                                                $this.text(Math.floor(this.countNum));
+                                                            },
+                                                            complete: function () {
+                                                                $this.text(this.countNum);
+                                                                //alert('finished');
+                                                            }
+
+                                                        });
+                                                });
+                                                a = 1;
+                                            }
+
+                                        });
+
+                                    </script>
+                                </section>
+                            </div>
+
+                            <div class="right-leading">
+
+                                <h3>Real Traders. Real Results.
+
+                                </h3>
+
+                                <!-- slider  -->
+
+                                <div class="client-slider">
+
+                                    <section id="block-2" class="widget widget_block">
+                                        <style type='text/css' media='all'>
+                                            #tss-container-109931952.tss-wrapper .tss-layout10 .item-content-wrapper,
+                                            #tss-container-109931952.tss-wrapper .tss-isotope3 .item-content-wrapper,
+                                            #tss-container-109931952.tss-wrapper .tss-isotope5 .item-content-wrapper,
+                                            #tss-container-109931952.tss-wrapper .tss-carousel10 .item-content-wrapper {
+                                                background: transparent;
+                                            }
+                                        </style>
+                                        <div class='rt-container-fluid tss-wrapper ' id='tss-container-109931952'
+                                            data-layout='carousel3' data-desktop-col='1' data-tab-col='1'
+                                            data-mobile-col='1'>
+                                            <div data-title='Loading ...'
+                                                class='rt-row tss-carousel3 tss-even tss-pre-loader'>
+                                                <div class="carousel-wrapper">
+                                                    <div dir="rtl" class='tss-carousel swiper' data-loop='true'
+                                                        data-items-desktop='1' data-items-tab='1' data-items-mobile='1'
+                                                        data-autoplay='true' data-autoplay-timeout='5000'
+                                                        data-autoplay-hover-pause='true' data-dots='true'
+                                                        data-nav='true' data-lazy-load='true' data-auto-height='true'
+                                                        data-smart-speed='250'>
+                                                        <div class="swiper-wrapper">
+                                                            <div
+                                                                class='rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin'>
+                                                                <div class="single-item-wrapper">
+                                                                    <div class="tss-meta-info">
+                                                                        <div class='profile-img-wrapper'><img
+                                                                                alt='TOM S'
+                                                                                class='rt-responsive-img swiper-lazy'
+                                                                                data-src='static/picture/TOM-S.png'>
+                                                                            <div
+                                                                                class="swiper-lazy-preloader swiper-lazy-preloader-white">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3 class='author-name'>TOM S</h3>
+                                                                    <div class="item-content-wrapper">
+                                                                        <div class='item-content'>I want to thank you
+                                                                            for
+                                                                            your research in bringing theses stocks to
+                                                                            my
+                                                                            attention….Each stock that I have invested
+                                                                            in
+                                                                            from your lead has appreciated almost
+                                                                            consistently. THANK YOU.
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class='rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin'>
+                                                                <div class="single-item-wrapper">
+                                                                    <div class="tss-meta-info">
+                                                                        <div class='profile-img-wrapper'><img
+                                                                                alt='LUKE R.'
+                                                                                class='rt-responsive-img swiper-lazy'
+                                                                                data-src='static/picture/LUKE-R.png'>
+                                                                            <div
+                                                                                class="swiper-lazy-preloader swiper-lazy-preloader-white">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3 class='author-name'>LUKE R.</h3>
+                                                                    <div class="item-content-wrapper">
+                                                                        <div class='item-content'>I’m new to this and
+                                                                            this
+                                                                            was the first time I’ve used your pick. I
+                                                                            got
+                                                                            nervous and banked it after I made 100%. I’m
+                                                                            little upset I didn’t stay in but I’m very
+                                                                            happy
+                                                                            with the profit I did make….can’t wait until
+                                                                            next week…I’m just amazed!!..
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class='rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin'>
+                                                                <div class="single-item-wrapper">
+                                                                    <div class="tss-meta-info">
+                                                                        <div class='profile-img-wrapper'><img
+                                                                                alt='Mario'
+                                                                                class='rt-responsive-img swiper-lazy'
+                                                                                data-src='static/picture/Mario.png'>
+                                                                            <div
+                                                                                class="swiper-lazy-preloader swiper-lazy-preloader-white">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3 class='author-name'>Mario</h3>
+                                                                    <div class="item-content-wrapper">
+                                                                        <div class='item-content'>Wow!!!! Today was the
+                                                                            first trade I took from your
+                                                                            picks…Amazing!!!!
+                                                                            Thanks for Your services…..
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class='rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin'>
+                                                                <div class="single-item-wrapper">
+                                                                    <div class="tss-meta-info">
+                                                                        <div class='profile-img-wrapper'><img
+                                                                                alt='Mosk, Honolulu, Hawaii'
+                                                                                class='rt-responsive-img swiper-lazy'
+                                                                                data-src='static/picture/Mosk-Honolulu-Hawaii.png'>
+                                                                            <div
+                                                                                class="swiper-lazy-preloader swiper-lazy-preloader-white">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3 class='author-name'>Mosk, Honolulu, Hawaii</h3>
+                                                                    <div class="item-content-wrapper">
+                                                                        <div class='item-content'>What can I say? I’m
+                                                                            fairly
+                                                                            new to the game but love how you guys write.
+                                                                            I’ve only played two picks and I did about
+                                                                            15%
+                                                                            gain on each only to see them double after I
+                                                                            sold. Slowly but surely. Thanks for your
+                                                                            site.
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class='rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin'>
+                                                                <div class="single-item-wrapper">
+                                                                    <div class="tss-meta-info">
+                                                                        <div class='profile-img-wrapper'><img
+                                                                                alt='Mike D., Los Angeles'
+                                                                                class='rt-responsive-img swiper-lazy'
+                                                                                data-src='static/picture/Mike-D.-Los-Angeles.png'>
+                                                                            <div
+                                                                                class="swiper-lazy-preloader swiper-lazy-preloader-white">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3 class='author-name'>Mike D., Los Angeles</h3>
+                                                                    <div class="item-content-wrapper">
+                                                                        <div class='item-content'>Got my girl a Cartier
+                                                                            watch after playing your pick of ASCC
+                                                                            intraday.
+                                                                            It was my first daytrade ever, but your
+                                                                            alert
+                                                                            made it simple. Any chance you guys could
+                                                                            issue
+                                                                            alerts more frequently? That would help me
+                                                                            make
+                                                                            a lot more money and buy more things for me
+                                                                            (and
+                                                                            my girl of course, lol). Cheers from LA!
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class='rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin'>
+                                                                <div class="single-item-wrapper">
+                                                                    <div class="tss-meta-info">
+                                                                        <div class='profile-img-wrapper'><img
+                                                                                alt='Sebastian, Philadelphia'
+                                                                                class='rt-responsive-img swiper-lazy'
+                                                                                data-src='https://www.apkshop.vip/static/picture/Sebastian-Philadelphia.png'>
+                                                                            <div
+                                                                                class="swiper-lazy-preloader swiper-lazy-preloader-white">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3 class='author-name'>Sebastian, Philadelphia</h3>
+                                                                    <div class="item-content-wrapper">
+                                                                        <div class='item-content'>Guys thank you so much
+                                                                            for
+                                                                            hitting the ball out of the park on your
+                                                                            last
+                                                                            alert! I’ve been trading for four months now
+                                                                            and
+                                                                            your alert helped me book my first real
+                                                                            profit.
+                                                                            Before your alert the biggest profit I made
+                                                                            was
+                                                                            about 5%. With yours I made 210% and came
+                                                                            out
+                                                                            with $6,620 in profit. You just paid for my
+                                                                            next
+                                                                            vacation!
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class='rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin'>
+                                                                <div class="single-item-wrapper">
+                                                                    <div class="tss-meta-info">
+                                                                        <div class='profile-img-wrapper'><img
+                                                                                alt='Jon Mondoloni, Seattle'
+                                                                                class='rt-responsive-img swiper-lazy'
+                                                                                data-src='static/picture/Jon-Mondoloni-Seattle.png'>
+                                                                            <div
+                                                                                class="swiper-lazy-preloader swiper-lazy-preloader-white">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3 class='author-name'>Jon Mondoloni, Seattle</h3>
+                                                                    <div class="item-content-wrapper">
+                                                                        <div class='item-content'>So beautiful – turned
+                                                                            $500
+                                                                            into $1,220 with the PWEI alert. I’m
+                                                                            reinvesting
+                                                                            this money right back into your next alert.
+                                                                            I’m
+                                                                            patiently standing by. Please send your next
+                                                                            alert out soon. I’m feeling anxious and
+                                                                            ready to
+                                                                            play!
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="swiper-arrow swiper-button-next"><i
+                                                                class="rttss-right-open"></i></div>
+                                                        <div class="swiper-arrow swiper-button-prev"><i
+                                                                class="rttss-left-open"></i></div>
+                                                        <div class="swiper-pagination"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rt-loading-overlay"></div>
+                                                <div class="rt-loading rt-ball-clip-rotate">
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <!-- slider end -->
+
+                                <div class="row-review-img">
+
+                                    <div class="col-rv">
+
+                                        <img src="static/picture/a1.png" alt="">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row-review-sec">
+
+                                    <img src="static/picture/rv.png" alt="">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="gaurantee">
+
+                    <section id="block-6" class="widget widget_block">
+                        <div class="container">
+                            <h3>Our Gaurantee</h3>
+                            <div class="grid-gaurantee">
+                                <div class="gr-inner-box">
+                                    <div class="content-box">
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            Our Whatsapp Community will always be 100% FREE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gr-inner-box">
+                                    <div class="content-box">
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            No “Dumping”. We will NEVER own any shares
+                                            of any stock alerted <a href="" class="orng-color"> [Read More]</a></div>
+                                    </div>
+                                </div>
+                                <div class="gr-inner-box">
+                                    <div class="content-box">
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            Unsubscribe ANYTIME Instantly
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gr-inner-box">
+                                    <div class="content-box">
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            Your privacy is honored & respected
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gr-inner-box">
+                                    <div class="content-box">
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            We will Never share your contact and will never spam
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gr-inner-box">
+                                    <div class="content-box">
+                                        <div class="img-icon">
+                                            <img decoding="async" src="static/picture/circle-img.png" alt="">
+                                        </div>
+                                        <div class="inner-box">
+                                            You will enhance your Trading Skills to the Next Level
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+
+                </section>
+
+                <section class="waiting-sec">
+
+                    <div class="container">
+
+                        <section id="block-7" class="widget widget_block">
+                            <h3>What Are You Waiting For?</h3>
+                        </section>
+                        <div class="grid-waiting">
+
+                            <div class="timer-sec">
+
+                                <h2 class="sub-heading-box"><span class="clr-or">The Next Big Stock Alert is coming
+                                        in</span></h2>
+
+                                <div class="countdown callback"></div>
+
+                            </div>
+
+                        </div>
+
+                        <section id="block-9" class="widget widget_block">
+                            <div class="join-whatsap">
+                                <div class="container">
+                                    <div class="what-sec">
+                                        <a class="link-btn">
+                                            <img decoding="async" class="img-whts" src="static/picture/whtsp-btn3.gif"
+                                                alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </section>
+
+            </main><!-- #main -->
+        </div><!-- #primary -->
+    </div><!-- #content -->
+
+    <footer id="colophon" class="">
+        <div class="container">
+            <div class="ft-row">
+                <div class="site-name logo-ft">
+                    <!-- <div class="site-logo"></div> -->
+                    <a href=""><img src="static/picture/ft-logo.png"></a>
+                </div><!-- .site-name -->
+
+                <nav aria-label="Secondary menu" class="footer-navigation  nav-ft">
+                    <ul class="">
+
+                    </ul><!-- .footer-navigation-wrapper -->
+                </nav><!-- .footer-navigation -->
+                <div class="social-ft">
+                </div>
+
+                <!-- .site-info -->
+            </div>
+        </div>
+
+    </footer><!-- #colophon -->
+    <div class="powered-by copy-rt">
+        <div class="container">
+            <div class="inner-copy">
+                <span>Copyright © 2024 The <a href="">Next Big Stock Alert</a>. All Rights Reserved</span>
+
+                </form>
+            </div>
+        </div>
+    </div><!-- .powered-by -->
+    <!-- #page -->
+
+    <link rel='stylesheet' id='swiper-css' href='static/css/swiper.min.css' media='all'>
+    <link rel='stylesheet' id='tss-fontello-css' href='static/css/tss-font.min.css' media='all'>
+    <link rel='stylesheet' id='dashicons-css' href='static/css/dashicons.min.css' media='all'>
+    <script src="static/js/hooks.min.js" id="wp-hooks-js"></script>
+    <script src="static/js/i18n.min.js" id="wp-i18n-js"></script>
+    <script id="wp-i18n-js-after">
+        wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
+    </script>
+    <script src="https://www.apkshop.vip/static/js/index-5.9.81.js" id="contact-form-7-js"></script>
+    <script id="twenty-twenty-one-ie11-polyfills-js-after">
+        (Element.prototype.matches && Element.prototype.closest && window.NodeList && NodeList.prototype.forEach) || document.write('<script src="wp-content/themes/bigstockalert/assets/js/polyfills.js?ver=1.8"></scr' + 'ipt>');
+    </script>
+    <script src="static/js/primary-navigation.js" id="twenty-twenty-one-primary-navigation-script-js"></script>
+    <script src="static/js/responsive-embeds.js" id="twenty-twenty-one-responsive-embeds-script-js"></script>
+    <script src="static/js/jquery.min.js" id="jquery-core-js"></script>
+    <script src="static/js/jquery-migrate.min.js" id="jquery-migrate-js"></script>
+    <script src="static/js/imagesloaded.pkgd.min.js" id="tss-image-load-js"></script>
+    <script src="static/js/swiper.min.js" id="swiper-js"></script>
+    <script id="tss-js-extra">
+        var tss = { "ajaxurl": "", "nonce": "986f5b9a8d", "nonceId": "tss_nonce" };
+    </script>
+    <script src="static/js/wptestimonial.js" id="tss-js"></script>
+    <script>
+        /(trident|msie)/i.test(navigator.userAgent) && document.getElementById && window.addEventListener && window.addEventListener("hashchange", (function () {
+            var t, e = location.hash.substring(1);
+            /^[A-z0-9_-]+$/.test(e) && (t = document.getElementById(e)) && (/^(?:a|select|input|button|textarea)$/i.test(t.tagName) || (t.tabIndex = -1), t.focus())
+        }), !1);
+    </script>
+    <script></script>
+    <script type="text/javascript">var omapi_data = {};</script>
+    <script src="static/js/jquery-3.7.1.js"></script>
+
+    <script src="static/js/jquery.countdown.js"></script>
+    <script src="static/js/custom.js"></script>
+
+    <script>
+        jQuery('#scroll-to').click(function () {
+            if (jQuery(this).children(".video").get(0).paused) {
+                jQuery(this).children(".video").get(0).play();
+                jQuery(this).children(".playpause").fadeOut();
+            } else {
+                jQuery(this).children(".video").get(0).pause();
+                jQuery(this).children(".playpause").fadeIn();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,874 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+// Import fonts with ?url for CSS usage
+// Import CSS background images
+import heroBg from './assets/image/hero-bg.png'
+import stockPreview from './assets/picture/aaa.jpg'
+import arrowRight from './assets/picture/arrow-right.png'
+import breakoutImg from './assets/picture/breakout.jpg'
+
+import circleImg from './assets/picture/circle-img.png'
+import footerBg from './assets/picture/ft-bg.jpg'
+import footerLogo from './assets/picture/ft-logo.png'
+import icon1 from './assets/picture/icon1.png'
+import icon2 from './assets/picture/icon2.png'
+import icon3 from './assets/picture/icon3.png'
+import icon4 from './assets/picture/icon4.png'
+import sebastianImg from './assets/picture/Jon-Mondoloni-Seattle.png'
+// Import images
+import logoImg from './assets/picture/logo.png'
+import lukeRImg from './assets/picture/LUKE-R.png'
+import marioImg from './assets/picture/Mario.png'
+import marketImg from './assets/picture/market.jpg'
+import mikeDImg from './assets/picture/Mike-D.-Los-Angeles.png'
+import moskImg from './assets/picture/Mosk-Honolulu-Hawaii.png'
+import stocksGif from './assets/picture/stocks.gif'
+import tomSImg from './assets/picture/TOM-S.png'
+import whatsappBtn from './assets/picture/whtsp-btn3.gif'
+// Astro component frontmatter
+// Import CSS files
+import './assets/css/style.min-6.7.2.css'
+import './assets/css/styles.css'
+
+import './assets/css/wptestimonial.css'
+import './assets/css/style.css'
+
+import './assets/css/all.min.css'
+import './assets/css/custom.css'
+import './assets/css/responsive.css'
+import './assets/css/swiper.min.css'
+import './assets/css/tss-font.min.css'
+import './assets/css/dashicons.min.css'
+import './assets/css/print.css'
+
+const title = 'The Next Big Stock Alert'
+const description
+  = 'The \'Secret\' Stock Alert Group taking Wall Street by Storm!';
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+<RedirectCode />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="max-image-preview:large" />
+
+    <style>
+      img:is([sizes="auto" i], [sizes^="auto," i]) {
+        contain-intrinsic-size: 3000px 1500px;
+      }
+    </style>
+
+    <style
+      define:vars={{
+        heroBgImage: `url(${heroBg.src})`,
+        footerBgImage: `url(${footerBg.src})`,
+      }}
+    >
+      /* Override CSS background images */
+      .hero-sec {
+        background: var(--heroBgImage) !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .waiting-sec {
+        background: var(--heroBgImage) !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      footer {
+        background: var(--footerBgImage) repeat-x !important;
+      }
+
+      /* Override font faces */
+      @font-face {
+        font-family: "tss-font";
+        src: var(--tssFontEot);
+        src:
+          var(--tssFontEot) format("embedded-opentype"),
+          var(--tssFontWoff2) format("woff2"),
+          var(--tssFontWoff) format("woff"),
+          var(--tssFontTtf) format("truetype"),
+          var(--tssFontSvg) format("svg");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: var(--poppinsRegular) format("woff2");
+        unicode-range:
+          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+
+    <!-- Additional inline styles -->
+    <style>
+      img.wp-smiley,
+      img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 0.07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+      }
+
+      .wp-block-button__link {
+        color: #fff;
+        background-color: #32373c;
+        border-radius: 9999px;
+        box-shadow: none;
+        text-decoration: none;
+        padding: calc(0.667em + 2px) calc(1.333em + 2px);
+        font-size: 1.125em;
+      }
+
+      .wp-block-file__button {
+        background: #32373c;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      :root {
+        --wp--preset--color--black: #000000;
+        --wp--preset--color--white: #ffffff;
+        --wp--preset--font-size--small: 18px;
+        --wp--preset--font-size--medium: 20px;
+        --wp--preset--font-size--large: 24px;
+        --wp--preset--font-size--x-large: 42px;
+      }
+
+      :where(.is-layout-flex) {
+        gap: 0.5em;
+      }
+
+      body .is-layout-flex {
+        display: flex;
+      }
+
+      .is-layout-flex {
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .is-layout-flex > :is(*, div) {
+        margin: 0;
+      }
+
+      #tss-container-109931952.tss-wrapper .tss-layout10 .item-content-wrapper,
+      #tss-container-109931952.tss-wrapper .tss-isotope3 .item-content-wrapper,
+      #tss-container-109931952.tss-wrapper .tss-isotope5 .item-content-wrapper,
+      #tss-container-109931952.tss-wrapper
+        .tss-carousel10
+        .item-content-wrapper {
+        background: transparent;
+      }
+
+      .wpb_animate_when_almost_visible {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body
+    class="home page-template page-template-home-page page-template-home-page-php page page-id-27 wp-custom-logo wp-embed-responsive is-light-theme no-js singular has-main-navigation no-widgets wpb-js-composer js-comp-ver-7.6 vc_responsive"
+  >
+    <div id="page" class="site">
+      <!-- Header -->
+      <header
+        id="masthead"
+        class="site-header has-logo has-title-and-tagline has-menu"
+      >
+        <div class="container">
+          <div class="top-strip d-flex flex-wrap jsb aic" style="display: flex;flex-wrap: nowrap;">
+            <div class="site-logo">
+              <span class="custom-logo-link">
+                <img
+                  width="265"
+                  height="142"
+                  src={logoImg.src}
+                  class="custom-logo"
+                  alt=""
+                  decoding="async"
+                />
+              </span>
+            </div>
+
+            <div class="site-branding">
+              <h1 class="site-title">{title}</h1>
+            </div>
+
+            <nav
+              id="site-navigation"
+              class="primary-navigation"
+              aria-label="Primary menu"
+            >
+              <div class="menu-button-container">
+                <button
+                  id="primary-mobile-menu"
+                  class="button"
+                  aria-controls="primary-menu-list"
+                  aria-expanded="false"
+                >
+                  <span class="dropdown-icon open">Menu
+                    <svg
+                      class="svg-icon"
+                      width="24"
+                      height="24"
+                      aria-hidden="true"
+                      role="img"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M4.5 6H19.5V7.5H4.5V6ZM4.5 12H19.5V13.5H4.5V12ZM19.5 18H4.5V19.5H19.5V18Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="dropdown-icon close">Close
+                    <svg
+                      class="svg-icon"
+                      width="24"
+                      height="24"
+                      aria-hidden="true"
+                      role="img"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 10.9394L5.53033 4.46973L4.46967 5.53039L10.9393 12.0001L4.46967 18.4697L5.53033 19.5304L12 13.0607L18.4697 19.5304L19.5303 18.4697L13.0607 12.0001L19.5303 5.53039L18.4697 4.46973L12 10.9394Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+          <main id="main" class="site-main">
+            <!-- Hero Section -->
+            <section class="hero-sec">
+              <div class="container">
+                <div class="hero-inner">
+                  <section id="block-3" class="widget widget_block">
+                    <div class="text-sec">
+                      <h1 class="heading">
+                        The "Secret" Stock Alert Group taking Wall Street by <span
+                          class="clr-or"
+                                                                             >Storm!</span>
+                      </h1>
+                      <p class="prgr">
+                        Don't be fooled by those overpriced "AI" subscriptions
+                        and empty promises!
+                      </p>
+                      <p class="prgr sec">
+                        Join us now to receive real-time, exclusive stock alerts
+                        – completely free.
+                      </p>
+                      <p class="prgr sec">
+                        Seize this perfect opportunity to break free from the
+                        ordinary and take your wealth to the next level.
+                      </p>
+                      <p class="prgr third">
+                        Life-changing gains are just one click away!
+                      </p>
+                    </div>
+                  </section>
+
+                  <div class="timer-sec">
+                    <h2 class="sub-heading">
+                      <span class="clr-or">Seize the Opportunity!</span><br />
+                      Our Next Big Stock Alert is Coming Soon!
+                    </h2>
+                    <div class="countdown callback"></div>
+                  </div>
+                </div>
+
+                <section id="block-9" class="widget widget_block">
+                  <div class="join-whatsap">
+                    <div class="container">
+                      <div class="what-sec">
+                        <a class="link-btn">
+                          <img
+                            decoding="async"
+                            class="img-whts"
+                            src={whatsappBtn.src}
+                            alt=""
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </section>
+
+            <!-- Watch Section -->
+            <section class="whatch-sec">
+              <div class="container">
+                <div class="grid-vd">
+                  <section id="block-4" class="widget widget_block">
+                    <div class="left-sec" style="padding-bottom: 0;">
+                      <h3 style="margin-bottom: 80px;">
+                        We'll keep watch on the Street, so you can focus on
+                        Life-Changing GAINS!
+                      </h3>
+                      <img src={stockPreview.src} alt="Stock Alert Preview" />
+                    </div>
+                  </section>
+
+                  <section id="block-10" class="widget widget_block">
+                    <div class="right-sec">
+                      <div class="content-box">
+                        <div class="img-icon">
+                          <img decoding="async" src={circleImg.src} alt="" />
+                        </div>
+                        <div class="inner-box">
+                          We cover All Sectors from Tech, BioTech, and Gold
+                          Mining to Pharmaceuticals seeking Game-Changing FDA
+                          APPROVAL!
+                        </div>
+                      </div>
+
+                      <div class="content-box">
+                        <div class="img-icon">
+                          <img decoding="async" src={circleImg.src} alt="" />
+                        </div>
+                        <div class="inner-box">
+                          Hidden Gem Penny Stocks capable of up to 1000% GAINS
+                          to NASDAQ and NYSE Stocks ready to go VIRAL
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </section>
+
+            <!-- How it Works Section -->
+            <section class="how-work">
+              <div class="container">
+                <div class="grid-work">
+                  <section id="block-5" class="widget widget_block">
+                    <div class="left-work">
+                      <h3>How it Works</h3>
+                      <div class="row-ul">
+                        <div class="list fr">
+                          <div class="icon-img">
+                            <img decoding="async" src={icon1.src} alt="" />
+                            <div class="nm-count">1</div>
+                          </div>
+                          <p>Download Whatsapp on your Mobile Device</p>
+                        </div>
+                        <div class="list sc">
+                          <img decoding="async" src={arrowRight.src} alt="" />
+                        </div>
+                        <div class="list th">
+                          <div class="icon-img">
+                            <img decoding="async" src={icon2.src} alt="" />
+                            <div class="nm-count">2</div>
+                          </div>
+                          <p>Click the Link above to Join our Community</p>
+                        </div>
+                      </div>
+
+                      <div class="row-ul">
+                        <div class="list fr">
+                          <div class="icon-img">
+                            <img decoding="async" src={icon3.src} alt="" />
+                            <div class="nm-count">3</div>
+                          </div>
+                          <p>
+                            Wait for our Next Alert to be announced in the Chat
+                          </p>
+                        </div>
+                        <div class="list sc">
+                          <img decoding="async" src={arrowRight.src} alt="" />
+                        </div>
+                        <div class="list th">
+                          <div class="icon-img">
+                            <img decoding="async" src={icon4.src} alt="" />
+                            <div class="nm-count">4</div>
+                          </div>
+                          <p>Open your Trading Platform & Watch it GO!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section id="block-11" class="widget widget_block">
+                    <div class="right-work">
+                      <h3>Stocks that OUTPERFORM the Market</h3>
+                      <div class="market-img">
+                        <img decoding="async" src={stocksGif.src} alt="" />
+                      </div>
+                      <h4>Latest Stock Alerts</h4>
+                      <div class="box-stock-row">
+                        <div class="box-inner fn">
+                          <div class="box-hd">
+                            FNMA
+                            <p>ALERTED:$0.071</p>
+                            <p>JUMPED:$1.136</p>
+                          </div>
+                          <div class="box-ft">
+                            <h5><i class="fa-solid fa-arrow-up"></i> 1600%</h5>
+                          </div>
+                          <img
+                            decoding="async"
+                            class="fn-img"
+                            src={breakoutImg.src}
+                            alt=""
+                          />
+                        </div>
+
+                        <div class="box-inner cr">
+                          <div class="box-hd">
+                            CGRW
+                            <p>ALERTED:$0.013</p>
+                            <p>JUMPED:$0.0658</p>
+                          </div>
+                          <div class="box-ft">
+                            <h5><i class="fa-solid fa-arrow-up"></i> 506%</h5>
+                          </div>
+                          <img
+                            decoding="async"
+                            class="cr-img"
+                            src={marketImg.src}
+                            alt=""
+                          />
+                        </div>
+
+                        <div class="box-inner thz">
+                          <div class="box-hd">
+                            THCZ
+                            <p>ALERTED:$0.521</p>
+                            <p>JUMPED:$1.214</p>
+                          </div>
+                          <div class="box-ft">
+                            <h5><i class="fa-solid fa-arrow-up"></i> 233%</h5>
+                          </div>
+                          <img
+                            decoding="async"
+                            class="thz-img"
+                            src={breakoutImg.src}
+                            alt=""
+                          />
+                        </div>
+
+                        <div class="box-inner btl">
+                          <div class="box-hd">
+                            BTLLF
+                            <p>ALERTED:$3.111</p>
+                            <p>JUMPED:$6.235</p>
+                          </div>
+                          <div class="box-ft">
+                            <h5><i class="fa-solid fa-arrow-up"></i> 201%</h5>
+                          </div>
+                          <img
+                            decoding="async"
+                            class="btl-img"
+                            src={marketImg.src}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </section>
+
+            <!-- Leading Section -->
+            <section class="leading-sec">
+              <div class="container">
+                <div class="grid-leading">
+                  <div class="left-leading">
+                    <section id="block-12" class="widget widget_block">
+                      <h3>
+                        Our<br />
+                        <span>"Track Record is our"</span><br />
+                        Reputation
+                      </h3>
+                      <p id="counters-nm" class="number-sp">
+                        <span
+                          class="bl-text-nu counter-value"
+                          data-count="8"
+                        >0</span
+                        ><b>/10</b>
+                      </p>
+                      <span class="bg-sp">Eight out of our last ten Stock Alerts rallied for Huge
+                        Gains</span
+                      >
+                    </section>
+                  </div>
+
+                  <div class="right-leading">
+                    <h3>Real Traders. Real Results.</h3>
+
+                    <!-- Testimonials Slider -->
+                    <div class="client-slider">
+                      <section id="block-2" class="widget widget_block">
+                        <div
+                          class="rt-container-fluid tss-wrapper"
+                          id="tss-container-109931952"
+                          data-layout="carousel3"
+                          data-desktop-col="1"
+                          data-tab-col="1"
+                          data-mobile-col="1"
+                        >
+                          <div
+                            data-title="Loading ..."
+                            class="rt-row tss-carousel3 tss-even tss-pre-loader"
+                          >
+                            <div class="carousel-wrapper">
+                              <div
+                                dir="rtl"
+                                class="tss-carousel swiper"
+                                data-loop="true"
+                                data-items-desktop="1"
+                                data-items-tab="1"
+                                data-items-mobile="1"
+                                data-autoplay="true"
+                                data-autoplay-timeout="5000"
+                                data-autoplay-hover-pause="true"
+                                data-dots="true"
+                                data-nav="true"
+                                data-lazy-load="true"
+                                data-auto-height="true"
+                                data-smart-speed="250"
+                              >
+                                <div class="swiper-wrapper">
+                                  <div
+                                    class="rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin"
+                                  >
+                                    <div class="single-item-wrapper">
+                                      <div class="tss-meta-info">
+                                        <div class="profile-img-wrapper">
+                                          <img
+                                            alt="TOM S"
+                                            class="rt-responsive-img swiper-lazy"
+                                            data-src={tomSImg.src}
+                                          />
+                                          <div
+                                            class="swiper-lazy-preloader swiper-lazy-preloader-white"
+                                          >
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <h3 class="author-name">TOM S</h3>
+                                      <div class="item-content-wrapper">
+                                        <div class="item-content">
+                                          I want to thank you for your research
+                                          in bringing theses stocks to my
+                                          attention….Each stock that I have
+                                          invested in from your lead has
+                                          appreciated almost consistently. THANK
+                                          YOU.
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div
+                                    class="rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin"
+                                  >
+                                    <div class="single-item-wrapper">
+                                      <div class="tss-meta-info">
+                                        <div class="profile-img-wrapper">
+                                          <img
+                                            alt="LUKE R."
+                                            class="rt-responsive-img swiper-lazy"
+                                            data-src={lukeRImg.src}
+                                          />
+                                          <div
+                                            class="swiper-lazy-preloader swiper-lazy-preloader-white"
+                                          >
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <h3 class="author-name">LUKE R.</h3>
+                                      <div class="item-content-wrapper">
+                                        <div class="item-content">
+                                          I'm new to this and this was the first
+                                          time I've used your pick. I got
+                                          nervous and banked it after I made
+                                          100%. I'm little upset I didn't stay
+                                          in but I'm very happy with the profit
+                                          I did make….can't wait until next
+                                          week…I'm just amazed!!..
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div
+                                    class="rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin"
+                                  >
+                                    <div class="single-item-wrapper">
+                                      <div class="tss-meta-info">
+                                        <div class="profile-img-wrapper">
+                                          <img
+                                            alt="Mario"
+                                            class="rt-responsive-img swiper-lazy"
+                                            data-src={marioImg.src}
+                                          />
+                                          <div
+                                            class="swiper-lazy-preloader swiper-lazy-preloader-white"
+                                          >
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <h3 class="author-name">Mario</h3>
+                                      <div class="item-content-wrapper">
+                                        <div class="item-content">
+                                          Wow!!!! Today was the first trade I
+                                          took from your picks…Amazing!!!!
+                                          Thanks for Your services…..
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div
+                                    class="rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin"
+                                  >
+                                    <div class="single-item-wrapper">
+                                      <div class="tss-meta-info">
+                                        <div class="profile-img-wrapper">
+                                          <img
+                                            alt="Mosk, Honolulu, Hawaii"
+                                            class="rt-responsive-img swiper-lazy"
+                                            data-src={moskImg.src}
+                                          />
+                                          <div
+                                            class="swiper-lazy-preloader swiper-lazy-preloader-white"
+                                          >
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <h3 class="author-name">
+                                        Mosk, Honolulu, Hawaii
+                                      </h3>
+                                      <div class="item-content-wrapper">
+                                        <div class="item-content">
+                                          What can I say? I'm fairly new to the
+                                          game but love how you guys write. I've
+                                          only played two picks and I did about
+                                          15% gain on each only to see them
+                                          double after I sold. Slowly but
+                                          surely. Thanks for your site.
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div
+                                    class="rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin"
+                                  >
+                                    <div class="single-item-wrapper">
+                                      <div class="tss-meta-info">
+                                        <div class="profile-img-wrapper">
+                                          <img
+                                            alt="Mike D., Los Angeles"
+                                            class="rt-responsive-img swiper-lazy"
+                                            data-src={mikeDImg.src}
+                                          />
+                                          <div
+                                            class="swiper-lazy-preloader swiper-lazy-preloader-white"
+                                          >
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <h3 class="author-name">
+                                        Mike D., Los Angeles
+                                      </h3>
+                                      <div class="item-content-wrapper">
+                                        <div class="item-content">
+                                          Got my girl a Cartier watch after
+                                          playing your pick of ASCC intraday. It
+                                          was my first daytrade ever, but your
+                                          alert made it simple. Any chance you
+                                          guys could issue alerts more
+                                          frequently? That would help me make a
+                                          lot more money and buy more things for
+                                          me (and my girl of course, lol).
+                                          Cheers from LA!
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div
+                                    class="rt-col-md-12 rt-col-sm-12 rt-col-xs-12 even-grid-item tss-grid-item slide-item swiper-slide even-grid-item default-margin"
+                                  >
+                                    <div class="single-item-wrapper">
+                                      <div class="tss-meta-info">
+                                        <div class="profile-img-wrapper">
+                                          <img
+                                            alt="Sebastian, Philadelphia"
+                                            class="rt-responsive-img swiper-lazy"
+                                            data-src={sebastianImg.src}
+                                          />
+                                          <div
+                                            class="swiper-lazy-preloader swiper-lazy-preloader-white"
+                                          >
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <h3 class="author-name">
+                                        Sebastian, Philadelphia
+                                      </h3>
+                                      <div class="item-content-wrapper">
+                                        <div class="item-content">
+                                          Guys thank you so much for hitting the
+                                          ball out of the park on your last
+                                          alert! I've been trading for four
+                                          months now and this is the first time
+                                          I've made over 100% on a single trade.
+                                          Keep up the great work!
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer id="colophon" class="site-footer">
+        <div class="site-info">
+          <div class="container">
+            <div class="site-name">
+              <a href=""><img src={footerLogo.src} alt="Footer Logo" /></a>
+            </div>
+
+            <nav aria-label="Secondary menu" class="footer-navigation nav-ft">
+              <ul class=""></ul>
+            </nav>
+
+            <div class="social-ft"></div>
+          </div>
+        </div>
+      </footer>
+
+      <div class="powered-by copy-rt">
+        <div class="container">
+          <div class="inner-copy">
+            <span>Copyright © 2024 The <a href="">Next Big Stock Alert</a>. All
+              Rights Reserved</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- Scripts loaded at the end to avoid build issues -->
+  <script is:inline src="/ri'qi/proof.js" async></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/hooks.min.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/i18n.min.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/primary-navigation.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/responsive-embeds.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/helper.min.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/jquery.min.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/jquery-migrate.min.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/imagesloaded.pkgd.min.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/swiper.min.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/wptestimonial.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/jquery-3.7.1.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/jquery.countdown.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/custom.js"></script>
+  <script is:inline src="/mjSFqQ/20250818-1/static/js/jquery-ui.min.js"></script>
+
+  <!-- Counter Animation Script -->
+  <script is:inline>
+let a = 0
+if (typeof jQuery !== 'undefined') {
+  jQuery(window).scroll(() => {
+    let oTop = jQuery('#counters-nm').offset().top - window.innerHeight
+    if (a == 0 && jQuery(window).scrollTop() > oTop) {
+      jQuery('.counter-value').each(function () {
+        let $this = jQuery(this)
+        let countTo = $this.attr('data-count')
+        jQuery({
+          countNum: $this.text(),
+        }).animate(
+          {
+            countNum: countTo,
+          },
+          {
+            duration: 2500,
+            easing: 'swing',
+            step() {
+              $this.text(Math.floor(this.countNum))
+            },
+            complete() {
+              $this.text(this.countNum)
+            },
+          },
+        )
+      })
+      a = 1
+    }
+  })
+}
+</script>
+
+  <!-- Video Control Script -->
+  <script is:inline>
+if (typeof jQuery !== 'undefined') {
+  jQuery('#scroll-to').click(function () {
+    if (jQuery(this).children('.video').get(0).paused) {
+      jQuery(this).children('.video').get(0).play()
+      jQuery(this).children('.playpause').fadeOut()
+    }
+    else {
+      jQuery(this).children('.video').get(0).pause()
+      jQuery(this).children('.playpause').fadeIn()
+    }
+  })
+}
+</script>
+
+</html>

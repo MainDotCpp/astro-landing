@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Kommentare für 	</title>
+	<atom:link href="https://aktion.bodoschaefer.de/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aktion.bodoschaefer.de/</link>
+	<description></description>
+	<lastBuildDate>Mon, 27 Jan 2025 08:07:28 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.8.1</generator>
+	<item>
+		<title>
+		Kommentar zu Ein Hund namens Money von Katharina		</title>
+		<link>https://aktion.bodoschaefer.de/ein-hund-namens-money/#comment-11</link>
+
+		<dc:creator><![CDATA[Katharina]]></dc:creator>
+		<pubDate>Mon, 27 Jan 2025 08:07:28 +0000</pubDate>
+		<guid isPermaLink="false">http://aktion.bodoschaefer.de/wp-content/uploads/2013/10/Ein-Hund-namens-Money.pdf#comment-11</guid>
+
+					<description><![CDATA[Hallo, würde gerne eine gratis pdf bekommen.]]></description>
+			<content:encoded><![CDATA[<p>Hallo, würde gerne eine gratis pdf bekommen.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Kommentar zu Ein Hund namens Money von Julia Meyer		</title>
+		<link>https://aktion.bodoschaefer.de/ein-hund-namens-money/#comment-10</link>
+
+		<dc:creator><![CDATA[Julia Meyer]]></dc:creator>
+		<pubDate>Sat, 28 Dec 2024 08:43:38 +0000</pubDate>
+		<guid isPermaLink="false">http://aktion.bodoschaefer.de/wp-content/uploads/2013/10/Ein-Hund-namens-Money.pdf#comment-10</guid>
+
+					<description><![CDATA[sehr gut!]]></description>
+			<content:encoded><![CDATA[<p>sehr gut!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Kommentar zu Ein Hund namens Money von Müller Eva		</title>
+		<link>https://aktion.bodoschaefer.de/ein-hund-namens-money/#comment-9</link>
+
+		<dc:creator><![CDATA[Müller Eva]]></dc:creator>
+		<pubDate>Fri, 15 Nov 2024 08:40:40 +0000</pubDate>
+		<guid isPermaLink="false">http://aktion.bodoschaefer.de/wp-content/uploads/2013/10/Ein-Hund-namens-Money.pdf#comment-9</guid>
+
+					<description><![CDATA[Ich hätte gerne das Buch]]></description>
+			<content:encoded><![CDATA[<p>Ich hätte gerne das Buch</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Kommentar zu Ein Hund namens Money von Otto		</title>
+		<link>https://aktion.bodoschaefer.de/ein-hund-namens-money/#comment-8</link>
+
+		<dc:creator><![CDATA[Otto]]></dc:creator>
+		<pubDate>Thu, 07 Nov 2024 22:08:12 +0000</pubDate>
+		<guid isPermaLink="false">http://aktion.bodoschaefer.de/wp-content/uploads/2013/10/Ein-Hund-namens-Money.pdf#comment-8</guid>
+
+					<description><![CDATA[Gutes Buch]]></description>
+			<content:encoded><![CDATA[<p>Gutes Buch</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

@@ -125,5 +125,5 @@
     }
   ],
   "git.ignoreLimitWarning": true,
-  "kiroAgent.configureMCP": "Disabled"
+  "kiroAgent.configureMCP": "Enabled"
 }

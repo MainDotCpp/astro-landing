@@ -2,9 +2,7 @@
 import { Image } from 'astro:assets'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import img2 from './static/media/2.png'
-import img3 from './static/media/3.png'
 import img5 from './static/media/5.png'
-import img6 from './static/media/6.png'
 import btn from './static/media/btn.png'
 
 export const getStaticPaths = (() => {
@@ -16,7 +14,9 @@ export const getStaticPaths = (() => {
 
 const { name: people, img_prefix } = Astro.props
 const img1 = import(`./static/media/${img_prefix}1.png`)
-const img4 = import(`./static/media/${img_prefix}4.png`);
+const img3 = import(`./static/media/${img_prefix}3.png`)
+const img4 = import(`./static/media/${img_prefix}4.png`)
+const img6 = import(`./static/media/${img_prefix}6.png`);
 ---
 
 <BaseLayout>

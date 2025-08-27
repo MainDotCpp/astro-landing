@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kostenlose KI-basierte Aktienanalyse für Einsteiger & Profis. Finden Sie wachstumsstarke Aktien in Sekunden.">
+  <meta name="keywords" content="Aktien, KI Analyse, Aktienanalyse, Börse Deutschland, Investieren">
+  <meta name="author" content="FinBrain Analyse">
+  <title>KI-Aktienanalyse Plattform</title>
+  <link rel="icon" href="favicon.png" type="image/png+xml">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="links.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Q4WQ8X1DL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3Q4WQ8X1DL');
+  </script>
+
+  <!-- Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17124097278"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17124097278');
+  </script>
+
+  <!-- Conversion -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () { if (typeof(url) != 'undefined') { window.location = url; } };
+    gtag('event', 'conversion', {
+      'send_to': 'AW-17124097278/eu7SCNfp6dYaEP75s-U_',
+      'transaction_id': 'wa_' + Date.now() + '_' + Math.floor(Math.random() * 100000),,
+      'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PH7NMJFX');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- External consolidated CSS -->
+  <link rel="stylesheet" href="https://loveusa.info/de-ai/styles_clean.css">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PH7NMJFX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header>
+    <h1>🔎 KI-Aktienanalyse für Einsteiger & Profis</h1>
+    <p>Aktiencode eingeben – in Sekundenschnelle erhalten Sie einen präzisen Report mit Preis, Schwankungen und KI-basierter Einschätzung.</p>
+  </header>
+
+  <form onsubmit="return startAnalysis();" class="search-box">
+    <input type="text" placeholder="z.B. BMW, SESG, OMV">
+    <button type="submit">Jetzt analysieren</button>
+  </form>
+
+  <div class="stock-recommendation">
+    <h2>📊 Plattform-Statistik</h2>
+    <div class="stock-item">👥 Historische Nutzerzahl: <strong>12.387</strong></div>
+    <div class="stock-item">🟢 Aktuell online: <strong id="online-count">143</strong></div>
+    <p style="margin-top: 1em; font-size: 0.9em; color: #aaa;">Daten basieren auf den letzten Systemauswertungen.</p>
+  </div>
+
+  <!-- Analysis modal -->
+  <div class="modal" id="analysisModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="document.getElementById('analysisModal').style.display='none'; resetBars();">×</span>
+      <p>🔄 Marktanalyse läuft...</p>
+      <div class="progress-bar"><span id="bar1"></span></div>
+      <p>📉 Chartanalyse läuft...</p>
+      <div class="progress-bar"><span id="bar2"></span></div>
+      <p>📰 Nachrichtenanalyse läuft...</p>
+      <div class="progress-bar"><span id="bar3"></span></div>
+    </div>
+  </div>
+
+  <!-- Result modal -->
+  <div class="modal" id="resultModal">
+    <div class="modal-content modal-content--with-footer pretty-modal">
+      <span class="modal-close" onclick="document.getElementById('resultModal').style.display='none'">×</span>
+      <div class="modal-body">
+        <header class="result-head">
+          <h2>Analyse abgeschlossen</h2>
+          <p class="muted">Wesentliche Kennzahlen (Werte als *** verborgen). Für reale Zahlen bitte unten den Button nutzen.</p>
+          <div class="pill-row">
+            <span class="pill pill--bull">Signal: ***</span>
+            <span class="pill">Momentum: ***</span>
+            <span class="pill">Volatilität: ***</span>
+          </div>
+        </header>
+
+        <section class="card-section">
+          <h3 class="sec-title">Kerndaten</h3>
+          <div class="indicator-grid">
+            <div class="metric"><span class="label">Live-Kurs</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">Kaufbereich</span><span class="value">*** — ***</span></div>
+            <div class="metric"><span class="label">Take-Profit</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">Stop-Loss</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">Kursziel</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">Risikostufe</span><span class="value">***</span></div>
+          </div>
+        </section>
+
+        <section class="card-section">
+          <h3 class="sec-title">Trend</h3>
+          <div class="indicator-grid">
+            <div class="metric"><span class="label">RSI (14)</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">MACD (12,26,9)</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">MA20</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">MA50</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">MA200</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">ATR (14)</span><span class="value">***</span></div>
+          </div>
+        </section>
+
+        <details class="card-section details-clean" open>
+          <summary><h3 class="sec-title">Zonen & Levels</h3></summary>
+          <div class="indicator-grid">
+            <div class="metric"><span class="label">Unterstützung S1</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">Unterstützung S2</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">Widerstand R1</span><span class="value">***</span></div>
+            <div class="metric"><span class="label">Widerstand R2</span><span class="value">***</span></div>
+          </div>
+        </details>
+
+        <p class="fineprint">*Zum Schutz sensibler Daten werden hier nur Platzhalter (*** ) gezeigt. Der vollständige Report wird via WhatsApp bereitgestellt.</p>
+      </div>
+
+      <div class="modal-footer cta-footer">
+        <a class="cta-btn cta-pretty" href="#" target="_blank" onclick="gtag_report_conversion();">
+          Vollständigen Bericht auf WhatsApp erhalten
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="cookie-banner">
+    Diese Website verwendet Cookies, um Ihnen das beste Erlebnis zu bieten.
+    <button onclick="document.getElementById('cookie-banner').style.display='none'">Akzeptieren</button>
+    <button onclick="document.getElementById('cookie-banner').style.display='none'">Schließen</button>
+  </div>
+
+  <footer>
+    📍 FinBrain Analyse
+    <a href="../legal/impressum.html">Impressum</a> |
+    <a href="../legal/datenschutz.html">Datenschutz</a> |
+    <a href="../legal/nutzungsbedingungen.html">Nutzungsbedingungen</a> |
+    <a href="../legal/kontakt.html">Kontakt</a><br>
+    📢 Hinweis: Die Inhalte dienen ausschließlich Informationszwecken und stellen keine Anlageberatung dar. Investitionen sind mit Risiken verbunden.
+  </footer>
+
+  <canvas id="canvas-effect"></canvas>
+  <div id="background-lines"></div>
+
+  <script>
+    const canvas = document.getElementById('canvas-effect');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+    const lines = Array.from({ length: 80 }, () => ({ x: Math.random() * w, y: Math.random() * h, speed: 0.5 + Math.random() * 1, length: 20 + Math.random() * 40 }));
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = 'rgba(37, 211, 102, 0.3)';
+      ctx.lineWidth = 1;
+      for (const l of lines) {
+        ctx.beginPath(); ctx.moveTo(l.x, l.y); ctx.lineTo(l.x, l.y + l.length); ctx.stroke();
+        l.y += l.speed; if (l.y > h) l.y = -l.length;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+
+  <script>
+    function animateBar(id, callback) {
+      const bar = document.getElementById(id); let width = 0;
+      const interval = setInterval(() => { if (width >= 100) { clearInterval(interval); callback(); } else { width += 6; bar.style.width = width + '%'; } }, 30);
+    }
+    function startAnalysis() {
+      resetBars();
+      document.getElementById('analysisModal').style.display = 'flex';
+      animateBar('bar1', () => animateBar('bar2', () => animateBar('bar3', () => {
+        document.getElementById('analysisModal').style.display = 'none';
+        document.getElementById('resultModal').style.display = 'flex';
+      })) );
+      return false;
+    }
+    function resetBars() {
+      document.getElementById('bar1').style.width = '0%';
+      document.getElementById('bar2').style.width = '0%';
+      document.getElementById('bar3').style.width = '0%';
+    }
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const now = new Date();
+      const deDate = now.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const dateSpan = document.getElementById("de-date");
+      if (dateSpan) dateSpan.textContent = deDate;
+    });
+  </script>
+</body>
+</html>

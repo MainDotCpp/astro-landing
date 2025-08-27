@@ -19,6 +19,7 @@ export default defineConfig({
   },
   build: {
     // assetsPrefix: 'https://assetfun.top',
+    format: 'preserve',
     assets: 'mjSFqQ',
   },
 })

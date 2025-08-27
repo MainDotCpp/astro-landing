@@ -1,0 +1,399 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import trustBannerImg from './assets/images/464.jpg'
+// Import background images
+import heroBg from './assets/images/assets_task_01jxn2y9szf1mr8smwy3wq235b_1749833246_src_0.png'
+import marketPerformanceImg from './assets/images/assets_task_01jxpqz8ateqv80snv8pt5f9qz_1749888831_src_0.png'
+import countdownBg from './assets/images/hero-bg.png'
+// Import images
+import logoImg from './assets/images/LOGO.png'
+import qubtImg from './assets/images/qubt.jpg'
+import chatScreenshotImg from './assets/images/tt.jpg'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best Stocks to Buy Right Now</title>
+
+    <RedirectCode />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#00FF2F',
+                secondary: '#0bd127',
+              },
+              borderRadius: {
+                'none': '0px',
+                'sm': '4px',
+                'DEFAULT': '8px',
+                'md': '10px',
+                'lg': '12px',
+                'xl': '26px',
+                '2xl': '20px',
+                '3xl': '24px',
+                'full': '9999px',
+                'button': '8px',
+              },
+              screens: {
+                'xs': '480px',
+                'sm': '640px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                '2xl': '1536px',
+              },
+            },
+          },
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        min-height: 1024px;
+      }
+      .text-shadow {
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.7);
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      .bounce {
+        animation: bounce 1.6s infinite;
+      }
+
+      /* Background image styles using CSS variables */
+      .hero-bg {
+        background-image: var(--heroBgImage);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center;
+      }
+
+      .countdown-bg {
+        background-image: var(--countdownBgImage);
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    </style>
+
+    <style define:vars={{
+      heroBgImage: `url(${heroBg.src})`,
+      countdownBgImage: `url(${countdownBg.src})`,
+    }}
+    >
+    </style>
+  </head>
+
+  <body class="bg-[#0b0b0b]">
+    <header
+      class="fixed top-0 w-full bg-[#0b0b0b] z-50 shadow-sm px-4 py-2 flex items-center"
+    >
+      <img src={logoImg.src} alt="logo" class="h-8 md:h-12" />
+    </header>
+    <main class="max-w-[1440px] mx-auto pt-20">
+      <section
+        class="relative min-h-[600px] flex flex-col items-center justify-center text-center px-4 overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 hero-bg z-0"
+        >
+        </div>
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm z-10"></div>
+        <h1
+          class="text-5xl font-bold mb-8 tracking-wide text-secondary z-20 mt-8 md:mt-"
+        >
+          BEST STOCKS TO BUY RIGHT NOW
+        </h1>
+        <div class="space-y-4 mb-8 max-w-2xl z-20">
+          <p class="text-2xl text-white leading-relaxed">
+            Want to Know <span class="text-orange-500 font-semibold">The Best Stocks To Invest In Right Now?</span
+            ><br />
+            Receive Our Exclusive Research and Analysis.<br />
+            Find Out <span class="text-orange-500 font-semibold">The Next Big Stock With Our Stock Signals.</span
+            ><br />
+            Find Out <span class="text-orange-500 font-semibold">The Best Stocks To Buy Right Now.</span
+            ><br />
+            Insiders don't want you to know.<br />
+            <span class="text-orange-500 font-semibold">Click Below to Learn More.</span
+            >
+          </p>
+        </div>
+        <a
+          id="111"
+          class="link-btn !rounded-2xl bg-secondary hover:bg-secondary/90 text-white px-8 py-4 text-3xl font-semibold shadow-md transition-colors whitespace-nowrap z-20 md:text-3xl text-xl md:px-8 px-5 md:py-4 py-2 inline-flex items-center justify-center fixed bottom-4 left-4 right-4 mx-auto w-[90%] md:static md:mx-0 md:w-auto bounce"
+        >
+          <i class="fab fa-whatsapp mr-2"></i> Join Our WhatsApp Group
+        </a>
+      </section>
+
+      <section class="py-20 px-8 bg-[#0b0b0b]">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-bold mb-12 text-center text-secondary">
+            Why You Can Trust Us
+          </h2>
+          <div class="w-full h-[400px] mb-16 overflow-hidden rounded-lg">
+            <img
+              src={trustBannerImg.src}
+              alt="Trust Banner"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            <div class="p-8 bg-[#1a1a1a] rounded-lg shadow-lg">
+              <div class="text-secondary text-center text-4xl mb-4">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3 class="text-xl text-white font-bold mb-4">
+                Only Select Explosive Growth Stocks
+              </h3>
+              <p class="text-gray-400">
+                We focus on top-quality stocks about to take off—alerting you
+                before major funds enter the market.
+              </p>
+            </div>
+            <div class="p-8 bg-[#1a1a1a] rounded-lg shadow-lg">
+              <div class="text-secondary text-center text-4xl mb-4">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h3 class="text-xl text-white font-bold mb-4">
+                Expert Strategies + Exclusive Models
+              </h3>
+              <p class="text-gray-400">
+                We rely on our proprietary stock-picking model, combined with
+                market data, technical charts, and hot trends for precise
+                actions.
+              </p>
+            </div>
+            <div class="p-8 bg-[#1a1a1a] rounded-lg shadow-lg">
+              <div class="text-secondary text-center text-4xl mb-4">
+                <i class="fas fa-medal"></i>
+              </div>
+              <h3 class="text-xl text-white font-bold mb-4">
+                Over 30 Years of Team Experience
+              </h3>
+              <p class="text-gray-400">
+                Our team comes from Wall Street, with extensive hands-on trading
+                experience and deep industry insights.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-20 px-8 bg-[#000000]">
+        <div class="max-w-6xl mx-auto">
+          <div class="max-w-6xl mx-auto text-center mb-12">
+            <h2 class="text-4xl text-secondary font-bold mb-6">
+              Chat Screenshot
+            </h2>
+            <p class="text-xl text-white mb-12">
+              See how real investors are making decisions with our insider stock
+              signals.<br />Join the conversation and get immediate access to
+              the next big opportunity!
+            </p>
+            <div
+              class="bg-[#1a1a1a] rounded-lg shadow-xl p-6 max-w-2xl mx-auto"
+            >
+              <img
+                src={chatScreenshotImg.src}
+                alt="Chat Screenshot"
+                class="w-full h-auto rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 px-8 bg-[#0b0b0b]">
+        <div class="max-w-6xl mx-auto">
+          <div class="w-full h-[400px] mb-16 overflow-hidden rounded-lg">
+            <img
+              src={marketPerformanceImg.src}
+              alt="Market Performance"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h2 class="text-4xl text-secondary font-bold text-center mb-6">
+            Stocks that Outperform the Market
+          </h2>
+          <p class="text-xl text-white text-center mb-12">
+            These stocks are beating the market consistently. Ready to join the
+            ranks of top investors?
+          </p>
+          <div class="bg-white rounded-lg shadow-xl p-6 max-w-2xl mx-auto">
+            <img
+              src={qubtImg.src}
+              alt="Chat Screenshot"
+              class="w-full h-auto rounded-lg"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="py-20 px-8 countdown-bg bg-[#000000]"
+      >
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl font-bold mb-6 text-secondary">
+            What Are You Waiting For?
+          </h2>
+          <p class="text-2xl text-white mb-8">
+            The Next Secret Stock Signal is coming
+          </p>
+          <div
+            class="grid grid-cols-4 gap-x-8 text-4xl font-bold bg-[#1a1a1a] rounded-lg shadow-lg p-8"
+          >
+            <div class="">
+              <span id="days" class="text-secondary">10</span>
+              <p class="text-sm text-gray-400 mt-2">Days</p>
+            </div>
+            <div class="">
+              <span id="hours" class="text-secondary">00</span>
+              <p class="text-sm text-gray-400 mt-2">Hours</p>
+            </div>
+            <div class="">
+              <span id="minutes" class="text-secondary">00</span>
+              <p class="text-sm text-gray-400 mt-2">Minutes</p>
+            </div>
+            <div class="">
+              <span id="seconds" class="text-secondary">00</span>
+              <p class="text-sm text-gray-400 mt-2">Seconds</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#0b0b0b] text-gray-400 py-12 border-t">
+      <div class="max-w-[1440px] mx-auto px-8">
+        <div class="flex justify-center mb-8 gap-20">
+          <div class="text-center">
+            <ul class="grid grid-cols-3 md:grid-cols-6 gap-y-2">
+              <li>
+                <a
+                  class="link-btn hover:text-secondary transition-colors mr-5"
+                >Home</a>
+              </li>
+              <li>
+                <a
+                  class="link-btn hover:text-secondary transition-colors mr-5"
+                >About Us</a>
+              </li>
+              <li>
+                <a
+                  class="link-btn hover:text-secondary transition-colors mr-5"
+                >Contact Us</a>
+              </li>
+              <li>
+                <a
+                  class="link-btn hover:text-secondary transition-colors mr-5"
+                >Privacy Policy</a>
+              </li>
+              <li>
+                <a
+                  class="link-btn hover:text-secondary transition-colors mr-5"
+                >Terms of Service</a>
+              </li>
+              <li>
+                <a
+                  class="link-btn hover:text-secondary transition-colors mr-5"
+                >Financial Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-400 pt-8 text-center text-gray-400">
+          <p>© 2025 Marygk Stock | All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+function getTodayZero() {
+  const now = new Date()
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    0,
+    0,
+    0,
+    0,
+  )
+}
+
+const cycleStart = getTodayZero() // 每天 0 点为起点
+const cycleDays = 10 // 每 10 天为一个周期
+
+function updateCountdown() {
+  const now = new Date()
+  const msPerDay = 24 * 60 * 60 * 1000
+  const msPerHour = 60 * 60 * 1000
+  const msPerMinute = 60 * 1000
+  const msPerSecond = 1000
+
+  const diffMs = now - cycleStart
+  const daysPassed = Math.floor(diffMs / msPerDay)
+  const daysLeft = cycleDays - (daysPassed % cycleDays) - 1
+
+  const thisCycleStart = new Date(
+    cycleStart.getTime()
+    + Math.floor(daysPassed / cycleDays) * cycleDays * msPerDay
+    + (daysPassed % cycleDays) * msPerDay,
+  )
+  const nextCycle = new Date(
+    thisCycleStart.getTime() + (daysLeft + 1) * msPerDay,
+  )
+  let remainMs = nextCycle - now
+
+  if (remainMs < 0)
+    remainMs = 0
+
+  const remainDays = Math.floor(remainMs / msPerDay)
+  const remainHours = Math.floor((remainMs % msPerDay) / msPerHour)
+  const remainMinutes = Math.floor((remainMs % msPerHour) / msPerMinute)
+  const remainSeconds = Math.floor(
+    (remainMs % msPerMinute) / msPerSecond,
+  )
+
+  // 更新页面上的 DOM
+  document.getElementById('days').textContent = String(
+    remainDays,
+  ).padStart(2, '0')
+  document.getElementById('hours').textContent = String(
+    remainHours,
+  ).padStart(2, '0')
+  document.getElementById('minutes').textContent = String(
+    remainMinutes,
+  ).padStart(2, '0')
+  document.getElementById('seconds').textContent = String(
+    remainSeconds,
+  ).padStart(2, '0')
+}
+
+updateCountdown() // 初始执行一次
+setInterval(updateCountdown, 1000) // 每秒更新一次
+</script>
+  </body>
+</html>
