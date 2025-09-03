@@ -30,6 +30,7 @@ export function getStaticPaths() {
       { params: { people: '富人电视', version: '1' }, props: { name: '부자티비', img_prefix: 'frds1_' } },
       { params: { people: '舒卡世界漫画', version: '0' }, props: { name: '슈카월드 코믹스', img_prefix: 'yu_' } },
       { params: { people: '常言道语', version: '0' }, props: { name: '노말이', img_prefix: 'cydy_' } },
+      { params: { people: '郑在浩', version: '0' }, props: { name: '정재호', img_prefix: 'zzh_' } },
 ]
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
