@@ -1,0 +1,573 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import {
+  AlertCircle,
+  Brain,
+  Rocket,
+  Shield,
+  Smartphone,
+  TrendingUp,
+} from 'lucide-astro'
+import lineIcon from '@/assets/line-icon.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq_' } },
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
+    { params: { people: '三橋貴明', version: '2' }, props: { name: '三橋貴明', img_prefix: 'sq2_' } },
+    { params: { people: '三橋貴明', version: '3' }, props: { name: '三橋貴明', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '4' }, props: { name: '三橋貴明', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '5' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '馬渕磨理子', version: '0' }, props: { name: '馬渕磨理子', img_prefix: 'mlz_' } },
+    { params: { people: '馬渕磨理子', version: '1' }, props: { name: '馬渕磨理子', img_prefix: 'mlz1_' } },
+    { params: { people: '馬渕磨理子', version: '2' }, props: { name: '馬渕磨理子', img_prefix: 'mlz2_' } },
+    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh_' } },
+    { params: { people: '片山 晃', version: '1' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
+    { params: { people: '前澤友作', version: '0' }, props: { name: '前澤友作', img_prefix: 'qzyz_' } },
+    { params: { people: '大前研一', version: '0' }, props: { name: '大前研一', img_prefix: 'dq_' } },
+    { params: { people: '大前研一', version: '1' }, props: { name: '大前研一', img_prefix: 'dq1_' } },
+    { params: { people: '村上世彰', version: '0' }, props: { name: '', img_prefix: 'cssz_' } },
+    { params: { people: '高橋洋一', version: '1' }, props: { name: '', img_prefix: 'gqyy_' } },
+    { params: { people: '本田健', version: '0' }, props: { name: '', img_prefix: 'btj_' } },
+    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz_' } },
+    { params: { people: '小谷真生子', version: '1' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+    { params: { people: '桐谷広人', version: '1' }, props: { name: '桐谷広人', img_prefix: 'tg_' } },
+  ]
+}) satisfies GetStaticPaths
+
+// const { img_prefix } = Astro.props
+---
+
+<BaseLayout title="9月日本株市場 | AI分析で8万円→460万円の奇跡" description="9月の日本株市場で半導体・AI関連銘柄が静かに動き出した。AIを活用した投資で8万円が460万円に膨らんだ実績。今すぐLINE追加で最新情報を入手" lang="ja">
+  <style>
+    /* 全新的设计系统 - 科技感与金融感结合 */
+    :root {
+      --primary-gold: #FFD700;
+      --primary-blue: #0066CC;
+      --primary-dark: #0A0A0A;
+      --accent-green: #00FF88;
+      --accent-red: #FF3366;
+      --text-light: #F5F5F5;
+      --text-gray: #CCCCCC;
+    }
+
+    @keyframes matrix-rain {
+      0% { transform: translateY(-100vh); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 20px var(--accent-green), 0 0 40px var(--accent-green);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 30px var(--accent-green), 0 0 60px var(--accent-green);
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes slide-in-left {
+      0% { transform: translateX(-100%); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slide-in-right {
+      0% { transform: translateX(100%); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fade-in-up {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes number-counter {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .matrix-char {
+      position: absolute;
+      color: var(--accent-green);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      animation: matrix-rain 10s linear infinite;
+      opacity: 0.3;
+    }
+
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .slide-in-left {
+      animation: slide-in-left 0.8s ease-out;
+    }
+
+    .slide-in-right {
+      animation: slide-in-right 0.8s ease-out;
+    }
+
+    .fade-in-up {
+      animation: fade-in-up 0.6s ease-out;
+    }
+
+    .number-counter {
+      animation: number-counter 1s ease-out;
+    }
+
+    /* 日文字体优化 */
+    body, html {
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--primary-dark);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    .cyber-grid {
+      background-image:
+        linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .neon-border {
+      border: 2px solid var(--accent-green);
+      box-shadow:
+        0 0 10px var(--accent-green),
+        inset 0 0 10px rgba(0, 255, 136, 0.1);
+    }
+
+    .gradient-text {
+      background: linear-gradient(45deg, var(--primary-gold), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .data-visualization {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .data-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-green), var(--primary-gold));
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .data-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .cta-button {
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-green));
+      border: none;
+      border-radius: 8px;
+      padding: 16px 32px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 16px;
+      background: rgba(0, 255, 136, 0.05);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 8px;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--accent-green);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent-green);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 24px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      border: 3px solid var(--primary-dark);
+    }
+
+    .mobile-optimized {
+      max-width: 100%;
+      padding: 0 16px;
+    }
+
+    .section-spacing {
+      margin: 48px 0;
+    }
+
+    .text-hierarchy h1 {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .text-hierarchy h2 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .text-hierarchy h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .text-hierarchy p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+  </style>
+
+  <main class="relative min-h-screen">
+    <!-- Matrix Background -->
+    <div class="matrix-bg" id="matrix-bg"></div>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 min-h-screen flex items-center cyber-grid">
+      <div class="mobile-optimized w-full">
+        <div class="text-center">
+          <!-- 紧急标签 -->
+          <div class="inline-block px-4 py-2 bg-red-600 text-white rounded-full text-sm font-bold mb-6 pulse-glow">
+            <AlertCircle size="16" class="inline mr-2" />
+            9月緊急情報
+          </div>
+
+          <!-- 主标题 -->
+          <h1 class="text-hierarchy gradient-text slide-in-left">
+            9月の日本株市場は<br>
+            すでに明暗がくっきりと<br>
+            分かれています
+          </h1>
+
+          <!-- 市场分析卡片 -->
+          <div class="glass-effect rounded-2xl p-6 mb-8 slide-in-right">
+            <div class="flex items-center justify-center mb-4">
+              <TrendingUp size="24" class="text-green-400 mr-3" />
+              <h2 class="text-hierarchy text-green-400">半導体・AI関連・自社株買い企業が</h2>
+            </div>
+            <p class="text-hierarchy text-white">静かに動き出しました</p>
+          </div>
+
+          <!-- 成功案例展示 -->
+          <div class="neon-border rounded-2xl p-6 mb-8 fade-in-up">
+            <h3 class="text-hierarchy text-yellow-400 mb-4">この半年間の実績</h3>
+            <p class="text-hierarchy text-white mb-6">日経平均を大きく上回る結果</p>
+
+            <div class="data-visualization bg-black/50 rounded-xl p-6">
+              <div class="text-center mb-4">
+                <div class="text-4xl font-black text-green-400 number-counter">8万円 → 460万円</div>
+                <div class="text-sm text-gray-400 mt-2">わずか1か月足らずで</div>
+              </div>
+
+              <div class="data-bar mb-4"></div>
+
+              <div class="stats-container">
+                <div class="stat-item">
+                  <div class="stat-number">+5,650%</div>
+                  <div class="stat-label">驚異的成長</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">1ヶ月</div>
+                  <div class="stat-label">短期間</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI优势说明 -->
+          <div class="glass-effect rounded-2xl p-6 mb-8 fade-in-up">
+            <div class="flex items-center justify-center mb-4">
+              <Brain size="24" class="text-purple-400 mr-3" />
+              <h3 class="text-hierarchy text-purple-400">AIが毎日解析する</h3>
+            </div>
+            <p class="text-hierarchy text-white mb-2">膨大なリアルタイムデータ</p>
+            <p class="text-hierarchy text-purple-200">爆発の直前にあるチャンスを抽出</p>
+          </div>
+
+          <!-- 简单操作说明 -->
+          <div class="glass-effect rounded-2xl p-6 mb-8 fade-in-up">
+            <div class="flex items-center justify-center mb-4">
+              <Smartphone size="24" class="text-blue-400 mr-3" />
+              <h3 class="text-hierarchy text-blue-400">必要なのは</h3>
+            </div>
+            <p class="text-hierarchy text-white mb-2">スマホで数分確認するだけ</p>
+            <p class="text-hierarchy text-blue-200">難しい金融知識も複雑な操作も不要</p>
+          </div>
+
+          <!-- 紧迫性提醒 -->
+          <div class="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-6 mb-8 fade-in-up">
+            <h3 class="text-hierarchy text-white mb-4">今は「知っている人だけ」が</h3>
+            <p class="text-hierarchy text-white mb-4">資産を守り、増やせる時代</p>
+            <p class="text-hierarchy text-yellow-300">チャンスは迷っている間に過ぎ去ります</p>
+          </div>
+
+          <!-- CTA按钮 -->
+          <button class="cta-button w-full mb-6 pulse-glow">
+            <div class="flex items-center justify-center">
+              <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-3" />
+              <span>今すぐ公式LINEを追加</span>
+            </div>
+          </button>
+
+          <!-- 行动指引 -->
+          <p class="text-hierarchy text-green-300">
+            「受取」と送信するだけで<br>
+            <span class="text-yellow-400">9月の重要な動きと最新情報を手に</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 成功案例时间线 -->
+    <section class="relative z-10 section-spacing bg-black/30">
+      <div class="mobile-optimized">
+        <h2 class="text-hierarchy text-center text-green-400 mb-12">実績の証拠</h2>
+
+        <div class="timeline">
+          <div class="timeline-item fade-in-up">
+            <h3 class="text-hierarchy text-green-400">1か月で資産57倍</h3>
+            <div class="text-2xl font-black text-green-400 mb-2">+5,650%</div>
+            <p class="text-hierarchy text-gray-300">8万円 → 460万円の驚異的成長</p>
+          </div>
+
+          <div class="timeline-item fade-in-up">
+            <h3 class="text-hierarchy text-blue-400">半年で日経平均上回る</h3>
+            <div class="text-2xl font-black text-blue-400 mb-2">+120%</div>
+            <p class="text-hierarchy text-gray-300">研究グループの配信成果</p>
+          </div>
+
+          <div class="timeline-item fade-in-up">
+            <h3 class="text-hierarchy text-purple-400">AI分析の威力</h3>
+            <div class="text-2xl font-black text-purple-400 mb-2">リアルタイム</div>
+            <p class="text-hierarchy text-gray-300">爆発直前のチャンスを先取り</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 优势特点 -->
+    <section class="relative z-10 section-spacing">
+      <div class="mobile-optimized">
+        <h2 class="text-hierarchy text-center text-white mb-12">なぜ選ばれるのか</h2>
+
+        <div class="grid grid-cols-1 gap-6">
+          <div class="glass-effect rounded-xl p-6 fade-in-up">
+            <div class="flex items-start space-x-4">
+              <div class="bg-green-600 rounded-full p-3 flex-shrink-0">
+                <Brain size="20" class="text-white" />
+              </div>
+              <div>
+                <h3 class="text-hierarchy text-green-400">AIリアルタイム分析</h3>
+                <p class="text-hierarchy text-gray-300">膨大なデータを解析し、爆発直前のチャンスを抽出</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-effect rounded-xl p-6 fade-in-up">
+            <div class="flex items-start space-x-4">
+              <div class="bg-blue-600 rounded-full p-3 flex-shrink-0">
+                <Smartphone size="20" class="text-white" />
+              </div>
+              <div>
+                <h3 class="text-hierarchy text-blue-400">簡単操作</h3>
+                <p class="text-hierarchy text-gray-300">スマホで数分確認するだけ。難しい知識は不要</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-effect rounded-xl p-6 fade-in-up">
+            <div class="flex items-start space-x-4">
+              <div class="bg-purple-600 rounded-full p-3 flex-shrink-0">
+                <Shield size="20" class="text-white" />
+              </div>
+              <div>
+                <h3 class="text-hierarchy text-purple-400">実績証明</h3>
+                <p class="text-hierarchy text-gray-300">半年間で日経平均を大きく上回る成果</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-effect rounded-xl p-6 fade-in-up">
+            <div class="flex items-start space-x-4">
+              <div class="bg-orange-600 rounded-full p-3 flex-shrink-0">
+                <Rocket size="20" class="text-white" />
+              </div>
+              <div>
+                <h3 class="text-hierarchy text-orange-400">先取り情報</h3>
+                <p class="text-hierarchy text-gray-300">9月の重要動きを事前にキャッチ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最终CTA -->
+    <section class="relative z-10 section-spacing bg-gradient-to-t from-blue-600 to-blue-800">
+      <div class="mobile-optimized text-center">
+        <h2 class="text-hierarchy text-white mb-8">今すぐ行動してください</h2>
+
+        <div class="glass-effect rounded-2xl p-8 mb-8">
+          <h3 class="text-hierarchy text-yellow-400 mb-4">9月の重要な動きと最新情報を手にするのは</h3>
+          <p class="text-hierarchy text-white mb-8">今この瞬間です</p>
+
+          <button class="cta-button w-full pulse-glow">
+            <div class="flex items-center justify-center">
+              <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-3" />
+              <span>今すぐ公式LINEを追加</span>
+            </div>
+          </button>
+        </div>
+
+        <p class="text-hierarchy text-blue-200">
+          チャンスは迷っている間に過ぎ去ります<br>
+          <span class="text-yellow-300">今すぐ「受取」と送信してください</span>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+// Matrix雨效果
+function createMatrixRain() {
+  const matrixBg = document.getElementById('matrix-bg')
+  const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'
+
+  function createChar() {
+    const char = document.createElement('div')
+    char.className = 'matrix-char'
+    char.textContent = chars[Math.floor(Math.random() * chars.length)]
+    char.style.left = `${Math.random() * 100}%`
+    char.style.animationDuration = `${Math.random() * 10 + 5}s`
+    char.style.animationDelay = `${Math.random() * 2}s`
+    matrixBg.appendChild(char)
+
+    setTimeout(() => {
+      char.remove()
+    }, 15000)
+  }
+
+  setInterval(createChar, 200)
+}
+
+// 页面加载动画
+document.addEventListener('DOMContentLoaded', () => {
+  createMatrixRain()
+
+  // 为所有动画元素添加延迟
+  const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right')
+  animatedElements.forEach((element, index) => {
+    element.style.animationDelay = `${index * 0.1}s`
+  })
+})
+</script>
+</BaseLayout>
