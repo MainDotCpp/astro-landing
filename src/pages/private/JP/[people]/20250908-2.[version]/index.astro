@@ -1,0 +1,361 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import {
+  AlertTriangle,
+  Clock,
+  Crown,
+  Flame,
+  TrendingUp,
+  Zap,
+  ArrowUp,
+  Target,
+  CheckCircle,
+  Star,
+  BarChart3,
+  Users,
+  MessageCircle,
+  ArrowRight,
+  DollarSign,
+  Timer,
+  AlertCircle
+} from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import lineIcon from '@/assets/line-icon.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq_' } },
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
+    { params: { people: '三橋貴明', version: '2' }, props: { name: '三橋貴明', img_prefix: 'sq2_' } },
+    { params: { people: '三橋貴明', version: '3' }, props: { name: '三橋貴明', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '4' }, props: { name: '三橋貴明', img_prefix: 'sq3_' } },
+    { params: { people: '三橋貴明', version: '5' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '馬渕磨理子', version: '0' }, props: { name: '馬渕磨理子', img_prefix: 'mlz_' } },
+    { params: { people: '馬渕磨理子', version: '1' }, props: { name: '馬渕磨理子', img_prefix: 'mlz1_' } },
+    { params: { people: '馬渕磨理子', version: '2' }, props: { name: '馬渕磨理子', img_prefix: 'mlz2_' } },
+    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh_' } },
+    { params: { people: '片山 晃', version: '1' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
+    { params: { people: '前澤友作', version: '0' }, props: { name: '前澤友作', img_prefix: 'qzyz_' } },
+    { params: { people: '大前研一', version: '0' }, props: { name: '大前研一', img_prefix: 'dq_' } },
+    { params: { people: '大前研一', version: '1' }, props: { name: '大前研一', img_prefix: 'dq1_' } },
+    { params: { people: '村上世彰', version: '0' }, props: { name: '', img_prefix: 'cssz_' } },
+    { params: { people: '高橋洋一', version: '1' }, props: { name: '', img_prefix: 'gqyy_' } },
+    { params: { people: '本田健', version: '0' }, props: { name: '', img_prefix: 'btj_' } },
+    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz_' } },
+    { params: { people: '小谷真生子', version: '1' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+    { params: { people: '桐谷広人', version: '1' }, props: { name: '桐谷広人', img_prefix: 'tg_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { img_prefix, name: people } = Astro.props
+---
+
+<BaseLayout title={`${people}の投資情報 | 20%急騰銘柄を先取り`} description={`昨日たった1日で株価20%急騰した銘柄情報を無料配信。資産を何十万も増やした人だけが知る秘密の投資法`} lang="ja">
+  <style>
+    @keyframes gentle-float {
+      0%, 100% {
+        transform: translateY(0px);
+        box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
+      }
+      50% {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+      }
+    }
+
+    @keyframes soft-pulse {
+      0%, 100% {
+        background-color: #fbb6ce;
+        transform: scale(1);
+      }
+      50% {
+        background-color: #f9a8d4;
+        transform: scale(1.01);
+      }
+    }
+
+    @keyframes gentle-slide-up {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sakura-fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .animate-gentle-float {
+      animation: gentle-float 3s ease-in-out infinite;
+    }
+
+    .animate-soft-pulse {
+      animation: soft-pulse 2s ease-in-out infinite;
+    }
+
+    .animate-gentle-slide-up {
+      animation: gentle-slide-up 1s ease-out;
+    }
+
+    .animate-sakura-fall {
+      animation: sakura-fall 8s linear infinite;
+    }
+
+    /* 日文字体设置 */
+    body, html {
+      font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 确保所有文本元素都使用日文字体 */
+    main, div, h1, h2, h3, h4, h5, h6, p, span {
+      font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+      font-feature-settings: "palt" 1;
+    }
+
+    /* 日文文本的行高优化 */
+    .text-xl {
+      line-height: 1.7;
+      letter-spacing: 0.05em;
+    }
+
+    /* 加强日文字体权重 */
+    .font-bold {
+      font-weight: 700;
+    }
+  </style>
+
+  <main class="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50 to-indigo-100 text-slate-800 overflow-x-hidden">
+    <!-- Hero Section -->
+    <section class="relative py-16 px-4 min-h-screen flex items-center">
+      <!-- Background Pattern - 日式樱花飘落效果 -->
+      <div class="absolute inset-0 bg-gradient-to-br from-pink-50/30 via-white to-blue-50/30"></div>
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23fbb6ce%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M20%2020c0-5.5-4.5-10-10-10s-10%204.5-10%2010%204.5%2010%2010%2010%2010-4.5%2010-10zm0%200c0-5.5%204.5-10%2010-10s10%204.5%2010%2010-4.5%2010-10%2010-10-4.5-10-10z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      
+      <div class="relative z-10 max-w-md mx-auto text-center w-full">
+        <!-- Alert Badge - 日式风格 -->
+        <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-200 to-pink-300 text-pink-800 rounded-full text-sm font-medium mb-8 shadow-lg animate-soft-pulse">
+          <AlertCircle size="16" class="mr-2" />
+          重要なお知らせ
+        </div>
+
+        <!-- Main Headline - 移动端优化 -->
+        <h1 class="text-2xl font-bold mb-6 leading-relaxed animate-gentle-slide-up">
+          <span class="text-slate-700">昨日、わずか1日で</span><br>
+          <span class="text-indigo-600">株価が20%上昇した</span><br>
+          <span class="text-slate-800">銘柄があります</span>
+        </h1>
+
+        <!-- Sub Headline - 移动端优化 -->
+        <div class="bg-white/80 backdrop-blur-sm border border-pink-200/50 rounded-2xl p-6 mb-6 animate-gentle-slide-up shadow-xl" style="animation-delay: 0.2s">
+          <div class="flex items-center justify-center mb-3">
+            <DollarSign size="24" class="text-emerald-500 mr-2 flex-shrink-0" />
+            <span class="text-lg font-semibold text-emerald-600">資産を大幅に増やした</span>
+          </div>
+          <div class="text-base font-medium text-slate-700">投資家がいます</div>
+        </div>
+
+        <!-- Pain Point - 移动端优化 -->
+        <div class="bg-slate-100/80 border border-slate-200/50 rounded-2xl p-5 mb-6 animate-gentle-slide-up" style="animation-delay: 0.4s">
+          <div class="text-base font-medium text-slate-600 mb-2">しかし、情報を知らなかった方は</div>
+          <div class="text-lg font-semibold text-slate-800">機会を逃しているかもしれません</div>
+        </div>
+
+        <!-- Urgency Section - 移动端优化 -->
+        <div class="bg-gradient-to-r from-indigo-100 to-blue-100 border border-indigo-200 rounded-2xl p-5 mb-6 animate-gentle-slide-up" style="animation-delay: 0.6s">
+          <div class="text-lg font-semibold mb-3 text-indigo-800">株式市場では情報が重要です</div>
+          <div class="text-base mb-3 text-slate-700">適切な情報を入手することが成功の鍵</div>
+          <div class="text-base font-medium text-indigo-700">タイミングを逃すと、機会を失う可能性があります</div>
+        </div>
+
+        <!-- Solution Preview - 移动端优化 -->
+        <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200/50 rounded-2xl p-5 mb-6 animate-gentle-slide-up" style="animation-delay: 0.8s">
+          <div class="flex items-center justify-center mb-3">
+            <MessageCircle size="20" class="text-emerald-500 mr-2" />
+            <span class="text-lg font-semibold text-emerald-600">私の配信をご利用いただくことで</span>
+          </div>
+          <div class="text-base font-medium text-slate-800 mb-2">次の成長銘柄を事前に把握できます</div>
+          <div class="text-sm text-slate-600">わずかな時間差が大きな違いを生みます</div>
+        </div>
+
+
+        <!-- CTA Button - 移动端优化 -->
+        <button class="link-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold text-sm py-5 px-3 rounded-xl shadow-lg transform hover:scale-102 transition-all duration-300 mb-6 animate-gentle-float">
+          <div class="flex items-center justify-center">
+            <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-2 flex-shrink-0" />
+            <span class="text-center leading-tight whitespace-nowrap">今すぐLINEでお友達になりましょう</span>
+          </div>
+        </button>
+
+        <!-- Warning Text - 更温和的提醒 -->
+        <div class="text-center text-slate-600 font-medium text-lg">
+          行動を起こさないと機会を逃すかもしれません<br>
+          <span class="text-indigo-600">適切な行動が成功への道筋です</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Stories Section - 移动端优化 -->
+    <section class="py-12 px-4 bg-white/50">
+      <div class="max-w-md mx-auto">
+        <h2 class="text-2xl font-semibold text-center mb-8 text-slate-800">実績のご紹介</h2>
+        
+        <div class="space-y-6">
+          <!-- Success Story 1 -->
+          <div class="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/50 rounded-xl p-4 shadow-lg">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <Crown size="20" class="text-amber-500 mr-2" />
+                <span class="font-semibold text-emerald-600 text-base">14日間で資産4倍</span>
+              </div>
+              <span class="text-2xl font-bold text-emerald-600">+387%</span>
+            </div>
+            <div class="text-xs text-slate-600">エヌビエディア株 - 配信で事前にお知らせした銘柄</div>
+          </div>
+
+          <!-- Success Story 2 -->
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-xl p-4 shadow-lg">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <TrendingUp size="20" class="text-blue-500 mr-2" />
+                <span class="font-semibold text-blue-600 text-base">7日間で資産3倍</span>
+              </div>
+              <span class="text-2xl font-bold text-blue-600">+245%</span>
+            </div>
+            <div class="text-xs text-slate-600">テクノロジー株 - 配信で先取りした情報</div>
+          </div>
+
+          <!-- Success Story 3 -->
+          <div class="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200/50 rounded-xl p-4 shadow-lg">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <Star size="20" class="text-purple-500 mr-2" />
+                <span class="font-semibold text-purple-600 text-base">3日間で資産2倍</span>
+              </div>
+              <span class="text-2xl font-bold text-purple-600">+156%</span>
+            </div>
+            <div class="text-xs text-slate-600">バイオテクノロジー株 - 配信限定情報</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section - 移动端优化 -->
+    <section class="py-12 px-4 bg-gradient-to-b from-slate-100 to-indigo-50">
+      <div class="max-w-md mx-auto">
+        <h2 class="text-2xl font-semibold text-center mb-8 text-slate-800">選ばれる理由</h2>
+        
+        <div class="space-y-6">
+          <div class="flex items-start space-x-4">
+            <div class="bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full p-2 flex-shrink-0 shadow-lg">
+              <Zap size="20" class="text-white" />
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">リアルタイム配信</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">市場が動く瞬間に、次の成長銘柄を即座にお知らせ</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full p-2 flex-shrink-0 shadow-lg">
+              <Target size="20" class="text-white" />
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">高精度分析</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">独自のアルゴリズムで成長銘柄を事前に特定</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-full p-2 flex-shrink-0 shadow-lg">
+              <Users size="20" class="text-white" />
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">限定メンバー</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">少数精鋭のメンバーだけが知る情報を独占配信</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section - 移动端优化 -->
+    <section class="py-12 px-4 bg-gradient-to-t from-indigo-100 to-blue-100">
+      <div class="max-w-md mx-auto text-center">
+        <h2 class="text-2xl font-semibold mb-6 text-slate-800">今すぐお始めください</h2>
+        
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-xl border border-indigo-200/50">
+          <div class="text-lg font-semibold text-indigo-600 mb-3">わずかな時間差が大きな違いを生みます</div>
+          <div class="text-slate-700 mb-6 text-sm leading-relaxed">迷っている間に、他の投資家は資産を着実に増やしています</div>
+          
+          <button class="link-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold text-sm py-5 px-3 rounded-xl shadow-lg transform hover:scale-102 transition-all duration-300">
+            <div class="flex items-center justify-center">
+              <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-2 flex-shrink-0" />
+              <span class="text-center leading-tight whitespace-nowrap">今すぐLINEでお友達になりましょう</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="text-slate-600 font-medium text-base">
+          行動を起こさないと機会を逃すかもしれません<br>
+          <span class="text-indigo-600">適切な行動が成功への道筋です</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    // Countdown Timer
+    function updateCountdown() {
+      const now = new Date();
+      const endTime = new Date(now.getTime() + (2 * 60 * 60 * 1000) + (15 * 60 * 1000) + (30 * 1000)); // 2時間15分30秒後
+      const timeLeft = endTime.getTime() - now.getTime();
+
+      if (timeLeft > 0) {
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        const hoursEl = document.getElementById('countdown-hours');
+        const minutesEl = document.getElementById('countdown-minutes');
+        const secondsEl = document.getElementById('countdown-seconds');
+
+        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+      } else {
+        // カウントダウン終了
+        const countdownEl = document.querySelector('.animate-countdown-pulse');
+        if (countdownEl) {
+          countdownEl.innerHTML = '<div class="text-center text-yellow-300 font-bold text-lg">配信終了！</div>';
+        }
+      }
+    }
+
+    // ページ読み込み後に実行
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCountdown(); // 初回実行
+      setInterval(updateCountdown, 1000); // 1秒ごとにカウントダウンを更新
+    });
+  </script>
+</BaseLayout>
