@@ -1,0 +1,2517 @@
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>無料のAI株分析診断です</title>
+    <link rel="shortcut icon" href=".//mjSFqQ/JP/20250911-1.0/static/picture/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;">
+    <meta id="viewport" name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=no,initial-scale=2.56">
+    <meta name="MobileOptimized" content="320">
+    <meta name="format-detection" content="telephone=no">
+    <script src="/mjSFqQ/JP/20250911-1.0/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/mjSFqQ/JP/20250911-1.0/static/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/mjSFqQ/JP/20250911-1.0/static/js/layer.min.js"></script>
+    <script src="/mjSFqQ/JP/20250911-1.0/static/js/data-code.js"></script>
+    <script src="/mjSFqQ/JP/20250911-1.0/static/js/index.js"></script>
+    <script async src="/mjSFqQ/JP/20250911-1.0/static/js/main.js"></script>
+    <link rel="stylesheet" href="/mjSFqQ/JP/20250911-1.0/static/css/layer.css">
+    <link rel="stylesheet" type="text/css" href="/mjSFqQ/JP/20250911-1.0/static/css/common.min.css">
+    <style>
+        html,
+        body {
+          height: 100%;
+          overflow-x: hidden;
+        }
+
+        .layui-layer-hui .layui-layer-content {
+          padding: 24px 32px !important
+        }
+
+        .layui-layer-dialog .layui-layer-content {
+          font-size: 36px !important;
+          line-height: 40px !important
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          font-family: "Yu Gothic";
+          -webkit-text-size-adjust: none;
+          -webkit-appearance: none;
+          -webkit-tap-highlight-color: transparent
+        }
+
+        .center {
+          text-align: center
+        }
+
+        .hidden {
+          display: none
+        }
+
+        .tan_title {
+          text-align: center;
+          color: #ef5456;
+          padding: 20px
+        }
+
+        .barbox div.barline div.charts {
+          background: #5578d0;
+          border-radius: 100px;
+          overflow: hidden;
+          height: 22px
+        }
+
+        .barbox div.barline {
+          width: 353px;
+          height: 22px;
+          background-size: 100% 100%
+        }
+
+        .tan_content {
+          border: solid #557ed6 8px
+        }
+
+        .barbox {
+          margin-top: 0
+        }
+
+        .Land_li_input input {
+          border-radius: 24px;
+          text-align: center;
+          width: 560px;
+          height: 91px;
+          font-size: 40px
+        }
+
+        .discuss {
+          display: inline-block;
+          padding: 24px;
+          font-size: 30px;
+          padding-bottom: 56px
+        }
+
+        .tan_400 {
+          width: 650px;
+          margin-left: -332px;
+          min-height: 260px
+        }
+
+        .main {
+          width: 750px;
+          margin: 0 auto;
+          position: relative;
+          /* background-color: #fdffff; */
+
+        }
+
+        .content {
+          /*position: absolute;*/
+          top: 0;
+          z-index: 2;
+          width: 100%
+        }
+
+        .head {
+          width: 750px;
+          height: 960px;
+          margin: 0 auto
+        }
+
+        .onlineBlock {
+          position: relative;
+          top: 397px;
+          left: 0;
+          color: #fff;
+          font-size: 24px;
+          z-index: 3
+        }
+
+        .onlineBlock_yellow {
+          color: #f9eb0f
+        }
+
+        .zd_btn {
+          position: relative;
+          color: #f3fc03;
+          z-index: 3;
+          margin: 0 auto
+        }
+
+        .zd_btn i {
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat center center/100% 100%;
+          vertical-align: middle
+        }
+
+        .btns {
+          width: 482px;
+          height: 102px;
+          line-height: 169px;
+          font-size: 28px;
+          cursor: pointer;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/zd_btn.png) no-repeat;
+          -webkit-animation: pulse2 0s linear infinite;
+          -moz-animation: pulse2 0s linear infinite;
+          animation: pulse2 0s linear infinite;
+          background-size: 100% 100%;
+        }
+
+        .piaces {
+          width: 690px;
+          height: 528px;
+          margin: 60px auto 0;
+          padding-top: 160px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/piaces_bg.jpg) no-repeat
+        }
+
+        .piaces_num {
+          display: block;
+          font-size: 25px;
+          color: #fff;
+          text-align: center
+        }
+
+        .rise_list {
+          width: 630px;
+          height: 417px;
+          margin: 16px auto 0;
+          list-style: none
+        }
+
+        .rise_list li {
+          float: left;
+          width: 299px;
+          height: 197px;
+          margin-bottom: 19px;
+          border: 1px solid #035fbf
+        }
+
+        .rise_list li div {
+          width: 100%;
+          padding: 22px 0;
+          line-height: 30px;
+          background: #035fbf;
+          color: #fff;
+          font-size: 28px;
+          text-align: center
+        }
+
+        .rise_list li p {
+          width: 189px;
+          height: 59px;
+          line-height: 59px;
+          background: #f9eb0f;
+          color: #081853;
+          font-size: 22px;
+          font-weight: 700;
+          margin: 19px auto 0;
+          text-align: center;
+          cursor: pointer;
+          border-radius: 23px;
+          z-index: 100;
+        }
+
+        .rise_list .li_w {
+          margin-right: 27px
+        }
+
+        .banker {
+          width: 690px;
+          height: 1173px;
+          padding-top: 125px;
+          margin: 29px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat
+        }
+
+        .banker_btn {
+          color: #12c8f0;
+          font-size: 33px;
+          margin: 300px auto 0
+        }
+
+        .stockimg_box {
+          width: 537px;
+          height: 307px;
+          margin: 0 auto
+        }
+
+        .stockimg {
+          display: block;
+          width: 537px;
+          height: 307px
+        }
+
+        .zf_team {
+          width: 689px;
+          height: 954px;
+          margin: 29px auto 0;
+          padding-top: 24px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.jpg) no-repeat
+        }
+
+        .zf_team img {
+          display: block;
+          margin: 0 auto
+        }
+
+        .team_btn {
+          color: #fffc00;
+          font-size: 29px;
+          letter-spacing: 3px;
+          margin: 0 auto
+        }
+
+        .team_num {
+          color: #000;
+          font-size: 24px
+        }
+
+        .team_red {
+          color: #d7011b
+        }
+
+        .risk_title {
+          margin: 57px auto 82px;
+          color: #fff;
+          font-size: 20px;
+          line-height: 33px
+        }
+
+        .KeepRecord img {
+          width: 20px;
+          height: 20px
+        }
+
+        .KeepRecord a {
+          color: #fff;
+          font-size: 20px
+        }
+
+        .company_info {
+          color: #fff
+        }
+
+        .stockList {
+          width: 100%;
+          height: 352px;
+          margin: 20px auto 0;
+          overflow: hidden;
+          border-top: 1px solid #2e3b6d
+        }
+
+        .stocktable {
+          width: 98%;
+          height: 100%;
+          margin: 0 auto
+        }
+
+        .stocktable td {
+          font-size: 26px;
+          color: #fff;
+          width: 126px;
+          height: 87px;
+          text-align: center;
+          border-bottom: 1px solid #2e3b6d
+        }
+
+        .stocktable_yx {
+          display: block;
+          width: 75px;
+          height: 62px;
+          line-height: 25px;
+          padding-top: 10px;
+          color: #fc1103;
+          font-size: 21px;
+          margin: 0 auto;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat
+        }
+
+        .tableCon2 {
+          width: 100%;
+          height: 508px;
+          color: #000;
+          margin: 12px auto 0;
+          font-size: 28px
+        }
+
+        .tableCon2 table {
+          width: 100%;
+          text-align: center
+        }
+
+        .tableCon_head th {
+          width: 144px;
+          background-color: #035fbf;
+          height: 70px;
+          color: #fff;
+          border-right: 1px solid #fff
+        }
+
+        .tableCon_head th:last-child {
+          border-right: none
+        }
+
+        .tableCon2 .tableList2 {
+          height: 439px
+        }
+
+        .tableCon2 .tableList2 td {
+          width: 144px;
+          height: 70px;
+          color: #fff;
+          border-bottom: 1px solid #2e3b6d
+        }
+
+        .bannerBox {
+          width: 651px;
+          height: 71px;
+          background: #fff;
+          margin: 24px auto
+        }
+
+        .bannerBox .code {
+          wibtndth: 450px;
+          height: 71px;
+          line-height: 71px;
+          background-color: #fff;
+          border: none;
+          outline: 0;
+          font-size: 28px;
+          padding-left: 27px;
+          float: left
+        }
+
+        .zg_dialog,
+        .ng_dialog,
+        .package_dialog {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          width: 610px;
+          height: 522px;
+          margin-left: -305px;
+          margin-top: -246px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat;
+          z-index: 30;
+          display: none
+        }
+
+        .circle1,
+        .circle2,
+        .circle3 {
+          width: 46px;
+          height: 46px;
+          position: absolute;
+          right: 0;
+          top: -80px;
+          cursor: pointer;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat
+        }
+
+        .zg_dialog .result {
+          color: #fff;
+          margin-top: 32px;
+          font-size: 32px
+        }
+
+        .zg_dialog .result .cName {
+          color: #f9eb0f;
+          font-size: 39px;
+          font-weight: 700;
+          margin-right: 5px
+        }
+
+        .zg_dialog .prompt {
+          width: 494px;
+          height: 80px;
+          line-height: 80px;
+          margin: 0 auto 0;
+          font-size: 26px;
+          color: #fff;
+          text-align: center
+        }
+
+        .prompt_num {
+          color: #f9eb0f
+        }
+
+        .zg_dialog .inputBlock {
+          padding-top: 8px;
+          padding-bottom: 12px
+        }
+
+        .zg_input,
+        .ng_input,
+        .package_input {
+          display: block;
+          width: 528px;
+          height: 77px;
+          line-height: 77px;
+          border: 1px solid #b5b5b5;
+          outline: 0;
+          margin: 0 auto 0;
+          font-size: 32px;
+          border-radius: 12px
+        }
+
+        .zg_btn,
+        .ng_btn,
+        .package_btn {
+          width: 528px;
+          height: 84px;
+          line-height: 77px;
+          font-weight: 700;
+          font-size: 32px;
+          color: #fff;
+          letter-spacing: 3px;
+          cursor: pointer;
+          margin: 20px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat
+        }
+
+        .promise {
+          color: #fff;
+          font-size: 21px;
+          margin-top: 30px
+        }
+
+        .dialog2_txt,
+        .dialog3_txt {
+          color: #f9eb0f;
+          font-size: 39px;
+          text-align: center;
+          margin-top: 38px;
+          font-weight: 700
+        }
+
+        .ng_dialog .prompt {
+          width: 520px;
+          height: 66px;
+          font-size: 25px;
+          color: #fff;
+          text-align: center;
+          margin: 34px auto 0
+        }
+
+        .dialog_input {
+          display: block;
+          outline: 0;
+          border: none;
+          font-size: 31px;
+          background: #fff;
+          border-radius: 26px;
+          line-height: 66px
+        }
+
+        .dialog3_num {
+          color: #fff;
+          margin-top: 5px;
+          font-size: 30px
+        }
+
+        .animated_02 {
+          animation: pulse2 0s linear infinite;
+          -webkit-animation: pulse2 0s linear infinite;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+          z-index: 100
+        }
+
+        @-webkit-keyframes pulse2 {
+          0% {
+            -webkit-transform: scale(1)
+          }
+
+          50% {
+            -webkit-transform: scale(1.1)
+          }
+
+          100% {
+            -webkit-transform: scale(1)
+          }
+        }
+
+        @keyframes pulse2 {
+          0% {
+            transform: scale(1)
+          }
+
+          50% {
+            transform: scale(1.1)
+          }
+
+          100% {
+            transform: scale(1)
+          }
+        }
+
+        .diagnosis {
+          width: 750px;
+          height: 464px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/diagnosis.png) no-repeat;
+          position: absolute;
+          top: 106px;
+          left: 0;
+          z-index: 2;
+          background-size: 80%;
+          background-position: center bottom 20px;
+        }
+
+        .gupiao {
+          height: 168px;
+          padding-top: 15px
+        }
+
+        .tablecontent {
+          margin-left: 16px
+        }
+
+        .t1,
+        .t2,
+        .t3 {
+          float: left;
+          text-align: center
+        }
+
+        .t1 {
+          width: 360px;
+          border-right: 1px solid #687997
+        }
+
+        .t2 {
+          width: 360px
+        }
+
+        .xianjia {
+          font-size: 54px
+        }
+
+        .zhangdie,
+        .zhangfu {
+          font-size: 31px;
+          margin-left: 11px;
+          margin-right: 11px
+        }
+
+        .time,
+        .date {
+          font-size: 28px;
+          text-align: center;
+          margin-top: 5px;
+          line-height: 40px;
+          color: #fffefe
+        }
+
+        .dongtai {
+          border-top: 1px solid #687997;
+          width: 90%;
+          margin-left: 5%;
+          padding-top: 12px
+        }
+
+        .gName {
+          font-size: 54px;
+          color: #fff;
+          margin-bottom: 15px;
+          font-weight: 700
+        }
+
+        .gCode {
+          font-size: 40px;
+          color: #fff;
+          margin-bottom: 10px
+        }
+
+        .zhishu {
+          font-size: 54px;
+          font-weight: 700;
+          color: red
+        }
+
+        .zhishu img {
+          width: 28px;
+          height: 45px
+        }
+
+        .diagnosis_bg {
+          width: 750px;
+          height: 875px;
+          padding-top: 33px;
+          position: relative;
+          z-index: 3
+        }
+
+        .diagnosis_name {
+          position: relative;
+          z-index: 3
+        }
+
+        .diagnosis_bg h2 {
+          color: #fff;
+          font-size: 42px;
+          text-align: center
+        }
+
+        .diagnosis_bg .h_title {
+          width: 575px;
+          height: 53px;
+          line-height: 53px;
+          font-size: 40px;
+          color: #fffc00;
+          margin: 16px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat center center;
+          text-align: center
+        }
+
+        .diagnosis_box {
+          width: 250px;
+          height: 233px;
+          margin: 139px auto 0;
+          border-radius: 50%;
+          position: relative;
+          overflow: hidden;
+          z-index: 1
+        }
+
+        .scanning {
+          width: 250px;
+          height: 94px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/scanning.png) no-repeat;
+          background-size: 100%;
+          position: absolute;
+          top: -94px;
+          left: 0;
+          -webkit-animation: downLight 4s infinite ease-in-out none;
+          animation: downLight 4s infinite ease-in-out none
+        }
+
+        @-webkit-keyframes downLight {
+          from {
+            top: -94px
+          }
+
+          to {
+            top: 130px
+          }
+        }
+
+        @keyframes downLight {
+          from {
+            top: -94px
+          }
+
+          to {
+            top: 130px
+          }
+        }
+
+        .rose_cycle_info {
+          width: 695px;
+          height: 758px;
+          padding-top: 370px;
+          margin: 17px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/cycle_info.png) no-repeat;
+          background-size: 100%;
+        }
+
+        .rose_btn {
+          width: 411px;
+          height: 87px;
+          line-height: 97px;
+          margin: 17px auto 0;
+          color: #fff;
+          font-size: 28px;
+          text-align: center;
+          cursor: pointer;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/zd_btn.png) no-repeat;
+          -webkit-animation: pulse2 0s linear infinite;
+          -moz-animation: pulse2 0s linear infinite;
+          animation: pulse2 0s linear infinite;
+          background-size: 100% 100%;
+        }
+
+        .features {
+          width: 690px;
+          height: 247px;
+          margin: 29px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.jpg) no-repeat
+        }
+
+        .trend_list {
+          width: 568px;
+          height: 204px;
+          margin: 140px auto 0;
+          list-style: none
+        }
+
+        .trend_list li {
+          width: 152px;
+          height: 204px;
+          float: left;
+          cursor: pointer
+        }
+
+        .trend_li2 {
+          margin: 0 54px
+        }
+
+        .cycle_name_p1,
+        .rose_cycle .sharesList .tdFrist {
+          width: 274px;
+          border-right: 1px solid #e7e6e6
+        }
+
+        .cycle_name_p2,
+        .rose_cycle .sharesList .tdLast {
+          width: 302px;
+          border-right: 1px solid #e7e6e6
+        }
+
+        .cycle_name_p3 {
+          width: 142px
+        }
+
+        .rose_cycle {
+          width: 750px
+        }
+
+        .rose_cycle .tableCon {
+          width: 720px;
+          height: 338px;
+          margin: 0 auto;
+          overflow: hidden;
+          background-color: #fddbaa
+        }
+
+        .rose_cycle .sharesList {
+          width: 720px;
+          -webkit-transition: all .5s;
+          transition: all .5s
+        }
+
+        .rose_cycle .sharesList td {
+          text-align: center;
+          color: #444;
+          height: 65px;
+          line-height: 65px;
+          font-size: 26px
+        }
+
+        .rose_cycle .sharesList .red {
+          color: #f33d3f
+        }
+
+        .rose_cycle .sharesList .green {
+          color: #199c07
+        }
+
+        .plContent {
+          width: 690px;
+          padding-top: 140px;
+          margin: 30px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/pl_bg.png) no-repeat
+        }
+
+        .plList_box {
+          width: 718px;
+          height: 448px;
+          list-style: none;
+          overflow: hidden
+        }
+
+        .plList {
+          list-style: none;
+          -webkit-transition: all .6s;
+          transition: all .6s
+        }
+
+        .plList li {
+          width: 653px;
+          height: 125px;
+          padding-top: 24px;
+          list-style: none;
+          margin-left: 23px;
+          border-bottom: 1px solid #394675
+        }
+
+        .plList li p {
+          line-height: 2;
+          font-size: 28px;
+          color: #fff
+        }
+
+        .plList li p span {
+          font-size: 29px;
+          color: #d98000
+        }
+
+        .plList li p .red {
+          color: #ff0d10
+        }
+
+        .plList li p .plTime {
+          color: #999;
+          font-size: 24px
+        }
+
+        .zd_btn2 {
+          color: #12c8f0;
+          margin: 25px auto
+        }
+
+        .alone_stock {
+          width: 691px;
+          height: 376px;
+          margin: 20px auto 0
+        }
+
+        .alone_box {
+          width: 691px;
+          height: 360px;
+          padding-top: 16px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.jpg) no-repeat;
+          overflow: hidden
+        }
+
+        .alone_box ul {
+          list-style: none
+        }
+
+        .alone_list {
+          width: 690px;
+          -webkit-transition: all .6s;
+          transition: all .6s
+        }
+
+        .alone_box li {
+          height: 70px;
+          line-height: 70px;
+          color: #fff;
+          font-size: 26px;
+          padding-left: 80px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/user.png) no-repeat 18px center
+        }
+
+        .alone_box li span {
+          color: #ea0101
+        }
+
+        .zd_btn3 {
+          width: 510px;
+          height: 108px;
+          line-height: 94px;
+          font-size: 32px;
+          cursor: pointer;
+          color: #fced03;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/zd_btn.png) no-repeat;
+          margin: 30px auto;
+          -webkit-animation: pulse2 0s linear infinite;
+          -moz-animation: pulse2 0s linear infinite;
+          animation: pulse2 0s linear infinite;
+          background-size: 100% 100%;
+        }
+
+        .zd_btn3 i {
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat center center/100% 100%;
+          vertical-align: middle
+        }
+
+        .input_text {
+          display: block;
+          width: 538px;
+          height: 94px;
+          line-height: 94px;
+          text-align: center;
+          background: #000;
+          outline: 0;
+          font-size: 33px;
+          margin: 46px auto 0;
+          border: 1px solid #009EFF;
+          border-radius: 10px;
+          color: #fff;
+        }
+
+        .plContent_input_text {
+          width: 538px;
+          height: 94px;
+          margin: 0 auto;
+          position: relative;
+        }
+
+        .alone_prompt {
+          color: #fff;
+          font-size: 24px;
+          text-align: center;
+          margin-bottom: 30px
+        }
+
+        .guidance {
+          width: 689px;
+          height: 161px;
+          padding-top: 325px;
+          margin: 29px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.jpg) no-repeat
+        }
+
+        .diagnosis_red {
+          color: #ff3131
+        }
+
+        .diagnosis_green {
+          color: #12fd06
+        }
+
+        .zd_input {
+          position: relative;
+          display: block;
+          width: 482px;
+          height: 96px;
+          line-height: 96px;
+          font-size: 32px;
+          text-align: center;
+          margin: 423px auto 0;
+          background-color: transparent;
+          z-index: 3;
+          border: 1px solid #0FA2DB;
+          color: #fff;
+          border-radius: 10px;
+        }
+
+        .zd_input::placeholder,
+        .rose_input::placeholder,
+        .input_text::placeholder {
+          color: #0FA2DB;
+        }
+
+        .head_ipt_box {
+          width: 482px;
+          height: 96px;
+          margin: 0 auto
+        }
+
+        .rose_input {
+          display: block;
+          width: 398px;
+          height: 80px;
+          line-height: 80px;
+          font-size: 32px;
+          text-align: center;
+          margin: 0 auto;
+          background-color: #000;
+          border: 1px solid #0FA2DB;
+          border-radius: 10px;
+          color: #fff;
+        }
+
+        .rose_cycle_input {
+          width: 398px;
+          height: 80px;
+          margin: 0 auto
+        }
+
+        .dialog1_info {
+          width: 557px;
+          height: 42px;
+          overflow: hidden;
+          margin: 40px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat
+        }
+
+        .personnel_info {
+          width: 557px;
+          list-style: none;
+          text-align: center;
+          -webkit-transition: all 1s ease-in-out;
+          transition: all 1s ease-in-out
+        }
+
+        .personnel_info li {
+          width: 557px;
+          height: 42px;
+          line-height: 42px;
+          font-size: 20px;
+          color: #666
+        }
+
+        .personnel_info li .gules {
+          color: #cb0707
+        }
+
+        .ng_dialog {
+          height: 470px;
+          background-size: 100% 100%
+        }
+
+        .package_dialog {
+          height: 500px;
+          background-size: 100% 100%
+        }
+
+        .loadBox2 {
+          position: fixed;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 999;
+          background: rgba(0, 0, 0, .8);
+          display: none
+        }
+
+        .loadBox2 .load_title2 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 684px;
+          height: 540px;
+          color: #6c5051;
+          margin: -260px auto auto -342px;
+          border-radius: 20px;
+          overflow: hidden;
+          z-index: 1;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/loadbox21.png) no-repeat
+        }
+
+        .loadBox2 .loadCode,
+        .loadBox2 .loadName {
+          color: #ec3c3e
+        }
+
+        .loadBox2_name {
+          height: 62px;
+          line-height: 62px;
+          text-align: center;
+          font-size: 60px;
+          padding: 30px 0 10px;
+          background: linear-gradient(#d3702f, #884716);
+          -webkit-background-clip: text;
+          color: transparent
+        }
+
+        .loadBox2_txt {
+          margin-top: 62px;
+          height: 36px;
+          line-height: 36px;
+          font-size: 36px;
+          text-align: center;
+          color: #773c13
+        }
+
+        .loadBox2_time {
+          width: 465px;
+          height: 112px;
+          padding: 15px 0 0 127px;
+          margin: 62px auto 0;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/loadboxbtn.png) no-repeat
+        }
+
+        .loadBox2_time_txt {
+          width: 425px;
+          height: 73px;
+          float: left
+        }
+
+        .loadBox2_time_txt p:nth-child(1) {
+          height: 36px;
+          line-height: 36px;
+          font-size: 32px;
+          color: red
+        }
+
+        .loadBox2_time_txt p:nth-child(2) {
+          height: 30px;
+          line-height: 30px;
+          color: #8a4817;
+          font-size: 30px;
+          margin-top: 9px
+        }
+
+        .loadBox2_time_meter {
+          position: relative;
+          width: 63px;
+          height: 67px;
+          float: left;
+          margin-left: 21px
+        }
+
+        .loadBox2_time_meter i {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 63px;
+          height: 67px;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/line.png) no-repeat center center/100% 100%;
+          animation: xz 3s linear infinite;
+          -webkit-animation: xz 3s linear infinite
+        }
+
+        @keyframes xz {
+          from {
+            transform: rotate(0deg)
+          }
+
+          to {
+            transform: rotate(360deg)
+          }
+        }
+
+        @-webkit-keyframes xz {
+          from {
+            -webkit-transform: rotate(0deg)
+          }
+
+          to {
+            -webkit-transform: rotate(360deg)
+          }
+        }
+
+        .loadBox2_time_meter p {
+          width: 63px;
+          height: 67px;
+          line-height: 67px;
+          text-align: center;
+          font-size: 32px;
+          color: #a3531c
+        }
+
+        .load_discuss2_border {
+          width: 550px;
+          margin: 20px auto auto 46px;
+          font-size: 24px;
+          color: #4d515d
+        }
+
+        .loading {
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+          font-size: 24px;
+          color: #4d515d;
+          display: flex;
+          align-items: center;
+          justify-content: center
+        }
+
+        .load_discuss2 {
+          position: relative;
+          width: 550px;
+          height: 28px;
+          overflow: hidden
+        }
+
+        .loadBox2 .load_discuss2 p {
+          height: 28px;
+          line-height: 28px;
+          letter-spacing: 1px
+        }
+
+        .load_bod2 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 684px;
+          height: 540px;
+          overflow: hidden
+        }
+
+        .load_title2 .ico1 {
+          position: absolute;
+          top: 0;
+          left: -300px;
+          width: 300px;
+          height: 7px;
+          background: -webkit-linear-gradient(#ffc158, #fe790d);
+          background: linear-gradient(to right, #ffc158, #fe790d);
+          border-radius: 50%
+        }
+
+        .no_number {
+          font-size: 30px;
+          font-weight: 700
+        }
+
+        .promise .cName {
+          font-size: 30px;
+          margin: 0
+        }
+
+        .banner {
+          position: fixed;
+          left: 50%;
+          bottom: 0;
+          width: 750px;
+          height: 193px;
+          margin-left: -375px;
+          background: -webkit-linear-gradient(to bottom, #f9a121, #ff4102);
+          background: linear-gradient(to bottom, #f9a121, #ff4102);
+          z-index: 8;
+          display: none
+        }
+
+        .banner h2 {
+          height: 79px;
+          line-height: 79px;
+          font-size: 34px;
+          color: #7c3922;
+          text-align: center;
+          margin: 0 auto
+        }
+
+        .banner_info {
+          width: 666px;
+          height: 95px;
+          margin: 0 auto;
+          background: url(/mjSFqQ/JP/20250911-1.0/static/image/banner_info.png) no-repeat center center/100% 100%
+        }
+
+        .banner_ipt {
+          display: block;
+          width: 414px;
+          height: 95px;
+          line-height: 95px;
+          padding-left: 70px;
+          font-size: 30px;
+          color: #333;
+          text-align: left;
+          background: 0 0;
+          border: none;
+          outline: 0;
+          float: left
+        }
+
+        .banner_ipt::-webkit-input-placeholder {
+          color: #777576
+        }
+
+        .banner_btn {
+          display: block;
+          width: 250px;
+          height: 95px;
+          line-height: 95px;
+          text-align: center;
+          font-size: 36px;
+          color: #7c3922;
+          font-weight: 700;
+          background: 0 0;
+          border: none;
+          outline: 0;
+          float: left
+        }
+
+        .error {
+          padding: 20px 30px;
+          width: 620px;
+          color: #fff;
+          /*background: rgba(0, 0, 0, 0.5);*/
+          background: #000;
+          position: fixed;
+          bottom: 50%;
+          left: 50%;
+          margin: 0 auto;
+          z-index: 100000;
+          font-size: 25px;
+          transform: translateX(-50%);
+          display: none;
+          text-align: center;
+        }
+
+        #instr span,
+        #instr1 span,
+        #instr2 span,
+        #instr3 span {
+          font-size: 30px;
+        }
+
+        tr td {
+          font-size: 27px
+        }
+
+        .van-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1003;
+          width: 100%;
+          height: 100%;
+          display: none;
+          background: rgba(0, 0, 0, 0.7);
+        }
+
+
+        .css_pd_l_top {
+          padding-top: 60px;
+        }
+
+        .css_pd_ll_bottom {
+          padding-bottom: 80px;
+        }
+
+        #s02 {
+          margin: 0 auto;
+          position: relative;
+          box-sizing: border-box;
+
+          .wrapper {
+            width: 100%;
+            min-width: 320px;
+            max-width: 1100px;
+            margin-right: auto;
+            margin-left: auto;
+          }
+
+          .block01 {
+            font-size: 24px;
+            text-align: center;
+            color: #fff;
+          }
+
+          .block02 {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            .image02 {
+              display: flex;
+              justify-content: center;
+            }
+          }
+
+          .block03 {
+            color: #666666;
+          }
+
+          strong {
+            color: #f2292c;
+          }
+
+          .text01,
+          .text03 {
+            font-size: 48px;
+            font-weight: 700;
+          }
+
+          .text02 {
+            padding: 0 180px;
+          }
+
+          .css_pd_bottom {
+            padding-bottom: 30px;
+          }
+
+          .css_pd_l_bottom {
+            padding-bottom: 60px;
+          }
+
+          #s02 .wrapper_space {
+            max-width: 910px;
+          }
+
+          .wrapper_space {
+            width: 96%;
+            min-width: 280px;
+            max-width: 830px;
+            margin-right: auto;
+            margin-left: auto;
+            /* padding-right: 2%;
+            padding-left: 2%; */
+          }
+
+          .css_left {
+            text-align: left;
+          }
+
+          img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: top;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+
+        #s02 .block03 {
+          font-size: 12px;
+          color: #fff;
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 960px) {
+          #s02 .block03 {
+            font-size: 12px;
+            color: #fff;
+          }
+
+          .css_pd_top {
+            padding-top: 30px;
+          }
+
+          .wrapper_space {
+            width: auto;
+            padding-right: 0;
+            padding-left: 0;
+          }
+        }
+
+        @media (max-width: 768px) {
+
+          .text01,
+          .text03 {
+            font-size: 38px !important;
+          }
+
+          .text02 {
+            padding: 0 120px !important;
+          }
+        }
+
+        .scroll_top #scroll-button {
+          background: #0FA2DB;
+          width: 40px;
+          height: 40px;
+          line-height: 50px;
+          padding: 30px;
+          text-align: center;
+          border-radius: 50%;
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          z-index: 999;
+          display: inline-block;
+          color: #fff;
+          font-size: 30px;
+          text-decoration: none;
+          display: none;
+        }
+        .fa {
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+    <script>
+        var stInfo = '';
+        function showline() {
+           
+        }
+        $(function () {
+            $(".banner_btn,.rose_btn,.zd_btn3,.zd_btn").click(function () {
+                var nt = $(".input_text, .rose_input, .zd_input, .banner_ipt").val().trim();
+                if (!nt) {
+                    alert('銘柄コードまたは名前を正しく入力してください');
+                    return false;
+                }
+                var st = new Array();
+                $.each(s, function (i, v) { st.push(v.n) });
+                $.inArray(nt, st) !== -1 ? ($(".codes").text(nt), aloneLoad()) : errowFrame();
+            }),
+            $(".input_text, .rose_input, .zd_input, .banner_ipt").on("input", function () {
+                var n = $(this).val();
+                $(".input_text, .rose_input, .zd_input, .banner_ipt").val(n)
+            }),
+            $(".trend_list, .animated_02, .animated_03").click(function () {
+                showline();
+            });
+        });
+    </script>
+</head>
+
+<body style="background: radial-gradient(102.31% 102.31% at 50% 31.6%, #003C5E 5%, #020816 49.18%);">
+  <div class="error" style="display: none;">
+    銘柄コードまたは名前を正しく入力してください!
+  </div>
+
+  <div class="loadBox2" id="loadBox2">
+    <div class="close-btn" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">×</div>
+    <div class="load_title2">
+      <div class="loaded">
+        <div class="load_bod2">
+          <span class="ico1"></span>
+        </div>
+        <p class="loadBox2_txt">
+          <span class="btnBg_time"></span>
+          <span class="dialog_textType">AI分析が完了<br>報告はLINEで送信されます</span>
+        </p>
+        <div class="loadBox2_time animated_02">
+          <div class="loadBox2_time_txt">
+            <p>LINEともだち追加して<br><span id="report-text"></span></p>
+
+            <script>
+              function getCurrentDate() {
+                const today = new Date();
+                const month = today.getMonth() + 1; // Months are zero-based
+                const day = today.getDate();
+                return `${month}月${day}日`;
+              }
+
+              // Update the text with the date and apply styling
+              document.getElementById('report-text').innerHTML = `<strong style="color: #0b5a7f;">${getCurrentDate()}の分析レポートを無料で入手</strong>`;
+            </script>
+
+          </div>
+        </div>
+      </div>
+      <div class="loading">
+        <div class="load_discuss2">
+          <p class="loadBox2_txt">
+            <span class="dialog_textType">AI分析中...</span>
+          </p>
+          <p>取引所のデータベースと接続中...</p>
+          <p>機関投資家のリサーチレポートをスキャン中...</p>
+          <p>最近の資金流向の分析中...</p>
+          <p>K線のインテリジェントな比較予測中...</p>
+          <p>会社と業種の最新の重要なニュースを検索中...</p>
+        </div>
+      </div>
+      <div class="load_discuss2_border loaded">
+        <p>「<span class="codes"></span>」</p>
+        <p>最新の内部情報が入手されました</p>
+        <p id="message" style="color:red"></p>
+
+        <script>
+          function getTomorrowDate() {
+            const today = new Date();
+            today.setDate(today.getDate() + 1); // Add one day
+            const month = today.getMonth() + 1; // Months are zero-based
+            const day = today.getDate();
+            return `${month}月${day}日`;
+          }
+
+          // Update the text with tomorrow's date and make it bold
+          document.getElementById('message').innerHTML = `LINEで友だち追加し、メッセージを送信すると、<strong>${getTomorrowDate()}の予測</strong>レポートが取得できます。`;
+        </script>
+
+        <p style="font-size: 18px;">(「レポート請求」とメッセージを送信してください)</p>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="content">
+      <div class="head">
+        <div class="diagnosis_bg">
+          <div class="diagnosis_name">
+            <h2 style="color: #fff;">あなたの株は<span class="diagnosis_red">買う</span>べきか<span class="diagnosis_green">売る</span>べき?</h2>
+            <p class="h_title" style="color: red; font-weight: bold; font-size: 1.4em;">先端のAI分析予測を今すぐ実行</p>
+
+          </div>
+          <div class="diagnosis">
+            <div class="diagnosis_box">
+              <p class="scanning"></p>
+            </div>
+          </div>
+          <div class="onlineBlock center" style="color: #fff;">
+            AI予測報告を受け取り成功した個人投資家は、計
+            <span class="onlineBlock_yellow" id="number" style="color: #26d367; font-weight: bold;">2616</span>
+            人<br>
+            <p>
+              <span style="color: red;">データベースは</span>
+              <strong id="update-date" style="color: #26d367;"></strong>
+              <span style="color: red;">に更新</span><br>
+              <span style="font-size: 0.7em;">もう一つの視点を加えるだけで、<span style="font-weight: bold; color: red;">勝率が上がります</span>。AI分析レポートを参考にしてみませんか？<br><span style="font-weight: bold; color: red;">
+                  アシスタントのLINE追加で
+                  <span style="color: #26d367;">「レポート」</span>
+                  を送信すると、今明日の株分析と予測を無料で取得
+                </span>
+              </span>
+
+            </p>
+
+            <script>
+              function getYesterdayDate() {
+                const today = new Date();
+                today.setDate(today.getDate() - 1); // Subtract one day
+                const year = today.getFullYear();
+                const month = today.getMonth() + 1; // Months are zero-based
+                const day = today.getDate();
+                return `${year}年${month}月${day}日15時`;
+              }
+
+              // Update the text with yesterday's date
+              document.getElementById('update-date').textContent = getYesterdayDate();
+            </script>
+          </div>
+          <script>
+            let numberElement = document.getElementById('number');
+            let currentNumber = parseInt(numberElement.textContent);
+
+            setInterval(function () {
+              currentNumber += 18;
+              numberElement.textContent = currentNumber;
+            }, 2000);
+          </script>
+          <div class="head_ipt_box">
+
+            <input class="zd_input head_alone_ipt" maxlength="18" id="gupiao1" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao1','codelist1','instr1')">
+            <div style="display: none; width: 482px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr1">
+              <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                <thead>
+                  <tr style="text-align:center;">
+                    <td>コード</td>
+                    <td>銘柄名</td>
+                  </tr>
+                </thead>
+                <tbody id="codelist1">
+                  <tr style="cursor:pointer;text-align:center;">
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+          <p class="zd_btn btnBg btns center pulse animated infinite" style="color: #26d367; text-align: center; font-weight: bold;margin-top: 15px;">
+          </p>
+          <!-- <i></i> AI診断予測レポート無料受取 -->
+        </div>
+      </div>
+      <div class="body">
+        <div class="rose_cycle">
+          <div class="rose_cycle_info">
+            <div class="rose_cycle_input">
+
+              <input class="rose_input rose_alone_ipt" maxlength="18" id="gupiao2" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao2','codelist2','instr2')">
+              <div style="display: none; width: 398px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr2">
+                <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                  <thead>
+                    <tr style="text-align:center;">
+                      <td>コード</td>
+                      <td>銘柄名</td>
+                    </tr>
+                  </thead>
+                  <tbody id="codelist2">
+                    <tr style="cursor:pointer;text-align:center;">
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- AI予測報告を無料で受け取る -->
+            <p class="rose_btn pulse animated infinite"></p>
+            <ul class="trend_list">
+              <li></li>
+              <li class="trend_li2"></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div class="plContent">
+          <div class="plList_box">
+            <ul class="plList" style="margin-top: -1350px; transition: all 0.6s ease 0s;">
+              <li>
+                <p><span>****315:</span>新銘柄の将来性も的中しやすい。分析能力に頼れるわ…</p>
+              </li>
+              <li>
+                <p><span>****101:</span>最初は疑っていましたが、1年で3割以上の利益を得ました...</p>
+              </li>
+              <li>
+                <p><span>****432:</span>このAIの予測はまちがうことない!信頼できる</p>
+              </li>
+              <li>
+                <p><span>****722:</span>3069の株をチェックしてみたけど、かなり当たってる感じ…</p>
+              </li>
+              <li>
+                <p><span>****912:</span>期待を裏切らない、おすすめしてくれた銘柄はやっぱり上昇…</p>
+              </li>
+              <li>
+                <p><span>****673:</span>プロの機関は本当に個人投資家たちよりも上手です…</p>
+              </li>
+              <li>
+                <p><span>****262:</span>株初心者の私にとってはとても役に立つ…</p>
+              </li>
+              <li>
+                <p><span>****811:</span>的中率が高い、少し儲けた…</p>
+              </li>
+              <li>
+                <p><span>****254:</span>おすすめの爆騰株、明日は大幅上昇してほしい</p>
+              </li>
+              <li>
+                <p><span>****262:</span>割り当てられた投資顧問は非常にプロフェッショナルで</p>
+              </li>
+              <li>
+                <p><span>****131:</span>本当に株市場初心者にとって恵まれたものだ</p>
+              </li>
+              <li>
+                <p><span>****815:</span>すごい正解率だな、このAIは本当に分かってくれる…</p>
+              </li>
+              <li>
+                <p><span>****829:</span>1年間で利益5割上昇、特に新銘柄の予測が的中した…</p>
+              </li>
+              <li>
+                <p><span>****315:</span>新銘柄の将来性も的中しやすい。分析能力に頼れるわ…</p>
+              </li>
+              <li>
+                <p><span>****101:</span>最初は疑っていましたが、1年で3割以上の利益を得ました...</p>
+              </li>
+              <li>
+                <p><span>****432:</span>このAIの予測はまちがうことない!信頼できる</p>
+              </li>
+              <li>
+                <p><span>****722:</span>3069の株をチェックしてみたけど、かなり当たってる感じ…</p>
+              </li>
+              <li>
+                <p><span>****912:</span>期待を裏切らない、おすすめしてくれた銘柄はやっぱり上昇…</p>
+              </li>
+              <li>
+                <p><span>****673:</span>プロの機関は本当に個人投資家たちよりも上手です…</p>
+              </li>
+              <li>
+                <p><span>****262:</span>株初心者の私にとってはとても役に立つ…</p>
+              </li>
+              <li>
+                <p><span>****811:</span>的中率が高い、少し儲けた…</p>
+              </li>
+              <li>
+                <p><span>****254:</span>おすすめの爆騰株、明日は大幅上昇してほしい</p>
+              </li>
+              <li>
+                <p><span>****262:</span>割り当てられた投資顧問は非常にプロフェッショナルで</p>
+              </li>
+              <li>
+                <p><span>****131:</span>本当に株市場初心者にとって恵まれたものだ</p>
+              </li>
+              <li>
+                <p><span>****815:</span>すごい正解率だな、このAIは本当に分かってくれる…</p>
+              </li>
+              <li>
+                <p><span>****829:</span>1年間で利益5割上昇、特に新銘柄の予測が的中した…</p>
+              </li>
+              <li>
+                <p><span>****315:</span>新銘柄の将来性も的中しやすい。分析能力に頼れるわ…</p>
+              </li>
+              <li>
+                <p><span>****101:</span>最初は疑っていましたが、1年で3割以上の利益を得ました...</p>
+              </li>
+              <li>
+                <p><span>****432:</span>このAIの予測はまちがうことない!信頼できる</p>
+              </li>
+              <li>
+                <p><span>****722:</span>3069の株をチェックしてみたけど、かなり当たってる感じ…</p>
+              </li>
+              <li>
+                <p><span>****912:</span>期待を裏切らない、おすすめしてくれた銘柄はやっぱり上昇…</p>
+              </li>
+              <li>
+                <p><span>****673:</span>プロの機関は本当に個人投資家たちよりも上手です…</p>
+              </li>
+              <li>
+                <p><span>****262:</span>株初心者の私にとってはとても役に立つ…</p>
+              </li>
+              <li>
+                <p><span>****811:</span>的中率が高い、少し儲けた…</p>
+              </li>
+              <li>
+                <p><span>****254:</span>おすすめの爆騰株、明日は大幅上昇してほしい</p>
+              </li>
+              <li>
+                <p><span>****262:</span>割り当てられた投資顧問は非常にプロフェッショナルで</p>
+              </li>
+              <li>
+                <p><span>****131:</span>本当に株市場初心者にとって恵まれたものだ</p>
+              </li>
+              <li>
+                <p><span>****815:</span>すごい正解率だな、このAIは本当に分かってくれる…</p>
+              </li>
+              <li>
+                <p><span>****829:</span>1年間で利益5割上昇、特に新銘柄の予測が的中した…</p>
+              </li>
+              <li>
+                <p><span>****315:</span>新銘柄の将来性も的中しやすい。分析能力に頼れるわ…</p>
+              </li>
+              <li>
+                <p><span>****101:</span>最初は疑っていましたが、1年で3割以上の利益を得ました...</p>
+              </li>
+              <li>
+                <p><span>****432:</span>このAIの予測はまちがうことない!信頼できる</p>
+              </li>
+              <li>
+                <p><span>****722:</span>3069の株をチェックしてみたけど、かなり当たってる感じ…</p>
+              </li>
+              <li>
+                <p><span>****912:</span>期待を裏切らない、おすすめしてくれた銘柄はやっぱり上昇…</p>
+              </li>
+              <li>
+                <p><span>****673:</span>プロの機関は本当に個人投資家たちよりも上手です…</p>
+              </li>
+              <li>
+                <p><span>****262:</span>株初心者の私にとってはとても役に立つ…</p>
+              </li>
+              <li>
+                <p><span>****811:</span>的中率が高い、少し儲けた…</p>
+              </li>
+              <li>
+                <p><span>****254:</span>おすすめの爆騰株、明日は大幅上昇してほしい</p>
+              </li>
+              <li>
+                <p><span>****262:</span>割り当てられた投資顧問は非常にプロフェッショナルで</p>
+              </li>
+              <li>
+                <p><span>****131:</span>本当に株市場初心者にとって恵まれたものだ</p>
+              </li>
+              <li>
+                <p><span>****815:</span>すごい正解率だな、このAIは本当に分かってくれる…</p>
+              </li>
+              <li>
+                <p><span>****829:</span>1年間で利益5割上昇、特に新銘柄の予測が的中した…</p>
+              </li>
+            </ul>
+          </div>
+          <div class="plContent_input_text">
+
+            <input class="input_text plc_input_text" maxlength="18" id="gupiao5" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao5','codelist5','instr5')">
+            <div style="display: none; width: 538px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr5">
+              <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                <thead>
+                  <tr style="text-align:center;">
+                    <td>コード</td>
+                    <td>銘柄名</td>
+                  </tr>
+                </thead>
+                <tbody id="codelist5">
+                  <tr style="cursor:pointer;text-align:center;">
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- <i></i> AI予測報告を無料で受け取る -->
+          <p class="zd_btn3 bold center pulse animated infinite"></p>
+        </div>
+        <div class="alone_stock">
+          <div class="alone_box">
+            <ul class="alone_list" style="margin-top: -355px; transition: all 0.6s ease 0s;">
+              <li>***6295が<span>ソニーＧ(6758)</span>分析予測を行いました</li>
+              <li>***0051が<span>ソフトＢＧ(9984)</span>分析予測を行いました</li>
+              <li>***0509が<span>トヨタ(7203)</span>分析予測を行いました</li>
+              <li>***3859が<span>テスラ(TSLA)</span>分析予測を行いました</li>
+              <li>***0438が<span>三菱ＵＦＪ(8306)</span>分析予測を行いました</li>
+              <li>***2150が<span>アップル(AAPL)</span>分析予測を行いました</li>
+              <li>***3110が<span>楽天Ｇ(4755)</span>分析予測を行いました</li>
+              <li>***3597が<span>グリー(3632)</span>分析予測を行いました</li>
+              <li>***0050が<span>ＮＴＴ(9432)</span>分析予測を行いました</li>
+              <li>***6295が<span>ソニーＧ(6758)</span>分析予測を行いました</li>
+              <li>***0051が<span>ソフトＢＧ(9984)</span>分析予測を行いました</li>
+              <li>***0509が<span>トヨタ(7203)</span>分析予測を行いました</li>
+              <li>***3859が<span>テスラ(TSLA)</span>分析予測を行いました</li>
+              <li>***0438が<span>三菱ＵＦＪ(8306)</span>分析予測を行いました</li>
+              <li>***2150が<span>アップル(AAPL)</span>分析予測を行いました</li>
+              <li>***3110が<span>楽天Ｇ(4755)</span>分析予測を行いました</li>
+              <li>***3597が<span>グリー(3632)</span>分析予測を行いました</li>
+              <li>***0050が<span>ＮＴＴ(9432)</span>分析予測を行いました</li>
+              <li>***6295が<span>ソニーＧ(6758)</span>分析予測を行いました</li>
+              <li>***0051が<span>ソフトＢＧ(9984)</span>分析予測を行いました</li>
+              <li>***0509が<span>トヨタ(7203)</span>分析予測を行いました</li>
+              <li>***3859が<span>テスラ(TSLA)</span>分析予測を行いました</li>
+              <li>***0438が<span>三菱ＵＦＪ(8306)</span>分析予測を行いました</li>
+              <li>***2150が<span>アップル(AAPL)</span>分析予測を行いました</li>
+              <li>***3110が<span>楽天Ｇ(4755)</span>分析予測を行いました</li>
+              <li>***3597が<span>グリー(3632)</span>分析予測を行いました</li>
+              <li>***0050が<span>ＮＴＴ(9432)</span>分析予測を行いました</li>
+              <li>***6295が<span>ソニーＧ(6758)</span>分析予測を行いました</li>
+              <li>***0051が<span>ソフトＢＧ(9984)</span>分析予測を行いました</li>
+              <li>***0509が<span>トヨタ(7203)</span>分析予測を行いました</li>
+              <li>***3859が<span>テスラ(TSLA)</span>分析予測を行いました</li>
+              <li>***0438が<span>三菱ＵＦＪ(8306)</span>分析予測を行いました</li>
+              <li>***2150が<span>アップル(AAPL)</span>分析予測を行いました</li>
+              <li>***3110が<span>楽天Ｇ(4755)</span>分析予測を行いました</li>
+              <li>***3597が<span>グリー(3632)</span>分析予測を行いました</li>
+              <li>***0050が<span>ＮＴＴ(9432)</span>分析予測を行いました</li>
+            </ul>
+          </div>
+        </div>
+        <div class="piaces">
+          <span class="piaces_num">先着<span id="remaining">197</span>名限定</span>
+          <script>
+            // Set initial number of places
+            let places = 661;
+
+            // Function to decrease the number of places randomly by 1 to 3
+            function decreasePlaces() {
+              const decrement = Math.floor(Math.random() * 3) + 1; // Random number between 1 and 3
+              places = Math.max(0, places - decrement); // Ensure places do not go below 0
+              document.getElementById('remaining').textContent = places;
+            }
+
+            // Call decreasePlaces every 2 seconds
+            setInterval(decreasePlaces, 2000);
+          </script>
+          <ul class="rise_list">
+            <li class="li_w">
+              <div id="stock-recommendation"></div>
+              <script>
+                // Function to get today's date in the format "M月D日"
+                function getTodayDate() {
+                  const today = new Date();
+                  const month = today.getMonth() + 1; // Months are zero-based
+                  const day = today.getDate();
+                  return `${month}月${day}日`;
+                }
+
+                // Update the text with today's date
+                document.getElementById('stock-recommendation').innerHTML = `${getTodayDate()}推奨の<br>3つの急騰株`;
+              </script>
+              <p class="animated_03" onclick="Ctogo()">無料で受け取る</p>
+            </li>
+            <li>
+              <div>アドバイザーから<br>3回銘柄診断無料</div>
+              <p class="animated_03" onclick="Ctogo()">無料で受け取る</p>
+            </li>
+            <li class="li_w">
+              <div>専属アドバイザー<br>オンラインでの回答</div>
+              <p class="animated_03" onclick="Ctogo()">無料で受け取る</p>
+            </li>
+            <li>
+              <div>毎週1回<br>投資セミナー無料</div>
+              <p class="animated_03" onclick="Ctogo()">無料で受け取る</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <article>
+      <section id="key">
+        <div class="key-box">
+          <div class="key-text">
+            <h2 class="key-tit">
+              <span class="red">先進的な</span>
+              <!-- <span class="key-tit-s">が</span> -->
+              <br>
+              AI株式診断と株価予測<span class="red">システム</span>
+            </h2>
+            <p class="key-lead">
+              最前線のAI技術を融合し、ミリ秒単位で精緻な株式トレンド解析を実現します。高度なアルゴリズムが市場の微細な変動を捉え、予測精度を高めます。操作は簡単で、株式コードを入力するだけで、洞察に満ちた分析レポートを瞬時に生成。未来を先取りする投資戦略を、AIの力で支援します。取引による損失を防ぐため、株式市場の動向を事前に把握します。
+            </p>
+            <ul class="solution-problem-tag">
+              <li>スマート</li>
+              <li>便利</li>
+              <li>無料</li>
+            </ul>
+            <div class="key-btn mobileOnly">
+              <div class="plContent_input_text">
+                <input class="input_text plc_input_text" maxlength="18" id="gupiao4" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao4','codelist4','instr4')">
+                <div style="display: none; width: 538px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr4">
+                  <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                    <thead>
+                      <tr style="text-align:center;">
+                        <td>コード</td>
+                        <td>銘柄名</td>
+                      </tr>
+                    </thead>
+                    <tbody id="codelist4">
+                      <tr style="cursor:pointer;text-align:center;">
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- <i></i> AI予測報告を無料で受け取る -->
+              <p class="zd_btn3 bold center pulse animated infinite"></p>
+            </div>
+          </div>
+          <div class="key-image">
+            <img src="/mjSFqQ/JP/20250911-1.0/static/picture/computer1.png" width="768" height="574" class="tabletUpOnly">
+            <img src="/mjSFqQ/JP/20250911-1.0/static/picture/computer1.png" width="335" height="247" class="mobileOnly">
+          </div>
+        </div>
+      </section>
+
+      <div id="solution" class="anchor-position"></div>
+      <section id="solution-area">
+        <div class="solution-box">
+          <h2 class="section-tit solution-tit">
+            <span class="en">操作手順</span>
+            <span class="jp">簡単な手順を踏むだけで、すぐに診断レポートを取得できます<span class="red">とても便利です！</span></span>
+          </h2>
+          <div class="solution-item solution1">
+            <div class="solution-tit-box">
+              <div class="solution-number">Step1</div>
+              <div class="solution-problem">
+                <h3 class="solution-problem-tit">株式コードまたは株式名を入力</h3>
+              </div>
+            </div>
+            <div class="solution-image">
+              <div class="solution-image-item">
+                <span><img src="/mjSFqQ/JP/20250911-1.0/static/picture/inword.gif" width="426" height="238" alt="株式コードまたは株式名を入力すると自動で認識・一致" title="株式コードまたは株式名を入力すると自動で認識・一致"></span>
+                <div class="solution-image-caption">株式コードまたは株式名を入力すると自動で認識・一致</div>
+              </div>
+              <div class="solution-image-item">
+                <span><img src="/mjSFqQ/JP/20250911-1.0/static/picture/img_solution01_2.jpg" width="426" height="238" alt="強力で完全なデータベースのサポート、強力なAI計算能力" title="強力で完全なデータベースのサポート、強力なAI計算能力"></span>
+                <div class="solution-image-caption">強力で完全なデータベースのサポート、強力なAI計算能力</div>
+              </div>
+            </div>
+          </div>
+          <div class="solution-item solution2">
+            <div class="solution-tit-box">
+              <div class="solution-number">Step2</div>
+              <div class="solution-problem">
+                <h3 class="solution-problem-tit">クリック：AI予測レポートを無料で受け取る
+              </h3></div>
+            </div>
+            <div class="solution-image">
+              <div class="solution-image-item">
+                <span><img src="/mjSFqQ/JP/20250911-1.0/static/picture/click.png" width="426" height="238" alt="AI予測レポートを無料で受け取る" title="AI予測レポートを無料で受け取る"></span>
+              </div>
+            </div>
+          </div>
+          <div class="solution-item solution3">
+            <div class="solution-tit-box">
+              <div class="solution-number">Step3</div>
+              <div class="solution-problem">
+                <h3 class="solution-problem-tit">AIの自動分析を待つ<br>
+                  分析完了後にレポートを受け取る
+                </h3>
+              </div>
+            </div>
+            <div class="solution-image">
+              <div class="solution-image-item">
+                <span><img src="/mjSFqQ/JP/20250911-1.0/static/picture/aianalysis.gif" width="426" height="238" alt="AIシステムは、提供された株式コードまたは株式名に基づいて自動的に分析し、診断レポートを生成します。" title="AIシステムは、提供された株式コードまたは株式名に基づいて自動的に分析し、診断レポートを生成します。"></span>
+                <div class="solution-image-caption">
+                  AIシステムは、提供された株式コードまたは株式名に基づいて自動的に分析し、診断レポートを生成します。
+                </div>
+              </div>
+              <div class="solution-image-item">
+                <span><img src="/mjSFqQ/JP/20250911-1.0/static/picture/line.png" width="426" height="238" alt="サブスクリプションなのでいつでも使える" title="サブスクリプションなのでいつでも使える"></span>
+                <div class="solution-image-caption">LINEで助理に「レポート」を送信し<br>
+                  無料で詳細な分析報告を入手</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="plContent_input_text">
+            <input class="input_text plc_input_text" maxlength="18" id="gupiao6" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao6','codelist6','instr6')">
+            <div style="display: none; width: 538px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr6">
+              <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                <thead>
+                  <tr style="text-align:center;">
+                    <td>コード</td>
+                    <td>銘柄名</td>
+                  </tr>
+                </thead>
+                <tbody id="codelist6">
+                  <tr style="cursor:pointer;text-align:center;">
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- <i></i> AI予測報告を無料で受け取る -->
+          <p class="zd_btn3 bold center pulse animated infinite"></p>
+        </div>
+      </section>
+
+      <div id="function" class="anchor-position"></div>
+
+      <section id="function-area">
+        <div class="function-box">
+          <h2 class="section-tit function-tit">
+            <span class="en">FUNCTION</span>
+            <span class="jp">市場規模・業界動向調査に<span class="red">使える機能</span></span>
+          </h2>
+          <ul class="tab-list">
+            <li class="active" data-tab="1">業界レポート</li>
+            <li data-tab="2" class="">エキスパート機能</li>
+          </ul>
+          <div class="tab-contents-wrap">
+            <div class="tab-contents-slider" style="transform: translateX(0px); transition-duration: 0.8s;">
+              <div class="tab-contents function-item">
+                <div class="function-item-label mobileOnly">業界レポート</div>
+                <div class="function-item-text">
+                  <h3 class="function-item-tit">常に前線に立ち続けることができます。</h3>
+                  <p class="function-item-lead">
+                    私たちのAIツールは、リアルタイムで更新されるレポートデータベースを統合し、重要な情報を抽出して多次元・多方面からの包括的な分析を行います。
+                  </p>
+                </div>
+              </div>
+              <div class="tab-contents function-item">
+                <div class="function-item-label mobileOnly">エキスパート機能</div>
+                <div class="function-item-text">
+                  <h3 class="function-item-tit">専門家<span class="s"></span>のヒアリングを通して、市場規模の試算の確らしさを検証</h3>
+                  <p class="function-item-lead">
+                    プロの分析ツールに加えて、市場の洞察力と長年の業界経験を持つ専門家のサポートも受けられます。この二重のサポート体制で、あなたの成功を支援します。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div></section>
+      <div id="case" class="anchor-position"></div>
+      <section id="case-area">
+        <div class="case-box">
+          <h2 class="section-tit case-tit">
+            <span class="en">CASE STUDY</span>
+            <span class="jp">活用事例</span>
+          </h2>
+          <div class="case-item">
+            <div class="case-text case1">
+              <div class="case-problem">SHARE 1</div>
+              <a href="#" class="case-balloon">
+                <h3 class="case-balloon-tit">
+                  先月、このAI株式分析と株価予測ツールを使い始めました。このシステムは本当に驚異的で、株式コードを入力するだけで、詳細な分析レポートと未来の株価予測が瞬時に生成されます。ある日、注目していたハイテク株を入力すると、3日以内に30%上昇すると予測されました。1200万円を投入し、結果的に360万円の利益を得ました。このAI技術の精度と先進性に感服しています。
+                </h3>
+                <p class="case-balloon-company">田中 一郎</p>
+                <div class="case-balloon-arrow"><img src="/mjSFqQ/JP/20250911-1.0/static/picture/case_balloon_arrow.svg" width="60" height="12">
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="case-item case2">
+            <div class="case-text">
+              <div class="case-problem">SHARE 2</div>
+              <a href="#" class="case-balloon">
+                <h3 class="case-balloon-tit">
+                  7月中旬、大型株を保有していましたが、AIシステムにその銘柄を入力したところ、48時間以内に市場調整で25%下落する可能性があると警告されました。大量の市場データとニュースを基にしたこの予測を信じ、すぐに売却しました。結果として750万円の損失を回避し、AIが推奨した別の銘柄に再投資して200万円の利益を得ました。このシステムのおかげで市場のリスクをうまく回避できました。
+                </h3>
+                <p class="case-balloon-company">松本 健太</p>
+                <div class="case-balloon-arrow"><img src="/mjSFqQ/JP/20250911-1.0/static/picture/case_balloon_arrow.svg" width="60" height="12">
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="case-item case3">
+            <div class="case-text">
+              <div class="case-problem">SHARE 3</div>
+              <a href="#" class="case-balloon">
+                <h3 class="case-balloon-tit">
+                  私は長期投資家として、慎重に資産を運用してきましたが、今年6月にこのAI株式診断ツールを使い始めてから考えが変わりました。ツールにより、迅速に株式の詳細分析と未来の株価予測が可能になりました。ある日、環境技術株を入力すると、2週間で40%上昇すると予測されました。800万円を投入し、結果的に320万円の利益を得ました。このAI技術は私の投資戦略を大きく変える力を持っています。<br>さらに、このツールのおかげで、以前は不安だった市場の変動にも冷静に対処できるようになりました。自分自身の投資だけでなく、このAI技術を使うことで周りの投資家仲間にも良い影響を与えることができ、今では投資が私の生活の一部となり、さらなる成功を目指して日々努力しています。
+                </h3>
+                <p class="case-balloon-company">中村 彩花</p>
+                <div class="case-balloon-arrow"><img src="/mjSFqQ/JP/20250911-1.0/static/picture/case_balloon_arrow.svg" width="60" height="12">
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s02" class="css_pd_l_top css_pd_ll_bottom">
+        <div class="wrapper">
+          <div class="block01">
+            <p class="text01 css_pd_bottom" ;>
+              次に、弊社の<strong>上昇実績</strong>をご覧ください
+            </p>
+            <p class="text02 css_pd_bottom">
+              私たち「ビッグデータ」の情報分析力、<span class="br_s">そして「<strong>AI株価予測</strong>」が</span><span class="br_w">どれほど</span><strong><span class="br_s">投資家様の利益</span></strong>に貢献しているのか
+            </p>
+            <p class="text03 css_pd_l_bottom">
+              過去の上昇事例をご紹介いたします
+            </p>
+          </div>
+          <!-- include file="includes/lp_results_lp300.tpl" -->
+          <div class="block02">
+            <picture class="image01 css_full">
+              <source media="(max-width: 959px)" srcset="//mjSFqQ/JP/20250911-1.0/static/picture/h5-desc1.png" width="750" height="4354">
+              <img loading="lazy" src="/mjSFqQ/JP/20250911-1.0/static/picture/desc1.png" alt="
+                      イメージ 301-305
+                      " width="1000" height="1462">
+            </picture>
+          </div>
+          <div class="block03 css_pd_top css_left wrapper_space">
+            以上は一部の激増事例の展示です。さらに驚くべき成果が続々と生まれています。<br>
+            今すぐAI株式診断と株価予測を利用して、あなたの投資に賢明な決断を下しましょう。<br>
+          </div>
+          <section id="contact">
+            <div class="contact-box">
+              <div class="contact-flex">
+                <div class="contact-item contact-trial" style="width: 96%;">
+                  <h2 class="contact-item-tit">無料AI株式診断と株価予測</h2>
+                  <p class="contact-item-text">
+                    株式市場で何が起こるかを事前に知る<br>
+                    <span style="font-weight: bold;color: #0FA2DB;">
+                      必ず助理のLINEを追加し<br>
+                      「分析予測レポート」を受け取るために<br>
+                      メッセージを送信してください。
+                    </span>
+                  </p>
+                  <p class="contact-item-caution"></p>
+                  <div>
+                    <div class="plContent_input_text">
+                      <input class="input_text plc_input_text" maxlength="18" id="gupiao8" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao8','codelist8','instr8')">
+                      <div style="display: none; width: 538px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr8">
+                        <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                          <thead>
+                            <tr style="text-align:center;">
+                              <td>コード</td>
+                              <td>銘柄名</td>
+                            </tr>
+                          </thead>
+                          <tbody id="codelist8">
+                            <tr style="cursor:pointer;text-align:center;">
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <i></i> AI予測報告を無料で受け取る -->
+                    <p class="zd_btn3 bold center pulse animated infinite"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div class="block01">
+            <p class="text01 css_pd_l_yside">
+              2025年下半期も<br>
+              <strong>もうすぐ急騰する株</strong>AIがすでに予測済み！<br>
+              <span style="font-size: 0.47em;">アシスタントのLINEに「株」と送信すると、すべて無料で受け取れます</span>
+            </p>
+          </div>
+          <div class="block02">
+            <picture class="image02 css_full">
+              <source media="(max-width: 959px)" srcset="//mjSFqQ/JP/20250911-1.0/static/picture/h5-desc2.png" width="750" height="3860">
+              <img loading="lazy" src="/mjSFqQ/JP/20250911-1.0/static/picture/desc2.png" alt="
+                      イメージ 305_1
+                      " width="1000" height="1282">
+            </picture>
+          </div>
+          <section id="contact">
+            <div class="contact-box">
+              <div class="contact-flex">
+                <div class="contact-item contact-trial" style="width: 96%;">
+                  <h2 class="contact-item-tit">保有すべきか、それとも買い増しすべきか？</h2>
+                  <p class="contact-item-text">
+                    もう盲目的な取引はやめて<br>すぐにあなたの株を分析・予測しましょう。<br>
+                    <span style="font-weight: bold;color: #0FA2DB;">
+                      必ず助理のLINEを追加し<br>
+                      「分析予測レポート」を受け取るために<br>
+                      メッセージを送信してください。
+                    </span>
+                  </p>
+                  <p class="contact-item-caution"></p>
+                  <div>
+                    <div class="plContent_input_text">
+                      <input class="input_text plc_input_text" maxlength="18" id="gupiao9" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao9','codelist9','instr9')">
+                      <div style="display: none; width: 538px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr9">
+                        <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                          <thead>
+                            <tr style="text-align:center;">
+                              <td>コード</td>
+                              <td>銘柄名</td>
+                            </tr>
+                          </thead>
+                          <tbody id="codelist9">
+                            <tr style="cursor:pointer;text-align:center;">
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <i></i> AI予測報告を無料で受け取る -->
+                    <p class="zd_btn3 bold center pulse animated infinite"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+      <div id="faq" class="anchor-position"></div>
+      <section id="faq-area">
+        <div class="faq-box">
+          <h2 class="section-tit faq-tit">
+            <span class="en">Q&amp;A</span>
+            <span class="jp">よくある質問</span>
+          </h2>
+          <dl class="faq-list">
+            <dt class="faq-q">
+              <span class="faq-icon"><i>Q</i></span>
+              <span class="faq-subtit">AI株式診断ツールの主なメリットは何ですか？</span>
+            </dt>
+            <dd class="faq-a" style="display: none;">
+              <div class="faq-inner">
+                <span class="faq-icon"><i>A</i></span>
+                <span class="faq-text">AIツールは短時間で大量のデータを処理・分析し、人間では気づきにくい投資機会を発見することができます。<br>
+                  これにより、投資家がより迅速かつ賢明な投資判断を下し、収益率を向上させることができます。</span>
+              </div>
+            </dd>
+            <dt class="faq-q">
+              <span class="faq-icon"><i>Q</i></span>
+              <span class="faq-subtit">AI株式診断ツールはどのように機能しますか？</span>
+            </dt>
+            <dd class="faq-a">
+              <div class="faq-inner">
+                <span class="faq-icon"><i>A</i></span>
+                <span class="faq-text">AI株式診断ツールは、大量の市場データと過去のトレンドを分析し、機械学習アルゴリズムを用いて将来の株価動向を予測します。<br>
+                  技術指標、財務諸表、市場の感情を組み合わせて、ユーザーに正確な投資アドバイスを提供します。
+                </span>
+              </div>
+            </dd>
+            <dt class="faq-q">
+              <span class="faq-icon"><i>Q</i></span>
+              <span class="faq-subtit">AIツールはどのようなタイプの投資家に適していますか？</span>
+            </dt>
+            <dd class="faq-a">
+              <div class="faq-inner">
+                <span class="faq-icon"><i>A</i></span>
+                <span class="faq-text">AIツールは、初心者から経験豊富な投資家まで、すべてのタイプの投資家に適しています。<br>
+                  初心者はAIのアドバイスを利用して迅速に入門することができ、熟練の投資家はAIを使って自身の投資戦略を検証・最適化することができます。</span>
+              </div>
+            </dd>
+            <dt class="faq-q">
+              <span class="faq-icon"><i>Q</i></span>
+              <span class="faq-subtit">AIツールは市場の突発的な出来事の影響をどのように処理しますか？</span>
+            </dt>
+            <dd class="faq-a">
+              <div class="faq-inner">
+                <span class="faq-icon"><i>A</i></span>
+                <span class="faq-text">AIツールは市場の動向をリアルタイムで監視し、市場の突発的な出来事に対応するために迅速に分析モデルを調整します。<br>
+                  これにより、投資家は最新の市場状況に基づいたアドバイスを受け取ることができます。</span>
+              </div>
+            </dd>
+            <dt class="faq-q">
+              <span class="faq-icon"><i>Q</i></span>
+              <span class="faq-subtit">あなたたちは誰ですか？私の情報が漏れることはありますか？</span>
+            </dt>
+            <dd class="faq-a">
+              <div class="faq-inner">
+                <span class="faq-icon"><i>A</i></span>
+                <span class="faq-text">私たちが開発した「AI株式分析と株価予測ツール」は、先端のAI技術とビッグデータ解析を融合させ、膨大な市場データをリアルタイムで処理します。このツールは、複数の検証を重ねた結果、極めて高い精度で未来の株価を予測できることが証明されており、日本の著名な株式投資専門家からも熱烈に支持されています。これにより、投資家は複雑な市場で確実な戦略を立てることが可能となります。<br><br>当ウェブサイトをご利用いただき、誠にありがとうございます。お客様の個人情報の保護とプライバシーの尊重は、当社にとって最も重要な責務です。お客様が安心して当サイトをご利用いただけるよう、以下のポリシーを厳守いたします。<br>当サイトでは、お客様が安心してご利用いただけるよう、お客様の同意なしに個人情報を収集することは一切ございません。お客様から提供された個人情報は、明示された目的のためにのみ使用され、それ以外の目的で使用することはありません。<br>お客様の個人情報は、当社のサービス向上のためにのみ利用され、第三者に提供、販売、または共有することは決してございません。また、収集された情報は厳密に保護され、必要以上の期間にわたり保存されることはありません。<br>当サイトでは、ユーザーエクスペリエンスの向上やサイトのパフォーマンスを最適化するためにクッキーを使用しています。クッキーは、お客様のコンピューターやデバイスに一時的に保存される小さなデータファイルであり、個人を特定する情報を含むことはありません。<br>お客様が望まれる場合、ブラウザの設定を変更することにより、クッキーの使用を制限、または無効にすることが可能です。ただし、クッキーを無効にすると、当サイトの一部の機能がご利用いただけなくなる場合がございます。<br>お客様の個人情報は、最新のセキュリティ技術を用いて保護されております。不正アクセス、データ漏洩、改ざん、破壊から情報を守るために、物理的、電子的、手続き的な安全対策を実施しています。<br>当社の社員および業務委託先は、厳格な守秘義務を負っており、お客様の個人情報に関する取り扱いに関しても、最も厳しい基準を遵守しております。お客様の情報は、日本国内の安全なサーバーに保管され、国外に転送されることはございません。<br>お客様の明確な同意がない限り、当社はお客様の個人情報を第三者に提供することは一切ございません。法令に基づく要請があった場合を除き、いかなる状況においても、お客様の情報を第三者に開示することはありません。<br>お客様のプライバシーに関してご質問やご不明な点がございましたら、当社までご遠慮なくお問い合わせください。私たちは、お客様の信頼に応えるため、最高水準のプライバシー保護を提供し続けます。</span>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </section>
+      <section id="contact">
+        <div class="contact-box">
+          <div class="contact-flex">
+            <div class="contact-item contact-trial" style="width: 96%;">
+              <h2 class="contact-item-tit">すぐに手持ちの株を分析・予測しましょう</h2>
+              <p class="contact-item-text">
+                資産を守り、賢明な決断を下してください。<br>
+                <span style="font-weight: bold;color: #0FA2DB;">
+                  必ず助理のLINEを追加し<br>
+                  「分析予測レポート」を受け取るために<br>
+                  メッセージを送信してください。
+                </span>
+              </p>
+              <p class="contact-item-caution"></p>
+              <div>
+                <div class="plContent_input_text">
+                  <input class="input_text plc_input_text" maxlength="18" id="gupiao10" placeholder="銘柄コード/会社名入力" oninput="inputChange(this,'gupiao10','codelist10','instr10')">
+                  <div style="display: none; width: 538px; max-height: 750px; font-size: 24px; position: absolute; z-index: 999999; overflow: hidden;" id="instr10">
+                    <table style="background: rgb(0, 60, 94) 1%;color: #fff;width: 100%;height: auto;">
+                      <thead>
+                        <tr style="text-align:center;">
+                          <td>コード</td>
+                          <td>銘柄名</td>
+                        </tr>
+                      </thead>
+                      <tbody id="codelist10">
+                        <tr style="cursor:pointer;text-align:center;">
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- <i></i> AI予測報告を無料で受け取る -->
+                <p class="zd_btn3 bold center pulse animated infinite"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+    <div style="padding: 20px; color: #fff; font-size: 14px;" class="zysx" ;>
+      <h2><strong>免責事項</strong></h2>
+      <p>
+        本サービスが提供するAI株価予測および分析ツールは、ユーザーに市場動向の補助的な参考情報を提供することを目的としています。ここに明示されているように、すべての予測結果は、過去のデータおよび既存の市場モデルに基づいて分析されており、必ずしも将来の市場動向を正確に反映するものではありません。そのため、本サービスが提供する情報や提案は、投資アドバイスや財務アドバイスとして扱われるべきではなく、投資判断の唯一の基準として使用されるべきではありません。
+      </p>
+
+      <h2><strong>リスクに関する注意事項</strong></h2>
+      <p>
+        株式市場は非常に不確実性が高く、変動しやすいため、どのような投資でも損失を被る可能性があります。本サービスは、先進的なAI技術を活用して分析と予測を行っていますが、これらの予測がいかなる投資戦略の成功を保証するものではありません。そのため、本サービスが提供する情報を使用する際には注意を払い、必要に応じて専門家の投資アドバイスを求めることをお勧めします。ユーザーは、投資目標、財務状況、リスク許容度に基づいて、賢明な投資判断を行うべきです。
+      </p>
+
+      <h2><strong>データと正確性に関する声明</strong></h2>
+      <ol>
+        <li>
+          <strong>データの出典と処理：</strong>本サービスの分析データは、公開された市場データおよび過去の記録に基づいています。データの正確性と最新性を最大限に確保するよう努めていますが、すべてのデータが完全に正確であることや完全であることを保証するものではありません。
+        </li>
+        <li>
+          <strong>予測の正確性：</strong>本サービスの予測は、過去の市場行動やトレンドに基づいてトレーニングされた複雑なアルゴリズムとモデルに基づいています。そのため、生成される予測には一定の正確性がありますが、将来の市場動向の保証とは見なされるべきではありません。予測正確性に関するいかなる声明も、過去の統計結果に基づいており、将来のパフォーマンスを意味するものではありません。
+        </li>
+        <li><strong>結果の個人差：</strong>すべての投資結果は、個々のユーザーの状況によって異なる場合があります。過去のパフォーマンスは、将来の結果を示唆するものではありません。</li>
+      </ol>
+
+      <h2><strong>永年無料およびプライバシー保護</strong></h2>
+      <ol>
+        <li>
+          <strong>永年無料：</strong>本サービスは、すべてのユーザーに永年無料のAI株価予測および分析ツールを提供しています。本ツールの使用には、いかなる費用も発生せず、サブスクリプションや隠れた料金も一切ありません。
+        </li>
+        <li>
+          <strong>個人情報保護：</strong>私たちは、ユーザーのプライバシーを尊重し、保護することを約束します。収集されたすべての個人情報は、サービスの提供および改善のためにのみ使用され、他の目的で使用されることや第三者と共有されることはありません。ユーザーは、本サービスを使用するために追加の個人情報を提供する必要はなく、すべての使用はプライバシーポリシーに準拠しています。
+        </li>
+      </ol>
+
+      <h2><strong>ユーザーの責任</strong></h2>
+      <p>
+        本サービスを使用する際、ユーザーはサービス利用規約およびプライバシーポリシーを理解し、同意していることを確認する必要があります。ユーザーがサービスを誤解または誤用したことによるいかなる損失や責任についても、当社は責任を負いません。
+      </p>
+
+      <h2><strong>ユーザーコメントおよびフィードバック</strong></h2>
+      <p>
+        本サービスページまたは広告に表示されるユーザーコメントは、個々のユーザーの体験や意見を表しており、すべてのユーザーの一般的な体験を代表するものではありません。すべてのコメントの信憑性を検証することはできませんので、ユーザーには複数の情報源を参考にし、独自の判断を下すことをお勧めします。
+      </p>
+
+      <h2><strong>連絡先とサポート</strong></h2>
+      <p>
+        私たちは、ユーザーに最高のサービス体験を提供することに努めています。本サービスを使用している際に問題が発生した場合や、サービスに関する質問や提案がある場合は、いつでも私たちのカスタマーサポートチャンネルを通じてお問い合わせください。可能な限り、迅速に対応し、解決策を提供いたします。
+      </p>
+    </div>
+  </div>
+
+  <div class="scroll_top">
+    <a href="javascript:void(0)" id="scroll-button" style="display: inline;" one-link-mark="yes">
+      <img src="/mjSFqQ/JP/20250911-1.0/static/picture/backTop.png" style="width: 100%;">
+    </a>
+  </div>
+
+  <script>var viewPortScale = .5, width = parseInt(window.screen.width), scale = width / 750, userScalable = "no"; $("#viewport").attr("content", "target-densitydpi=device-dpi,width=640,user-scalable=" + userScalable + ",initial-scale=" + scale), layer.config({ maxWidth: "560" });</script>
+  <script type="text/javascript">function scrollTable() { var t = 1, e = $(".alone_list li").length; $(".alone_list").append($(".alone_list li").clone()); var n = $(".alone_list").eq(0); setInterval(function () { n.css("marginTop", -71 * t), t++, t == e + 1 && setTimeout(function () { n.css("transition", "none"), n.css("marginTop", 2), t = 1, setTimeout(function () { n.css("transition", "all .6s") }, 700) }, 1e3) }, 1500) } function scrollPL() { var t = 1, e = $(".plList li").length; $(".plList").append($(".plList li").clone()); var n = $(".plList").eq(0); setInterval(function () { n.css("marginTop", -150 * t), t++, t == e + 1 && setTimeout(function () { n.css("transition", "none"), n.css("marginTop", 2), t = 1, setTimeout(function () { n.css("transition", "all .6s") }, 700) }, 1e3) }, 2e3) } function showBanner() { $(window).scroll(function () { var t = $(this).scrollTop(), e = $(".banner"); t > 200 ? e.show() : e.hide() }), $(".banner_a").show() } function aloneLoad() { $(".loadBox2").show(), showSpeed(); var t = $(".load_discuss2"); $(".loaded").hide(), $(".loading").show(), setTimeout(function () { t.css("height", "90px") }, 0), setTimeout(function () { t.css("height", "118px") }, 500), setTimeout(function () { t.css("height", "146px") }, 1e3), setTimeout(function () { t.css("height", "174px") }, 1500), setTimeout(function () { t.css("height", "202px") }, 2e3), setTimeout(function () { t.css("height", "230px") }, 2500), setTimeout(function () { $(".loading").hide(), $(".loaded").show() }, 3e3) } function showSpeed() { $(".ico1").stop(), $(".ico1").animate({ left: "500px" }, 900, "linear", function () { $(".ico1").css({ left: "auto", width: "8px", height: "280px", top: "-280px", right: "1px", background: "-webkit-linear-gradient(left,#fe790d,#ffc158)", background: "linear-gradient(to right,#fe790d,#ffc158)" }) }), $(".ico1").animate({ top: "400px" }, 900, "linear", function () { $(".ico1").css({ top: "auto", width: "300px", height: "7px", right: "-400px", bottom: "1px", background: "-webkit-linear-gradient(left,#ffc158,#fe790d)", background: "linear-gradient(to right,##ffc158,#fe790d)" }) }), $(".ico1").animate({ right: "500px" }, 900, "linear", function () { $(".ico1").css({ right: "auto", width: "7px", height: "200px", top: "325px", left: "0", background: "-webkit-linear-gradient(left,#fe790d,#ffc158)", background: "linear-gradient(to right,#fe790d,#ffc158)" }) }), $(".ico1").animate({ top: "-400px" }, 900, "linear", function () { $(".ico1").css({ width: "300px", height: "7px", top: "0", left: "-300px", background: "-webkit-linear-gradient(left,#ffc158,#fe790d)", background: "linear-gradient(to right,#ffc158,#fe790d)" }) }) } scrollTable(), scrollPL(), showBanner();</script>
+  <script src="/mjSFqQ/JP/20250911-1.0/static/js/jquery.bxslider.min.js" defer=""></script>
+  <script src="/mjSFqQ/JP/20250911-1.0/static/js/common.js" defer=""></script>
+  <script>
+    $(document).bind("contextmenu", function () {
+        return !1;
+    }),
+    $(document).bind("selectstart", function () {
+        return !1;
+    }),
+    (document.onkeydown = function () {
+        1 == event.ctrlKey &&
+        83 == event.keyCode &&
+        ((event.keyCode = 0), event.preventDefault());
+    }),
+    $(window).on({
+        dragstart: function () {
+            return !1;
+        },
+    }),
+    (document.onkeydown = function () {
+        window.event &&
+        123 == window.event.keyCode &&
+        ((event.keyCode = 0), event.preventDefault());
+    });
+
+    $(document).ready(function() {
+      $(window).scroll(function() {
+          if ($(this).scrollTop() > 40) {
+              $('#scroll-button').fadeIn();
+          } else {
+              $('#scroll-button').fadeOut();
+          }
+      });
+      $('#scroll-button').click(function() {
+          $("html, body").animate({
+              scrollTop: 0
+          }, 100);
+      });
+    });
+  </script>
+</body>
+</html>
