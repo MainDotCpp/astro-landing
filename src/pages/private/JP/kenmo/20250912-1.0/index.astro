@@ -1,0 +1,1478 @@
+---
+import { Image } from 'astro:assets'
+import {
+  Activity,
+  ArrowRight,
+  Award,
+  BarChart3,
+  Brain,
+  CheckCircle,
+  Clock,
+  LineChart,
+  MessageCircle,
+  PieChart,
+  Shield,
+  Star,
+  Target,
+  TrendingUp,
+  Zap,
+} from 'lucide-astro'
+import avatar from '@/assets/avatar/kenmo.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="kenmo - 投資のプロフェッショナル"
+  description="kenmoと一緒に投資の成功を掴もう。実績豊富な投資専門家があなたの資産運用をサポートします。"
+  lang="ja"
+>
+  <main class="kenmo-landing">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="profile-card">
+          <div class="avatar-container">
+            <div class="avatar-ring">
+              <div class="avatar w-full h-full object-cover object-center rounded-full border-2 border-white">
+                  <Image src={avatar} alt="kenmo" class="avatar-img w-full h-full object-cover object-center rounded-full" />
+              </div>
+            </div>
+            <div class="status-badge">
+              <div class="status-dot"></div>
+              <span>オンライン</span>
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-main">kenmo</span>
+            <span class="title-sub">投資のプロフェッショナル</span>
+          </h1>
+
+          <div class="expertise-tags">
+            <span class="tag">15年経験</span>
+            <span class="tag">月利25%</span>
+            <span class="tag">成功率89%</span>
+          </div>
+
+          <div class="professional-badges">
+            <div class="badge-item">
+              <Award size={16} />
+              <span>CFA認定</span>
+            </div>
+            <div class="badge-item">
+              <Brain size={16} />
+              <span>テクニカル分析</span>
+            </div>
+            <div class="badge-item">
+              <BarChart3 size={16} />
+              <span>ファンダメンタル分析</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">+847%</div>
+            <div class="stat-label">最高収益率</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">12,430</div>
+            <div class="stat-label">満足顧客数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">89%</div>
+            <div class="stat-label">投資成功率</div>
+          </div>
+        </div>
+
+        <!-- Urgency Banner -->
+        <div class="urgency-banner-hero">
+          <div class="urgency-icon">
+            <Zap size={16} />
+          </div>
+          <span class="urgency-text">限定時間</span>
+          <div class="countdown-timer" id="countdown-timer">
+            <span class="countdown-number" id="hours">23</span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-number" id="minutes">59</span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-number" id="seconds">59</span>
+          </div>
+          <span class="urgency-text">で無料提供終了</span>
+        </div>
+
+        <!-- Hero CTA Button -->
+        <div class="hero-cta">
+          <button class="cta-button-primary link-btn">
+            <div class="button-content">
+              <div class="button-icon">
+                <MessageCircle size={24} />
+              </div>
+              <div class="button-text">
+                <span class="button-main">今すぐ友達追加</span>
+                <span class="button-sub">無料で投資情報をお受け取りください</span>
+              </div>
+              <div class="button-arrow">
+                <ArrowRight size={20} />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Expertise Section -->
+    <section class="expertise-section">
+      <div class="expertise-content">
+        <h2 class="section-title">
+          <span class="title-highlight">プロの投資分析力</span>で
+          <br>確実な利益を実現
+        </h2>
+
+        <div class="expertise-grid">
+          <div class="expertise-card">
+            <div class="expertise-icon">
+              <LineChart size={28} />
+            </div>
+            <div class="expertise-content">
+              <h3>テクニカル分析</h3>
+              <p>チャートパターン、移動平均線、RSI、MACDなどの技術指標を駆使した精密な分析手法</p>
+              <div class="expertise-stats">
+                <span class="stat">精度: 92%</span>
+                <span class="stat">分析銘柄: 500+</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="expertise-card">
+            <div class="expertise-icon">
+              <PieChart size={28} />
+            </div>
+            <div class="expertise-content">
+              <h3>ファンダメンタル分析</h3>
+              <p>財務諸表、業績予想、市場動向を徹底分析し、真の投資価値を発見いたします</p>
+              <div class="expertise-stats">
+                <span class="stat">分析企業: 1000+</span>
+                <span class="stat">的中率: 89%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="expertise-card">
+            <div class="expertise-icon">
+              <Activity size={28} />
+            </div>
+            <div class="expertise-content">
+              <h3>市場心理分析</h3>
+              <p>投資家心理、市場センチメントを読み取り、最適なエントリー・エグジットタイミングをご提供いたします</p>
+              <div class="expertise-stats">
+                <span class="stat">市場予測: 95%</span>
+                <span class="stat">リスク管理: 優秀</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expertise CTA Button -->
+        <div class="expertise-cta">
+          <button class="cta-button-secondary link-btn">
+            <div class="button-content">
+              <div class="button-icon">
+                <TrendingUp size={24} />
+              </div>
+              <div class="button-text">
+                <span class="button-main">プロの分析力を体験</span>
+                <span class="button-sub">今すぐ友達追加して投資情報をお受け取りください</span>
+              </div>
+              <div class="button-arrow">
+                <ArrowRight size={20} />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Investment Strategy Section -->
+    <section class="strategy-section">
+      <div class="strategy-content">
+        <h2 class="section-title">
+          <span class="title-highlight">kenmo流</span>投資戦略
+        </h2>
+
+        <div class="strategy-timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <Clock size={20} />
+            </div>
+            <div class="timeline-content">
+              <h3>市場開場前分析</h3>
+              <p>前日の海外市場、経済指標、企業ニュースを総合分析し、当日の投資戦略を立案いたします</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <TrendingUp size={20} />
+            </div>
+            <div class="timeline-content">
+              <h3>リアルタイム監視</h3>
+              <p>市場動向をリアルタイムで監視し、チャンスを逃さず最適なタイミングで投資判断いたします</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <Shield size={20} />
+            </div>
+            <div class="timeline-content">
+              <h3>リスク管理</h3>
+              <p>ストップロス設定、ポジションサイジング、分散投資でリスクを最小化いたします</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-section">
+      <div class="value-content">
+        <h2 class="section-title">
+          <span class="title-highlight">今すぐ</span>友達追加で
+          <br>投資の成功を始めよう
+        </h2>
+
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <TrendingUp size={24} />
+            </div>
+            <div class="benefit-content">
+              <h3>月平均25%の収益率</h3>
+              <p>実績に基づく確実な投資戦略</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <Zap size={24} />
+            </div>
+            <div class="benefit-content">
+              <h3>リアルタイム投資シグナル</h3>
+              <p>損失を最小化するタイミング通知</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <Target size={24} />
+            </div>
+            <div class="benefit-content">
+              <h3>個人別ポートフォリオ設計</h3>
+              <p>あなたに最適な投資プラン</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <Shield size={24} />
+            </div>
+            <div class="benefit-content">
+              <h3>24時間投資サポート</h3>
+              <p>いつでも質問・相談可能</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Investment Cases Section -->
+    <section class="cases-section">
+      <div class="cases-content">
+        <h2 class="section-title">
+          <span class="title-highlight">実績</span>で証明する投資力
+        </h2>
+
+        <div class="cases-grid">
+          <div class="case-item">
+            <div class="case-header">
+              <h3>ソフトバンクグループ</h3>
+              <div class="case-return positive">+156%</div>
+            </div>
+            <div class="case-details">
+              <p>5G展開とアーム上場を予測し、2023年1月にエントリー。6ヶ月で156%の利益を実現</p>
+              <div class="case-tags">
+                <span class="tag">ファンダメンタル分析</span>
+                <span class="tag">長期投資</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-item">
+            <div class="case-header">
+              <h3>任天堂</h3>
+              <div class="case-return positive">+89%</div>
+            </div>
+            <div class="case-details">
+              <p>スイッチの販売好調と新作タイトル発表をテクニカル分析で予測。3ヶ月で89%の利益</p>
+              <div class="case-tags">
+                <span class="tag">テクニカル分析</span>
+                <span class="tag">中期投資</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-item">
+            <div class="case-header">
+              <h3>トヨタ自動車</h3>
+              <div class="case-return positive">+67%</div>
+            </div>
+            <div class="case-details">
+              <p>EV戦略転換とバッテリー技術開発を市場心理分析で捉え、4ヶ月で67%の利益</p>
+              <div class="case-tags">
+                <span class="tag">市場心理分析</span>
+                <span class="tag">セクター分析</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cases CTA Button -->
+        <div class="cases-cta">
+          <button class="cta-button-secondary link-btn">
+            <div class="button-content">
+              <div class="button-icon">
+                <BarChart3 size={24} />
+              </div>
+              <div class="button-text">
+                <span class="button-main">あなたも成功体験を</span>
+                <span class="button-sub">今すぐ友達追加して投資を始めませんか</span>
+              </div>
+              <div class="button-arrow">
+                <ArrowRight size={20} />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+      <div class="proof-content">
+        <h3 class="proof-title">成功者の声</h3>
+
+        <!-- Trust Indicators -->
+        <div class="trust-indicators">
+          <div class="trust-item">
+            <div class="trust-number">12,430+</div>
+            <div class="trust-label">満足顧客数</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-number">4.9/5</div>
+            <div class="trust-label">平均評価</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-number">98%</div>
+            <div class="trust-label">推奨率</div>
+          </div>
+        </div>
+
+        <div class="testimonials">
+          <div class="testimonial">
+            <div class="testimonial-content">
+              <p>"kenmoさんの投資アドバイスで、3ヶ月で資産が2倍になりました！本当に感謝しています。"</p>
+            </div>
+            <div class="testimonial-author">
+              <span class="author-name">田中さん</span>
+              <div class="rating">
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="testimonial-content">
+              <p>"毎日の投資シグナルが的確で、月利30%を達成できました！kenmoさんのおかげです。"</p>
+            </div>
+            <div class="testimonial-author">
+              <span class="author-name">佐藤さん</span>
+              <div class="rating">
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <div class="urgency-banner">
+          <div class="urgency-icon">
+            <Zap size={20} />
+          </div>
+          <span>今すぐ友達追加で</span>
+          <strong>今日の急上昇予想銘柄情報を無料でお受け取りください！</strong>
+        </div>
+
+        <button class="cta-button link-btn">
+          <div class="button-content">
+            <div class="button-icon">
+              <MessageCircle size={24} />
+            </div>
+            <div class="button-text">
+              <span class="button-main">友達追加して「受取」を送信</span>
+              <span class="button-sub">無料で投資情報をお受け取りください</span>
+            </div>
+            <div class="button-arrow">
+              <ArrowRight size={20} />
+            </div>
+          </div>
+        </button>
+
+        <div class="cta-note">
+          <CheckCircle size={16} />
+          <span>完全無料・登録不要・即座に利用開始</span>
+        </div>
+
+        <!-- Risk Mitigation -->
+        <div class="risk-mitigation">
+          <div class="guarantee-item">
+            <Shield size={20} />
+            <span>100%無料保証</span>
+          </div>
+          <div class="guarantee-item">
+            <CheckCircle size={20} />
+            <span>いつでも解除可能</span>
+          </div>
+          <div class="guarantee-item">
+            <Award size={20} />
+            <span>実績保証</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p class="footer-text">プライバシーポリシー</p>
+        <p class="footer-disclaimer">
+          投資にはリスクが伴います。過去の実績は将来の運用成果を保証するものではありません。
+        </p>
+      </div>
+    </footer>
+
+    <!-- Fixed Floating CTA Button -->
+    <div class="floating-cta">
+      <button class="floating-cta-button link-btn">
+        <div class="floating-button-content">
+          <div class="floating-button-icon">
+            <MessageCircle size={20} />
+          </div>
+          <div class="floating-button-text">
+            <span class="floating-button-main">友達追加</span>
+            <span class="floating-button-sub">無料で投資情報をお受け取りください</span>
+          </div>
+          <div class="floating-button-arrow">
+            <ArrowRight size={16} />
+          </div>
+        </div>
+      </button>
+    </div>
+  </main>
+
+  <script>
+// 倒计时功能
+function startCountdown() {
+  const countdownElement = document.getElementById('countdown-timer')
+  if (!countdownElement)
+    return
+
+  const hoursElement = document.getElementById('hours')
+  const minutesElement = document.getElementById('minutes')
+  const secondsElement = document.getElementById('seconds')
+
+  function updateCountdown() {
+    const now = new Date()
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const endTime = new Date(today.getTime() + 20 * 60 * 60 * 1000) // 今天20:00
+
+    // 如果当前时间已经超过20:00，设置为明天20:00
+    if (now > endTime) {
+      endTime.setDate(endTime.getDate() + 1)
+    }
+
+    const timeDiff = endTime.getTime() - now.getTime()
+
+    if (timeDiff <= 0) {
+      // 倒计时结束，重新设置为明天20:00
+      endTime.setDate(endTime.getDate() + 1)
+      const newTimeDiff = endTime.getTime() - now.getTime()
+      const hours = Math.floor(newTimeDiff / (1000 * 60 * 60))
+      const minutes = Math.floor((newTimeDiff % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((newTimeDiff % (1000 * 60)) / 1000)
+
+      if (hoursElement)
+        hoursElement.textContent = hours.toString().padStart(2, '0')
+      if (minutesElement)
+        minutesElement.textContent = minutes.toString().padStart(2, '0')
+      if (secondsElement)
+        secondsElement.textContent = seconds.toString().padStart(2, '0')
+    }
+    else {
+      const hours = Math.floor(timeDiff / (1000 * 60 * 60))
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000)
+
+      if (hoursElement)
+        hoursElement.textContent = hours.toString().padStart(2, '0')
+      if (minutesElement)
+        minutesElement.textContent = minutes.toString().padStart(2, '0')
+      if (secondsElement)
+        secondsElement.textContent = seconds.toString().padStart(2, '0')
+    }
+  }
+
+  // 立即更新一次
+  updateCountdown()
+
+  // 每秒更新
+  setInterval(updateCountdown, 1000)
+}
+
+// 页面加载完成后启动倒计时
+document.addEventListener('DOMContentLoaded', startCountdown)
+</script>
+
+  <style>
+    .kenmo-landing {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar-ring {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: #10b981;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero-title {
+      margin-bottom: 1rem;
+    }
+
+    .title-main {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .title-sub {
+      display: block;
+      font-size: 1.1rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .expertise-tags {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .professional-badges {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: #667eea;
+      padding: 0.375rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    /* Urgency Banner Hero */
+    .urgency-banner-hero {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+      animation: urgencyPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes urgencyPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+      }
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+      }
+    }
+
+    .urgency-text {
+      font-weight: 700;
+    }
+
+    .countdown-timer {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .countdown-number {
+      background: rgba(255, 255, 255, 0.9);
+      color: #dc2626;
+      padding: 0.25rem 0.375rem;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      min-width: 1.5rem;
+      text-align: center;
+    }
+
+    .countdown-separator {
+      font-weight: 800;
+      color: white;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #667eea;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    /* Hero CTA */
+    .hero-cta {
+      margin-top: 2rem;
+    }
+
+    .cta-button-primary {
+      width: 100%;
+      background: white;
+      border: none;
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-button-secondary {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+    }
+
+    .cta-button-secondary .button-icon {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .cta-button-secondary .button-text .button-main {
+      color: white;
+    }
+
+    .cta-button-secondary .button-text .button-sub {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .cta-button-secondary .button-arrow {
+      color: white;
+    }
+
+    /* Expertise Section */
+    .expertise-section {
+      padding: 3rem 1rem;
+      background: #f8fafc;
+    }
+
+    .expertise-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .expertise-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .expertise-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .expertise-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .expertise-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+    }
+
+    .expertise-card p {
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .expertise-stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .expertise-stats .stat {
+      background: #f1f5f9;
+      color: #667eea;
+      padding: 0.25rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .expertise-cta {
+      margin-top: 2rem;
+    }
+
+    /* Strategy Section */
+    .strategy-section {
+      padding: 3rem 1rem;
+      background: white;
+    }
+
+    .strategy-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .strategy-timeline {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .timeline-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .timeline-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    /* Cases Section */
+    .cases-section {
+      padding: 3rem 1rem;
+      background: #f8fafc;
+    }
+
+    .cases-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .cases-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .case-item {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .case-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .case-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .case-return {
+      font-size: 1.25rem;
+      font-weight: 800;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+
+    .case-return.positive {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .case-details p {
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .case-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .case-tags .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+    }
+
+    .cases-cta {
+      margin-top: 2rem;
+    }
+
+    /* Value Section */
+    .value-section {
+      padding: 3rem 1rem;
+      background: white;
+    }
+
+    .value-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    .title-highlight {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .benefits-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: #f8fafc;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .benefit-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .benefit-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit-content p {
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    /* Social Proof */
+    .social-proof {
+      padding: 2rem 1rem;
+      background: #f8fafc;
+    }
+
+    .proof-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .proof-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+    }
+
+    .testimonials {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-content p {
+      font-size: 1rem;
+      color: #374151;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .rating {
+      display: flex;
+      gap: 0.25rem;
+      color: #fbbf24;
+    }
+
+    /* Trust Indicators */
+    .trust-indicators {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .trust-item {
+      text-align: center;
+    }
+
+    .trust-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #667eea;
+      margin-bottom: 0.25rem;
+    }
+
+    .trust-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    /* Risk Mitigation */
+    .risk-mitigation {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .guarantee-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .cta-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .urgency-banner {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .urgency-icon {
+      color: #fbbf24;
+    }
+
+    .cta-button {
+      width: 100%;
+      background: white;
+      border: none;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .button-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .button-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .button-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .button-main {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.25rem;
+    }
+
+    .button-sub {
+      display: block;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .button-arrow {
+      color: #667eea;
+    }
+
+    .cta-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.875rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 2rem 1rem;
+      background: #1a1a1a;
+      color: #9ca3af;
+    }
+
+    .footer-content {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Floating CTA Button */
+    .floating-cta {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .floating-cta-button {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: floatPulse 3s ease-in-out infinite;
+    }
+
+    .floating-cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+    }
+
+    @keyframes floatPulse {
+      0%, 100% {
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+      }
+      50% {
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6), 0 0 0 4px rgba(102, 126, 234, 0.1);
+      }
+    }
+
+    .floating-button-content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .floating-button-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .floating-button-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .floating-button-main {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.125rem;
+    }
+
+    .floating-button-sub {
+      display: block;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .floating-button-arrow {
+      color: white;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 414px) {
+      .kenmo-landing {
+        font-size: 16px;
+      }
+
+      .hero-section {
+        padding: 3rem 1.5rem 4rem;
+      }
+
+      .expertise-section,
+      .strategy-section,
+      .cases-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .value-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .cta-section {
+        padding: 4rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 480px) {
+      .hero-content,
+      .expertise-content,
+      .strategy-content,
+      .cases-content,
+      .value-content,
+      .proof-content,
+      .cta-content {
+        max-width: 450px;
+      }
+
+      .floating-cta {
+        max-width: 450px;
+      }
+    }
+
+    /* 确保悬浮按钮在移动端可见 */
+    @media (max-width: 413px) {
+      .floating-cta {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        right: 0.5rem;
+      }
+
+      .floating-cta-button {
+        padding: 0.875rem 1.25rem;
+      }
+
+      .floating-button-main {
+        font-size: 0.9rem;
+      }
+
+      .floating-button-sub {
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</BaseLayout>
