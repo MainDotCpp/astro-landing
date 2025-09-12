@@ -1,0 +1,1284 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import {
+  AlertCircle,
+  BarChart3,
+  Brain,
+  Clock,
+  DollarSign,
+  Heart,
+  Rocket,
+  Shield,
+  Target,
+} from 'lucide-astro'
+import lineIcon from '@/assets/line-icon.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '小谷真生子', version: '0' }, props: { name: '小谷真生子', img_prefix: 'kotani_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { img_prefix } = Astro.props
+const avatar = import(`./static/${img_prefix}avatar.png`)
+---
+
+<BaseLayout title="小谷真生子のAI投資戦略 | 一日50万円の秘密" description="小谷真生子が明かすAI投資の真実。半導体・医療・金融・製造業のAI革命で資産を築く方法。戦略と忍耐が運より重要。今すぐLINEで最新情報を入手" lang="ja">
+  <style>
+    /* 现代化日本风格设计系统 */
+    :root {
+      --primary-blue: #3B82F6;
+      --primary-green: #10B981;
+      --primary-orange: #F59E0B;
+      --primary-purple: #8B5CF6;
+      --primary-pink: #EC4899;
+      --primary-red: #EF4444;
+      --text-dark: #1F2937;
+      --text-gray: #6B7280;
+      --text-light: #9CA3AF;
+      --bg-white: #FFFFFF;
+      --bg-light: #F9FAFB;
+      --bg-gray: #F3F4F6;
+      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --border-light: #E5E7EB;
+      --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+      --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+      --shadow-strong: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes slideInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes wiggle {
+      0%, 7% {
+        transform: rotateZ(0);
+      }
+      15% {
+        transform: rotateZ(-15deg);
+      }
+      20% {
+        transform: rotateZ(10deg);
+      }
+      25% {
+        transform: rotateZ(-10deg);
+      }
+      30% {
+        transform: rotateZ(6deg);
+      }
+      35% {
+        transform: rotateZ(-4deg);
+      }
+      40%, 100% {
+        transform: rotateZ(0);
+      }
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+      }
+      14% {
+        transform: scale(1.1);
+      }
+      28% {
+        transform: scale(1);
+      }
+      42% {
+        transform: scale(1.1);
+      }
+      70% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .slide-in-left {
+      animation: slideInLeft 0.6s ease-out;
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+
+    .bounce {
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .rotate {
+      animation: rotate 3s linear infinite;
+    }
+
+    .glow {
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    .slide-in-right {
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    .scale-in {
+      animation: scaleIn 0.6s ease-out;
+    }
+
+    .wiggle {
+      animation: wiggle 1s ease-in-out;
+    }
+
+    .heartbeat {
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .sparkle {
+      animation: sparkle 2s ease-in-out infinite;
+    }
+
+    /* 延迟动画 */
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+
+    /* 日文字体优化 */
+    body, html {
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    /* 背景装饰元素 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* 装饰性几何图形 */
+    .decoration {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--bg-gradient);
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .decoration-1 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      right: 10%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .decoration-2 {
+      width: 150px;
+      height: 150px;
+      bottom: 20%;
+      left: 5%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .decoration-3 {
+      width: 100px;
+      height: 100px;
+      top: 60%;
+      right: 20%;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .decoration-4 {
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+      top: 30%;
+      left: 15%;
+      animation: bounce 3s ease-in-out infinite;
+    }
+
+    .decoration-5 {
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+      bottom: 40%;
+      right: 30%;
+      animation: rotate 20s linear infinite;
+    }
+
+    .decoration-6 {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
+      top: 80%;
+      left: 25%;
+      animation: heartbeat 2s ease-in-out infinite;
+    }
+
+    /* 粒子效果 */
+    .particle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      animation: sparkle 3s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { top: 40%; left: 80%; animation-delay: 0.5s; }
+    .particle:nth-child(3) { top: 60%; left: 20%; animation-delay: 1s; }
+    .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 1.5s; }
+    .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 2s; }
+
+    /* 现代化卡片设计 */
+    .card {
+      background: var(--bg-white);
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      padding: 32px;
+      margin: 20px 0;
+      border: 1px solid var(--border-light);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--bg-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-strong);
+      transform: translateY(-8px);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-primary {
+      background: linear-gradient(135deg, var(--primary-blue), #60A5FA);
+      color: white;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .card-primary:hover {
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .card-success {
+      background: linear-gradient(135deg, var(--primary-green), #34D399);
+      color: white;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    }
+
+    .card-success:hover {
+      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+    }
+
+    .card-warning {
+      background: linear-gradient(135deg, var(--primary-orange), #FBBF24);
+      color: white;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+    }
+
+    .card-warning:hover {
+      box-shadow: 0 20px 40px rgba(245, 158, 11, 0.4);
+    }
+
+    .card-purple {
+      background: linear-gradient(135deg, var(--primary-purple), #A78BFA);
+      color: white;
+      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+    }
+
+    .card-purple:hover {
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4);
+    }
+
+    /* 按钮设计 - 日本风格优化 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      min-width: 200px;
+      letter-spacing: 0.5px;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-blue), #5BA0F2);
+      color: white;
+      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #3A7BC8, #4A90E2);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(74, 144, 226, 0.5);
+      animation: glow 1s ease-in-out infinite;
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px) scale(0.98);
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, var(--primary-green), #8EDB2F);
+      color: white;
+      box-shadow: 0 6px 20px rgba(126, 211, 33, 0.4);
+    }
+
+    .btn-success:hover {
+      background: linear-gradient(135deg, #6BC41A, #7ED321);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(126, 211, 33, 0.5);
+    }
+
+    .btn-success:active {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(126, 211, 33, 0.4);
+    }
+
+    .btn-large {
+      padding: 22px 48px;
+      font-size: 18px;
+      min-width: 250px;
+      border-radius: 16px;
+    }
+
+    .btn-small {
+      padding: 12px 24px;
+      font-size: 14px;
+      min-width: 120px;
+      border-radius: 8px;
+    }
+
+    /* 浮动按钮特殊样式 */
+    .floating-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      border-radius: 50px;
+      padding: 16px 28px;
+      box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
+      backdrop-filter: blur(10px);
+      background: linear-gradient(135deg, var(--primary-blue), #5BA0F2);
+      min-width: auto;
+    }
+
+    .floating-btn:hover {
+      transform: translateX(-50%) translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(74, 144, 226, 0.4);
+    }
+
+    /* 按钮图标样式 */
+    .btn svg,
+    .btn img {
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover svg,
+    .btn:hover img {
+      transform: scale(1.1);
+    }
+
+    /* 按钮文字效果 */
+    .btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 脉冲动画按钮 */
+    .btn.pulse {
+      animation: buttonPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+      }
+      50% {
+        box-shadow: 0 8px 25px rgba(74, 144, 226, 0.6);
+      }
+    }
+
+    /* 布局 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-light {
+      background: var(--bg-light);
+    }
+
+    .section-white {
+      background: var(--bg-white);
+    }
+
+    /* 文字样式 */
+    .text-center {
+      text-align: center;
+    }
+
+    .text-large {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .text-medium {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .text-small {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .text-xs {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .text-muted {
+      color: var(--text-gray);
+    }
+
+    .text-primary {
+      color: var(--primary-blue);
+    }
+
+    .text-success {
+      color: var(--primary-green);
+    }
+
+    .text-warning {
+      color: var(--primary-orange);
+    }
+
+    /* 网格布局 */
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    /* 确保内容不会溢出 */
+    .card h1,
+    .card h2,
+    .card h3,
+    .card h4,
+    .card h5,
+    .card h6 {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      white-space: normal;
+    }
+
+    .card p {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
+
+    /* 确保按钮文字不会换行 */
+    .btn {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 确保统计标签不会换行 */
+    .stat-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 确保特色图标标题不会换行 */
+    .feature-icon + h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 头像和图片 */
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg-white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .avatar-large {
+      width: 120px;
+      height: 120px;
+    }
+
+    /* 现代化统计数据 */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--bg-white);
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--bg-gradient);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .stat-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      background: var(--bg-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: var(--text-gray);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* 现代化特色图标 */
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-blue), #60A5FA);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: scaleIn 0.6s ease-out;
+    }
+
+    .feature-icon:nth-child(1) { animation-delay: 0.1s; }
+    .feature-icon:nth-child(2) { animation-delay: 0.2s; }
+    .feature-icon:nth-child(3) { animation-delay: 0.3s; }
+    .feature-icon:nth-child(4) { animation-delay: 0.4s; }
+
+    .feature-icon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .feature-icon:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+    }
+
+    .feature-icon:hover::before {
+      left: 100%;
+    }
+
+    .feature-icon.success {
+      background: linear-gradient(135deg, var(--primary-green), #34D399);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+
+    .feature-icon.success:hover {
+      box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+    }
+
+    .feature-icon.warning {
+      background: linear-gradient(135deg, var(--primary-orange), #FBBF24);
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    }
+
+    .feature-icon.warning:hover {
+      box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    .feature-icon.purple {
+      background: linear-gradient(135deg, var(--primary-purple), #A78BFA);
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .feature-icon.purple:hover {
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    /* 浮动按钮 */
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      border-radius: 50px;
+      padding: 16px 24px;
+      box-shadow: var(--shadow-strong);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 1024px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .section {
+        padding: 40px 0;
+      }
+
+      .text-large {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+
+      .text-medium {
+        font-size: 20px;
+        line-height: 1.3;
+      }
+
+      .text-small {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .btn {
+        width: 100%;
+        margin: 8px 0;
+        padding: 16px 24px;
+        font-size: 16px;
+      }
+
+      .card {
+        padding: 24px 20px;
+        margin: 12px 0;
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 16px;
+      }
+
+      .stat-item {
+        padding: 24px 16px;
+      }
+
+      .stat-number {
+        font-size: 28px;
+      }
+
+      .stat-label {
+        font-size: 14px;
+      }
+
+      /* 移动端悬浮按钮优化 */
+      .floating-btn {
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        transform: none;
+        width: auto;
+        max-width: 400px;
+        margin: 0 auto;
+        position: fixed;
+        padding: 14px 20px;
+        font-size: 14px;
+      }
+
+      .floating-btn:hover {
+        transform: translateY(-4px) scale(1.05);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+
+      .text-large {
+        font-size: 22px;
+      }
+
+      .text-medium {
+        font-size: 18px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        padding: 20px 16px;
+      }
+
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+
+  <!-- 装饰元素 -->
+  <div class="decoration decoration-1"></div>
+  <div class="decoration decoration-2"></div>
+  <div class="decoration decoration-3"></div>
+  <div class="decoration decoration-4"></div>
+  <div class="decoration decoration-5"></div>
+  <div class="decoration decoration-6"></div>
+
+  <!-- 粒子效果 -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <!-- 主页面 -->
+  <main>
+    <!-- 头部区域 -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="text-center fade-in-up">
+          <!-- 紧急通知 -->
+          <div class="card card-warning text-center" style="max-width: 600px; margin: 0 auto 32px;">
+            <div class="flex items-center justify-center mb-2">
+              <AlertCircle size="20" class="mr-2" />
+              <span class="text-medium">AI投資革命が始まっています</span>
+            </div>
+          </div>
+
+          <!-- 主标题 -->
+          <h1 class="text-large text-primary mb-6 fade-in-up">
+            一日で50万円を稼ぐ<br>
+            AI投資の秘密を<br>
+            小谷真生子が明かします
+          </h1>
+
+          <!-- 个人介绍 -->
+          <div class="card" style="max-width: 800px; margin: 0 auto 32px;">
+            <div class="flex items-center justify-center mb-6">
+              <Image src={avatar} alt="小谷真生子" width={100} height={100} class="avatar avatar-large mr-6" />
+              <div class="text-left">
+                <h2 class="text-medium text-primary mb-2">小谷真生子</h2>
+                <p class="text-small text-muted">AI投資戦略家・市場分析専門家</p>
+              </div>
+            </div>
+            <p class="text-small text-center">
+              「市場の高峰と低谷を経験し、成功には勇気、分析、そしてトレンドへの鋭い洞察が必要だと学びました」
+            </p>
+          </div>
+
+          <!-- 成功案例 -->
+          <div class="card card-success" style="max-width: 800px; margin: 0 auto 32px;">
+            <h3 class="text-medium text-center mb-6">私の実績</h3>
+
+            <div class="stats">
+              <div class="stat-item bounce delay-1">
+                <div class="stat-number">50万円</div>
+                <div class="stat-label">一日の最高収益</div>
+              </div>
+              <div class="stat-item bounce delay-2">
+                <div class="stat-number">+5,650%</div>
+                <div class="stat-label">驚異的成長率</div>
+              </div>
+              <div class="stat-item bounce delay-3">
+                <div class="stat-number">AI分析</div>
+                <div class="stat-label">投資手法</div>
+              </div>
+              <div class="stat-item bounce delay-4">
+                <div class="stat-number">構造変革</div>
+                <div class="stat-label">投資対象</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA按钮 -->
+          <button class="btn link-btn btn-primary btn-large pulse heartbeat">
+            <Image src={lineIcon} alt="LINE" width={24} height={24} />
+            <span>LINEでAI投資情報を入手</span>
+          </button>
+
+          <p class="text-small text-muted mt-4">
+            「受取」と送信するだけで最新戦略と銘柄情報を手に
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI革命说明 -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="text-center mb-8">
+          <div class="flex items-center justify-center mb-4">
+            <Brain size="32" class="text-primary mr-3" />
+            <h2 class="text-large text-primary">AIが変革する4つの業界</h2>
+          </div>
+          <p class="text-small text-muted">最大のチャンスは構造的な変革の中にあります</p>
+        </div>
+
+        <div class="grid grid-4">
+          <div class="card text-center">
+            <div class="feature-icon">
+              <BarChart3 size="28" />
+            </div>
+            <h3 class="text-medium text-primary mb-3">半導体</h3>
+            <p class="text-small text-muted">AIチップ需要の爆発的成長</p>
+          </div>
+
+          <div class="card text-center">
+            <div class="feature-icon success">
+              <Heart size="28" />
+            </div>
+            <h3 class="text-medium text-success mb-3">医療</h3>
+            <p class="text-small text-muted">AI診断・創薬の革命</p>
+          </div>
+
+          <div class="card text-center">
+            <div class="feature-icon warning">
+              <DollarSign size="28" />
+            </div>
+            <h3 class="text-medium text-warning mb-3">金融</h3>
+            <p class="text-small text-muted">AI取引・リスク管理の進化</p>
+          </div>
+
+          <div class="card text-center">
+            <div class="feature-icon purple">
+              <Rocket size="28" />
+            </div>
+            <h3 class="text-medium text-primary mb-3">製造業</h3>
+            <p class="text-small text-muted">スマートファクトリーの実現</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 投资理念 -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="text-large text-primary mb-4">私の投資哲学</h2>
+          <p class="text-small text-muted">戦略と忍耐が運よりもはるかに重要です</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3 class="text-medium text-primary mb-4">基本分析重視</h3>
+            <p class="text-small text-muted">
+              短期の変動ではなく、明確な競争優位性と堅実なファンダメンタルズを持つ企業に投資します。
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="text-medium text-success mb-4">長期的視点</h3>
+            <p class="text-small text-muted">
+              戦略と忍耐が運よりもはるかに重要です。AIの波は市場を形作り続けています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 成功案例时间线 -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="text-large text-primary mb-4">実績の証拠</h2>
+          <p class="text-small text-muted">AI分析による確実な成果</p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card text-center">
+            <div class="stat-number text-success mb-3">50万円</div>
+            <h3 class="text-medium text-primary mb-3">一日の収益</h3>
+            <p class="text-small text-muted">AI分析による短期投資の成功例</p>
+          </div>
+
+          <div class="card text-center">
+            <div class="stat-number text-primary mb-3">AI革命</div>
+            <h3 class="text-medium text-primary mb-3">構造変革への投資</h3>
+            <p class="text-small text-muted">半導体・医療・金融・製造業の変革を先取り</p>
+          </div>
+
+          <div class="card text-center">
+            <div class="stat-number text-warning mb-3">忍耐と分析</div>
+            <h3 class="text-medium text-primary mb-3">戦略的アプローチ</h3>
+            <p class="text-small text-muted">運に頼らない確実な投資手法</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 优势特点 -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="text-large text-primary mb-4">なぜ私の方法が選ばれるのか</h2>
+          <p class="text-small text-muted">確実な成果を生み出す4つの理由</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="feature-icon">
+              <Brain size="28" />
+            </div>
+            <h3 class="text-medium text-primary mb-3">AI分析の威力</h3>
+            <p class="text-small text-muted">膨大なデータを解析し、爆発直前のチャンスを抽出</p>
+          </div>
+
+          <div class="card">
+            <div class="feature-icon success">
+              <Target size="28" />
+            </div>
+            <h3 class="text-medium text-success mb-3">構造変革への投資</h3>
+            <p class="text-small text-muted">AIが変革する4つの業界に集中投資</p>
+          </div>
+
+          <div class="card">
+            <div class="feature-icon warning">
+              <Shield size="28" />
+            </div>
+            <h3 class="text-medium text-warning mb-3">確実な基本分析</h3>
+            <p class="text-small text-muted">競争優位性とファンダメンタルズを重視</p>
+          </div>
+
+          <div class="card">
+            <div class="feature-icon purple">
+              <Clock size="28" />
+            </div>
+            <h3 class="text-medium text-primary mb-3">長期的視点</h3>
+            <p class="text-small text-muted">短期変動に惑わされない戦略的投資</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最终CTA -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="text-large text-primary mb-6">今すぐAI投資を始めませんか？</h2>
+
+          <div class="card card-primary" style="max-width: 600px; margin: 0 auto 32px;">
+            <h3 class="text-medium text-center mb-4">AI投資の最新戦略と銘柄情報を手にするのは</h3>
+            <p class="text-small text-center mb-6">今この瞬間です</p>
+
+            <button class="btn link-btn btn-success btn-large pulse">
+              <Image src={lineIcon} alt="LINE" width={24} height={24} />
+              <span>LINEでAI投資情報を入手</span>
+            </button>
+          </div>
+
+          <p class="text-small text-muted">
+            チャンスは迷っている間に過ぎ去ります<br>
+            <span class="text-warning">今すぐ「受取」と送信してください</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 浮动按钮 -->
+  <button class="btn link-btn btn-primary floating-btn pulse glow">
+    <Image src={lineIcon} alt="LINE" width={20} height={20} />
+    <span>AI投資情報を入手</span>
+  </button>
+
+  <script is:inline>
+// 页面加载动画
+document.addEventListener('DOMContentLoaded', () => {
+  // 为所有动画元素添加延迟
+  const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left')
+  animatedElements.forEach((element, index) => {
+    element.style.animationDelay = `${index * 0.1}s`
+  })
+
+  // 数字计数动画
+  const statNumbers = document.querySelectorAll('.stat-number')
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'pulse 0.6s ease-out'
+      }
+    })
+  })
+
+  statNumbers.forEach((stat) => {
+    observer.observe(stat)
+  })
+})
+</script>
+</BaseLayout>
