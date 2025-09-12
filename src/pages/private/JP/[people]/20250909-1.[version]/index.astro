@@ -1,13 +1,19 @@
 ---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+
 export const getStaticPaths = (() => {
   return [
-    { params: { people: '堀江貴文', version: '0' }, props: { name: '堀江貴文', img_prefix: '' } },
+    { params: { people: '测试器', version: '0' }, props: { name: 'テスタ', img_prefix: 'csq1_' } },
   ]
 }) satisfies GetStaticPaths
 
 const { img_prefix, name: people } = Astro.props
 
-const img1 = import(`./static/${img_prefix}img.png`);
+const img1 = await import(`./static/${img_prefix}1.png`)
+const img2 = await import(`./static/${img_prefix}2.png`)
+const img3 = await import(`./static/${img_prefix}3.png`)
+const img5 = await import(`./static/${img_prefix}5.png`)
 ---
 <!doctype html>
 <html lang="jp">
@@ -86,13 +92,13 @@ const img1 = import(`./static/${img_prefix}img.png`);
 
   <body style="background-color: #e4e4e4">
     <div style="padding-bottom: 200px; max-width: 840px; margin: 0 auto; font-size: 0%">
-      <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/1.png" />
-      <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/2.png" />
-      <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/3.png" />
+      <Image src={img1.default} width={840} alt="Image 1" />
+      <Image src={img2.default} width={840} alt="Image 2" />
+      <Image src={img3.default} width={840} alt="Image 3" />
       <a href="javascript:{jump()}">
         <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/4.png" />
       </a>
-      <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/5.png" />
+      <Image src={img5.default} width={840} alt="Image 5" />
       <a href="javascript:{jump()}">
         <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/6.png" />
       </a>

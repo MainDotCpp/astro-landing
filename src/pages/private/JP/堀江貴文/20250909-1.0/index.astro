@@ -1,3 +1,6 @@
+
+---
+---
 <!doctype html>
 <html lang="jp">
   <head>
@@ -10,28 +13,30 @@
     <!--------------------------- ↓ ↓ ↓ ↓ ↓ ↓ 跟踪代码粘贴在下面 ↓ ↓ ↓ ↓ ↓ ↓ ----------------------------------->
 
     <script>
-      var link = 'https://www.google.com/'
+      let link = 'https://www.google.com/'
     </script>
 
     <script>
-      function jump() {
-        try {
-          if (typeof gtag_report_conversion !== 'undefined') {
-            gtag_report_conversion(link)
-          }
+ function jump() {
+   try {
+     if (typeof gtag_report_conversion !== 'undefined') {
+       gtag_report_conversion(link)
+     }
 
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'contact', {})
-          }
-        } catch (error) {
-          console.error(error)
-        } finally {
-          setTimeout(() => {
-            window.location.href = link
-          }, 100)
-        }
-      }
-    </script>
+     if (typeof gtag !== 'undefined') {
+       gtag('event', 'contact', {})
+     }
+   }
+ catch (error) {
+     console.error(error)
+   }
+ finally {
+     setTimeout(() => {
+       window.location.href = link
+     }, 100)
+   }
+ }
+ </script>
     <style>
       .tail-gif {
         position: fixed;
