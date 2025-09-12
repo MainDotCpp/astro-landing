@@ -27,13 +27,39 @@ const imgTc = await import('./static/tc.png')
 <html lang="jp">
 
 <head>
-  <meta charset="UTF-8" >
+  <meta charset="UTF-8">
   <meta
     name="viewport"
     content="width=device-width,inITial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no"
   />
-  <title>Kenmo</title>
+  <title>{people}</title>
+  <!--------------------------- ↓ ↓ ↓ ↓ ↓ ↓ 跟踪代码粘贴在下面 ↓ ↓ ↓ ↓ ↓ ↓ ----------------------------------->
 
+  <script is:inline>
+    let link = 'https://www.google.com/'
+  </script>
+
+  <script is:inline>
+function jump() {
+  try {
+    if (typeof gtag_report_conversion !== 'undefined') {
+      gtag_report_conversion(link)
+    }
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'contact', {})
+    }
+  }
+  catch (error) {
+    console.error(error)
+  }
+  finally {
+    setTimeout(() => {
+      window.location.href = link
+    }, 100)
+  }
+}
+</script>
   <style>
     .tail-gif {
       position: fixed;
@@ -83,7 +109,7 @@ const imgTc = await import('./static/tc.png')
   <div style="padding-bottom: 200px;max-width: 840px;margin: 0 auto;font-size: 0%;">
 
     <Image src={img1.default} width={840} alt="Image 1" />
-    <a href="https://mxoa.mobi/kenmo">
+    <a href="javascript:{jump()}">
       <Image src={img2.default} width={840} alt="Image 2" />
     </a>
     <Image src={img4.default} width={840} alt="Image 4" />
@@ -91,7 +117,7 @@ const imgTc = await import('./static/tc.png')
     <Image src={img6.default} width={840} alt="Image 6" />
     <Image src={img7.default} width={840} alt="Image 7" />
     <Image src={img8.default} width={840} alt="Image 8" />
-    <a href="https://mxoa.mobi/kenmo">
+    <a href="javascript:{jump()}">
       <Image src={img9.default} width={840} alt="Image 9" />
     </a>
     <Image src={img10.default} width={840} alt="Image 10" />
@@ -100,7 +126,7 @@ const imgTc = await import('./static/tc.png')
 
 
   <div class="tail-gif" style="max-width: 840px;">
-    <a href="https://mxoa.mobi/kenmo">
+    <a href="javascript:{jump()}">
       <Image src={imgTc.default} width={840} alt="Tail GIF" class="tail-gif-img" />
     </a>
   </div>
