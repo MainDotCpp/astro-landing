@@ -1,0 +1,110 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: 'kenmo', version: '0' }, props: { name: 'Kenmo', img_prefix: '' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { img_prefix, name: people } = Astro.props
+
+const img1 = await import('./static/1.png')
+const img2 = await import('./static/2.png')
+const img4 = await import('./static/4.png')
+const img5 = await import('./static/5.png')
+const img6 = await import('./static/6.png')
+const img7 = await import('./static/7.png')
+const img8 = await import('./static/8.png')
+const img9 = await import('./static/9.png')
+const img10 = await import('./static/10.png')
+const img11 = await import('./static/11.png')
+const imgTc = await import('./static/tc.png')
+---
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+  <meta charset="UTF-8" >
+  <meta
+    name="viewport"
+    content="width=device-width,inITial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no"
+  />
+  <title>Kenmo</title>
+
+  <style>
+    .tail-gif {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-align: center;
+      width: 100%;
+    }
+
+
+    .tail-gif-img {
+      display: block;
+      margin: 0 auto;
+      max-width: 28%;
+      border-radius: 115px;
+      animation: scaleAnimation 0.5s infinite alternate;
+    }
+
+    .tail-gif {
+      width: 100%;
+    }
+
+    .tail-gif img {
+      max-width: 100%;
+    }
+
+    @keyframes scaleAnimation {
+      0% {
+        transform: scale(0.9);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .aaa {
+      border-radius: 40px;
+      animation: scaleAnimation 0.5s infinite alternate;
+    }
+  </style>
+</head>
+
+<body style="background-color: #ffffff;">
+  <div style="padding-bottom: 200px;max-width: 840px;margin: 0 auto;font-size: 0%;">
+
+    <Image src={img1.default} width={840} alt="Image 1" />
+    <a href="https://mxoa.mobi/kenmo">
+      <Image src={img2.default} width={840} alt="Image 2" />
+    </a>
+    <Image src={img4.default} width={840} alt="Image 4" />
+    <Image src={img5.default} width={840} alt="Image 5" />
+    <Image src={img6.default} width={840} alt="Image 6" />
+    <Image src={img7.default} width={840} alt="Image 7" />
+    <Image src={img8.default} width={840} alt="Image 8" />
+    <a href="https://mxoa.mobi/kenmo">
+      <Image src={img9.default} width={840} alt="Image 9" />
+    </a>
+    <Image src={img10.default} width={840} alt="Image 10" />
+    <Image src={img11.default} width={840} alt="Image 11" />
+  </div>
+
+
+  <div class="tail-gif" style="max-width: 840px;">
+    <a href="https://mxoa.mobi/kenmo">
+      <Image src={imgTc.default} width={840} alt="Tail GIF" class="tail-gif-img" />
+    </a>
+  </div>
+
+</body>
+
+</html>
