@@ -14,6 +14,7 @@ const img1 = await import(`./static/${img_prefix}1.png`)
 const img2 = await import(`./static/${img_prefix}2.png`)
 const img3 = await import(`./static/${img_prefix}3.png`)
 const img5 = await import(`./static/${img_prefix}5.png`)
+const img7 = await import(`./static/${img_prefix}7.png`)
 ---
 <!doctype html>
 <html lang="jp">
@@ -102,7 +103,7 @@ const img5 = await import(`./static/${img_prefix}5.png`)
       <a href="javascript:{jump()}">
         <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/6.png" />
       </a>
-      <img width="100%" src="/mjSFqQ/JP/20250909-1.0/static/7.png" />
+      <Image src={img7.default} width={840} alt="Image 7" />
     </div>
 
     <div class="tail-gif" style="max-width: 840px">
