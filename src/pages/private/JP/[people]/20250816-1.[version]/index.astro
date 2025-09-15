@@ -4,9 +4,20 @@ import './static/css/normalize.min.css'
 import './static/css/style.css'
 import './static/css/app.css'
 import RedirectCode from '@/components/RedirectCode.astro'
+import { Image } from 'astro:assets'
+import type { GetStaticPaths } from 'astro'
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '通版', version: '0' }, props: { name: '通版', img_prefix: '' } },
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
+    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
+    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+  ]
+}) satisfies GetStaticPaths
+
+
 
 // Image imports
-import yugutitPc from './static/picture/yugutit_2301_pc.png'
 import lineTalkBg from './static/picture/line_talk_bg01.jpg'
 import lineTalk01 from './static/picture/line_talk01.png'
 import lineTalk02 from './static/picture/line_talk02.png'
@@ -18,6 +29,9 @@ import lineTalk07 from './static/picture/line_talk07.png'
 import lineTalk08 from './static/picture/line_talk08.png'
 import lineTalk09 from './static/picture/line_talk09.png'
 import contactImg from './static/picture/contact.jpg'
+
+const { name: people, img_prefix } = Astro.props
+const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
 ---
 
 <!doctype html>
@@ -40,7 +54,7 @@ import contactImg from './static/picture/contact.jpg'
         <div>
           <!--   图片响应-->
           <picture>
-            <img src={yugutitPc.src} alt="" class="img-rounded img-responsive" />
+            <Image src={yugutitPc} alt="" class="img-rounded img-responsive" />
           </picture>
         </div>
         <section class="l-cv">
