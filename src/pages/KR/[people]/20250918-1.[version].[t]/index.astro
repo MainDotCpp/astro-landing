@@ -1,0 +1,178 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+
+export function getStaticPaths() {
+  const pages = [
+      { params: { people: '柳秀真', version: '0' }, props: { name: '유수진', img_prefix: 'lxz_' } },
+      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
+      { params: { people: '南锡宽', version: '0' }, props: { name: '남석관', img_prefix: 'nxk_' } },
+      { params: { people: '富人电视', version: '0' }, props: { name: '부자티비', img_prefix: 'frds_' } },
+      { params: { people: '闵秀雅', version: '0' }, props: { name: '민수아', img_prefix: 'mxy_' } },
+      { params: { people: '朴世益', version: '0' }, props: { name: '박세익', img_prefix: 'psy_' } },
+      { params: { people: '金永益', version: '0' }, props: { name: '김영익', img_prefix: 'jyy_' } },
+      { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
+      { params: { people: '廉承煥', version: '0' }, props: { name: '염승환', img_prefix: 'lch_' } },
+      { params: { people: '洪春旭', version: '0' }, props: { name: '홍춘욱', img_prefix: 'hcx_' } },
+      { params: { people: '总理猴', version: '0' }, props: { name: '소수몽키', img_prefix: 'zlh_' } },
+      { params: { people: '国家人口和经济研究所', version: '0' }, props: { name: '전인구경제연구소', img_prefix: 'yjs_' } },
+      { params: { people: '小猴属', version: '0' }, props: { name: '소수몽키', img_prefix: 'xhs_' } },
+      { params: { people: '金美京', version: '0' }, props: { name: '김미경', img_prefix: 'jmj_' } },
+      { params: { people: '洪春旭', version: '1' }, props: { name: '홍춘욱', img_prefix: 'hcx1_' } },
+      { params: { people: '朴世益', version: '1' }, props: { name: '박세익', img_prefix: 'psy1_' } },
+      { params: { people: '富人电视', version: '1' }, props: { name: '부자티비', img_prefix: 'frds1_' } },
+      { params: { people: '舒卡世界漫画', version: '0' }, props: { name: '슈카월드 코믹스', img_prefix: 'yu_' } },
+      { params: { people: '常言道语', version: '0' }, props: { name: '노말이', img_prefix: 'cydy_' } },
+      { params: { people: '郑在浩', version: '0' }, props: { name: '정재호', img_prefix: 'zzh_' } },
+      { params: { people: '孔炳浩', version: '0' }, props: { name: '공병호', img_prefix: 'kbh1_' } },
+]
+return [
+  ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
+]
+}
+
+const { t = '棒群' } = Astro.params
+const { img_prefix, name } = Astro.props
+
+// 可选的专家头像
+const expertAvatar = img_prefix ? import(`../images/${img_prefix}head.jpg`) : null
+---
+
+<KRBaseLayout title={`${name} 주식투자 학습`} description="체계적인 주식투자 학습 자료를 통해 진정한 투자 실력을 기르세요">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+    <!-- Hero Section -->
+    <section class="px-4 py-12">
+      <div class="max-w-sm mx-auto">
+        <!-- Main Title Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-6 text-center">
+          <h1 class="text-3xl font-bold text-gray-900 mb-4 leading-tight">
+            진짜로 주식 투자를<br >
+            <span class="text-blue-600">배우고 싶으신가요?</span>
+          </h1>
+          <p class="text-gray-600 text-base leading-relaxed">
+            뉴스와 소문만으로는 결코<br >
+            시장을 따라잡을 수 없습니다
+          </p>
+        </div>
+
+        <!-- Problem Statement Card -->
+        <div class="bg-red-50 border-l-4 border-red-400 rounded-lg p-6 mb-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="w-6 h-6 bg-red-400 rounded-full flex items-center justify-center">
+                <span class="text-white text-sm font-bold">!</span>
+              </div>
+            </div>
+            <div class="ml-3">
+              <p class="text-red-800 font-semibold text-base">
+                더 이상 무작정 따라가지 마십시오
+              </p>
+              <p class="text-red-600 text-sm mt-1">
+                진짜 투자는 미리 준비하는 것입니다
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Solution Card -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 mb-6 text-white">
+          <h2 class="text-xl font-bold mb-3">우리는 지금 학습 자료를 제공하고 있습니다</h2>
+          <p class="text-blue-100 text-sm leading-relaxed">
+            여기에는 체계적인 투자 방법뿐만 아니라,<br >
+            최근 가장 주목해야 할 폭등주와 성장주도 담겨 있습니다
+          </p>
+        </div>
+
+        <!-- Learning Points -->
+        <div class="space-y-4 mb-8">
+          <h3 class="text-lg font-bold text-gray-900 text-center mb-6">핵심 학습 내용</h3>
+
+          <!-- Learning Point 1 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-400">
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-3">
+                <span class="text-white font-bold text-sm">1</span>
+              </div>
+              <h4 class="font-semibold text-gray-900">시장 신호를 읽는 방법 학습</h4>
+            </div>
+            <p class="text-gray-600 text-sm">데이터 기반의 투자 분석 방법을 체계적으로 학습합니다</p>
+          </div>
+
+          <!-- Learning Point 2 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-400">
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center mr-3">
+                <span class="text-white font-bold text-sm">2</span>
+              </div>
+              <h4 class="font-semibold text-gray-900">핵심 산업의 성장 논리 이해</h4>
+            </div>
+            <p class="text-gray-600 text-sm">산업별 성장 동력과 투자 기회를 파악하는 방법을 배웁니다</p>
+          </div>
+
+          <!-- Learning Point 3 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-400">
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center mr-3">
+                <span class="text-white font-bold text-sm">3</span>
+              </div>
+              <h4 class="font-semibold text-gray-900">잠재력 있는 종목 직접 수령</h4>
+            </div>
+            <p class="text-gray-600 text-sm">검증된 분석을 통해 선별된 우수 종목 정보를 받아보세요</p>
+          </div>
+        </div>
+
+        <!-- Expert Section (Optional) -->
+        {expertAvatar && (
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden">
+              <Image src={expertAvatar} alt={name} class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-1">{name}</h4>
+            <p class="text-gray-600 text-sm">투자 전문가</p>
+          </div>
+        )}
+
+        <!-- CTA Section -->
+        <div class="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl p-6 text-center">
+          <h3 class="text-lg font-bold text-gray-900 mb-3">지금 바로 시작하세요!</h3>
+          <p class="text-gray-700 text-sm mb-6">
+            아래 링크를 클릭해 자료를 받아가시고,<br >
+            당신만의 투자 성장 여정을 시작하세요!
+          </p>
+
+          <CtaButton
+            social={t}
+            text={t === '棒群' ? 'BAND에서 자료 받기' : '카톡에서 자료 받기'}
+            size="lg"
+            class="w-full bg-white text-gray-900 font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          />
+
+          <!-- Trust Indicators -->
+          <div class="flex justify-center space-x-6 mt-6 text-xs text-gray-600">
+            <span class="flex items-center">
+              <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+              100% 무료
+            </span>
+            <span class="flex items-center">
+              <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+              즉시 제공
+            </span>
+            <span class="flex items-center">
+              <span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
+              검증된 자료
+            </span>
+          </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="text-center mt-8 text-xs text-gray-500">
+          <p>투자에는 위험이 따릅니다. 신중한 투자 결정을 하시기 바랍니다.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</KRBaseLayout>
