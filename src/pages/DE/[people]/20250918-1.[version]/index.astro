@@ -7,9 +7,11 @@ export const getStaticPaths = (() => {
     return [
         { params: { people: 'Dirk_Müller', version: '0' }, props: { name: 'Dirk Müller', img_prefix: 'dm_' } },
         { params: { people: 'Über_Philip_Hopfs', version: '0' }, props: { name: 'Über Philip Hopfs', img_prefix: 'ph_' } },
+        { params: { people: 'Über_Philip_Hopfs', version: '1' }, props: { name: 'Über Philip Hopfs', img_prefix: 'ph2_' } },
         { params: { people: 'Florian_Homm', version: '0' }, props: { name: 'Florian Homm', img_prefix: 'fh_' } },
         { params: { people: 'Florian_Homm', version: '1' }, props: { name: 'Florian Homm', img_prefix: 'fh2_' } },
         { params: { people: 'Florian_Homm', version: '2' }, props: { name: 'Florian Homm', img_prefix: 'fh3_' } },
+        { params: { people: '通版', version: '2' }, props: { name: '通版', img_prefix: 'n_' } },
     ]
 }) satisfies GetStaticPaths
 
