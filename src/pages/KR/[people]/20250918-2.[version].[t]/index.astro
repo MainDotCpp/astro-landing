@@ -15,8 +15,6 @@ export function getStaticPaths() {
       { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
       { params: { people: '廉承煥', version: '0' }, props: { name: '염승환', img_prefix: 'lch_' } },
       { params: { people: '洪春旭', version: '0' }, props: { name: '홍춘욱', img_prefix: 'hcx_' } },
-      { params: { people: '总理猴', version: '0' }, props: { name: '소수몽키', img_prefix: 'zlh_' } },
-      { params: { people: '国家人口和经济研究所', version: '0' }, props: { name: '전인구경제연구소', img_prefix: 'yjs_' } },
       { params: { people: '小猴属', version: '0' }, props: { name: '소수몽키', img_prefix: 'xhs_' } },
       { params: { people: '金美京', version: '0' }, props: { name: '김미경', img_prefix: 'jmj_' } },
       { params: { people: '洪春旭', version: '1' }, props: { name: '홍춘욱', img_prefix: 'hcx1_' } },
@@ -26,6 +24,7 @@ export function getStaticPaths() {
       { params: { people: '常言道语', version: '0' }, props: { name: '노말이', img_prefix: 'cydy_' } },
       { params: { people: '郑在浩', version: '0' }, props: { name: '정재호', img_prefix: 'zzh_' } },
       { params: { people: '孔炳浩', version: '0' }, props: { name: '공병호', img_prefix: 'kbh1_' } },
+      { params: { people: '吴建英', version: '0' }, props: { name: '오건영', img_prefix: 'wjy1_' } },
 ]
 return [
   ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
@@ -38,9 +37,199 @@ return [
 const { t = '棒群' } = Astro.params
 const { img_prefix, name } = Astro.props
 
-// 可选的专家头像
-const expertAvatar = img_prefix ? import(`../images/${img_prefix}head.jpg`) : null
+// 配图
+const mainImage = import(`../images/${img_prefix}img1.jpg`)
 ---
 
-<KRBaseLayout title="" description="">
- </KRBaseLayout>
+<KRBaseLayout title={`${name} 투자 혁신`} description="혁신적인 투자 방법으로 3억원 수익을 달성하는 현대적 접근법">
+  <div class="min-h-screen bg-black text-white overflow-hidden">
+    <!-- Hero Section - Asymmetric Layout -->
+    <section class="h-screen relative flex items-center justify-center px-4">
+      <!-- Background Geometric Shapes -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-20 left-10 w-32 h-32 bg-yellow-400 transform rotate-45 opacity-20"></div>
+        <div class="absolute top-40 right-20 w-24 h-24 bg-blue-500 rounded-full opacity-30"></div>
+        <div class="absolute bottom-32 left-1/4 w-16 h-16 bg-red-500 transform rotate-12 opacity-25"></div>
+        <div class="absolute bottom-20 right-1/3 w-20 h-20 bg-green-500 transform -rotate-45 opacity-20"></div>
+      </div>
+
+      <div class="relative z-10 max-w-sm mx-auto text-center">
+        <!-- Asymmetric Title Layout -->
+        <div class="mb-8">
+          <h1 class="text-6xl font-black leading-tight mb-4">
+            <span class="block text-white">진짜로</span>
+            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">주식 투자를</span>
+            <span class="block text-white">배우고 싶으신가요?</span>
+          </h1>
+          <p class="text-xl text-gray-300 leading-relaxed">
+            뉴스와 소문만으로는 결코<br >
+            시장을 따라잡을 수 없습니다
+          </p>
+        </div>
+
+        <!-- Geometric CTA Button -->
+        <CtaButton
+          social={t}
+          size="lg"
+          class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black py-4 px-8 rounded-none transform hover:scale-110 hover:rotate-2 transition-all duration-300 shadow-2xl"
+        />
+      </div>
+    </section>
+
+    <!-- Problem Section - Triangular Design -->
+    <section class="py-20 px-4 relative">
+      <div class="max-w-sm mx-auto">
+        <!-- Triangular Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent transform -skew-y-2"></div>
+
+        <div class="relative z-10">
+          <div class="bg-red-500/20 backdrop-blur-sm p-8 border-l-8 border-red-500">
+            <h2 class="text-3xl font-black text-red-400 mb-4">⚠️ 문제</h2>
+            <p class="text-xl text-white leading-relaxed">
+              더 이상 무작정 따라가지 마십시오.<br >
+              진짜 투자는 미리 준비하는 것입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section - Circular Design -->
+    <section class="py-20 px-4 relative">
+      <div class="max-w-sm mx-auto">
+        <!-- Circular Background -->
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full transform scale-110"></div>
+
+        <div class="relative z-10 text-center">
+          <div class="bg-blue-500/20 backdrop-blur-sm p-8 rounded-3xl border-4 border-blue-500/30">
+            <h2 class="text-3xl font-black text-blue-400 mb-6">💡 해결책</h2>
+            <p class="text-lg text-white leading-relaxed mb-6">
+              우리는 지금 학습 자료를 제공하고 있습니다.<br >
+              여기에는 체계적인 투자 방법뿐 아니라,<br >
+              최근 가장 주목해야 할 폭등주와 성장주도 담겨 있습니다.
+            </p>
+
+            <!-- Main Image with Geometric Frame -->
+            <div class="relative">
+              <div class="absolute -inset-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl transform rotate-3"></div>
+              <div class="relative bg-black p-2 rounded-2xl">
+                <Image src={mainImage} alt="투자 학습 자료" class="w-full rounded-xl" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Content Section - Asymmetric Grid -->
+    <section class="py-20 px-4 relative">
+      <div class="max-w-sm mx-auto">
+        <h2 class="text-4xl font-black text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+          핵심 학습 내용
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Learning Point 1 - Asymmetric -->
+          <div class="flex items-center bg-gradient-to-r from-green-500/20 to-teal-500/20 p-6 rounded-2xl transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mr-6 transform -rotate-12">
+              <span class="text-2xl">📊</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-white mb-2">시장 신호를 읽는 방법 학습</h3>
+              <p class="text-gray-300 text-sm">데이터 기반의 정확한 시장 분석</p>
+            </div>
+          </div>
+
+          <!-- Learning Point 2 - Asymmetric -->
+          <div class="flex items-center bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 ml-8">
+            <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mr-6 transform rotate-12">
+              <span class="text-2xl">🏭</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-white mb-2">핵심 산업의 성장 논리 이해</h3>
+              <p class="text-gray-300 text-sm">산업별 성장 동력과 투자 기회 파악</p>
+            </div>
+          </div>
+
+          <!-- Learning Point 3 - Asymmetric -->
+          <div class="flex items-center bg-gradient-to-r from-orange-500/20 to-red-500/20 p-6 rounded-2xl transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mr-6 transform -rotate-6">
+              <span class="text-2xl">💎</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-white mb-2">잠재력 있는 종목 직접 수령</h3>
+              <p class="text-gray-300 text-sm">검증된 우수 종목 정보 제공</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Story Section - Large Numbers -->
+    <section class="py-20 px-4 relative">
+      <div class="max-w-sm mx-auto">
+        <!-- Geometric Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 transform skew-y-1"></div>
+
+        <div class="relative z-10 text-center">
+          <div class="bg-gradient-to-r from-yellow-400 to-orange-500 p-8 rounded-3xl transform -rotate-1">
+            <h2 class="text-2xl font-black text-black mb-6">💰 실제 성공 사례</h2>
+            <div class="space-y-4">
+              <p class="text-lg font-semibold text-black">
+                👉 올바른 방법을 익힌 한 투자자는
+              </p>
+              <div class="text-6xl font-black text-black">단 2주 만에</div>
+              <div class="text-8xl font-black text-black">3억 원</div>
+              <div class="text-xl font-semibold text-black">의 수익을 올렸습니다!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section - Multiple Creative Buttons -->
+    <section class="py-20 px-4 relative">
+      <div class="max-w-sm mx-auto">
+        <h2 class="text-4xl font-black text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+          지금 바로 시작하세요!
+        </h2>
+
+        <p class="text-xl text-gray-300 text-center mb-12 leading-relaxed">
+          기회는 기다려주지 않습니다.<br >
+          투자는 준비한 사람의 것입니다.<br >
+          투자 성장과 자산 도약을 시작하십시오!
+        </p>
+
+        <!-- Creative Button Layout -->
+        <div class="space-y-4">
+          <!-- Button 1 - Square -->
+          <CtaButton
+            social={t}
+            size="lg"
+            class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-black py-4 px-8 rounded-none transform hover:scale-105 hover:rotate-1 transition-all duration-300 shadow-2xl"
+          />
+
+
+        </div>
+
+        <!-- Trust Indicators with Geometric Design -->
+        <div class="flex justify-center space-x-4 mt-8">
+          <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-bold transform -rotate-12">
+            🔒 100% 무료
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-bold transform rotate-12">
+            ⚡ 즉시 제공
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-bold transform -rotate-6">
+            ✅ 검증됨
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="text-center text-gray-400 text-xs pb-8">
+      <p>투자에는 위험이 따릅니다. 신중한 투자 결정을 하시기 바랍니다.</p>
+    </div>
+  </div>
+</KRBaseLayout>
