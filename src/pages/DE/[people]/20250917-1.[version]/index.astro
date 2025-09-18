@@ -15,7 +15,7 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths
 
 const { name: people, img_prefix } = Astro.props
-const mainPhoto = import(`./img/${img_prefix}2.jpg`);
+const mainPhoto = import(`../images/${img_prefix}img1.jpg`);
 ---
 
 <!doctype html>
