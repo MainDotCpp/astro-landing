@@ -1,24 +1,13 @@
 ---
-// CSS imports
-import './static/css/normalize.min.css'
-import './static/css/style.css'
-import './static/css/app.css'
-import RedirectCode from '@/components/RedirectCode.astro'
-import { Image } from 'astro:assets'
+// Type imports
 import type { GetStaticPaths } from 'astro'
-export const getStaticPaths = (() => {
-  return [
-    { params: { people: '通版', version: '0' }, props: { name: '通版', img_prefix: '' } },
-    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
-    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
-    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
-  ]
-}) satisfies GetStaticPaths
+// Asset imports
+import { Image } from 'astro:assets'
+// Component imports
+import RedirectCode from '@/components/RedirectCode.astro'
 
+import contactImg from './static/picture/contact.jpg'
 
-
-// Image imports
-import lineTalkBg from './static/picture/line_talk_bg01.jpg'
 import lineTalk01 from './static/picture/line_talk01.png'
 import lineTalk02 from './static/picture/line_talk02.png'
 import lineTalk03 from './static/picture/line_talk03.png'
@@ -28,10 +17,34 @@ import lineTalk06 from './static/picture/line_talk06.png'
 import lineTalk07 from './static/picture/line_talk07.png'
 import lineTalk08 from './static/picture/line_talk08.png'
 import lineTalk09 from './static/picture/line_talk09.png'
-import contactImg from './static/picture/contact.jpg'
+import lineTalkBg from './static/picture/line_talk_bg01.jpg'
+// CSS imports
+import './static/css/normalize.min.css'
+import './static/css/style.css'
 
-const { name: people, img_prefix } = Astro.props
-const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
+import './static/css/app.css'
+
+export const getStaticPaths = (() => {
+  const pges = [
+    { params: { people: '通版', version: '0' }, props: { name: '通版', img_prefix: '' } },
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
+    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
+    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+  ]
+  return [
+    ...pges.map(p => ({ params: { ...p.params, ext: '普通' }, props: p.props })),
+    ...pges.map(p => ({ params: { ...p.params, ext: '弹窗禁止关闭' }, props: p.props })),
+    ...pges.map(p => ({ params: { ...p.params, ext: '延迟弹窗' }, props: p.props })),
+  ]
+}) satisfies GetStaticPaths
+
+const { name: _people, img_prefix } = Astro.props
+const { ext } = Astro.params || {}
+const yugutitPc = import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
+
+// 判断弹窗模式
+const isDelayedModal = ext === '延迟弹窗'
+const isNoCloseModal = ext === '弹窗禁止关闭'
 ---
 
 <!doctype html>
@@ -125,16 +138,18 @@ const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
                     <h3 class="ql-align-center">
                       <span class="stylish-title2"><b>アナリスト評価が高い銘柄！</b></span>
                     </h3>
-                    <p class="ql-align-center"> </p>
+                    <p class="ql-align-center">&nbsp;</p>
                     <p class="ql-align-center">
-                      <span id="idqi1"
-                        >アナリストレーティングが高い、直近のPV数が多い、目標株価との乖離幅が大きい銘柄をランキング</span
+                      <span id="idqi1">アナリストレーティングが高い、直近のPV数が多い、目標株価との乖離幅が大きい銘柄をランキング</span
                       ><br /><span id="idke4j"><strong>買い予想・ PVランキング</strong></span
                       ><strong>はこちら▼</strong>
                     </p>
                   </div>
-                  <a data-ga-event="button2"  class="link-btn LpgComp3CardBtn LpgExSmallBtn" id="i5zkfj"
-                    ><b>買い予想・PVﾗﾝｷﾝｸﾞ</b></a
+                  <a
+                    data-ga-event="button2"
+                    class="link-btn LpgComp3CardBtn LpgExSmallBtn"
+                    id="i5zkfj"
+                  ><b>買い予想・PVﾗﾝｷﾝｸﾞ</b></a
                   >
                 </div>
               </div>
@@ -144,14 +159,17 @@ const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
                     <h3 class="ql-align-center">
                       <span class="stylish-title2"><b>将来性あり！</b></span>
                     </h3>
-                    <p class="ql-align-center"> </p>
+                    <p class="ql-align-center">&nbsp;</p>
                     <p class="ql-align-center">
                       <span id="izf9cj">直近の業績が好調で、将来性があり、株価上昇にも期待ができる銘柄を抽出</span
                       ><br /><span id="id0xkk"><strong>成長期待株はこちら▼</strong></span>
                     </p>
                   </div>
-                  <a data-ga-event="button3" class="link-btn LpgComp3CardBtn LpgExSmallBtn" id="ipusq8"
-                    ><b>成長期待株 ></b></a
+                  <a
+                    data-ga-event="button3"
+                    class="link-btn LpgComp3CardBtn LpgExSmallBtn"
+                    id="ipusq8"
+                  ><b>成長期待株 &gt;</b></a
                   >
                 </div>
               </div>
@@ -159,8 +177,7 @@ const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
                 <div class="LpgComp3CardBody LpgComp3Card3CardContBody" id="ifsotc">
                   <div class="LpgComp3CardTxt">
                     <h3 class="ql-align-center">
-                      <span id="io6ab5"
-                        ><span class="stylish-title2"><b>出来高の多い上位100銘柄！</b></span></span
+                      <span id="io6ab5"><span class="stylish-title2"><b>出来高の多い上位100銘柄！</b></span></span
                       >
                     </h3>
                     <p class="ql-align-center">
@@ -171,8 +188,11 @@ const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
                       ><strong>はこちら▼</strong>
                     </p>
                   </div>
-                  <a data-ga-event="button4"  class="link-btn LpgComp3CardBtn LpgExSmallBtn" id="ifgeeo"
-                    ><b>出来高ランキング ></b></a
+                  <a
+                    data-ga-event="button4"
+                    class="link-btn LpgComp3CardBtn LpgExSmallBtn"
+                    id="ifgeeo"
+                  ><b>出来高ランキング &gt;</b></a
                   >
                 </div>
               </div>
@@ -222,12 +242,21 @@ const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
       </article>
     </main>
     <!-- 模态框 -->
-    <div id="myModal" class="modal">
+    <div
+      id="myModal"
+      class={`modal ${
+      isDelayedModal
+? 'modal-delayed'
+      : isNoCloseModal
+? 'modal-no-close'
+      : 'modal-immediate'
+    }`}
+    >
       <div class="modal-content" id="i8r90y">
-        <span class="close">×</span>
+        <span class="close" style={isNoCloseModal ? 'display: none;' : ''}>×</span>
         <p id="ilcpin">空きがあと226名です!!!LINEにすぐに追加してください!</p>
         <button id="ih48aj" class="link-btn">
-          <a  id="ii0o5v">追加後、「受取」を送信して情報を取得します </a>
+          <a id="ii0o5v">追加後、「受取」を送信して情報を取得します </a>
         </button>
       </div>
     </div>
@@ -290,8 +319,26 @@ const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
         border-radius: 50px;
         color: rgb(255, 255, 255);
       }
-      #myModal {
+      /* 模态框显示控制 */
+      .modal-immediate {
         display: block;
+      }
+
+      .modal-delayed {
+        display: none;
+      }
+
+      .modal-no-close {
+        display: block;
+      }
+
+      /* 禁止关闭模式样式 */
+      .modal-no-close .close {
+        display: none !important;
+      }
+
+      .modal-no-close .modal-content {
+        pointer-events: auto;
       }
       #ih48aj {
         background-color: #f44336;
@@ -311,5 +358,45 @@ const yugutitPc =  import(`./static/picture/${img_prefix}yugutit_2301_pc.png`)
         color: white;
       }
     </style>
+
+    <script>
+// 弹窗逻辑
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('myModal')
+  const closeBtn = document.querySelector('.close')
+
+  if (!modal)
+    return
+
+  const isDelayedModal = modal.classList.contains('modal-delayed')
+  const isNoCloseModal = modal.classList.contains('modal-no-close')
+
+  // 如果是延迟弹窗模式，5秒后显示模态框
+  if (isDelayedModal) {
+    setTimeout(() => {
+      if (modal) {
+        modal.style.display = 'block'
+      }
+    }, 5000) // 5秒延迟
+  }
+
+  // 如果不是禁止关闭模式，添加关闭功能
+  if (!isNoCloseModal && closeBtn) {
+    // 关闭按钮事件
+    closeBtn.addEventListener('click', () => {
+      if (modal) {
+        modal.style.display = 'none'
+      }
+    })
+
+    // 点击模态框外部关闭
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none'
+      }
+    })
+  }
+})
+</script>
   </body>
 </html>
