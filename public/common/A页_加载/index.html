@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="refresh" content="3;url=https://baidu.com" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>読み込み中...</title>
+    <meta name="description" content="ページを読み込み中です。しばらくお待ちください..." />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', 'MS PGothic', 'MS Pゴシック',
+          sans-serif;
+        background: #f8f9fa;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .loading-container {
+        text-align: center;
+        color: #2c3e50;
+        padding: 2rem 1rem;
+        max-width: 400px;
+        width: 90%;
+      }
+
+      .loading-title {
+        font-size: 2rem;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease-out 0.3s forwards;
+        color: #2c3e50;
+        letter-spacing: 0.05em;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #e9ecef;
+        border-top: 3px solid #6c757d;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+        margin: 0 auto 2rem;
+      }
+
+      .loading-text {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease-out 0.6s forwards;
+        color: #6c757d;
+        font-weight: 300;
+      }
+
+      .loading-progress {
+        width: 280px;
+        height: 2px;
+        background: #e9ecef;
+        border-radius: 2px;
+        margin: 0 auto;
+        overflow: hidden;
+        opacity: 0;
+        animation: fadeInUp 1s ease-out 0.9s forwards;
+      }
+
+      .loading-progress-bar {
+        height: 100%;
+        background: #6c757d;
+        border-radius: 2px;
+        animation: progress 3s ease-in-out forwards;
+      }
+
+      .redirect-info {
+        font-size: 0.85rem;
+        margin-top: 2rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease-out 1.2s forwards;
+        color: #adb5bd;
+        font-weight: 300;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes progress {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .loading-container {
+          padding: 2rem 1.5rem;
+          max-width: 350px;
+        }
+
+        .loading-title {
+          font-size: 1.8rem;
+        }
+
+        .loading-progress {
+          width: 250px;
+        }
+
+        .loading-spinner {
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .loading-container {
+          padding: 1.5rem 1rem;
+          max-width: 300px;
+        }
+
+        .loading-title {
+          font-size: 1.5rem;
+        }
+
+        .loading-progress {
+          width: 200px;
+        }
+
+        .loading-text {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 主要内容 -->
+    <div class="loading-container">
+      <h1 class="loading-title">読み込み中</h1>
+      <div class="loading-spinner"></div>
+      <p class="loading-text">お待ちください...</p>
+      <div class="loading-progress">
+        <div class="loading-progress-bar"></div>
+      </div>
+      <p class="redirect-info">3秒後に自動的に移動します</p>
+    </div>
+  </body>
+</html>
