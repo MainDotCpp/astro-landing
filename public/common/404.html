@@ -1,99 +1,174 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="5;url=https://youtube.com" />
-    <title>Page Not Found</title>
-    <meta name="description" content="Sorry, the page you are looking for does not exist" />
-    <link rel="icon" type="image/svg+xml" href="/mjSFqQ/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500&family=Noto+Sans+SC:wght@200;300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Noto Sans JP', 'Noto Sans SC', 'sans-serif'],
-            },
-            animation: {
-              fadeIn: 'fadeIn 0.8s ease-out',
-            },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-            },
-          },
-        },
-      }
-    </script>
+    <title>简单页面 - 404</title>
+    <meta name="description" content="一个简单的、无任何意义的页面" />
+  </head>
+  <body>
+    <div class="simple-page">
+      <div class="container">
+        <h1 class="title">简单页面</h1>
+        <p class="subtitle">这是一个简单的、无任何意义的页面</p>
+
+        <div class="content-grid">
+          <div class="card">
+            <h3>卡片 1</h3>
+            <p>这里有一些随机的内容，没有任何特殊意义。</p>
+          </div>
+
+          <div class="card">
+            <h3>卡片 2</h3>
+            <p>更多随机内容，纯粹为了填充空间。</p>
+          </div>
+
+          <div class="card">
+            <h3>卡片 3</h3>
+            <p>最后一个卡片，同样没有实际用途。</p>
+          </div>
+        </div>
+
+        <div class="random-section">
+          <h2>随机信息</h2>
+          <ul class="random-list">
+            <li>项目创建时间：2024年</li>
+            <li>技术栈：Astro + TypeScript</li>
+            <li>页面类型：静态页面</li>
+            <li>用途：演示和测试</li>
+          </ul>
+        </div>
+
+        <div class="footer-note">
+          <p>这个页面没有任何实际功能，仅用于展示。</p>
+        </div>
+      </div>
+    </div>
+
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        background: #f8fafc;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+      }
+
+      .simple-page {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .card h3 {
+        color: #333;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+
+      .card p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .random-section {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .random-section h2 {
+        color: white;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .random-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .random-list li {
+        color: rgba(255, 255, 255, 0.9);
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 1.1rem;
+      }
+
+      .random-list li:last-child {
+        border-bottom: none;
+      }
+
+      .footer-note {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        .title {
+          font-size: 2rem;
+        }
+
+        .content-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .card {
+          padding: 1.5rem;
+        }
       }
     </style>
-  </head>
-  <body class="font-sans min-h-screen flex items-center justify-center px-4">
-    <main class="text-center animate-fadeIn max-w-md mx-auto">
-      <!-- Icon -->
-      <div class="mb-8">
-        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto">
-          <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Main Message -->
-      <div class="mb-8">
-        <h1 class="text-4xl font-light text-slate-800 mb-4">Page Not Found</h1>
-        <p class="text-slate-500 text-sm leading-relaxed">
-          Sorry, the page you are looking for does not exist or has been moved
-        </p>
-      </div>
-
-      <!-- Current URL -->
-      <div class="mb-8">
-        <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
-          <p class="text-xs text-slate-500 mb-2">Current URL:</p>
-          <p class="text-sm text-slate-700 font-mono break-all" id="currentUrl"></p>
-        </div>
-      </div>
-
-      <!-- Action Hint -->
-      <div class="text-slate-400 text-xs mb-2">Please check the URL or return to homepage</div>
-      <div class="text-slate-500 text-xs" id="countdown">Redirecting to homepage in 5 seconds</div>
-    </main>
-
-    <script>
-      // Display current URL without params
-      document.getElementById('currentUrl').textContent = window.location.origin + window.location.pathname
-
-      // Countdown timer
-      let countdown = 5
-      const countdownElement = document.getElementById('countdown')
-
-      const timer = setInterval(() => {
-        countdown--
-        if (countdown > 0) {
-          countdownElement.textContent = `Redirecting to homepage in ${countdown} seconds`
-        } else {
-          countdownElement.textContent = 'Redirecting...'
-          clearInterval(timer)
-        }
-      }, 1000)
-    </script>
   </body>
 </html>
