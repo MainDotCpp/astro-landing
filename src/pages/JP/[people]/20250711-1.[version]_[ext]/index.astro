@@ -1,25 +1,35 @@
 ---
-import type { GetStaticPaths, ImageMetadata } from 'astro'
+import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
-import {
-  AlertTriangle,
-  Camera,
-  Check,
-  ChevronRight,
-  Crown,
-  Gift,
-  Heart,
-  Lock,
-  MessageCircle,
-  Star,
-  TrendingUp,
-  Zap,
-} from 'lucide-astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import btn from './static/btn.png'
 
+
 export const getStaticPaths = (() => {
-  return [
+  const copyConfigs = [
+    {
+      ext: '毎週300％の利益',
+      img_prefixes: ['sq_', 'sq1_', 'sq2_', 'sq3_', 'sq5_', 'mlz_', 'mlz1_', 'mlz2_', 'psh_', 'psh1_', 'qzyz_', 'dq_', 'dq1_', 'cssz_', 'gqyy_', 'btj_', 'zsz_', 'zsz1_', 'tg_'],
+
+      copy: {
+        mainText: (people: string) => `${people}のLINEを無料で追加し、「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、毎週300％の利益が期待できる優良銘柄の情報も手に入れることができます。`,
+        ctaText: '今すぐ参加して、優良株をゲットしましょう！',
+        subText: '今すぐ参加して、優良株をゲットしましょう！',
+        lineText: 'LINEを追加して「受取」を送信すると、最新の株価上昇ニュースを無料で入手できる！',
+      },
+    },
+    {
+      ext: '10月限定暴利',
+      img_prefixes: ['sq5_'],
+      copy: {
+        mainText: (people: string) => `${people}のLINEを無料で追加し、「受取」と送信するだけで、翌日上がる銘柄がわかります。9月の実戦結果では、9,311人が235％の驚異的リターンを獲得。情報精度は87％という驚異的な数字を記録しました。10月はさらに激しい展開が予想され、1週間で586万円を狙える銘柄が既に仕掛けられています。この暴利の波に乗れるのは、情報を先取りできる人だけです。`,
+        ctaText: 'LINEを追加して、10月限定の最新情報を受け取ってください。',
+        subText: '今すぐ参加して、10月の暴利チャンスを掴みましょう！',
+        lineText: 'LINEを追加して「受取」を送信すると、10月限定の最新株価上昇情報を無料で入手できる！',
+      },
+    },
+  ]
+  const pages = [
     { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq_' } },
     { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq1_' } },
     { params: { people: '三橋貴明', version: '2' }, props: { name: '三橋貴明', img_prefix: 'sq2_' } },
@@ -41,13 +51,31 @@ export const getStaticPaths = (() => {
     { params: { people: '小谷真生子', version: '1' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
     { params: { people: '桐谷広人', version: '1' }, props: { name: '桐谷広人', img_prefix: 'tg_' } },
     // { params: { people: '両学長', version: '0' }, props: { name: '両学長', img_prefix: 'xz_' } },
-
   ]
+
+  const result = []
+  for (const copyConfig of copyConfigs) {
+    for (const page of pages) {
+      // 检查当前页面的img_prefix是否在配置的列表中
+      if (copyConfig.img_prefixes.includes(page.props.img_prefix)) {
+        const peopleName = page.props.name || page.params.people || ''
+        const { ctaText, subText, lineText } = copyConfig.copy
+        const mainText = copyConfig.copy.mainText(peopleName)
+        result.push({
+          params: { ...page.params, ext: copyConfig.ext },
+          props: { ...page.props, copy: { mainText, ctaText, subText, lineText } },
+        })
+      }
+    }
+  }
+
+  return result
 }) satisfies GetStaticPaths
 
-const { img_prefix, name: people } = Astro.props
+const { img_prefix, name: people, copy } = Astro.props
 const header = import(`./static/${img_prefix}header.png`)
-const img1 = import(`./static/${img_prefix}img.png`);
+const img1 = import(`./static/${img_prefix}img.png`)
+const { mainText, ctaText, lineText } = copy || {}
 ---
 
 <BaseLayout title={people} description={people}>
@@ -56,19 +84,14 @@ const img1 = import(`./static/${img_prefix}img.png`);
   >
     <Image src={header} alt={people} />
     <div class="text-xl px-4">
-      {
-        people
-      }のLINEを無料で追加し、「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、毎週300％の利益が期待できる優良銘柄の情報も手に入れることができます。
+      {mainText}
     </div>
     <h3 class="text-xl font-bold text-center px-4">
-      今すぐ参加して、優良株をゲ<br />
-      ットしましょう！
+      {ctaText}
     </h3>
     <Image class="link-btn animate-breathe" src={btn} alt="btn" />
     <h3 class="text-xl font-bold text-center px-4">
-      LINEを追加して「受取」を送信する<br />
-      と、最新の株価上昇ニュースを<br />
-      無料で入手できる！
+      {lineText}
     </h3>
     <Image src={img1} alt="img1" />
     <Image class="link-btn animate-breathe" src={btn} alt="btn" />
