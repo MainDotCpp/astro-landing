@@ -1,0 +1,101 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import BaseLayout from '@/layouts/KRBaseLayout.astro'
+// Import CSS files
+import './static/css/style2.css'
+import './static/css/animate.min.css'
+import './static/css/slick-theme.css'
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const pages = [
+  { params: { people: '柳秀真', version: '0' }, props: { name: '유수진', img_prefix: 'lxz_' } },
+      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
+      { params: { people: '南锡宽', version: '0' }, props: { name: '남석관', img_prefix: 'nxk_' } },
+      { params: { people: '富人电视', version: '0' }, props: { name: '부자티비', img_prefix: 'frds_' } },
+      { params: { people: '闵秀雅', version: '0' }, props: { name: '민수아', img_prefix: 'mxy_' } },
+      { params: { people: '朴世益', version: '0' }, props: { name: '박세익', img_prefix: 'psy_' } },
+      { params: { people: '金永益', version: '0' }, props: { name: '김영익', img_prefix: 'jyy_' } },
+      { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
+      { params: { people: '廉承煥', version: '0' }, props: { name: '염승환', img_prefix: 'lch_' } },
+      { params: { people: '洪春旭', version: '0' }, props: { name: '홍춘욱', img_prefix: 'hcx_' } },
+      { params: { people: '小猴属', version: '0' }, props: { name: '소수몽키', img_prefix: 'xhs_' } },
+      { params: { people: '金美京', version: '0' }, props: { name: '김미경', img_prefix: 'jmj_' } },
+      { params: { people: '洪春旭', version: '1' }, props: { name: '홍춘욱', img_prefix: 'hcx1_' } },
+      { params: { people: '朴世益', version: '1' }, props: { name: '박세익', img_prefix: 'psy1_' } },
+      { params: { people: '富人电视', version: '1' }, props: { name: '부자티비', img_prefix: 'frds1_' } },
+      { params: { people: '舒卡世界漫画', version: '0' }, props: { name: '슈카월드 코믹스', img_prefix: 'yu_' } },
+      { params: { people: '常言道语', version: '0' }, props: { name: '노말이', img_prefix: 'cydy_' } },
+      { params: { people: '郑在浩', version: '0' }, props: { name: '정재호', img_prefix: 'zzh_' } },
+      { params: { people: '孔炳浩', version: '0' }, props: { name: '공병호', img_prefix: 'kbh1_' } },
+{ params: { people: '孔炳浩', version: '1' }, props: { name: '공병호', img_prefix: 'kbh2_' } },
+{ params: { people: '孔炳浩', version: '2' }, props: { name: '공병호', img_prefix: 'kbh3_' } },
+      { params: { people: '吴建英', version: '0' }, props: { name: '오건영', img_prefix: 'wjy1_' } },
+{ params: { people: '吴建英', version: '1' }, props: { name: '오건영', img_prefix: 'wjy2_' } },
+{ params: { people: '宣大仁', version: '1' }, props: { name: '선대인', img_prefix: 'xdr1_' } },
+
+]
+return [
+  ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
+]
+}
+
+const { t = '棒群' } = Astro.params
+const { img_prefix, name } = Astro.props as { img_prefix: string, name: string }
+const headImg = (await import(`../images/${img_prefix}head.jpg`)).default
+
+const socialOptions = ['卡扣', '棒群', '混合', '引导弹窗'] as const
+type Social = typeof socialOptions[number]
+const social: Social | undefined = socialOptions.includes(t as Social) ? (t as Social) : undefined
+---
+
+
+<BaseLayout title={`${name} 주식투자`} description={`${name} 주식투자 전문가`}>
+  <div class="min-h-screen bg-emerald-950">
+        {/* Hero Section */}
+    <section class="bg-emerald-950 text-white py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex justify-center">
+
+          {/* Right Expert Card */}
+          <div class="bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-sm border border-emerald-700/30 w-full">
+            <div class="text-center">
+              <Image src={headImg} alt={name} class="w-64 h-64 mx-auto mb-6 bg-slate-200 rounded-xl object-cover flex items-center justify-center">
+              </Image>
+
+              <h3 class="text-3xl md:text-4xl font-bold text-white mb-2">{name}</h3>
+              <p class="text-yellow-400 mb-6 text-lg md:text-xl">당신의 재테크 전문가</p>
+
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">35+</div>
+                  <div class="text-base md:text-lg text-emerald-100">년</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">65만+</div>
+                  <div class="text-base md:text-lg text-emerald-100">팬</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">85%</div>
+                  <div class="text-base md:text-lg text-emerald-100">승률</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl md:text-4xl font-bold text-yellow-400">300%</div>
+                  <div class="text-base md:text-lg text-emerald-100">평균수익률</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 text-center">
+          <CtaButton social={social} />
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
