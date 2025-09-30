@@ -18,14 +18,14 @@
 import BandButton from '@/components/button/BandButton.astro'
 ---
 
-<BandButton text="BAND에서 무료 급등주 받기" />
+<BandButton text="Band--전문가 그룹에 무료로 가입하다" />
 ```
 
 ## Props
 
 | 属性 | 类型 | 默认值 | 描述 |
 |------|------|--------|------|
-| `text` | `string` | `'BAND에서 무료 급등주 받기'` | 按钮文本 |
+| `text` | `string` | `'Band--전문가 그룹에 무료로 가입하다'` | 按钮文本 |
 | `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | 按钮尺寸 |
 | `icon` | `boolean` | `true` | 是否显示图标 |
 | `loading` | `boolean` | `false` | 是否显示加载状态 |
