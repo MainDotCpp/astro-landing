@@ -1,0 +1,830 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import btn from './static/btn.png'
+import RedirectCode from '@/components/RedirectCode.astro'
+export const getStaticPaths = (() => {
+  const pages = [
+    { params: { people: '高桥丹', version: '0' }, props: { name: 'ダン・タカハシ', img_prefix: 'gqd_' } },
+  ]
+  return pages
+}) satisfies GetStaticPaths
+
+const { people, version } = Astro.params
+const name = Astro.props.name
+const avatar = (await import(`../images/${people}_avatar.jpg`)).default
+const img1 = (await import(`../images/${people}_${version}_1.jpg`)).default
+---
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>【無料公開】{name} の投資セミナー - 急騰銘柄を無料で配信中！</title>
+    
+    <RedirectCode />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダーセクション */
+        .hero-section {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 25px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 60px;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #ffd600;
+            color: #1a237e;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            box-shadow: 0 6px 15px rgba(255, 214, 0, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* プロフィールセクション */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin-bottom: 70px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ffd600, #1a237e);
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a237e, #3949ab);
+            margin-right: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #ffd600;
+            border: 6px solid #ffd600;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #ffd600, transparent);
+            border-radius: 2px;
+        }
+
+        .profile-description {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .credentials {
+            background: #e8eaf6;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 5px solid #ffd600;
+            font-size: 1.1rem;
+        }
+
+        /* メリットセクション */
+        .benefits-section {
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1a237e;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: #ffd600;
+            margin: 20px auto;
+            border-radius: 3px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .benefit-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, #ffd600, #1a237e);
+        }
+
+        .benefit-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+        }
+
+        .benefit-card p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* 実績セクション */
+        .results-section {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            /* padding: 70px 50px; */
+            border-radius: 20px;
+            margin-bottom: 70px;
+            box-shadow: 0 15px 35px rgba(26, 35, 126, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        .results-title {
+            font-size: 2.3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .result-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ffd600;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-text {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* 証言セクション */
+        .testimonials-section {
+            margin-bottom: 70px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 5rem;
+            color: #e8eaf6;
+            font-family: Georgia, serif;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .testimonial-text {
+            position: relative;
+            z-index: 2;
+            font-style: italic;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            text-align: right;
+            font-weight: bold;
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+
+        /* CTAセクション */
+        .cta-section {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+            color: white;
+            padding: 80px 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 70px;
+            box-shadow: 0 20px 40px rgba(26, 35, 126, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 C20,40 50,20 100,30 L100,100 L0,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .cta-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffd600;
+            color: #1a237e;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 22px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 25px 0;
+            box-shadow: 0 10px 25px rgba(255, 214, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 214, 0, 0.6);
+        }
+
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+
+        .guarantee {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            color: #ffd600;
+        }
+
+        /* フッター */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1rem;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, #ffd600 60%);
+            padding: 0 5px;
+            font-weight: bold;
+        }
+
+        /* レスポンシブデザイン - タブレット */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.6rem;
+            }
+
+            .profile-section {
+                padding: 40px 35px;
+            }
+
+            .profile-img {
+                width: 180px;
+                height: 180px;
+                margin-right: 35px;
+                font-size: 3.5rem;
+            }
+
+            .benefits-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* レスポンシブデザイン - モバイル */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-badge {
+                font-size: 1.1rem;
+                padding: 10px 25px;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 35px 25px;
+            }
+
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 30px;
+                width: 160px;
+                height: 160px;
+                font-size: 3rem;
+            }
+
+            .profile-title {
+                font-size: 1.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .benefits-grid,
+            .testimonials-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-card,
+            .testimonial,
+            .result-item {
+                padding: 30px 25px;
+            }
+
+            .cta-section {
+                padding: 60px 30px;
+            }
+
+            .cta-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-button {
+                font-size: 1.5rem;
+                padding: 20px 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero-section {
+                padding: 60px 0 40px;
+            }
+
+            .profile-section {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-title {
+                font-size: 1.9rem;
+            }
+
+            .cta-button {
+                font-size: 1.3rem;
+                padding: 18px 35px;
+            }
+        }
+
+        .tail-gif {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            width: 100%;
+            z-index: 9;
+        }
+
+
+        .tail-gif-img {
+            display: block;
+            margin: 0 auto;
+            max-width: 28%;
+            border-radius: 135px;
+            animation: scaleAnimation 0.5s infinite alternate;
+        }
+
+
+        .tail-gif {
+            width: 100%;
+        }
+
+        .tail-gif img {
+            max-width: 100%;
+        }
+
+        @keyframes scaleAnimation {
+            0% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヒーローセクション -->
+    <section class="hero-section">
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">限定100名様</div>
+                <h1><span class="highlight">無料</span>で学ぶ！{name}の<br ><span class="highlight">急騰銘柄</span>分析術</h1>
+                <p class="hero-subtitle">コーネル大学を3年で卒業、Magna Cum Laude受賞の天才投資家が贈る</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" style="padding-bottom: 150px;">
+        <!-- プロフィールセクション -->
+        <section class="profile-section">
+            <Image src={avatar} alt="avatar" class="profile-img" />
+            <div class="profile-info">
+                <h2 class="profile-title">{name}</h2>
+                <p class="profile-description">東京生まれアメリカ育ちの日米ハーフ。コーネル大学をわずか<span class="highlight">3年で卒業</span>し、<span
+                  class="highlight"
+                                                                                                                 >Magna Cum Laude</span>（最優秀成績）を受賞。</p>
+                <div class="credentials">
+                    <p><strong>実績：</strong> 過去3年間でポートフォリオ<span class="highlight">+427%</span>増、<span
+                      class="highlight"
+                                                                                               >97%</span>の的中率を誇る銘柄分析</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- メリットセクション -->
+        <section class="benefits-section">
+            <h2 class="section-title">今すぐLINE登録で<span class="highlight">無料プレゼント</span>！</h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h3>無料レポート</h3>
+                    <p>「今すぐ買うべき<span class="highlight">急騰候補株3銘柄</span>」を限定公開</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>分析テクニック</h3>
+                    <p>プロだけが知る<span class="highlight">株価急騰のサイン</span>を見極める方法</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💬</div>
+                    <h3>限定コミュニティ</h3>
+                    <p>{name}直伝の投資情報を<span class="highlight">いち早く受け取れる</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実績セクション -->
+        <section class="results-section">
+
+            <Image src={img1} alt="img1" class='w-full' >
+            <h2 class="results-title">{name}の<span class="highlight">驚異的な実績</span></h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <div class="result-number">427%</div>
+                    <div class="result-text">過去3年間の<br >ポートフォリオ成長率</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-number">97%</div>
+                    <div class="result-text">銘柄分析の<br >的中率</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-number">3,200+</div>
+                    <div class="result-text">指導した<br >投資家の数</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-number">15分</div>
+                    <div class="result-text">最短での<br >急騰実績</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 証言セクション -->
+        <section class="testimonials-section">
+            <h2 class="section-title">参加者の<span class="highlight">喜びの声</span></h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">「ダン先生のアドバイスで、わずか2週間で<span
+                      class="highlight"
+                                                                    >+85%</span>の利益を実現！今まで自己流で損ばかりでしたが、プロの視点は本当に違います。」</p>
+                    <p class="testimonial-author">- 東京都 40代 会社員</p>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-text">「最初は半信半疑でしたが、無料で教えていただいた銘柄が<span
+                      class="highlight"
+                                                                           >3日で30%上昇</span>！今ではダン先生の全てのセミナーに参加しています。」</p>
+                    <p class="testimonial-author">- 大阪府 50代 自営業</p>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-text">「今まで数十万円の教材を購入しましたが、ダン先生の無料コンテンツが最も役に立ちました。<span
+                      class="highlight"
+                                                                                           >1ヶ月で投資資金が2倍</span>になりました！」</p>
+                    <p class="testimonial-author">- 神奈川県 30代 主婦</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTAセクション -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">いますぐLINE登録！<br ><span class="highlight">無料で</span>急騰銘柄を受け取ろう</h2>
+                <p class="cta-subtitle">この機会を逃すと、次に急騰する銘柄を見逃すかもしれません</p>
+                <a  class="cta-button link-btn">LINEで無料登録する</a>
+                <p class="guarantee">※ 登録は<span class="highlight">完全無料</span>、いつでも解除できます</p>
+            </div>
+        </section>
+
+        <!-- フッター -->
+        <div class="footer">
+            <p>※ 投資にはリスクが伴います。過去の実績は将来の結果を保証するものではありません。</p>
+            <p>© 2025 Dan Takahashi Investment Academy. All rights reserved.</p>
+        </div>
+    </div>
+
+    <div class="tail-gif" style="max-width: 840px;">
+        <a class="link-btn">
+            <Image src={btn} alt="" class="tail-gif-img w-full" />
+        </a>
+    </div>
+
+    <script is:inline>
+// 簡単なアニメーション効果
+document.addEventListener('DOMContentLoaded', () => {
+  // スクロール時の要素表示アニメーション
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1
+        entry.target.style.transform = 'translateY(0)'
+      }
+    })
+  }, observerOptions)
+
+  // アニメーション対象の要素
+  const animatedElements = document.querySelectorAll('.profile-section, .benefit-card, .result-item, .testimonial')
+
+  animatedElements.forEach((el) => {
+    el.style.opacity = 0
+    el.style.transform = 'translateY(20px)'
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'
+    observer.observe(el)
+  })
+
+  // CTAボタンのホバー効果強化
+  const ctaButton = document.querySelector('.cta-button')
+  if (ctaButton) {
+    ctaButton.addEventListener('mouseenter', function () {
+      this.style.transform = 'translateY(-5px) scale(1.05)'
+    })
+
+    ctaButton.addEventListener('mouseleave', function () {
+      this.style.transform = 'translateY(-5px) scale(1)'
+    })
+  }
+})
+</script>
+</body>
+
+</html>
