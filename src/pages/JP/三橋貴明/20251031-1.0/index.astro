@@ -1,0 +1,421 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import btn1 from './img/btn1-min.png?url'
+
+import mf1i1 from './img/mf1i1-min.jpg?url'
+import mf1i2 from './img/mf1i2-min.png?url'
+import mf1i3 from './img/mf1i3-min.png?url'
+import mf1i4 from './img/mf1i4-min.png?url'
+import mf1i5 from './img/mf1i5-min.png?url'
+import mf1i6jpg from './img/mf1i6-min.jpg?url'
+import mf1i6 from './img/mf1i6-min.png?url'
+import mf1i7 from './img/mf1i7-min.png?url'
+import mf1t1 from './img/mf1t1-min.png?url'
+import mf1t2 from './img/mf1t2-min.png?url'
+import mf1t3 from './img/mf1t3-min.png?url'
+import mf5bg from './img/mf5bg-min.jpg?url'
+import mf5bgs from './img/mf5bgs-min.jpg?url'
+import mf5i1s from './img/mf5i1s-min.png?url'
+import mf31i1 from './img/mf31i1-min.png?url'
+import mf31i2 from './img/mf31i2-min.png?url'
+import mf31t1 from './img/mf31t1-min.png?url'
+import mf32i1 from './img/mf32i1-min.png?url'
+import mf32i2 from './img/mf32i2-min.png?url'
+import mf32i3 from './img/mf32i3-min.png?url'
+import mf32i4 from './img/mf32i4-min.png?url'
+import mf32i5 from './img/mf32i5-min.png?url'
+import mf32t1 from './img/mf32t1-min.png?url'
+import mf33i1 from './img/mf33i1-min.png?url'
+import mf33i2 from './img/mf33i2-min.png?url'
+import mf33i3 from './img/mf33i3-min.png?url'
+import mf33t1 from './img/mf33t1-min.png?url'
+import mf34i1 from './img/mf34i1-min.png?url'
+import mf34i2 from './img/mf34i2-min.png?url'
+import mf35i1 from './img/mf35i1-min.png?url'
+import mf35i2 from './img/mf35i2-min.png?url'
+import mf35i3 from './img/mf35i3-min.png?url'
+import mf35i4 from './img/mf35i4-min.png?url'
+import mf35i5 from './img/mf35i5-min.png?url'
+import mf35i6 from './img/mf35i6-min.png?url'
+import mf35i7 from './img/mf35i7-min.png?url'
+import mf35i8 from './img/mf35i8-min.png?url'
+import mf35i9 from './img/mf35i9-min.png?url'
+import mf35i10 from './img/mf35i10-min.png?url'
+import mf35i11 from './img/mf35i11-min.png?url'
+import mf35i12 from './img/mf35i12-min.png?url'
+import mf35i13 from './img/mf35i13-min.png?url'
+import mf35i14 from './img/mf35i14-min.png?url'
+import mf36i1 from './img/mf36i1-min.png?url'
+import mf36i2 from './img/mf36i2-min.png?url'
+import mf36i3 from './img/mf36i3-min.png?url'
+import mf36t1 from './img/mf36t1-min.png?url'
+import mf37i1 from './img/mf37i1-min.png?url'
+import mf37i2 from './img/mf37i2-min.png?url'
+import mf37i3 from './img/mf37i3-min.png?url'
+import mf37i4 from './img/mf37i4-min.png?url'
+import mf37i5 from './img/mf37i5-min.png?url'
+import mf37i6 from './img/mf37i6-min.png?url'
+import mf37t1 from './img/mf37t1-min.png?url'
+import mf38i1jpg from './img/mf38i1-min.jpg?url'
+import mf38t1 from './img/mf38t1-min.png?url'
+import mf39t1 from './img/mf39t1-min.png?url'
+import mv2s from './img/mv2s-min.jpg?url'
+import sp from './img/sp.png?url'
+import './css/normalize.css'
+import './css/style.css'
+
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no, email=no, address=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet" />
+
+    <RedirectCode />
+    <script type="module" src="/src/utils/jump.ts"></script>
+    <script is:inline>
+function onScroll() {
+  const elm = document.querySelector('.floating_area')
+  if (!elm)
+    return
+  const scroll = window.pageYOffset
+  if (scroll > 500) {
+    elm.style.opacity = '1'
+    elm.style.zIndex = '999'
+  }
+  else {
+    elm.style.opacity = '0'
+    elm.style.zIndex = '-1'
+  }
+}
+window.addEventListener('scroll', onScroll)
+</script>
+    <title>金融の本当のプロから学ぶ資産倍速セミナー</title>
+  </head>
+
+  <body>
+    <div class="floating_area">
+      <div class="frame">
+        <div class="btn">
+          <a href="javascript:void(0)" onclick="mixinJump()">
+            <img src={btn1} alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="mv">
+      <picture><source media="(max-width: 768px)" srcset={mv2s} />
+        <img src={mv2s} alt="" />
+      </picture>
+    </div>
+    <div class="mv_cta">
+      <div class="btn">
+        <a href="javascript:void(0)" onclick="mixinJump()">
+          <img src={btn1} alt="" />
+        </a>
+      </div>
+    </div>
+    <div id="mf31" class="mf">
+      <div class="frame">
+        <h2><img src={mf31t1} alt="" loading="lazy" /></h2>
+        <div class="fbox flex">
+          <img src={mf31i1} alt="" loading="lazy" />
+          <img src={mf31i2} alt="" loading="lazy" />
+        </div>
+      </div>
+    </div>
+    <div id="mf2" class="mf">
+      <div class="frame">
+        <h2><img src={mf1t1} alt="" loading="lazy" /></h2>
+        <div class="cbox">
+          <!-- <div class="ttl1 ac"><img src={mf1t2} alt="" loading="lazy" /></div>
+          <div class="cboxs">
+            <img src={mf1i1} alt="" loading="lazy" />
+          </div> -->
+          <!-- <p class="t_600 ac">日本経済新聞に掲載されました</p> -->
+          <div class="ttl2 ac"><img src={mf1t3} alt="" loading="lazy" /></div>
+          <div class="cboxs">
+            <img src={mf1i6jpg} alt="" loading="lazy" />
+          </div>
+          <p class="t_600 ac">国民の金融リテラシー向上を<br class="sp" />目的とした企業団体に参画</p>
+        </div>
+        <div class="fbox">
+          <div class="fboxs">
+            <img src={mf1i2} alt="" loading="lazy" />
+          </div>
+          <div class="fboxs">
+            <img src={mf1i3} alt="" loading="lazy" />
+          </div>
+          <div class="fboxs">
+            <img src={mf1i4} alt="" loading="lazy" />
+          </div>
+          <div class="fboxs">
+            <img src={mf1i5} alt="" loading="lazy" />
+          </div>
+          <div class="fboxs">
+            <img src={mf1i6} alt="" loading="lazy" />
+          </div>
+          <div class="fboxs">
+            <img src={mf1i7} alt="" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mf32" class="mf">
+      <div class="frame">
+        <h2><img src={mf32t1} alt="" loading="lazy" /></h2>
+        <div class="fbox">
+          <img src={mf32i1} alt="" loading="lazy" />
+          <img src={mf32i2} alt="" loading="lazy" />
+          <img src={mf32i3} alt="" loading="lazy" />
+          <img src={mf32i4} alt="" loading="lazy" />
+          <img src={mf32i5} alt="" loading="lazy" />
+        </div>
+      </div>
+    </div>
+    <div id="mf33" class="mf">
+      <div class="arr"><img src={mf33i3} alt="" loading="lazy" /></div>
+      <div class="frame">
+        <h2><img src={mf33t1} alt="" loading="lazy" /></h2>
+        <div class="cbox">
+          <h3 class="t_white"><img src={mf33i1} alt="" loading="lazy" />長期で見て成績が良いから</h3>
+          <p>
+            S&P500は、過去30年以上にわたって年平均7〜10％の成長を続けてきました。また、全世界株式（通称：オルカン）は、世界経済全体の成長をまるごと取り込める投資先として注目されており、安定したリターンが期待できるため。
+          </p>
+        </div>
+        <div class="cbox">
+          <h3 class="t_white">
+            <img src={mf33i2} alt="" loading="lazy" />分散投資ができ、手間がかからないから
+          </h3>
+          <p>
+            1つの企業に賭けるより、数百・数千の企業に分散する方が安全であるため。またS&P500はアメリカ企業500社、オルカンは世界中の約3,000社以上が対象のため分散投資ができ手間がかからないため・・・
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="mf34" class="mf">
+      <div class="arr"><img src={mf34i1} alt="" loading="lazy" /></div>
+      <div class="frame">
+        <div class="tbox1 t_white t_800">
+          <p>
+            S&P500やオルカンは多数の企業を<br />広く分散して保有しているため<br /><span class="t_yellow">資産が増えるのに<br class="sp" />時間がかかってしまう・・・</span
+            >
+          </p>
+          <p>また、景気後退があった場合<br /><span class="t_yellow t_12">大きく下落してしまう・・・</span></p>
+        </div>
+        <div class="ibox">
+          <img src={mf34i2} alt="" loading="lazy" />
+        </div>
+        <div class="tbox2 t_white t_800">
+          <p>しかし・・・</p>
+        </div>
+      </div>
+    </div>
+    <div id="mf35" class="mf">
+      <div class="arr"><img src={mf35i1} alt="" loading="lazy" /></div>
+      <div class="frame">
+        <div class="tbox1 t_800">
+          <p>
+            金融知識を横断的に学ぶことで<br /><span class="t_red t_12">厳しい経済情勢でも<br class="sp" />資産を増やせる<br />仕組みを作る事が可能です！</span
+            >
+          </p>
+        </div>
+        <div class="ibox">
+          <img src={mf35i2} alt="" loading="lazy" />
+        </div>
+        <div class="wrapper">
+          <h3 class="t_white ac w_fit">
+            本セミナーで<br class="sp" />金融知識のエッセンス<br />身に着ける事で<br />網羅的に<span class="t_yellow">知識<span class="t_08">（一部分）</span><br class="sp" />が手に入る</span
+            >
+          </h3>
+          <div class="fbox">
+            <img src={mf35i3} alt="" loading="lazy" />
+            <img src={mf35i4} alt="" loading="lazy" />
+            <img src={mf35i5} alt="" loading="lazy" />
+            <img src={mf35i6} alt="" loading="lazy" />
+            <img src={mf35i7} alt="" loading="lazy" />
+            <img src={mf35i8} alt="" loading="lazy" />
+            <img src={mf35i9} alt="" loading="lazy" />
+            <img src={mf35i10} alt="" loading="lazy" />
+            <img src={mf35i11} alt="" loading="lazy" />
+            <img src={mf35i12} alt="" loading="lazy" />
+          </div>
+        </div>
+        <div class="tbox">
+          <p>
+            一般的にはこちらの図のように、それぞれの分野が独立していると思われていますが、<br
+              class="pc"
+                                                   />経済のニュースなどから<br class="pc" /><span class="t_red t_600 t_14">それぞれに関係性を付けて、<br class="pc" />市場全体の流れが予測できるようになります。</span
+            >
+          </p>
+        </div>
+        <div class="cbox flex">
+          <div class="cboxs">
+            <img src={mf35i13} alt="" />
+          </div>
+          <div class="c_arr"><span></span></div>
+          <div class="cboxs">
+            <img src={mf35i14} alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div id="mf5" class="mf">
+        <div class="frame">
+          <div class="ibox">
+            <img src={mf5i1s} alt="" loading="lazy" class="pc" />
+            <img src={mf5i1s} alt="" loading="lazy" class="sp" />
+          </div>
+        </div>
+      </div>
+      <picture>
+        <img src={sp} alt="" class="sp" loading="lazy" />
+      </picture>
+    </div>
+    <div id="mf36" class="mf">
+      <div class="frame">
+        <h2><img src={mf36t1} alt="" loading="lazy" /></h2>
+        <div class="cbox">
+          <figure><img src={mf36i1} alt="" loading="lazy" /></figure>
+          <h3>
+            世界最大級の投資銀行<span class="t_red">ゴールドマン・サックス<br class="pc" />証券出身者</span
+            >から金融知識が学べる！
+          </h3>
+          <p>
+            一度は耳にしたことがあると思いますがゴールドマン・サックス証券とは、法人、金融機関、世界中の政府機関などに、証券業務や資産運用業務を提供している世界最大級のアメリカの投資銀行です。<br />毎年数人しか採用されない新卒枠で採用された講師から、ニューヨーク、香港、日本で経験したことを基に、短期的な目先の利益ではなく、運用商品を見定める力、金融のプロとして働ける横断的な知識などをわかりやすくお伝えします。
+          </p>
+        </div>
+        <div class="cbox">
+          <figure><img src={mf36i2} alt="" loading="lazy" /></figure>
+          <h3>金融商品を「買うべきかどうか」を<br /><span class="t_red">判断するためのポイント</span>がわかる</h3>
+          <p>
+            金融商品は、経済の状況によって「買うべきか、待つべきか」といった判断が必要になります。<br />このセミナーでは、今のような経済状況でどの金融商品を選ぶべきか、明確に判断できるようになるためのポイントをお伝えします。
+          </p>
+        </div>
+        <div class="cbox">
+          <figure><img src={mf36i3} alt="" loading="lazy" /></figure>
+          <h3>あなたの目標に合わせた<span class="t_red">ロードマップ</span>の<br class="pc" />エッセンスが学べる</h3>
+          <p>
+            老後に資金が不足しないよう、シミュレーションを行いながら、各種ローンや保険、ライフプランとの向き合い方を数字に基づいて分析します。<br />これにより、生涯を通じて必要となる資金の流れを明確に把握できるようになります。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="mf37" class="mf">
+      <div class="frame">
+        <h2><img src={mf37t1} alt="" loading="lazy" /></h2>
+        <div class="cbox">
+          <div class="icon"><img src={mf37i1} alt="" loading="lazy" /></div>
+          <h3 class="ac">53歳男性Fさん<br class="sp" /><span class="t_08">（2023年8月入会）</span></h3>
+          <div class="cboxs flex">
+            <img src={mf37i2} alt="" loading="lazy" />
+            <div class="c_arr"><span></span></div>
+            <img src={mf37i3} alt="" loading="lazy" />
+          </div>
+          <p>
+            入会前は、「オルカン（全世界株式インデックスファンド）」の積立投資のみを行っていたが、マネトレに参加後、<span
+              class="t_red t_600"
+                                                                >経済の流れや市場の構造を深く理解できるように</span
+            >。<br />
+            その結果、<span class="t_red t_600">個別株投資にも挑戦できるようになり、購入した米国株がわずか1年で約3倍</span
+            >に成長。<br />
+            自分自身で銘柄を選び、将来性のある企業に投資する判断力が身についたことで、資産全体が大きく増加しました。
+          </p>
+        </div>
+        <p class="note t_white ac">
+          ※こちらで示された表現は個人の感想であり、再現性には個人差があるため、必ずしも利益や効果を保証したものではございません。
+        </p>
+        <div class="cbox second">
+          <div class="icon"><img src={mf37i4} alt="" loading="lazy" /></div>
+          <h3 class="ac">49歳女性Yさん<br class="sp" /><span class="t_08">（2024年1月入会）</span></h3>
+          <div class="cboxs flex">
+            <img src={mf37i5} alt="" loading="lazy" />
+            <div class="c_arr"><span></span></div>
+            <img src={mf37i6} alt="" loading="lazy" />
+          </div>
+          <p>
+            以前は「S&P500」の積立だけを続けていたが、マネトレに参加してからは<span class="t_red t_600">経済ニュースやマーケットの動きを読み解けるようになり</span
+            >、投資の視野が広がった。<br />
+            現在では、株式だけでなく、<span class="t_red t_600">複数の資産クラスに分散投資を実践</span>。<br />
+            そのおかげで、相場が不安定な中でも資産は減少することなく、順調に増加を続けている。<br />
+            また、購入した日本株が<span class="t_red t_600">1年で2倍に成長</span>するなど、投資判断の精度も大きく向上。
+          </p>
+        </div>
+        <p class="note t_white ac">
+          ※こちらで示された表現は個人の感想であり、再現性には個人差があるため、必ずしも利益や効果を保証したものではございません。
+        </p>
+      </div>
+    </div>
+    <div id="mf38" class="mf">
+      <div class="frame">
+        <h2><img src={mf38t1} alt="" loading="lazy" /></h2>
+        <div class="ibox">
+          <img src={mf38i1jpg} alt="" loading="lazy" />
+        </div>
+        <div class="tbox">
+          <h3>マネトレを立ち上げた想い</h3>
+          <p>
+            新卒でゴールドマン・サックス証券に入社した私が見たのは、経済の奥深さと同時に自分と周囲の知識の差でした。<br />私たちは、経済の正しい知識、意思決定するための力を提供することで、一人でも多くの人が豊かな生活を送れるようにしたいと願っています。<br /><span
+              class="t_red t_600"
+                                                                                                                                             >その他にもゴールドマン・サックス証券出身の講師が複数名在籍しております。</span
+            >
+          </p>
+        </div>
+        <div class="cbox">
+          <p class="t_14 t_800">経歴</p>
+          <dl>
+            <dt>2011</dt>
+            <dd>京都大学工学部建築学科入学</dd>
+            <dt>2015</dt>
+            <dd>建築図面制作事業THE PERS立ち上げ(現Architech 株式会社）</dd>
+            <dt>2017</dt>
+            <dd>京都大学建築学専攻大学院を首席で卒業</dd>
+            <dt>2017</dt>
+            <dd>ゴールドマン・サックス証券 証券部門入社</dd>
+            <dt>2020</dt>
+            <dd>ゴールドマン・サックス証券 退職</dd>
+            <dt>2021</dt>
+            <dd>GA Partners株式会社 設立</dd>
+            <dt>2022</dt>
+            <dd>マネトレ大学 設立</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div id="mf39" class="mf">
+      <div class="frame">
+        <h2><img src={mf39t1} alt="" loading="lazy" /></h2>
+        <dl>
+          <dt>運営会社</dt>
+          <dd>GA Partners株式会社</dd>
+          <dt>設立</dt>
+          <dd>2021年3月</dd>
+          <dt>事業設立</dt>
+          <dd>2020年5月</dd>
+          <dt>代表者名</dt>
+          <dd>三橋貴明</dd>
+          <dt>資本金</dt>
+          <dd>1億3000万円（資本準備金含む）</dd>
+          <dt>住所</dt>
+          <dd>東京都港区浜松町1-17-8長谷川ビル3階</dd>
+          <dt>事業内容</dt>
+          <dd>金融教育事業・フィナンシャルアドバイス事業・不動産コンサルティング事業</dd>
+          <dt>お問い合わせ</dt>
+          <dd>info@gapartners.com</dd>
+          <dt>電話番号</dt>
+          <dd>050-6893-6985</dd>
+        </dl>
+      </div>
+    </div>
+    <div id="mf10" class="mf">
+      <div class="frame"></div>
+    </div>
+    <script src="/mjSFqQ/js/jquery-3.2.1.min.js" is:inline></script>
+  </body>
+
+</html>

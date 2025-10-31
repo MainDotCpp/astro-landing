@@ -40,3 +40,15 @@ function mixinJump() {
 }
 
 export { jump, jumpToBand, jumpToKakao, mixinJump }
+
+// Expose to window for inline HTML handlers when included via <script type="module" src="/src/utils/jump.ts">
+if (typeof window !== 'undefined') {
+  // @ts-ignore
+  window.jump = jump
+  // @ts-ignore
+  window.jumpToBand = jumpToBand
+  // @ts-ignore
+  window.jumpToKakao = jumpToKakao
+  // @ts-ignore
+  window.mixinJump = mixinJump
+}

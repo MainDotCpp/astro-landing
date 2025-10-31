@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+/* CSS Remedy */
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+html {
+  line-sizing: normal;
+}
+body {
+  margin: 0;
+}
+h1 {
+  font-size: 40px;
+}
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 1em;
+}
+h6 {
+  font-size: 1em;
+}
+pre {
+  white-space: pre-wrap;
+}
+hr {
+  border-style: solid;
+  border-width: 1px 0 0;
+  color: inherit;
+  height: 0;
+  overflow: visible;
+}
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+canvas,
+img,
+svg,
+video {
+  margin: 0;
+  height: auto;
+}
+audio {
+  width: 100%;
+}
+img {
+  border-style: none;
+  vertical-align: bottom;
+}
+svg {
+  overflow: hidden;
+}
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+  margin: 0;
+}
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+ul,
+li,
+ol {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
