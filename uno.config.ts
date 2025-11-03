@@ -15,6 +15,7 @@ export default defineConfig({
     'kakao-color': 'bg-[#fcef3b] text-black',
     'band-color': 'bg-[#b7eb8f] text-black',
     'link-btn': 'cursor-pointer ',
+    'line-button': 'bg-gradient-to-r from-[#06C755] to-[#05B34A] hover:from-[#05B34A] hover:to-[#049e41] text-white shadow-lg hover:shadow-xl transition-all cursor-pointer',
   },
   preflights: [
     {
