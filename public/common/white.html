@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yield Calculator</title>
+    <meta name="description" content="Yield calculator for lump sum or DCA with compounding" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #111827;
+        --muted: #6b7280;
+        --primary: #2563eb;
+        --primary-600: #1d4ed8;
+        --border: #e5e7eb;
+        --card: #ffffff;
+        --danger: #dc2626;
+        --success: #059669;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        color: var(--fg);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 24px 16px 56px;
+      }
+
+      .header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .lang {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 16px;
+      }
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .card h2 {
+        font-size: 16px;
+        margin: 0 0 12px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      @media (max-width: 560px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .field {
+        margin-bottom: 12px;
+      }
+      .label {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 6px;
+        color: var(--muted);
+      }
+      .input,
+      .select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fff;
+        font-size: 14px;
+        outline: none;
+      }
+      .input:focus,
+      .select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      }
+      .hint {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .error {
+        font-size: 12px;
+        color: var(--danger);
+        margin-top: 4px;
+        display: none;
+      }
+
+      .mode {
+        display: inline-flex;
+        gap: 8px;
+        border: 1px solid var(--border);
+        padding: 6px;
+        border-radius: 999px;
+      }
+      .mode input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .chip {
+        padding: 8px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .chip.active {
+        background: #eef2ff;
+        color: #3730a3;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .btn {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--fg);
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .btn.primary {
+        border-color: var(--primary);
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn.primary:hover {
+        background: var(--primary-600);
+      }
+      .btn.ghost:hover {
+        background: #f9fafb;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      @media (max-width: 560px) {
+        .stats {
+          grid-template-columns: 1fr;
+        }
+      }
+      .stat {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+      }
+      .stat .name {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .stat .value {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .stat .pos {
+        color: var(--success);
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 13px;
+      }
+      .table th,
+      .table td {
+        border-bottom: 1px solid var(--border);
+        padding: 8px 6px;
+        text-align: right;
+      }
+      .table th:first-child,
+      .table td:first-child {
+        text-align: left;
+      }
+      .muted {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div>
+          <div id="text-title" class="title">Yield Calculator</div>
+          <div id="text-subtitle" class="subtitle">Lump sum or DCA, flexible compounding</div>
+        </div>
+        <div class="lang">
+          <label for="lang" class="visually-hidden">Language</label>
+          <select id="lang" class="select">
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card" aria-labelledby="formTitle">
+          <h2 id="formTitle">Parameters</h2>
+
+          <div class="field">
+            <div id="label-mode" class="label">Contribution Mode</div>
+            <div class="mode" role="tablist" aria-label="投入模式">
+              <label class="chip active" id="modeLumpLabel">
+                <input type="radio" name="mode" id="modeLump" value="lump" checked />
+                <span id="label-lump">Lump Sum</span>
+              </label>
+              <label class="chip" id="modeDcaLabel">
+                <input type="radio" name="mode" id="modeDca" value="dca" />
+                <span id="label-dca">DCA</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="initial" id="label-initial" class="label">Initial Principal</label>
+              <input
+                id="initial"
+                class="input"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                placeholder="e.g. 10000"
+              />
+              <div id="err-initial" class="error">Enter a non-negative number</div>
+            </div>
+            <div class="field">
+              <label for="contrib" id="label-contrib" class="label">Contribution per Period</label>
+              <input
+                id="contrib"
+                class="input"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                placeholder="Only in DCA mode"
+                disabled
+              />
+              <div id="hint-contrib" class="hint">Enabled when DCA is selected</div>
+              <div id="err-contrib" class="error">Enter a non-negative number</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="apy" id="label-apy" class="label">Annual Yield (%)</label>
+              <input
+                id="apy"
+                class="input"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                placeholder="e.g. 8"
+              />
+              <div id="err-apy" class="error">Enter a number ≥ 0</div>
+            </div>
+            <div class="field">
+              <label for="freq" id="label-freq" class="label">Compounding Frequency</label>
+              <select id="freq" class="select">
+                <option id="opt-monthly" value="12">Monthly</option>
+                <option id="opt-quarterly" value="4">Quarterly</option>
+                <option id="opt-annually" value="1">Annually</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="years" id="label-years" class="label">Years</label>
+              <input
+                id="years"
+                class="input"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                step="1"
+                placeholder="e.g. 10"
+              />
+              <div id="err-years" class="error">Enter an integer ≥ 0</div>
+            </div>
+            <div class="field">
+              <label for="months" id="label-months" class="label">Extra (months)</label>
+              <input
+                id="months"
+                class="input"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                max="11"
+                step="1"
+                placeholder="0-11"
+              />
+              <div id="err-months" class="error">Enter an integer 0-11</div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="calcBtn" class="btn primary" type="button">Calculate</button>
+            <button id="resetBtn" class="btn ghost" type="button">Reset</button>
+          </div>
+        </div>
+
+        <div class="card" aria-labelledby="resultTitle">
+          <h2 id="resultTitle">Results</h2>
+          <div class="stats">
+            <div class="stat">
+              <div id="name-final" class="name">Final Value</div>
+              <div id="out-final" class="value">-</div>
+            </div>
+            <div class="stat">
+              <div id="name-invested" class="name">Total Invested</div>
+              <div id="out-invested" class="value">-</div>
+            </div>
+            <div class="stat">
+              <div id="name-profit" class="name">Total Profit</div>
+              <div id="out-profit" class="value pos">-</div>
+            </div>
+            <div class="stat">
+              <div id="name-cagr" class="name">CAGR</div>
+              <div id="out-cagr" class="value">-</div>
+            </div>
+          </div>
+          <table class="table" aria-label="简要明细">
+            <thead>
+              <tr>
+                <th id="th-param">Parameter</th>
+                <th id="th-value">Value</th>
+              </tr>
+            </thead>
+            <tbody id="summaryBody">
+              <tr>
+                <td id="sum-label-periods" class="muted">Periods</td>
+                <td id="sum-periods">-</td>
+              </tr>
+              <tr>
+                <td id="sum-label-rate" class="muted">Rate per period</td>
+                <td id="sum-rate">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      ;(function () {
+        var $ = function (id) {
+          return document.getElementById(id)
+        }
+
+        var modeLumpLabel = $('modeLumpLabel')
+        var modeDcaLabel = $('modeDcaLabel')
+        var modeLump = $('modeLump')
+        var modeDca = $('modeDca')
+        var initial = $('initial')
+        var contrib = $('contrib')
+        var apy = $('apy')
+        var freq = $('freq')
+        var years = $('years')
+        var months = $('months')
+        var calcBtn = $('calcBtn')
+        var resetBtn = $('resetBtn')
+        var langSel = $('lang')
+
+        var outFinal = $('out-final')
+        var outInvested = $('out-invested')
+        var outProfit = $('out-profit')
+        var outCagr = $('out-cagr')
+        var sumPeriods = $('sum-periods')
+        var sumRate = $('sum-rate')
+
+        var textTitle = $('text-title')
+        var textSubtitle = $('text-subtitle')
+        var formTitle = $('formTitle')
+        var labelMode = $('label-mode')
+        var labelLump = $('label-lump')
+        var labelDca = $('label-dca')
+        var labelInitial = $('label-initial')
+        var labelContrib = $('label-contrib')
+        var hintContrib = $('hint-contrib')
+        var labelApy = $('label-apy')
+        var labelFreq = $('label-freq')
+        var optMonthly = $('opt-monthly')
+        var optQuarterly = $('opt-quarterly')
+        var optAnnually = $('opt-annually')
+        var labelYears = $('label-years')
+        var labelMonths = $('label-months')
+        var resultTitle = $('resultTitle')
+        var nameFinal = $('name-final')
+        var nameInvested = $('name-invested')
+        var nameProfit = $('name-profit')
+        var nameCagr = $('name-cagr')
+        var thParam = $('th-param')
+        var thValue = $('th-value')
+        var sumLabelPeriods = $('sum-label-periods')
+        var sumLabelRate = $('sum-label-rate')
+
+        var i18n = {
+          en: {
+            pageTitle: 'Yield Calculator',
+            title: 'Yield Calculator',
+            subtitle: 'Lump sum or DCA, flexible compounding',
+            params: 'Parameters',
+            mode: 'Contribution Mode',
+            lump: 'Lump Sum',
+            dca: 'DCA',
+            initial: 'Initial Principal',
+            contrib: 'Contribution per Period',
+            contribHint: 'Enabled when DCA is selected',
+            apy: 'Annual Yield (%)',
+            freq: 'Compounding Frequency',
+            monthly: 'Monthly',
+            quarterly: 'Quarterly',
+            annually: 'Annually',
+            years: 'Years',
+            months: 'Extra (months)',
+            errInitial: 'Enter a non-negative number',
+            errContrib: 'Enter a non-negative number',
+            errApy: 'Enter a number ≥ 0',
+            errYears: 'Enter an integer ≥ 0',
+            errMonths: 'Enter an integer 0-11',
+            calc: 'Calculate',
+            reset: 'Reset',
+            results: 'Results',
+            final: 'Final Value',
+            invested: 'Total Invested',
+            profit: 'Total Profit',
+            cagr: 'CAGR',
+            thParam: 'Parameter',
+            thValue: 'Value',
+            sumPeriods: 'Periods',
+            sumRate: 'Rate per period',
+            perPeriodSuffix: ' /period',
+            placeholderInitial: 'e.g. 10000',
+            placeholderContrib: 'Only in DCA mode',
+            placeholderAPY: 'e.g. 8',
+          },
+          ja: {
+            pageTitle: '利回り計算機',
+            title: '利回り計算機',
+            subtitle: '一括/積立と複利に対応',
+            params: 'パラメータ',
+            mode: '拠出モード',
+            lump: '一括',
+            dca: '積立',
+            initial: '初期元本',
+            contrib: '各期の積立額',
+            contribHint: '「積立」を選ぶと入力できます',
+            apy: '年利 (%)',
+            freq: '複利頻度',
+            monthly: '毎月',
+            quarterly: '四半期',
+            annually: '毎年',
+            years: '年数',
+            months: '追加（月）',
+            errInitial: '0以上の数値を入力してください',
+            errContrib: '0以上の数値を入力してください',
+            errApy: '0以上の数値を入力してください',
+            errYears: '0以上の整数を入力してください',
+            errMonths: '0-11の整数を入力してください',
+            calc: '計算',
+            reset: 'リセット',
+            results: '結果',
+            final: '最終金額',
+            invested: '拠出合計',
+            profit: '利益合計',
+            cagr: '年平均成長率（CAGR）',
+            thParam: '項目',
+            thValue: '値',
+            sumPeriods: '期数',
+            sumRate: '各期の利率',
+            perPeriodSuffix: ' /期',
+            placeholderInitial: '例: 10000',
+            placeholderContrib: '積立モードで有効',
+            placeholderAPY: '例: 8',
+          },
+          ko: {
+            pageTitle: '수익 계산기',
+            title: '수익 계산기',
+            subtitle: '일시금/적립식 및 복리 지원',
+            params: '설정',
+            mode: '납입 방식',
+            lump: '일시금',
+            dca: '적립식',
+            initial: '초기 원금',
+            contrib: '회차별 납입액',
+            contribHint: '적립식 선택 시 입력 가능',
+            apy: '연 수익률 (%)',
+            freq: '복리 주기',
+            monthly: '매월',
+            quarterly: '분기별',
+            annually: '매년',
+            years: '기간(년)',
+            months: '추가(개월)',
+            errInitial: '0 이상 숫자를 입력하세요',
+            errContrib: '0 이상 숫자를 입력하세요',
+            errApy: '0 이상 숫자를 입력하세요',
+            errYears: '0 이상 정수를 입력하세요',
+            errMonths: '0-11 정수를 입력하세요',
+            calc: '계산',
+            reset: '초기화',
+            results: '결과',
+            final: '만기 금액',
+            invested: '총 납입액',
+            profit: '총 수익',
+            cagr: '연평균 수익률(CAGR)',
+            thParam: '항목',
+            thValue: '값',
+            sumPeriods: '회차',
+            sumRate: '회차별 이율',
+            perPeriodSuffix: ' /회차',
+            placeholderInitial: '예: 10000',
+            placeholderContrib: '적립식에서만 입력',
+            placeholderAPY: '예: 8',
+          },
+        }
+
+        var locales = { en: 'en', ja: 'ja-JP', ko: 'ko-KR' }
+        var currentLang = 'en'
+        var currentLocale = locales[currentLang]
+
+        function setMode(mode) {
+          var isDca = mode === 'dca'
+          contrib.disabled = !isDca
+          modeLumpLabel.classList.toggle('active', !isDca)
+          modeDcaLabel.classList.toggle('active', isDca)
+        }
+
+        modeLumpLabel.addEventListener('click', function () {
+          modeLump.checked = true
+          setMode('lump')
+        })
+        modeDcaLabel.addEventListener('click', function () {
+          modeDca.checked = true
+          setMode('dca')
+        })
+
+        function toNumber(input) {
+          var v = Number(input.value)
+          return isFinite(v) ? v : NaN
+        }
+
+        function fmtMoney(n) {
+          if (!isFinite(n)) return '-'
+          return new Intl.NumberFormat(currentLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n)
+        }
+        function fmtPct(x) {
+          if (!isFinite(x)) return '-'
+          return (x * 100).toFixed(2) + '%'
+        }
+
+        function showError(id, show) {
+          var el = document.getElementById(id)
+          if (!el) return
+          el.style.display = show ? 'block' : 'none'
+        }
+
+        function validate() {
+          var ok = true
+          var vInitial = toNumber(initial)
+          if (!(vInitial >= 0)) {
+            ok = false
+            showError('err-initial', true)
+          } else showError('err-initial', false)
+          var vContrib = toNumber(contrib)
+          if (modeDca.checked) {
+            if (!(vContrib >= 0)) {
+              ok = false
+              showError('err-contrib', true)
+            } else showError('err-contrib', false)
+          } else {
+            showError('err-contrib', false)
+          }
+          var vApy = toNumber(apy)
+          if (!(vApy >= 0)) {
+            ok = false
+            showError('err-apy', true)
+          } else showError('err-apy', false)
+          var vYears = toNumber(years)
+          if (!(vYears >= 0 && Math.floor(vYears) === vYears)) {
+            ok = false
+            showError('err-years', true)
+          } else showError('err-years', false)
+          var vMonths = toNumber(months)
+          if (!(vMonths >= 0 && Math.floor(vMonths) === vMonths && vMonths <= 11)) {
+            ok = false
+            showError('err-months', true)
+          } else showError('err-months', false)
+          return ok
+        }
+
+        function calc() {
+          if (!validate()) return
+
+          var PV = toNumber(initial) || 0
+          var PMT = modeDca.checked ? toNumber(contrib) || 0 : 0
+          var m = Number(freq.value)
+          var annualRate = (toNumber(apy) || 0) / 100
+          var perRate = m > 0 ? annualRate / m : 0
+          var N = (toNumber(years) || 0) * m + Math.round(((toNumber(months) || 0) / 12) * m)
+          N = Math.max(0, Math.floor(N))
+
+          var FV = PV
+          if (perRate === 0) {
+            FV = PV + PMT * N
+          } else {
+            FV = PV * Math.pow(1 + perRate, N) + PMT * ((Math.pow(1 + perRate, N) - 1) / perRate)
+          }
+
+          var totalInvested = PV + PMT * N
+          var profit = FV - totalInvested
+
+          // CAGR based on total years
+          var totalYears = N / m
+          var cagr = totalYears > 0 && totalInvested > 0 ? Math.pow(FV / totalInvested, 1 / totalYears) - 1 : 0
+
+          outFinal.textContent = fmtMoney(FV)
+          outInvested.textContent = fmtMoney(totalInvested)
+          outProfit.textContent = fmtMoney(profit)
+          outCagr.textContent = isFinite(cagr) ? (cagr * 100).toFixed(2) + '%' : '-'
+          sumPeriods.textContent = String(N)
+          var suffix = (i18n[currentLang] && i18n[currentLang].perPeriodSuffix) || ' /period'
+          sumRate.textContent = perRate ? (perRate * 100).toFixed(4) + '%' + suffix : '0%' + suffix
+        }
+
+        function reset() {
+          initial.value = ''
+          contrib.value = ''
+          apy.value = ''
+          freq.value = '12'
+          years.value = ''
+          months.value = ''
+          setMode('lump')
+          modeLump.checked = true
+          outFinal.textContent = '-'
+          outInvested.textContent = '-'
+          outProfit.textContent = '-'
+          outCagr.textContent = '-'
+          sumPeriods.textContent = '-'
+          sumRate.textContent = '-'
+          ;['err-initial', 'err-contrib', 'err-apy', 'err-years', 'err-months'].forEach(function (id) {
+            showError(id, false)
+          })
+        }
+
+        calcBtn.addEventListener('click', calc)
+        resetBtn.addEventListener('click', reset)
+
+        function applyLang(lang) {
+          var t = i18n[lang] || i18n.en
+          currentLang = lang
+          currentLocale = locales[lang] || 'en'
+          document.title = t.pageTitle
+          document.documentElement.lang = lang
+
+          textTitle.textContent = t.title
+          textSubtitle.textContent = t.subtitle
+          formTitle.textContent = t.params
+          labelMode.textContent = t.mode
+          labelLump.textContent = t.lump
+          labelDca.textContent = t.dca
+          labelInitial.textContent = t.initial
+          labelContrib.textContent = t.contrib
+          hintContrib.textContent = t.contribHint
+          labelApy.textContent = t.apy
+          labelFreq.textContent = t.freq
+          optMonthly.textContent = t.monthly
+          optQuarterly.textContent = t.quarterly
+          optAnnually.textContent = t.annually
+          labelYears.textContent = t.years
+          labelMonths.textContent = t.months
+          calcBtn.textContent = t.calc
+          resetBtn.textContent = t.reset
+          resultTitle.textContent = t.results
+          nameFinal.textContent = t.final
+          nameInvested.textContent = t.invested
+          nameProfit.textContent = t.profit
+          nameCagr.textContent = t.cagr
+          thParam.textContent = t.thParam
+          thValue.textContent = t.thValue
+          sumLabelPeriods.textContent = t.sumPeriods
+          sumLabelRate.textContent = t.sumRate
+
+          initial.placeholder = t.placeholderInitial
+          contrib.placeholder = t.placeholderContrib
+          apy.placeholder = t.placeholderAPY
+          $('err-initial').textContent = t.errInitial
+          $('err-contrib').textContent = t.errContrib
+          $('err-apy').textContent = t.errApy
+          $('err-years').textContent = t.errYears
+          $('err-months').textContent = t.errMonths
+        }
+
+        langSel &&
+          langSel.addEventListener('change', function () {
+            applyLang(langSel.value)
+            sumRate.textContent = '-'
+            sumPeriods.textContent = '-'
+          })
+
+        // 初始模式
+        setMode('lump')
+        // 默认语言：英语
+        applyLang('en')
+      })()
+    </script>
+  </body>
+</html>
