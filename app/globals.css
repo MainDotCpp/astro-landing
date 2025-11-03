@@ -3,10 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-.link-btn {
-  cursor: pointer;
-}
-
 :root {
   --background: oklch(0.99 0.005 106);
   --foreground: oklch(0.15 0.01 106);
