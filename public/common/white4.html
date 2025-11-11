@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI入門 — 人工知能の基礎知識を学ぶ</title>
+    <meta
+      name="description"
+      content="AI入門サイト。人工知能の基礎概念、機械学習の原理、応用シーンを紹介。無料の教育リソース。"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #fafafa;
+        --text: #1a1a1a;
+        --muted: #666;
+        --border: #e0e0e0;
+        --accent: #0066cc;
+        --accent-light: #f0f7ff;
+        --container: 960px;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.7;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .container {
+        width: 100%;
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Header */
+      header {
+        border-bottom: 1px solid var(--border);
+        background: #fff;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+
+      .brand {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        font-size: 15px;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 80px 0 60px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: var(--text);
+        letter-spacing: -0.02em;
+      }
+
+      .hero p.lead {
+        font-size: 20px;
+        color: var(--muted);
+        margin-bottom: 40px;
+        max-width: 640px;
+      }
+
+      /* Sections */
+      section {
+        padding: 60px 0;
+      }
+
+      .section-header {
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text);
+        letter-spacing: -0.01em;
+      }
+
+      .section-subtitle {
+        font-size: 18px;
+        color: var(--muted);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      /* Grid */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+
+      /* Cards */
+      .card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 32px;
+        transition: border-color 0.2s;
+      }
+
+      .card:hover {
+        border-color: var(--accent);
+      }
+
+      .card h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+
+      .card p {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border);
+        background: #fff;
+        padding: 60px 0 24px;
+      }
+
+      .footer-main {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .footer-brand {
+        max-width: 400px;
+      }
+
+      .footer-brand .brand {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+
+      .footer-brand p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .footer-company {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .footer-company strong {
+        color: var(--text);
+        font-weight: 600;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .footer-company p {
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      .footer-col h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-col li {
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .footer-col li strong {
+        color: var(--text);
+        font-weight: 600;
+        margin-right: 8px;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      .footer-copyright {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .footer-legal {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .footer-legal a {
+        color: var(--accent);
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .footer-legal a:hover {
+        color: #0052a3;
+        text-decoration: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .hero p.lead {
+          font-size: 18px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .nav-links {
+          gap: 20px;
+          font-size: 14px;
+        }
+
+        section {
+          padding: 40px 0;
+        }
+
+        .hero {
+          padding: 60px 0 40px;
+        }
+
+        .card {
+          padding: 24px;
+        }
+
+        .footer-main {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .footer-company {
+          font-size: 13px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <span class="brand">AI入門</span>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <h1>人工知能を理解する</h1>
+          <p class="lead">
+            人工知能の基礎概念を探求し、機械学習や深層学習などのコア技術を学び、AIの日常生活での応用を理解します。
+          </p>
+        </div>
+      </section>
+
+      <!-- Basics -->
+      <section id="basics">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">基礎知識</h2>
+            <p class="section-subtitle">AIの核心概念の概要</p>
+          </div>
+          <div class="grid-3">
+            <div class="card">
+              <h3>AIとは</h3>
+              <p>
+                人工知能（AI）は、機械が人間の知能を模倣する技術で、学習、推論、知覚、意思決定などの能力を含みます。
+              </p>
+            </div>
+            <div class="card">
+              <h3>機械学習</h3>
+              <p>
+                機械学習はAIの核心であり、データでモデルを訓練することで、コンピュータが経験から学習し改善できるようにします。
+              </p>
+            </div>
+            <div class="card">
+              <h3>深層学習</h3>
+              <p>
+                深層学習はニューラルネットワークを使って脳を模倣し、画像認識や自然言語処理などの分野で優れた成果を上げています。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Applications -->
+      <section id="applications">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">応用シーン</h2>
+            <p class="section-subtitle">現実世界でのAIの応用</p>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>画像認識</h3>
+              <p>写真分類、顔認識、医療画像解析などの分野で使用され、医師がより正確に病気を診断するのを支援します。</p>
+            </div>
+            <div class="card">
+              <h3>自然言語処理</h3>
+              <p>
+                コンピュータに人間の言語を理解・生成させ、翻訳、チャットボット、音声アシスタントなどのシーンで応用されます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="brand">株式会社AIテクノロジーズ</div>
+            <p>
+              人工知能と機械学習技術の教育・普及を専門とする企業です。実践的なAI知識の提供を通じて、日本におけるAIリテラシーの向上に貢献しています。
+            </p>
+            <div class="footer-company">
+              <p><strong>設立</strong>2019年4月1日</p>
+              <p><strong>資本金</strong>1,000万円</p>
+              <p><strong>代表取締役</strong>田中 健太郎</p>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>会社情報</h4>
+            <ul>
+              <li>
+                <strong>本社住所</strong><br />〒100-0005<br />東京都千代田区丸の内2-4-1<br />丸の内ビルディング 15階
+              </li>
+              <li><strong>TEL</strong>03-1234-5678</li>
+              <li><strong>FAX</strong>03-1234-5679</li>
+              <li><strong>Email</strong>info@aitech.co.jp</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>事業内容</h4>
+            <ul>
+              <li>AI教育コンテンツの開発</li>
+              <li>機械学習コンサルティング</li>
+              <li>企業向けAI研修プログラム</li>
+              <li>AI技術の研究開発</li>
+              <li>オンライン学習プラットフォーム運営</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copyright">© 2025 株式会社AIテクノロジーズ. 全著作権所有.</div>
+          <div class="footer-legal">
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTubeチャンネル</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

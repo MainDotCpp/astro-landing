@@ -7,6 +7,7 @@ import btn from './static/btn.png'
 export const getStaticPaths = (() => {
   const pages = [
     { params: { people: '神田昌典', version: '0' }, props: { name: '神田昌典', img_prefix: 'gqd_' } },
+    { params: { people: 'エミン', version: '0' }, props: { name: 'エミン・ユルマズ', img_prefix: 'エミン_' } },
   ]
   return pages
 }) satisfies GetStaticPaths
