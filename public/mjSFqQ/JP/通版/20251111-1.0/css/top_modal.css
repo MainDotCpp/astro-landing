@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#modalpres01 h2{
+	font-size: 2.8rem;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: 600;
+}
+#modalpres01.asss h2{
+	font-size: 2rem;
+}
+
+#modalpres01.modal .modal_cont {
+	padding: 40px 50px;
+}
+#modalpres01 h3{
+	font-size: 2.4rem;
+	font-weight: bold;
+    text-align: left;
+    margin-top: 50px;
+	margin-bottom: 10px;
+}
+#modalpres01.asss h3{
+	font-size: 1.6rem;
+}
+#modalpres01 h4{
+	text-align: left;
+	font-size: 2rem;
+	font-weight: 600;
+	padding: 26px 0 10px;
+	margin-bottom: 14px;
+	border-bottom: 1px dashed rgba(136,136,136,1.00);
+}
+#modalpres01.asss h4{
+	font-size: 1.4rem;
+}
+#modalpres01 p{
+	text-align: left;
+}
+#modalpres01.asss p{
+	font-size: 1.0rem;
+}
+#modalpres01 ul li{
+	list-style: disc;
+    margin-left: 2em;
+    margin-bottom: 0.8em;
+	font-size: 1.5rem;
+	text-align: left;
+}
+#modalpres01 ul li:last-child{
+	margin-bottom: 0em;
+}
+#modalpres01.asss ul li{
+	font-size: 1.0rem;
+}
+
+@media screen and (max-width: 780px){
+	#modalpres01 h2{
+		font-size: 2.4rem;
+		margin-bottom: 20px;
+	}
+
+	#modalpres01.asss h2{
+		font-size: 1.8rem;
+	}
+	#modalpres01.asss h3{
+		font-size: 1.4rem;
+	}
+	#modalpres01.asss h4{
+		font-size: 1.2rem;
+	}
+	
+	
+	#modalpres01.modal .modal_cont {
+		padding: 1.8em;
+	}
+	#modalpres01.modal .modal_cont {
+		width: 90%;
+	}
+	#modalpres01 h3{
+		font-size: 2.1rem;
+		text-align: center;
+		margin-top: 40px;
+	}
+	#modalpres01 h4{
+		text-align: left;
+		font-size: 1.8rem;
+		padding: 22px 0 10px;
+		margin-bottom: 12px;
+	}
+	#modalpres01 ul li{
+		margin-left: 1.4em;
+		margin-bottom: 1em;
+		font-size: 1.3rem;
+	}
+	#modalpres01 ul li:last-child{
+		margin-bottom: 0em;
+	}
+	#modalpres01.asss ul li{
+		font-size: 1.0rem;
+	}
+}

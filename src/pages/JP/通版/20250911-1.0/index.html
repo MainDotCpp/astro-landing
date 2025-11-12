@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no" />
     <!--------------------------- ↓ ↓ ↓ ↓ ↓ ↓ 跟踪代码粘贴在下面 ↓ ↓ ↓ ↓ ↓ ↓ ----------------------------------->
 
-    <script>
+    <script is:inline>
       const link = 'https://www.baidu.com'
     </script>
     <script src="/mjSFqQ/JP/20250911-1.0/static/js/jquery-3.2.1.min.js"></script>
@@ -1502,7 +1502,7 @@
         -moz-osx-font-smoothing: grayscale;
       }
     </style>
-    <script>
+    <script is:inline>
       var stInfo = ''
       function showline() {
         typeof gtag_report_conversion == 'function' ? gtag_report_conversion(link) : (window.location.href = link)
@@ -1549,7 +1549,7 @@
             <div class="loadBox2_time_txt">
               <p>LINEともだち追加して<br /><span id="report-text"></span></p>
 
-              <script>
+              <script is:inline>
                 function getCurrentDate() {
                   const today = new Date()
                   const month = today.getMonth() + 1 // Months are zero-based
@@ -1581,7 +1581,7 @@
           <p>最新の内部情報が入手されました</p>
           <p id="message" style="color: red"></p>
 
-          <script>
+          <script is:inline>
             function getTomorrowDate() {
               const today = new Date()
               today.setDate(today.getDate() + 1) // Add one day
@@ -1634,7 +1634,7 @@
                 </span>
               </p>
 
-              <script>
+              <script is:inline>
                 function getYesterdayDate() {
                   const today = new Date()
                   today.setDate(today.getDate() - 1) // Subtract one day
@@ -1648,7 +1648,7 @@
                 document.getElementById('update-date').textContent = getYesterdayDate()
               </script>
             </div>
-            <script>
+            <script is:inline>
               let numberElement = document.getElementById('number')
               let currentNumber = parseInt(numberElement.textContent)
 
@@ -1983,7 +1983,7 @@
           </div>
           <div class="piaces">
             <span class="piaces_num">先着<span id="remaining">197</span>名限定</span>
-            <script>
+            <script is:inline>
               // Set initial number of places
               let places = 661
 
@@ -2000,7 +2000,7 @@
             <ul class="rise_list">
               <li class="li_w">
                 <div id="stock-recommendation"></div>
-                <script>
+                <script is:inline>
                   // Function to get today's date in the format "M月D日"
                   function getTodayDate() {
                     const today = new Date()
@@ -2700,7 +2700,7 @@
       </a>
     </div>
 
-    <script>
+    <script is:inline>
       var viewPortScale = 0.5,
         width = parseInt(window.screen.width),
         scale = width / 750,
@@ -2835,7 +2835,7 @@
     </script>
     <script src="/mjSFqQ/JP/20250911-1.0/static/js/jquery.bxslider.min.js" defer=""></script>
     <script src="/mjSFqQ/JP/20250911-1.0/static/js/common.js" defer=""></script>
-    <script>
+    <script is:inline>
       ;($(document).bind('contextmenu', function () {
         return !1
       }),

@@ -1,0 +1,239 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media only screen and (min-width: 781px) {
+    .sp {
+        display: none !important;
+    }
+
+    .pc {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .pc {
+        display: none !important;
+    }
+
+    .sp {
+        display: block !important;
+    }
+}
+
+/* head */
+#head_area {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    height: 92px;
+    padding: 10px 20px 12px;
+}
+
+#head_area .logo {}
+
+#head_area .tel_area {
+    display: flex;
+}
+
+.head_tel {
+    margin-left: 5px;
+}
+
+#head_area img {
+    height: 100%;
+    width: auto;
+}
+
+@media (min-width: 781px) {
+    a[href*="tel:"] {
+        pointer-events: none;
+        cursor: default;
+        text-decoration: none;
+    }
+}
+
+/* @media screen and (max-width: 780px) { 
+	#head_area {
+		height: 54px;
+		padding: 10px 10px 10px;
+	}
+} */
+
+@media screen and (max-width: 780px) {
+    #head_area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 54px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #head_area .tel_area,
+    .head_tel,
+    .head_tel a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .head_tel img {
+        height: 100%;
+        width: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    .logo img {
+        height: auto;
+        max-height: 34px;
+        /* ← 実機で収まりの良いサイズに調整可 */
+        width: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    .head_tel {
+        margin-left: auto;
+    }
+}
+
+/* mv */
+.mv_area {
+    background: url("../img/mv_bg.jpg") top center no-repeat;
+    padding: 20px 20px 30px;
+}
+
+.mv_wrap {
+    max-width: 1290px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mv_wrap img {
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
+    line-height: 1em;
+    display: block;
+}
+
+.mv_wrap h1 {
+    max-width: 564px;
+    margin: 0 auto 30px;
+}
+
+.mv_wrap h2 {
+    max-width: 1012px;
+    margin: 0 auto 30px;
+}
+
+.mv_wrap h3 {
+    max-width: 712px;
+    margin: 0 auto 60px;
+}
+
+.mv_btn {
+    max-width: 684px;
+    margin: 0 auto 0;
+    transition: 0.3s;
+}
+
+.mv_btn:hover {
+    opacity: 0.7;
+}
+
+.mv_bnr {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.mv_bnr a {
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    transform: translateX(-50%);
+    color: blue;
+    text-decoration: underline;
+}
+
+.mv_bnr img {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+.mv_bnr ul {
+    display: flex;
+}
+
+.mv_bnr li {
+    line-height: 0;
+}
+
+.seminar_corona_link {
+    position: relative;
+    text-align: center;
+    margin-top: -40px;
+}
+
+@media screen and (max-width: 930px) {
+    .seminar_corona_link {
+        margin-top: 0px;
+    }
+}
+
+.seminar_corona_link a {
+    display: inline-block;
+    margin: 0 auto;
+    color: #0079c0;
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 2px solid #0079c0;
+}
+
+@media screen and (max-width: 780px) {
+    .mv_area {
+        background: url("../img/mv_bg_sp.jpg") top center no-repeat;
+        padding: 130px 20px 10px;
+        background-size: contain;
+    }
+
+    .mv_wrap h2 {
+        margin: 0 auto 10px;
+    }
+
+    .mv_wrap h3 {
+        margin: 0 auto 20px;
+    }
+
+    .mv_btn {
+        margin: 0 auto 10px;
+    }
+
+    .mv_bnr {
+        margin-bottom: 10px;
+        background: url("../img/mv_bnr_spbg.png") top center no-repeat;
+        background-size: contain;
+        font-size: 1.3rem;
+    }
+
+    .mv_bnr a {
+        bottom: auto;
+    }
+
+    .mv_bnr ul {
+        display: block;
+    }
+
+    .seminar_corona_link a {
+        font-size: 12px;
+        border-bottom: 1px solid #0079c0;
+        line-height: 1.4;
+    }
+}

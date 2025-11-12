@@ -30,7 +30,7 @@ export function getStaticPaths() {
 return pages
 }
 
-const { img_prefix, name } = Astro.props
+const { name } = Astro.props
 const headImg = import(`../images/${name}_avatar.png`);
 ---
 
