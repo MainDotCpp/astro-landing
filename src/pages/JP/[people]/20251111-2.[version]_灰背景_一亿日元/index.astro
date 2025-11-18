@@ -1,0 +1,218 @@
+---
+import { Image } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import lineIcon from './images/line.png'
+
+export function getStaticPaths() {
+  const pages = [
+      { params: { people: '测试器', version: '0' }, props: { name: 'テスタ' } },
+]
+return pages
+}
+
+const { people, version = '0' } = Astro.params
+const { name } = Astro.props
+const headImg = import(`../images/${people}_avatar.png`)
+const img1 = import(`./images/${people}_${version}_1.png`);
+---
+<!DOCTYPE html>
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <RedirectCode />
+    <title> {name} の株式投資塾【切り抜き】 | Linktree-RBSSRA010</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #B3B1B1; /* 背景颜色 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* 全屏高度 */
+            box-sizing: border-box;
+        }
+
+        /* 第一张图片容器 */
+        .image-container {
+            width: 96px;
+            height: 96px;
+            overflow: hidden;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px; /* 图片与下一内容的间距 */
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 第一段文本 */
+        .text-container {
+            text-align: center; /* 容器居中 */
+            margin-bottom: 20px; /* 文本与下一内容的间距 */
+            padding: 0 15px;
+            max-width: 600px; /* 限制最大宽度 */
+            width: 90%; /* 自适应宽度 */
+            word-wrap: break-word; /* 自动换行 */
+            word-break: break-all; /* 避免单词超出容器 */
+            overflow-wrap: break-word; /* 确保换行 */
+        }
+        .text-container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #2c2c2c;
+            font-weight: bold;
+        }
+        .text-container p {
+            font-size: 16px;
+            color: #2c2c2c;
+            line-height: 1.8;
+            font-weight: bold;
+            text-align: justify; /* 设置文本两端对齐 */
+        }
+
+        /* 按钮样式 */
+        .button, .second-button {
+            width: 90%; /* 按钮宽度自适应屏幕 */
+            max-width: 600px;
+            margin-top: 20px;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: white;
+            color: #333;
+            border: 2px solid #B3B1B1;
+            border-radius: 30px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover, .second-button:hover {
+            background-color: #B3B1B1;
+            color: white;
+            border-color: white;
+        }
+        .button:active, .second-button:active {
+            background-color: #B3B1B1;
+            color: white;
+            border-color: white;
+        }
+
+        /* 第二张图片容器 */
+        .second-image-container {
+            margin-top: 30px;
+            position: relative;
+            width: 90%; /* 自适应宽度 */
+            max-width: 600px;
+        }
+        .second-image-container img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .second-text-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding: 10px;
+            box-sizing: border-box;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        /* 第二个按钮样式（含图标，文字居中对齐） */
+        .second-button {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* 居中对齐图标和文字 */
+            gap: 10px; /* 图标和文字之间的间距 */
+            animation: pulse 2s infinite;
+        }
+        .second-button img {
+            width: 50px; /* 图片更大，适合小屏幕观看 */
+            height: 50px;
+            border-radius: 50%; /* 圆形图片 */
+            object-fit: cover;
+        }
+
+        /* 呼吸跳动动画 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 自适应布局优化 */
+        @media (max-width: 768px) {
+            .text-container h1 {
+                font-size: 20px;
+            }
+            .text-container p {
+                font-size: 14px;
+            }
+            .button, .second-button {
+                font-size: 16px;
+                padding: 14px;
+            }
+            .second-button img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 第一张图片 -->
+    <div class="image-container">
+        <Image src={headImg} alt="avatar" />
+    </div>
+
+    <!-- 第一段文本 -->
+    <div class="text-container">
+        <h1>{name}の株式投資塾【切り抜き】</h1>
+        <p>
+            最初の一億円をどうやって稼いだか、私の経験をここで皆さんにシェアします。
+短期間で1億円を稼ぐ方法、そのチャンスが今ここにあります。
+        </p>
+        <!-- 第一个按钮 -->
+        <button class="button" onclick="onLinkBtnClick()">LINEを追加して1億円を獲得するチャンス</button>
+    </div>
+
+    <!-- 第二张图片 -->
+    <div class="second-image-container">
+        <a onclick="onLinkBtnClick()"> <!-- 点击跳转链接 -->
+            <Image src={img1} alt="img1" />
+        </a>
+        <!-- 第二段文本覆盖在图片底部 -->
+        <div class="second-text-overlay">
+            {name}の株式投資塾【切り抜き】
+        </div>
+    </div>
+
+    <!-- 第二个按钮 -->
+    <button class="second-button" onclick="onLinkBtnClick()">
+        <Image src={lineIcon} alt="lineIcon" />
+        LINEを追加して1億円を獲得するチャンス
+    </button>
+</body></html>
