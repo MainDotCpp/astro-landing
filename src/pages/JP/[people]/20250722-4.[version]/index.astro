@@ -1,0 +1,358 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { Award, CheckCircle, Target, Users } from 'lucide-astro'
+import lineIcon from '@/assets/line-icon.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '三橋貴明', version: '1' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '小谷真生子', version: '1' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+
+  ]
+}) satisfies GetStaticPaths
+
+const { name: people, img_prefix } = Astro.props
+
+// Import images dynamically based on img_prefix
+const headImage = await import(`./static/${img_prefix}head.jpg`)
+const headerImage = await import(`./static/${img_prefix}header.png`)
+const contentImage = await import(`./static/${img_prefix}img.png`)
+
+---
+
+<BaseLayout title={`${people} | 市場アナリスト`} description={`${people}による15年の市場分析経験。専門家と一緒に情報を交流し、正確な市場データ分析を提供`} track={true}>
+  <style>
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+      }
+    }
+
+    @keyframes breathe-yellow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+      }
+    }
+
+    @keyframes breathe-gradient {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+      }
+    }
+
+    .animate-breathe {
+      animation: breathe 2s ease-in-out infinite;
+    }
+
+    .animate-breathe-yellow {
+      animation: breathe-yellow 2.5s ease-in-out infinite;
+    }
+
+    .animate-breathe-gradient {
+      animation: breathe-gradient 3s ease-in-out infinite;
+    }
+  </style>
+  <!-- Hero Section -->
+  <section class="py-20 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-yellow-500/5"></div>
+    <div class="max-w-md mx-auto text-center relative z-10">
+      <h1 class="text-4xl font-bold text-slate-900 mb-8 tracking-tight leading-tight">
+        <span class="text-red-600">市場アナリスト</span>
+      </h1>
+
+      <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-red-200 shadow-xl ring-4 ring-red-100">
+        <Image
+          src={headImage.default}
+          alt={people}
+          width={128}
+          height={128}
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div class="text-xl text-slate-800 mb-6 font-medium">
+        継続的にこれらの研究と観察結果を共有
+      </div>
+
+      <div class="text-lg text-slate-700 mb-8">
+        毎日簡単に専門アナリストのデータを獲得
+      </div>
+
+      <div class="space-y-4 mb-8 text-left">
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">1</span>
+          </div>
+          <div>
+            専門家の観察を通じて、市場変化の方向と構造を一緒に理解
+          </div>
+        </div>
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">2</span>
+          </div>
+          <div>
+            資料の出所は公開されており、トレンドと産業に興味のある方の参考学習に適しています。
+          </div>
+        </div>
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-yellow-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">3</span>
+          </div>
+          <div>
+            長期にわたる視点の蓄積プロセスは、短期判断よりも重視すべきです。
+          </div>
+        </div>
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">4</span>
+          </div>
+          <div>
+            内容の議論への参加を歓迎します。私たちは理性的で構造的な思考に焦点を当てています。
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="link-btn w-full max-w-sm px-10 py-5 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-full hover:from-red-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-xl text-xl font-bold animate-breathe mb-8"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="hero"
+        data-umami-event-instructor={people}
+      >
+        <div class="flex items-center justify-center">
+          <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-3" />
+          <span>友達を追加して正確なデータを獲得</span>
+        </div>
+      </button>
+
+      <p class="text-sm text-slate-600 mb-4">
+        15年の市場分析経験に基づき、毎日の重要データを継続的に整理し、学習と参考に供しています。
+      </p>
+    </div>
+  </section>
+
+  <!-- Channel Section -->
+  <section class="py-12 px-4 bg-white">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">
+          専門家と一緒に情報を交流するチャンネル
+        </h2>
+        <div class="flex items-center justify-center mb-4">
+          <Users size={24} class="mr-2 text-red-600" />
+          <span class="text-lg text-slate-700 font-medium">毎日データを送信</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">
+          毎日のトレンドデータを整理し、学習と観察に便利です。
+        </p>
+        <div class="mb-6">
+          <Image
+            src={headerImage.default}
+            alt="データ分析チャート"
+            width={400}
+            height={200}
+            class="mx-auto rounded-lg shadow-md w-full max-w-full"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-12 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
+    <div class="max-w-md mx-auto">
+      <div class="mb-6 text-center">
+        <Image
+          src={contentImage.default}
+          alt="学習サービス説明"
+          width={400}
+          height={240}
+          class="mx-auto rounded-lg shadow-md w-full max-w-full"
+        />
+      </div>
+      <div class="space-y-6 mb-8">
+        <div class="text-center p-6 bg-white rounded-2xl border-2 border-red-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Users size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">マンツーマン学習</h3>
+          <p class="text-slate-700 leading-relaxed">
+            専門家と一対一で交流し、知識を学びます。
+          </p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl border-2 border-orange-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-orange-600 to-yellow-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Target size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">あなたに合わせてカスタマイズ</h3>
+          <p class="text-slate-700 leading-relaxed">
+            知識を学ぶことで、専門家があなたのための個人方法を制定します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expert Introduction -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">
+          <span class="text-red-600">{people}</span>分析専門家
+        </h2>
+      </div>
+
+      <div class="space-y-6 mb-8">
+        <div class="text-center p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border-2 border-red-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Award size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">15年の分析経験</h3>
+          <p class="text-slate-700 leading-relaxed">
+            国内で豊富な分析経験を積み重ねてきました。
+          </p>
+        </div>
+
+        <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border-2 border-orange-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-orange-600 to-yellow-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Users size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">5000人以上の会員管理</h3>
+          <p class="text-slate-700 leading-relaxed">
+            多様な学習傾向の会員に対して、カスタマイズされたサービスを提供しています。
+          </p>
+        </div>
+
+        <div class="text-center p-6 bg-gradient-to-br from-yellow-50 to-red-50 rounded-2xl border-2 border-yellow-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-yellow-600 to-red-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <CheckCircle size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">85%の合格率</h3>
+          <p class="text-slate-700 leading-relaxed">
+            正しい技術分析と市場分析により、合格率を向上させました。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Results -->
+  <section class="py-12 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">15年の市場学習</h2>
+        <p class="text-lg text-red-600 font-semibold mb-6">学習成果</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex items-start p-5 bg-white rounded-2xl border-2 border-red-200 shadow-md">
+          <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-0.5">
+            <span class="text-white text-sm font-bold">1</span>
+          </div>
+          <div>
+            <p class="text-slate-800 font-medium leading-relaxed">
+              市場知識を継続的に学習し、専門能力を向上させます。
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start p-5 bg-white rounded-2xl border-2 border-orange-200 shadow-md">
+          <div class="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-0.5">
+            <span class="text-white text-sm font-bold">2</span>
+          </div>
+          <div>
+            <p class="text-slate-800 font-medium leading-relaxed">
+              科学的方法を組み合わせて、市場機会を合理的に分析します。
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start p-5 bg-white rounded-2xl border-2 border-yellow-200 shadow-md">
+          <div class="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-0.5">
+            <span class="text-white text-sm font-bold">3</span>
+          </div>
+          <div>
+            <p class="text-slate-800 font-medium leading-relaxed">
+              実践を通じて経験を積み重ね、安定した成長を実現します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-16 px-4 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+    <div class="max-w-md mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6">
+        今すぐ正確な市場データ分析を受け取ってください
+      </h2>
+
+      <button
+        class="link-btn w-full max-w-sm px-10 py-5 bg-yellow-400 text-red-600 rounded-full hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl font-black animate-breathe-yellow mb-6"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="final-cta"
+        data-umami-event-instructor={people}
+      >
+        <div class="flex items-center justify-center">
+          <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-3" />
+          <span>友達を追加</span>
+        </div>
+      </button>
+
+      <p class="text-yellow-200 text-lg mb-4">
+        友達を追加後、学習交流を獲得できます
+      </p>
+    </div>
+  </section>
+
+  <!-- Financial Education Institutions -->
+  <section class="py-12 px-4 bg-white">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">
+          日本の金融教育機関
+        </h2>
+        <p class="text-lg text-red-600 font-semibold">本物を重視</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border-2 border-red-200 shadow-md text-center">
+          <p class="text-slate-800 font-medium">
+            信頼できる金融教育機関と提携し、<br >
+            実践的で本物の市場分析を提供しています。
+          </p>
+        </div>
+
+        <div class="p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border-2 border-orange-200 shadow-md text-center">
+          <p class="text-slate-800 font-medium">
+            長年の実績と信頼に基づいた<br >
+            確かな金融教育サービスです。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

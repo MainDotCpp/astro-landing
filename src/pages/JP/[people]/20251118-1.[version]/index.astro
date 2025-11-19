@@ -1,0 +1,322 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { Award, BarChart3, Clock, Rocket, Shield, Star, Target, TrendingUp, Users, Zap } from 'lucide-astro'
+import lineIcon from '@/assets/line-icon.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { name: people, img_prefix } = Astro.props
+
+// Import images dynamically based on img_prefix
+const headImage = await import(`./static/${img_prefix}head.jpg`)
+const headerImage = await import(`./static/${img_prefix}header.png`)
+const contentImage = await import(`./static/${img_prefix}img.png`)
+---
+
+<BaseLayout title={`${people}のAI投資法 | 次世代テクノロジーで資産を増やす`} description="AIとブロックチェーン技術を活用した革新的な投資法を無料公開">
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    .gradient-bg {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite;
+    }
+  </style>
+
+  <!-- Hero Section - 科技风格 -->
+  <section class="gradient-bg text-white relative overflow-hidden min-h-screen flex items-center">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+    <div class="max-w-4xl mx-auto px-4 py-20 relative z-10 text-center">
+      <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-medium mb-6 border border-white/30">
+        <Rocket size={16} class="mr-2" /> AI技術 × 投資 = 未来の資産形成
+      </div>
+
+      <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/50 shadow-2xl animate-float">
+        <Image
+          src={headImage.default}
+          alt={people}
+          width={128}
+          height={128}
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+        <span class="block text-white drop-shadow-lg">{people}が開発</span>
+        <span class="block text-yellow-300 mt-2">AI投資システム</span>
+      </h1>
+
+      <div class="text-2xl md:text-3xl font-bold mb-4 text-yellow-200">
+        30日で資産<span class="text-white text-4xl">5倍</span>達成
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 mb-8 border border-white/20">
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div>
+            <div class="text-3xl font-black text-yellow-300">+487%</div>
+            <div class="text-sm text-white/80">最高収益率</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-yellow-300">96.8%</div>
+            <div class="text-sm text-white/80">成功率</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-yellow-300">8,234</div>
+            <div class="text-sm text-white/80">成功者数</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-yellow-400 text-purple-900 p-4 rounded-xl mb-6 inline-flex items-center font-bold">
+        <Clock size={20} class="mr-2" />
+        <span>限定公開残り: <span id="countdown" class="text-2xl">02:15</span></span>
+      </div>
+
+      <button
+        class="link-btn w-full max-w-md px-10 py-6 bg-white text-purple-900 rounded-2xl hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl font-black animate-pulse-glow"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="hero"
+        data-umami-event-instructor={people}
+      >
+        <div class="flex items-center justify-center">
+          <Image src={lineIcon} alt="LINE" width={28} height={28} class="mr-3" />
+          <span>AI投資システムを無料受取</span>
+        </div>
+      </button>
+
+      <p class="text-white/80 mt-6 text-sm">✅ 完全無料 ✅ 登録30秒 ✅ いつでも退出OK</p>
+    </div>
+  </section>
+
+  <!-- AI Technology Section -->
+  <section class="py-20 px-4 bg-gradient-to-b from-purple-50 to-blue-50">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">
+          <Zap size={16} class="mr-2" />次世代テクノロジー
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-purple-600">AI投資</span>が圧倒的に強いのか？</h2>
+        <p class="text-lg text-slate-600">人工知能が24時間365日、最適な投資タイミングを分析</p>
+      </div>
+
+      <div class="mb-8 text-center">
+        <Image
+          src={headerImage.default}
+          alt="AI投資システム"
+          width={400}
+          height={240}
+          class="mx-auto rounded-xl shadow-xl"
+        />
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-purple-200">
+          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <BarChart3 size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3 text-slate-900">AI予測精度98%</h3>
+          <p class="text-slate-600 text-center text-sm">機械学習アルゴリズムが過去10年のデータを分析し、最適な投資タイミングを予測</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-blue-200">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Shield size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3 text-slate-900">リスク自動管理</h3>
+          <p class="text-slate-600 text-center text-sm">AIがリアルタイムでリスクを監視し、自動的に最適な売買タイミングを判断</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-cyan-200">
+          <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Target size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3 text-slate-900">自動取引実行</h3>
+          <p class="text-slate-600 text-center text-sm">設定した条件に達すると自動的に取引を実行。感情に左右されない投資が可能</p>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-8 rounded-2xl shadow-xl">
+        <div class="text-center">
+          <h3 class="text-2xl font-bold mb-4">実績が証明するAI投資の威力</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+              <div class="text-4xl font-black text-yellow-300">+487%</div>
+              <div class="text-sm">最高収益率</div>
+            </div>
+            <div>
+              <div class="text-4xl font-black text-yellow-300">30日</div>
+              <div class="text-sm">平均達成期間</div>
+            </div>
+            <div>
+              <div class="text-4xl font-black text-yellow-300">96.8%</div>
+              <div class="text-sm">成功率</div>
+            </div>
+            <div>
+              <div class="text-4xl font-black text-yellow-300">8,234</div>
+              <div class="text-sm">成功者数</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold mb-4">
+          <Users size={16} class="mr-2" />成功者の声
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">AI投資で<span class="text-purple-600">人生が変わった</span>人々</h2>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-2xl border-l-4 border-purple-500 shadow-lg">
+          <div class="flex items-start mb-4">
+            <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-2xl mr-4">山</div>
+            <div class="flex-1">
+              <p class="font-bold text-slate-900 text-lg mb-1">山田様 (エンジニア・38歳)</p>
+              <p class="text-purple-600 font-bold mb-3">収益: +487% (資産5.87倍) - 30日間</p>
+              <p class="text-slate-700 italic leading-relaxed">
+                「AIが自動で最適なタイミングを判断してくれるので、仕事をしながらでも投資ができました。30日で資産が5.87倍になるなんて、夢のようです。{people}さんのシステムは本当に革新的です。」
+              </p>
+              <div class="flex items-center mt-3 text-yellow-500">
+                ⭐⭐⭐⭐⭐ <span class="ml-2 text-slate-600 text-sm">5つ星評価</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-2xl border-l-4 border-blue-500 shadow-lg">
+          <div class="flex items-start mb-4">
+            <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-2xl mr-4">鈴</div>
+            <div class="flex-1">
+              <p class="font-bold text-slate-900 text-lg mb-1">鈴木様 (デザイナー・29歳)</p>
+              <p class="text-blue-600 font-bold mb-3">収益: +356% (資産4.56倍) - 28日間</p>
+              <p class="text-slate-700 italic leading-relaxed">
+                「投資の知識が全くなくても、AIが全て判断してくれるので安心でした。28日で資産が4.56倍になり、もう会社を辞めて独立しようか考えています。{people}さんには感謝しかありません。」
+              </p>
+              <div class="flex items-center mt-3 text-yellow-500">
+                ⭐⭐⭐⭐⭐ <span class="ml-2 text-slate-600 text-sm">5つ星評価</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 px-4 gradient-bg text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">
+        あなたも<span class="text-yellow-300">AI投資</span>で未来を変えませんか？
+      </h2>
+
+      <p class="text-xl mb-8 text-white/90 leading-relaxed">
+        {people}が開発したAI投資システムで、<span class="text-yellow-300 font-bold">30日で資産を5倍</span>に増やすことが可能です。<br >
+        <span class="text-yellow-300 font-bold">今なら完全無料</span>でこの革新的なシステムを公開中です。
+      </p>
+
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl mb-8 border border-white/30 inline-block">
+        <div class="flex items-center justify-center mb-2">
+          <Clock size={24} class="mr-2 text-yellow-300" />
+          <p class="text-2xl font-black text-yellow-300">本日23:59まで限定公開</p>
+        </div>
+        <p class="text-sm text-white/80">明日からは有料プランのみ（月額100万円）</p>
+      </div>
+
+      <button
+        class="link-btn inline-flex items-center px-10 py-6 bg-yellow-400 text-purple-900 rounded-2xl hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl font-black mb-6 animate-pulse-glow"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="final-cta"
+        data-umami-event-instructor={people}
+      >
+        <Rocket size={24} class="mr-2" />
+        <span>今すぐAI投資システムを無料受取</span>
+      </button>
+
+      <div class="text-center space-y-2">
+        <p class="text-green-300 text-sm font-bold">✅ 登録者数：8,234名突破</p>
+        <p class="text-yellow-300 text-sm font-bold">✅ 満足度：98.7%</p>
+        <p class="text-blue-300 text-sm font-bold">✅ 平均収益率：+356%（資産4.56倍）</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+function initCountdown() {
+  const storageKey = 'countdown_start_time'
+  let startTime: number
+  const stored = localStorage.getItem(storageKey)
+
+  if (!stored) {
+    startTime = new Date().getTime()
+    localStorage.setItem(storageKey, startTime.toString())
+  }
+  else {
+    startTime = Number.parseInt(stored, 10)
+  }
+
+  const countdownDuration = 135 * 1000
+  const endTime = startTime + countdownDuration
+
+  function updateCountdown() {
+    const now = new Date().getTime()
+    const distance = endTime - now
+
+    if (distance < 0) {
+      const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer')
+      countdownElements.forEach((element) => {
+        element.innerHTML = '00:00'
+      })
+      return
+    }
+
+    const minutes = Math.floor(distance / (1000 * 60))
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+    const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+
+    const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer')
+    countdownElements.forEach((element) => {
+      element.innerHTML = timeString
+    })
+  }
+
+  setInterval(updateCountdown, 1000)
+  updateCountdown()
+}
+
+initCountdown()
+</script>
+

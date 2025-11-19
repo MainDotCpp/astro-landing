@@ -1,0 +1,343 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { Crown, Gem, Trophy, Star, Sparkles, TrendingUp, DollarSign, Award, Clock, Users } from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import lineIcon from '@/assets/line-icon.png'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
+    { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
+    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { name: people, img_prefix } = Astro.props
+
+const headImage = await import(`./static/${img_prefix}head.jpg`)
+const headerImage = await import(`./static/${img_prefix}header.png`)
+const contentImage = await import(`./static/${img_prefix}img.png`)
+---
+
+<BaseLayout title={`${people}のVIP投資法 | 富裕層だけが知る資産形成の秘密`} description={`上流階級が実践する高級投資戦略を特別公開`}>
+  <style>
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    @keyframes rotate-glow {
+      0% { transform: rotate(0deg); filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)); }
+      100% { transform: rotate(360deg); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)); }
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #f5d020 0%, #f53803 100%);
+    }
+    .gold-text {
+      background: linear-gradient(135deg, #f5d020 0%, #f53803 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .shimmer-effect {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite;
+    }
+    .rotate-glow {
+      animation: rotate-glow 10s linear infinite;
+    }
+  </style>
+
+  <!-- Hero Section - 奢华金色风格 -->
+  <section class="bg-black text-white relative overflow-hidden min-h-screen flex items-center">
+    <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23FFD700\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    <div class="absolute inset-0 gold-gradient opacity-10"></div>
+    
+    <div class="max-w-4xl mx-auto px-4 py-20 relative z-10 text-center">
+      <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-full text-sm font-bold mb-8 border-2 border-yellow-400 shadow-lg">
+        <Crown size={18} class="mr-2" /> VIP限定公開
+      </div>
+      
+      <div class="relative inline-block mb-8">
+        <div class="absolute inset-0 rotate-glow">
+          <div class="w-36 h-36 border-4 border-yellow-500 rounded-full"></div>
+        </div>
+        <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-500 shadow-2xl relative z-10">
+          <Image
+            src={headImage.default}
+            alt={people}
+            width={128}
+            height={128}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      
+      <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+        <span class="block text-white mb-2">{people}が明かす</span>
+        <span class="block gold-text">富裕層の投資法</span>
+      </h1>
+      
+      <div class="text-3xl md:text-4xl font-bold mb-6">
+        <span class="text-yellow-400">1億円</span>
+        <span class="text-white">を目指す</span>
+      </div>
+      
+      <div class="bg-gradient-to-r from-yellow-900/50 to-yellow-800/50 backdrop-blur-md rounded-2xl p-8 mb-8 border-2 border-yellow-600/50 shadow-2xl">
+        <div class="grid grid-cols-3 gap-6 text-center">
+          <div class="border-r border-yellow-600/30 last:border-r-0">
+            <div class="text-4xl font-black gold-text mb-2">+623%</div>
+            <div class="text-sm text-yellow-200">最高収益率</div>
+          </div>
+          <div class="border-r border-yellow-600/30 last:border-r-0">
+            <div class="text-4xl font-black gold-text mb-2">98.2%</div>
+            <div class="text-sm text-yellow-200">成功率</div>
+          </div>
+          <div>
+            <div class="text-4xl font-black gold-text mb-2">12,456</div>
+            <div class="text-sm text-yellow-200">VIP会員数</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-yellow-500 text-black p-5 rounded-xl mb-8 inline-flex items-center font-black text-lg shadow-xl">
+        <Clock size={24} class="mr-3" />
+        <span>限定公開残り: <span id="countdown" class="text-3xl">02:15</span></span>
+      </div>
+      
+      <button
+        class="link-btn w-full max-w-md px-10 py-6 gold-gradient text-black rounded-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl font-black shimmer-effect"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="hero"
+        data-umami-event-instructor={people}
+      >
+        <div class="flex items-center justify-center">
+          <Image src={lineIcon} alt="LINE" width={28} height={28} class="mr-3" />
+          <span>VIP投資法を無料受取</span>
+        </div>
+      </button>
+      
+      <p class="text-yellow-200 mt-6 text-sm">✨ 完全無料 ✨ 登録30秒 ✨ いつでも退出OK</p>
+    </div>
+  </section>
+
+  <!-- VIP Benefits Section -->
+  <section class="py-20 px-4 bg-gradient-to-b from-yellow-50 via-amber-50 to-yellow-100">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-4 py-2 bg-yellow-200 text-yellow-900 rounded-full text-sm font-bold mb-4">
+          <Gem size={16} class="mr-2" />VIP特典
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">なぜ<span class="gold-text">富裕層</span>だけが成功するのか？</h2>
+        <p class="text-lg text-slate-700">一般には公開されない、上流階級の投資戦略</p>
+      </div>
+      
+      <div class="mb-8 text-center">
+        <Image
+          src={headerImage.default}
+          alt="VIP投資戦略"
+          width={400}
+          height={240}
+          class="mx-auto rounded-xl shadow-2xl border-4 border-yellow-400"
+        />
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="bg-gradient-to-br from-yellow-100 to-amber-100 p-8 rounded-2xl shadow-xl border-2 border-yellow-400">
+          <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg">
+            <Crown size={40} class="text-white" />
+          </div>
+          <h3 class="text-xl font-black text-center mb-3 text-slate-900">独占情報アクセス</h3>
+          <p class="text-slate-700 text-center text-sm leading-relaxed">富裕層だけが知る内部情報と、一般には公開されない投資機会を優先的に提供</p>
+        </div>
+        
+        <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-8 rounded-2xl shadow-xl border-2 border-amber-400">
+          <div class="w-20 h-20 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg">
+            <Trophy size={40} class="text-white" />
+          </div>
+          <h3 class="text-xl font-black text-center mb-3 text-slate-900">プロ級戦略</h3>
+          <p class="text-slate-700 text-center text-sm leading-relaxed">投資銀行やヘッジファンドが使用する高度な投資戦略を、わかりやすく解説</p>
+        </div>
+        
+        <div class="bg-gradient-to-br from-yellow-100 to-amber-100 p-8 rounded-2xl shadow-xl border-2 border-yellow-400">
+          <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg">
+            <Sparkles size={40} class="text-white" />
+          </div>
+          <h3 class="text-xl font-black text-center mb-3 text-slate-900">1対1サポート</h3>
+          <p class="text-slate-700 text-center text-sm leading-relaxed">専属コンサルタントがあなたの資産状況に合わせた個別戦略を提案</p>
+        </div>
+      </div>
+      
+      <div class="bg-gradient-to-r from-yellow-600 to-amber-600 text-white p-10 rounded-2xl shadow-2xl border-4 border-yellow-400">
+        <div class="text-center">
+          <h3 class="text-3xl font-black mb-6">VIP会員の驚異的な実績</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div>
+              <div class="text-5xl font-black text-yellow-200 mb-2">+623%</div>
+              <div class="text-sm text-yellow-100">最高収益率</div>
+            </div>
+            <div>
+              <div class="text-5xl font-black text-yellow-200 mb-2">45日</div>
+              <div class="text-sm text-yellow-100">平均達成期間</div>
+            </div>
+            <div>
+              <div class="text-5xl font-black text-yellow-200 mb-2">98.2%</div>
+              <div class="text-sm text-yellow-100">成功率</div>
+            </div>
+            <div>
+              <div class="text-5xl font-black text-yellow-200 mb-2">12,456</div>
+              <div class="text-sm text-yellow-100">VIP会員数</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories -->
+  <section class="py-20 px-4 bg-black text-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-4 py-2 bg-yellow-600 text-black rounded-full text-sm font-bold mb-4">
+          <Star size={16} class="mr-2" />VIP会員の声
+        </span>
+        <h2 class="text-4xl font-bold mb-4">富裕層への<span class="gold-text">第一歩</span>を踏み出した人々</h2>
+      </div>
+      
+      <div class="space-y-8">
+        <div class="bg-gradient-to-r from-yellow-900/50 to-amber-900/50 p-10 rounded-2xl border-2 border-yellow-600/50 shadow-2xl">
+          <div class="flex items-start mb-4">
+            <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center text-black font-bold text-2xl mr-6 shadow-lg">田</div>
+            <div class="flex-1">
+              <p class="font-black text-yellow-300 text-xl mb-2">田中様 (経営者・45歳)</p>
+              <p class="text-yellow-400 font-bold mb-4 text-lg">収益: +623% (資産7.23倍) - 45日間</p>
+              <p class="text-white/90 italic leading-relaxed text-lg">
+                「これまで何度も投資に失敗してきましたが、{people}さんのVIP投資法に出会って人生が変わりました。45日で資産が7.23倍になるなんて、まさに夢のようです。今では年収1億円を超えました。」
+              </p>
+              <div class="flex items-center mt-4">
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-2" />
+                <span class="text-yellow-300 text-sm font-bold">5つ星評価</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-amber-900/50 to-yellow-900/50 p-10 rounded-2xl border-2 border-amber-600/50 shadow-2xl">
+          <div class="flex items-start mb-4">
+            <div class="w-20 h-20 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center text-black font-bold text-2xl mr-6 shadow-lg">佐</div>
+            <div class="flex-1">
+              <p class="font-black text-amber-300 text-xl mb-2">佐藤様 (医師・52歳)</p>
+              <p class="text-amber-400 font-bold mb-4 text-lg">収益: +489% (資産5.89倍) - 42日間</p>
+              <p class="text-white/90 italic leading-relaxed text-lg">
+                「医師として忙しい毎日でしたが、{people}さんの投資法なら時間をかけずに資産を増やせました。42日で資産が5.89倍になり、早期リタイアを実現できました。本当に感謝しています。」
+              </p>
+              <div class="flex items-center mt-4">
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-1" />
+                <Star size={20} class="text-yellow-400 mr-2" />
+                <span class="text-yellow-300 text-sm font-bold">5つ星評価</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 px-4 bg-black text-white relative overflow-hidden">
+    <div class="absolute inset-0 gold-gradient opacity-20"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,215,0,0.1) 1px, transparent 0); background-size: 40px 40px;"></div>
+    
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">
+        あなたも<span class="gold-text">富裕層</span>への道を歩みませんか？
+      </h2>
+      
+      <p class="text-xl mb-8 text-white/90 leading-relaxed">
+        {people}が明かすVIP投資法で、<span class="gold-text font-bold">1億円の資産</span>を目指すことが可能です。<br>
+        <span class="gold-text font-bold">今なら完全無料</span>でこの富裕層の投資戦略を公開中です。
+      </p>
+      
+      <div class="bg-yellow-600 text-black p-8 rounded-2xl mb-8 border-4 border-yellow-400 shadow-2xl inline-block">
+        <div class="flex items-center justify-center mb-3">
+          <Clock size={28} class="mr-3" />
+          <p class="text-3xl font-black">本日23:59まで限定公開</p>
+        </div>
+        <p class="text-lg font-bold mt-2">明日からはVIP会員のみ（年会費500万円）</p>
+      </div>
+
+      <button
+        class="link-btn inline-flex items-center px-12 py-7 gold-gradient text-black rounded-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl font-black mb-8 shimmer-effect"
+        data-umami-event="contact"
+        data-umami-event-method="line"
+        data-umami-event-position="final-cta"
+        data-umami-event-instructor={people}
+      >
+        <Crown size={28} class="mr-3" />
+        <span>今すぐVIP投資法を無料受取</span>
+      </button>
+      
+      <div class="text-center space-y-3">
+        <p class="text-yellow-300 text-lg font-bold">✨ 登録者数：12,456名突破</p>
+        <p class="text-yellow-400 text-lg font-bold">✨ 満足度：99.1%</p>
+        <p class="text-yellow-300 text-lg font-bold">✨ 平均収益率：+489%（資産5.89倍）</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function initCountdown() {
+    const storageKey = 'countdown_start_time';
+    let startTime: number;
+    const stored = localStorage.getItem(storageKey);
+    
+    if (!stored) {
+      startTime = new Date().getTime();
+      localStorage.setItem(storageKey, startTime.toString());
+    } else {
+      startTime = parseInt(stored, 10);
+    }
+    
+    const countdownDuration = 135 * 1000;
+    const endTime = startTime + countdownDuration;
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+      
+      if (distance < 0) {
+        const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer');
+        countdownElements.forEach(element => {
+          element.innerHTML = "00:00";
+        });
+        return;
+      }
+      
+      const minutes = Math.floor(distance / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer');
+      countdownElements.forEach(element => {
+        element.innerHTML = timeString;
+      });
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  }
+  
+  initCountdown();
+</script>
+
