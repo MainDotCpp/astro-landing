@@ -9,16 +9,15 @@ export const getStaticPaths = (() => {
   return [
     { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
     { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
-    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
   ]
 }) satisfies GetStaticPaths
 
 const { name: people, img_prefix } = Astro.props
 
 // Import images dynamically based on img_prefix
-const headImage = await import(`./static/${img_prefix}head.jpg`)
-const headerImage = await import(`./static/${img_prefix}header.png`)
-const contentImage = await import(`./static/${img_prefix}img.png`)
+const headImage = await import(`../shared-images/static/${img_prefix}head.jpg`)
+const headerImage = await import(`../shared-images/static/${img_prefix}header.png`)
+const contentImage = await import(`../shared-images/static/${img_prefix}img.png`)
 ---
 
 <BaseLayout title={`${people}のAI投資法 | 次世代テクノロジーで資産を増やす`} description="AIとブロックチェーン技術を活用した革新的な投資法を無料公開">
@@ -42,6 +41,17 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
       background-size: 400% 400%;
       animation: gradient-shift 15s ease infinite;
+    }
+
+    /* 移动端文字大小优化 */
+    @media (max-width: 768px) {
+      .text-5xl { font-size: 2rem; line-height: 2.5rem; }
+      .text-4xl { font-size: 1.75rem; line-height: 2rem; }
+      .text-3xl { font-size: 1.5rem; line-height: 1.75rem; }
+      .text-2xl { font-size: 1.25rem; line-height: 1.5rem; }
+      h1 { font-size: 2rem !important; line-height: 2.5rem !important; }
+      h2 { font-size: 1.75rem !important; line-height: 2rem !important; }
+      h3 { font-size: 1.5rem !important; line-height: 1.75rem !important; }
     }
   </style>
 
@@ -71,21 +81,21 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       </h1>
 
       <div class="text-2xl md:text-3xl font-bold mb-4 text-yellow-200">
-        30日で資産<span class="text-white text-4xl">5倍</span>達成
+        30日で資産<span class="text-white text-2xl md:text-4xl">5倍</span>達成
       </div>
 
       <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 mb-8 border border-white/20">
         <div class="grid grid-cols-3 gap-4 text-center">
           <div>
-            <div class="text-3xl font-black text-yellow-300">+487%</div>
+            <div class="text-2xl md:text-3xl font-black text-yellow-300">+487%</div>
             <div class="text-sm text-white/80">最高収益率</div>
           </div>
           <div>
-            <div class="text-3xl font-black text-yellow-300">96.8%</div>
+            <div class="text-2xl md:text-3xl font-black text-yellow-300">96.8%</div>
             <div class="text-sm text-white/80">成功率</div>
           </div>
           <div>
-            <div class="text-3xl font-black text-yellow-300">8,234</div>
+            <div class="text-2xl md:text-3xl font-black text-yellow-300">8,234</div>
             <div class="text-sm text-white/80">成功者数</div>
           </div>
         </div>
@@ -120,7 +130,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">
           <Zap size={16} class="mr-2" />次世代テクノロジー
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-purple-600">AI投資</span>が圧倒的に強いのか？</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-purple-600">AI投資</span>が圧倒的に強いのか？</h2>
         <p class="text-lg text-slate-600">人工知能が24時間365日、最適な投資タイミングを分析</p>
       </div>
 
@@ -165,19 +175,19 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
           <h3 class="text-2xl font-bold mb-4">実績が証明するAI投資の威力</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <div class="text-4xl font-black text-yellow-300">+487%</div>
+              <div class="text-2xl md:text-4xl font-black text-yellow-300">+487%</div>
               <div class="text-sm">最高収益率</div>
             </div>
             <div>
-              <div class="text-4xl font-black text-yellow-300">30日</div>
+              <div class="text-2xl md:text-4xl font-black text-yellow-300">30日</div>
               <div class="text-sm">平均達成期間</div>
             </div>
             <div>
-              <div class="text-4xl font-black text-yellow-300">96.8%</div>
+              <div class="text-2xl md:text-4xl font-black text-yellow-300">96.8%</div>
               <div class="text-sm">成功率</div>
             </div>
             <div>
-              <div class="text-4xl font-black text-yellow-300">8,234</div>
+              <div class="text-2xl md:text-4xl font-black text-yellow-300">8,234</div>
               <div class="text-sm">成功者数</div>
             </div>
           </div>
@@ -193,7 +203,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold mb-4">
           <Users size={16} class="mr-2" />成功者の声
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">AI投資で<span class="text-purple-600">人生が変わった</span>人々</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">AI投資で<span class="text-purple-600">人生が変わった</span>人々</h2>
       </div>
 
       <div class="space-y-6">
@@ -236,19 +246,19 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
   <section class="py-20 px-4 gradient-bg text-white relative overflow-hidden">
     <div class="absolute inset-0 bg-black/30"></div>
     <div class="max-w-4xl mx-auto text-center relative z-10">
-      <h2 class="text-4xl md:text-5xl font-black mb-6">
+      <h2 class="text-2xl md:text-5xl font-black mb-6">
         あなたも<span class="text-yellow-300">AI投資</span>で未来を変えませんか？
       </h2>
 
       <p class="text-xl mb-8 text-white/90 leading-relaxed">
-        {people}が開発したAI投資システムで、<span class="text-yellow-300 font-bold">30日で資産を5倍</span>に増やすことが可能です。<br >
+        {people}が開発したAI投資システムで、<span class="text-yellow-300 font-bold">30日で資産を5倍</span>に増やすことが可能です。<br>
         <span class="text-yellow-300 font-bold">今なら完全無料</span>でこの革新的なシステムを公開中です。
       </p>
 
       <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl mb-8 border border-white/30 inline-block">
         <div class="flex items-center justify-center mb-2">
           <Clock size={24} class="mr-2 text-yellow-300" />
-          <p class="text-2xl font-black text-yellow-300">本日23:59まで限定公開</p>
+          <p class="text-xl md:text-2xl font-black text-yellow-300">本日23:59まで限定公開</p>
         </div>
         <p class="text-sm text-white/80">明日からは有料プランのみ（月額100万円）</p>
       </div>

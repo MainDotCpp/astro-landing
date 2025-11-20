@@ -9,15 +9,14 @@ export const getStaticPaths = (() => {
   return [
     { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
     { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
-    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
   ]
 }) satisfies GetStaticPaths
 
 const { name: people, img_prefix } = Astro.props
 
-const headImage = await import(`./static/${img_prefix}head.jpg`)
-const headerImage = await import(`./static/${img_prefix}header.png`)
-const contentImage = await import(`./static/${img_prefix}img.png`)
+const headImage = await import(`../shared-images/static/${img_prefix}head.jpg`)
+const headerImage = await import(`../shared-images/static/${img_prefix}header.png`)
+const contentImage = await import(`../shared-images/static/${img_prefix}img.png`)
 ---
 
 <BaseLayout title={`${people}のVIP投資法 | 富裕層だけが知る資産形成の秘密`} description={`上流階級が実践する高級投資戦略を特別公開`}>
@@ -46,6 +45,17 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
     }
     .rotate-glow {
       animation: rotate-glow 10s linear infinite;
+    }
+    
+    /* 移动端文字大小优化 */
+    @media (max-width: 768px) {
+      .text-5xl { font-size: 2rem; line-height: 2.5rem; }
+      .text-4xl { font-size: 1.75rem; line-height: 2rem; }
+      .text-3xl { font-size: 1.5rem; line-height: 1.75rem; }
+      .text-2xl { font-size: 1.25rem; line-height: 1.5rem; }
+      h1 { font-size: 2rem !important; line-height: 2.5rem !important; }
+      h2 { font-size: 1.75rem !important; line-height: 2rem !important; }
+      h3 { font-size: 1.5rem !important; line-height: 1.75rem !important; }
     }
   </style>
 
@@ -87,15 +97,15 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       <div class="bg-gradient-to-r from-yellow-900/50 to-yellow-800/50 backdrop-blur-md rounded-2xl p-8 mb-8 border-2 border-yellow-600/50 shadow-2xl">
         <div class="grid grid-cols-3 gap-6 text-center">
           <div class="border-r border-yellow-600/30 last:border-r-0">
-            <div class="text-4xl font-black gold-text mb-2">+623%</div>
+            <div class="text-2xl md:text-4xl font-black gold-text mb-2">+623%</div>
             <div class="text-sm text-yellow-200">最高収益率</div>
           </div>
           <div class="border-r border-yellow-600/30 last:border-r-0">
-            <div class="text-4xl font-black gold-text mb-2">98.2%</div>
+            <div class="text-2xl md:text-4xl font-black gold-text mb-2">98.2%</div>
             <div class="text-sm text-yellow-200">成功率</div>
           </div>
           <div>
-            <div class="text-4xl font-black gold-text mb-2">12,456</div>
+            <div class="text-2xl md:text-4xl font-black gold-text mb-2">12,456</div>
             <div class="text-sm text-yellow-200">VIP会員数</div>
           </div>
         </div>
@@ -103,7 +113,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       
       <div class="bg-yellow-500 text-black p-5 rounded-xl mb-8 inline-flex items-center font-black text-lg shadow-xl">
         <Clock size={24} class="mr-3" />
-        <span>限定公開残り: <span id="countdown" class="text-3xl">02:15</span></span>
+        <span>限定公開残り: <span id="countdown" class="text-xl md:text-3xl">02:15</span></span>
       </div>
       
       <button
@@ -130,7 +140,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-yellow-200 text-yellow-900 rounded-full text-sm font-bold mb-4">
           <Gem size={16} class="mr-2" />VIP特典
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">なぜ<span class="gold-text">富裕層</span>だけが成功するのか？</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">なぜ<span class="gold-text">富裕層</span>だけが成功するのか？</h2>
         <p class="text-lg text-slate-700">一般には公開されない、上流階級の投資戦略</p>
       </div>
       
@@ -172,22 +182,22 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       
       <div class="bg-gradient-to-r from-yellow-600 to-amber-600 text-white p-10 rounded-2xl shadow-2xl border-4 border-yellow-400">
         <div class="text-center">
-          <h3 class="text-3xl font-black mb-6">VIP会員の驚異的な実績</h3>
+          <h3 class="text-2xl md:text-3xl font-black mb-6">VIP会員の驚異的な実績</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
-              <div class="text-5xl font-black text-yellow-200 mb-2">+623%</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-200 mb-2">+623%</div>
               <div class="text-sm text-yellow-100">最高収益率</div>
             </div>
             <div>
-              <div class="text-5xl font-black text-yellow-200 mb-2">45日</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-200 mb-2">45日</div>
               <div class="text-sm text-yellow-100">平均達成期間</div>
             </div>
             <div>
-              <div class="text-5xl font-black text-yellow-200 mb-2">98.2%</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-200 mb-2">98.2%</div>
               <div class="text-sm text-yellow-100">成功率</div>
             </div>
             <div>
-              <div class="text-5xl font-black text-yellow-200 mb-2">12,456</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-200 mb-2">12,456</div>
               <div class="text-sm text-yellow-100">VIP会員数</div>
             </div>
           </div>
@@ -203,7 +213,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-yellow-600 text-black rounded-full text-sm font-bold mb-4">
           <Star size={16} class="mr-2" />VIP会員の声
         </span>
-        <h2 class="text-4xl font-bold mb-4">富裕層への<span class="gold-text">第一歩</span>を踏み出した人々</h2>
+        <h2 class="text-2xl md:text-4xl font-bold mb-4">富裕層への<span class="gold-text">第一歩</span>を踏み出した人々</h2>
       </div>
       
       <div class="space-y-8">
@@ -258,7 +268,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
     <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,215,0,0.1) 1px, transparent 0); background-size: 40px 40px;"></div>
     
     <div class="max-w-4xl mx-auto text-center relative z-10">
-      <h2 class="text-4xl md:text-5xl font-black mb-6">
+      <h2 class="text-2xl md:text-5xl font-black mb-6">
         あなたも<span class="gold-text">富裕層</span>への道を歩みませんか？
       </h2>
       
@@ -270,7 +280,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       <div class="bg-yellow-600 text-black p-8 rounded-2xl mb-8 border-4 border-yellow-400 shadow-2xl inline-block">
         <div class="flex items-center justify-center mb-3">
           <Clock size={28} class="mr-3" />
-          <p class="text-3xl font-black">本日23:59まで限定公開</p>
+          <p class="text-xl md:text-3xl font-black">本日23:59まで限定公開</p>
         </div>
         <p class="text-lg font-bold mt-2">明日からはVIP会員のみ（年会費500万円）</p>
       </div>

@@ -9,15 +9,14 @@ export const getStaticPaths = (() => {
   return [
     { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
     { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
-    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
   ]
 }) satisfies GetStaticPaths
 
 const { name: people, img_prefix } = Astro.props
 
-const headImage = await import(`./static/${img_prefix}head.jpg`)
-const headerImage = await import(`./static/${img_prefix}header.png`)
-const contentImage = await import(`./static/${img_prefix}img.png`)
+const headImage = await import(`../shared-images/static/${img_prefix}head.jpg`)
+const headerImage = await import(`../shared-images/static/${img_prefix}header.png`)
+const contentImage = await import(`../shared-images/static/${img_prefix}img.png`)
 ---
 
 <BaseLayout title={`${people}のエレガント投資法 | 美しく賢く資産を増やす`} description={`上品で洗練された投資スタイルで資産を形成`}>
@@ -41,6 +40,17 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       background: linear-gradient(-45deg, #a855f7, #ec4899, #f472b6, #c084fc);
       background-size: 400% 400%;
       animation: gradient-flow 15s ease infinite;
+    }
+    
+    /* 移动端文字大小优化 */
+    @media (max-width: 768px) {
+      .text-5xl { font-size: 2rem; line-height: 2.5rem; }
+      .text-4xl { font-size: 1.75rem; line-height: 2rem; }
+      .text-3xl { font-size: 1.5rem; line-height: 1.75rem; }
+      .text-2xl { font-size: 1.25rem; line-height: 1.5rem; }
+      h1 { font-size: 2rem !important; line-height: 2.5rem !important; }
+      h2 { font-size: 1.75rem !important; line-height: 2rem !important; }
+      h3 { font-size: 1.5rem !important; line-height: 1.75rem !important; }
     }
   </style>
 
@@ -70,21 +80,21 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       </h1>
       
       <div class="text-2xl md:text-3xl font-bold mb-6 text-pink-100">
-        上品に賢く<span class="text-white text-4xl">資産3.5倍</span>を実現
+        上品に賢く<span class="text-white text-2xl md:text-4xl">資産3.5倍</span>を実現
       </div>
       
       <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 mb-8 border border-white/20">
         <div class="grid grid-cols-3 gap-4 text-center">
           <div>
-            <div class="text-3xl font-black text-pink-200">+378%</div>
+            <div class="text-2xl md:text-3xl font-black text-pink-200">+378%</div>
             <div class="text-sm text-white/80">平均収益率</div>
           </div>
           <div>
-            <div class="text-3xl font-black text-pink-200">97.3%</div>
+            <div class="text-2xl md:text-3xl font-black text-pink-200">97.3%</div>
             <div class="text-sm text-white/80">成功率</div>
           </div>
           <div>
-            <div class="text-3xl font-black text-pink-200">7,234</div>
+            <div class="text-2xl md:text-3xl font-black text-pink-200">7,234</div>
             <div class="text-sm text-white/80">参加者数</div>
           </div>
         </div>
@@ -119,7 +129,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">
           <Gem size={16} class="mr-2" />エレガントな投資スタイル
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-purple-600">エレガント投資</span>が選ばれるのか？</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-purple-600">エレガント投資</span>が選ばれるのか？</h2>
         <p class="text-lg text-slate-600">上品で洗練された投資スタイルで、美しく資産を増やす</p>
       </div>
       
@@ -161,22 +171,22 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
       
       <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-10 rounded-2xl shadow-xl">
         <div class="text-center">
-          <h3 class="text-3xl font-bold mb-6">エレガント投資の実績</h3>
+          <h3 class="text-2xl md:text-3xl font-bold mb-6">エレガント投資の実績</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
-              <div class="text-4xl font-black text-pink-200 mb-2">+378%</div>
+              <div class="text-2xl md:text-4xl font-black text-pink-200 mb-2">+378%</div>
               <div class="text-sm text-purple-100">平均収益率</div>
             </div>
             <div>
-              <div class="text-4xl font-black text-pink-200 mb-2">90日</div>
+              <div class="text-2xl md:text-4xl font-black text-pink-200 mb-2">90日</div>
               <div class="text-sm text-purple-100">平均達成期間</div>
             </div>
             <div>
-              <div class="text-4xl font-black text-pink-200 mb-2">97.3%</div>
+              <div class="text-2xl md:text-4xl font-black text-pink-200 mb-2">97.3%</div>
               <div class="text-sm text-purple-100">成功率</div>
             </div>
             <div>
-              <div class="text-4xl font-black text-pink-200 mb-2">7,234</div>
+              <div class="text-2xl md:text-4xl font-black text-pink-200 mb-2">7,234</div>
               <div class="text-sm text-purple-100">参加者数</div>
             </div>
           </div>
@@ -192,7 +202,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-bold mb-4">
           <Heart size={16} class="mr-2" />投資哲学
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">エレガント投資の<span class="text-purple-600">3つの原則</span></h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">エレガント投資の<span class="text-purple-600">3つの原則</span></h2>
       </div>
       
       <div class="space-y-6">
@@ -236,7 +246,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">
           <Users size={16} class="mr-2" />参加者の声
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">エレガント投資で<span class="text-purple-600">人生が変わった</span>人々</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">エレガント投資で<span class="text-purple-600">人生が変わった</span>人々</h2>
       </div>
       
       <div class="space-y-6">
@@ -281,7 +291,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
     <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     
     <div class="max-w-4xl mx-auto text-center relative z-10">
-      <h2 class="text-4xl md:text-5xl font-black mb-6">
+      <h2 class="text-2xl md:text-5xl font-black mb-6">
         あなたも<span class="text-pink-200">エレガント投資</span>で未来を創りませんか？
       </h2>
       

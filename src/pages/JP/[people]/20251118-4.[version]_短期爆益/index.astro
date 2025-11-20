@@ -1,26 +1,25 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
-import { Flame, Zap, TrendingUp, BarChart3, Clock, Users, Award, Target, AlertTriangle, Rocket } from 'lucide-astro'
-import BaseLayout from '@/layouts/BaseLayout.astro'
+import { AlertTriangle, Award, BarChart3, Clock, Flame, Rocket, Target, TrendingUp, Users, Zap } from 'lucide-astro'
 import lineIcon from '@/assets/line-icon.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
 export const getStaticPaths = (() => {
   return [
     { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'sq5_' } },
     { params: { people: '小谷真生子', version: '0' }, props: { name: 'こたに まおこ', img_prefix: 'zsz1_' } },
-    { params: { people: '片山 晃', version: '0' }, props: { name: '片山 晃', img_prefix: 'psh1_' } },
   ]
 }) satisfies GetStaticPaths
 
 const { name: people, img_prefix } = Astro.props
 
-const headImage = await import(`./static/${img_prefix}head.jpg`)
-const headerImage = await import(`./static/${img_prefix}header.png`)
-const contentImage = await import(`./static/${img_prefix}img.png`)
+const headImage = await import(`../shared-images/static/${img_prefix}head.jpg`)
+const headerImage = await import(`../shared-images/static/${img_prefix}header.png`)
+const contentImage = await import(`../shared-images/static/${img_prefix}img.png`)
 ---
 
-<BaseLayout title={`${people}の短期爆益投資法 | 2週間で資産を4倍に`} description={`短期間で最大の利益を追求する積極的な投資戦略`}>
+<BaseLayout title={`${people}の短期爆益投資法 | 2週間で資産を4倍に`} description="短期間で最大の利益を追求する積極的な投資戦略">
   <style>
     @keyframes fire {
       0%, 100% { transform: scale(1) rotate(-2deg); }
@@ -32,6 +31,17 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
     }
     .animate-fire { animation: fire 2s ease-in-out infinite; }
     .animate-pulse-red { animation: pulse-red 2s ease-in-out infinite; }
+
+    /* 移动端文字大小优化 */
+    @media (max-width: 768px) {
+      .text-5xl { font-size: 2rem; line-height: 2.5rem; }
+      .text-4xl { font-size: 1.75rem; line-height: 2rem; }
+      .text-3xl { font-size: 1.5rem; line-height: 1.75rem; }
+      .text-2xl { font-size: 1.25rem; line-height: 1.5rem; }
+      h1 { font-size: 2rem !important; line-height: 2.5rem !important; }
+      h2 { font-size: 1.75rem !important; line-height: 2rem !important; }
+      h3 { font-size: 1.5rem !important; line-height: 1.75rem !important; }
+    }
   </style>
 
   <!-- Hero Section - 热情红色风格 -->
@@ -39,12 +49,12 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 40px 40px;"></div>
     <div class="absolute top-0 right-0 w-96 h-96 bg-red-500/30 rounded-full blur-3xl"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/30 rounded-full blur-3xl"></div>
-    
+
     <div class="max-w-4xl mx-auto px-4 py-20 relative z-10 text-center">
       <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-bold mb-6 border-2 border-white/30">
         <Flame size={18} class="mr-2" /> 短期爆益投資法 - 今だけ限定公開
       </div>
-      
+
       <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/50 shadow-2xl animate-fire">
         <Image
           src={headImage.default}
@@ -54,39 +64,39 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
           class="w-full h-full object-cover"
         />
       </div>
-      
+
       <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
         <span class="block text-white mb-2">{people}が教える</span>
         <span class="block text-yellow-300">短期爆益投資法</span>
       </h1>
-      
+
       <div class="text-3xl md:text-4xl font-black mb-6">
         <span class="text-yellow-300">2週間で</span>
         <span class="text-white">資産4倍</span>
       </div>
-      
+
       <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 mb-8 border-2 border-white/20">
         <div class="grid grid-cols-3 gap-4 text-center">
           <div>
-            <div class="text-4xl font-black text-yellow-300">+456%</div>
+            <div class="text-2xl md:text-4xl font-black text-yellow-300">+456%</div>
             <div class="text-sm text-white/90">最高収益率</div>
           </div>
           <div>
-            <div class="text-4xl font-black text-yellow-300">95.7%</div>
+            <div class="text-2xl md:text-4xl font-black text-yellow-300">95.7%</div>
             <div class="text-sm text-white/90">成功率</div>
           </div>
           <div>
-            <div class="text-4xl font-black text-yellow-300">9,876</div>
+            <div class="text-2xl md:text-4xl font-black text-yellow-300">9,876</div>
             <div class="text-sm text-white/90">成功者数</div>
           </div>
         </div>
       </div>
-      
+
       <div class="bg-yellow-400 text-red-900 p-5 rounded-xl mb-8 inline-flex items-center font-black text-lg shadow-xl">
         <Clock size={24} class="mr-3" />
-        <span>限定公開残り: <span id="countdown" class="text-3xl">02:15</span></span>
+        <span>限定公開残り: <span id="countdown" class="text-xl md:text-3xl">02:15</span></span>
       </div>
-      
+
       <button
         class="link-btn w-full max-w-md px-10 py-6 bg-white text-red-600 rounded-2xl hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl font-black animate-pulse-red"
         data-umami-event="contact"
@@ -99,7 +109,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
           <span>短期爆益投資法を無料受取</span>
         </div>
       </button>
-      
+
       <p class="text-white/90 mt-6 text-sm">🔥 完全無料 🔥 登録30秒 🔥 いつでも退出OK</p>
     </div>
   </section>
@@ -111,10 +121,10 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-bold mb-4">
           <Zap size={16} class="mr-2" />短期爆益の秘密
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-red-600">2週間で4倍</span>が可能なのか？</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">なぜ<span class="text-red-600">2週間で4倍</span>が可能なのか？</h2>
         <p class="text-lg text-slate-600">短期間で最大の利益を追求する積極的な投資戦略</p>
       </div>
-      
+
       <div class="mb-8 text-center">
         <Image
           src={headerImage.default}
@@ -124,7 +134,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
           class="mx-auto rounded-xl shadow-xl border-4 border-red-300"
         />
       </div>
-      
+
       <div class="grid md:grid-cols-3 gap-6 mb-12">
         <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-200">
           <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
@@ -133,7 +143,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
           <h3 class="text-xl font-bold text-center mb-3 text-slate-900">急騰銘柄の早期発見</h3>
           <p class="text-slate-600 text-center text-sm leading-relaxed">独自の分析手法で、急騰する銘柄を事前に察知。早期に投資することで大きな利益を獲得</p>
         </div>
-        
+
         <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-orange-200">
           <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
             <Target size={32} class="text-white" />
@@ -141,7 +151,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
           <h3 class="text-xl font-bold text-center mb-3 text-slate-900">タイミングの完璧な判断</h3>
           <p class="text-slate-600 text-center text-sm leading-relaxed">買い時と売り時を完璧に判断する技術。わずか数日の違いで利益が大きく変わる</p>
         </div>
-        
+
         <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-red-200">
           <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
             <TrendingUp size={32} class="text-white" />
@@ -150,25 +160,25 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
           <p class="text-slate-600 text-center text-sm leading-relaxed">適切なレバレッジを活用することで、少額の資金でも大きな利益を実現</p>
         </div>
       </div>
-      
+
       <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-10 rounded-2xl shadow-xl">
         <div class="text-center">
-          <h3 class="text-3xl font-bold mb-6">短期爆益投資の驚異的な実績</h3>
+          <h3 class="text-2xl md:text-3xl font-bold mb-6">短期爆益投資の驚異的な実績</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
-              <div class="text-5xl font-black text-yellow-300 mb-2">+456%</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-300 mb-2">+456%</div>
               <div class="text-sm text-red-100">最高収益率</div>
             </div>
             <div>
-              <div class="text-5xl font-black text-yellow-300 mb-2">14日</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-300 mb-2">14日</div>
               <div class="text-sm text-red-100">平均達成期間</div>
             </div>
             <div>
-              <div class="text-5xl font-black text-yellow-300 mb-2">95.7%</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-300 mb-2">95.7%</div>
               <div class="text-sm text-red-100">成功率</div>
             </div>
             <div>
-              <div class="text-5xl font-black text-yellow-300 mb-2">9,876</div>
+              <div class="text-2xl md:text-5xl font-black text-yellow-300 mb-2">9,876</div>
               <div class="text-sm text-red-100">成功者数</div>
             </div>
           </div>
@@ -184,9 +194,9 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold mb-4">
           <AlertTriangle size={16} class="mr-2" />今すぐ行動を
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">機会を逃すと<span class="text-red-600">後悔します</span></h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">機会を逃すと<span class="text-red-600">後悔します</span></h2>
       </div>
-      
+
       <div class="space-y-6">
         <div class="bg-gradient-to-r from-red-50 to-orange-50 p-8 rounded-2xl border-l-4 border-red-500 shadow-lg">
           <div class="flex items-start">
@@ -197,7 +207,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
             </div>
           </div>
         </div>
-        
+
         <div class="bg-gradient-to-r from-orange-50 to-red-50 p-8 rounded-2xl border-l-4 border-orange-500 shadow-lg">
           <div class="flex items-start">
             <Clock size={24} class="text-orange-600 mr-4 flex-shrink-0 mt-1" />
@@ -207,7 +217,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
             </div>
           </div>
         </div>
-        
+
         <div class="bg-gradient-to-r from-red-50 to-orange-50 p-8 rounded-2xl border-l-4 border-red-500 shadow-lg">
           <div class="flex items-start">
             <Users size={24} class="text-red-600 mr-4 flex-shrink-0 mt-1" />
@@ -228,9 +238,9 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <span class="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-bold mb-4">
           <Award size={16} class="mr-2" />成功者の声
         </span>
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">短期爆益投資で<span class="text-red-600">人生が変わった</span>人々</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">短期爆益投資で<span class="text-red-600">人生が変わった</span>人々</h2>
       </div>
-      
+
       <div class="space-y-6">
         <div class="bg-white p-8 rounded-2xl border-2 border-red-200 shadow-xl">
           <div class="flex items-start mb-4">
@@ -247,7 +257,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
             </div>
           </div>
         </div>
-        
+
         <div class="bg-white p-8 rounded-2xl border-2 border-orange-200 shadow-xl">
           <div class="flex items-start mb-4">
             <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-2xl mr-4">佐</div>
@@ -270,21 +280,21 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
   <!-- Final CTA -->
   <section class="py-20 px-4 bg-gradient-to-br from-red-600 via-orange-600 to-red-700 text-white relative overflow-hidden">
     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 40px 40px;"></div>
-    
+
     <div class="max-w-4xl mx-auto text-center relative z-10">
-      <h2 class="text-4xl md:text-5xl font-black mb-6">
+      <h2 class="text-2xl md:text-5xl font-black mb-6">
         あなたも<span class="text-yellow-300">短期爆益投資</span>で資産を増やしませんか？
       </h2>
-      
+
       <p class="text-xl mb-8 text-red-50 leading-relaxed">
-        {people}が教える短期爆益投資法で、<span class="text-yellow-300 font-bold">2週間で資産を4倍</span>に増やすことが可能です。<br>
+        {people}が教える短期爆益投資法で、<span class="text-yellow-300 font-bold">2週間で資産を4倍</span>に増やすことが可能です。<br >
         <span class="text-yellow-300 font-bold">今なら完全無料</span>でこの投資法を公開中です。
       </p>
-      
+
       <div class="bg-white/20 backdrop-blur-sm p-8 rounded-2xl mb-8 border-2 border-white/30 inline-block">
         <div class="flex items-center justify-center mb-3">
           <Clock size={28} class="mr-3 text-yellow-300" />
-          <p class="text-3xl font-black text-yellow-300">本日23:59まで限定公開</p>
+          <p class="text-xl md:text-3xl font-black text-yellow-300">本日23:59まで限定公開</p>
         </div>
         <p class="text-lg text-red-50 font-bold mt-2">明日からは有料コンサルのみ（月額80万円）</p>
         <p class="text-sm text-yellow-200 mt-2">残り枠数：あと23名様限定</p>
@@ -300,7 +310,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         <Flame size={28} class="mr-3" />
         <span>今すぐ短期爆益投資法を無料受取</span>
       </button>
-      
+
       <div class="text-center space-y-3">
         <p class="text-yellow-300 text-lg font-bold">🔥 登録者数：9,876名突破</p>
         <p class="text-yellow-200 text-lg font-bold">🔥 満足度：98.2%</p>
@@ -311,48 +321,49 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
 </BaseLayout>
 
 <script>
-  function initCountdown() {
-    const storageKey = 'countdown_start_time';
-    let startTime: number;
-    const stored = localStorage.getItem(storageKey);
-    
-    if (!stored) {
-      startTime = new Date().getTime();
-      localStorage.setItem(storageKey, startTime.toString());
-    } else {
-      startTime = parseInt(stored, 10);
-    }
-    
-    const countdownDuration = 135 * 1000;
-    const endTime = startTime + countdownDuration;
-    
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = endTime - now;
-      
-      if (distance < 0) {
-        const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer');
-        countdownElements.forEach(element => {
-          element.innerHTML = "00:00";
-        });
-        return;
-      }
-      
-      const minutes = Math.floor(distance / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      
-      const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer');
-      countdownElements.forEach(element => {
-        element.innerHTML = timeString;
-      });
-    }
-    
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+function initCountdown() {
+  const storageKey = 'countdown_start_time'
+  let startTime: number
+  const stored = localStorage.getItem(storageKey)
+
+  if (!stored) {
+    startTime = new Date().getTime()
+    localStorage.setItem(storageKey, startTime.toString())
   }
-  
-  initCountdown();
+  else {
+    startTime = Number.parseInt(stored, 10)
+  }
+
+  const countdownDuration = 135 * 1000
+  const endTime = startTime + countdownDuration
+
+  function updateCountdown() {
+    const now = new Date().getTime()
+    const distance = endTime - now
+
+    if (distance < 0) {
+      const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer')
+      countdownElements.forEach((element) => {
+        element.innerHTML = '00:00'
+      })
+      return
+    }
+
+    const minutes = Math.floor(distance / (1000 * 60))
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+    const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+
+    const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer')
+    countdownElements.forEach((element) => {
+      element.innerHTML = timeString
+    })
+  }
+
+  setInterval(updateCountdown, 1000)
+  updateCountdown()
+}
+
+initCountdown()
 </script>
 
