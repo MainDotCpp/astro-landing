@@ -17,9 +17,9 @@ export const getStaticPaths = (() => {
 const { name: people, img_prefix } = Astro.props
 
 // Import images dynamically based on img_prefix
-const headImage = await import(`./static/${img_prefix}head.jpg`)
-const headerImage = await import(`./static/${img_prefix}header.png`)
-const contentImage = await import(`./static/${img_prefix}img.png`)
+const headImage = await import(`../20250722-2.[version]/static/${img_prefix}head.jpg`)
+const headerImage = await import(`../20250722-2.[version]/static/${img_prefix}header.png`)
+const contentImage = await import(`../20250722-2.[version]/static/${img_prefix}img.png`)
 
 ---
 
