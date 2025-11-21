@@ -7,6 +7,7 @@ type PluginName
     | 'countup'
     | 'rellax'
     | 'jquery'
+    | 'google-fonts-kr'
 
 export interface PluginConfig {
   css?: string
@@ -16,7 +17,7 @@ export interface PluginConfig {
 }
 
 export interface Props {
-  plugins?: Record<string, PluginConfig>
+  plugins?: Record<PluginName, PluginConfig>
 }
 
 const { plugins = { } } = Astro.props
@@ -26,34 +27,38 @@ const defaultPluginConfig: Record<
   PluginName,
   { css?: string, js?: string, loadStrategy?: 'defer' | 'async' | 'blocking' }
 > = {
-  aos: {
+  'aos': {
     css: '/mjSFqQ/lib/aos.css',
     js: '/mjSFqQ/lib/aos.js',
     loadStrategy: 'defer', // UI库，需要DOM准备好
   },
-  gsap: {
+  'gsap': {
     js: '/mjSFqQ/lib/gsap.min.js',
     loadStrategy: 'defer', // 动画库，需要DOM元素
   },
-  animate: {
+  'animate': {
     css: '/mjSFqQ/lib/animate.min.css',
   },
-  swiper: {
+  'swiper': {
     css: '/mjSFqQ/lib/swiper-bundle.min.css',
     js: '/mjSFqQ/lib/swiper-bundle.min.js',
     loadStrategy: 'defer', // 组件库，需要DOM结构
   },
-  countup: {
+  'countup': {
     js: '/mjSFqQ/lib/countUp.umd.js',
     loadStrategy: 'defer', // 需要目标元素存在
   },
-  rellax: {
+  'rellax': {
     js: '/mjSFqQ/lib/rellax.min.js',
     loadStrategy: 'defer', // 视差滚动，需要DOM准备好
   },
-  jquery: {
+  'jquery': {
     js: '/mjSFqQ/lib/jquery.min.js',
     loadStrategy: 'defer', // 基础库，但通常也可以defer
+  },
+  'google-fonts-kr': {
+    css: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Black+Han+Sans&family=Jua&family=Sunflower:wght@300;500;700&display=swap',
+    loadStrategy: 'blocking', // 字体需要尽早加载，避免FOUT（Flash of Unstyled Text）
   },
 }
 
@@ -73,8 +78,11 @@ const processedPlugins = Object.entries(plugins).map(
 
 // 收集需要的CSS和JS资源
 const cssLinks = processedPlugins
-  .map(({ config }) => config.css)
-  .filter((css): css is string => Boolean(css))
+  .map(({ config }) => ({
+    href: config.css,
+    isGoogleFonts: config.css?.includes('fonts.googleapis.com') || false,
+  }))
+  .filter((link): link is { href: string, isGoogleFonts: boolean } => Boolean(link.href))
 
 const jsScripts = processedPlugins
   .map(({ config }) => ({
@@ -88,9 +96,18 @@ const jsScripts = processedPlugins
       src: string
       loadStrategy: 'defer' | 'async' | 'blocking'
     } => Boolean(script.src),
-  );
+  )
+
+// 检查是否需要添加 Google Fonts preconnect
+const needsGoogleFontsPreconnect = cssLinks.some(link => link.isGoogleFonts)
 ---
-{cssLinks.map(href => <link rel="stylesheet" href={href} />)}
+{needsGoogleFontsPreconnect && (
+  <>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </>
+)}
+{cssLinks.map(({ href }) => <link rel="stylesheet" href={href} />)}
 {
   jsScripts.map(({ src, loadStrategy }) => {
     if (loadStrategy === 'async') {
