@@ -1,0 +1,80 @@
+.backdrop {
+  align-items: center;
+  bottom: -1000px;
+  display: flex;
+  justify-content: center;
+  left: -1000px;
+  padding: 1030px;
+  pointer-events: none;
+  position: fixed;
+  right: -1000px;
+  top: -1000px;
+  transition:
+    background-color 300ms ease-in-out,
+    z-index 300ms step-end;
+  z-index: -1;
+}
+
+.backdrop.open {
+  background-color: rgba(119, 119, 119, 0.7);
+  pointer-events: auto;
+  transition: background-color 300ms ease-in-out;
+  z-index: 1100;
+}
+
+.lightbox {
+  background-color: white;
+  box-shadow:
+    0 0 12px rgba(0, 0, 0, 0.3),
+    0 1px 5px rgba(0, 0, 0, 0.2);
+  max-height: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.iframeWrapper {
+  /* iOS has a 'feature' where it will expand iframes so they become as large as their content
+     document. When this happens the following properties allow the user to scroll in the parent
+     element instead of the iframe itself. This should have no effect on non-iOS browsers; the
+     scrolling will be entirely within the iframe. */
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.iframeWrapper iframe {
+  border: none;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.close {
+  background: url("https://builder-assets.unbounce.com/published/images/lightbox-close@3x.png")
+    center / 30px 30px transparent no-repeat;
+  border: none;
+  cursor: pointer;
+  font-size: 0;
+  height: 40px;
+  position: absolute;
+  right: -19px;
+  top: -19px;
+  width: 40px;
+}
+
+@media only screen and (max-width: 420px) {
+  .backdrop {
+    /* Allow the lightbox to reach the vertical viewport edges before scrolling */
+    padding-left: 1000px;
+    padding-right: 1000px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .close {
+    /* Move the close button to the left so it remains visible */
+    right: 10px;
+  }
+}
