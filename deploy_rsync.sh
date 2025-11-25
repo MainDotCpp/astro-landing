@@ -90,6 +90,27 @@ else
 fi
 
 echo ""
+echo "---"
+echo ""
+
+# 部署到新服务器 (202.182.125.131)
+echo ">>> 正在部署到新服务器 (202.182.125.131)..."
+sshpass -p "${PASSWORD_JP}" rsync -rlptzv \
+    --chown=www:www \
+    --chmod=D755,F644 \
+    --progress \
+    ${EXCLUDE_PARAMS_NO_PRIVATE} \
+    ${SOURCE_DIR} \
+    -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
+    root@202.182.125.131:/www/wwwroot/zutoml.top
+
+if [ $? -eq 0 ]; then
+    echo "✓ 新服务器部署成功"
+else
+    echo "✗ 新服务器部署失败"
+fi
+
+echo ""
 echo "================================"
 echo "部署完成！"
 echo "================================"
