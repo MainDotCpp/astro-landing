@@ -1,0 +1,407 @@
+---
+// Image imports
+import avatarImage from './static/picture/1_rstuvwxyzltywf2.jpg'
+
+import bannerImage from './static/picture/oi_banner.png'
+import contactImage from './static/picture/oi_contact.png'
+// CSS imports
+import './static/css/main-style.css'
+---
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+<!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+<script is:inline>
+function onLinkBtnClick() {
+  const link = 'https://www.baidu.com'
+  if (typeof gtag_report_conversion === 'function') { gtag_report_conversion() }
+  setTimeout(() => { window.location.href = link }, 100)
+}
+</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="format-detection" content="telephone=no" >
+    <title>武者陵司｜LINEで投資学習情報を入手</title>
+    <meta name="description" content="経済評論家・三橋 貴明が監修する、株式市場の最新情報や分析をLINEで配信中。簡単にスタート！" >
+    <style>
+        body {
+            font-family: "Hiragino Kaku Gothic Pro", "メイリオ", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .oi_avatar-xft {
+            width: 96px;
+            height: 96px;
+            overflow: hidden;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .oi_avatar-xft img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .oi_main-xft {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 0 15px;
+            max-width: 600px;
+            width: 90%;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        .oi_main-xft h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .oi_main-xft p {
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.8;
+            font-weight: bold;
+            text-align: justify;
+        }
+
+        .oi_btn-xft,
+        .oi_btn2-xft {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 600px;
+            margin-top: 20px;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: white;
+            color: #333;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .oi_btn-xft:hover,
+        .oi_btn2-xft:hover {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .oi_btn-xft:active,
+        .oi_btn2-xft:active {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .oi_imgbox-xft {
+            margin-top: 30px;
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .oi_imgbox-xft img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .oi_imgtext-xft {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding: 10px;
+            box-sizing: border-box;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .oi_btn2-xft {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            animation: oi_pulse 2s infinite;
+        }
+
+        .oi_btn2-xft img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @keyframes oi_pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .oi_main-xft h1 {
+                font-size: 20px;
+            }
+
+            .oi_main-xft p {
+                font-size: 14px;
+            }
+
+            .oi_btn-xft,
+            .oi_btn2-xft {
+                font-size: 16px;
+                padding: 14px;
+            }
+
+            .oi_btn2-xft img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .oi_footer-xft {
+            font-size: 12px;
+            margin-top: 2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .oi_notice-xft {
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 20px;
+            padding: 0 15px;
+            max-width: 600px;
+            width: 90%;
+            font-weight: bold;
+        }
+
+        .oi_modal-xft {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+        }
+
+        .oi_modal-content-xft {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .oi_modal-close-xft {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .oi_modal-body-xft {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="oi_avatar-xft" data-ref="user-profile" data-type="avatar">
+        <img src={avatarImage.src} alt="プロフィール" >
+    </div>
+    <div class="oi_main-xft" data-ref="main-content" data-type="text">
+        <h1>武者陵司</h1>
+        <p>武者陵司のLINEを無料で追加すると、投資学習に関する市場分析や株式情報を受け取ることができます。LINEを追加するだけで、情報を受け取ることができ、市場のトレンドも配信しています。</p>
+        <p>今すぐ参加して、投資の知識を深めましょう！</p>
+        <a onclick="onLinkBtnClick()" id="mainBtnXft" data-ref="main-action" data-type="button">
+            <button class="oi_btn-xft">投資学習情報を受け取る</button>
+        </a>
+    </div>
+    <div class="oi_notice-xft" data-ref="disclaimer" data-type="notice">
+        ※「受取」と送信するだけで、翌日上がる銘柄がわかります。さらに、毎週60％の利益が期待できる優良銘柄の情報も手に入れることができます
+    </div>
+    <div class="oi_imgbox-xft" data-ref="banner-section" data-type="image">
+        <a onclick="onLinkBtnClick()" id="imgLinkXft">
+            <img src={bannerImage.src} alt="投資情報" >
+        </a>
+        <div class="oi_imgtext-xft" data-ref="banner-caption" data-type="caption">
+            LINEを追加すると、最新の市場分析情報を入手できます
+        </div>
+    </div>
+    <a onclick="onLinkBtnClick()" id="contactActXft" data-ref="contact-action" data-type="contact">
+        <button class="oi_btn2-xft">
+            <img src={contactImage.src} alt="LINE" >
+            👉 LINEを追加して、優良銘柄を無料で受け取ろう！
+        </button>
+    </a>
+
+    <div class="d-flex justify-content-center g-2">
+        <a class="oi_footer-xft" id="privacyXft">プライバシーポリシー</a>
+        <a class="oi_footer-xft ml-4" id="termsXft">利用規約</a>
+        <a class="oi_footer-xft ml-4" id="contactXft">お問い合わせ</a>
+    </div>
+
+    <div id="privacyModalXft" class="oi_modal-xft">
+        <div class="oi_modal-content-xft">
+            <span class="oi_modal-close-xft">×</span>
+            <h2 class="font-weight-bold">プライバシーポリシー</h2>
+            <div class="oi_modal-body-xft">
+                <p>
+                    <strong>一、はじめに</strong><br >
+                    当社が提供する投資情報サービスをご利用いただき、誠にありがとうございます。当社はユーザーの個人情報保護を重視しており、本プライバシーポリシーは、LINEで当社を追加して投資情報を取得する際に、当社が個人情報を収集、利用、保存、保護する方法と、ユーザーの権利について明かすものです。本サービスをご利用いただく前に、本プライバシーポリシーの内容を十分にお読みいただき、ご理解いただけますようお願いいたします。<br ><br >
+
+                    <strong>二、情報の収集</strong><br >
+                    <b>必要な情報の収集：</b>
+                    LINEで当社を追加して投資情報を取得する際、当社はLINEアカウントIDのみを収集いたします。この情報はサービスの利用者を確認し、個別に投資情報を配信するために使用いたします。その他、氏名、LINEアカウント以外の連絡先、身分証明番号、財務状況などの敏感な個人情報は、原則として収集いたしません。<br >
+                    <b>不要な情報の収集（場合により）：</b>
+                    サービスを利用する際、LINEでのチャット記録から自発的に提供いただいた情報（例えば、投資に関する質問など）を収集する場合があります。ただし、これらの情報の提供はユーザーの自由な意思に基づくものであり、より質の高いサービスを提供するためのみに使用いたします。<br ><br >
+
+                    <strong>三、情報の利用</strong><br >
+                    収集したLINEアカウントIDなどの情報は、投資情報（市場分析や株式情報、最新の市場動向など）を配信するためのみに使用いたします。<br >
+                    当社は、ユーザーの個人情報を第三者に売却、貸し出し、または商業的なマーケティング目的で共有することはありません。ただし、以下の場合には、個人情報を共有することがあります：<br >
+                    ・法律法規の要求に基づき、司法機関、行政機関などの権限ある機関の調査、執行業務に協力する場合<br >
+                    ・合併、買収、破産清算などの事業または資産の譲渡に関連する場合で、法的に適切な手続きに従っている場合<br ><br >
+
+                    <strong>四、情報の保存と保護</strong><br >
+                    当社は、適切な技術的および管理的措置を講じて、ユーザーの個人情報のセキュリティを保障し、情報漏えい、損壊、消失を防止いたします。収集した情報は暗号化して保存し、関係者の情報アクセス権限を制限し、サービスの提供に必要な従業員のみが情報にアクセスし、処理できるようにしています。<br >
+                    当社は、サービスの提供に必要な期間のみ個人情報を保存します。サービスの終了時またはユーザーから情報削除の要求があった場合、法律法規の要求に従って、個人情報を削除または匿名化処理いたします。<br ><br >
+
+                    <strong>五、ユーザーの権利</strong><br >
+                    ・<b>閲覧権：</b> いつでもLINEで当社に連絡することで、当社が収集した個人情報の内容を閲覧する権利があります。<br >
+                    ・<b>訂正権：</b> 個人情報に誤りがあることを発見した場合は、LINEで訂正の請求ができます。<br >
+                    ・<b>削除権：</b> 法律法規に基づき、サービスを利用しなくなった場合などに個人情報の削除を請求することができます。<br >
+                    ・<b>同意撤回権：</b>
+                    LINEでのやり取りを停止することで、当社が個人情報を収集・利用することへの同意をいつでも撤回できます（ただし、サービスの一部機能が制限される可能性があります）。<br ><br >
+
+                    <strong>六、ポリシーの更新</strong><br >
+                    当社は、法律法規の変更や事業発展のニーズに応じて、本プライバシーポリシーを更新する場合があります。更新後のプライバシーポリシーは、サービス関連ページまたはLINEメッセージなどを通じて公表いたします。更新後もサービスをご利用いただいた場合は、内容を理解し、同意したものとみなされます。<br ><br >
+
+                    <strong>七、お問い合わせ</strong><br >
+                    本プライバシーポリシーに関するご質問、ご意見、ご提案、または個人情報の権利行使については、いつでもLINEで当社にご連絡ください。適切な期間内に対応いたします。
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModalXft" class="oi_modal-xft">
+        <div class="oi_modal-content-xft">
+            <span class="oi_modal-close-xft">×</span>
+            <h2 class="font-weight-bold">利用規約</h2>
+            <div class="oi_modal-body-xft">
+                <p>
+                    <strong>第1条（適用）</strong><br >
+                    本利用規約（以下「本規約」といいます）は、ユーザーが当社（以下「当社」といいます）が提供するLINE投資情報サービス（以下「本サービス」といいます）を利用する際の条件を定めるものです。ユーザーは、本規約に同意の上、本サービスを利用するものとします。
+                    <br ><br >
+
+                    <strong>第2条（サービス内容）</strong><br >
+                    当社は、LINEアプリを通じて、株式市場情報、経済分析、市場動向などの投資関連情報を提供します。<br >
+                    本サービスは情報提供を目的としており、金融商品取引法上の助言または勧誘を行うものではありません。
+                    <br ><br >
+
+                    <strong>第3条（利用条件）</strong><br >
+                    1. ユーザーは、本サービスを自己の判断と責任において利用するものとします。<br >
+                    2. ユーザーは、法令または公序良俗に反する目的で本サービスを利用してはなりません。
+                    <br ><br >
+
+                    <strong>第4条（個人情報の取扱い）</strong><br >
+                    当社は、ユーザーの個人情報を適切に管理し、プライバシーポリシーに従って取り扱います。ユーザーは、本サービスの利用に際し、LINEアカウントID等の提供に同意するものとします。
+                    <br ><br >
+
+                    <strong>第5条（知的財産権）</strong><br >
+                    本サービスを通じて提供されるすべてのコンテンツ（文章、画像、プログラム等）の著作権およびその他の知的財産権は、当社または正当な権利を有する第三者に帰属します。ユーザーは、事前の許可なくこれらを複製、転用、再配布してはなりません。
+                    <br ><br >
+
+                    <strong>第6条（免責事項）</strong><br >
+                    1. 当社は、本サービスにより提供される情報の正確性、完全性、有用性について保証いたしません。<br >
+                    2. 本サービスの利用により生じたいかなる損害についても、当社は一切の責任を負いません。
+                    <br ><br >
+
+                    <strong>第7条（サービスの変更・停止）</strong><br >
+                    当社は、事前の通知なく本サービスの全部または一部を変更、停止、中止することがあります。
+                    <br ><br >
+
+                    <strong>第8条（規約の変更）</strong><br >
+                    当社は、必要に応じて本規約を変更することがあります。変更後の内容は、LINEメッセージまたは当社のWebページ上で通知するものとし、ユーザーが引き続き本サービスを利用した場合、変更後の規約に同意したものとみなします。
+                    <br ><br >
+
+                    <strong>第9条（準拠法および管轄）</strong><br >
+                    本規約は日本法に準拠し、ユーザーと当社の間で紛争が生じた場合は、東京地方裁判所を第一審の専属的合意管轄裁判所とします。
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModalXft" class="oi_modal-xft">
+        <div class="oi_modal-content-xft">
+            <span class="oi_modal-close-xft">×</span>
+            <h2 class="font-weight-bold">お問い合わせ</h2>
+            <div class="oi_modal-body-xft">
+                <p class="mt-2">
+                    電話: +8140-875-9431
+                </p>
+                <p>郵便番号: 313-0134</p>
+                <p>
+                    住所: イバラキケン、ヒタチオオタシ、ナカノチョウ、168-1108
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
