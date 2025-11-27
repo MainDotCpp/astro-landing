@@ -7,10 +7,11 @@ import kakaoButton from '@/pages/KR/[people]/images/kakao_button.png'
 // Import modal images
 import modalContent from '@/pages/KR/[people]/images/modal_content.png'
 import KakaoCopyButton from './button/KaKaoCopyButton.tsx'
+import KakaoFormButton from './button/KakaoFormButton.tsx'
 
 type Props = {
     text?: string
-    social?: '卡扣' | '棒群' | '混合' | '引导弹窗'
+    social?: '卡扣' | '棒群' | '混合' | '引导弹窗' | '提高质量'
     size?: 'sm' | 'md' | 'lg'
     animate?: boolean
     class?: string
@@ -77,8 +78,9 @@ if (!ctaText) {
 }
 
 ---
+{social === '提高质量' && <KakaoFormButton client:only="react" />}
 {social === '引导弹窗' && <KakaoCopyButton client:only="react" />}
-{social !== '引导弹窗' && <style>
+{social !== '引导弹窗' && social !== '提高质量' && <style>
     .breathing {
         animation: breathing 2s ease-in-out infinite;
     }
