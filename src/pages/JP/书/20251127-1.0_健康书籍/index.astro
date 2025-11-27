@@ -1,0 +1,1025 @@
+---
+import { Image } from 'astro:assets'
+import { Book, Calendar, Gift, Globe, Heart, Lock, MessageCircle, Zap } from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import book1 from './static/book1.jpg'
+import book2 from './static/book2.jpg'
+import book3 from './static/book3.jpg'
+import book4 from './static/book4.jpg'
+import book5 from './static/book5.jpg'
+import book6 from './static/book6.jpg'
+---
+
+<BaseLayout title="健康書籍 無料贈呈キャンペーン | 名医が実践する健康術を学ぶ" lang="ja">
+  <Fragment slot="head">
+    <!-- Google Fonts Preconnect - 早期接続確立 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <!-- Google Fonts Stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+    />
+  </Fragment>
+  <style>
+
+    :root {
+      /* 高齢者向けの温かみのある配色 */
+      --primary-beige: #f5e6d3;
+      --primary-brown: #8b6f47;
+      --primary-brown-dark: #6b5435;
+      --accent-blue: #4a90a4;
+      --accent-blue-light: #6ba8b8;
+      --warm-cream: #fff8f0;
+      --soft-green: #7fb069;
+      --line-green: #06c755;
+      --line-green-dark: #05b048;
+
+      /* 高コントラストの文字色 */
+      --text-dark: #2c2c2c;
+      --text-medium: #4a4a4a;
+      --text-light: #6b6b6b;
+      --white: #ffffff;
+      --bg-light: #faf8f5;
+      --bg-section: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 2;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 100px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Section - シンプルで読みやすい */
+    .hero {
+      background: linear-gradient(180deg, var(--primary-beige) 0%, var(--warm-cream) 100%);
+      padding: 60px 0 80px;
+      border-bottom: 4px solid var(--primary-brown);
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--primary-brown);
+      color: var(--white);
+      padding: 12px 32px;
+      margin-bottom: 32px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-badge .highlight {
+      color: #fff9e6;
+      font-weight: 800;
+    }
+
+    .free-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+      color: var(--white);
+      padding: 12px 20px;
+      font-size: 22px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.05em;
+      box-shadow: 0 -4px 20px rgba(238, 90, 111, 0.4);
+      border-top: 3px solid var(--white);
+      z-index: 1000;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .free-banner:hover {
+      background: linear-gradient(135deg, #ee5a6f 0%, #dd4a5e 100%);
+    }
+
+    .free-banner .free-text {
+      font-size: 26px;
+      display: inline;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      line-height: 1.4;
+    }
+
+
+    .hero-title-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .hero-title-icon {
+      width: 56px;
+      height: 56px;
+      color: var(--primary-brown-dark);
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--primary-brown-dark);
+      line-height: 1.6;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+      color: var(--text-medium);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 2px solid var(--primary-brown);
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-number {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--primary-brown-dark);
+      display: block;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 16px;
+      color: var(--text-medium);
+      font-weight: 600;
+    }
+
+    /* Books Section */
+    .books-section {
+      padding: 80px 0;
+      background: var(--bg-section);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary-brown-dark);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid var(--primary-brown);
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 20px;
+      color: var(--text-medium);
+      margin-top: 24px;
+      margin-bottom: 60px;
+      font-weight: 500;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 60px;
+      margin-top: 60px;
+    }
+
+    .book-card {
+      text-align: center;
+      padding: 40px 30px;
+      background: var(--warm-cream);
+      border-top: 5px solid var(--accent-blue);
+    }
+
+    .book-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin: 0 auto 32px;
+      display: block;
+      border: 3px solid var(--primary-brown);
+    }
+
+    .book-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--primary-brown-dark);
+      line-height: 1.6;
+    }
+
+    .book-description {
+      font-size: 18px;
+      color: var(--text-medium);
+      line-height: 2;
+      text-align: left;
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 80px 0;
+      background: var(--primary-beige);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--white);
+      border-left: 5px solid var(--soft-green);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 20px;
+      color: var(--soft-green);
+    }
+
+    .feature-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--primary-brown-dark);
+    }
+
+    .feature-text {
+      font-size: 18px;
+      color: var(--text-medium);
+      line-height: 2;
+    }
+
+    /* Steps Section */
+    .steps-section {
+      padding: 80px 0;
+      background: var(--bg-section);
+    }
+
+    .steps-list {
+      max-width: 700px;
+      margin: 60px auto 0;
+      list-style: none;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: var(--warm-cream);
+      border-left: 6px solid var(--accent-blue);
+    }
+
+    .step-number {
+      background: var(--accent-blue);
+      color: var(--white);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 800;
+      margin-right: 24px;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      font-size: 20px;
+      color: var(--text-dark);
+      line-height: 2;
+      padding-top: 12px;
+    }
+
+    .step-text .highlight {
+      color: var(--accent-blue);
+      font-weight: 700;
+      background: rgba(74, 144, 164, 0.1);
+      padding: 2px 6px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-blue-light) 100%);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .cta-subtitle {
+      font-size: 22px;
+      margin-bottom: 50px;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      margin: 50px auto;
+      max-width: 600px;
+      border: 3px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .countdown-title {
+      font-size: 20px;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    .countdown-display {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .countdown-number {
+      background: var(--white);
+      color: var(--accent-blue);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      border: 3px solid var(--white);
+    }
+
+    .countdown-label {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .line-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--line-green);
+      color: var(--white);
+      padding: 20px 50px;
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 40px;
+      border: 3px solid var(--white);
+      transition: background 0.3s ease;
+    }
+
+    .line-button:hover {
+      background: var(--line-green-dark);
+    }
+
+    .line-button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--line-green);
+      color: var(--white);
+      padding: 18px 40px;
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 24px;
+      transition: background 0.3s ease;
+    }
+
+    .line-button-secondary:hover {
+      background: var(--line-green-dark);
+    }
+
+    .button-wrapper {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .book-button-wrapper {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .line-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .line-button .line-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    .cta-info {
+      margin-top: 40px;
+      font-size: 20px;
+      line-height: 2;
+      opacity: 0.95;
+    }
+
+    .inline-icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+      margin-bottom: 2px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary-brown-dark);
+      color: var(--white);
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+
+    .disclaimer {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 18px;
+      line-height: 2.2;
+    }
+
+    .disclaimer-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--primary-beige);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid rgba(255, 255, 255, 0.2);
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .hero {
+        padding: 50px 0 60px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .hero-title-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 12px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      body {
+        padding-bottom: 90px;
+      }
+
+      .free-banner {
+        padding: 10px 16px;
+        font-size: 18px;
+      }
+
+      .free-banner .free-text {
+        font-size: 18px;
+      }
+
+      .hero-stats {
+        flex-direction: row;
+        gap: 20px;
+        margin-top: 24px;
+        padding-top: 20px;
+      }
+
+      .hero-stat-number {
+        font-size: 36px;
+      }
+
+      .hero-stat-label {
+        font-size: 14px;
+      }
+
+      .section-title {
+        font-size: 26px;
+      }
+
+      .section-subtitle {
+        font-size: 18px;
+      }
+
+      .books-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .book-card {
+        padding: 30px 20px;
+      }
+
+      .book-title {
+        font-size: 20px;
+      }
+
+      .book-description {
+        font-size: 16px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .feature-card {
+        padding: 30px 20px;
+      }
+
+      .feature-title {
+        font-size: 20px;
+      }
+
+      .feature-text {
+        font-size: 16px;
+      }
+
+      .step-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+      }
+
+      .step-number {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+
+      .step-text {
+        font-size: 18px;
+      }
+
+      .cta-title {
+        font-size: 28px;
+      }
+
+      .cta-subtitle {
+        font-size: 18px;
+      }
+
+      .countdown-number {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+      }
+
+      .countdown-display {
+        gap: 12px;
+      }
+
+      .line-button {
+        width: 100%;
+        max-width: 100%;
+        font-size: 20px;
+        padding: 18px 30px;
+      }
+
+      .line-button-secondary {
+        width: 100%;
+        max-width: 100%;
+        font-size: 18px;
+        padding: 16px 24px;
+      }
+
+      .cta-info {
+        font-size: 16px;
+      }
+
+      .disclaimer {
+        padding: 30px 20px;
+        font-size: 16px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-stat-number {
+        font-size: 36px;
+      }
+
+      .countdown-number {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+    }
+  </style>
+
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="highlight">年末感謝キャンペーン</span> 限定1000冊・先着順・送料無料
+          </div>
+          <div class="hero-title-wrapper">
+            <Book class="hero-title-icon" size={56} />
+            <h1 class="hero-title">健康書籍 無料贈呈キャンペーン</h1>
+          </div>
+          <p class="hero-subtitle">
+            🌹 親愛なる皆様へ<br >
+            時は流れ、2025年が終わり、2026年が新しい希望と共に私たちの前にやってきました。<br >
+            新たな年を迎えるにあたり、私たちはこの特別な健康書籍を心を込めた贈り物として皆様にお届けしたいと思います。<br >
+            この書籍には、皆様への祝福と期待が込められています。<br >
+            <br >
+            名医が実践する健康術を学び、より良い健康習慣を身につけませんか？<br >
+            科学的根拠に基づいた健康法で、あなたの人生をより豊かに。<br >
+            お客様の個人情報は記録・開示されることはありません。安心してお申し込みください。
+          </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">1000</span>
+              <span class="hero-stat-label">限定冊数</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">0</span>
+              <span class="hero-stat-label">円（完全無料）</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">6</span>
+              <span class="hero-stat-label">冊の健康書籍</span>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <a class="line-button-secondary link-btn">
+              <MessageCircle class="line-icon" size={24} />
+              <span>LINE友だち追加（無料）</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Books Section -->
+    <section class="books-section">
+      <div class="container">
+        <h2 class="section-title">今回お届けする健康書籍</h2>
+        <p class="section-subtitle">
+          長い間ご支援いただいている皆様への感謝を込めて、科学的根拠に基づいた健康習慣を学べる特別な一冊をご用意しました。<br >
+          この書籍が皆様にインスピレーションを与え、すべての皆様が健康で幸せに、そしてますます向上していくことを心より願っています。私たちは皆様と手を取り合い、共に成長し、共に歩んでまいりましょう！
+        </p>
+        <div class="books-grid">
+          <div class="book-card">
+            <Image src={book1} alt="健康書籍" class="book-image" />
+            <div class="book-button-wrapper">
+              <a class="line-button-secondary link-btn">
+                <MessageCircle class="line-icon" size={24} />
+                <span>今すぐ受け取る</span>
+              </a>
+            </div>
+          </div>
+          <div class="book-card">
+            <Image src={book2} alt="健康書籍" class="book-image" />
+            <div class="book-button-wrapper">
+              <a class="line-button-secondary link-btn">
+                <MessageCircle class="line-icon" size={24} />
+                <span>今すぐ受け取る</span>
+              </a>
+            </div>
+          </div>
+          <div class="book-card">
+            <Image src={book3} alt="健康書籍" class="book-image" />
+            <div class="book-button-wrapper">
+              <a class="line-button-secondary link-btn">
+                <MessageCircle class="line-icon" size={24} />
+                <span>今すぐ受け取る</span>
+              </a>
+            </div>
+          </div>
+          <div class="book-card">
+            <Image src={book4} alt="健康書籍" class="book-image" />
+            <div class="book-button-wrapper">
+              <a class="line-button-secondary link-btn">
+                <MessageCircle class="line-icon" size={24} />
+                <span>今すぐ受け取る</span>
+              </a>
+            </div>
+          </div>
+          <div class="book-card">
+            <Image src={book5} alt="健康書籍" class="book-image" />
+            <div class="book-button-wrapper">
+              <a class="line-button-secondary link-btn">
+                <MessageCircle class="line-icon" size={24} />
+                <span>今すぐ受け取る</span>
+              </a>
+            </div>
+          </div>
+          <div class="book-card">
+            <Image src={book6} alt="健康書籍" class="book-image" />
+            <div class="book-button-wrapper">
+              <a class="line-button-secondary link-btn">
+                <MessageCircle class="line-icon" size={24} />
+                <span>今すぐ受け取る</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title">キャンペーンの特徴</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <Gift class="feature-icon" size={48} />
+            <h3 class="feature-title">完全無料</h3>
+            <p class="feature-text">
+              書籍代金・送料ともに完全無料です。一切の費用はかかりません。
+            </p>
+          </div>
+          <div class="feature-card">
+            <Globe class="feature-icon" size={48} />
+            <h3 class="feature-title">日本国内限定</h3>
+            <p class="feature-text">
+              日本国内にお住まいの方のみ対象となります。活動期間中に無料でお届けします。
+            </p>
+          </div>
+          <div class="feature-card">
+            <Zap class="feature-icon" size={48} />
+            <h3 class="feature-title">先着順・数量限定</h3>
+            <p class="feature-text">
+              限定1000冊のため、お早めにお申し込みください。お一人様1冊限りです。
+            </p>
+          </div>
+          <div class="feature-card">
+            <Lock class="feature-icon" size={48} />
+            <h3 class="feature-title">プライバシー保護</h3>
+            <p class="feature-text">
+              お客様の個人情報は記録・開示されることはありません。安心してお申し込みください。
+            </p>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <a class="line-button-secondary link-btn">
+            <MessageCircle class="line-icon" size={24} />
+            <span>LINE友だち追加（無料）</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps-section">
+      <div class="container">
+        <h2 class="section-title">参加方法</h2>
+        <p class="section-subtitle">簡単なステップで書籍をお受け取りいただけます</p>
+        <ul class="steps-list">
+          <li class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-text">
+              下記のボタンから<span class="highlight">LINE公式アカウント</span>を友だち追加してください
+            </div>
+          </li>
+          <li class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-text">
+              LINEで<span class="highlight">「書籍受け取り」</span>または<span class="highlight">「申請領書」</span>とメッセージを送信してください（当日発送可能）
+            </div>
+          </li>
+          <li class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-text">
+              情報確認後、ご指定の住所へ<span class="highlight">無料でお届け</span>いたします
+            </div>
+          </li>
+        </ul>
+        <div class="button-wrapper">
+          <a class="line-button-secondary link-btn">
+            <MessageCircle class="line-icon" size={24} />
+            <span>LINE友だち追加（無料）</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">今すぐLINEで友だち追加！</h2>
+        <p class="cta-subtitle">限定1000冊、お早めにお申し込みください</p>
+
+        <div class="countdown-box">
+          <p class="countdown-title">キャンペーン終了まで</p>
+          <div class="countdown-display">
+            <div class="countdown-item">
+              <div class="countdown-number" id="days">00</div>
+              <div class="countdown-label">日</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="hours">00</div>
+              <div class="countdown-label">時間</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="minutes">00</div>
+              <div class="countdown-label">分</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="seconds">00</div>
+              <div class="countdown-label">秒</div>
+            </div>
+          </div>
+        </div>
+
+        <a class="line-button link-btn">
+          <MessageCircle class="line-icon" size={32} />
+          <span>LINE友だち追加（無料）</span>
+        </a>
+
+        <p class="cta-info">
+          <Calendar class="inline-icon" size={20} />
+          <span id="campaign-deadline">キャンペーン期限：計算中...</span><br >
+          <Heart class="inline-icon" size={20} />
+          追加特典：コミュニティ参加後、定期的に健康情報や書籍レビューをシェアします。志同道合の仲間と一緒に成長しましょう！
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="disclaimer">
+          <div class="disclaimer-title">ご注意事項</div>
+          <p>
+            本キャンペーンは日本国内にお住まいの方のみを対象としています。<br >
+            お一人様1アカウントにつき1冊までとさせていただきます。<br >
+            数量に限りがございますため、先着順でのご対応となります（1000冊限定、送料無料、送り完次第終了）。<br >
+            お客様の個人情報は適切に管理され、第三者に開示されることはありません。<br >
+            本キャンペーンの内容は予告なく変更される場合がございます。<br >
+            <br >
+            <strong>✨ 私たちからのお約束：完全無料です。一切の費用はかかりません。</strong><br >
+            もしこの書籍がお役に立ちましたら、ぜひご感想をお聞かせください。皆様のご支援が私たちの最大の励みとなります。<br >
+            <br >
+            皆様のご支援に感謝し、より良い未来を共に迎えることを楽しみにしています。
+          </p>
+        </div>
+        <div class="copyright">
+          © 2025 健康書籍 無料贈呈キャンペーン. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+  // Countdown Timer
+  function updateCountdown() {
+    const now = new Date()
+
+    // 获取当前日本时间的日期字符串
+    const jstDateString = now.toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })
+
+    // 解析日期
+    const [month, day, year] = jstDateString.split('/')
+
+    // 创建第二天的23:59:59（日本时间）
+    const tomorrowJST = new Date(Date.UTC(
+      Number.parseInt(year, 10),
+      Number.parseInt(month, 10) - 1,
+      Number.parseInt(day, 10) + 1,
+      23 - 9, // 减去9小时转换为UTC
+      59,
+      59,
+      999,
+    ))
+
+    // 更新活动期限显示
+    const deadlineEl = document.getElementById('campaign-deadline')
+    if (deadlineEl) {
+      const tomorrowYear = Number.parseInt(year, 10)
+      const tomorrowMonth = Number.parseInt(month, 10)
+      const tomorrowDay = Number.parseInt(day, 10) + 1
+      const formattedDate = `${tomorrowYear}年${tomorrowMonth}月${tomorrowDay}日`
+      deadlineEl.textContent = `キャンペーン期限：${formattedDate}23:59まで`
+    }
+
+    const diffTime = tomorrowJST.getTime() - now.getTime()
+
+    const daysEl = document.getElementById('days')
+    const hoursEl = document.getElementById('hours')
+    const minutesEl = document.getElementById('minutes')
+    const secondsEl = document.getElementById('seconds')
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+      return
+    }
+
+    if (diffTime <= 0) {
+      daysEl.textContent = '00'
+      hoursEl.textContent = '00'
+      minutesEl.textContent = '00'
+      secondsEl.textContent = '00'
+      return
+    }
+
+    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((diffTime % (1000 * 60)) / 1000)
+
+    daysEl.textContent = days.toString().padStart(2, '0')
+    hoursEl.textContent = hours.toString().padStart(2, '0')
+    minutesEl.textContent = minutes.toString().padStart(2, '0')
+    secondsEl.textContent = seconds.toString().padStart(2, '0')
+  }
+
+  setInterval(updateCountdown, 1000)
+  updateCountdown()
+  </script>
+
+  <!-- Fixed Free Banner -->
+  <div class="free-banner link-btn" onclick="window.open('https://lihi.cc/HXrI4', '_blank')">
+    <span class="free-text">完全無料！書籍代・送料一切不要。今すぐLINEで友だち追加して6冊の健康書籍を無料で受け取ろう！</span>
+  </div>
+  </body>
+</BaseLayout>

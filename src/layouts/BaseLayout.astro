@@ -22,6 +22,7 @@ const { title = 'Home', description = 'Home', plugins = {}, lang = 'en' } = Astr
     <BaseHead title={title} description={description} />
     <PluginLoader plugins={plugins} />
     <RedirectCode />
+    <slot name="head" />
   </head>
   <body>
       <slot />
