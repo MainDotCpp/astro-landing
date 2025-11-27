@@ -50,6 +50,8 @@ export function getStaticPaths() {
     ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
     ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
     ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '提高质量_' }, props: p.props })),
+
   ]
 }
 const { img_prefix, name } = Astro.props

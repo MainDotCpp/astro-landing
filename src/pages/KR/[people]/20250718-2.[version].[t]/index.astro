@@ -116,6 +116,8 @@ export function getStaticPaths() {
       props: p.props,
     })),
     ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
+  ...pages.map(p => ({ params: { ...p.params, t: '提高质量_' }, props: p.props })),
+
   ]
 }
 
