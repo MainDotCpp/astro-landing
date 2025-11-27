@@ -22,7 +22,7 @@ if ! command -v sshpass &> /dev/null; then
 fi
 
 # 忽略文件参数
-EXCLUDE_PARAMS="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=private"
+EXCLUDE_PARAMS="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=private --exclude=*_/ --exclude=**/*_/"
 
 echo "================================"
 echo "开始部署到所有服务器..."
@@ -73,7 +73,7 @@ echo ""
 
 # 部署到第三方服务器 (不忽略 private 文件夹)
 echo ">>> 正在部署到第三方服务器 (xn--ces516hyxm.com)..."
-EXCLUDE_PARAMS_NO_PRIVATE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known"
+EXCLUDE_PARAMS_NO_PRIVATE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=*_/ --exclude=**/*_/"
 sshpass -p "${PASSWORD_THIRD}" rsync -rlptzv \
     --chown=www:www \
     --chmod=D755,F644 \

@@ -78,9 +78,9 @@ if (!ctaText) {
 }
 
 ---
-{social === '提高质量' && <KakaoFormButton client:only="react" />}
+{social === '提高质量_' && <KakaoFormButton client:only="react" />}
 {social === '引导弹窗' && <KakaoCopyButton client:only="react" />}
-{social !== '引导弹窗' && social !== '提高质量' && <style>
+{social !== '引导弹窗' && social !== '提高质量_' && <style>
     .breathing {
         animation: breathing 2s ease-in-out infinite;
     }
