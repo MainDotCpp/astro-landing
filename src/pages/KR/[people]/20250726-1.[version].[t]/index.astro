@@ -6,6 +6,7 @@ import mvBgPc from '@/assets/images/downloaded/mv_bg_pc.png'
 import CtaButton from '@/components/CtaButton.astro'
 import RedirectCode from '@/components/KRRedirectCode.astro'
 import BaseLayout from '@/layouts/KRBaseLayout.astro'
+import { Filters, generateKrConfig } from '@/utils/kr_config'
 import popPng from './static/222.png'
 import a1 from './static/A1.png'
 import a2 from './static/A2.png'
@@ -16,8 +17,8 @@ import aidd4 from './static/AIDD4.png'
 import arrow01 from './static/arrow01.png'
 import contactImg01 from './static/contact_img01.png'
 import contactImg02 from './static/contact_img02.png'
-import contactImg03 from './static/contact_img03.png'
 
+import contactImg03 from './static/contact_img03.png'
 import footerLogo from './static/footer-logo.png'
 import headerImg from './static/header-img.png'
 // Import all static images
@@ -39,21 +40,13 @@ import r3 from './static/R3.png'
 import r4 from './static/R4.png'
 import r5 from './static/R5.png'
 import r6 from './static/R6.png'
+
 import about02Img01 from './static/xdr_about02_img01.png'
 
 export function getStaticPaths() {
-  const pages = [
-  { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
-  ]
-  return [
-    ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
-    ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
-    ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
-    ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '提高质量_' }, props: p.props })),
-
-  ]
+ return generateKrConfig(Filters.byPerson('宣大仁'))
 }
+
 const { img_prefix, name } = Astro.props
 ---
 

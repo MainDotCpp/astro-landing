@@ -6,46 +6,13 @@ import CtaButton from '@/components/CtaButton.astro'
 import { Button } from '@/components/ui/button'
 import BaseLayout from '@/layouts/KRBaseLayout.astro'
 
+import { generateKrConfig } from '@/utils/kr_config'
+
 // Import enhanced CSS
 import './static/css/premium-clean.css'
 
 export function getStaticPaths() {
-  const pages = [
-  { params: { people: '柳秀真', version: '0' }, props: { name: '유수진', img_prefix: 'lxz_' } },
-      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
-      { params: { people: '南锡宽', version: '0' }, props: { name: '남석관', img_prefix: 'nxk_' } },
-      { params: { people: '富人电视', version: '0' }, props: { name: '부자티비', img_prefix: 'frds_' } },
-      { params: { people: '闵秀雅', version: '0' }, props: { name: '민수아', img_prefix: 'mxy_' } },
-      { params: { people: '朴世益', version: '0' }, props: { name: '박세익', img_prefix: 'psy_' } },
-      { params: { people: '金永益', version: '0' }, props: { name: '김영익', img_prefix: 'jyy_' } },
-      { params: { people: '金光石', version: '0' }, props: { name: '김광석', img_prefix: 'jgs_' } },
-      { params: { people: '廉承煥', version: '0' }, props: { name: '염승환', img_prefix: 'lch_' } },
-      { params: { people: '洪春旭', version: '0' }, props: { name: '홍춘욱', img_prefix: 'hcx_' } },
-      { params: { people: '小猴属', version: '0' }, props: { name: '소수몽키', img_prefix: 'xhs_' } },
-      { params: { people: '金美京', version: '0' }, props: { name: '김미경', img_prefix: 'jmj_' } },
-      { params: { people: '洪春旭', version: '1' }, props: { name: '홍춘욱', img_prefix: 'hcx1_' } },
-      { params: { people: '朴世益', version: '1' }, props: { name: '박세익', img_prefix: 'psy1_' } },
-      { params: { people: '富人电视', version: '1' }, props: { name: '부자티비', img_prefix: 'frds1_' } },
-      { params: { people: '舒卡世界漫画', version: '0' }, props: { name: '슈카월드 코믹스', img_prefix: 'yu_' } },
-      { params: { people: '常言道语', version: '0' }, props: { name: '노말이', img_prefix: 'cydy_' } },
-      { params: { people: '郑在浩', version: '0' }, props: { name: '정재호', img_prefix: 'zzh_' } },
-      { params: { people: '孔炳浩', version: '0' }, props: { name: '공병호', img_prefix: 'kbh1_' } },
-{ params: { people: '孔炳浩', version: '1' }, props: { name: '공병호', img_prefix: 'kbh2_' } },
-      { params: { people: '吴建英', version: '0' }, props: { name: '오건영', img_prefix: 'wjy1_' } },
-{ params: { people: '吴建英', version: '1' }, props: { name: '오건영', img_prefix: 'wjy2_' } },
-                  { params: { people: '宣大仁', version: '1' }, props: { name: '선대인', img_prefix: 'xdr1_' } },
-            { params: { people: '宣大仁', version: '1' }, props: { name: '선대인', img_prefix: 'xdr2_' } },
-      { params: { people: '金钟锋', version: '0' }, props: { name: '김종봉', img_prefix: 'jzf_' } },
-
-]
-return [
-  ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '提高质量_' }, props: p.props })),
-
-]
+  return generateKrConfig(undefined, ['总理猴_0', '国家人口和经济研究所_0'])
 }
 
 const { t = '棒群' } = Astro.params
@@ -454,7 +421,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
         <div class="final-cta-content">
           <h2 class="cta-title">지금 바로 시작하세요</h2>
           <p class="cta-subtitle">
-            전문가 수준의 투자 서비스를 <strong>완전 무료</strong>로 경험해보세요.<br >
+            전문가 수준의 투자 서비스를 <strong>완전 무료</strong>로 경험해보세요.<br>
             언제든지 원할 때 중단할 수 있으며, 추가 비용은 전혀 없습니다.
           </p>
 

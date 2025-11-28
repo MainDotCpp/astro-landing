@@ -3,22 +3,13 @@ import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import CtaButton from '@/components/CtaButton.astro'
 import BaseLayout from '@/layouts/KRBaseLayout.astro'
+import { Filters, generateKrConfig } from '@/utils/kr_config'
 // Import CSS files
 import './static/css/style.css'
 
-export const getStaticPaths: GetStaticPaths = () => {
-  const pages = [
-      { params: { people: '宣大仁', version: '0' }, props: { name: '선대인', img_prefix: 'xdr_' } },
-      { params: { people: '孔炳浩', version: '0' }, props: { name: '공병호', img_prefix: 'kbh1_' } },
-]
-return [
-  ...pages.map(p => ({ params: { ...p.params, t: '卡扣' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '棒群' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '混合' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '引导弹窗' }, props: p.props })),
-  ...pages.map(p => ({ params: { ...p.params, t: '提高质量_' }, props: p.props })),
 
-]
+export function getStaticPaths() {
+ return generateKrConfig(['宣大仁_0', '孔炳浩_0'])
 }
 
 const { t = '棒群', people } = Astro.params
