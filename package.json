@@ -13,7 +13,9 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.1",
+    "@fontsource/east-sea-dokdo": "^5.2.7",
     "@fontsource/noto-sans-jp": "^5.2.6",
+    "@fontsource/noto-serif-kr": "^5.2.8",
     "@fontsource/twinkle-star": "^5.2.6",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.11",
@@ -38,12 +40,10 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.16.2",
     "@types/jquery": "^3.5.32",
-    "@unocss/reset": "^66.3.3",
     "eslint": "^9.30.1",
     "eslint-plugin-astro": "^1.3.1",
     "eslint-plugin-format": "^1.0.1",
     "rollup-plugin-visualizer": "^6.0.3",
-    "tw-animate-css": "^1.4.0",
-    "unocss": "^66.3.3"
+    "tw-animate-css": "^1.4.0"
   }
 }

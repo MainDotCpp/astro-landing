@@ -11,9 +11,10 @@ import fingerIcon from './static/picture/finger.png'
 import whatsappIcon from './static/picture/small-whatsapp.gif'
 import tradingStrategy from './static/picture/ts.jpg'
 import heroImage from './static/picture/white-without-background-2.png'
-import './static/css/style-static.min.css'
-import './static/css/et-core-unified-tb-229743-deferred-10.min.css'
-import './static/css/bootstrap.min.css'
+// 第三方 CSS 文件路径（使用相对路径，避免 TailwindCSS 处理）
+const styleStaticCss = '/mjSFqQ/US/通版/20250715-1.0/static/css/style-static.min.css'
+const etCoreCss = '/mjSFqQ/US/通版/20250715-1.0/static/css/et-core-unified-tb-229743-deferred-10.min.css'
+const bootstrapCss = '/mjSFqQ/US/通版/20250715-1.0/static/css/bootstrap.min.css'
 
 const pageTitle = 'Stock Market Recommendations'
 const pageDescription = 'Professional stock market analysis and investment recommendations';
@@ -31,6 +32,9 @@ const pageDescription = 'Professional stock market analysis and investment recom
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} >
     <RedirectCode />
+    <link rel="stylesheet" href={styleStaticCss} />
+    <link rel="stylesheet" href={etCoreCss} />
+    <link rel="stylesheet" href={bootstrapCss} />
 </head>
 
 <body>

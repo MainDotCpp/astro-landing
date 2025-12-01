@@ -11,12 +11,11 @@ export default function KaKaoFormButton() {
   const [isClosing, setIsClosing] = useState(false)
   const [isOpening, setIsOpening] = useState(false)
 
-  // 投资理解程度选项
-  const investmentLevels = [
-    { id: 1, label: '처음 접해봐요', description: '입문 가이드와 기초 지식 받기 · 친구 추가' },
-    { id: 2, label: '초보예요', description: '투자 노하우 배우고 실수 방지하기 · 친구 추가' },
-    { id: 3, label: '어느 정도 경험이 있어요', description: '전문 분석 받고 투자 전략 최적화하기 · 친구 추가' },
-    { id: 4, label: '경험이 많아요', description: '심층 분석과 시장 인사이트 받기 · 친구 추가' },
+  // 股票交易数量选项
+  const stockTradingOptions = [
+    { id: 1, label: '아직 시장을 관찰 중입니다!', description: '카카오톡 친구 추가 페이지로 이동' },
+    { id: 2, label: '1~2개', description: '카카오톡 친구 추가 페이지로 이동' },
+    { id: 3, label: '3개 이상', description: '카카오톡 친구 추가 페이지로 이동' },
   ]
 
   // 确保组件已挂载
@@ -41,11 +40,11 @@ export default function KaKaoFormButton() {
   }
 
   // 处理选项点击
-  const handleOptionClick = (levelId: number) => {
+  const handleOptionClick = (optionId: number) => {
     handleCloseModal()
     setTimeout(() => {
-      // id 为 1（没接触过）时调用 Band 跳转，其他调用 Kakao 跳转
-      if (levelId === 1) {
+      // id 为 1（第一个选项）时调用 Band 跳转，其他调用 Kakao 跳转
+      if (optionId === 1) {
         jumpToBand()
       }
       else {
@@ -68,18 +67,20 @@ export default function KaKaoFormButton() {
       justifyContent: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0.7)',
       backdropFilter: 'blur(4px)',
-      padding: '16px',
+      padding: '8px',
       transition: 'opacity 0.5s ease',
       opacity: isClosing ? 0 : 1,
+      overflow: 'auto',
     }
 
     const modalStyle: React.CSSProperties = {
       backgroundColor: '#ffffff',
-      borderRadius: '20px',
+      borderRadius: '16px',
       boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-      maxWidth: '480px',
+      maxWidth: '420px',
       width: '100%',
-      padding: '28px',
+      maxHeight: 'calc(100vh - 16px)',
+      padding: '16px',
       position: 'relative',
       border: '1px solid #f3f4f6',
       transition: 'all 0.5s ease',
@@ -89,50 +90,54 @@ export default function KaKaoFormButton() {
           ? 'scale(1) translateY(0)'
           : 'scale(0.95) translateY(16px)',
       opacity: isClosing ? 0 : isOpening ? 1 : 0,
+      overflowY: 'auto',
+      margin: 'auto',
     }
 
     const iconCircleStyle: React.CSSProperties = {
-      width: '72px',
-      height: '72px',
+      width: '56px',
+      height: '56px',
       background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      margin: '0 auto 20px',
+      margin: '0 auto 12px',
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
       transition: 'all 0.7s ease',
       transitionDelay: '100ms',
       transform: isClosing ? 'scale(0.75)' : isOpening ? 'scale(1)' : 'scale(0.75)',
       opacity: isClosing ? 0 : isOpening ? 1 : 0,
+      flexShrink: 0,
     }
 
     const headerStyle: React.CSSProperties = {
       textAlign: 'center',
-      marginBottom: '24px',
+      marginBottom: '16px',
       transition: 'all 0.7s ease',
       transitionDelay: '200ms',
       opacity: isClosing ? 0 : isOpening ? 1 : 0,
       transform: isClosing ? 'translateY(8px)' : isOpening ? 'translateY(0)' : 'translateY(8px)',
+      flexShrink: 0,
     }
 
     const titleStyle: React.CSSProperties = {
-      fontSize: '28px',
+      fontSize: '20px',
       fontWeight: 'bold',
       color: '#111827',
-      marginBottom: '8px',
+      marginBottom: '6px',
       lineHeight: '1.3',
     }
 
     const subtitleStyle: React.CSSProperties = {
-      fontSize: '16px',
+      fontSize: '14px',
       color: '#6b7280',
-      lineHeight: '1.5',
+      lineHeight: '1.4',
     }
 
     const optionsContainerStyle: React.CSSProperties = {
       marginBottom: '0',
-      marginTop: '24px',
+      marginTop: '16px',
       transition: 'all 0.7s ease',
       transitionDelay: '500ms',
       opacity: isClosing ? 0 : isOpening ? 1 : 0,
@@ -143,14 +148,14 @@ export default function KaKaoFormButton() {
       width: '100%',
       background: 'linear-gradient(to right, #3b82f6, #2563eb, #4f46e5)',
       color: '#ffffff',
-      padding: '16px 20px',
-      borderRadius: '12px',
+      padding: '12px 16px',
+      borderRadius: '10px',
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       border: '1px solid rgba(59, 130, 246, 0.3)',
       position: 'relative',
       overflow: 'hidden',
       cursor: 'pointer',
-      marginBottom: '12px',
+      marginBottom: '8px',
       transition: 'all 0.3s ease',
       transitionDelay: isOpening ? `${500 + index * 100}ms` : '0ms',
       opacity: isClosing ? 0 : isOpening ? 1 : 0,
@@ -163,26 +168,28 @@ export default function KaKaoFormButton() {
     })
 
     const optionLabelStyle: React.CSSProperties = {
-      fontSize: '18px',
+      fontSize: '16px',
       fontWeight: 'bold',
-      marginBottom: '4px',
+      marginBottom: '2px',
       position: 'relative',
       zIndex: 10,
     }
 
     const optionDescStyle: React.CSSProperties = {
-      fontSize: '14px',
+      fontSize: '12px',
       opacity: 0.95,
       position: 'relative',
       zIndex: 10,
+      fontWeight: 500,
+      marginTop: '2px',
     }
 
     const stepsContainerStyle: React.CSSProperties = {
       marginTop: '0',
-      marginBottom: '24px',
-      padding: '20px',
+      marginBottom: '16px',
+      padding: '12px',
       background: 'linear-gradient(to right, #eff6ff, #dbeafe)',
-      borderRadius: '12px',
+      borderRadius: '10px',
       border: '1px solid #bfdbfe',
       transition: 'all 0.7s ease',
       transitionDelay: '300ms',
@@ -191,24 +198,24 @@ export default function KaKaoFormButton() {
     }
 
     const stepsTitleStyle: React.CSSProperties = {
-      fontSize: '18px',
+      fontSize: '14px',
       fontWeight: 'bold',
       color: '#1e40af',
-      marginBottom: '16px',
+      marginBottom: '10px',
       textAlign: 'center',
     }
 
     const stepItemStyle: React.CSSProperties = {
       display: 'flex',
       alignItems: 'center',
-      marginBottom: '12px',
-      fontSize: '16px',
+      marginBottom: '8px',
+      fontSize: '13px',
       color: '#1e3a8a',
     }
 
     const stepNumberStyle: React.CSSProperties = {
-      width: '32px',
-      height: '32px',
+      width: '24px',
+      height: '24px',
       background: 'linear-gradient(135deg, #93c5fd, #60a5fa)',
       color: '#1e40af',
       borderRadius: '50%',
@@ -216,8 +223,8 @@ export default function KaKaoFormButton() {
       alignItems: 'center',
       justifyContent: 'center',
       fontWeight: 'bold',
-      fontSize: '16px',
-      marginRight: '12px',
+      fontSize: '12px',
+      marginRight: '8px',
       flexShrink: 0,
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     }
@@ -226,22 +233,22 @@ export default function KaKaoFormButton() {
       display: 'inline-block',
       background: '#ffffff',
       color: '#1e40af',
-      padding: '4px 12px',
-      borderRadius: '6px',
+      padding: '2px 8px',
+      borderRadius: '4px',
       fontWeight: 'bold',
-      fontSize: '18px',
-      margin: '0 4px',
+      fontSize: '14px',
+      margin: '0 2px',
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       border: '2px solid #3b82f6',
     }
 
     const closeButtonStyle: React.CSSProperties = {
       position: 'absolute',
-      top: '16px',
-      right: '16px',
+      top: '8px',
+      right: '8px',
       color: '#9ca3af',
       cursor: 'pointer',
-      padding: '12px',
+      padding: '8px',
       borderRadius: '50%',
       transition: 'all 0.3s ease',
       backgroundColor: 'transparent',
@@ -251,16 +258,21 @@ export default function KaKaoFormButton() {
       justifyContent: 'center',
       opacity: isClosing ? 0 : isOpening ? 1 : 0,
       transform: isClosing ? 'scale(0.75)' : isOpening ? 'scale(1)' : 'scale(0.75)',
+      zIndex: 100,
     }
 
     return (
       <div style={overlayStyle} onClick={handleCloseModal}>
-        <div style={modalStyle} onClick={e => e.stopPropagation()}>
+        <div
+          style={modalStyle}
+          onClick={e => e.stopPropagation()}
+          className="kakao-form-modal"
+        >
           {/* 弹窗头部 */}
           <div style={headerStyle}>
             <div style={iconCircleStyle}>
               <svg
-                style={{ width: '40px', height: '40px', color: '#d97706' }}
+                style={{ width: '32px', height: '32px', color: '#d97706' }}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -273,34 +285,35 @@ export default function KaKaoFormButton() {
                 />
               </svg>
             </div>
-            <h3 style={titleStyle}>투자 경험을 선택해주세요</h3>
-            <p style={subtitleStyle}>더 적합한 서비스를 제공해드리기 위해</p>
+            <h3 style={titleStyle}>현재 몇 개의 주식을 거래하고 계신가요?</h3>
+            <p style={subtitleStyle}>선택하시면 카카오톡 친구 추가 페이지로 이동합니다</p>
           </div>
 
-          {/* 步骤说明 */}
+          {/* 步骤说明 - 简化版 */}
           <div style={stepsContainerStyle}>
-            <div style={stepsTitleStyle}>친구 추가 후 숫자를 보내주세요</div>
+            <div style={stepsTitleStyle}>친구 추가 후 숫자 7 전송</div>
             <div style={stepItemStyle}>
               <div style={stepNumberStyle}>1</div>
-              <span>친구 추가하기</span>
+              <span>친구 추가</span>
             </div>
             <div style={stepItemStyle}>
               <div style={stepNumberStyle}>2</div>
               <span>
                 숫자
+                {' '}
                 <span style={numberHighlightStyle}>7</span>
                 {' '}
-                을 보내고 보유주 분석 또는 우량주 추천 받기
+                전송
               </span>
             </div>
           </div>
 
           {/* 选项列表 */}
           <div style={optionsContainerStyle}>
-            {investmentLevels.map((level, index) => (
+            {stockTradingOptions.map((option, index) => (
               <button
-                key={level.id}
-                onClick={() => handleOptionClick(level.id)}
+                key={option.id}
+                onClick={() => handleOptionClick(option.id)}
                 style={optionButtonStyle(index)}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.02) translateY(-2px)'
@@ -326,8 +339,8 @@ export default function KaKaoFormButton() {
 
                 {/* 按钮内容 */}
                 <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                  <span style={optionLabelStyle}>{level.label}</span>
-                  <span style={optionDescStyle}>{level.description}</span>
+                  <span style={optionLabelStyle}>{option.label}</span>
+                  {option.description && <span style={optionDescStyle}>{option.description}</span>}
                 </div>
 
                 {/* 脉冲效果 */}
@@ -339,7 +352,7 @@ export default function KaKaoFormButton() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    borderRadius: '16px',
+                    borderRadius: '10px',
                     background: 'linear-gradient(to right, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.3), rgba(79, 70, 229, 0.3))',
                   }}
                 />
@@ -361,7 +374,7 @@ export default function KaKaoFormButton() {
             }}
             aria-label="모달 닫기"
           >
-            <svg style={{ width: '32px', height: '32px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg style={{ width: '24px', height: '24px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -467,25 +480,37 @@ export default function KaKaoFormButton() {
           animation: pulse 2s ease-in-out infinite;
         }
 
-        @media (max-width: 768px) {
+        /* 响应式优化 - 小屏幕 */
+        @media (max-width: 480px) {
           .kakao-form-modal {
-            padding: 24px !important;
+            padding: 12px !important;
+            max-height: calc(100vh - 16px) !important;
+            border-radius: 12px !important;
           }
-          .kakao-form-title {
-            font-size: 28px !important;
+        }
+        
+        /* 响应式优化 - 小高度屏幕 */
+        @media (max-height: 600px) {
+          .kakao-form-modal {
+            max-height: calc(100vh - 8px) !important;
+            padding: 10px !important;
+            overflow-y: auto !important;
           }
-          .kakao-form-subtitle {
-            font-size: 18px !important;
+        }
+        
+        /* 确保弹窗在视口内 */
+        @media (max-width: 375px) {
+          .kakao-form-modal {
+            padding: 8px !important;
+            max-height: calc(100vh - 8px) !important;
           }
-          .kakao-form-button {
-            font-size: 20px !important;
-            padding: 16px 24px !important;
-          }
-          .kakao-form-option-label {
-            font-size: 18px !important;
-          }
-          .kakao-form-option-desc {
-            font-size: 14px !important;
+        }
+        
+        /* 超小屏幕优化 */
+        @media (max-width: 320px) {
+          .kakao-form-modal {
+            padding: 6px !important;
+            max-height: calc(100vh - 4px) !important;
           }
         }
         `}

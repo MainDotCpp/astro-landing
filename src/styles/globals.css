@@ -1,10 +1,43 @@
-@import 'tailwindcss';
+@import 'tailwindcss' layer(theme);
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
+/* Migrated from UnoCSS shortcuts */
 .link-btn {
   cursor: pointer;
+}
+
+.kakao-color {
+  @apply bg-[#fcef3b] text-black;
+}
+
+.band-color {
+  @apply bg-[#b7eb8f] text-black;
+}
+
+.line-button {
+  @apply bg-gradient-to-r from-[#06C755] to-[#05B34A] hover:from-[#05B34A] hover:to-[#049e41] text-white shadow-lg hover:shadow-xl transition-all cursor-pointer;
+}
+
+/* Migrated from UnoCSS breathing animation */
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.animate-breathing {
+  animation: breathing 2s ease-in-out infinite;
+}
+
+.breathing {
+  animation: breathing 2s ease-in-out infinite;
 }
 
 :root {

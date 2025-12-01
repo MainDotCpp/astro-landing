@@ -23,6 +23,7 @@ const { title = 'Home', description = 'Home', plugins = {}, track = false } = As
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
+    <slot name="head" />
     <PluginLoader plugins={plugins} />
     <KRRedirectCode />
   </head>

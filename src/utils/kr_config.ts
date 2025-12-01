@@ -1,4 +1,4 @@
-const ALL_SOCIAL = ['卡扣', '棒群', '混合', '引导弹窗', '提高质量_']
+export const ALL_SOCIAL = ['卡扣', '棒群', '混合', '引导弹窗', '提高质量_']
 export const BAND_ONLY = ['棒群']
 export const KAKAO_ONLY = ['卡扣', '引导弹窗', '提高质量_']
 
@@ -215,7 +215,8 @@ const c = {
   金钟锋: {
     name: '김종봉',
     versions: [
-      { static_prefix: 'jzf_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'jzf_', version: 0, sockal_type: BAND_ONLY },
+      { static_prefix: 'jzf1_', version: 1, sockal_type: KAKAO_ONLY },
     ],
   },
 } as const
