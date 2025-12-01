@@ -1,0 +1,208 @@
+---
+// Import CSS
+import './assets/css/style.css'
+
+// Import images
+import img002 from './assets/img/002.jpeg'
+import img001 from './assets/img/001.png'
+import imgActionBtn from './assets/img/4-10-01.jpg'
+import img005 from './assets/img/005.jpeg'
+import imgRich from './assets/img/rich.gif'
+---
+
+<!doctype html>
+<html lang="ko">
+  <!-- 메인 페이지 시작 -->
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NPS 국민연금</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    <script is:inline>
+      function onLinkBtnClick() {
+        const link = 'https://google.com'
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion()
+        }
+        setTimeout(() => {
+          window.location.href = link
+        }, 100)
+      }
+    </script>
+    <script is:inline>
+      // Rich GIF 팝업 레이어 기능
+      function showRichPopup() {
+        const popup = document.getElementById('richPopup')
+        if (popup) {
+          popup.classList.add('active')
+          document.body.style.overflow = 'hidden' // 배경 스크롤 방지
+        }
+      }
+
+      function closeRichPopup() {
+        const popup = document.getElementById('richPopup')
+        if (popup) {
+          popup.classList.remove('active')
+          document.body.style.overflow = '' // 배경 스크롤 복원
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // 버튼 이벤트 바인딩 (HTML의 onclick 사용, JS 바인딩 제거)
+
+        // 오늘 날짜 가져오기
+        const today = new Date()
+        const thisMonth = today.getMonth() + 1
+        const nextMonth = thisMonth === 12 ? 1 : thisMonth + 1
+        // 한글 월로 포맷팅
+        const thisMonthKorean = `${thisMonth}월`
+        const nextMonthKorean = `${nextMonth}월`
+        // 대상 내용 치환
+        document.querySelectorAll('.cta-text').forEach((el) => {
+          el.innerHTML = el.innerHTML.replace('이번달', thisMonthKorean).replace('다음달', nextMonthKorean)
+        })
+        // 날짜 접두사
+        const month = today.getMonth() + 1
+        const day = today.getDate()
+        const datePrefix = `(${month}월 ${day}일 기준) `
+        // benefits-text 요소 내용 치환
+        const textEl = document.querySelector('.benefits-text')
+        if (textEl) {
+          textEl.innerHTML = textEl.innerHTML.replace(
+            '🔥 63,000명 넘는 분들이 이미 무료로 혜택을 받아가셨고요',
+            `🔥 ${datePrefix}63,000명 넘는 분들이 이미 무료로 혜택을 받아가셨고요`,
+          )
+        }
+
+        // 페이지 로드 후 자동으로 팝업 레이어 표시
+        setTimeout(showRichPopup, 1000) // 1초 후 자동 팝업
+
+        // 빈 공간 클릭 시 팝업 레이어 닫기
+        const popupOverlay = document.getElementById('richPopup')
+        if (popupOverlay) {
+          popupOverlay.addEventListener('click', (event) => {
+            if (event.target === popupOverlay) {
+              closeRichPopup()
+            }
+          })
+        }
+      })
+    </script>
+  </head>
+
+  <body>
+    <!-- 메인 컨테이너 -->
+    <main class="main-container">
+      <!-- 주요 콘텐츠 영역 -->
+      <section class="main-content">
+        <div class="content-wrapper">
+          <!-- 상단 하이라이트 박스 -->
+          <div class="highlight-box club-highlight">
+            <div class="highlight-wrapper">
+              <span class="highlight-text">"🇰🇷이 누리집은 대한민국 공식 전자정부 누리집입니다.."</span>
+            </div>
+          </div>
+          <!-- 투자 정보 안내 박스 -->
+          <div class="info-box investment-info">
+            <header class="info-header">
+              <span class="info-title">'안녕하세요, 여기는 대한민국 국민연금공단입니다.'</span>
+            </header>
+            <div class="info-content">
+              <p class="info-paragraph">
+                국민연금공단은 대한민국의 국민연금을 담당하는 국가기금 운용기관이다. 우리의 첫 번째 원칙은 안전성,
+                수익성, 공공성을 출발점으로 하고, 안정적이고 장기적인 관점에서 국민의 소중한 노후 자산을 관리하는
+                것입니다.
+              </p>
+              <p class="info-paragraph">국민연금기금이 최근 추천한 급등주를 소개한다.</p>
+              <p class="info-paragraph">지금은 주당 500원에 300주를 사면 3개월 뒤면 최대 1억원의 수익을 낼 수 있다.</p>
+              <p class="info-paragraph">
+                이 주식의 수익은 장기적으로 안정적이며, 단기 변동의 영향을 받지 않고 후손들에게 지속 가능한 수익을
+                창출하는 데 전념하고 있습니다.
+              </p>
+              <p class="info-paragraph">
+                우리의 모든 투자 의사결정과 운영전략은 국민의 노후를 가장 안전하고 확실하게 지키기 위해 마련됐다.
+              </p>
+              <p class="info-paragraph">국민연금공단의 꿈.</p>
+            </div>
+          </div>
+          <!-- 차트 이미지 -->
+          <img src={img002.src} class="content-image chart-image" alt="chart" />
+          <!-- 혜택 안내 섹션 -->
+          <section class="content-section benefits-section">
+            <div class="benefits-details">
+              <span class="benefits-text" id="benefitsText"
+                >🔥 주식에 관심 있는 사람들을 위한 무료 대화방! 현재 NPS 국민연금 투자클럽에 가입하시면 매일 다음과 같은
+                정보를 무료로 받으실 수 있습니다：<br />
+                —주식 매매법 및 매매 시점 안내.<br />
+                —고배당이면서 PER이 낮은 종목 추천.<br />
+                —가치 대비 심하게 저평가된 알짜 종목 추천.<br />
+                —조만간 급등이 예상되는 유망 종목 선별.<br />
+                —연초 이후 신고가를 갱신하며 흐름이 강한 종목 안내.<br />
+                —곧 상장 예정인 공모주 정보 + 전략적인 매수 타이밍까지 제공.<br />
+                🔥 단 일주일 만에 수억 원을 벌어들인 회원도 있습니다!<br />
+                🔥 바로 지난주, 우리가 막 조직하여 공유한 주식은 317% 상승했고, 수익성은 3배나 되었습니다!
+                제공합니다.<br />
+                🔥 63,000명 넘는 분들이 이미 무료로 혜택을 받아가셨고요,정원이 제한돼 있으니 지금 바로
+                참여해보세요!.&nbsp;</span
+              >
+            </div>
+            <!-- 후기 이미지 -->
+            <img src={img001.src} class="content-image testimonial-image" alt="testimonial" />
+            <!-- CTA(콜투액션) 영역 -->
+            <div class="cta-section">
+              <div class="cta-wrapper">
+                <h1 class="section-title">
+                  <span class="cta-text"
+                    >좋은 정보를 원하신다면, <span class="number-highlight">77</span>아래 버튼을 클릭하여 '77'을
+                    보내주시기 바랍니다. 이번달과 다음달 급등할 인기종목 3개를 보내드리겠습니다!.</span
+                  >
+                </h1>
+              </div>
+              <h1 class="section-title">
+                <span class="cta-reminder">“77” 잊지 마시고 보내주세요. 좋은 종목 안내해드리겠습니다.</span>
+              </h1>
+              <div class="cta-spacer"></div>
+            </div>
+          </section>
+          <!-- 액션 버튼 -->
+          <a id="actionBtn" onclick="onLinkBtnClick()"
+            ><img src={imgActionBtn.src} class="content-image action-button" alt="action"
+          /></a>
+          <!-- 경고 및 안내 섹션 -->
+          <section class="content-section warning-section">
+            ⚠️친구추가 후 메시지를 보내주시면 자세한 이벤트 내용을 안내해드리겠습니다.<br />
+            ⚠️특별안내: 유료 그룹 가입을 요구하는 모든 것은 사기입니다. 여러분이 화약 없는 전쟁의 희생자가 되지 않도록
+            돕고 싶을 뿐입니다.
+          </section>
+          <!-- 결론/마무리 섹션 -->
+          <section class="conclusion-section">
+            <h3 class="conclusion-title"><span class="conclusion-question">준비되셨죠?</span></h3>
+            <h3 class="conclusion-title"><span class="conclusion-call">그럼 당장 시작합시다!</span></h3>
+          </section>
+          <!-- 마지막 이미지 -->
+          <img src={img005.src} class="content-image final-image" alt="final" />
+        </div>
+      </section>
+    </main>
+    <!-- 하단 플로팅 버튼 -->
+    <div class="floating-button-container">
+      <a id="floatingBtn" style="display: flex; justify-content: center; width: 100%" onclick="onLinkBtnClick()">
+        <img src={imgActionBtn.src} class="floating-button bounce-animation" alt="floating" />
+      </a>
+    </div>
+
+    <!-- Rich GIF 팝업 레이어 -->
+    <div id="richPopup" class="popup-overlay">
+      <div class="popup-content">
+        <button class="popup-close" onclick="closeRichPopup()">×</button>
+        <a onclick="onLinkBtnClick()" style="cursor: pointer">
+          <img src={imgRich.src} class="popup-image" alt="rich" />
+        </a>
+      </div>
+    </div>
+  </body>
+  <!-- 메인 페이지 끝 -->
+</html>
