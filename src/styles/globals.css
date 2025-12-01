@@ -40,6 +40,128 @@
   animation: breathing 2s ease-in-out infinite;
 }
 
+/* UnoCSS utility classes replacements for Tailwind CSS */
+/* Display utilities - responsive visibility */
+.u-display--pc {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .u-display--pc {
+    display: none;
+  }
+}
+
+.u-display--sp {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .u-display--sp {
+    display: block;
+  }
+}
+
+.u-display--sp_s {
+  display: none;
+}
+
+@media screen and (max-width: 580px) {
+  .u-display--sp_s {
+    display: block;
+  }
+}
+
+/* Break utilities - responsive line breaks */
+.u-br--sp-only {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .u-br--sp-only {
+    display: inline;
+  }
+}
+
+/* Margin utilities */
+.u-margin--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.u-margin--right {
+  margin-left: auto;
+}
+
+/* Font weight utilities */
+.u-font_weight--100 { font-weight: 100; }
+.u-font_weight--200 { font-weight: 200; }
+.u-font_weight--300 { font-weight: 300; }
+.u-font_weight--400 { font-weight: 400; }
+.u-font_weight--500 { font-weight: 500; }
+.u-font_weight--600 { font-weight: 600; }
+.u-font_weight--700 { font-weight: 700; }
+.u-font_weight--800 { font-weight: 800; }
+.u-font_weight--900 { font-weight: 900; }
+
+/* Font color utilities */
+.u-font_color--red { color: #ef4444; }
+.u-font_color--blue { color: #3b82f6; }
+
+/* Text align utilities */
+.u-text_align--center { text-align: center; }
+.u-text_align--right { text-align: right; }
+
+/* Margin bottom utilities */
+.u-mb10 { margin-bottom: 10px; }
+.u-mb20 { margin-bottom: 20px; }
+.u-mb30 { margin-bottom: 30px; }
+.u-mb40 { margin-bottom: 40px; }
+.u-mb50 { margin-bottom: 50px; }
+.u-mb60 { margin-bottom: 60px; }
+.u-mb70 { margin-bottom: 70px; }
+.u-mb80 { margin-bottom: 80px; }
+.u-mb90 { margin-bottom: 90px; }
+.u-mb100 { margin-bottom: 100px; }
+.u-mb110 { margin-bottom: 110px; }
+.u-mb120 { margin-bottom: 120px; }
+.u-mb130 { margin-bottom: 130px; }
+.u-mb140 { margin-bottom: 140px; }
+.u-mb150 { margin-bottom: 150px; }
+.u-mb160 { margin-bottom: 160px; }
+.u-mb170 { margin-bottom: 170px; }
+.u-mb180 { margin-bottom: 180px; }
+.u-mb190 { margin-bottom: 190px; }
+.u-mb200 { margin-bottom: 200px; }
+
+@media screen and (max-width: 768px) {
+  .u-mb30 { margin-bottom: 20px; }
+  .u-mb40 { margin-bottom: 25px; }
+  .u-mb50 { margin-bottom: 30px; }
+  .u-mb60 { margin-bottom: 35px; }
+  .u-mb70 { margin-bottom: 40px; }
+  .u-mb80 { margin-bottom: 45px; }
+  .u-mb90 { margin-bottom: 50px; }
+  .u-mb100 { margin-bottom: 60px; }
+  .u-mb110 { margin-bottom: 65px; }
+  .u-mb120 { margin-bottom: 70px; }
+  .u-mb130 { margin-bottom: 75px; }
+  .u-mb140 { margin-bottom: 80px; }
+  .u-mb150 { margin-bottom: 85px; }
+  .u-mb160 { margin-bottom: 90px; }
+  .u-mb170 { margin-bottom: 95px; }
+  .u-mb180 { margin-bottom: 100px; }
+  .u-mb190 { margin-bottom: 105px; }
+  .u-mb200 { margin-bottom: 110px; }
+}
+
+/* Fade animation utilities */
+.u-fade_top01 {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1.3s;
+}
+
 :root {
   --background: oklch(0.99 0.005 106);
   --foreground: oklch(0.15 0.01 106);

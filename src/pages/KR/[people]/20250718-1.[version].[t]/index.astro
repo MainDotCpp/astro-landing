@@ -1,13 +1,12 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
-import { Award, BarChart3, Clock, DollarSign, MessageCircle, Phone, Shield, Target, TrendingUp } from 'lucide-react'
+import { Award, BarChart3, Clock, DollarSign, MessageCircle, Phone, Shield, Target, TrendingUp } from 'lucide-astro'
 import CtaButton from '@/components/CtaButton.astro'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import BaseLayout from '@/layouts/KRBaseLayout.astro'
 import { generateKrConfig } from '@/utils/kr_config'
 // Import CSS files
+import '@/styles/globals.css'
 import './static/css/style2.css'
 import './static/css/animate.min.css'
 import './static/css/slick-theme.css'
@@ -33,7 +32,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
           {/* Left Content */}
           <div>
             <div class="flex items-center gap-2 mb-6">
-              <DollarSign className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+              <DollarSign class="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
               <span class="text-yellow-400 font-medium text-lg md:text-xl">주식투자 전문가</span>
             </div>
 
@@ -50,19 +49,19 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
             {/* Features */}
             <div class="space-y-6 mb-10">
               <div class="flex items-start gap-4">
-                <BarChart3 className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <BarChart3 class="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
                 <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">매일 상승 가능성 높은 종목을 추천해드려요</span>
               </div>
               <div class="flex items-start gap-4">
-                <TrendingUp className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <TrendingUp class="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
                 <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">매수와 매도 시점도 정확하게 안내해드려요</span>
               </div>
               <div class="flex items-start gap-4">
-                <Target className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <Target class="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
                 <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">회원님 투자 스타일에 맞는 투자 전략도 알려드려요</span>
               </div>
               <div class="flex items-start gap-4">
-                <Shield className="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
+                <Shield class="h-7 w-7 md:h-8 md:w-8 text-yellow-400 mt-1" />
                 <span class="text-blue-100 text-lg md:text-xl lg:text-2xl">손실은 최소화하고 자산을 안정적으로 늘릴 수 있는 방법을 함께 찾아봐요</span>
               </div>
             </div>
@@ -121,41 +120,41 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
         </div>
 
         <div class="grid lg:grid-cols-3 gap-8">
-          <Card className="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
-            <CardContent className="p-8 text-center">
+          <div class="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
+            <div class="p-8 text-center">
               <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-blue-500 rounded-full flex items-center justify-center">
-                <TrendingUp className="h-10 w-10 md:h-12 md:w-12 text-white" />
+                <TrendingUp class="h-10 w-10 md:h-12 md:w-12 text-white" />
               </div>
               <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-slate-800">매일 종목 추천</h3>
               <p class="text-slate-600 leading-relaxed text-lg md:text-xl">
                 매일 상승 여력이 있는 종목을 분석하여 추천해드리며, 최적의 매수 타이밍을 알려드립니다
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
-            <CardContent className="p-8 text-center">
+          <div class="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
+            <div class="p-8 text-center">
               <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-green-500 rounded-full flex items-center justify-center">
-                <Target className="h-10 w-10 md:h-12 md:w-12 text-white" />
+                <Target class="h-10 w-10 md:h-12 md:w-12 text-white" />
               </div>
               <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-slate-800">매수/매도 타이밍</h3>
               <p class="text-slate-600 leading-relaxed text-lg md:text-xl">
                 정확한 기술적 분석을 통해 최적의 매수와 매도 시점을 정확하게 안내해드립니다
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
-            <CardContent className="p-8 text-center">
+          <div class="bg-white border border-gray-200 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
+            <div class="p-8 text-center">
               <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-yellow-500 rounded-full flex items-center justify-center">
-                <BarChart3 className="h-10 w-10 md:h-12 md:w-12 text-white" />
+                <BarChart3 class="h-10 w-10 md:h-12 md:w-12 text-white" />
               </div>
               <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-slate-800">맞춤형 투자 전략</h3>
               <p class="text-slate-600 leading-relaxed text-lg md:text-xl">
                 회원님의 투자 스타일과 자금 규모에 맞는 개인별 맞춤 투자 전략을 제공합니다
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -340,7 +339,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
         <div class="grid md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
           <div class="bg-white bg-opacity-10 rounded-xl p-6 text-center">
             <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <MessageCircle className="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
+              <MessageCircle class="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
             </div>
             <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">1. 간편 친구 추가</h3>
             <p class="text-blue-100 text-lg md:text-xl">버튼 클릭으로 쉽게 친구 추가</p>
@@ -348,7 +347,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
           <div class="bg-white bg-opacity-10 rounded-xl p-6 text-center">
             <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
+              <TrendingUp class="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
             </div>
             <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">2. 매일 종목 추천</h3>
             <p class="text-blue-100 text-lg md:text-xl">상승 가능성 높은 종목 정보</p>
@@ -356,7 +355,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
 
           <div class="bg-white bg-opacity-10 rounded-xl p-6 text-center">
             <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <Award className="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
+              <Award class="h-8 w-8 md:h-10 md:w-10 text-blue-600" />
             </div>
             <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">3. 투자 수익 실현</h3>
             <p class="text-blue-100 text-lg md:text-xl">꾸준한 투자 수익 달성</p>
@@ -392,15 +391,15 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
             <h4 class="text-2xl md:text-3xl font-bold mb-4 text-white">연락처</h4>
             <div class="space-y-3">
               <div class="flex items-center gap-3">
-                <MessageCircle className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+                <MessageCircle class="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
                 <span class="text-slate-300 text-lg md:text-xl">{t === '棒群' ? '棒群' : '카카오톡'} 상담</span>
               </div>
               <div class="flex items-center gap-3">
-                <Phone className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+                <Phone class="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
                 <span class="text-slate-300 text-lg md:text-xl">투자 상담 가능</span>
               </div>
               <div class="flex items-center gap-3">
-                <Clock className="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
+                <Clock class="h-6 w-6 md:h-7 md:w-7 text-yellow-400" />
                 <span class="text-slate-300 text-lg md:text-xl">연중무휴 서비스</span>
               </div>
             </div>

@@ -56,7 +56,7 @@ const { img_prefix, name } = Astro.props
     <meta name="format-detection" content="telephone=no" />
     <meta
       name="description"
-      content="주식 종목 전문 분석 서비스입니다. 카카오톡 친구를 추가하고 '3'만 보내주시면, 관심 있는 주식 종목에 대한 전문적인 분석 결과와 매매 전략을 즉시 받아보실 수 있습니다."
+      content="주식 종목 전문 분석 서비스입니다. 카카오톡 친구를 추가하고 '7'만 보내주시면, 관심 있는 주식 종목에 대한 전문적인 분석 결과와 매매 전략을 즉시 받아보실 수 있습니다."
     />
     <meta name="copyright" content="" />
     <RedirectCode />
@@ -603,7 +603,7 @@ const { img_prefix, name } = Astro.props
           </picture>
           <div class="step_box01">
             <h3><img decoding="async" src={icStep2.src} alt="" /></h3>
-            <p>기다리지 말고<br /><span class="txt_g">'3' 전송하기</span></p>
+            <p>기다리지 말고<br /><span class="txt_g">'7' 전송하기</span></p>
           </div>
           <picture>
             <img decoding="async" src={arrow01.src} alt="" />
@@ -700,14 +700,14 @@ const { img_prefix, name } = Astro.props
           />
           <div>
             <p>
-              <span><span>10</span>초만에 무료 분석 가능!</span><br />카카오톡 친구추가 후 '3' 전송하기
+              <span><span>10</span>초만에 무료 분석 가능!</span><br />카카오톡 친구추가 후 '7' 전송하기
             </p>
             <div onclick="gofun()" style="text-align: center">
               <CtaButton social="卡扣" size="md" redirect={false} onclick="gofun()" />
             </div>
             <ul>
               <li>
-                ※카카오톡 친구추가 후 '3'만 보내주시면, 전문적인 주식 분석 보고서와 투자 전략을 무료로 받아보실 수 있습니다.
+                ※카카오톡 친구추가 후 '7'만 보내주시면, 전문적인 주식 분석 보고서와 투자 전략을 무료로 받아보실 수 있습니다.
               </li>
               <li>※본 서비스는 완전 무료로 운영되고 있으니 안심하고 이용하세요.</li>
             </ul>
@@ -748,7 +748,7 @@ const { img_prefix, name } = Astro.props
             주가 분석을 포함한<br class="pcOnly" />매매 조언까지<br class="spOnly" />
             도와드립니다.<br /><br class="pcOnly" />
             또한, 보다 구체적인 질문에 대해서는<br />
-            카카오톡에서 '3'만 보내주시면,<br />
+            카카오톡에서 '7'만 보내주시면,<br />
             저희 애널리스트가 답변드리겠습니다.
           </p>
           <picture>
@@ -776,7 +776,7 @@ const { img_prefix, name } = Astro.props
               <ul>
                 <li>
                   <span class="txt_a">A.&nbsp;</span>
-                  카카오톡 친구추가 후 '3'만 보내주시면, 전문적인 주식 분석 보고서를 완전 무료로 받아보실 수 있습니다!
+                  카카오톡 친구추가 후 '7'만 보내주시면, 전문적인 주식 분석 보고서를 완전 무료로 받아보실 수 있습니다!
                 </li>
               </ul>
             </div>
@@ -912,7 +912,7 @@ const { img_prefix, name } = Astro.props
               <CtaButton social="卡扣" size="md" redirect={false} onclick="gofun()" />
             </div>
             <p class="k_sp" style="font-weight: bold; font-size: 18px">
-              버튼을 클릭해서 카카오톡 친구를 추가하고, '3'만 보내주시면 전문 주식 분석을 받아보실 수 있습니다. <br />
+              버튼을 클릭해서 카카오톡 친구를 추가하고, '7'만 보내주시면 전문 주식 분석을 받아보실 수 있습니다. <br />
               본 서비스는<span style="color: #fff300"> 완전 무료 </span>로 운영되고 있으니 안심하고 이용하세요.
             </p>
           </div>
@@ -2169,9 +2169,7 @@ const { img_prefix, name } = Astro.props
         display: none;
       }
 
-      .u-br--sp-only {
-        display: none;
-      }
+      /* u-br--sp-only is now defined in globals.css */
 
       /* Responsive Design */
       @media screen and (max-width: 768px) {
@@ -2227,16 +2225,14 @@ const { img_prefix, name } = Astro.props
           padding-top: 15px;
         }
 
-        .u-br--sp-only {
-          display: inline;
-        }
+        /* u-br--sp-only is now defined in globals.css */
       }
     </style>
   </div>
 
   <!-- Floating Button -->
   <div class="floating-button">
-    <a href="javascript:{showline()}" class="btn-line"> ▶카카오톡 친구추가 후 '3' 전송 </a>
+    <a href="javascript:{showline()}" class="btn-line"> ▶카카오톡 친구추가 후 '7' 전송 </a>
   </div>
   <style>
     .floating-button {

@@ -16,6 +16,9 @@ export default function LineButton() {
         focus:ring-4 focus:ring-green-300/50 focus:ring-offset-2
         px-8 py-5 text-2xl md:text-3xl rounded-2xl"
       type="button"
+      data-umami-event="cta-click"
+      data-umami-event-type="line"
+      data-umami-event-position="main"
     >
       <img
         src={lineIcon.src}

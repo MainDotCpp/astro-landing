@@ -140,6 +140,9 @@ export default function KakaoCopyButton() {
           <button
             onClick={mixinJump}
             className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 text-white py-5 px-8 rounded-2xl shadow-xl border border-blue-400/30 relative overflow-hidden"
+            data-umami-event="cta-click"
+            data-umami-event-type="kakao"
+            data-umami-event-position="modal"
           >
             {/* 背景光效 - 无限循环 */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
@@ -183,6 +186,9 @@ export default function KakaoCopyButton() {
           cursor-pointer select-none focus:outline-none
           focus:ring-4 focus:ring-yellow-300/50 focus:ring-offset-2
           px-8 py-5 text-2xl md:text-3xl rounded-2xl border-2 border-yellow-200/30"
+        data-umami-event="cta-click"
+        data-umami-event-type="kakao-copy"
+        data-umami-event-action="copy-number"
       >
         {/* Kakao 图标 */}
         <img

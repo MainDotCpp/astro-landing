@@ -323,6 +323,9 @@ export default function KaKaoFormButton() {
                   e.currentTarget.style.transform = 'scale(1) translateY(0)'
                   e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
                 }}
+                data-umami-event="cta-click"
+                data-umami-event-type="kakao-form-option"
+                data-umami-event-option={option.id}
               >
                 {/* 背景光效 */}
                 <div
@@ -429,6 +432,9 @@ export default function KaKaoFormButton() {
           e.currentTarget.style.outline = 'none'
         }}
         type="button"
+        data-umami-event="cta-click"
+        data-umami-event-type="kakao-form"
+        data-umami-event-action="open-modal"
       >
         {/* Kakao 图标 */}
         <img
