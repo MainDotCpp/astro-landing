@@ -9,6 +9,7 @@ import heroImg from './static/images/1.png.jpeg'
 import aboutImg from './static/images/2.png.jpeg'
 // Import CSS
 import './static/css/style.css'
+import KRRedirectCode from '@/components/KRRedirectCode.astro'
 
 export function getStaticPaths() {
   return generateKrConfig(['柳秀真_0'])
@@ -28,6 +29,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>유수진 | 자산관리 전문가 · 투자 교육가</title>
     <meta name="description" content="유수진과 함께하는 무료 투자 커뮤니티. 주식, ETF, 재테크 전략을 배워보세요." />
+    <KRRedirectCode/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -445,7 +447,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
     </div>
 
     <!-- Privacy Policy Modal -->
-    <div id="privacyModal" class="modal-overlay" onclick="closePrivacyModal(event)">
+    <div id="privacyModal" class="modal-overlay" style="display: none;" onclick="closePrivacyModal(event)">
       <div class="modal-content policy-modal">
         <button class="modal-close" onclick="closePrivacyModal(event)">&times;</button>
         <h2><i class="fas fa-shield-alt"></i> 개인정보처리방침</h2>
@@ -515,7 +517,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
     </div>
 
     <!-- Terms of Service Modal -->
-    <div id="termsModal" class="modal-overlay" onclick="closeTermsModal(event)">
+    <div id="termsModal" class="modal-overlay" style="display: none;" onclick="closeTermsModal(event)">
       <div class="modal-content policy-modal">
         <button class="modal-close" onclick="closeTermsModal(event)">&times;</button>
         <h2><i class="fas fa-file-contract"></i> 이용약관</h2>
@@ -628,7 +630,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
         }
       }
     </script>
-    <script>
+    <script is:inline>
       // ===== Smooth Scroll for Anchor Links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

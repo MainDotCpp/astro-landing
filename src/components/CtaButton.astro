@@ -55,7 +55,7 @@ function getVariantClass() {
 const baseClasses = unstyled
 ? `cta-button ${className}`
 : `cta-button ${getVariantClass()} ${className}`
-let ctaText = text
+let ctaText = null
 if (!ctaText) {
     if (social === '卡扣')
         ctaText = `친구추가 후 '7' 전송으로 급등주 정보 받`
@@ -78,80 +78,138 @@ if (!ctaText) {
         align-items: center;
         justify-content: center;
         border-radius: 9999px;
-        font-weight: 500;
-        transition: all 0.3s ease-in-out;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
         user-select: none;
         border: none;
         outline: none;
+        position: relative;
+        overflow: hidden;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        box-sizing: border-box;
+    }
+
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .cta-button:hover::before {
+        left: 100%;
     }
 
     .cta-button:focus {
         outline: none;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), 0 0 0 4px rgba(59, 130, 246, 0.2);
+    }
+
+    .cta-button:focus-visible {
+        outline: 2px solid rgba(59, 130, 246, 0.5);
+        outline-offset: 2px;
+    }
+
+    .cta-button:active {
+        transform: scale(0.98);
     }
 
     .cta-button-sm {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 2rem;
         font-size: 1.125rem;
         gap: 0.375rem;
     }
 
     .cta-button-md {
-        padding: 0.75rem 1.5rem;
+        padding: 0.75rem 2.5rem;
         font-size: 1.5rem;
         gap: 0.5rem;
     }
 
     .cta-button-lg {
-        padding: 1rem 2rem;
+        padding: 1rem 3rem;
         font-size: 1.5rem;
         gap: 0.625rem;
     }
 
     .cta-button-kakao {
-        background-color: #FEE500;
+        background: linear-gradient(135deg, #FEE500 0%, #FFEB00 50%, #FEE500 100%);
+        background-size: 200% 200%;
         color: black;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 25px -5px rgba(254, 229, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 235, 0, 0.3);
     }
 
     .cta-button-kakao:hover {
-        background-color: #FFEB00;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        background-position: 100% 50%;
+        box-shadow: 0 20px 40px -8px rgba(254, 229, 0, 0.5), 0 8px 16px -4px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .cta-button-kakao:active {
+        transform: translateY(0) scale(0.98);
     }
 
     .cta-button-band {
-        background-color: white;
+        background: linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #ffffff 100%);
+        background-size: 200% 200%;
         color: black;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        border: 2px solid #e5e7eb;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(229, 231, 235, 0.8);
     }
 
     .cta-button-band:hover {
-        background-color: #f9fafb;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        background-position: 100% 50%;
+        box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1);
+        border-color: rgba(209, 213, 219, 0.9);
+        transform: translateY(-2px);
+    }
+
+    .cta-button-band:active {
+        transform: translateY(0) scale(0.98);
     }
 
     .cta-button-mixed {
-        background: linear-gradient(to right, #FEE500, white);
+        background: linear-gradient(135deg, #FEE500 0%, #FFEB00 30%, #ffffff 70%, #f9fafb 100%);
+        background-size: 200% 200%;
         color: black;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        border: 1px solid #d1d5db;
+        box-shadow: 0 10px 25px -5px rgba(254, 229, 0, 0.3), 0 4px 12px -2px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(209, 213, 219, 0.6);
     }
 
     .cta-button-mixed:hover {
-        background: linear-gradient(to right, #FFEB00, #f9fafb);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        background-position: 100% 50%;
+        box-shadow: 0 20px 40px -8px rgba(254, 229, 0, 0.4), 0 8px 16px -4px rgba(0, 0, 0, 0.15);
+        border-color: rgba(209, 213, 219, 0.8);
+        transform: translateY(-2px);
+    }
+
+    .cta-button-mixed:active {
+        transform: translateY(0) scale(0.98);
     }
 
     .cta-button-default {
-        background-color: #2563eb;
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
+        background-size: 200% 200%;
         color: white;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(37, 99, 235, 0.3);
     }
 
     .cta-button-default:hover {
-        background-color: #1d4ed8;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        background-position: 100% 50%;
+        box-shadow: 0 20px 40px -8px rgba(37, 99, 235, 0.5), 0 8px 16px -4px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .cta-button-default:active {
+        transform: translateY(0) scale(0.98);
     }
 
     .cta-button .cta-icon {
@@ -431,7 +489,7 @@ if (!ctaText) {
                 <p class="instruction-text-content">
                     <span class="instruction-text-span">'친구 추가' 후 즉시</span>
                     <span class="number-highlight">7</span>
-                    <span class="instruction-text-span">을 전송하고</span><br>
+                    <span class="instruction-text-span">을 전송하고</span><br >
                     <span class="instruction-text-span">첫 응답을 완료해 주세요.</span>
                 </p>
             </div>
