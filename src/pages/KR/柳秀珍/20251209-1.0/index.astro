@@ -1,0 +1,840 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import { generateKrConfig } from '@/utils/kr_config'
+// Import images
+import bandImg from './static/images/band.png'
+import heroImg from './static/images/1.png.jpeg'
+import aboutImg from './static/images/2.png.jpeg'
+// Import CSS
+import './static/css/style.css'
+
+export function getStaticPaths() {
+  return generateKrConfig(['柳秀真_0'])
+}
+
+const { t = '棒群' } = Astro.params
+const { name } = Astro.props as { name: string }
+
+const socialOptions = ['卡扣', '棒群', '混合', '引导弹窗'] as const
+type Social = typeof socialOptions[number]
+const social: Social | undefined = socialOptions.includes(t as Social) ? (t as Social) : undefined
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>유수진 | 자산관리 전문가 · 투자 교육가</title>
+    <meta name="description" content="유수진과 함께하는 무료 투자 커뮤니티. 주식, ETF, 재테크 전략을 배워보세요." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Stock Ticker -->
+    <div class="stock-ticker">
+      <div class="ticker-wrap">
+        <div class="ticker-content">
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> 삼성전자 72,500 +1.8%</span>
+          <span class="ticker-item down"><i class="fas fa-arrow-down"></i> SK하이닉스 178,000 -0.5%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> LG에너지솔루션 385,000 +2.3%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> 현대차 245,500 +1.2%</span>
+          <span class="ticker-item down"><i class="fas fa-arrow-down"></i> NAVER 215,000 -0.8%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> 카카오 48,500 +3.1%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> 포스코홀딩스 298,000 +0.9%</span>
+          <span class="ticker-item down"><i class="fas fa-arrow-down"></i> 셀트리온 168,500 -1.2%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> 기아 125,000 +2.0%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> KB금융 78,500 +1.5%</span>
+          <!-- Duplicate for seamless loop -->
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> 삼성전자 72,500 +1.8%</span>
+          <span class="ticker-item down"><i class="fas fa-arrow-down"></i> SK하이닉스 178,000 -0.5%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> LG에너지솔루션 385,000 +2.3%</span>
+          <span class="ticker-item up"><i class="fas fa-arrow-up"></i> 현대차 245,500 +1.2%</span>
+          <span class="ticker-item down"><i class="fas fa-arrow-down"></i> NAVER 215,000 -0.8%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge"><i class="fas fa-crown"></i> 자산관리 전문가</div>
+          <h1 class="hero-title">
+            <span class="highlight">유수진</span>과 함께<br />
+            <span class="sub-title">당신의 자산을 지키세요</span>
+          </h1>
+          <p class="hero-description">
+            삼성증권 PB 출신 자산관리 전문가가 알려주는<br />
+            <strong>실전 투자 전략</strong>과 <strong>재무 습관</strong>
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">년 경력</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">구독자</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">1,000+</span>
+              <span class="stat-label">커뮤니티 멤버</span>
+            </div>
+          </div>
+          <CtaButton social={social} class="hero-cta" text="무료 커뮤니티 참여하기" />
+        </div>
+        <div class="hero-image">
+          <div class="image-frame">
+            <div class="frame-decoration"></div>
+            <Image src={heroImg} alt="유수진 프로필" />
+            <div class="floating-card card-1">
+              <i class="fas fa-chart-line"></i>
+              <span>수익률 분석</span>
+            </div>
+            <div class="floating-card card-2">
+              <i class="fas fa-shield-halved"></i>
+              <span>리스크 관리</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#ffffff"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-user-tie"></i> 소개</span>
+          <h2 class="section-title">유수진은 누구인가요?</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-image">
+            <div class="about-image-wrapper">
+              <Image src={aboutImg} alt="유수진" />
+              <div class="about-badge">
+                <i class="fab fa-youtube"></i>
+                <span>아이돈케어</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-content">
+            <h3>대한민국 대표 자산관리 전문가</h3>
+            <p class="about-intro">유수진은 개인 재무 설계와 주식·ETF 투자 전략에 특화된 투자 교육가입니다.</p>
+            <ul class="about-list">
+              <li>
+                <i class="fas fa-building-columns"></i>
+                <div>
+                  <strong>삼성증권 PB 출신</strong>
+                  <span>다년간 고액 자산가의 포트폴리오 관리 경험</span>
+                </div>
+              </li>
+              <li>
+                <i class="fab fa-youtube"></i>
+                <div>
+                  <strong>유튜브 채널 운영</strong>
+                  <span>〈아이돈케어ㅣ내 돈은 내가 지킨다〉</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-graduation-cap"></i>
+                <div>
+                  <strong>투자 교육 전문가</strong>
+                  <span>일반 투자자를 위한 실용적인 재테크 가이드</span>
+                </div>
+              </li>
+            </ul>
+            <div class="about-quote">
+              <i class="fas fa-quote-left"></i>
+              <p>"누구나 스스로 돈을 지킬 수 있도록 돕는 것이 제 목표입니다."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="section community-section">
+      <div class="container">
+        <div class="section-header light">
+          <span class="section-tag"><i class="fas fa-users"></i> 커뮤니티</span>
+          <h2 class="section-title">투자자 공익 커뮤니티</h2>
+          <p class="section-desc">초보자부터 고수까지, 모두가 함께 성장하는 공간</p>
+        </div>
+        <div class="community-grid">
+          <div class="community-content">
+            <div class="community-features">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-book-open"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>투자 가이드 제공</h4>
+                  <p>유수진이 직접 참여 제작한 투자 가이드북을 무료로 받아보세요</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-calendar-week"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>주간 스터디</h4>
+                  <p>매주 커뮤니티 멤버들과 함께하는 투자 학습 세션</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-bolt"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>실시간 시장 소식</h4>
+                  <p>주식 시장의 최신 뉴스와 분석을 빠르게 공유</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-comments"></i>
+                </div>
+                <div class="feature-text">
+                  <h4>멤버 간 교류</h4>
+                  <p>다양한 투자 경험을 가진 멤버들과 정보 공유</p>
+                </div>
+              </div>
+            </div>
+            <CtaButton social={social} text="지금 무료로 가입하기" />
+          </div>
+          <div class="community-image">
+            <div class="phone-mockup">
+              <div class="phone-screen">
+                <div class="chat-header">
+                  <div class="chat-avatar">
+                    <Image src={bandImg} alt="유수진" />
+                  </div>
+                  <div class="chat-info">
+                    <span class="chat-name">유수진 투자 커뮤니티</span>
+                    <span class="chat-members">멤버 1,247명</span>
+                  </div>
+                </div>
+                <div class="chat-messages">
+                  <div class="message host">
+                    <span class="msg-author">유수진</span>
+                    <p>안녕하세요! 오늘 주간 스터디 주제는 ETF 분산투자 전략입니다.</p>
+                    <span class="msg-time">오전 10:30</span>
+                  </div>
+                  <div class="message member">
+                    <span class="msg-author">김민수</span>
+                    <p>기대됩니다! 지난주 내용도 정말 도움이 많이 됐어요</p>
+                    <span class="msg-time">오전 10:32</span>
+                  </div>
+                  <div class="message member">
+                    <span class="msg-author">이지현</span>
+                    <p>초보인데 따라가기 쉬워서 좋아요</p>
+                    <span class="msg-time">오전 10:33</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-star"></i> 혜택</span>
+          <h2 class="section-title">커뮤니티 가입 혜택</h2>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+            <h4>투자 가이드북</h4>
+            <p>유수진이 참여 제작한 체계적인 투자 입문서를 무료로 제공</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h4>라이브 세션</h4>
+            <p>정기적인 온라인 라이브를 통한 실시간 Q&A 및 시장 분석</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <h4>포트폴리오 리뷰</h4>
+            <p>개인 투자 포트폴리오에 대한 피드백 및 개선 방향 제시</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-newspaper"></i>
+            </div>
+            <h4>뉴스레터</h4>
+            <p>매주 핵심 시장 동향과 투자 인사이트를 담은 뉴스레터 발송</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section">
+      <div class="container">
+        <div class="section-header light">
+          <span class="section-tag"><i class="fas fa-comment-dots"></i> 후기</span>
+          <h2 class="section-title">멤버들의 생생한 후기</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">박성민</span>
+                <span class="testimonial-role">직장인 · 3개월 멤버</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "투자에 관심은 있었는데 어디서부터 시작해야 할지 몰랐어요. 커뮤니티 가입 후 기초부터 차근차근 배우고
+              있습니다. 특히 주간 스터디가 정말 도움이 됩니다."
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">김지영</span>
+                <span class="testimonial-role">프리랜서 · 6개월 멤버</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "유수진님 유튜브 보다가 커뮤니티 알게 됐어요. 실시간으로 시장 소식 공유해주시고, 질문하면 친절하게
+              답변해주셔서 혼자 공부할 때보다 훨씬 효율적이에요."
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">이준혁</span>
+                <span class="testimonial-role">자영업자 · 1년 멤버</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "10년 넘게 주식했는데 체계적으로 배운 적은 처음이에요. 감으로만 하던 투자에서 벗어나 원칙을 세우게
+              됐습니다. 다른 멤버분들과 정보 교환도 큰 도움이 됩니다."
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">최수아</span>
+                <span class="testimonial-role">대학원생 · 2개월 멤버</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "무료인데 이렇게까지 해주셔도 되나 싶을 정도로 퀄리티가 좋아요. 투자 가이드북도 정말 잘 정리되어 있고,
+              어려운 개념도 쉽게 설명해주셔서 이해하기 편해요."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>지금 바로 시작하세요</h2>
+          <p>유수진과 함께 당신의 자산을 지키는 첫 걸음을 내딛어 보세요</p>
+          <div class="cta-features">
+            <span><i class="fas fa-check-circle"></i> 무료 가입</span>
+            <span><i class="fas fa-check-circle"></i> 투자 가이드 제공</span>
+            <span><i class="fas fa-check-circle"></i> 주간 스터디 참여</span>
+          </div>
+          <CtaButton social={social} text="무료 커뮤니티 참여하기" size="lg" class="cta-large" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <span class="footer-logo">유수진</span>
+            <span class="footer-tagline">자산관리 전문가 · 투자 교육가</span>
+          </div>
+          <div class="footer-links">
+            <a href="javascript:void(0)" onclick="openPrivacyModal()">개인정보처리방침</a>
+            <a href="javascript:void(0)" onclick="openTermsModal()">이용약관</a>
+          </div>
+        </div>
+        <div class="footer-disclaimer">
+          <p>
+            본 웹사이트에서 제공하는 모든 정보 및 콘텐츠는 교육 및 정보 제공 목적으로만 사용되며, 특정 투자 상품에 대한
+            매수·매도 권유가 아닙니다. 주식, ETF, 기타 금융상품의 투자에는 원금 손실의 위험이 수반되며, 투자 결정 및
+            그에 따른 모든 손익은 투자자 본인에게 귀속됩니다. 과거의 성과가 미래의 수익을 보장하지 않으며, 본 웹사이트의
+            정보만을 바탕으로 투자 결정을 내리지 마시고, 반드시 본인의 투자 목적, 재정 상황 및 리스크 수용 능력을
+            고려하여 전문 금융 상담사와 상의하시기 바랍니다. 당사는 본 웹사이트에 포함된 정보의 정확성이나 완전성을
+            보장하지 않으며, 이로 인해 발생하는 어떠한 손실에 대해서도 책임지지 않습니다.
+          </p>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 유수진. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Fixed Bottom CTA -->
+    <div class="fixed-cta">
+      <CtaButton social={social} text="무료 커뮤니티 참여하기" class="fixed-cta-btn" />
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal-overlay" onclick="closePrivacyModal(event)">
+      <div class="modal-content policy-modal">
+        <button class="modal-close" onclick="closePrivacyModal(event)">&times;</button>
+        <h2><i class="fas fa-shield-alt"></i> 개인정보처리방침</h2>
+        <div class="modal-body">
+          <p class="policy-intro">
+            본 개인정보처리방침은 귀하의 개인정보가 어떻게 수집, 이용, 보호되는지에 관한 정보를 제공합니다.
+
+          <h3>1. 개인정보의 수집 및 이용 목적</h3>
+          <p>당사는 다음과 같은 목적으로 개인정보를 수집 및 이용합니다:</p>
+          <ul>
+            <li>커뮤니티 서비스 제공 및 회원 관리</li>
+            <li>투자 교육 콘텐츠 및 뉴스레터 발송</li>
+            <li>고객 문의 응대 및 서비스 개선</li>
+            <li>마케팅 및 프로모션 정보 제공 (동의 시)</li>
+          </ul>
+
+          <h3>2. 수집하는 개인정보 항목</h3>
+          <p>당사는 서비스 제공을 위해 다음과 같은 개인정보를 수집합니다:</p>
+          <ul>
+            <li>필수 항목: 이름, 연락처 (전화번호 또는 카카오톡 ID)</li>
+            <li>선택 항목: 이메일 주소, 투자 경험 수준</li>
+          </ul>
+
+          <h3>3. 개인정보의 보유 및 이용 기간</h3>
+          <p>
+            수집된 개인정보는 회원 탈퇴 요청 시 또는 수집 목적 달성 시까지 보유되며, 관련 법령에 따라 일정 기간 보관이
+            필요한 경우 해당 기간 동안 보관됩니다:
+          </p>
+          <ul>
+            <li>소비자 불만 또는 분쟁 처리 기록: 3년</li>
+            <li>전자금융 거래 기록: 5년</li>
+          </ul>
+
+          <h3>4. 개인정보의 제3자 제공</h3>
+          <p>
+            당사는 원칙적으로 이용자의 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 다만, 법률에 의해 요구되는 경우
+            또는 이용자의 사전 동의가 있는 경우에는 예외적으로 제공될 수 있습니다.
+
+          <h3>5. 개인정보의 안전성 확보 조치</h3>
+          <p>당사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취합니다:</p>
+          <ul>
+            <li>개인정보의 암호화 저장 및 전송</li>
+            <li>해킹 및 바이러스 대응을 위한 보안 시스템 운영</li>
+            <li>개인정보 접근 권한의 최소화 및 관리</li>
+          </ul>
+
+          <h3>6. 이용자의 권리와 행사 방법</h3>
+          <p>
+            이용자는 언제든지 본인의 개인정보에 대한 열람, 정정, 삭제, 처리 정지 등의 권리를 행사할 수 있습니다. 권리
+            행사는 커뮤니티 관리자에게 연락하여 요청할 수 있습니다.
+
+          <h3>7. 개인정보 보호책임자</h3>
+          <p>개인정보 처리에 관한 업무를 담당하는 책임자는 다음과 같습니다:</p>
+          <ul>
+            <li>성명: 유수진</li>
+            <li>직위: 운영자</li>
+            <li>연락처: 커뮤니티 내 문의</li>
+          </ul>
+
+          <h3>8. 개인정보처리방침 변경</h3>
+          <p>
+            본 개인정보처리방침은 법령 또는 서비스 정책의 변경에 따라 수정될 수 있으며, 변경 시 웹사이트를 통해
+
+                <p class="policy-date">시행일: 2025년 1월 1일</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="modal-overlay" onclick="closeTermsModal(event)">
+      <div class="modal-content policy-modal">
+        <button class="modal-close" onclick="closeTermsModal(event)">&times;</button>
+        <h2><i class="fas fa-file-contract"></i> 이용약관</h2>
+        <div class="modal-body">
+          <p class="policy-intro">
+            본 이용약관은 유수진 투자 커뮤니티(이하 "서비스")의 이용과 관련하여 운영자와 회원 간의 권리, 의무 및
+            책임사항을 규정합니다.
+
+          <h3>제1조 (목적)</h3>
+          <p>
+            본 약관은 서비스 이용에 관한 기본적인 사항을 정함으로써 운영자와 회원 간의 권리와 의무, 책임사항, 서비스
+            이용조건 및 절차 등을 규정함을 목적으로 합니다.
+
+          <h3>제2조 (용어의 정의)</h3>
+          <ul>
+            <li><strong>"서비스"</strong>란 유수진이 제공하는 투자 교육 커뮤니티 및 관련 콘텐츠를 의미합니다.</li>
+            <li><strong>"회원"</strong>이란 본 약관에 동의하고 서비스에 가입한 자를 의미합니다.</li>
+            <li><strong>"콘텐츠"</strong>란 서비스 내에서 제공되는 투자 교육 자료, 영상, 뉴스레터 등을 의미합니다.</li>
+          </ul>
+
+          <h3>제3조 (약관의 효력과 변경)</h3>
+          <p>
+            본 약관은 서비스 이용 신청 시 회원에게 공지되며, 동의함으로써 효력이 발생합니다. 운영자는 필요한 경우 약관을
+            변경할 수 있으며, 변경 시 사전에 공지합니다.
+
+          <h3>제4조 (서비스의 내용)</h3>
+          <p>서비스는 다음과 같은 내용을 제공합니다:</p>
+          <ul>
+            <li>투자 교육 콘텐츠 및 가이드북</li>
+            <li>주간 투자 스터디 및 라이브 세션</li>
+            <li>실시간 시장 정보 공유</li>
+            <li>커뮤니티 멤버 간 교류 공간</li>
+            <li>뉴스레터 및 투자 인사이트</li>
+          </ul>
+
+          <h3>제5조 (회원의 의무)</h3>
+          <p>회원은 다음 사항을 준수해야 합니다:</p>
+          <ul>
+            <li>정확한 개인정보를 제공할 것</li>
+            <li>타인의 개인정보를 도용하지 않을 것</li>
+            <li>서비스 내에서 욕설, 비방, 허위정보 유포 등 부적절한 행위를 하지 않을 것</li>
+            <li>운영자의 서면 동의 없이 콘텐츠를 상업적으로 이용하지 않을 것</li>
+            <li>서비스의 운영을 방해하는 행위를 하지 않을 것</li>
+          </ul>
+
+          <h3>제6조 (투자 위험 고지)</h3>
+          <p>
+            <strong>중요:</strong> 본 서비스는 투자 교육 및 정보 제공을 목적으로 하며, 특정 금융상품에 대한 투자 권유가
+            아닙니다. 서비스에서 제공되는 정보는 참고용이며, 투자 결정에 대한 최종 책임은 회원 본인에게 있습니다. 주식
+            및 금융상품 투자에는 원금 손실 위험이 있으며, 과거 수익률이 미래 수익을 보장하지 않습니다.
+
+          <h3>제7조 (면책조항)</h3>
+          <ul>
+            <li>운영자는 회원의 투자 결정으로 인해 발생하는 손실에 대해 책임지지 않습니다.</li>
+            <li>운영자는 천재지변, 시스템 오류 등 불가항력으로 인한 서비스 중단에 대해 책임지지 않습니다.</li>
+            <li>서비스 내 타 회원이 제공한 정보의 정확성에 대해서는 해당 회원이 책임집니다.</li>
+          </ul>
+
+          <h3>제8조 (저작권 및 지적재산권)</h3>
+          <p>
+            서비스에서 제공되는 모든 콘텐츠(텍스트, 이미지, 영상, 자료 등)의 저작권은 운영자에게 있으며, 회원은 운영자의
+            사전 동의 없이 이를 복제, 배포, 상업적으로 이용할 수 없습니다.
+
+          <h3>제9조 (서비스 이용 제한)</h3>
+          <p>운영자는 다음 경우 회원의 서비스 이용을 제한하거나 회원 자격을 박탈할 수 있습니다:</p>
+          <ul>
+            <li>본 약관을 위반한 경우</li>
+            <li>허위 정보를 제공한 경우</li>
+            <li>다른 회원의 권리를 침해한 경우</li>
+            <li>서비스의 정상적인 운영을 방해한 경우</li>
+          </ul>
+
+          <h3>제10조 (분쟁 해결)</h3>
+          <p>
+            서비스 이용과 관련하여 발생한 분쟁은 대한민국 법률에 따라 해결하며, 관할 법원은 운영자의 소재지 관할
+
+          </p>
+
+          <p class="policy-date">시행일: 2025년 1월 1일</p>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      // Privacy Modal Functions
+      function openPrivacyModal() {
+        document.getElementById('privacyModal').style.display = 'flex'
+        document.body.style.overflow = 'hidden'
+      }
+
+      function closePrivacyModal(event) {
+        if (
+          event.target === document.getElementById('privacyModal') ||
+          event.target.classList.contains('modal-close')
+        ) {
+          document.getElementById('privacyModal').style.display = 'none'
+          document.body.style.overflow = 'auto'
+        }
+      }
+      // Terms Modal Functions
+      function openTermsModal() {
+        document.getElementById('termsModal').style.display = 'flex'
+        document.body.style.overflow = 'hidden'
+      }
+
+      function closeTermsModal(event) {
+        if (event.target === document.getElementById('termsModal') || event.target.classList.contains('modal-close')) {
+          document.getElementById('termsModal').style.display = 'none'
+          document.body.style.overflow = 'auto'
+        }
+      }
+    </script>
+    <script>
+      // ===== Smooth Scroll for Anchor Links =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ===== Intersection Observer for Animations =====
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', () => {
+    const animateElements = document.querySelectorAll(
+        '.about-grid, .community-grid, .benefit-card, .testimonial-card, .feature-item'
+    );
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+});
+
+// Add animate-in class styles
+const style = document.createElement('style');
+style.textContent = `
+    .animate-in {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+`;
+document.head.appendChild(style);
+
+// ===== Stock Ticker Pause on Hover =====
+const tickerContent = document.querySelector('.ticker-content');
+if (tickerContent) {
+    tickerContent.addEventListener('mouseenter', () => {
+        tickerContent.style.animationPlayState = 'paused';
+    });
+    tickerContent.addEventListener('mouseleave', () => {
+        tickerContent.style.animationPlayState = 'running';
+    });
+}
+
+// ===== Counter Animation =====
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = target.toLocaleString() + (element.dataset.suffix || '');
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(start).toLocaleString() + (element.dataset.suffix || '');
+        }
+    }, 16);
+}
+
+// Observe stats for counter animation
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const statNumbers = entry.target.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                const match = text.match(/(\d+)/);
+                if (match) {
+                    const target = parseInt(match[1]);
+                    const suffix = text.replace(match[1], '');
+                    stat.dataset.suffix = suffix;
+                    animateCounter(stat, target);
+                }
+            });
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+const heroStats = document.querySelector('.hero-stats');
+if (heroStats) {
+    statsObserver.observe(heroStats);
+}
+
+// ===== Parallax Effect for Hero Background =====
+let ticking = false;
+
+function updateParallax() {
+    const scrolled = window.pageYOffset;
+    const heroPattern = document.querySelector('.hero-bg-pattern');
+    if (heroPattern && scrolled < window.innerHeight) {
+        heroPattern.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+    }
+});
+
+// ===== Mobile Menu Touch Improvements =====
+const ctaButtons = document.querySelectorAll('.cta-button');
+ctaButtons.forEach(button => {
+    button.addEventListener('touchstart', function() {
+        this.style.transform = 'scale(0.98)';
+    });
+    button.addEventListener('touchend', function() {
+        this.style.transform = '';
+    });
+});
+
+// ===== Lazy Loading Images =====
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// ===== Add ripple effect to buttons =====
+function createRipple(event) {
+    const button = event.currentTarget;
+    const circle = document.createElement('span');
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+    circle.classList.add('ripple');
+
+    const ripple = button.getElementsByClassName('ripple')[0];
+    if (ripple) {
+        ripple.remove();
+    }
+
+    button.appendChild(circle);
+}
+
+// Add ripple styles
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .cta-button {
+        position: relative;
+        overflow: hidden;
+    }
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    @keyframes ripple-animation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+ctaButtons.forEach(button => {
+    button.addEventListener('click', createRipple);
+});
+
+// ===== Console Welcome Message =====
+console.log(
+    '%c유수진 투자 커뮤니티에 오신 것을 환영합니다!',
+    'color: #6D5A8A; font-size: 16px; font-weight: bold;'
+);
+
+</script>
+  </body>
+</html>
