@@ -1,0 +1,238 @@
+---
+// 自动滚动横幅组件 - 组合展示方案
+// 包含收益展示、推荐股票、统计数据、会员评价等内容
+---
+
+<section class="scrolling-banner">
+  <div class="banner-container">
+    <div class="banner-content">
+      <!-- 第一组内容 -->
+      <div class="banner-item">
+        <span class="banner-icon">💰</span>
+        <span class="banner-text">김○○님 삼성전자 <strong>+36.8%</strong> 수익 달성!</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">🔥</span>
+        <span class="banner-text">오늘의 급등주: <strong>엔비디아</strong> 분석 완료</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">✅</span>
+        <span class="banner-text">누적 회원수 <strong>10,000명</strong> 돌파</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">💬</span>
+        <span class="banner-text">"선대인님 분석 정말 정확합니다!" - 이○○</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">💰</span>
+        <span class="banner-text">이○○님 엔비디아 <strong>+42.4%</strong> 수익 달성!</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">⚡</span>
+        <span class="banner-text">내일 주목: <strong>SK하이닉스</strong> 급등 예상</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">📊</span>
+        <span class="banner-text">평균 수익률 <strong>35%</strong> 달성</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">💬</span>
+        <span class="banner-text">"3개월 만에 수익률 150% 달성" - 박○○</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">💰</span>
+        <span class="banner-text">박○○님 카카오 <strong>+85.8%</strong> 수익 달성!</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">📈</span>
+        <span class="banner-text">실시간 추천: <strong>테슬라</strong> 매수 타이밍</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">🎯</span>
+        <span class="banner-text">투자 성공률 <strong>92%</strong> 유지</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">💬</span>
+        <span class="banner-text">"초보자도 쉽게 따라할 수 있어요" - 최○○</span>
+      </div>
+
+      <!-- 重复内容以实现无缝循环 -->
+      <div class="banner-item">
+        <span class="banner-icon">💰</span>
+        <span class="banner-text">김○○님 삼성전자 <strong>+36.8%</strong> 수익 달성!</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">🔥</span>
+        <span class="banner-text">오늘의 급등주: <strong>엔비디아</strong> 분석 완료</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">✅</span>
+        <span class="banner-text">누적 회원수 <strong>10,000명</strong> 돌파</span>
+      </div>
+      <div class="banner-item">
+        <span class="banner-icon">💬</span>
+        <span class="banner-text">"선대인님 분석 정말 정확합니다!" - 이○○</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrolling-banner {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg,
+      rgba(26, 26, 46, 0.98) 0%,
+      rgba(22, 33, 62, 0.98) 50%,
+      rgba(15, 52, 96, 0.98) 100%);
+    border-top: 1px solid rgba(241, 196, 15, 0.3);
+    border-bottom: 1px solid rgba(241, 196, 15, 0.3);
+    overflow: hidden;
+    z-index: 100;
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .banner-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .banner-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    animation: scroll 30s linear infinite;
+    white-space: nowrap;
+    padding: 12px 0;
+  }
+
+  .banner-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: clamp(13px, 3vw, 15px);
+    font-weight: 500;
+    padding: 0 1rem;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .banner-icon {
+    font-size: clamp(16px, 3.5vw, 18px);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .banner-text {
+    font-family: var(--font-primary, 'Pretendard', 'Noto Sans KR', sans-serif);
+    line-height: 1.4;
+  }
+
+  .banner-text strong {
+    font-weight: 800;
+    color: #f1c40f;
+    text-shadow:
+      0 0 8px rgba(241, 196, 15, 0.5),
+      0 1px 2px rgba(0, 0, 0, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    0% {
+      text-shadow:
+        0 0 8px rgba(241, 196, 15, 0.5),
+        0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+      text-shadow:
+        0 0 12px rgba(241, 196, 15, 0.7),
+        0 0 20px rgba(241, 196, 15, 0.4),
+        0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  /* 滚动动画 */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* 悬停暂停 */
+  .scrolling-banner:hover .banner-content {
+    animation-play-state: paused;
+  }
+
+  /* 移动端优化 */
+  @media (max-width: 768px) {
+    .scrolling-banner {
+      border-bottom-width: 1px;
+    }
+
+    .banner-content {
+      gap: 2rem;
+      padding: 10px 0;
+      animation-duration: 25s;
+    }
+
+    .banner-item {
+      gap: 0.5rem;
+      padding: 0 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .banner-content {
+      gap: 1.5rem;
+      padding: 8px 0;
+      animation-duration: 20s;
+    }
+
+    .banner-item {
+      padding: 0 0.5rem;
+    }
+  }
+
+  /* 渐变遮罩效果 */
+  .banner-container::before,
+  .banner-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .banner-container::before {
+    left: 0;
+    background: linear-gradient(to right,
+      rgba(26, 26, 46, 0.98) 0%,
+      rgba(26, 26, 46, 0.5) 50%,
+      transparent 100%);
+  }
+
+  .banner-container::after {
+    right: 0;
+    background: linear-gradient(to left,
+      rgba(15, 52, 96, 0.98) 0%,
+      rgba(15, 52, 96, 0.5) 50%,
+      transparent 100%);
+  }
+
+  @media (max-width: 768px) {
+    .banner-container::before,
+    .banner-container::after {
+      width: 50px;
+    }
+  }
+</style>

@@ -1,0 +1,1780 @@
+---
+import { Award, GraduationCap, Star, TrendingUp, Users, Youtube } from 'lucide-astro'
+import avatarImage from '@/assets/avatar/宣大仁_avatar.png'
+import CtaButton from '@/components/CtaButton.astro'
+import ScrollingBanner from '@/components/landing/ScrollingBanner.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+
+// 宣大仁的个人信息
+const name = '선대인'
+const school = '연세대학교 경제학과'
+const career = '전 한국은행 조사국 · 전 현대경제연구원 수석연구위원'
+const description = '거시경제 분석 전문가로서 20년간 경제정책과 금융시장을 연구해왔습니다. 경제 사이클을 읽는 뛰어난 능력으로 시장 타이밍을 정확히 포착하는 것으로 유명합니다.'
+
+// 头像图片路径
+const headImg = avatarImage.src
+---
+
+<KRBaseLayout
+  title={`${name} 주식투자 전문가 - 무료 주식 분석 및 급등주 추천`}
+  description={`${name}과 함께하는 주식투자 그룹. 매일 급등주 분석 및 검증된 선별 방법을 공유합니다.`}
+  plugins={{
+    aos: {},
+    countup: {},
+  }}
+>
+  <!-- Google Fonts Preconnect for Performance -->
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <!-- Stylized Korean Fonts Collection -->
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Nanum+Gothic:wght@400;700;800&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Pretendard - Modern Korean Font (via CDN) -->
+  <link slot="head" rel="stylesheet" as="style" crossorigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- Inter - Modern English Font for Numbers -->
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* Base Reset and Typography */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Stylized Typography System */
+    :root {
+      /* 正文字体 - 现代易读 */
+      --font-primary: 'Pretendard', 'Nanum Gothic', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+
+      /* 标题字体 - 粗体有力 */
+      --font-display: 'Black Han Sans', 'Nanum Gothic', 'Noto Sans KR', sans-serif;
+
+      /* 副标题字体 - 圆润友好 */
+      --font-subtitle: 'Jua', 'Pretendard', 'Noto Sans KR', sans-serif;
+
+      /* 数字字体 - 现代等宽感 */
+      --font-numbers: 'Inter', 'Pretendard', 'Noto Sans KR', monospace;
+
+      /* 优雅字体 - 传统风格 */
+      --font-elegant: 'Gowun Batang', 'Nanum Gothic', serif;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      line-height: 1.7;
+      color: #2c3e50;
+      background: #f5f5f7;
+      font-size: 16px;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Hero Section - Mobile First */
+    .hero {
+      padding: 60px 0 50px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 20%, rgba(255,215,0,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(231,76,60,0.06) 0%, transparent 50%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 7vw, 56px);
+      font-weight: 400; /* Black Han Sans is already bold */
+      margin-bottom: 24px;
+      line-height: 1.2;
+      color: #ffffff;
+      letter-spacing: 1px; /* Black Han Sans works better with positive spacing */
+      text-shadow:
+        0 2px 4px rgba(0,0,0,0.4),
+        0 4px 8px rgba(0,0,0,0.3),
+        0 8px 16px rgba(0,0,0,0.2);
+      text-transform: none;
+    }
+
+    .hero h1 .highlight {
+      font-family: var(--font-display);
+      background: linear-gradient(135deg, #f1c40f 0%, #f39c12 50%, #e67e22 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 400;
+      display: inline-block;
+      letter-spacing: 2px;
+      position: relative;
+      filter: drop-shadow(0 2px 4px rgba(241,196,15,0.3));
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-subtitle);
+      font-size: clamp(18px, 4.5vw, 24px);
+      margin-bottom: 24px;
+      opacity: 0.98;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400; /* Jua is already medium weight */
+      line-height: 1.7;
+      color: rgba(255,255,255,0.98);
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Hero区域紧迫感提示 */
+    .hero-urgency {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(241, 196, 15, 0.2) 0%, rgba(243, 156, 18, 0.15) 100%);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      border-radius: 50px;
+      margin-bottom: 32px;
+      border: 2px solid rgba(241, 196, 15, 0.4);
+      box-shadow: 0 4px 15px rgba(241, 196, 15, 0.2);
+      animation: hero-urgency-pulse 2s ease-in-out infinite;
+    }
+
+    .hero-urgency-icon {
+      font-size: 24px;
+      animation: hero-icon-spin 2s ease-in-out infinite;
+    }
+
+    .hero-urgency-text {
+      font-size: clamp(14px, 3vw, 16px);
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .hero-urgency-text strong {
+      color: #f1c40f;
+      font-weight: 800;
+      font-family: var(--font-display);
+    }
+
+    @keyframes hero-urgency-pulse {
+      0%, 100% {
+        box-shadow: 0 4px 15px rgba(241, 196, 15, 0.2);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 6px 20px rgba(241, 196, 15, 0.4);
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes hero-icon-spin {
+      0%, 100% {
+        transform: rotate(0deg) scale(1);
+      }
+      25% {
+        transform: rotate(-10deg) scale(1.1);
+      }
+      75% {
+        transform: rotate(10deg) scale(1.1);
+      }
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .hero-stat-number {
+      font-family: var(--font-numbers);
+      display: block;
+      font-size: clamp(24px, 5.5vw, 32px);
+      font-weight: 900;
+      color: #f1c40f;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(241,196,15,0.4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hero-stat-label {
+      font-size: clamp(11px, 3vw, 13px);
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Profile Section - Mobile First */
+    .profile-section {
+      padding: 50px 16px;
+      background: #ffffff;
+      position: relative;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    .profile-image {
+      flex-shrink: 0;
+      margin: 0 auto;
+    }
+
+    .profile-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      object-fit: cover;
+    }
+
+    .profile-info {
+      flex: 1;
+      width: 100%;
+      text-align: center;
+    }
+
+    .profile-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 7vw, 42px);
+      color: #c0392b;
+      margin-bottom: 12px;
+      font-weight: 400; /* Black Han Sans */
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .profile-title {
+      font-family: var(--font-subtitle);
+      font-size: clamp(18px, 4.5vw, 22px);
+      color: #34495e;
+      margin-bottom: 24px;
+      font-weight: 400; /* Jua */
+      letter-spacing: 0.5px;
+    }
+
+    .profile-details {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .detail-item {
+      margin-bottom: 20px;
+      padding: 16px 0;
+      border-bottom: 2px solid #ecf0f1;
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-family: var(--font-display);
+      font-weight: 400; /* Black Han Sans */
+      color: #c0392b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: clamp(18px, 4.5vw, 20px);
+      letter-spacing: 0.5px;
+    }
+
+    .detail-text {
+      font-family: var(--font-primary);
+      color: #2c3e50;
+      line-height: 1.75;
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: 500;
+      text-align: left;
+      letter-spacing: -0.1px;
+    }
+
+    /* Social Proof Section - Mobile First */
+    .social-proof {
+      padding: 50px 16px;
+      background: #f5f5f7;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      text-align: center;
+      font-size: clamp(28px, 7vw, 40px);
+      color: #c0392b;
+      margin-bottom: 32px;
+      font-weight: 400; /* Black Han Sans */
+      position: relative;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(45deg, #e74c3c, #f39c12);
+      margin: 16px auto;
+      border-radius: 2px;
+    }
+
+    .proof-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .proof-card {
+      background: #ffffff;
+      padding: 24px 16px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      touch-action: manipulation;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .proof-card[data-aos].aos-animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .proof-card:active {
+      transform: scale(0.98);
+    }
+
+    .proof-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .proof-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+      color: #e74c3c;
+    }
+
+    .proof-number {
+      font-family: var(--font-numbers);
+      font-size: clamp(32px, 7vw, 42px);
+      font-weight: 900;
+      color: #c0392b;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .proof-label {
+      font-size: clamp(12px, 3vw, 14px);
+      color: #2c3e50;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* YouTube Section - Mobile First */
+    .youtube-section {
+      padding: 50px 16px;
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      color: white;
+      position: relative;
+    }
+
+    .youtube-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .youtube-info {
+      width: 100%;
+      text-align: center;
+    }
+
+    .youtube-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 7vw, 38px);
+      margin-bottom: 20px;
+      font-weight: 400; /* Black Han Sans */
+      line-height: 1.2;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .youtube-info p {
+      font-size: clamp(14px, 3.5vw, 16px);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+
+    .youtube-stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .youtube-stat {
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .youtube-stat-number {
+      font-family: var(--font-numbers);
+      font-size: clamp(22px, 5.5vw, 28px);
+      font-weight: 900;
+      color: #f1c40f;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 2px 6px rgba(241,196,15,0.3);
+    }
+
+    .youtube-stat-label {
+      font-size: clamp(11px, 2.5vw, 12px);
+      opacity: 0.9;
+    }
+
+    .youtube-embed {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .youtube-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+    }
+
+    /* Service Section - Mobile First */
+    .service-section {
+      padding: 50px 16px;
+      background: #f5f5f7;
+    }
+
+    .service-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .service-card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 4px solid #e74c3c;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+      touch-action: manipulation;
+      opacity: 0;
+      transform: translateY(20px);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .service-card[data-aos].aos-animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card:active {
+      transform: scale(0.98);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      color: #c0392b;
+      margin-bottom: 16px;
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 400; /* Black Han Sans */
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+    }
+
+    .service-card p {
+      color: #2c3e50;
+      line-height: 1.7;
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: 500;
+    }
+
+    .service-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .service-list li {
+      padding: 8px 0;
+      color: #2c3e50;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: clamp(13px, 3vw, 15px);
+      line-height: 1.6;
+    }
+
+    .service-list li::before {
+      content: '✓';
+      color: #27ae60;
+      font-weight: bold;
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Testimonials Section - Mobile First */
+    .testimonials-section {
+      padding: 50px 16px;
+      background: #ffffff;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonials-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .testimonial-card {
+      background: #fafafa;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .testimonial-card[data-aos].aos-animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .testimonial-stars {
+      color: #f1c40f;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .testimonial-text {
+      color: #2c3e50;
+      line-height: 1.7;
+      font-size: clamp(14px, 3.5vw, 15px);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-info h4 {
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: clamp(14px, 3.5vw, 16px);
+    }
+
+    .testimonial-info p {
+      color: #7f8c8d;
+      font-size: clamp(12px, 3vw, 13px);
+    }
+
+    /* CTA Section - Mobile First */
+    .cta-section {
+      padding: 50px 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 7vw, 40px);
+      margin-bottom: 20px;
+      font-weight: 400; /* Black Han Sans */
+      line-height: 1.2;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .cta-content p {
+      font-size: clamp(15px, 3.5vw, 18px);
+      margin-bottom: 32px;
+      opacity: 0.95;
+      line-height: 1.7;
+    }
+
+    /* 紧迫感元素 */
+    .urgency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .urgency-icon {
+      font-size: 20px;
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    .urgency-text {
+      font-size: clamp(14px, 3vw, 16px);
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .urgency-text #viewer-count {
+      color: #f1c40f;
+      font-weight: 800;
+      font-family: var(--font-numbers);
+    }
+
+    /* CTA包装器 */
+    .cta-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .cta-badge {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+      color: #2c3e50;
+      font-size: clamp(11px, 2.5vw, 13px);
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(241, 196, 15, 0.5);
+      z-index: 10;
+      animation: badge-bounce 2s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    /* 浮动CTA增强 */
+    .floating-cta-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .pulse-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border: 3px solid rgba(0, 198, 81, 0.6);
+      border-radius: 9999px;
+      animation: pulse-ring-animation 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .pulse-ring-delay-1 {
+      animation-delay: 1s;
+      border-color: rgba(0, 198, 81, 0.4);
+    }
+
+
+    /* 动画 */
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes badge-bounce {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-3px) scale(1.05);
+      }
+    }
+
+    @keyframes pulse-ring-animation {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    @keyframes flash {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+      }
+    }
+
+    @keyframes ripple-animation {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 480px) {
+      .urgency-badge {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .cta-badge {
+        top: -10px;
+        right: -8px;
+        font-size: 10px;
+        padding: 3px 10px;
+      }
+
+    }
+
+    /* Footer Section */
+    .footer-section {
+      background: #2c3e50;
+      color: rgba(255, 255, 255, 0.9);
+      padding: 50px 16px 30px;
+      margin-top: 0;
+      border-top: 3px solid rgba(241, 196, 15, 0.3);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand {
+      text-align: center;
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 5vw, 28px);
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .footer-description {
+      font-size: clamp(14px, 3vw, 16px);
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .footer-column {
+      text-align: center;
+    }
+
+    .footer-heading {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 3.5vw, 18px);
+      font-weight: 400;
+      color: #f1c40f;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-list li {
+      font-size: clamp(13px, 3vw, 14px);
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+    }
+
+    .footer-copyright {
+      margin-bottom: 20px;
+    }
+
+    .footer-copyright p {
+      font-size: clamp(12px, 2.5vw, 14px);
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+    }
+
+    .footer-disclaimer {
+      margin-top: 20px;
+    }
+
+    .footer-disclaimer p {
+      font-size: clamp(11px, 2.5vw, 12px);
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Floating CTA - Mobile Optimized */
+    .floating-cta {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: calc(100% - 32px);
+      max-width: 500px;
+      padding: 0 16px;
+      pointer-events: none;
+      animation: float-up 0.5s ease-out;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    @keyframes float-up {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .floating-cta :global(*) {
+      pointer-events: auto;
+      min-height: 48px;
+      touch-action: manipulation;
+    }
+
+    /* 修复浮动按钮图标被挤扁和文字垂直居中的问题 */
+    .floating-cta :global(.cta-button) {
+      min-width: 0;
+      gap: 0.75rem;
+      align-items: center !important;
+      justify-content: center !important;
+      display: flex !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      height: auto !important;
+      min-height: 48px;
+      position: relative;
+      z-index: 10;
+      pointer-events: auto !important;
+    }
+
+    .floating-cta :global(.cta-icon) {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+      flex-shrink: 0 !important;
+      object-fit: contain !important;
+      aspect-ratio: 1 / 1 !important;
+      align-self: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .floating-cta :global(.cta-text) {
+      flex: 1 1 auto;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      height: auto !important;
+      vertical-align: middle !important;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 480px) {
+      .floating-cta :global(.cta-icon) {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        max-width: 28px !important;
+        max-height: 28px !important;
+      }
+
+      .floating-cta :global(.cta-text) {
+        font-size: 0.9em;
+        white-space: normal;
+        line-height: 1.2 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .floating-cta :global(.cta-button) {
+        align-items: center !important;
+        min-height: 44px;
+      }
+    }
+
+    /* Mobile Touch Optimizations */
+    @media (max-width: 767px) {
+      button, a, .proof-card, .service-card, .testimonial-card {
+        min-height: 44px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      }
+
+      .hero h1 br,
+      .hero-subtitle br {
+        display: block;
+      }
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 768px) {
+      .hero {
+        padding: 100px 0 80px;
+      }
+
+      .hero-content {
+        padding: 0 40px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 35px;
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+        margin-bottom: 50px;
+      }
+
+      .hero-stats {
+        gap: 60px;
+      }
+
+      .profile-section {
+        padding: 80px 40px;
+      }
+
+      .profile-container {
+        flex-direction: row;
+        gap: 60px;
+        text-align: left;
+      }
+
+      .profile-image {
+        margin: 0;
+      }
+
+      .profile-avatar {
+        width: 180px;
+        height: 180px;
+      }
+
+      .profile-info {
+        text-align: left;
+      }
+
+      .detail-label {
+        justify-content: flex-start;
+      }
+
+      .social-proof {
+        padding: 80px 40px;
+      }
+
+      .section-title {
+        font-size: 36px;
+        margin-bottom: 60px;
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+
+      .proof-card {
+        padding: 40px 24px;
+      }
+
+      .youtube-section {
+        padding: 80px 40px;
+      }
+
+      .youtube-container {
+        flex-direction: row;
+        gap: 60px;
+      }
+
+      .youtube-info {
+        text-align: left;
+      }
+
+      .service-section {
+        padding: 80px 40px;
+      }
+
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .testimonials-section {
+        padding: 80px 40px;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .cta-section {
+        padding: 80px 40px;
+      }
+
+      .footer-section {
+        padding: 60px 40px 40px;
+      }
+
+      .footer-content {
+        flex-direction: row;
+        text-align: left;
+      }
+
+      .footer-brand {
+        flex: 1;
+        text-align: left;
+      }
+
+      .footer-links {
+        flex: 1;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-column {
+        text-align: left;
+      }
+
+      .floating-cta {
+        bottom: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-column {
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>
+        안녕하세요, <span class="highlight">{name}</span>입니다<br>
+        매일 급등주 분석을 무료로 드립니다
+      </h1>
+      <p class="hero-subtitle">
+        20년간 쌓아온 투자 노하우를 여러분께 직접 공유합니다<br>
+        매일 급등주 분석과 제가 사용하는 선별 방법을 무료로 받아보세요
+      </p>
+
+      <!-- Hero区域紧迫感提示 -->
+      <div class="hero-urgency" data-aos="fade-up" data-aos-delay="300">
+        <span class="hero-urgency-icon">⚡</span>
+        <span class="hero-urgency-text">지금 가입하면 <strong>오늘의 급등주 분석</strong>을 즉시 받을 수 있습니다</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat" data-aos="fade-up" data-aos-delay="100">
+          <span class="hero-stat-number count-up" data-count="20" data-suffix="년">20년</span>
+          <span class="hero-stat-label">투자 경력</span>
+        </div>
+        <div class="hero-stat" data-aos="fade-up" data-aos-delay="200">
+          <span class="hero-stat-number count-up" data-count="10000" data-suffix="+">10,000+</span>
+          <span class="hero-stat-label">그룹 회원수</span>
+        </div>
+        <div class="hero-stat" data-aos="fade-up" data-aos-delay="300">
+          <span class="hero-stat-number count-up" data-count="92" data-suffix="%">92%</span>
+          <span class="hero-stat-label">성공률</span>
+        </div>
+      </div>
+      <div style="margin-top: 50px;">
+        <CtaButton social="棒群" size="lg" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Section -->
+  <section class="profile-section" data-aos="fade-up">
+    <div class="profile-container">
+      <div class="profile-image">
+        <img
+          src={headImg}
+          alt={name}
+          class="profile-avatar"
+          width={180}
+          height={180}
+          loading="lazy"
+        />
+      </div>
+      <div class="profile-info">
+        <h2>{name}</h2>
+        <p class="profile-title">주식투자 전문 애널리스트</p>
+        <div class="profile-details">
+          <div class="detail-item">
+            <div class="detail-label">
+              <GraduationCap size={20} />
+              제 학력 및 경력
+            </div>
+            <div class="detail-text">
+              • {school} 졸업<br>
+              • {career}<br>
+              • 개인투자자 전문 컨설팅을 20년간 해왔습니다
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">
+              <Award size={20} />
+              제 투자 경력
+            </div>
+            <div class="detail-text">
+              {description} 제가 국내외 주식, 선물옵션, 외환을 전문으로 다루고 있으며,<br>
+              지금까지 10,000여 명의 분들과 함께 투자해왔습니다<br>
+              평균 월간 수익률 35%를 달성했습니다
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+          <CtaButton social="棒群" size="md" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrolling Banner -->
+  <ScrollingBanner />
+
+  <!-- Social Proof Section -->
+  <section class="social-proof" data-aos="fade-up">
+    <h2 class="section-title">제가 쌓아온 실적과 신뢰도</h2>
+    <div class="proof-grid">
+      <div class="proof-card" data-aos="fade-up" data-aos-delay="0">
+        <Users class="proof-icon" size={60} />
+        <div class="proof-number count-up" data-count="10000" data-suffix="+">10,000+</div>
+        <div class="proof-label">활성 그룹 회원</div>
+      </div>
+      <div class="proof-card" data-aos="fade-up" data-aos-delay="100">
+        <TrendingUp class="proof-icon" size={60} />
+        <div class="proof-number count-up" data-count="92" data-suffix="%">92%</div>
+        <div class="proof-label">투자 성공률</div>
+      </div>
+      <div class="proof-card" data-aos="fade-up" data-aos-delay="200">
+        <Award class="proof-icon" size={60} />
+        <div class="proof-number count-up" data-count="20" data-suffix="년">20년</div>
+        <div class="proof-label">전문 투자 경력</div>
+      </div>
+      <div class="proof-card" data-aos="fade-up" data-aos-delay="300">
+        <Star class="proof-icon" size={60} />
+        <div class="proof-number">4.8/5</div>
+        <div class="proof-label">회원 만족도</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YouTube Section -->
+  <section class="youtube-section" data-aos="fade-up">
+    <div class="youtube-container">
+      <div class="youtube-info">
+        <Youtube size={50} style="color: #f1c40f; margin-bottom: 20px;" />
+        <h2>제 YouTube 채널을 소개합니다</h2>
+        <p>
+          제 YouTube 채널에서 매일 시장 분석과 투자 인사이트를 여러분께 공유하고 있습니다.
+          거시경제 동향부터 개별 종목 분석까지, 실전 투자에 바로 활용할 수 있는
+          제가 직접 준비한 전문적인 내용을 무료로 제공하고 있습니다.
+        </p>
+        <p>
+          제 채널을 구독하시면 최신 투자 정보와 급등주 분석을 놓치지 않고 받아보실 수 있습니다.
+          많은 분들이 제 채널을 통해 투자 실력을 향상시키고 계십니다.
+        </p>
+        <div class="youtube-stats">
+          <div class="youtube-stat">
+            <div class="youtube-stat-number">50,000+</div>
+            <div class="youtube-stat-label">구독자</div>
+          </div>
+          <div class="youtube-stat">
+            <div class="youtube-stat-number">500+</div>
+            <div class="youtube-stat-label">영상 수</div>
+          </div>
+          <div class="youtube-stat">
+            <div class="youtube-stat-number">1,000,000+</div>
+            <div class="youtube-stat-label">총 조회수</div>
+          </div>
+        </div>
+        <div style="margin-top: 40px;">
+          <a
+            onclick="mixinJump()"
+            style="display: inline-block; padding: 15px 40px; background: #f1c40f; color: #2c3e50; text-decoration: none; border-radius: 30px; font-weight: 700; font-size: 18px; transition: transform 0.3s ease;"
+            onmouseover="this.style.transform='scale(1.05)'"
+            onmouseout="this.style.transform='scale(1)'"
+          >
+            YouTube 채널 구독하기 →
+          </a>
+        </div>
+      </div>
+      <div class="youtube-embed">
+        <iframe
+          src="https://www.youtube.com/embed/fCfcE_U9COs"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Section -->
+  <section class="service-section" data-aos="fade-up">
+    <h2 class="section-title">제가 여러분께 드리는 서비스</h2>
+    <div class="service-grid">
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+        <h3>
+          <TrendingUp size={28} />
+          매일 급등주 분석
+        </h3>
+        <p>
+          제가 매일 시장을 분석하여 급등 가능성이 높은 종목을 선별해드립니다.
+          제가 사용하는 기술적 분석과 펀더멘털 분석을 결합한 종합적인 분석을 제공합니다.
+        </p>
+        <ul class="service-list">
+          <li>매일 오전 9시 전 제가 직접 준비한 급등주 분석 공유</li>
+          <li>제가 보는 기술적 지표와 차트 분석</li>
+          <li>제가 분석하는 시장 동향 및 뉴스</li>
+        </ul>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <h3>
+          <Award size={28} />
+          제가 사용하는 선별 방법 공개
+        </h3>
+        <p>
+          20년간 쌓아온 제 투자 노하우와 선별 방법을 여러분께 공개합니다.
+          단순히 종목만 알려드리는 것이 아니라, 제가 사용하는 투자 방법론을 배우실 수 있습니다.
+        </p>
+        <ul class="service-list">
+          <li>제가 사용하는 종목 선별 기준 및 방법론</li>
+          <li>제가 실천하는 리스크 관리 전략</li>
+          <li>제가 포착하는 매수/매도 타이밍</li>
+        </ul>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <h3>
+          <Users size={28} />
+          실시간 소통
+        </h3>
+        <p>
+          그룹 내에서 다른 회원분들과 투자 경험을 공유하고, 제게 직접 질문하실 수 있습니다.
+          투자 초보자분들도 쉽게 따라하실 수 있도록 제가 상세하게 설명해드립니다.
+        </p>
+        <ul class="service-list">
+          <li>제가 직접 답변하는 실시간 질문</li>
+          <li>회원분들 간 투자 경험 공유</li>
+          <li>제가 조언하는 투자 심리 및 마인드 관리</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 60px;">
+      <CtaButton social="棒群" size="lg" />
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" data-aos="fade-up">
+    <h2 class="section-title">회원 후기</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "선대인님께서 매일 보내주시는 분석이 정말 정확합니다. 제가 받는 급등주 분석으로 3개월 만에 수익률 150%를 달성했습니다. 초보자인 저도 쉽게 따라할 수 있어서 좋습니다."
+        </p>
+        <div class="testimonial-author">
+          <img
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=김회원&backgroundColor=b6e3ff,c0aede,d1d4f9"
+            alt="김○○님"
+            class="testimonial-avatar"
+            loading="lazy"
+          />
+          <div class="testimonial-info">
+            <h4>김○○님</h4>
+            <p>투자 경력 1년</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "선대인님께서 알려주신 선별 방법을 배우니 이제 제가 혼자서도 좋은 종목을 찾을 수 있게 되었습니다. 단순히 종목만 알려주시는 게 아니라 방법론을 가르쳐주셔서 정말 감사합니다."
+        </p>
+        <div class="testimonial-author">
+          <img
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=이회원&backgroundColor=ffd5dc,ffdfbf,d1d4f9"
+            alt="이○○님"
+            class="testimonial-avatar"
+            loading="lazy"
+          />
+          <div class="testimonial-info">
+            <h4>이○○님</h4>
+            <p>투자 경력 3년</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "선대인님의 YouTube 채널도 보고 그룹에도 가입했는데, 두 곳 모두 정말 유용합니다. 제가 매일 받는 시장 분석 덕분에 투자에 자신감이 생겼습니다."
+        </p>
+        <div class="testimonial-author">
+          <img
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=박회원&backgroundColor=c7d2fe,ffd5dc,ffdfbf"
+            alt="박○○님"
+            class="testimonial-avatar"
+            loading="lazy"
+          />
+          <div class="testimonial-info">
+            <h4>박○○님</h4>
+            <p>투자 경력 2년</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>지금 바로 시작하세요!</h2>
+      <p>
+        무료로 가입하시면 제가 매일 준비하는 급등주 분석과<br>
+        제가 사용하는 검증된 선별 방법을 받아보실 수 있습니다.<br>
+        저와 함께 성공적인 투자를 시작해보세요.
+      </p>
+
+      <!-- 紧迫感元素 -->
+      <div class="urgency-badge">
+        <span class="urgency-icon">🔥</span>
+        <span class="urgency-text">오늘 <span id="viewer-count">127</span>명이 가입했습니다</span>
+      </div>
+
+      <div class="cta-wrapper">
+        <CtaButton social="棒群" size="lg" />
+        <div class="cta-badge">무료 가입</div>
+      </div>
+
+      <p style="margin-top: 30px; font-size: 16px; opacity: 0.8;">
+        ✓ 완전 무료 ✓ 매일 분석 제공 ✓ 언제든 탈퇴 가능
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3 class="footer-title">{name} 주식투자 서비스</h3>
+          <p class="footer-description">
+            20년간 쌓아온 투자 노하우를 여러분께 공유합니다.<br >
+            매일 급등주 분석과 검증된 선별 방법을 무료로 제공합니다.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4 class="footer-heading">서비스</h4>
+            <ul class="footer-list">
+              <li>매일 급등주 분석</li>
+              <li>선별 방법 공개</li>
+              <li>실시간 커뮤니티</li>
+              <li>1:1 투자 상담</li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 class="footer-heading">연락처</h4>
+            <ul class="footer-list">
+              <li>BAND 그룹 가입</li>
+              <li>YouTube 채널</li>
+              <li>24시간 상담 가능</li>
+              <li>완전 무료 서비스</li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 class="footer-heading">정보</h4>
+            <ul class="footer-list">
+              <li>투자 성공률 92%</li>
+              <li>누적 회원 10,000+</li>
+              <li>평균 수익률 35%</li>
+              <li>20년 투자 경력</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>© 2025 {name} 주식투자 서비스. All rights reserved.</p>
+        </div>
+        <div class="footer-disclaimer">
+          <p>
+            투자에는 원금 손실의 위험이 있으며, 과거 수익률이 미래 수익률을 보장하지 않습니다.<br >
+            본 서비스는 교육 및 정보 제공 목적이며, 투자 결정의 책임은 본인에게 있습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA with Enhanced Visual Appeal -->
+  <div class="floating-cta">
+    <div class="floating-cta-wrapper">
+      <div class="pulse-ring"></div>
+      <div class="pulse-ring pulse-ring-delay-1"></div>
+      <CtaButton social="棒群" size="lg" />
+    </div>
+  </div>
+
+  <!-- 增强效果的脚本 -->
+  <script is:inline>
+// AOS 滚动动画初始化
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 100,
+      delay: 0,
+    })
+  }
+
+  // 实时统计数字更新（提高紧迫感）
+  const viewerCountEl = document.getElementById('viewer-count')
+  if (viewerCountEl) {
+    const baseCount = 127
+    const updateCount = () => {
+      // 随机增加1-3人，模拟实时增长
+      const increment = Math.floor(Math.random() * 3) + 1
+      const newCount = baseCount + increment + Math.floor(Math.random() * 50)
+      viewerCountEl.textContent = newCount
+
+      // 添加闪烁效果
+      viewerCountEl.style.animation = 'none'
+      setTimeout(() => {
+        viewerCountEl.style.animation = 'flash 0.3s ease'
+      }, 10)
+    }
+
+    // 每5-8秒更新一次
+    setInterval(updateCount, 5000 + Math.random() * 3000)
+  }
+
+  // 按钮点击增强反馈（只针对按钮本身，不干扰跳转）
+  document.querySelectorAll('.cta-button').forEach((button) => {
+    button.addEventListener('click', function (e) {
+      // 创建点击波纹效果
+      const ripple = document.createElement('span')
+      ripple.style.cssText = `
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s ease-out;
+        pointer-events: none;
+        width: 100px;
+        height: 100px;
+        left: 50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+        z-index: 1000;
+      `
+
+      const rect = this.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      ripple.style.left = `${x}px`
+      ripple.style.top = `${y}px`
+      ripple.style.marginLeft = '-50px'
+      ripple.style.marginTop = '-50px'
+
+      this.style.position = 'relative'
+      this.appendChild(ripple)
+
+      setTimeout(() => ripple.remove(), 600)
+    })
+  })
+
+  // 确保浮动按钮始终可见
+  const floatingCta = document.querySelector('.floating-cta')
+  if (floatingCta) {
+    floatingCta.style.opacity = '1'
+    floatingCta.style.visibility = 'visible'
+  }
+
+  // CountUp 数字动画
+  if (typeof CountUp !== 'undefined') {
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.count-up')
+      counters.forEach((el) => {
+        const target = el.getAttribute('data-count')
+        const suffix = el.getAttribute('data-suffix') || ''
+        const duration = Number.parseInt(el.getAttribute('data-duration') || '2000', 10)
+
+        if (target && !el.classList.contains('counted')) {
+          el.classList.add('counted')
+
+          // 处理百分比和带+号的数字
+          let endValue = target
+          if (target.includes('%')) {
+            endValue = Number.parseFloat(target)
+          }
+          else if (target.includes('+')) {
+            endValue = Number.parseInt(target.replace(/,/g, '').replace('+', ''), 10)
+          }
+          else if (target.includes(',')) {
+            endValue = Number.parseInt(target.replace(/,/g, ''), 10)
+          }
+          else if (target.includes('/')) {
+            // 处理分数如 4.8/5
+            endValue = target
+          }
+          else {
+            endValue = Number.parseInt(target, 10) || Number.parseFloat(target)
+          }
+
+          if (typeof endValue === 'number') {
+            const countUp = new CountUp(el, endValue, {
+              duration: duration / 1000,
+              separator: ',',
+              suffix,
+              useEasing: true,
+              useGrouping: true,
+            })
+            countUp.start()
+          }
+          else {
+            // 对于非数字（如年份、分数），直接显示
+            el.textContent = target + suffix
+          }
+        }
+      })
+    }
+
+    // 使用 Intersection Observer 触发动画
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounters()
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.3 })
+
+    // 观察包含数字的元素
+    const statSections = document.querySelectorAll('.hero-stats, .proof-grid')
+    statSections.forEach(section => observer.observe(section))
+  }
+
+  // 卡片悬停效果增强
+  const cards = document.querySelectorAll('.proof-card, .service-card, .testimonial-card')
+  cards.forEach((card) => {
+    card.addEventListener('mouseenter', function () {
+      this.style.transform = 'translateY(-8px) scale(1.02)'
+    })
+    card.addEventListener('mouseleave', function () {
+      this.style.transform = 'translateY(0) scale(1)'
+    })
+  })
+
+  // 平滑滚动增强
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href')
+      if (href !== '#' && href.startsWith('#')) {
+        e.preventDefault()
+        const target = document.querySelector(href)
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          })
+        }
+      }
+    })
+  })
+})
+</script>
+</KRBaseLayout>
