@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets'
+import kakaoButton from '@/pages/KR/[people]/images/kakao_button.png'
+
+type Props = {
+    class?: string
+}
+
+const { class: className = '' } = Astro.props as Props
+---
+
+<button
+    class={`global-modal-kakao modal-button modal-button-kakao ${className}`}
+    data-umami-event="cta-click"
+    data-umami-event-type="kakao"
+    data-umami-event-position="modal"
+    type="button"
+>
+    <Image src={kakaoButton} alt="카카오톡 친구 추가" class="modal-button-image" />
+</button>
+
+<style>
+    .modal-button {
+        flex: 1;
+        padding: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .modal-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .modal-button-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        border-radius: 0.5rem;
+    }
+
+    @media (max-width: 475px) {
+        .modal-button {
+            width: 100% !important;
+            flex: none !important;
+            padding: 0 !important;
+            background: none !important;
+            border: none !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            border-radius: 0.5rem !important;
+        }
+
+        .modal-button img {
+            width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            object-fit: contain !important;
+        }
+    }
+</style>

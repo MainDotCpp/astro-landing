@@ -1,16 +1,11 @@
 ---
-import { Image } from 'astro:assets'
-import band from '@/assets/band-icon.png'
-import kakao from '@/assets/kakao-icon.png'
-import bandButton from '@/pages/KR/[people]/images/band_button.png'
-import kakaoButton from '@/pages/KR/[people]/images/kakao_button.png'
-// Import modal images
-import modalContent from '@/pages/KR/[people]/images/modal_content.png'
+import BandCtaButton from './button/BandCtaButton.astro'
 import KakaoCopyButton from './button/KaKaoCopyButton.tsx'
+import KakaoCtaButton from './button/KakaoCtaButton.astro'
 import KakaoFormButton from './button/KaKaoFormButton.tsx'
+import MixedCtaButton from './button/MixedCtaButton.astro'
 
 type Props = {
-    text?: string
     social?: '卡扣' | '棒群' | '混合' | '引导弹窗' | '提高质量_'
     size?: 'sm' | 'md' | 'lg'
     animate?: boolean
@@ -21,7 +16,6 @@ type Props = {
 }
 
 const {
-    text,
     social,
     size = 'md',
     animate = true,
@@ -30,494 +24,50 @@ const {
     unstyled = false,
 } = Astro.props as Props
 
-
-// Size configurations
-const sizes = {
-    sm: { padding: '0.5rem 1rem', fontSize: '1.125rem', icon: 24, gap: '0.375rem' },
-    md: { padding: '0.75rem 1.5rem', fontSize: '1.5rem', icon: 28, gap: '0.5rem' },
-    lg: { padding: '1rem 2rem', fontSize: '1.5rem', icon: 32, gap: '0.625rem' },
-}
-
-const currentSize = sizes[size]
-
-// Get variant class name based on social type
-function getVariantClass() {
-    if (social === '卡扣')
-        return 'cta-button-kakao'
-    if (social === '棒群')
-        return 'cta-button-band'
-    if (social === '混合')
-        return 'cta-button-mixed'
-    return 'cta-button-default'
-}
-
-// Base classes - conditional styling based on variant
-const baseClasses = unstyled
-? `cta-button ${className}`
-: `cta-button ${getVariantClass()} ${className}`
-let ctaText = null
-if (!ctaText) {
-    if (social === '卡扣')
-        ctaText = `친구추가 후 '7' 전송으로 급등주 정보 받`
-    else if (social === '棒群')
-        ctaText = 'Band--전문가 그룹에 무료로 가입하다'
-    else if (social === '混合')
-        ctaText = '친구 추가 후 급등주 정보 받기'
-    else
-        ctaText = '정보 받기'
-}
-
+// 根据 social 类型渲染对应的按钮组件
 ---
-{social === '提高质量_' && <KakaoFormButton client:only="react" />}
-{social === '引导弹窗' && <KakaoCopyButton client:only="react" />}
-{social !== '引导弹窗' && social !== '提高质量_' && <style>
-    .cta-button {
-        width: 100%;
-        height: 5rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 9999px;
-        font-weight: 600;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
-        user-select: none;
-        border: none;
-        outline: none;
-        position: relative;
-        overflow: hidden;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        box-sizing: border-box;
-    }
 
-    .cta-button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s ease;
-    }
-
-    .cta-button:hover::before {
-        left: 100%;
-    }
-
-    .cta-button:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), 0 0 0 4px rgba(59, 130, 246, 0.2);
-    }
-
-    .cta-button:focus-visible {
-        outline: 2px solid rgba(59, 130, 246, 0.5);
-        outline-offset: 2px;
-    }
-
-    .cta-button:active {
-        transform: scale(0.98);
-    }
-
-    .cta-button-sm {
-        padding: 0.5rem 2rem;
-        font-size: 1.125rem;
-        gap: 0.375rem;
-    }
-
-    .cta-button-md {
-        padding: 0.75rem 2.5rem;
-        font-size: 1.5rem;
-        gap: 0.5rem;
-    }
-
-    .cta-button-lg {
-        padding: 1rem 3rem;
-        font-size: 1.5rem;
-        gap: 0.625rem;
-    }
-
-    .cta-button-kakao {
-        background: linear-gradient(135deg, #FEE500 0%, #FFEB00 50%, #FEE500 100%);
-        background-size: 200% 200%;
-        color: black;
-        box-shadow: 0 10px 25px -5px rgba(254, 229, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 235, 0, 0.3);
-    }
-
-    .cta-button-kakao:hover {
-        background-position: 100% 50%;
-        box-shadow: 0 20px 40px -8px rgba(254, 229, 0, 0.5), 0 8px 16px -4px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
-    }
-
-    .cta-button-kakao:active {
-        transform: translateY(0) scale(0.98);
-    }
-
-    .cta-button-band {
-        background: linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #ffffff 100%);
-        background-size: 200% 200%;
-        color: black;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        border: 2px solid rgba(229, 231, 235, 0.8);
-    }
-
-    .cta-button-band:hover {
-        background-position: 100% 50%;
-        box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1);
-        border-color: rgba(209, 213, 219, 0.9);
-        transform: translateY(-2px);
-    }
-
-    .cta-button-band:active {
-        transform: translateY(0) scale(0.98);
-    }
-
-    .cta-button-mixed {
-        background: linear-gradient(135deg, #FEE500 0%, #FFEB00 30%, #ffffff 70%, #f9fafb 100%);
-        background-size: 200% 200%;
-        color: black;
-        box-shadow: 0 10px 25px -5px rgba(254, 229, 0, 0.3), 0 4px 12px -2px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(209, 213, 219, 0.6);
-    }
-
-    .cta-button-mixed:hover {
-        background-position: 100% 50%;
-        box-shadow: 0 20px 40px -8px rgba(254, 229, 0, 0.4), 0 8px 16px -4px rgba(0, 0, 0, 0.15);
-        border-color: rgba(209, 213, 219, 0.8);
-        transform: translateY(-2px);
-    }
-
-    .cta-button-mixed:active {
-        transform: translateY(0) scale(0.98);
-    }
-
-    .cta-button-default {
-        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
-        background-size: 200% 200%;
-        color: white;
-        box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(37, 99, 235, 0.3);
-    }
-
-    .cta-button-default:hover {
-        background-position: 100% 50%;
-        box-shadow: 0 20px 40px -8px rgba(37, 99, 235, 0.5), 0 8px 16px -4px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        transform: translateY(-2px);
-    }
-
-    .cta-button-default:active {
-        transform: translateY(0) scale(0.98);
-    }
-
-    .cta-button .cta-icon {
-        border-radius: 9999px;
-        flex-shrink: 0;
-    }
-
-    .cta-button .cta-text {
-        flex: 1;
-        text-align: center;
-        white-space: nowrap;
-    }
-
-    .breathing {
-        animation: breathing 2s ease-in-out infinite;
-    }
-
-    @keyframes breathing {
-        0%, 100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        50% {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-    }
-
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        animation: fadeIn 0.3s ease-out;
-    }
-
-    .modal-content {
-        background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
-        border-radius: 20px;
-        padding: 1.5rem;
-        max-width: 360px;
-        width: 90%;
-        text-align: center;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8);
-        margin: 1rem;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        position: relative;
-    }
-
-    .modal-image-container {
-        margin-bottom: 1rem;
-    }
-
-    .modal-image {
-        width: 100%;
-        height: auto;
-        border-radius: 0.5rem;
-        display: block;
-    }
-
-    .instruction-text-content {
-        color: #334155;
-        line-height: 1.75;
-        font-size: 1.25rem;
-        font-weight: 500;
-        margin: 0;
-    }
-
-    .instruction-text-span {
-        display: inline-block;
-    }
-
-    .number-highlight {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-        background: linear-gradient(135deg, #ef4444, #dc2626);
-        color: white;
-        border-radius: 50%;
-        font-weight: bold;
-        font-size: 0.75rem;
-        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
-        margin: 0 0.25rem;
-        vertical-align: middle;
-    }
-
-    .modal-buttons {
-        display: flex;
-        gap: 0.75rem;
-        align-items: stretch;
-    }
-
-    .modal-button {
-        flex: 1;
-        padding: 0;
-        background: none;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        border-radius: 0.5rem;
-        transition: all 0.2s ease-in-out;
-    }
-
-    .modal-button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    .modal-button-image {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: contain;
-        border-radius: 0.5rem;
-    }
-
-    .slide-in {
-        animation: modalSlide 0.3s ease-out;
-    }
-
-    @media (max-width: 475px) {
-        .modal-content {
-            padding: 1.25rem;
-            margin: 0.75rem;
-            max-width: none;
-            width: calc(100% - 1.5rem);
-        }
-
-        .modal-buttons {
-            flex-direction: column;
-            gap: 1.5rem !important;
-        }
-
-        .modal-button {
-            width: 100% !important;
-            flex: none !important;
-            padding: 0 !important;
-            background: none !important;
-            border: none !important;
-            cursor: pointer !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            overflow: hidden !important;
-            border-radius: 0.5rem !important;
-        }
-
-        .modal-button img {
-            width: 100% !important;
-            height: auto !important;
-            display: block !important;
-            object-fit: contain !important;
-        }
-    }
-
-    .modal-emphasis {
-        animation: emphasisPulse 2s ease-in-out infinite;
-        background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f9ff 100%);
-        background-size: 200% 200%;
-        animation: emphasisPulse 2s ease-in-out infinite, gradientShift 4s ease-in-out infinite;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px rgba(79, 70, 229, 0.1);
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes modalSlide {
-        from {
-            transform: translateY(-20px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes emphasisPulse {
-        0%, 100% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.7);
-        }
-        50% {
-            transform: scale(1.02);
-            box-shadow: 0 0 0 10px rgba(254, 229, 0, 0);
-        }
-    }
-
-    @keyframes gradientShift {
-        0%, 100% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-    }
-
-    .instruction-text {
-        background: linear-gradient(135deg, #f3f4f6, #ffffff);
-        padding: 0.75rem 1rem;
-        border-radius: 12px;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        margin-bottom: 1.25rem;
-    }
-
-    @keyframes textShake {
-        0%, 90%, 100% {
-            transform: translateX(0) translateY(0);
-        }
-        92% {
-            transform: translateX(2px) translateY(-1px);
-        }
-        94% {
-            transform: translateX(-2px) translateY(1px);
-        }
-        96% {
-            transform: translateX(1px) translateY(-1px);
-        }
-        98% {
-            transform: translateX(-1px) translateY(1px);
-        }
-    }
-    </style>
-
-    <button
-      class={`${baseClasses} ${animate && !unstyled ? 'breathing' : ''} ${redirect && social !== '混合' ? 'link-btn' : ''}`}
-      id="cta-button"
-      data-social={social}
-      data-umami-event="cta-click"
-      data-umami-event-type={social || 'default'}
-      data-umami-event-size={size}
-      type="button"
+{social === '卡扣' && (
+    <KakaoCtaButton
+      size={size}
+      animate={animate}
+      class={className}
+      redirect={redirect}
+      unstyled={unstyled}
     >
-      <!-- 默认内容或自定义slot -->
-      <slot name="content">
-        <!-- 默认内容 -->
-        {!unstyled && social !== '混合' && (
-          <Image
-            class="cta-icon"
-            src={social === '卡扣' ? kakao : band}
-            alt={social ?? ''}
-            width={currentSize.icon}
-            height={currentSize.icon}
-          />
-        )}
-        <span class={unstyled ? '' : 'cta-text'}>{ctaText}</span>
-      </slot>
-    </button>
+        <slot name="content" slot="content" />
+    </KakaoCtaButton>
+)}
 
-    <!-- Modal Content Slot -->
-    <slot name="modal">
-      <!-- 只在第一个混合按钮时添加弹窗 -->
-    {social === '混合' && (
-      <div id="global-hybrid-modal" class="modal-overlay" style="display: none;" data-modal-type="hybrid">
-        <div class="modal-content">
-            <!-- 주요 이미지 컨텐츠 -->
-            <div class="modal-image-container">
-                <Image src={modalContent} alt="친구 추가 안내" class="modal-image" />
-            </div>
+{social === '棒群' && (
+    <BandCtaButton
+      size={size}
+      animate={animate}
+      class={className}
+      redirect={redirect}
+      unstyled={unstyled}
+    >
+        <slot name="content" slot="content" />
+    </BandCtaButton>
+)}
 
-            <!-- 강조 설명 텍스트 -->
-            <div class="instruction-text modal-emphasis">
-                <p class="instruction-text-content">
-                    <span class="instruction-text-span">'친구 추가' 후 즉시</span>
-                    <span class="number-highlight">7</span>
-                    <span class="instruction-text-span">을 전송하고</span><br >
-                    <span class="instruction-text-span">첫 응답을 완료해 주세요.</span>
-                </p>
-            </div>
-            <!-- 이미지 버튼들 -->
-            <div class="modal-buttons">
-                <button
-                  class="global-modal-band modal-button modal-button-band"
-                  data-umami-event="cta-click"
-                  data-umami-event-type="band"
-                  data-umami-event-position="modal"
-                  type="button"
-                >
-                    <Image src={bandButton} alt="BAND 친구 추가" class="modal-button-image" />
-                </button>
-                <button
-                  class="global-modal-kakao modal-button modal-button-kakao"
-                  data-umami-event="cta-click"
-                  data-umami-event-type="kakao"
-                  data-umami-event-position="modal"
-                  type="button"
-                >
-                    <Image src={kakaoButton} alt="카카오톡 친구 추가" class="modal-button-image" />
-                </button>
-            </div>
-        </div>
-      </div>
-    )}
-    </slot>}
+{social === '混合' && (
+    <MixedCtaButton
+      size={size}
+      animate={animate}
+      class={className}
+      redirect={redirect}
+      unstyled={unstyled}
+    >
+        <slot name="content" slot="content" />
+        <slot name="modal" slot="modal" />
+    </MixedCtaButton>
+)}
 
+{social === '引导弹窗' && (
+    <KakaoCopyButton client:only="react" />
+)}
 
-
+{social === '提高质量_' && (
+    <KakaoFormButton client:only="react" />
+)}

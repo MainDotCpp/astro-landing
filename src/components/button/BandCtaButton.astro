@@ -1,0 +1,25 @@
+---
+import band from '@/assets/band-icon.png'
+import BaseCtaButton from './BaseCtaButton.astro'
+
+type Props = {
+    size?: 'sm' | 'md' | 'lg'
+    animate?: boolean
+    class?: string
+    redirect?: boolean
+    unstyled?: boolean
+}
+
+const {
+    ...restProps
+} = Astro.props as Props
+---
+
+<BaseCtaButton
+  variant="band"
+  text="그룹 가입하고 급등주 정보 받기"
+  icon={{ src: band, alt: 'Band' }}
+  {...restProps}
+>
+    <slot name="content" />
+</BaseCtaButton>
