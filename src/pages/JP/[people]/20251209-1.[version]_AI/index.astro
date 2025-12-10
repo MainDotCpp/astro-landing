@@ -1,0 +1,885 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+
+// Import CSS and JS
+import './static/css/style.css'
+
+// Network images for features (AI investment related)
+const networkImages = {
+  aiAnalysis: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
+  aiStrategy: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+  aiMarket: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop',
+}
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: { people: '堀江貴文', version: '0' },
+      props: {
+        name: '堀江貴文',
+        avatarPath: '@/assets/avatar/堀江貴文_avatar.png',
+        title: '堀江貴文 AI投資コミュニティ | AI分析で投資スキルアップ',
+        description: '堀江貴文が主催するAI投資コミュニティ。AI技術を活用した投資分析と戦略を無料で学べます。',
+        heroTitle: 'AI投資の未来',
+        heroSubtitle: 'AI技術と実業家の経験を融合した',
+        heroDescription: '実業家・投資家として長年の経験を持つ堀江貴文が、AI技術を活用した投資分析と戦略を無料で共有',
+        aboutTitle: '堀江貴文について',
+        aboutDescription: '実業家・投資家として長年活動し、AI技術を投資に活用する先駆者',
+        profileTitle: '実業家・投資家・AI投資パイオニア',
+        profileTags: ['実業家', '投資家', 'AI投資'],
+      },
+    },
+    {
+      params: { people: '馬渕磨理子', version: '0' },
+      props: {
+        name: '馬渕磨理子',
+        avatarPath: '@/assets/avatar/馬渕磨理子_avatar.png',
+        title: '馬渕磨理子 AI投資コミュニティ | AI分析で投資スキルアップ',
+        description: '馬渕磨理子が主催するAI投資コミュニティ。AI技術を活用した投資分析と戦略を無料で学べます。',
+        heroTitle: 'AI投資の未来',
+        heroSubtitle: 'AI技術と投資アドバイザーの経験を融合した',
+        heroDescription: '投資アドバイザーとして長年の経験を持つ馬渕磨理子が、AI技術を活用した投資分析と戦略を無料で共有',
+        aboutTitle: '馬渕磨理子について',
+        aboutDescription: '投資アドバイザーとして長年活動し、AI技術を投資に活用する専門家',
+        profileTitle: '投資アドバイザー・AI投資コンサルタント',
+        profileTags: ['投資アドバイザー', 'FP', 'AI投資'],
+      },
+    },
+  ]
+}) satisfies GetStaticPaths
+
+const { name, avatarPath, title, description, heroTitle, heroSubtitle, heroDescription, aboutTitle, aboutDescription, profileTitle, profileTags } = Astro.props
+
+// Dynamically import avatar image based on name
+let avatarImg
+if (name === '堀江貴文') {
+  const avatarModule = await import('../../../../assets/avatar/堀江貴文_avatar.png')
+  avatarImg = avatarModule.default
+}
+else if (name === '馬渕磨理子') {
+  const avatarModule = await import('../../../../assets/avatar/馬渕磨理子_avatar.png')
+  avatarImg = avatarModule.default
+}
+else {
+  // Fallback
+  const filename = avatarPath.split('/').pop()
+  const avatarModule = await import(`../../../../assets/avatar/${filename}`)
+  avatarImg = avatarModule.default
+}
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script is:inline>
+      function handleCTAClick() {
+        window.location.href = 'https://dkfck.top'
+      }
+
+      // Modal 弹窗函数
+      function openModal(type) {
+        const modal = document.getElementById(`modal-${type}`)
+        if (modal) {
+          modal.classList.add('active')
+          document.body.style.overflow = 'hidden'
+        }
+      }
+
+      function closeModal(type) {
+        const modal = document.getElementById(`modal-${type}`)
+        if (modal) {
+          modal.classList.remove('active')
+          document.body.style.overflow = ''
+        }
+      }
+
+      // ESC键关闭弹窗
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal.active').forEach((modal) => {
+            modal.classList.remove('active')
+            document.body.style.overflow = ''
+          })
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-particles">
+          <span></span><span></span><span></span> <span></span><span></span><span></span> <span></span><span></span
+          ><span></span>
+        </div>
+        <div class="hero-gradient"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-robot"></i>
+            <span>AI投資コミュニティ</span>
+          </div>
+          <!-- Profile Avatar -->
+          <div class="hero-avatar">
+            <Image
+              src={avatarImg}
+              alt={name}
+              width={120}
+              height={120}
+              style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid rgba(255, 255, 255, 0.3); object-fit: cover; margin: 0 auto 20px; display: block; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);"
+            />
+            <div class="profile-info" style="text-align: center; margin-bottom: 20px;">
+              <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: white;">{name}</h3>
+              <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 12px;">{profileTitle}</p>
+              <div class="profile-tags" style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                {profileTags.map(tag => (
+                  <span style="background: rgba(255, 255, 255, 0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; color: white; backdrop-filter: blur(10px);">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <h1 class="hero-title">
+            <span class="highlight">{heroTitle}</span>を<br />
+            {heroSubtitle}<br />
+            共に創り上げます
+          </h1>
+          <p class="hero-subtitle">
+            {heroDescription}
+          </p>
+          <!-- 福利文案 - PC端和手机端都显示 -->
+          <div class="hero-benefits">
+            <div class="benefit-item">
+              <i class="fas fa-robot"></i>
+              <span>AI投資分析ツール無料提供</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-brain"></i>
+              <span>AIが生成する投資戦略レポート</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-chart-line"></i>
+              <span>AI予測による市場分析</span>
+            </div>
+          </div>
+          <button class="cta-button hero-cta" onclick="handleCTAClick()">
+            <i class="fas fa-robot"></i>
+            <span>AI投資ツールを無料で体験</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section class="section features-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-robot"></i> AI特典</span>
+          <h2 class="section-title">AI技術を活用した投資支援</h2>
+        </div>
+
+        <div class="feature-row">
+          <div class="feature-image">
+            <img
+              src={networkImages.aiAnalysis}
+              alt="AI投資ガイド"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">
+              <i class="fas fa-brain"></i>
+              AI投資分析ツール無料提供
+            </h3>
+            <p class="feature-desc">
+              {name}が開発したAI投資分析ツールを無料で利用できます。最新のAI技術を活用して、株式、不動産、暗号資産など様々な資産クラスを自動分析し、投資機会を発見します。
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> AIによる銘柄分析とスコアリング</li>
+              <li><i class="fas fa-check-circle"></i> 機械学習ベースのリスク評価</li>
+              <li><i class="fas fa-check-circle"></i> パターン認識による市場予測</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Strategy Section -->
+    <section class="section features-section alt-bg">
+      <div class="container">
+        <div class="feature-row reverse">
+          <div class="feature-image">
+            <div class="feature-icon-box">
+              <img
+                src={networkImages.aiStrategy}
+                alt="AI投資戦略"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">
+              <i class="fas fa-magic"></i>
+              AI生成投資戦略レポート
+            </h3>
+            <p class="feature-desc">
+              毎週、AIが最新の市場データを分析し、パーソナライズされた投資戦略レポートを自動生成します。{name}の投資哲学とAI技術を融合した、独自の投資アプローチを学べます。
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> 個人ポートフォリオに最適化された戦略</li>
+              <li><i class="fas fa-check-circle"></i> AIによる市場トレンド分析</li>
+              <li><i class="fas fa-check-circle"></i> リスク調整済み投資推奨</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Market Analysis Section -->
+    <section class="section news-section">
+      <div class="container">
+        <div class="feature-row">
+          <div class="feature-image">
+            <div class="feature-icon-box">
+              <img
+                src={networkImages.aiMarket}
+                alt="AI市場分析"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">
+              <i class="fas fa-chart-area"></i>
+              AI予測による市場分析
+            </h3>
+            <p class="feature-desc">
+              AI技術を活用したリアルタイム市場分析により、従来の手法では見つけられない投資機会を発見できます。自然言語処理と機械学習により、ニュースやSNSの感情分析も行います。
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> AI感情分析による市場予測</li>
+              <li><i class="fas fa-check-circle"></i> リアルタイムAIアラート通知</li>
+              <li><i class="fas fa-check-circle"></i> 深層学習による価格予測モデル</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section target-section alt-bg">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-user-check"></i> プロフィール</span>
+          <h2 class="section-title">{aboutTitle}</h2>
+        </div>
+
+        <div class="target-grid">
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h4>AI投資の先駆者</h4>
+            <p>{name}はAI技術を投資に応用する先駆者として、革新的な投資手法を開発しています</p>
+          </div>
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>実績豊富な投資家</h4>
+            <p>長年の投資経験とAI技術を融合し、高い投資成果を実現</p>
+          </div>
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h4>技術革新者</h4>
+            <p>最新のAI技術を投資に活用し、従来の投資手法を革新</p>
+          </div>
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4>コミュニティリーダー</h4>
+            <p>多くの投資家にAI投資の知識とノウハウを無料で共有</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-comments"></i> 実際のレビュー</span>
+          <h2 class="section-title">AI投資で成果を上げたメンバーの声</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">山</div>
+              <div class="testimonial-info">
+                <h5>山田太郎</h5>
+                <span>会社員 / 登録6ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "{name}さんのAI投資ツールのおかげで、データに基づいた投資判断ができるようになりました。AIが分析してくれるので、自分で調べる時間も大幅に短縮できました。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年11月15日</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">佐</div>
+              <div class="testimonial-info">
+                <h5>佐藤花子</h5>
+                <span>自営業 / 登録4ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "AIが生成する投資戦略レポートが本当に役立ちます。{name}さんの経験とAI技術の組み合わせが素晴らしく、投資成績も向上しました。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年11月22日</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">鈴</div>
+              <div class="testimonial-info">
+                <h5>鈴木一郎</h5>
+                <span>フリーランス / 登録8ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "10年以上投資してきましたが、AI技術を活用した投資分析は全く新しい体験です。{name}さんのコミュニティでAI投資の可能性を実感できました。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年10月30日</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">田</div>
+              <div class="testimonial-info">
+                <h5>田中美咲</h5>
+                <span>大学院生 / 登録3ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "学生なので投資資金も少なく経験もありませんでしたが、AI投資ツールのおかげで効率的に投資を始められました。{name}さんの無料提供に感謝しています。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年12月1日</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-content">
+            <h2>今すぐAI投資コミュニティに参加しましょう</h2>
+            <p>
+              {name}が開発したAI投資ツールを無料で体験し、<br />
+              AI技術を活用した投資の未来を共に創り上げましょう。
+            </p>
+            <button class="cta-button large" onclick="handleCTAClick()">
+              <i class="fas fa-robot"></i>
+              <span>AI投資ツールを無料で体験</span>
+            </button>
+            <div class="cta-note">
+              <i class="fas fa-lock"></i>
+              <span>個人情報は安全に保護されます</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-robot"></i>
+            <span>{name} AI投資コミュニティ</span>
+          </div>
+          <div class="footer-links">
+            <a href="javascript:void(0)" onclick="openModal('privacy')">プライバシーポリシー</a>
+            <a href="javascript:void(0)" onclick="openModal('terms')">利用規約</a>
+            <a href="javascript:void(0)" onclick="openModal('disclaimer')">免責事項</a>
+          </div>
+          <p class="footer-copyright">© 2025 {name} AI投資コミュニティ. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal - プライバシーポリシー -->
+    <div class="modal" id="modal-privacy">
+      <div class="modal-overlay" onclick="closeModal('privacy')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-shield-alt"></i> プライバシーポリシー</h3>
+          <button class="modal-close" onclick="closeModal('privacy')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>1. 個人情報の収集及び利用目的</h4>
+          <p>本コミュニティは、会員登録、サービス提供、お客様相談等のために最小限の個人情報を収集します。</p>
+
+          <h4>2. 収集する個人情報の項目</h4>
+          <p>
+            必須項目: 氏名、連絡先（電話番号またはメールアドレス）<br />
+            選択項目: 投資関心分野、投資経験
+          </p>
+
+          <h4>3. 個人情報の保有及び利用期間</h4>
+          <p>
+            会員退会時まで保有し、退会後即座に破棄します。ただし、関係法令により保存が必要な場合は該当期間中保有します。
+          </p>
+
+          <h4>4. 個人情報の第三者提供</h4>
+          <p>
+            本コミュニティは原則として会員の個人情報を第三者に提供しません。ただし、法令による場合は例外とします。
+          </p>
+
+          <h4>5. 個人情報の安全性確保措置</h4>
+          <p>個人情報の安全な処理のために技術的、管理的保護措置を実施しています。</p>
+
+          <h4>6. 個人情報保護責任者</h4>
+          <p>個人情報に関するお問い合わせは、コミュニティ管理者までご連絡ください。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal - 利用規約 -->
+    <div class="modal" id="modal-terms">
+      <div class="modal-overlay" onclick="closeModal('terms')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-file-contract"></i> 利用規約</h3>
+          <button class="modal-close" onclick="closeModal('terms')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>第1条（目的）</h4>
+          <p>
+            本規約は、{name} AI投資コミュニティ（以下「コミュニティ」）が提供するサービスの利用条件及び手続きに関する事項を規定することを目的とします。
+          </p>
+
+          <h4>第2条（サービスの内容）</h4>
+          <p>
+            コミュニティは以下のようなサービスを提供します:<br />
+            - AI投資分析ツールの提供<br />
+            - AI生成投資戦略レポートの配布<br />
+            - オンライン学習セッションの開催<br />
+            - コミュニティ会員間の情報交換
+          </p>
+
+          <h4>第3条（会員の義務）</h4>
+          <p>
+            会員は以下の行為をしてはなりません:<br />
+            - 他人の情報の盗用<br />
+            - コミュニティ内への違法情報の掲載<br />
+            - 特定銘柄の買い/売り推奨などの投資助言行為<br />
+            - 他の会員への誹謗中傷または名誉毀損
+          </p>
+
+          <h4>第4条（サービス利用）</h4>
+          <p>本コミュニティは無料で運営され、すべての会員に平等なサービスを提供します。</p>
+
+          <h4>第5条（免責事項）</h4>
+          <p>コミュニティで共有されるすべての情報は参考用であり、投資決定に関する責任は本人にあります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal - 免責事項 -->
+    <div class="modal" id="modal-disclaimer">
+      <div class="modal-overlay" onclick="closeModal('disclaimer')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-exclamation-triangle"></i> 免責事項</h3>
+          <button class="modal-close" onclick="closeModal('disclaimer')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>投資リスクの告知</h4>
+          <p>
+            本コミュニティで提供されるすべての情報、資料、意見は一般的な情報提供目的でのみ提供され、特定の金融商品に対する投資の推奨や助言ではありません。
+          </p>
+
+          <h4>AI分析の限界</h4>
+          <p>
+            AI技術による分析結果は過去のデータに基づく予測であり、将来の市場動向を保証するものではありません。AI分析は参考情報として活用し、最終的な投資判断は本人の責任で行ってください。
+          </p>
+
+          <h4>情報の正確性</h4>
+          <p>
+            コミュニティで共有される情報の正確性、完全性、適時性について保証しません。すべての投資決定は本人の判断と責任の下で行われるべきです。
+          </p>
+
+          <h4>投資損失</h4>
+          <p>
+            株式、債券、投資信託、暗号資産などすべての金融商品投資には元本損失のリスクがあります。過去の収益率が将来の収益を保証するものではありません。
+          </p>
+
+          <h4>第三者情報</h4>
+          <p>コミュニティ会員が共有する情報について、コミュニティ運営陣は一切の責任を負いません。</p>
+
+          <h4>専門家相談の推奨</h4>
+          <p>重要な投資決定を下す前に、公認の金融専門家と相談することをお勧めします。</p>
+
+          <div class="disclaimer-warning">
+            <i class="fas fa-info-circle"></i>
+            <span>投資の責任は完全に投資者本人にあります。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fixed Bottom CTA Button -->
+    <div class="fixed-bottom-cta">
+      <button class="cta-button fixed-cta" onclick="handleCTAClick()">
+        <i class="fas fa-robot"></i>
+        <span>AI投資ツールを無料で体験</span>
+      </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 初始化所有功能
+  initScrollAnimations()
+  initSmoothScroll()
+  initStatsCounter()
+  initAIParticles()
+})
+
+/**
+ * 滚动动画 - 元素进入视口时添加动画效果
+ */
+function initScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        observer.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
+
+  // 观察需要动画的元素
+  const animateElements = document.querySelectorAll(
+    '.feature-row, .target-card, .testimonial-card, .section-header',
+  )
+
+  animateElements.forEach((el) => {
+    el.classList.add('animate-element')
+    observer.observe(el)
+  })
+
+  // 添加动画样式
+  const style = document.createElement('style')
+  style.textContent = `
+    .animate-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .animate-element.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .target-card.animate-element {
+      transition-delay: calc(var(--index, 0) * 0.1s);
+    }
+    .testimonial-card.animate-element {
+      transition-delay: calc(var(--index, 0) * 0.15s);
+    }
+  `
+  document.head.appendChild(style)
+
+  // 为卡片添加索引以实现交错动画
+  document.querySelectorAll('.target-card').forEach((card, index) => {
+    card.style.setProperty('--index', index)
+  })
+  document.querySelectorAll('.testimonial-card').forEach((card, index) => {
+    card.style.setProperty('--index', index)
+  })
+}
+
+/**
+ * 平滑滚动
+ */
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+      const target = document.querySelector(this.getAttribute('href'))
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    })
+  })
+}
+
+/**
+ * 统计数字动画
+ */
+function initStatsCounter() {
+  const stats = document.querySelectorAll('.stat-number')
+
+  const observerOptions = {
+    threshold: 0.5,
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target)
+        observer.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
+
+  stats.forEach(stat => observer.observe(stat))
+}
+
+/**
+ * 数字递增动画
+ */
+function animateCounter(element) {
+  const text = element.textContent
+  const hasPlus = text.includes('+')
+  const hasPercent = text.includes('%')
+  const numericValue = Number.parseInt(text.replace(/\D/g, ''), 10)
+
+  if (Number.isNaN(numericValue))
+    return
+
+  const duration = 2000
+  const steps = 60
+  const stepDuration = duration / steps
+  const increment = numericValue / steps
+
+  let current = 0
+  let step = 0
+
+  const timer = setInterval(() => {
+    step++
+    current = Math.min(Math.round(increment * step), numericValue)
+
+    let displayValue = current.toLocaleString()
+    if (hasPlus)
+      displayValue += '+'
+    if (hasPercent)
+      displayValue += '%'
+
+    element.textContent = displayValue
+
+    if (step >= steps) {
+      clearInterval(timer)
+    }
+  }, stepDuration)
+}
+
+/**
+ * AI粒子动画效果
+ */
+function initAIParticles() {
+  const heroParticles = document.querySelector('.hero-particles')
+  if (!heroParticles)
+    return
+
+  // 添加AI风格的粒子
+  for (let i = 0; i < 15; i++) {
+    const particle = document.createElement('span')
+    particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 6 + 2}px;
+            height: ${Math.random() * 6 + 2}px;
+            background: linear-gradient(45deg, rgba(138, 43, 226, 0.8), rgba(30, 144, 255, 0.8));
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: aiFloat ${Math.random() * 8 + 6}s infinite ease-in-out;
+            animation-delay: ${Math.random() * 3}s;
+      box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+    `
+    heroParticles.appendChild(particle)
+  }
+
+  // 添加AI粒子动画样式
+  const aiStyle = document.createElement('style')
+  aiStyle.textContent = `
+    @keyframes aiFloat {
+      0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.6;
+      }
+      25% {
+        transform: translateY(-20px) translateX(10px) scale(1.2);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-40px) translateX(-10px) scale(0.8);
+        opacity: 0.8;
+      }
+      75% {
+        transform: translateY(-20px) translateX(5px) scale(1.1);
+        opacity: 0.9;
+      }
+    }
+  `
+  document.head.appendChild(aiStyle)
+}
+
+/**
+ * 添加按钮点击波纹效果
+ */
+document.querySelectorAll('.cta-button').forEach((button) => {
+  button.addEventListener('click', function (e) {
+    const rect = this.getBoundingClientRect()
+    const ripple = document.createElement('span')
+    const size = Math.max(rect.width, rect.height)
+
+    ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            left: ${e.clientX - rect.left - size / 2}px;
+            top: ${e.clientY - rect.top - size / 2}px;
+    `
+
+    this.style.position = 'relative'
+    this.style.overflow = 'hidden'
+    this.appendChild(ripple)
+
+    setTimeout(() => ripple.remove(), 600)
+  })
+})
+
+// 添加波纹动画样式
+const rippleStyle = document.createElement('style')
+rippleStyle.textContent = `
+  @keyframes ripple {
+    to {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+`
+document.head.appendChild(rippleStyle)
+</script>
+  </body>
+</html>
+
+<style>
+  /* AI主题增强样式 */
+  .hero-badge i.fa-robot {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  .hero-avatar {
+    margin-bottom: 20px;
+  }
+
+  .feature-image-badge {
+    background: linear-gradient(135deg, #8a2be2, #1e90ff);
+  }
+
+
+  /* AI主题色彩 */
+  .section-tag i.fa-robot {
+    color: #8a2be2;
+  }
+
+  .target-icon i.fa-robot {
+    background: linear-gradient(135deg, #8a2be2, #1e90ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+
