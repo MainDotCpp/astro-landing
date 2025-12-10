@@ -1,15 +1,88 @@
 ---
-// Import Image component
+import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 
-// Import images
-import avatarImg from '@/assets/avatar/三橋貴明_avatar.png'
+// Import shared images
 import img3 from './static/images/3.jpg'
 import img5 from './static/images/5.jpg'
 import lineIcon from './static/images/line.png'
 
 // Import CSS
 import './static/css/style.css'
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: { people: '三橋貴明', version: '0' },
+      props: {
+        name: '三橋貴明',
+        avatarPath: '@/assets/avatar/三橋貴明_avatar.png',
+        title: '三橋貴明 投資コミュニティ | 無料参加で投資スキルアップ',
+        description: '三橋貴明が主催する投資者公益社群。初心者から上級者まで、一緒に学べる投資コミュニティです。今なら無料で参加可能！',
+        subtitle: '経済評論家・投資アドバイザーとして',
+        subtitleDetail: '長年の経験と実績を持つ三橋貴明が、',
+        aboutTitle: '三橋貴明について',
+        aboutDescription: '経済評論家として長年活動し、投資アドバイザーとして実績を積む',
+        profileTitle: '経済評論家・投資アドバイザー',
+        profileTags: ['経済評論家', '投資顧問', '著作家'],
+      },
+    },
+    {
+      params: { people: '馬渕磨理子', version: '0' },
+      props: {
+        name: '馬渕磨理子',
+        avatarPath: '@/assets/avatar/馬渕磨理子_avatar.png',
+        title: '馬渕磨理子 投資コミュニティ | 無料参加で投資スキルアップ',
+        description: '馬渕磨理子が主催する投資者公益社群。初心者から上級者まで、一緒に学べる投資コミュニティです。今なら無料で参加可能！',
+        subtitle: '投資アドバイザー・ファイナンシャルプランナーとして',
+        subtitleDetail: '長年の経験と実績を持つ馬渕磨理子が、',
+        aboutTitle: '馬渕磨理子について',
+        aboutDescription: '投資アドバイザーとして長年活動し、多くの投資家をサポート',
+        profileTitle: '投資アドバイザー・ファイナンシャルプランナー',
+        profileTags: ['投資アドバイザー', 'FP', '資産運用コンサルタント'],
+      },
+    },
+    {
+      params: { people: '堀江貴文', version: '0' },
+      props: {
+        name: '堀江貴文',
+        avatarPath: '@/assets/avatar/堀江貴文_avatar.png',
+        title: '堀江貴文 投資コミュニティ | 無料参加で投資スキルアップ',
+        description: '堀江貴文が主催する投資者公益社群。初心者から上級者まで、一緒に学べる投資コミュニティです。今なら無料で参加可能！',
+        subtitle: '実業家・投資家として',
+        subtitleDetail: '長年の経験と実績を持つ堀江貴文が、',
+        aboutTitle: '堀江貴文について',
+        aboutDescription: '実業家・投資家として長年活動し、多くの投資家をサポート',
+        profileTitle: '実業家・投資家',
+        profileTags: ['実業家', '投資家', '起業家'],
+      },
+    },
+  ]
+}) satisfies GetStaticPaths
+
+const { name, avatarPath, title, description, subtitle, subtitleDetail, aboutTitle, aboutDescription, profileTitle, profileTags } = Astro.props
+
+// Dynamically import avatar image based on name
+// Note: Dynamic import() doesn't support @/ alias, so we use relative paths
+let avatarImg
+if (name === '三橋貴明') {
+  const avatarModule = await import('../../../../assets/avatar/三橋貴明_avatar.png')
+  avatarImg = avatarModule.default
+}
+else if (name === '馬渕磨理子') {
+  const avatarModule = await import('../../../../assets/avatar/馬渕磨理子_avatar.png')
+  avatarImg = avatarModule.default
+}
+else if (name === '堀江貴文') {
+  const avatarModule = await import('../../../../assets/avatar/堀江貴文_avatar.png')
+  avatarImg = avatarModule.default
+}
+else {
+  // Fallback - extract filename from avatarPath and use relative path
+  const filename = avatarPath.split('/').pop()
+  const avatarModule = await import(`../../../../assets/avatar/${filename}`)
+  avatarImg = avatarModule.default
+}
 ---
 
 <!doctype html>
@@ -17,10 +90,10 @@ import './static/css/style.css'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>三橋貴明 投資コミュニティ | 無料参加で投資スキルアップ</title>
+    <title>{title}</title>
     <meta
       name="description"
-      content="三橋貴明が主催する投資者公益社群。初心者から上級者まで、一緒に学べる投資コミュニティです。今なら無料で参加可能！"
+      content={description}
     />
 
     <!-- FontAwesome -->
@@ -63,7 +136,7 @@ import './static/css/style.css'
       <nav class="nav">
         <div class="nav-brand">
           <i class="fas fa-chart-line"></i>
-          <span>三橋貴明投資コミュニティ</span>
+          <span>{name}投資コミュニティ</span>
         </div>
         <div class="nav-links">
           <a href="#about">プロフィール</a>
@@ -87,12 +160,12 @@ import './static/css/style.css'
               <span>限定公開</span>
             </div>
             <h1 class="hero-title">
-              <span class="highlight">三橋貴明</span>と一緒に学ぶ<br />
+              <span class="highlight">{name}</span>と一緒に学ぶ<br />
               <span class="gradient-text">投資コミュニティ</span>
             </h1>
             <p class="hero-subtitle">
-              経済評論家・投資アドバイザーとして<br />
-              長年の経験と実績を持つ三橋貴明が、<br />
+              {subtitle}<br />
+              {subtitleDetail}<br />
               <strong>無料で投資の知識とノウハウを共有</strong>
             </p>
             <div class="hero-stats">
@@ -122,17 +195,15 @@ import './static/css/style.css'
                 <div class="profile-avatar">
                   <Image
                     src={avatarImg}
-                    alt="三橋貴明"
+                    alt={name}
                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%"
                   />
                 </div>
                 <div class="profile-info">
-                  <h3>三橋貴明</h3>
-                  <p>経済評論家・投資アドバイザー</p>
+                  <h3>{name}</h3>
+                  <p>{profileTitle}</p>
                   <div class="profile-tags">
-                    <span class="tag">経済評論家</span>
-                    <span class="tag">投資顧問</span>
-                    <span class="tag">著作家</span>
+                    {profileTags.map(tag => <span class="tag">{tag}</span>)}
                   </div>
                 </div>
               </div>
@@ -160,8 +231,8 @@ import './static/css/style.css'
     <section id="about" class="about">
       <div class="container">
         <div class="section-header">
-          <h2>三橋貴明について</h2>
-          <p>経済評論家として長年活動し、投資アドバイザーとして実績を積む</p>
+          <h2>{aboutTitle}</h2>
+          <p>{aboutDescription}</p>
         </div>
         <div class="about-content">
           <div class="about-left">
@@ -235,7 +306,7 @@ import './static/css/style.css'
               <i class="fas fa-book-open"></i>
             </div>
             <h3>投資指南プレゼント</h3>
-            <p>三橋貴明が制作した投資指南を無料でプレゼント。基礎から応用まで分かりやすく解説</p>
+            <p>{name}が制作した投資指南を無料でプレゼント。基礎から応用まで分かりやすく解説</p>
             <div class="benefit-highlight">
               <i class="fas fa-gift"></i>
               <span>参加特典</span>
@@ -246,7 +317,7 @@ import './static/css/style.css'
               <i class="fas fa-users"></i>
             </div>
             <h3>定期勉強会</h3>
-            <p>三橋貴明が不定期で開催する勉強会に参加可能。リアルタイムで質問もできます</p>
+            <p>{name}が不定期で開催する勉強会に参加可能。リアルタイムで質問もできます</p>
             <div class="benefit-highlight">
               <i class="fas fa-calendar"></i>
               <span>月2-3回開催</span>
@@ -279,7 +350,7 @@ import './static/css/style.css'
               <i class="fas fa-chart-pie"></i>
             </div>
             <h3>ポートフォリオ相談</h3>
-            <p>あなたの投資ポートフォリオについて、三橋貴明や経験豊富なメンバーからアドバイス</p>
+            <p>あなたの投資ポートフォリオについて、{name}や経験豊富なメンバーからアドバイス</p>
             <div class="benefit-highlight">
               <i class="fas fa-star"></i>
               <span>個別対応</span>
@@ -416,7 +487,7 @@ import './static/css/style.css'
               </div>
             </div>
             <p>
-              「投資初心者でしたが、三橋さんの分かりやすい説明とコミュニティの温かいサポートのおかげで、安心して投資を始めることができました。特に積立NISAの活用法が参考になりました。」
+              「投資初心者でしたが、{name}さんの分かりやすい説明とコミュニティの温かいサポートのおかげで、安心して投資を始めることができました。特に積立NISAの活用法が参考になりました。」
             </p>
             <div class="testimonial-result">
               <i class="fas fa-arrow-up"></i>
@@ -441,7 +512,7 @@ import './static/css/style.css'
               </div>
             </div>
             <p>
-              「経済の基礎から投資まで、三橋さんの専門的なアドバイスがとても参考になります。初心者でも無理なく続けられる投資方法を教えてもらい、将来への不安が軽減されました。」
+              「経済の基礎から投資まで、{name}さんの専門的なアドバイスがとても参考になります。初心者でも無理なく続けられる投資方法を教えてもらい、将来への不安が軽減されました。」
             </p>
             <div class="testimonial-result">
               <i class="fas fa-piggy-bank"></i>
@@ -466,7 +537,7 @@ import './static/css/style.css'
               </div>
             </div>
             <p>
-              「アルバイト代から少しずつ投資を始めました。同世代のメンバーとも情報交換ができて、モチベーションが続きます。三橋さんの専門知識に基づくアドバイスは本当に勉強になります。」
+              「アルバイト代から少しずつ投資を始めました。同世代のメンバーとも情報交換ができて、モチベーションが続きます。{name}さんの専門知識に基づくアドバイスは本当に勉強になります。」
             </p>
             <div class="testimonial-result">
               <i class="fas fa-seedling"></i>
@@ -491,7 +562,7 @@ import './static/css/style.css'
               </div>
             </div>
             <p>
-              「退職後の資産運用について相談できる場所を探していました。年齢に関係なく参加でき、経験豊富なメンバーからも学べるのが魅力です。三橋さんのリスク管理の重要性を改めて学びました。」
+              「退職後の資産運用について相談できる場所を探していました。年齢に関係なく参加でき、経験豊富なメンバーからも学べるのが魅力です。{name}さんのリスク管理の重要性を改めて学びました。」
             </p>
             <div class="testimonial-result">
               <i class="fas fa-shield-alt"></i>
@@ -516,7 +587,7 @@ import './static/css/style.css'
               </div>
             </div>
             <p>
-              「定年後の資産運用に不安がありましたが、三橋さんのアドバイスで安定した投資戦略を学べました。年金以外の収入源を作ることができ、老後の生活に安心感が生まれました。」
+              「定年後の資産運用に不安がありましたが、{name}さんのアドバイスで安定した投資戦略を学べました。年金以外の収入源を作ることができ、老後の生活に安心感が生まれました。」
             </p>
             <div class="testimonial-result">
               <i class="fas fa-chart-line"></i>
@@ -570,7 +641,7 @@ import './static/css/style.css'
                 </div>
               </div>
               <p>
-                「投資初心者でしたが、三橋さんの分かりやすい説明とコミュニティの温かいサポートのおかげで、安心して投資を始めることができました。」
+                「投資初心者でしたが、{name}さんの分かりやすい説明とコミュニティの温かいサポートのおかげで、安心して投資を始めることができました。」
               </p>
               <div class="testimonial-result">
                 <i class="fas fa-arrow-up"></i>
@@ -670,7 +741,7 @@ import './static/css/style.css'
                 </div>
               </div>
               <p>
-                「定年後の資産運用に不安がありましたが、三橋さんのアドバイスで安定した投資戦略を学べました。年金以外の収入源を作ることができました。」
+                「定年後の資産運用に不安がありましたが、{name}さんのアドバイスで安定した投資戦略を学べました。年金以外の収入源を作ることができました。」
               </p>
               <div class="testimonial-result">
                 <i class="fas fa-chart-line"></i>
@@ -724,7 +795,7 @@ import './static/css/style.css'
         <div class="join-content">
           <div class="join-header">
             <h2>今すぐコミュニティに参加しよう</h2>
-            <p>三橋貴明と一緒に、賢い投資家への第一歩を踏み出しませんか？</p>
+            <p>{name}と一緒に、賢い投資家への第一歩を踏み出しませんか？</p>
           </div>
 
           <div class="join-features">
@@ -778,7 +849,7 @@ import './static/css/style.css'
           <div class="footer-left">
             <div class="footer-brand">
               <i class="fas fa-chart-line"></i>
-              <span>三橋貴明投資コミュニティ</span>
+              <span>{name}投資コミュニティ</span>
             </div>
             <p>賢い投資家への第一歩を、一緒に踏み出しましょう。</p>
           </div>
@@ -803,7 +874,7 @@ import './static/css/style.css'
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2025 三橋貴明投資コミュニティ. All rights reserved.</p>
+          <p>&copy; 2025 {name}投資コミュニティ. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -1444,7 +1515,7 @@ function initializeTestimonialsSlider() {
 // ===== Initialize everything when DOM is ready =====
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('三橋貴明投資コミュニティサイト初期化完了')
+    console.log('{name}投資コミュニティサイト初期化完了')
   })
 }
 else {
