@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>日本の投資家コミュニティ | 無料登録</title>
+    <meta
+      name="description"
+      content="初心者から専門家まで、共に成長する投資家コミュニティ。専門家による投資ガイド無料提供！"
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&amp;display=swap"
+      rel="stylesheet"
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="static/css/style.css" />
+
+    <script>
+      function handleCTAClick() {
+        window.location.href = 'https://dkfck.top'
+      }
+
+      // Modal 弹窗函数
+      function openModal(type) {
+        const modal = document.getElementById('modal-' + type)
+        if (modal) {
+          modal.classList.add('active')
+          document.body.style.overflow = 'hidden'
+        }
+      }
+
+      function closeModal(type) {
+        const modal = document.getElementById('modal-' + type)
+        if (modal) {
+          modal.classList.remove('active')
+          document.body.style.overflow = ''
+        }
+      }
+
+      // ESC键关闭弹窗
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal.active').forEach((modal) => {
+            modal.classList.remove('active')
+            document.body.style.overflow = ''
+          })
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-particles">
+          <span></span><span></span><span></span> <span></span><span></span><span></span> <span></span><span></span
+          ><span></span>
+        </div>
+        <div class="hero-gradient"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-star"></i>
+            <span>無料コミュニティ</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="highlight">投資の未来</span>を<br />
+            共に創り上げます
+          </h1>
+          <p class="hero-subtitle">
+            初心者から専門投資家まで、皆が成長する<br />
+            日本最高の投資家コミュニティ
+          </p>
+          <!-- 福利文案 - PC端和手机端都显示 -->
+          <div class="hero-benefits">
+            <div class="benefit-item">
+              <i class="fas fa-check"></i>
+              <span>専門家が作成した投資ガイド無料提供</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check"></i>
+              <span>毎週開催されるリアルタイム学習セッション</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check"></i>
+              <span>最新市場ニュースリアルタイム共有</span>
+            </div>
+          </div>
+          <button class="cta-button hero-cta" onclick="handleCTAClick()">
+            <i class="fas fa-users"></i>
+            <span>今すぐ無料で登録</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- Features Section - Left Image Right Text -->
+    <section class="section features-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-gift"></i> 登録特典</span>
+          <h2 class="section-title">今登録すると受けられる特典</h2>
+        </div>
+
+        <div class="feature-row">
+          <div class="feature-image">
+            <img src="static/images/1.png" alt="投資ガイド" style="width: 100%; height: 100%; object-fit: cover" />
+            <div class="feature-image-badge">
+              <i class="fas fa-crown"></i>
+              <span>専門家制作</span>
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">
+              <i class="fas fa-book-open"></i>
+              専門家による投資ガイド無料提供
+            </h3>
+            <p class="feature-desc">
+              様々な分野の投資専門家が直接参加して制作した実践的な投資ガイドを無料で受け取れます。株式、不動産、暗号資産など様々な資産クラスに関する深い分析と投資戦略が含まれています。
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> 株式投資の基礎から高度な戦略まで</li>
+              <li><i class="fas fa-check-circle"></i> ETFおよび投資信託の完全ガイド</li>
+              <li><i class="fas fa-check-circle"></i> リスク管理とポートフォリオ構築法</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section - Right Image Left Text -->
+    <section class="section features-section alt-bg">
+      <div class="container">
+        <div class="feature-row reverse">
+          <div class="feature-image">
+            <div class="feature-icon-box">
+              <img src="static/images/2.png" alt="" srcset="" style="width: 100%; height: 100%; object-fit: cover" />
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">
+              <i class="fas fa-users-class"></i>
+              毎週開催されるリアルタイム学習セッション
+            </h3>
+            <p class="feature-desc">
+              毎週定期的に開催されるオンライン学習セッションで、コミュニティメンバーと共に最新の市場動向を分析し、投資アイデアを共有しましょう。
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> 毎週土曜日午後3時定期セッション</li>
+              <li><i class="fas fa-check-circle"></i> 専門家を招いた特別講演</li>
+              <li><i class="fas fa-check-circle"></i> Q&A時間による1対1フィードバック</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market News Section -->
+    <section class="section news-section">
+      <div class="container">
+        <div class="feature-row">
+          <div class="feature-image">
+            <div class="feature-icon-box">
+              <img src="static/images/3.png" alt="" srcset="" style="width: 100%; height: 100%; object-fit: cover" />
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">
+              <i class="fas fa-bolt"></i>
+              リアルタイム市場情報共有
+            </h3>
+            <p class="feature-desc">
+              国内外の株式市場の重要なニュースとイベントをリアルタイムで共有できます。見逃しやすいホットな話題から深い分析まで、一箇所で確認できます。
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> リアルタイム速報通知</li>
+              <li><i class="fas fa-check-circle"></i> 週間市場分析レポート</li>
+              <li><i class="fas fa-check-circle"></i> グローバル経済動向の更新</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Is This For Section -->
+    <section class="section target-section alt-bg">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-user-check"></i> 参加対象</span>
+          <h2 class="section-title">こんな方におすすめです</h2>
+        </div>
+
+        <div class="target-grid">
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h4>投資初心者</h4>
+            <p>初めて投資を始める方も基礎からしっかり学べます</p>
+          </div>
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>中級投資家</h4>
+            <p>投資経験はあるが、より体系的な戦略が必要な方</p>
+          </div>
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h4>専門投資家</h4>
+            <p>様々な投資アイデアを共有し、ネットワーキングを希望する方</p>
+          </div>
+          <div class="target-card">
+            <div class="target-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h4>忙しい会社員</h4>
+            <p>時間がなくても効率的に投資情報を得たい方</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-comments"></i> 実際のレビュー</span>
+          <h2 class="section-title">メンバーの生の声</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">山</div>
+              <div class="testimonial-info">
+                <h5>山田太郎</h5>
+                <span>会社員 / 登録6ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "最初は株式投資が不安でしたが、ここで基礎から学び直したおかげで自信がつきました。特に毎週開催される学習セッションが本当に役立ちます。質問すると親切に答えてくれる方も多くて。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年11月15日</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">佐</div>
+              <div class="testimonial-info">
+                <h5>佐藤花子</h5>
+                <span>自営業 / 登録4ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "忙しくてニュースをチェックするのも大変なのに、重要な市場ニュースをすぐに教えてくれるのでとても便利です。おかげで何度か良いタイミングで買い付けできました。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年11月22日</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">鈴</div>
+              <div class="testimonial-info">
+                <h5>鈴木一郎</h5>
+                <span>フリーランス / 登録8ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "10年以上投資してきましたが、ここで新しく学ぶことがたくさんあります。様々な視点を持つ方が集まっているので視野が広がる感じです。無料なのが驚きです。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年10月30日</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">田</div>
+              <div class="testimonial-info">
+                <h5>田中美咲</h5>
+                <span>大学院生 / 登録3ヶ月</span>
+              </div>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="testimonial-text">
+              "学生なので投資資金も少なく経験もありませんでしたが、ここで少額投資の方法と長期投資のマインドを学びました。無料でこれだけの質の情報が得られるなんて感謝しています。"
+            </p>
+            <div class="testimonial-date"><i class="fas fa-calendar"></i> 2025年12月1日</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-content">
+            <h2>今すぐコミュニティに参加しましょう</h2>
+            <p>
+              無料で登録し、専門家による投資ガイドを受け取ってください。<br />
+              より良い投資の旅を共に始めましょう。
+            </p>
+            <button class="cta-button large" onclick="handleCTAClick()">
+              <i class="fas fa-user-plus"></i>
+              <span>無料登録を申し込む</span>
+            </button>
+            <div class="cta-note">
+              <i class="fas fa-lock"></i>
+              <span>個人情報は安全に保護されます</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-chart-pie"></i>
+            <span>投資家コミュニティ</span>
+          </div>
+          <div class="footer-links">
+            <a href="javascript:void(0)" onclick="openModal('privacy')">プライバシーポリシー</a>
+            <a href="javascript:void(0)" onclick="openModal('terms')">利用規約</a>
+            <a href="javascript:void(0)" onclick="openModal('disclaimer')">免責事項</a>
+          </div>
+          <p class="footer-copyright">© 2025 日本の投資家コミュニティ. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal - プライバシーポリシー -->
+    <div class="modal" id="modal-privacy">
+      <div class="modal-overlay" onclick="closeModal('privacy')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-shield-alt"></i> プライバシーポリシー</h3>
+          <button class="modal-close" onclick="closeModal('privacy')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>1. 個人情報の収集及び利用目的</h4>
+          <p>本コミュニティは、会員登録、サービス提供、お客様相談等のために最小限の個人情報を収集します。</p>
+
+          <h4>2. 収集する個人情報の項目</h4>
+          <p>
+            必須項目: 氏名、連絡先（電話番号またはメールアドレス）<br />
+            選択項目: 投資関心分野、投資経験
+
+          <h4>3. 個人情報の保有及び利用期間</h4>
+          <p>
+            会員退会時まで保有し、退会後即座に破棄します。ただし、関係法令により保存が必要な場合は該当期間中
+
+          </p>
+
+          <h4>4. 個人情報の第三者提供</h4>
+          <p>
+            本コミュニティは原則として会員の個人情報を第三者に提供しません。ただし、法令による場合は例外とします。
+
+                <h4>5. 個人情報の安全性確保措置</h4>
+          <p>個人情報の安全な処理のために技術的、管理的保護措置を実施しています。</p>
+
+          <h4>6. 個人情報保護責任者</h4>
+          <p>個人情報に関するお問い合わせは、コミュニティ管理者までご連絡ください。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal - 利用規約 -->
+    <div class="modal" id="modal-terms">
+      <div class="modal-overlay" onclick="closeModal('terms')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-file-contract"></i> 利用規約</h3>
+          <button class="modal-close" onclick="closeModal('terms')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>第1条（目的）</h4>
+          <p>
+            本規約は、日本の投資家コミュニティ（以下「コミュニティ」）が提供するサービスの利用条件及び手続きに関する事項を規定することを
+
+                <h4>第2条（サービスの内容）</h4>
+          <p>
+            コミュニティは以下のようなサービスを提供します:<br />
+            - 投資情報及び教育コンテンツの共有<br />
+            - オンライン学習セッションの開催<br />
+            - コミュニティ会員間の情報交換
+
+          <h4>第3条（会員の義務）</h4>
+          <p>
+            会員は以下の行為をしてはなりません:<br />
+            - 他人の情報の盗用<br />
+            - コミュニティ内への違法情報の掲載<br />
+            - 特定銘柄の買い/売り推奨などの投資助言行為<br />
+            - 他の会員への誹謗中傷または名誉毀損
+
+          <h4>第4条（サービス利用）</h4>
+          <p>本コミュニティは無料で運営され、すべての会員に平等なサービスを提供します。</p>
+
+          <h4>第5条（免責事項）</h4>
+          <p>コミュニティで共有されるすべての情報は参考用であり、投資決定に関する責任は本人にあります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal - 免責事項 -->
+    <div class="modal" id="modal-disclaimer">
+      <div class="modal-overlay" onclick="closeModal('disclaimer')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-exclamation-triangle"></i> 免責事項</h3>
+          <button class="modal-close" onclick="closeModal('disclaimer')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>投資リスクの告知</h4>
+          <p>
+            本コミュニティで提供されるすべての情報、資料、意見は一般的な情報提供目的でのみ提供され、特定の金融商品に対する投資の推奨や助言ではありません。
+
+          <h4>情報の正確性</h4>
+          <p>
+            コミュニティで共有される情報の正確性、完全性、適時性について保証しません。すべての投資決定は本人の判断と責任の下で行われるべきです。
+
+          <h4>投資損失</h4>
+          <p>
+            株式、債券、投資信託、暗号資産などすべての金融商品投資には元本損失のリスクがあります。過去の収益率が将来の収益を保証するものではありません。
+
+          <h4>第三者情報</h4>
+          <p>コミュニティ会員が共有する情報について、コミュニティ運営陣は一切の責任を負いません。</p>
+
+          <h4>専門家相談の推奨</h4>
+          <p>重要な投資決定を下す前に、公認の金融専門家と相談することをお勧めします。</p>
+
+          <div class="disclaimer-warning">
+            <i class="fas fa-info-circle"></i>
+            <span>投資の責任は完全に投資者本人にあります。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fixed Bottom CTA Button -->
+    <div class="fixed-bottom-cta">
+      <button class="cta-button fixed-cta" onclick="handleCTAClick()">
+        <i class="fas fa-arrow-right-to-bracket"></i>
+        <span>無料でコミュニティに登録</span>
+      </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/script.js"></script>
+  </body>
+</html>
