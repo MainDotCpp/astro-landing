@@ -14,7 +14,7 @@ export default function LineButton() {
         transition-all duration-300 ease-in-out
         cursor-pointer select-none focus:outline-none
         focus:ring-4 focus:ring-green-300/50 focus:ring-offset-2
-        px-8 py-5 text-2xl md:text-3xl rounded-2xl"
+        px-6 py-4 text-base md:text-lg rounded-2xl"
       type="button"
       data-umami-event="cta-click"
       data-umami-event-type="line"
@@ -23,7 +23,7 @@ export default function LineButton() {
       <img
         src={lineIcon.src}
         alt="LINE"
-        className="w-14 h-14 md:w-10 md:h-10 mr-4 object-contain"
+        className="w-6 h-6 md:w-7 md:h-7 mr-3 object-contain"
       />
       LINE友だち追加
     </button>
