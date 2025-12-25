@@ -219,6 +219,12 @@ const c = {
       { static_prefix: 'jzf1_', version: 1, sockal_type: KAKAO_ONLY },
     ],
   },
+  安迪李: {
+    name: 'Andy Lee',
+    versions: [
+      { static_prefix: 'aly0_', version: 0, sockal_type: KAKAO_ONLY },
+    ],
+  },
 } as const
 
 export function generateKrConfig(

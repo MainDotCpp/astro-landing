@@ -11,7 +11,7 @@ import './static/css/animate.min.css'
 import './static/css/slick-theme.css'
 
 export function getStaticPaths() {
- return generateKrConfig()
+ return generateKrConfig(undefined, ['安迪李_0'])
 }
 
 const { t = '棒群' } = Astro.params
@@ -110,9 +110,9 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
           <div class="expert-card rounded-3xl p-8 md:p-12 w-full max-w-2xl">
             <div class="text-center">
               <div class="avatar-frame mb-8">
-                <Image 
-                  src={headImg} 
-                  alt={name} 
+                <Image
+                  src={headImg}
+                  alt={name}
                   class="w-48 h-48 md:w-64 md:h-64 mx-auto rounded-xl object-cover shadow-2xl"
                 />
               </div>

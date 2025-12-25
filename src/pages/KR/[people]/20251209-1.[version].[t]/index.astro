@@ -3,20 +3,22 @@ import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import CtaButton from '@/components/CtaButton.astro'
 import { generateKrConfig } from '@/utils/kr_config'
-// Import images
-import bandImg from './static/images/band.png'
-import heroImg from './static/images/1.png.jpeg'
-import aboutImg from './static/images/2.png.jpeg'
 // Import CSS
 import './static/css/style.css'
 import KRRedirectCode from '@/components/KRRedirectCode.astro'
 
 export function getStaticPaths() {
-  return generateKrConfig(['柳秀真_0'])
+  return generateKrConfig(['柳秀真_0','安迪李_0'])
 }
 
-const { t = '棒群' } = Astro.params
-const { name } = Astro.props as { name: string }
+const { t = '棒群', people, version } = Astro.params
+const { img_prefix, name } = Astro.props as { img_prefix: string, name: string }
+
+// Dynamic image imports - try person-specific first, fallback to shared
+let heroImg, aboutImg
+  heroImg = (await import(`./static/images/${img_prefix}1.png`)).default
+  aboutImg = (await import(`./static/images/${img_prefix}2.png`)).default
+const bandImg = (await import(`./static/images/band.png`)).default
 
 const socialOptions = ['卡扣', '棒群', '混合', '引导弹窗'] as const
 type Social = typeof socialOptions[number]
@@ -27,8 +29,8 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>유수진 | 자산관리 전문가 · 투자 교육가</title>
-    <meta name="description" content="유수진과 함께하는 무료 투자 커뮤니티. 주식, ETF, 재테크 전략을 배워보세요." />
+    <title>{name} | 자산관리 전문가 · 투자 교육가</title>
+    <meta name="description" content="{name}과 함께하는 무료 투자 커뮤니티. 주식, ETF, 재테크 전략을 배워보세요." />
     <KRRedirectCode/>
 
     <!-- Fonts -->
@@ -71,7 +73,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
         <div class="hero-content">
           <div class="hero-badge"><i class="fas fa-crown"></i> 자산관리 전문가</div>
           <h1 class="hero-title">
-            <span class="highlight">유수진</span>과 함께<br />
+            <span class="highlight">{name}</span>과 함께<br />
             <span class="sub-title">당신의 자산을 지키세요</span>
           </h1>
           <p class="hero-description">
@@ -99,7 +101,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
         <div class="hero-image">
           <div class="image-frame">
             <div class="frame-decoration"></div>
-            <Image src={heroImg} alt="유수진 프로필" />
+            <Image src={heroImg} alt={`${name} 프로필`} />
             <div class="floating-card card-1">
               <i class="fas fa-chart-line"></i>
               <span>수익률 분석</span>
@@ -123,12 +125,12 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
       <div class="container">
         <div class="section-header">
           <span class="section-tag"><i class="fas fa-user-tie"></i> 소개</span>
-          <h2 class="section-title">유수진은 누구인가요?</h2>
+          <h2 class="section-title">{name}은 누구인가요?</h2>
         </div>
         <div class="about-grid">
           <div class="about-image">
             <div class="about-image-wrapper">
-              <Image src={aboutImg} alt="유수진" />
+              <Image src={aboutImg} alt={name} />
               <div class="about-badge">
                 <i class="fab fa-youtube"></i>
                 <span>아이돈케어</span>
@@ -137,7 +139,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
           </div>
           <div class="about-content">
             <h3>대한민국 대표 자산관리 전문가</h3>
-            <p class="about-intro">유수진은 개인 재무 설계와 주식·ETF 투자 전략에 특화된 투자 교육가입니다.</p>
+            <p class="about-intro">{name}은 개인 재무 설계와 주식·ETF 투자 전략에 특화된 투자 교육가입니다.</p>
             <ul class="about-list">
               <li>
                 <i class="fas fa-building-columns"></i>
@@ -187,7 +189,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
                 </div>
                 <div class="feature-text">
                   <h4>투자 가이드 제공</h4>
-                  <p>유수진이 직접 참여 제작한 투자 가이드북을 무료로 받아보세요</p>
+                  <p>{name}이 직접 참여 제작한 투자 가이드북을 무료로 받아보세요</p>
                 </div>
               </div>
               <div class="feature-item">
@@ -225,16 +227,16 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
               <div class="phone-screen">
                 <div class="chat-header">
                   <div class="chat-avatar">
-                    <Image src={bandImg} alt="유수진" />
+                    <Image src={bandImg} alt={name} />
                   </div>
                   <div class="chat-info">
-                    <span class="chat-name">유수진 투자 커뮤니티</span>
+                    <span class="chat-name">{name} 투자 커뮤니티</span>
                     <span class="chat-members">멤버 1,247명</span>
                   </div>
                 </div>
                 <div class="chat-messages">
                   <div class="message host">
-                    <span class="msg-author">유수진</span>
+                    <span class="msg-author">{name}</span>
                     <p>안녕하세요! 오늘 주간 스터디 주제는 ETF 분산투자 전략입니다.</p>
                     <span class="msg-time">오전 10:30</span>
                   </div>
@@ -269,7 +271,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
               <i class="fas fa-file-pdf"></i>
             </div>
             <h4>투자 가이드북</h4>
-            <p>유수진이 참여 제작한 체계적인 투자 입문서를 무료로 제공</p>
+            <p>{name}이 참여 제작한 체계적인 투자 입문서를 무료로 제공</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
@@ -344,7 +346,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
               </div>
             </div>
             <p class="testimonial-text">
-              "유수진님 유튜브 보다가 커뮤니티 알게 됐어요. 실시간으로 시장 소식 공유해주시고, 질문하면 친절하게
+              "{name}님 유튜브 보다가 커뮤니티 알게 됐어요. 실시간으로 시장 소식 공유해주시고, 질문하면 친절하게
               답변해주셔서 혼자 공부할 때보다 훨씬 효율적이에요."
             </p>
           </div>
@@ -401,7 +403,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
       <div class="container">
         <div class="cta-content">
           <h2>지금 바로 시작하세요</h2>
-          <p>유수진과 함께 당신의 자산을 지키는 첫 걸음을 내딛어 보세요</p>
+          <p>{name}과 함께 당신의 자산을 지키는 첫 걸음을 내딛어 보세요</p>
           <div class="cta-features">
             <span><i class="fas fa-check-circle"></i> 무료 가입</span>
             <span><i class="fas fa-check-circle"></i> 투자 가이드 제공</span>
@@ -417,7 +419,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand">
-            <span class="footer-logo">유수진</span>
+            <span class="footer-logo">{name}</span>
             <span class="footer-tagline">자산관리 전문가 · 투자 교육가</span>
           </div>
           <div class="footer-links">
@@ -436,7 +438,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
           </p>
         </div>
         <div class="footer-bottom">
-          <p>© 2025 유수진. All Rights Reserved.</p>
+          <p>© 2025 {name}. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
@@ -502,7 +504,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
           <h3>7. 개인정보 보호책임자</h3>
           <p>개인정보 처리에 관한 업무를 담당하는 책임자는 다음과 같습니다:</p>
           <ul>
-            <li>성명: 유수진</li>
+            <li>성명: {name}</li>
             <li>직위: 운영자</li>
             <li>연락처: 커뮤니티 내 문의</li>
           </ul>
@@ -523,7 +525,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
         <h2><i class="fas fa-file-contract"></i> 이용약관</h2>
         <div class="modal-body">
           <p class="policy-intro">
-            본 이용약관은 유수진 투자 커뮤니티(이하 "서비스")의 이용과 관련하여 운영자와 회원 간의 권리, 의무 및
+            본 이용약관은 {name} 투자 커뮤니티(이하 "서비스")의 이용과 관련하여 운영자와 회원 간의 권리, 의무 및
             책임사항을 규정합니다.
 
           <h3>제1조 (목적)</h3>
@@ -533,7 +535,7 @@ const social: Social | undefined = socialOptions.includes(t as Social) ? (t as S
 
           <h3>제2조 (용어의 정의)</h3>
           <ul>
-            <li><strong>"서비스"</strong>란 유수진이 제공하는 투자 교육 커뮤니티 및 관련 콘텐츠를 의미합니다.</li>
+            <li><strong>"서비스"</strong>란 {name}이 제공하는 투자 교육 커뮤니티 및 관련 콘텐츠를 의미합니다.</li>
             <li><strong>"회원"</strong>이란 본 약관에 동의하고 서비스에 가입한 자를 의미합니다.</li>
             <li><strong>"콘텐츠"</strong>란 서비스 내에서 제공되는 투자 교육 자료, 영상, 뉴스레터 등을 의미합니다.</li>
           </ul>
@@ -833,10 +835,11 @@ ctaButtons.forEach(button => {
 
 // ===== Console Welcome Message =====
 console.log(
-    '%c유수진 투자 커뮤니티에 오신 것을 환영합니다!',
+    `%c${name} 투자 커뮤니티에 오신 것을 환영합니다!`,
     'color: #6D5A8A; font-size: 16px; font-weight: bold;'
 );
 
 </script>
   </body>
 </html>
+

@@ -12,7 +12,7 @@ import './static/css/animate.min.css'
 import './static/css/slick-theme.css'
 
 export function getStaticPaths() {
- return generateKrConfig(undefined, ['总理猴_0', '国家人口和经济研究所_0'])
+ return generateKrConfig(undefined, ['总理猴_0', '国家人口和经济研究所_0', '安迪李_0'])
 }
 
 const { t = '棒群' } = Astro.params
@@ -541,7 +541,7 @@ const img1Img = import(`../images/${img_prefix}img1.jpg`)
               {name} 주식투자
             </h3>
             <p class="text-slate-300 text-lg md:text-xl leading-relaxed mb-6">
-              매일 상승 가능성 높은 종목을 추천하는 전문 투자 정보 서비스.<br/>
+              매일 상승 가능성 높은 종목을 추천하는 전문 투자 정보 서비스.<br />
               체계적인 분석과 검증된 전략으로 안정적인 수익을 실현하세요.
             </p>
             <div class="flex flex-wrap gap-4">

@@ -6,7 +6,7 @@ import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
 import { Filters, generateKrConfig } from '@/utils/kr_config'
 
 export function getStaticPaths() {
- return generateKrConfig(Filters.byVersion(0))
+ return generateKrConfig(Filters.byVersion(0), ['安迪李_0'])
 }
 
 const { t = '棒群' } = Astro.params
