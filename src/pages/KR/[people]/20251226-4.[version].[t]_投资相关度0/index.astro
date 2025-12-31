@@ -1,0 +1,479 @@
+---
+import { Image } from 'astro:assets'
+import avatarImg from '@/assets/avatar/安迪李_avatar.png'
+import CtaButton from '@/components/CtaButton.astro'
+import KRRedirectCode from '@/components/KRRedirectCode.astro'
+import { generateKrConfig } from '@/utils/kr_config'
+// Import CSS
+import './static/css/style.css'
+
+export function getStaticPaths() {
+  return generateKrConfig(['安迪李_0'])
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props as { img_prefix: string, name: string }
+
+// 使用头像图片
+const heroImg = avatarImg
+
+const socialOptions = ['卡扣', '棒群', '混合', '引导弹窗'] as const
+type Social = typeof socialOptions[number]
+const social: Social | undefined = socialOptions.includes(t as Social) ? (t as Social) : undefined
+
+// 公司信息
+const companyInfo = {
+  name: '한국정보공유연구소',
+  nameEn: 'Korea Information Sharing Research Institute',
+  business: '정보 정리, 지식 공유, 학습 교류 서비스',
+  serviceType: '순수 교육 및 정보 공유 용도',
+  serviceArea: '한국 및 기타 지역',
+  address: '서울특별시 강남구 테헤란로 123',
+  ceo: '안디 이',
+}
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{name} | 지식 공유와 학습 커뮤니티</title>
+    <meta name="description" content="15년간의 정보 정리 경험을 바탕으로 유용한 지식과 정보를 함께 공유하고 학습하는 커뮤니티입니다." />
+    <KRRedirectCode />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-background"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-book"></i>
+            <span>지식 공유자</span>
+          </div>
+          <h1 class="hero-title">
+            유용한 지식을<br />
+            <span class="highlight">함께 공유하고 학습</span>하는 공간
+          </h1>
+          <p class="hero-description">
+            15년간 다양한 분야의 정보를 정리하고 공유해온 경험을 바탕으로,<br />
+            유용한 지식과 정보를 함께 나누고 학습하는 커뮤니티입니다.
+          </p>
+          <div class="hero-profile">
+            <div class="profile-avatar">
+              <Image src={heroImg} alt={`${name} 프로필`} />
+            </div>
+            <div class="profile-text">
+              <span class="profile-name">{name}</span>
+              <span class="profile-role">지식 공유자</span>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <CtaButton social={social} size="lg" class="hero-btn">
+              <span slot="content">커뮤니티 참여하기</span>
+            </CtaButton>
+            <p class="cta-hint">추가 후 7을 보내주시면 안내드립니다</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-label">소개</span>
+          <h2 class="section-title">이 커뮤니티는 무엇인가요?</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <p class="lead-paragraph">
+              유용한 정보와 지식을 정리하고 공유하는 순수한 학습 공간입니다.
+            </p>
+            <p class="regular-paragraph">
+              우리는 다양한 분야에서 유용한 정보를 수집하고 정리하여 공유합니다. 
+              공개된 자료와 정보를 바탕으로 지식을 체계화하고, 
+              함께 학습하고 성장할 수 있는 환경을 만들어갑니다.
+            </p>
+            <div class="highlight-box">
+              <p class="highlight-text">
+                <i class="fas fa-info-circle"></i>
+                본 커뮤니티는 순수한 정보 공유 및 학습을 목적으로 하며, 
+                어떠한 형태의 상업적 권유나 특정 서비스 추천을 포함하지 않습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="section activities-section">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-label">활동 내용</span>
+          <h2 class="section-title">함께 하는 활동</h2>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-card">
+            <div class="card-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h3 class="card-title">정보 정리와 공유</h3>
+            <p class="card-description">
+              매주 유용한 정보와 자료를 정리하여 공유합니다. 
+              공개된 자료와 정보를 바탕으로 체계적으로 정리하고 이해합니다.
+            </p>
+          </div>
+          <div class="activity-card">
+            <div class="card-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="card-title">의견 교류와 토론</h3>
+            <p class="card-description">
+              다양한 관점에서 정보를 바라보고, 
+              합리적이고 구조적인 사고를 중심으로 의견을 나눕니다.
+            </p>
+          </div>
+          <div class="activity-card">
+            <div class="card-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="card-title">학습 자료 공유</h3>
+            <p class="card-description">
+              지식 이해에 도움이 되는 학습 자료와 
+              학습 방법론을 함께 공유하고 학습합니다.
+            </p>
+          </div>
+          <div class="activity-card">
+            <div class="card-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3 class="card-title">1:1 학습 상담</h3>
+            <p class="card-description">
+              개인의 관심 분야와 이해 수준에 맞춰 
+              학습 방향과 접근 방법을 함께 고민합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="section approach-section">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-label">학습 접근법</span>
+          <h2 class="section-title">우리의 학습 방식</h2>
+        </div>
+        <div class="approach-list">
+          <div class="approach-item">
+            <div class="approach-number">01</div>
+            <div class="approach-content">
+              <h3>체계적인 정보 정리</h3>
+              <p>
+                다양한 분야의 정보를 체계적으로 정리하고 분류하여 
+                이해하기 쉽게 공유합니다.
+              </p>
+            </div>
+          </div>
+          <div class="approach-item">
+            <div class="approach-number">02</div>
+            <div class="approach-content">
+              <h3>공개 자료 기반</h3>
+              <p>
+                모든 정보와 자료는 공개된 자료를 기반으로 하며, 
+                참고 학습 목적으로만 활용됩니다.
+              </p>
+            </div>
+          </div>
+          <div class="approach-item">
+            <div class="approach-number">03</div>
+            <div class="approach-content">
+              <h3>장기적 관점</h3>
+              <p>
+                단기적인 정보보다 장기적인 관점에서 
+                지식을 축적하고 이해하는 것을 중요하게 생각합니다.
+              </p>
+            </div>
+          </div>
+          <div class="approach-item">
+            <div class="approach-number">04</div>
+            <div class="approach-content">
+              <h3>구조적 사고</h3>
+              <p>
+                합리적이고 구조적인 사고를 중심으로 
+                정보를 분석하고 이해하는 방법을 함께 학습합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats-section">
+      <div class="container">
+        <div class="stats-content">
+          <h2 class="stats-title">함께 학습하는 커뮤니티</h2>
+          <p class="stats-description">
+            5,000명 이상의 회원이 다양한 관심사와 배경을 가지고 
+            함께 학습하고 있습니다.
+          </p>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-value">5,000+</div>
+              <div class="stat-label">활성 회원</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="stat-value">15년</div>
+              <div class="stat-label">정보 정리 경험</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-share-alt"></i>
+              </div>
+              <div class="stat-value">매주</div>
+              <div class="stat-label">정보 공유</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits-section">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-label">참여 혜택</span>
+          <h2 class="section-title">참여하면 좋은 점</h2>
+        </div>
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="benefit-text">
+              <h3>체계적인 정보 접근</h3>
+              <p>
+                정리된 정보를 통해 다양한 분야의 지식을 
+                체계적으로 접근하고 이해할 수 있습니다.
+              </p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="benefit-text">
+              <h3>다양한 관점의 교류</h3>
+              <p>
+                다양한 배경과 관점을 가진 회원들과의 교류를 통해 
+                새로운 시각과 이해를 얻을 수 있습니다.
+              </p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="benefit-text">
+              <h3>지속적인 학습 자료</h3>
+              <p>
+                정기적으로 업데이트되는 학습 자료와 
+                정보 내용을 받아볼 수 있습니다.
+              </p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="benefit-text">
+              <h3>개인 맞춤 학습 지원</h3>
+              <p>
+                개인의 관심 분야와 학습 목표에 맞춘 
+                방향 제시와 학습 지원을 받을 수 있습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">지식 공유 커뮤니티에 참여해보세요</h2>
+          <p class="cta-description">
+            유용한 정보와 지식을 함께 공유하고 학습하는 커뮤니티에 참여하여,<br />
+            지식과 이해를 깊게 해보세요.
+          </p>
+          <div class="cta-box">
+            <CtaButton social={social} size="lg" class="cta-btn">
+              <span slot="content">커뮤니티 참여하기</span>
+            </CtaButton>
+            <p class="cta-note">추가 후 7을 보내주시면 안내드립니다</p>
+          </div>
+          <div class="disclaimer-box">
+            <p class="disclaimer-text">
+              ※ 본 커뮤니티는 순수한 정보 공유 및 학습을 목적으로 하며, 
+              어떠한 형태의 상업적 권유나 특정 서비스 추천을 포함하지 않습니다.
+              모든 자료는 공개 정보를 기반으로 한 참고 학습용이며,
+              사용 결정 및 그에 따른 모든 책임은 사용자 본인에게 귀속됩니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Section -->
+    <section id="company" class="section company-section">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-label">회사 정보</span>
+          <h2 class="section-title">회사 정보</h2>
+        </div>
+        <div class="company-info">
+          <div class="info-row">
+            <strong>회사명</strong>
+            <span>{companyInfo.name} <span class="info-en">({companyInfo.nameEn})</span></span>
+          </div>
+          <div class="info-row">
+            <strong>사업 내용</strong>
+            <span>{companyInfo.business}</span>
+          </div>
+          <div class="info-row">
+            <strong>서비스 유형</strong>
+            <span>{companyInfo.serviceType}</span>
+          </div>
+          <div class="info-row">
+            <strong>서비스 지역</strong>
+            <span>{companyInfo.serviceArea}</span>
+          </div>
+          <div class="info-row">
+            <strong>주소</strong>
+            <span>{companyInfo.address}</span>
+          </div>
+          <div class="info-row">
+            <strong>대표자</strong>
+            <span>{companyInfo.ceo}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy" class="section privacy-section">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-label">개인정보 보호</span>
+          <h2 class="section-title">개인정보 보호 정책</h2>
+        </div>
+        <div class="policy-content">
+          <p class="policy-intro">
+            본 웹사이트는 사용자의 개인정보를 중요하게 생각하며, 관련 법규를 준수합니다.
+          </p>
+          <div class="policy-details">
+            <h3>1. 개인정보 수집 및 이용</h3>
+            <p>
+              본 웹사이트는 서비스 제공을 위해 필요한 최소한의 개인정보만을 수집합니다. 
+              수집된 정보는 서비스 제공 및 개선 목적으로만 사용됩니다.
+            </p>
+            <h3>2. 개인정보 보호</h3>
+            <p>
+              수집된 개인정보는 안전하게 관리되며, 무단 접근이나 유출을 방지하기 위해 
+              적절한 보안 조치를 취하고 있습니다.
+            </p>
+            <h3>3. 개인정보 제공 및 공유</h3>
+            <p>
+              본 웹사이트는 사용자의 동의 없이 개인정보를 제3자에게 제공하거나 공유하지 않습니다. 
+              다만, 법령에 의해 요구되는 경우에는 예외로 합니다.
+            </p>
+            <h3>4. 개인정보 보유 및 이용 기간</h3>
+            <p>
+              개인정보는 서비스 제공 기간 동안 보유되며, 서비스 종료 시 즉시 파기됩니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section id="disclaimer" class="section disclaimer-section">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-label">면책 조항</span>
+          <h2 class="section-title">면책 조항</h2>
+        </div>
+        <div class="disclaimer-content">
+          <p>
+            본 플랫폼에서 제공하는 모든 콘텐츠는 <strong>순수한 정보 공유 및 학습 목적으로만 제공</strong>되며,
+            어떠한 형태의 조언, 약속 또는 보증을 구성하지 않습니다.
+          </p>
+          <p>
+            제공되는 정보는 공개된 자료를 기반으로 한 참고용이며, 
+            정보의 정확성, 완전성, 유용성에 대해 어떠한 보장도 하지 않습니다.
+          </p>
+          <p>
+            본 웹사이트를 이용함으로써 발생하는 모든 결과에 대한 책임은 사용자 본인에게 있으며,
+            본 웹사이트는 그에 대한 어떠한 책임도 지지 않습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <span class="footer-logo">{name}</span>
+            <span class="footer-tagline">지식 공유자 · 학습 커뮤니티 운영</span>
+          </div>
+          <div class="footer-links">
+            <a href="#company">회사 정보</a>
+            <a href="#privacy">개인정보 보호</a>
+            <a href="#disclaimer">면책 조항</a>
+          </div>
+        </div>
+        <div class="footer-disclaimer">
+          <p>
+            본 웹사이트에서 제공하는 모든 정보 및 콘텐츠는 순수한 교육 및 정보 제공 목적으로만 사용되며,
+            어떠한 형태의 상업적 권유나 특정 서비스 추천을 포함하지 않습니다.
+            모든 자료는 공개 정보를 기반으로 한 참고 학습용이며,
+            사용 결정 및 그에 따른 모든 책임은 사용자 본인에게 귀속됩니다.
+          </p>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 {companyInfo.name}. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Fixed CTA -->
+    <div class="fixed-cta">
+      <div class="container">
+        <CtaButton social={social} size="lg" class="fixed-cta-btn">
+          <span slot="content">커뮤니티 참여하기</span>
+        </CtaButton>
+      </div>
+    </div>
+  </body>
+</html>
+

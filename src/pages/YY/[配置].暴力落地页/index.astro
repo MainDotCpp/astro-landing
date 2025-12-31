@@ -1,0 +1,418 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import lineIcon from '@/assets/line-icon.png'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import '@/utils/jump.ts'
+
+// 从配置文件目录读取所有配置
+const configFiles = import.meta.glob('./configs/*.ts', { eager: true })
+
+export const getStaticPaths = (() => {
+  const paths = []
+
+  for (const [filePath, configModule] of Object.entries(configFiles)) {
+    // 从文件路径提取配置名称（例如：./configs/default.ts -> default）
+    const configName = filePath
+      .replace('./configs/', '')
+      .replace('.ts', '')
+
+    // 获取配置数据
+    const config = (configModule as any).default
+
+    paths.push({
+      params: { 配置: configName },
+      props: config,
+    })
+  }
+
+  return paths
+}) satisfies GetStaticPaths
+
+const config = Astro.props
+const { name, title, description, stats, countdown, testimonials } = config
+---
+
+<BaseLayout title={`${name}的${title} | 30天资产翻5倍`} description={description} lang="zh-CN">
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 30px rgba(255, 87, 34, 0.6); }
+      50% { box-shadow: 0 0 50px rgba(255, 87, 34, 0.9); }
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    .animate-shake { animation: shake 0.5s ease-in-out infinite; }
+    .animate-flash { animation: flash 1s ease-in-out infinite; }
+    .gradient-bg {
+      background: linear-gradient(-45deg, #ff5722, #e91e63, #9c27b0, #673ab7);
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite;
+    }
+    .link-btn {
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+    .link-btn:hover {
+      transform: scale(1.05);
+    }
+    .link-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 768px) {
+      .text-5xl { font-size: 2rem; line-height: 2.5rem; }
+      .text-4xl { font-size: 1.75rem; line-height: 2rem; }
+      .text-3xl { font-size: 1.5rem; line-height: 1.75rem; }
+      .text-2xl { font-size: 1.25rem; line-height: 1.5rem; }
+      h1 { font-size: 2rem !important; line-height: 2.5rem !important; }
+      h2 { font-size: 1.75rem !important; line-height: 2rem !important; }
+      h3 { font-size: 1.5rem !important; line-height: 1.75rem !important; }
+    }
+  </style>
+
+  <!-- Hero Section - 暴力视觉冲击 -->
+  <section class="gradient-bg text-white relative overflow-hidden min-h-screen flex items-center">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+    <div class="max-w-4xl mx-auto px-4 py-20 relative z-10 text-center">
+      <!-- 紧急标签 -->
+      <div class="inline-flex items-center px-6 py-3 bg-red-600 rounded-full text-lg font-black mb-6 border-4 border-yellow-400 animate-shake">
+        <span class="mr-2">🔥</span>
+        <span>限时免费！仅剩最后机会！</span>
+      </div>
+
+      <!-- 主标题 -->
+      <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+        <span class="block text-white drop-shadow-2xl">30天资产</span>
+        <span class="block text-yellow-300 mt-2 text-6xl md:text-8xl animate-flash">翻5倍</span>
+        <span class="block text-white text-3xl md:text-5xl mt-4">AI智能投资系统</span>
+      </h1>
+
+      <!-- 数据展示 -->
+      <div class="bg-white/20 backdrop-blur-md rounded-3xl p-8 mb-8 border-4 border-yellow-400 shadow-2xl">
+        <div class="grid grid-cols-3 gap-6 text-center">
+          <div>
+            <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2">{stats.maxReturn}</div>
+            <div class="text-sm md:text-base text-white/90 font-bold">最高收益率</div>
+          </div>
+          <div>
+            <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2">{stats.successRate}</div>
+            <div class="text-sm md:text-base text-white/90 font-bold">成功率</div>
+          </div>
+          <div>
+            <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2">{stats.successCount}</div>
+            <div class="text-sm md:text-base text-white/90 font-bold">成功人数</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 倒计时 -->
+      <div class="bg-red-600 text-white p-6 rounded-2xl mb-8 inline-block border-4 border-yellow-400">
+        <div class="flex items-center justify-center mb-2">
+          <span class="text-2xl mr-2">⏰</span>
+          <span class="text-xl md:text-2xl font-black">限时免费倒计时</span>
+        </div>
+        <div
+          class="text-4xl md:text-5xl font-black text-yellow-300"
+          id="countdown"
+          data-hours={countdown.hours}
+          data-minutes={countdown.minutes}
+          data-seconds={countdown.seconds}
+        >
+          {String(countdown.hours).padStart(2, '0')}:{String(countdown.minutes).padStart(2, '0')}:{String(countdown.seconds).padStart(2, '0')}
+        </div>
+        <div class="text-sm mt-2">今日23:59后恢复原价 ¥99,800/月</div>
+      </div>
+
+      <!-- 主CTA按钮 -->
+      <button
+        class="link-btn w-full max-w-md px-10 py-6 bg-yellow-400 text-red-700 rounded-2xl hover:bg-yellow-300 transition-all duration-300 transform shadow-2xl text-xl md:text-2xl font-black animate-pulse-glow mb-4"
+        onclick="mixinJump()"
+      >
+        <div class="flex items-center justify-center">
+          <Image src={lineIcon} alt="LINE" width={32} height={32} class="mr-3" />
+          <span>立即免费领取AI投资系统</span>
+        </div>
+      </button>
+
+      <div class="text-white/90 mt-6 text-sm md:text-base space-y-1">
+        <p class="font-bold">✅ 完全免费，无需任何费用</p>
+        <p class="font-bold">✅ 注册仅需30秒</p>
+        <p class="font-bold">✅ 随时可以退出，无任何限制</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 为什么选择我们 -->
+  <section class="py-20 px-4 bg-linear-to-b from-purple-50 to-pink-50">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-full text-lg font-black mb-4">
+          <span class="mr-2">💎</span>为什么选择我们？
+        </span>
+        <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+          为什么<span class="text-red-600">AI投资</span>如此强大？
+        </h2>
+        <p class="text-lg md:text-xl text-gray-700 font-bold">人工智能24小时365天，自动分析最佳投资时机</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="bg-white p-8 rounded-3xl shadow-xl border-4 border-purple-300 transform hover:scale-105 transition-all">
+          <div class="w-20 h-20 bg-linear-to-br from-purple-500 to-pink-500 rounded-3xl mx-auto mb-6 flex items-center justify-center text-4xl">
+            📊
+          </div>
+          <h3 class="text-2xl font-black text-center mb-4 text-gray-900">AI预测精度99%</h3>
+          <p class="text-gray-700 text-center leading-relaxed font-medium">机器学习算法分析过去10年数据，精准预测最佳投资时机</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-xl border-4 border-red-300 transform hover:scale-105 transition-all">
+          <div class="w-20 h-20 bg-linear-to-br from-red-500 to-orange-500 rounded-3xl mx-auto mb-6 flex items-center justify-center text-4xl">
+            🛡️
+          </div>
+          <h3 class="text-2xl font-black text-center mb-4 text-gray-900">自动风险控制</h3>
+          <p class="text-gray-700 text-center leading-relaxed font-medium">AI实时监控风险，自动判断最佳买卖时机，保护您的资产</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-xl border-4 border-blue-300 transform hover:scale-105 transition-all">
+          <div class="w-20 h-20 bg-linear-to-br from-blue-500 to-cyan-500 rounded-3xl mx-auto mb-6 flex items-center justify-center text-4xl">
+            ⚡
+          </div>
+          <h3 class="text-2xl font-black text-center mb-4 text-gray-900">自动交易执行</h3>
+          <p class="text-gray-700 text-center leading-relaxed font-medium">达到设定条件自动执行交易，不受情绪影响，理性投资</p>
+        </div>
+      </div>
+
+      <!-- 数据证明 -->
+      <div class="bg-linear-to-r from-red-600 to-purple-600 text-white p-10 rounded-3xl shadow-2xl">
+        <div class="text-center">
+          <h3 class="text-3xl md:text-4xl font-black mb-8">真实数据证明AI投资的威力</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div>
+              <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2">{stats.maxReturn}</div>
+              <div class="text-sm md:text-base">最高收益率</div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2">30天</div>
+              <div class="text-sm md:text-base">平均达成时间</div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2">{stats.successRate}</div>
+              <div class="text-sm md:text-base">成功率</div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2">{stats.successCount}</div>
+              <div class="text-sm md:text-base">成功人数</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 成功案例 -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full text-lg font-black mb-4">
+          <span class="mr-2">👥</span>成功案例
+        </span>
+        <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+          AI投资改变<span class="text-red-600">人生</span>的真实故事
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        {testimonials.map((testimonial: any, index: number) => {
+          const colors = [
+            { bg: 'from-purple-50 to-pink-50', border: 'border-purple-600', avatar: 'bg-purple-600', text: 'text-purple-600' },
+            { bg: 'from-blue-50 to-cyan-50', border: 'border-blue-600', avatar: 'bg-blue-600', text: 'text-blue-600' },
+            { bg: 'from-red-50 to-orange-50', border: 'border-red-600', avatar: 'bg-red-600', text: 'text-red-600' },
+          ]
+          const color = colors[index % colors.length]
+          return (
+            <div class={`bg-linear-to-r ${color.bg} p-8 rounded-3xl border-l-8 ${color.border} shadow-xl`}>
+              <div class="flex items-start mb-4">
+                <div class={`w-20 h-20 ${color.avatar} rounded-full flex items-center justify-center text-white font-black text-3xl mr-6`}>
+                  {testimonial.name.charAt(0)}
+                </div>
+                <div class="flex-1">
+                  <p class="font-black text-gray-900 text-xl mb-2">{testimonial.name}（{testimonial.role}）</p>
+                  <p class={`${color.text} font-black text-lg mb-4`}>
+                    收益：{testimonial.return}（资产{testimonial.multiplier}）- {testimonial.days}天
+                  </p>
+                  <p class="text-gray-700 italic leading-relaxed text-base md:text-lg mb-4">
+                    「{testimonial.content.replace('{name}', name)}」
+                  </p>
+                  <div class="flex items-center text-yellow-500">
+                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
+                    <span class="ml-3 text-gray-600 font-bold">5星好评</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- 最终CTA -->
+  <section class="py-20 px-4 gradient-bg text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-6xl font-black mb-8">
+        您也想用<span class="text-yellow-300">AI投资</span>改变未来吗？
+      </h2>
+
+      <p class="text-xl md:text-2xl mb-8 text-white/95 leading-relaxed font-bold">
+        {name}开发的AI投资系统，让您<span class="text-yellow-300 text-2xl md:text-3xl">30天资产翻5倍</span>成为可能。<br>
+        <span class="text-yellow-300 text-xl md:text-2xl">现在完全免费</span>，立即领取这个革命性的投资系统！
+      </p>
+
+      <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl mb-8 border-4 border-yellow-400 inline-block">
+        <div class="flex items-center justify-center mb-4">
+          <span class="text-3xl mr-3">⏰</span>
+          <p class="text-2xl md:text-3xl font-black text-yellow-300">今日23:59前限时免费</p>
+        </div>
+        <p class="text-base md:text-lg text-white/90">明日恢复原价 ¥99,800/月</p>
+      </div>
+
+      <button
+        class="link-btn inline-flex items-center px-12 py-8 bg-yellow-400 text-red-700 rounded-3xl hover:bg-yellow-300 transition-all duration-300 transform shadow-2xl text-xl md:text-2xl font-black mb-8 animate-pulse-glow"
+        onclick="mixinJump()"
+      >
+        <span class="mr-3 text-2xl">🚀</span>
+        <span>立即免费领取AI投资系统</span>
+      </button>
+
+      <div class="text-center space-y-3">
+        <p class="text-green-300 text-base md:text-lg font-black">✅ 注册人数：{stats.successCount}人已突破</p>
+        <p class="text-yellow-300 text-base md:text-lg font-black">✅ 满意度：99.2%</p>
+        <p class="text-blue-300 text-base md:text-lg font-black">✅ 平均收益率：{stats.maxReturn}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 固定底部CTA按钮 -->
+  <div class="fixed-bottom-cta">
+    <button
+      class="link-btn fixed-cta-btn inline-flex items-center justify-center px-8 py-5 bg-linear-to-r from-red-600 to-purple-600 text-white rounded-3xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 transform shadow-2xl text-lg md:text-xl font-black animate-pulse-glow"
+      onclick="mixinJump()"
+    >
+      <span class="mr-2 text-xl">🚀</span>
+      <span>立即免费领取AI投资系统</span>
+    </button>
+  </div>
+</BaseLayout>
+
+<style>
+  .fixed-bottom-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 16px 24px;
+    padding-top: 40px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  }
+
+  .fixed-cta-btn {
+    width: 100%;
+    max-width: 600px;
+    font-size: 18px;
+    padding: 20px 40px;
+  }
+
+  @media (max-width: 768px) {
+    .fixed-bottom-cta {
+      padding: 12px 16px;
+      padding-top: 30px;
+    }
+    .fixed-cta-btn {
+      font-size: 16px;
+      padding: 18px 24px;
+    }
+  }
+</style>
+
+<script>
+function initCountdown() {
+  const countdownElement = document.getElementById('countdown')
+  if (!countdownElement)
+    return
+
+  // 从 data 属性读取倒计时配置
+  const hours = Number.parseInt(countdownElement.dataset.hours || '2', 10)
+  const minutes = Number.parseInt(countdownElement.dataset.minutes || '15', 10)
+  const seconds = Number.parseInt(countdownElement.dataset.seconds || '30', 10)
+
+  const storageKey = `countdown_start_time_${hours}_${minutes}_${seconds}`
+  let startTime: number
+  const stored = localStorage.getItem(storageKey)
+
+  if (!stored) {
+    startTime = new Date().getTime()
+    localStorage.setItem(storageKey, startTime.toString())
+  }
+  else {
+    startTime = Number.parseInt(stored, 10)
+  }
+
+  // 从配置中读取倒计时时间
+  const countdownDuration = (hours * 3600 + minutes * 60 + seconds) * 1000
+  const endTime = startTime + countdownDuration
+
+  function updateCountdown() {
+    const now = new Date().getTime()
+    const distance = endTime - now
+
+    if (distance < 0) {
+      const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer')
+      countdownElements.forEach((element) => {
+        element.innerHTML = '00:00:00'
+      })
+      return
+    }
+
+    const hoursLeft = Math.floor(distance / (1000 * 60 * 60))
+    const minutesLeft = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+    const secondsLeft = Math.floor((distance % (1000 * 60)) / 1000)
+
+    const timeString = `${hoursLeft.toString().padStart(2, '0')}:${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`
+
+    const countdownElements = document.querySelectorAll('[id="countdown"], .countdown-timer')
+    countdownElements.forEach((element) => {
+      element.innerHTML = timeString
+    })
+  }
+
+  setInterval(updateCountdown, 1000)
+  updateCountdown()
+}
+
+initCountdown()
+</script>

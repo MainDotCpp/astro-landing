@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="知識共有と学習交流プラットフォーム。純粋な教育コンテンツを提供し、情報交換と学習成長を促進します"
+    />
+    <meta name="keywords" content="知識共有,学習交流,情報整理,教育コンテンツ,学習コミュニティ" />
+    <title>知識共有と学習交流プラットフォーム</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #2563eb;
+        --primary-dark: #1e40af;
+        --secondary-color: #64748b;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --background: #ffffff;
+        --background-alt: #f8fafc;
+        --border-color: #e2e8f0;
+        --success-color: #059669;
+        --radius-sm: 0.5rem;
+        --radius-md: 0.75rem;
+        --radius-lg: 1rem;
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic',
+          'Meiryo', sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background: var(--background);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Header */
+      header {
+        background: var(--background);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--primary-color);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, var(--background-alt) 0%, var(--background) 100%);
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 4rem 0;
+        background: var(--background);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 3rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .feature-card {
+        background: var(--background);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--background-alt);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .feature-card p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      /* Content Section */
+      .content-section {
+        padding: 4rem 0;
+        background: var(--background-alt);
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .content-card {
+        background: var(--background);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .content-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+
+      .content-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .content-card li {
+        padding: 0.5rem 0;
+        color: var(--text-secondary);
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .content-card li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--success-color);
+        font-weight: 700;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 4rem 0;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        color: white;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .cta-section p {
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.875rem 2rem;
+        background: white;
+        color: var(--primary-color);
+        text-decoration: none;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--text-primary);
+        color: white;
+        padding: 3rem 0 1.5rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-section a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 1.5rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.875rem;
+      }
+
+      /* Disclaimer */
+      .disclaimer {
+        background: var(--background-alt);
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        margin: 2rem 0;
+        border-left: 4px solid var(--primary-color);
+      }
+
+      .disclaimer h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+      }
+
+      .disclaimer p {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        line-height: 1.6;
+      }
+
+      /* Stats Section */
+      .stats-section {
+        padding: 4rem 0;
+        background: var(--background);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .stat-card {
+        text-align: center;
+        padding: 2rem;
+        background: var(--background-alt);
+        border-radius: var(--radius-lg);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 1rem;
+      }
+
+      /* Testimonials Section */
+      .testimonials-section {
+        padding: 4rem 0;
+        background: var(--background-alt);
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .testimonial-card {
+        background: var(--background);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .testimonial-text {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--background-alt);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .testimonial-info h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .testimonial-info p {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        padding: 4rem 0;
+        background: var(--background);
+      }
+
+      .faq-item {
+        background: var(--background);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .faq-question {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+      }
+
+      .faq-answer {
+        color: var(--text-secondary);
+        line-height: 1.8;
+      }
+
+      /* Activities Section */
+      .activities-section {
+        padding: 4rem 0;
+        background: var(--background-alt);
+      }
+
+      .activity-list {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .activity-item {
+        background: var(--background);
+        border-left: 4px solid var(--primary-color);
+        border-radius: var(--radius-md);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .activity-date {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+      }
+
+      .activity-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .activity-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1.125rem;
+        }
+
+        nav ul {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .features-grid,
+        .content-grid,
+        .testimonials-grid,
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">知識共有プラットフォーム</div>
+          <nav>
+            <ul>
+              <li><a href="#features">機能紹介</a></li>
+              <li><a href="#stats">コミュニティ統計</a></li>
+              <li><a href="#content">コンテンツ紹介</a></li>
+              <li><a href="#testimonials">利用者の声</a></li>
+              <li><a href="#faq">よくある質問</a></li>
+              <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>知識共有と学習交流プラットフォーム</h1>
+          <p>
+            純粋な教育コンテンツの共有に特化し、情報交換と学習成長を促進します。2019年に設立され、現在15,000人以上の学習者が参加する活発なコミュニティです。
+          </p>
+        </div>
+      </section>
+
+      <section id="stats" class="stats-section">
+        <div class="container">
+          <h2 class="section-title">コミュニティ統計</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">15,000+</div>
+              <div class="stat-label">登録メンバー</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">8,500+</div>
+              <div class="stat-label">共有記事数</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2,300+</div>
+              <div class="stat-label">学習トピック</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">180+</div>
+              <div class="stat-label">月間イベント</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="container">
+          <h2 class="section-title">プラットフォームの特徴</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">📚</div>
+              <h3>純粋な教育コンテンツ</h3>
+              <p>
+                知識共有と学習交流に特化し、純粋な教育性質のコンテンツを提供します。商業、金融、投資関連の内容は一切含まれません。毎週平均150本以上の教育記事が投稿されています。
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🤝</div>
+              <h3>活発な情報交換</h3>
+              <p>
+                学習者間の情報交換と知識共有を促進し、積極的な学習コミュニティの雰囲気を構築します。毎日平均200件以上のコメントと質問が投稿されています。
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📖</div>
+              <h3>豊富な学習リソース</h3>
+              <p>
+                価値のある学習リソースを整理・共有し、学習者がより効果的に知識と情報を取得できるよう支援します。2,300以上のトピックカテゴリーから検索可能です。
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3>個人の学習成長支援</h3>
+              <p>
+                学習者の個人成長と発展をサポートし、継続的な学習支援とリソースを提供します。個別の学習計画作成や進捗管理機能も利用できます。
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">💡</div>
+              <h3>体系的な知識整理</h3>
+              <p>
+                様々な知識情報を体系的に整理し、学習者が関連コンテンツを簡単に検索・学習できるようにします。専門家による定期的な情報の検証と更新を行っています。
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🌱</div>
+              <h3>継続的な更新</h3>
+              <p>
+                学習コンテンツとリソースを定期的に更新し、情報の時効性と正確性を確保します。毎週月曜日に新着コンテンツの通知を配信しています。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="content" class="content-section">
+        <div class="container">
+          <h2 class="section-title">コンテンツ紹介</h2>
+          <div class="content-grid">
+            <div class="content-card">
+              <h3>知識共有</h3>
+              <ul>
+                <li>純粋な教育性質の知識コンテンツ共有（言語学、歴史、科学、文学など）</li>
+                <li>学習の心得と経験の交流（学習方法、時間管理、モチベーション維持など）</li>
+                <li>情報整理とリソースのまとめ（参考資料、書籍レビュー、学習ツールなど）</li>
+                <li>学習方法の議論と共有（効率的な学習テクニック、記憶法、読書法など）</li>
+                <li>専門分野の深い解説（各分野の専門家による詳細な説明）</li>
+                <li>学習成果の発表とフィードバック（プロジェクト発表、論文レビューなど）</li>
+              </ul>
+            </div>
+            <div class="content-card">
+              <h3>学習交流</h3>
+              <ul>
+                <li>学習者間の活発なインタラクティブな交流（ディスカッション、意見交換）</li>
+                <li>学習問題の議論と解答（質問フォーラム、専門家による回答）</li>
+                <li>学習リソースの推薦と共有（おすすめ書籍、オンラインコース、学習アプリなど）</li>
+                <li>学習コミュニティの構築と維持（勉強会、読書会、オンラインセミナーなど）</li>
+                <li>学習グループの形成（同じ興味を持つ学習者同士のグループ作成）</li>
+                <li>メンターシッププログラム（経験豊富な学習者による指導）</li>
+              </ul>
+            </div>
+            <div class="content-card">
+              <h3>情報整理</h3>
+              <ul>
+                <li>様々な学習情報の体系的整理（カテゴリー別、難易度別、分野別）</li>
+                <li>知識ポイントのまとめと要約（重要概念の整理、要点の抽出）</li>
+                <li>学習資料の分類管理（タグ付け、検索機能、お気に入り機能）</li>
+                <li>情報の正確性と時効性の保証（専門家による検証、定期的な更新）</li>
+                <li>学習進捗の追跡（個人の学習履歴、達成度の可視化）</li>
+                <li>学習リソースの評価システム（ユーザーレビュー、評価ランキング）</li>
+              </ul>
+            </div>
+          </div>
+
+          <section id="activities" class="activities-section">
+            <div class="container">
+              <h2 class="section-title">最近の活動</h2>
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-date">2024年12月15日</div>
+                  <div class="activity-title">月例読書会「学習方法の科学」</div>
+                  <div class="activity-description">
+                    45名の参加者が集まり、効果的な学習方法について深く議論しました。専門家による講演と参加者間の活発な意見交換が行われました。
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-date">2024年12月10日</div>
+                  <div class="activity-title">新規コンテンツ追加：言語学習セクション</div>
+                  <div class="activity-description">
+                    言語学習に関する新しいセクションを追加しました。120本以上の記事と学習リソースが利用可能です。
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-date">2024年12月5日</div>
+                  <div class="activity-title">オンラインセミナー「情報整理の技術」</div>
+                  <div class="activity-description">
+                    180名が参加したオンラインセミナーを開催しました。効果的な情報整理と知識管理の方法について学びました。
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-date">2024年11月28日</div>
+                  <div class="activity-title">コミュニティメンバー15,000人達成</div>
+                  <div class="activity-description">
+                    プラットフォームの登録メンバーが15,000人を突破しました。感謝の気持ちを込めて、特別なイベントを開催しました。
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="disclaimer">
+            <h3>重要な免責事項</h3>
+            <p>
+              本プラットフォームは純粋な知識共有と学習交流に特化し、純粋な教育性質のコンテンツを提供しています。本プラットフォームは商業、金融、投資関連の内容を一切含みません。投資アドバイス、金融商品の推奨、または商業的な推奨は一切提供しません。すべてのコンテンツは学習と情報交換の目的のみに使用され、いかなる形式のアドバイスや推奨を構成するものではありません。利用者は自己の判断に基づいて本プラットフォームが提供する情報を使用する必要があり、本プラットフォームは利用結果について一切の責任を負いません。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="testimonials-section">
+        <div class="container">
+          <h2 class="section-title">利用者の声</h2>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                「このプラットフォームで多くの学習者と出会い、知識を共有できるようになりました。特に言語学習のセクションが非常に役立っています。専門家による質の高いコンテンツと、活発なコミュニティの雰囲気が素晴らしいです。」
+              </div>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">👤</div>
+                <div class="testimonial-info">
+                  <h4>田中 美咲</h4>
+                  <p>大学院生、言語学専攻</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                「情報整理のセクションで学んだ方法を実践したところ、学習効率が大幅に向上しました。コミュニティメンバーからのフィードバックも非常に参考になり、継続的に学習を続けるモチベーションになっています。」
+              </div>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">👤</div>
+                <div class="testimonial-info">
+                  <h4>佐藤 健太</h4>
+                  <p>会社員、自己啓発学習中</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                「読書会やオンラインセミナーに参加して、同じ興味を持つ学習者と深く交流できました。純粋に教育に焦点を当てた環境で、安心して学習に集中できるのが最大の魅力です。」
+              </div>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">👤</div>
+                <div class="testimonial-info">
+                  <h4>鈴木 花子</h4>
+                  <p>フリーランス、歴史研究</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                「学習リソースが豊富で、特に科学分野のコンテンツが充実しています。専門家による解説がわかりやすく、初心者でも理解しやすい構成になっています。定期的に更新されるので、常に新しい情報を得られます。」
+              </div>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">👤</div>
+                <div class="testimonial-info">
+                  <h4>山田 太郎</h4>
+                  <p>高校教師、科学教育</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                「メンターシッププログラムに参加し、経験豊富な学習者から多くのことを学びました。個人の学習計画作成機能も非常に便利で、自分のペースで学習を進められています。」
+              </div>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">👤</div>
+                <div class="testimonial-info">
+                  <h4>高橋 さくら</h4>
+                  <p>大学生、文学専攻</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                「コミュニティの雰囲気が非常に温かく、質問しやすい環境です。専門家による迅速な回答と、他のメンバーからの多様な視点が得られるのが素晴らしいです。学習の継続性が大幅に向上しました。」
+              </div>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">👤</div>
+                <div class="testimonial-info">
+                  <h4>伊藤 大輔</h4>
+                  <p>社会人、継続学習中</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="faq-section">
+        <div class="container">
+          <h2 class="section-title">よくある質問</h2>
+          <div class="faq-item">
+            <div class="faq-question">Q1. プラットフォームの利用は無料ですか？</div>
+            <div class="faq-answer">
+              A.
+              はい、基本的な機能はすべて無料でご利用いただけます。知識共有、学習交流、情報整理などの主要機能を無料でお楽しみいただけます。一部の高度な機能や特別なイベントには有料オプションもありますが、基本的な学習活動には無料でアクセスできます。
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Q2. どのような学習トピックが扱われていますか？</div>
+            <div class="faq-answer">
+              A.
+              言語学、歴史、科学、文学、哲学、心理学、教育学など、幅広い教育分野のトピックが扱われています。現在2,300以上のトピックカテゴリーがあり、専門家による質の高いコンテンツが提供されています。商業、金融、投資関連の内容は一切含まれません。
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Q3. どのようにコンテンツを共有できますか？</div>
+            <div class="faq-answer">
+              A.
+              登録後、記事投稿機能から知識や学習経験を共有できます。投稿前にガイドラインを確認し、純粋な教育コンテンツであることを確認してください。専門家によるレビューを経て、適切なコンテンツが公開されます。
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Q4. 学習グループやコミュニティに参加するにはどうすればよいですか？</div>
+            <div class="faq-answer">
+              A.
+              プラットフォーム内のコミュニティセクションから、興味のある学習グループを検索して参加できます。読書会、勉強会、オンラインセミナーなどのイベントにも参加できます。毎月平均180以上のイベントが開催されています。
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Q5. 専門家による質問への回答はどのくらいの時間で得られますか？</div>
+            <div class="faq-answer">
+              A.
+              一般的に、質問への回答は24時間以内に提供されます。複雑な質問の場合は、最大72時間かかる場合があります。コミュニティメンバーからの回答も得られるため、迅速なフィードバックが期待できます。
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Q6. プラットフォームは投資や金融に関する情報を提供しますか？</div>
+            <div class="faq-answer">
+              A.
+              いいえ、本プラットフォームは純粋な教育コンテンツのみを提供し、商業、金融、投資関連の内容は一切含まれません。投資アドバイス、金融商品の推奨、または商業的な推奨は一切提供しません。すべてのコンテンツは学習と情報交換の目的のみに使用されます。
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Q7. 個人情報の取り扱いについて教えてください。</div>
+            <div class="faq-answer">
+              A.
+              プライバシーポリシーに従い、お客様の個人情報を適切に保護しています。登録情報は学習活動の改善とコミュニティ管理の目的のみに使用され、第三者に提供されることはありません。詳細はプライバシーポリシーページをご確認ください。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="container">
+          <h2>学習コミュニティに参加しましょう</h2>
+          <p>15,000人以上の学習者と共に知識を共有し、共に成長しましょう</p>
+          <a href="#contact" class="btn">今すぐ参加する</a>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>プラットフォームについて</h4>
+            <ul>
+              <li><a href="#features">機能紹介</a></li>
+              <li><a href="#content">コンテンツ説明</a></li>
+              <li><a href="#stats">コミュニティ統計</a></li>
+              <li><a href="#activities">最近の活動</a></li>
+              <li><a href="#disclaimer">免責事項</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>お問い合わせ</h4>
+            <ul>
+              <li>メールアドレス：info@knowledge-sharing.jp</li>
+              <li>サポートメール：support@knowledge-sharing.jp</li>
+              <li>営業時間：平日 10:00-18:00（日本時間）</li>
+              <li>所在地：東京都渋谷区（詳細はメールでお問い合わせください）</li>
+              <li>電話：03-XXXX-XXXX（メールでのお問い合わせを推奨）</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>法的情報</h4>
+            <ul>
+              <li><a href="#privacy">プライバシーポリシー</a></li>
+              <li><a href="#terms">利用規約</a></li>
+              <li><a href="#disclaimer">免責事項</a></li>
+              <li><a href="#guidelines">コミュニティガイドライン</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>その他</h4>
+            <ul>
+              <li><a href="#faq">よくある質問</a></li>
+              <li><a href="#testimonials">利用者の声</a></li>
+              <li>運営会社：知識共有株式会社</li>
+              <li>設立：2019年4月</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 知識共有プラットフォーム. すべての権利を保有します.
+            本プラットフォームは純粋な教育コンテンツのみを提供し、商業、金融、投資関連の内容は一切含みません.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 平滑滚动
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
+          const target = document.querySelector(this.getAttribute('href'))
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            })
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

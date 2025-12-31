@@ -220,7 +220,7 @@ const c = {
     ],
   },
   安迪李: {
-    name: 'Andy Lee',
+    name: '안디 이',
     versions: [
       { static_prefix: 'aly0_', version: 0, sockal_type: KAKAO_ONLY },
     ],
