@@ -1,0 +1,387 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '投資經驗問卷'
+const description = '加入WhatsApp群組獲得投資秘籍'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </Fragment>
+
+  <div class="landing-page">
+    <div class="container">
+      <form class="form-container" id="investmentForm">
+        <!-- 第一个问题 -->
+        <div class="question-block">
+          <h2 class="question-title">你有冇投資經驗？</h2>
+          <div class="options-group">
+            <label class="option-item">
+              <input type="radio" name="experience" value="experienced" class="radio-input" />
+              <span class="radio-custom"></span>
+              <span class="option-text">有，經驗豐富</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="experience" value="none" class="radio-input" />
+              <span class="radio-custom"></span>
+              <span class="option-text">冇</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 第二个问题 -->
+        <div class="question-block">
+          <h2 class="question-title">加入WhatsApp群組獲得投資秘籍</h2>
+          <div class="options-group">
+            <label class="option-item">
+              <input type="radio" name="whatsapp" value="join" class="radio-input" />
+              <span class="radio-custom"></span>
+              <span class="option-text">我想加入</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="whatsapp" value="no-thanks" class="radio-input" />
+              <span class="radio-custom"></span>
+              <span class="option-text">唔想加入,多謝</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- CTA按钮 -->
+        <button type="submit" class="cta-button link-btn">
+          <span class="button-text">領取高息股</span>
+          <span class="button-arrow">→</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .landing-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    position: relative;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 540px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-container {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .question-block {
+    margin-bottom: 3rem;
+  }
+
+  .question-block:last-of-type {
+    margin-bottom: 2.5rem;
+  }
+
+  .question-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  .options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1.75rem;
+    background: #f8fafc;
+    border: 3px solid #cbd5e1;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .option-item:hover {
+    border-color: #2563eb;
+    background: #eff6ff;
+  }
+
+  .option-item.selected,
+  .option-item:has(.radio-input:checked) {
+    background: #2563eb;
+    border-color: #2563eb;
+  }
+
+  .option-item.selected .option-text,
+  .option-item:has(.radio-input:checked) .option-text {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .option-item.selected .radio-custom,
+  .option-item:has(.radio-input:checked) .radio-custom {
+    border-color: #ffffff;
+    background: #ffffff;
+  }
+
+  .option-item.selected .radio-custom::after,
+  .option-item:has(.radio-input:checked) .radio-custom::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    background: #2563eb;
+  }
+
+  .radio-input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+  }
+
+  .radio-custom {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border: 3px solid #2563eb;
+    border-radius: 50%;
+    margin-right: 1.25rem;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #2563eb;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+
+  .option-text {
+    font-size: 1.25rem;
+    color: #1e293b;
+    font-weight: 500;
+    flex: 1;
+    user-select: none;
+    transition: color 0.2s ease;
+    line-height: 1.5;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 1.75rem 2rem;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 1.375rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+
+  .cta-button:hover {
+    background: #1e40af;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+  }
+
+  .cta-button:active {
+    background: #1e3a8a;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  }
+
+  .button-text {
+    letter-spacing: 0.02em;
+  }
+
+  .button-arrow {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  @media (max-width: 640px) {
+    .form-container {
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+    }
+
+    .question-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .option-item {
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+    }
+
+    .option-text {
+      font-size: 1.125rem;
+    }
+
+    .cta-button {
+      font-size: 1.25rem;
+      padding: 1.5rem 1.75rem;
+      border-radius: 10px;
+    }
+
+    .radio-custom {
+      width: 26px;
+      height: 26px;
+      min-width: 26px;
+      margin-right: 1rem;
+    }
+
+    .radio-custom::after {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .landing-page {
+      padding: 1.5rem 1rem;
+    }
+
+    .form-container {
+      padding: 2rem 1.5rem;
+    }
+
+    .question-title {
+      font-size: 1.375rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .question-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .option-item {
+      padding: 1.125rem 1.25rem;
+    }
+
+    .option-text {
+      font-size: 1.0625rem;
+    }
+
+    .cta-button {
+      font-size: 1.125rem;
+      padding: 1.375rem 1.5rem;
+    }
+
+    .radio-custom {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      margin-right: 0.875rem;
+    }
+
+    .radio-custom::after {
+      width: 10px;
+      height: 10px;
+    }
+  }
+</style>
+
+<script>
+const form = document.getElementById('investmentForm') as HTMLFormElement
+
+if (form) {
+  // 确保单选按钮状态正确显示
+  const radioInputs = form.querySelectorAll('.radio-input') as NodeListOf<HTMLInputElement>
+
+  radioInputs.forEach((radio) => {
+    // 初始化时检查选中状态
+    if (radio.checked) {
+      radio.dispatchEvent(new Event('change'))
+    }
+
+    // 监听变化
+    radio.addEventListener('change', function () {
+      // 移除同组其他选项的选中状态
+      const sameNameRadios = form.querySelectorAll(`input[name="${this.name}"]`) as NodeListOf<HTMLInputElement>
+      sameNameRadios.forEach((r) => {
+        const item = r.closest('.option-item') as HTMLElement
+        if (item) {
+          item.classList.remove('selected')
+        }
+      })
+
+      // 添加当前选项的选中状态
+      const currentItem = this.closest('.option-item') as HTMLElement
+      if (currentItem) {
+        currentItem.classList.add('selected')
+      }
+    })
+  })
+
+  // 点击整个选项项时也选中单选按钮
+  const optionItems = form.querySelectorAll('.option-item') as NodeListOf<HTMLElement>
+  optionItems.forEach((item) => {
+    item.addEventListener('click', function (e) {
+      const radio = this.querySelector('.radio-input') as HTMLInputElement
+      if (radio && e.target !== radio) {
+        radio.checked = true
+        radio.dispatchEvent(new Event('change'))
+      }
+    })
+  })
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const formData = new FormData(form)
+    const _experience = formData.get('experience')
+    const _whatsapp = formData.get('whatsapp')
+
+    // 这里可以添加表单提交逻辑
+    // 可以在这里添加跳转逻辑或API调用
+    // window.location.href = 'your-redirect-url';
+  })
+}
+</script>
+

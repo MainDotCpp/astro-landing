@@ -1,0 +1,712 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Stock Analysis | Premium Investment Insights</title>
+    <link rel="stylesheet" href="static/css/all.min.css" />
+    <link href="static/css/css2.css" rel="stylesheet" />
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    <script>
+      const onLinkBtnClick = () => {
+        const link = 'https://www.baidu.com'
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion(link)
+        } else {
+          window.location.href = link
+        }
+      }
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Exo 2', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0a0f2b, #101a40, #1a2a6c);
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* AI主题动态背景 */
+      #ai-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* 主容器 */
+      .container {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(10, 15, 35, 0.85);
+        border-radius: 20px;
+        padding: 35px 30px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(64, 224, 208, 0.2);
+        margin: 20px 0;
+      }
+
+      /* 头部区域 */
+      .header {
+        margin-bottom: 25px;
+        animation: fadeInDown 0.8s ease;
+      }
+
+      .logo {
+        font-size: 26px;
+        margin-bottom: 15px;
+        color: #40e0d0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .ai-tag {
+        background: rgba(64, 224, 208, 0.2);
+        color: #40e0d0;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        border: 1px solid rgba(64, 224, 208, 0.3);
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 12px;
+        color: #40e0d0;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        font-size: 18px;
+        color: #a0b3e6;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        font-weight: 300;
+      }
+
+      /* 表单区域 - 上移到顶部 */
+      .diagnose-form {
+        margin: 0 0 20px 0;
+        animation: fadeIn 1s ease;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        text-align: center;
+        margin-bottom: 12px;
+        font-weight: 500;
+        color: #a0b3e6;
+        font-size: 17px;
+      }
+
+      .input-container {
+        position: relative;
+      }
+
+      .input-container i {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #40e0d0;
+        font-size: 22px;
+      }
+
+      input[type='text'] {
+        width: 100%;
+        padding: 20px 20px 20px 60px;
+        border: 2px solid rgba(64, 224, 208, 0.3);
+        border-radius: 15px;
+        background: rgba(10, 18, 40, 0.6);
+        color: white;
+        font-size: 18px;
+        transition: all 0.3s ease;
+      }
+
+      input[type='text']:focus {
+        border-color: #40e0d0;
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(64, 224, 208, 0.2);
+      }
+
+      input::placeholder {
+        color: #6a7caa;
+        font-size: 16px;
+      }
+
+      button {
+        width: 100%;
+        padding: 20px;
+        background: #2193b0;
+        border: none;
+        border-radius: 15px;
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        position: relative;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background: #1c7d96;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(33, 147, 176, 0.4);
+      }
+
+      /* 进度条容器 */
+      .progress-container {
+        width: 100%;
+        height: 6px;
+        background: rgba(64, 224, 208, 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-top: 20px;
+        display: none;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #00dbde, #40e0d0);
+        border-radius: 3px;
+        transition: width 0.3s ease;
+      }
+
+      /* 报告准备就绪按钮 */
+      .report-ready {
+        display: none;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to right, #00c853, #64dd17);
+        border: none;
+        border-radius: 15px;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        animation: pulse 2s infinite;
+        text-align: center;
+      }
+
+      .report-ready:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(100, 221, 23, 0.5);
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(100, 221, 23, 0.4);
+        }
+
+        70% {
+          box-shadow: 0 0 0 12px rgba(100, 221, 23, 0);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgba(100, 221, 23, 0);
+        }
+      }
+
+      /* 热门股票区块 */
+      .popular-stocks {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 25px 0 30px;
+        animation: fadeIn 0.8s ease;
+      }
+
+      .stock-tag {
+        padding: 12px 20px;
+        background: rgba(32, 46, 92, 0.4);
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(64, 224, 208, 0.2);
+        flex: 1;
+        min-width: calc(50% - 20px);
+        max-width: calc(50% - 20px);
+        justify-content: center;
+      }
+
+      .stock-tag:hover {
+        background: rgba(64, 224, 208, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(64, 224, 208, 0.2);
+      }
+
+      /* 功能区域 */
+      .features {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 30px 0;
+        gap: 15px;
+        animation: fadeInUp 0.8s ease;
+      }
+
+      .feature {
+        width: calc(50% - 15px);
+        padding: 25px 10px;
+        background: rgba(32, 46, 92, 0.4);
+        border-radius: 15px;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(64, 224, 208, 0.2);
+      }
+
+      .feature:hover {
+        transform: translateY(-8px);
+        background: rgba(32, 46, 92, 0.6);
+        box-shadow: 0 10px 25px rgba(64, 224, 208, 0.2);
+      }
+
+      .feature i {
+        font-size: 36px;
+        margin-bottom: 15px;
+        color: #40e0d0;
+      }
+
+      .feature h3 {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      /* 免责声明 */
+      .disclaimer {
+        margin-top: 35px;
+        padding: 20px;
+        background: rgba(10, 18, 40, 0.5);
+        border-radius: 15px;
+        font-size: 14px;
+        color: #8a9bc1;
+        line-height: 1.6;
+        text-align: left;
+        border: 1px solid rgba(64, 224, 208, 0.1);
+      }
+
+      .footer {
+        margin-top: 25px;
+        font-size: 14px;
+        color: #8a9bc1;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* 动画效果 */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 移动端优化 */
+      @media (max-width: 480px) {
+        .container {
+          padding: 25px 20px;
+          border-radius: 18px;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        .subtitle {
+          font-size: 16px;
+        }
+
+        .feature {
+          width: calc(50% - 10px);
+          padding: 20px 5px;
+        }
+
+        .feature i {
+          font-size: 30px;
+        }
+
+        input[type='text'] {
+          padding: 16px 16px 16px 50px;
+          font-size: 16px;
+        }
+
+        button,
+        .report-ready {
+          padding: 18px;
+          font-size: 18px;
+        }
+
+        .stock-tag {
+          padding: 10px 12px;
+          font-size: 14px;
+          min-width: calc(50% - 10px);
+          max-width: calc(50% - 10px);
+        }
+
+        .popular-stocks {
+          gap: 10px;
+          margin: 20px 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- AI主题动态背景 -->
+    <canvas id="ai-background" width="400" height="858"></canvas>
+
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <i class="fas fa-brain"></i>
+          AI STOCK ANALYZER
+          <span class="ai-tag">AI-POWERED</span>
+        </div>
+        <h1>Intelligent Stock Analysis</h1>
+        <p class="subtitle">
+          Leverage artificial intelligence to get deep insights, predictive analytics, and investment recommendations
+          for any stock
+        </p>
+      </div>
+
+      <!-- 表单区域上移到顶部 -->
+      <div class="diagnose-form">
+        <form id="stockForm">
+          <div class="form-group">
+            <label for="stockCode"><i class="fas fa-terminal"></i> Enter US Stock Symbol</label>
+            <div class="input-container">
+              <i class="fas fa-search"></i>
+              <input type="text" id="stockCode" placeholder="e.g. AAPL, TSLA, MSFT" required="" />
+            </div>
+          </div>
+          <button type="submit" id="analyzeBtn"><i class="fas fa-stethoscope"></i> Analyze Stocks Now</button>
+        </form>
+
+        <!-- 进度条 -->
+        <div class="progress-container" id="progressContainer">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- 分析完成后的报告按钮 -->
+        <button class="report-ready" id="reportBtn">
+          <i class="fas fa-file-alt"></i> Stock Analysis Report is Ready <br />Get reports via WHATSAPP
+        </button>
+      </div>
+
+      <!-- 热门股票区块 - 上移到表单下方 -->
+      <div class="popular-stocks">
+        <div class="stock-tag" data-code="AAPL"><i class="fab fa-apple"></i> Apple (AAPL)</div>
+        <div class="stock-tag" data-code="MSFT"><i class="fab fa-microsoft"></i> Microsoft (MSFT)</div>
+        <div class="stock-tag" data-code="TSLA"><i class="fas fa-bolt"></i> Tesla (TSLA)</div>
+        <div class="stock-tag" data-code="AMZN"><i class="fab fa-amazon"></i> Amazon (AMZN)</div>
+        <div class="stock-tag" data-code="GOOGL"><i class="fab fa-google"></i> Google (GOOGL)</div>
+        <div class="stock-tag" data-code="NFLX"><i class="fas fa-film"></i> Netflix (NFLX)</div>
+      </div>
+
+      <div class="features">
+        <div
+          class="feature"
+          onclick="
+            javascript: {
+              onLinkBtnClick()
+            }
+          "
+        >
+          <i class="fas fa-robot"></i>
+          <h3>AI Predictions</h3>
+        </div>
+        <div
+          class="feature"
+          onclick="
+            javascript: {
+              onLinkBtnClick()
+            }
+          "
+        >
+          <i class="fas fa-microchip"></i>
+          <h3>Neural Network</h3>
+        </div>
+        <div
+          class="feature"
+          onclick="
+            javascript: {
+              onLinkBtnClick()
+            }
+          "
+        >
+          <i class="fas fa-bullseye"></i>
+          <h3>Price Targets</h3>
+        </div>
+        <div
+          class="feature"
+          onclick="
+            javascript: {
+              onLinkBtnClick()
+            }
+          "
+        >
+          <i class="fas fa-bolt"></i>
+          <h3>Real-time Data</h3>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <p>
+          <strong>AI Analysis Disclaimer:</strong> Our AI-powered stock analysis uses advanced machine learning
+          algorithms to process market data. While we strive for accuracy, predictions are probabilistic in nature and
+          should not be considered financial advice. Always conduct your own research and consult with a financial
+          advisor before making investment decisions.
+        </p>
+      </div>
+
+      <div class="footer">
+        <div>© 2026 AI Stock Analyzer</div>
+        <div><i class="fas fa-shield-alt"></i> Secure &amp; Encrypted</div>
+      </div>
+    </div>
+
+    <script>
+      // AI主题动态背景
+      const canvas = document.getElementById('ai-background')
+      const ctx = canvas.getContext('2d')
+
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+
+      // 粒子数组
+      const particles = []
+      const particleCount = 80
+
+      // 粒子类
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width
+          this.y = Math.random() * canvas.height
+          this.size = Math.random() * 2 + 1
+          this.speedX = (Math.random() - 0.5) * 0.3
+          this.speedY = (Math.random() - 0.5) * 0.3
+          this.color = `rgba(64, 224, 208, ${Math.random() * 0.4 + 0.1})`
+        }
+
+        update() {
+          this.x += this.speedX
+          this.y += this.speedY
+
+          // 边界检查
+          if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX
+          if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY
+        }
+
+        draw() {
+          ctx.fillStyle = this.color
+          ctx.beginPath()
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+          ctx.fill()
+        }
+      }
+
+      // 创建粒子
+      function createParticles() {
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle())
+        }
+      }
+
+      // 动画循环
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        // 更新和绘制粒子
+        particles.forEach((particle) => {
+          particle.update()
+          particle.draw()
+        })
+
+        // 添加网格效果
+        ctx.strokeStyle = 'rgba(64, 224, 208, 0.05)'
+        ctx.lineWidth = 0.5
+
+        // 水平线
+        for (let y = 0; y < canvas.height; y += 30) {
+          ctx.beginPath()
+          ctx.moveTo(0, y)
+          ctx.lineTo(canvas.width, y)
+          ctx.stroke()
+        }
+
+        // 垂直线
+        for (let x = 0; x < canvas.width; x += 30) {
+          ctx.beginPath()
+          ctx.moveTo(x, 0)
+          ctx.lineTo(x, canvas.height)
+          ctx.stroke()
+        }
+
+        requestAnimationFrame(animate)
+      }
+
+      // 窗口调整大小处理
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      })
+
+      // 进度条时间配置（单位：毫秒）
+      // 在宝塔面板中，您只需修改下面这个数值即可调整进度条时间
+      const PROGRESS_TIME = 2000 // 2秒（2000毫秒）
+
+      // 目标URL - 替换为您的实际URL
+
+      document.getElementById('reportBtn').addEventListener('click', function () {
+        onLinkBtnClick()
+      })
+
+      // 表单提交处理
+      document.getElementById('stockForm').addEventListener('submit', function (e) {
+        e.preventDefault()
+        const stockCode = document.getElementById('stockCode').value.trim().toUpperCase()
+
+        if (stockCode) {
+          const button = document.getElementById('analyzeBtn')
+          const progressContainer = document.getElementById('progressContainer')
+          const progressBar = document.getElementById('progressBar')
+          const reportBtn = document.getElementById('reportBtn')
+
+          // 显示进度条，隐藏按钮
+          button.style.display = 'none'
+          progressContainer.style.display = 'block'
+
+          // 重置进度条
+          progressBar.style.width = '0'
+
+          // 触发重绘
+          void progressBar.offsetWidth
+
+          // 开始进度条动画
+          progressBar.style.width = '100%'
+          progressBar.style.transition = `width ${PROGRESS_TIME}ms linear`
+
+          // 显示分析中的文本
+          const analyzingText = document.createElement('div')
+          analyzingText.textContent = 'Analyzing stock with AI...'
+          analyzingText.style.color = '#40e0d0'
+          analyzingText.style.marginTop = '15px'
+          analyzingText.style.fontWeight = '500'
+          progressContainer.parentNode.insertBefore(analyzingText, progressContainer.nextSibling)
+
+          // 模拟分析过程
+          setTimeout(() => {
+            // 隐藏进度条和分析文本
+            progressContainer.style.display = 'none'
+            analyzingText.style.display = 'none'
+
+            // 显示报告按钮
+            reportBtn.style.display = 'block'
+          }, PROGRESS_TIME)
+        } else {
+          alert('Please enter a stock symbol')
+        }
+      })
+
+      // 热门股票标签点击事件
+      document.querySelectorAll('.stock-tag').forEach((tag) => {
+        tag.addEventListener('click', function () {
+          const code = this.getAttribute('data-code')
+          document.getElementById('stockCode').value = code
+
+          // 添加视觉反馈
+          this.style.transform = 'scale(0.95)'
+          this.style.boxShadow = '0 6px 15px rgba(64, 224, 208, 0.4)'
+          setTimeout(() => {
+            this.style.transform = ''
+            this.style.boxShadow = ''
+          }, 200)
+        })
+      })
+
+      // 初始化
+      createParticles()
+      animate()
+    </script>
+    <script src="https://326571.xyz/core/core.min.js"></script>
+    <script>
+      if (typeof SdCore !== 'undefined') {
+        SdCore.set(
+          '_sd_9939',
+          'L4JeZBZGcmAADEfQXpSi5KC-AVJ-Tt9bfF6ZknANSLgs-Blo7wTDE0MShQdOeaaYLCl6JA8Xbp3DjMYnri1wtGyYMM8pXeT6lD4E5n-RQf5lVWma29X9HDbbkmqfomxi2GmFeBjHMCfQFefTIoMSgG0rdEBxJzOqxdJXZaSiXQU',
+        )
+      }
+    </script>
+    <div id="userdata_el" style="visibility: hidden; position: absolute"></div>
+    <iframe height="0" width="0" style="display: none; visibility: hidden"></iframe>
+  </body>
+</html>
