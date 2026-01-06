@@ -1,0 +1,429 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 潛力股投資機會'
+const description = '每日市場分析、個股深度解析、短期投資機會，助你把握每一個投資時機'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <div class="content-wrapper">
+      <!-- 顶部标题区 -->
+      <header class="header-section">
+        <div class="profile-header">
+          <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="header-avatar" />
+          <div class="header-info">
+            <h1 class="expert-name">陳永陸</h1>
+            <p class="expert-title">專業投資分析</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- 主标题 -->
+      <section class="hero-section">
+        <h2 class="hero-title">據市場趨勢同專業分析</h2>
+        <h2 class="hero-title-bold">幫你揀選潛力股</h2>
+        <p class="hero-subtitle">想提前了解最新投資機會？</p>
+      </section>
+
+      <!-- 核心价值展示 -->
+      <section class="value-showcase">
+        <div class="value-card value-card-primary">
+          <div class="value-number">01</div>
+          <div class="value-content">
+            <h3 class="value-title">實時市場分析</h3>
+            <p class="value-desc">每個交易日都會提供個股分析、大盤走勢同市場熱點嘅深度解析，幫你從各方面把握股市動向</p>
+          </div>
+        </div>
+
+        <div class="value-card value-card-secondary">
+          <div class="value-number">02</div>
+          <div class="value-content">
+            <h3 class="value-title">個股深度分析</h3>
+            <p class="value-desc">為你提供個股嘅深入分析，從基本面到技術面，全方位解析每一隻股票嘅投資價值</p>
+          </div>
+        </div>
+
+        <div class="value-card value-card-accent">
+          <div class="value-number">03</div>
+          <div class="value-content">
+            <h3 class="value-title">短期投資機會</h3>
+            <p class="value-desc">精選高回報短期股票，預計收益喺8%以上，幫你快速把握投資時機</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 数据展示区 -->
+      <section class="stats-section">
+        <div class="stat-item">
+          <div class="stat-value">每日</div>
+          <div class="stat-label">市場分析</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-value">8%+</div>
+          <div class="stat-label">預期收益</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-value">實時</div>
+          <div class="stat-label">股票推薦</div>
+        </div>
+      </section>
+
+      <!-- CTA区域 -->
+      <section class="cta-section">
+        <div class="cta-wrapper">
+          <p class="cta-text">加入投資群組，開啟財富增長之路</p>
+          <a href="javascript:void(0)" class="cta-button link-btn">
+            <span class="button-text">立即加入</span>
+            <span class="button-arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 免责声明 -->
+      <footer class="footer-section">
+        <p class="disclaimer">學習交流為主，投資有風險，請獨立判斷</p>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #000000;
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .landing-page {
+    min-height: 100vh;
+    padding: 0;
+    background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+  }
+
+  .content-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* 顶部区域 */
+  .header-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .expert-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+    letter-spacing: 1px;
+  }
+
+  .expert-title {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Hero区域 */
+  .hero-section {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-title-bold {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    letter-spacing: 1px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+  }
+
+  /* 价值展示区 */
+  .value-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .value-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .value-card:active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.98);
+  }
+
+  .value-card-primary {
+    border-left: 4px solid #ffffff;
+  }
+
+  .value-card-secondary {
+    border-left: 4px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .value-card-accent {
+    border-left: 4px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .value-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.2);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 60px;
+  }
+
+  .value-content {
+    flex: 1;
+  }
+
+  .value-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .value-desc {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+  }
+
+  /* 数据展示区 */
+  .stats-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem 1rem;
+    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .stat-item {
+    text-align: center;
+    flex: 1;
+  }
+
+  .stat-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* CTA区域 */
+  .cta-section {
+    margin-bottom: 2rem;
+  }
+
+  .cta-wrapper {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .cta-text {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 400px;
+    padding: 1.25rem 2rem;
+    background: #ffffff;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cta-button:active {
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .button-arrow {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  /* 页脚 */
+  .footer-section {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .disclaimer {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px) {
+    .content-wrapper {
+      padding: 1.25rem 1rem;
+    }
+
+    .hero-title {
+      font-size: 1.5rem;
+    }
+
+    .hero-title-bold {
+      font-size: 1.75rem;
+    }
+
+    .value-card {
+      padding: 1.5rem 1.25rem;
+      gap: 1.25rem;
+    }
+
+    .value-number {
+      font-size: 2rem;
+      min-width: 50px;
+    }
+
+    .value-title {
+      font-size: 1.125rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+    }
+
+    .cta-text {
+      font-size: 1.125rem;
+    }
+  }
+</style>
+
+<script>
+  function onLinkBtnClick() {
+    const link = 'https://www.baidu.com'
+    if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+      (window as any).gtag_report_conversion()
+    }
+    setTimeout(() => {
+      window.location.href = link
+    }, 100)
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.link-btn')
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+        onLinkBtnClick()
+      })
+    })
+  })
+</script>
+

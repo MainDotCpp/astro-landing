@@ -1,0 +1,1117 @@
+---
+import { Activity, Award, BarChart3, BookOpen, CheckCircle2, DollarSign, Droplets, MessageSquare, Shield, Target, TrendingUp, Users, Zap } from 'lucide-astro'
+import ButtonAction from '@/components/ButtonAction.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 技術分析交易策略教學'
+const description = '資深技術分析師陳永陸親自傳授技術分析、圖表形態識別、止盈止蝕策略，涵蓋恒指期貨、黃金期貨、原油及外匯交易技術'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-grid-bg"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="status-badge">
+            <div class="status-dot"></div>
+            <span>技術分析教學 • 限時開放</span>
+          </div>
+
+          <div class="profile-section">
+            <div class="avatar-container">
+              <div class="avatar-frame">
+                <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="avatar-img" />
+                <div class="avatar-ring"></div>
+              </div>
+            </div>
+            <div class="profile-info">
+              <h1 class="hero-title">陳永陸</h1>
+              <p class="hero-subtitle">技術分析交易策略教學</p>
+              <div class="expert-tags">
+                <span class="tag">技術分析</span>
+                <span class="tag">圖表形態</span>
+                <span class="tag">止盈止蝕</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-description">
+            <p>專注技術分析與圖表形態識別，傳授恒指期貨、黃金期貨、原油及外匯交易技術。掌握支撐位、阻力位判斷，學習止盈止蝕策略，提升交易執行效率與風險控制能力。</p>
+          </div>
+
+          <a href="javascript:void(0)" class="cta-button link-btn">
+            <span class="button-text">立即加入</span>
+            <span class="button-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <Activity />
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">20+</div>
+              <div class="stat-label">年技術分析經驗</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <Target />
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">專業</div>
+              <div class="stat-label">圖表形態識別</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <Shield />
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">系統化</div>
+              <div class="stat-label">風險管理策略</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trading Markets Section -->
+    <section class="markets-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">技術分析交易市場覆蓋</h2>
+          <p class="section-subtitle">涵蓋恒指期貨、黃金期貨、原油及外匯市場的技術分析與交易策略</p>
+        </div>
+
+        <div class="markets-grid">
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <TrendingUp />
+              </div>
+              <h3 class="market-title">恒指期貨</h3>
+            </div>
+            <div class="market-content">
+              <p class="market-desc">恒指期貨技術分析，識別關鍵支撐位與阻力位，掌握突破交易策略。學習止盈止蝕設置，優化風險回報比。</p>
+              <div class="market-terms">
+                <span class="term">支撐位</span>
+                <span class="term">阻力位</span>
+                <span class="term">突破</span>
+                <span class="term">止蝕</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <Award />
+              </div>
+              <h3 class="market-title">黃金期貨</h3>
+            </div>
+            <div class="market-content">
+              <p class="market-desc">黃金期貨圖表形態分析，識別頭肩頂、雙底等經典形態。掌握趨勢線繪製與斐波那契回調位應用。</p>
+              <div class="market-terms">
+                <span class="term">頭肩頂</span>
+                <span class="term">雙底</span>
+                <span class="term">趨勢線</span>
+                <span class="term">斐波那契</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <Droplets />
+              </div>
+              <h3 class="market-title">原油期貨</h3>
+            </div>
+            <div class="market-content">
+              <p class="market-desc">原油期貨技術指標應用，MACD、RSI、布林帶等指標組合分析。學習成交量分析與價格動量判斷。</p>
+              <div class="market-terms">
+                <span class="term">MACD</span>
+                <span class="term">RSI</span>
+                <span class="term">布林帶</span>
+                <span class="term">成交量</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <DollarSign />
+              </div>
+              <h3 class="market-title">外匯交易</h3>
+            </div>
+            <div class="market-content">
+              <p class="market-desc">外匯貨幣對技術分析，掌握做多、做空時機判斷。學習槓桿運用與保證金管理，優化資金使用效率。</p>
+              <div class="market-terms">
+                <span class="term">做多</span>
+                <span class="term">做空</span>
+                <span class="term">槓桿</span>
+                <span class="term">保證金</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Analysis Features -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">技術分析核心內容</h2>
+        </div>
+        <div class="features-list">
+          <div class="feature-item">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">
+              <BarChart3 />
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">圖表形態識別</h3>
+              <p class="feature-desc">學習頭肩頂、雙底、三角形、旗形等經典圖表形態，掌握形態突破交易策略與目標位計算方法。</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">
+              <Zap />
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">技術指標應用</h3>
+              <p class="feature-desc">深入學習MACD、RSI、KDJ、布林帶等技術指標的組合應用，提升交易信號準確性與時機把握能力。</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">
+              <Shield />
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">止盈止蝕策略</h3>
+              <p class="feature-desc">系統化學習止盈止蝕設置方法，掌握風險回報比優化技巧，建立完善的風險管理體系。</p>
+            </div>
+          </div>
+        </div>
+        <div class="cta-wrapper">
+          <a href="javascript:void(0)" class="cta-button-secondary link-btn">
+            <span class="button-text">立即加入技術分析教學</span>
+            <span class="button-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="why-join-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">為何選擇陳永陸的技術分析教學</h2>
+        </div>
+        <div class="reasons-grid">
+          <div class="reason-card">
+            <div class="reason-icon">
+              <CheckCircle2 />
+            </div>
+            <h3 class="reason-title">專業技術分析</h3>
+            <p class="reason-desc">20年技術分析實戰經驗，專注圖表形態識別與技術指標應用，不涉及基本面分析，純技術流教學。</p>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon">
+              <Users />
+            </div>
+            <h3 class="reason-title">實戰交易指導</h3>
+            <p class="reason-desc">提供實時市場分析與交易信號，解答技術分析疑問，協助制定交易策略與風險管理方案。</p>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon">
+              <MessageSquare />
+            </div>
+            <h3 class="reason-title">交易者交流</h3>
+            <p class="reason-desc">與其他交易者交流技術分析心得，分享圖表形態識別經驗，共同提升交易技能。</p>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon">
+              <BookOpen />
+            </div>
+            <h3 class="reason-title">系統化教學</h3>
+            <p class="reason-desc">從基礎圖表分析到高級形態識別，系統化傳授技術分析知識，適合不同水平的交易者。</p>
+          </div>
+        </div>
+        <div class="cta-wrapper">
+          <a href="javascript:void(0)" class="cta-button-secondary link-btn">
+            <span class="button-text">立即加入獲取專業指導</span>
+            <span class="button-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">開始您的技術分析學習之旅</h2>
+        <p class="cta-subtitle">掌握圖表形態識別、技術指標應用、止盈止蝕策略等核心技能。無論您是恒指期貨、黃金期貨、原油還是外匯交易者，都能獲得專業的技術分析指導。點擊下方按鈕立即加入：</p>
+        <a href="javascript:void(0)" class="cta-button-large link-btn">
+          <span class="button-text">立即加入陳永陸的技術分析交易策略教學</span>
+          <span class="button-icon">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section footer-company">
+            <h3 class="footer-title">公司資訊</h3>
+            <div class="company-info">
+              <div class="info-item">
+                <span class="info-label">公司名稱：</span>
+                <span class="info-value">香港技術分析教育有限公司</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">註冊地址：</span>
+                <span class="info-value">香港中環金融街8號國際金融中心二期35樓3501室</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">電話：</span>
+                <span class="info-value">+852 2123 4567</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">傳真：</span>
+                <span class="info-value">+852 2123 4568</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">電郵：</span>
+                <a href="mailto:info@hktechanalysis.com" class="info-value info-link">info@hktechanalysis.com</a>
+              </div>
+              <div class="info-item">
+                <span class="info-label">營業時間：</span>
+                <span class="info-value">週一至週五 09:00 - 18:00（香港時間）</span>
+              </div>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3 class="footer-title">教學內容</h3>
+            <ul class="footer-links">
+              <li><a href="javascript:void(0)">技術分析</a></li>
+              <li><a href="javascript:void(0)">圖表形態識別</a></li>
+              <li><a href="javascript:void(0)">止盈止蝕策略</a></li>
+              <li><a href="javascript:void(0)">風險管理</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3 class="footer-title">交易市場</h3>
+            <ul class="footer-links">
+              <li><a href="javascript:void(0)">恒指期貨</a></li>
+              <li><a href="javascript:void(0)">黃金期貨</a></li>
+              <li><a href="javascript:void(0)">原油期貨</a></li>
+              <li><a href="javascript:void(0)">外匯交易</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3 class="footer-title">立即加入</h3>
+            <a href="javascript:void(0)" class="footer-cta link-btn">
+              <span class="button-text">加入技術分析教學</span>
+              <span class="button-icon">→</span>
+            </a>
+          </div>
+        </div>
+        <div class="footer-qualifications">
+          <h3 class="qualifications-title">資質認證</h3>
+          <div class="qualifications-list">
+            <div class="qualification-item">
+              <span class="qual-label">公司註冊編號：</span>
+              <span class="qual-value">12345678-000-01-24-A</span>
+            </div>
+            <div class="qualification-item">
+              <span class="qual-label">商業登記證：</span>
+              <span class="qual-value">BR-2024-123456</span>
+            </div>
+            <div class="qualification-item">
+              <span class="qual-label">教育牌照：</span>
+              <span class="qual-value">EDU-LIC-2024-001</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copyright">© 2026 香港技術分析教育有限公司. 版權所有.</p>
+          <div class="footer-disclaimer">
+            <p><strong>風險提示：</strong>投資涉及風險，過往表現不代表未來表現。本平台僅提供技術分析教育服務，不構成任何投資建議。請根據自身風險承受能力謹慎投資，並尋求專業投資顧問意見。</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .landing-page {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #0a0e27;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
+    padding: 2.5rem 0 3.5rem;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: #22d3ee;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22d3ee;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .avatar-container {
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+
+  .avatar-frame {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #22d3ee;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  }
+
+  .avatar-ring {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(34, 211, 238, 0.2);
+    animation: rotate-ring 3s linear infinite;
+  }
+
+  @keyframes rotate-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9375rem;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .expert-tags {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    padding: 0.375rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: #22d3ee;
+    font-weight: 500;
+  }
+
+  .hero-description {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-description p {
+    font-size: 0.9375rem;
+    color: #cbd5e1;
+    line-height: 1.8;
+    text-align: left;
+  }
+
+  .cta-button,
+  .cta-button-large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1.125rem 1.5rem;
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    color: #0a0e27;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(34, 211, 238, 0.3);
+  }
+
+  .cta-button:active,
+  .cta-button-large:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(34, 211, 238, 0.25);
+  }
+
+  .button-text {
+    letter-spacing: 0.01em;
+  }
+
+  .button-icon {
+    font-size: 1.25rem;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    padding: 2.5rem 0;
+    background: #0f172a;
+    border-top: 1px solid rgba(34, 211, 238, 0.1);
+    border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    color: #22d3ee;
+    background: rgba(34, 211, 238, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stat-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .stat-content {
+    flex: 1;
+  }
+
+  .stat-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: #94a3b8;
+  }
+
+  /* Markets Section */
+  .markets-section {
+    padding: 3rem 0;
+    background: #0a0e27;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .section-subtitle {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .markets-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .market-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .market-card:active {
+    border-color: rgba(34, 211, 238, 0.4);
+    background: rgba(15, 23, 42, 0.8);
+  }
+
+  .market-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .market-icon {
+    width: 44px;
+    height: 44px;
+    color: #22d3ee;
+    background: rgba(34, 211, 238, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .market-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .market-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .market-desc {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .market-terms {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .term {
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    padding: 0.25rem 0.625rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #22d3ee;
+    font-weight: 500;
+  }
+
+  /* Features Section */
+  .features-section {
+    padding: 3rem 0;
+    background: #0f172a;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .feature-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .feature-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(34, 211, 238, 0.3);
+    letter-spacing: 0.05em;
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    color: #22d3ee;
+    background: rgba(34, 211, 238, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-content {
+    flex: 1;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-desc {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+  }
+
+  /* Why Join Section */
+  .why-join-section {
+    padding: 3rem 0;
+    background: #0a0e27;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .reason-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: left;
+  }
+
+  .reason-icon {
+    width: 40px;
+    height: 40px;
+    color: #22d3ee;
+    background: rgba(34, 211, 238, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .reason-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .reason-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .reason-desc {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 3rem 0 4rem;
+    background: linear-gradient(180deg, #0a0e27 0%, #0f172a 100%);
+    border-top: 1px solid rgba(34, 211, 238, 0.1);
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .cta-subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .cta-button-large {
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    color: #0a0e27;
+    font-size: 1rem;
+    padding: 1.125rem 1.5rem;
+  }
+
+  .cta-wrapper {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .cta-button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    color: #22d3ee;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button-secondary:active {
+    background: rgba(34, 211, 238, 0.2);
+    border-color: rgba(34, 211, 238, 0.5);
+  }
+
+  /* Footer */
+  .footer {
+    background: #0a0e27;
+    border-top: 1px solid rgba(34, 211, 238, 0.1);
+    padding: 3rem 0 2rem;
+    margin-top: 2rem;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-section {
+    text-align: left;
+  }
+
+  .footer-company {
+    border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+    padding-bottom: 2rem;
+  }
+
+  .footer-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  .footer-text {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.7;
+  }
+
+  .company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .info-label {
+    font-size: 0.8125rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .info-value {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+
+  .info-link {
+    color: #22d3ee;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .info-link:active {
+    color: #06b6d4;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-links a {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:active {
+    color: #22d3ee;
+  }
+
+  .footer-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    color: #0a0e27;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .footer-cta:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(34, 211, 238, 0.25);
+  }
+
+  .footer-qualifications {
+    border-top: 1px solid rgba(34, 211, 238, 0.1);
+    border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .qualifications-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .qualifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .qualification-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 8px;
+    border: 1px solid rgba(34, 211, 238, 0.1);
+  }
+
+  .qual-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .qual-value {
+    font-size: 0.8125rem;
+    color: #cbd5e1;
+    font-family: 'Courier New', monospace;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(34, 211, 238, 0.1);
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  .footer-copyright {
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .footer-disclaimer strong {
+    color: #94a3b8;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 360px) {
+    .hero-title {
+      font-size: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.375rem;
+    }
+
+    .cta-title {
+      font-size: 1.375rem;
+    }
+
+    .container {
+      padding: 0 1.25rem;
+    }
+  }
+</style>
+

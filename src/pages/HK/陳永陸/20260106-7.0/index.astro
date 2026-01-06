@@ -1,0 +1,375 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 免費投資學習資源'
+const description = '加入群組即送爆升潛力股資訊、EA行情分析軟件、超市購物券，免費學習多種投資邏輯'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <div class="vertical-layout">
+      <!-- 顶部横幅 -->
+      <header class="top-banner">
+        <div class="banner-content">
+          <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="banner-avatar" />
+          <div class="banner-text">
+            <h1 class="banner-title">陳永陸</h1>
+            <p class="banner-subtitle">免費投資學習資源</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- 主标题区 -->
+      <section class="title-section">
+        <h2 class="page-title">對多種投資有興趣？</h2>
+        <div class="tags-row">
+          <span class="tag-badge">股票</span>
+          <span class="tag-badge">黃金期貨</span>
+          <span class="tag-badge">原油投資</span>
+          <span class="tag-badge">外匯交易</span>
+        </div>
+        <p class="title-subtitle">系統學習的機會來了</p>
+      </section>
+
+      <!-- 赠品列表区 -->
+      <section class="gifts-section">
+        <h3 class="section-heading">加入群組即送</h3>
+        <div class="gifts-list">
+          <div class="gift-row">
+            <div class="gift-icon-wrapper">
+              <span class="gift-icon">📈</span>
+            </div>
+            <div class="gift-info">
+              <h4 class="gift-name">爆升潛力股資訊</h4>
+            </div>
+          </div>
+          <div class="gift-row">
+            <div class="gift-icon-wrapper">
+              <span class="gift-icon">💻</span>
+            </div>
+            <div class="gift-info">
+              <h4 class="gift-name">EA 行情分析軟件</h4>
+            </div>
+          </div>
+          <div class="gift-row">
+            <div class="gift-icon-wrapper">
+              <span class="gift-icon">🛒</span>
+            </div>
+            <div class="gift-info">
+              <h4 class="gift-name">超市購物券</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 学习内容区 -->
+      <section class="learning-section">
+        <h3 class="section-heading">免費分享內容</h3>
+        <ul class="learning-list">
+          <li class="learning-item">點樣睇股票盤面</li>
+          <li class="learning-item">點樣分析黃金期貨走勢</li>
+          <li class="learning-item">原油同外匯市場節奏</li>
+          <li class="learning-item">操作邏輯與策略</li>
+        </ul>
+      </section>
+
+      <!-- 价值主张区 -->
+      <section class="value-section">
+        <div class="value-box">
+          <p class="value-main">一次過學揀股、學黃金期貨、原油、外匯投資邏輯</p>
+          <p class="value-highlight">一步到位，全部免費</p>
+        </div>
+      </section>
+
+      <!-- CTA按钮区 -->
+      <section class="cta-section">
+        <a href="javascript:void(0)" class="cta-button link-btn">
+          <span class="button-text">立即加入群組</span>
+          <span class="button-arrow">→</span>
+        </a>
+      </section>
+
+      <!-- 免责声明 -->
+      <footer class="footer-section">
+        <p class="disclaimer">學習交流為主，投資有風險，請獨立判斷</p>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .landing-page {
+    min-height: 100vh;
+  }
+
+  .vertical-layout {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 顶部横幅 */
+  .top-banner {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .banner-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .banner-text {
+    text-align: left;
+    flex: 1;
+  }
+
+  .banner-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+
+  .banner-subtitle {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* 标题区 */
+  .title-section {
+    padding: 2rem 1.25rem;
+    text-align: center;
+    background: #f9fafb;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #059669;
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag-badge {
+    padding: 0.5rem 1rem;
+    background: #10b981;
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .title-subtitle {
+    font-size: 1.125rem;
+    color: #059669;
+    font-weight: 600;
+  }
+
+  /* 赠品区 */
+  .gifts-section {
+    padding: 1.75rem 1.25rem;
+    background: #ffffff;
+  }
+
+  .section-heading {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #f59e0b;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  .gifts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .gift-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f0fdf4;
+    border-radius: 12px;
+    border: 2px solid #10b981;
+  }
+
+  .gift-icon-wrapper {
+    flex-shrink: 0;
+  }
+
+  .gift-icon {
+    font-size: 2rem;
+    display: block;
+  }
+
+  .gift-name {
+    font-size: 1rem;
+    color: #059669;
+    font-weight: 600;
+  }
+
+  /* 学习区 */
+  .learning-section {
+    padding: 1.75rem 1.25rem;
+    background: #f9fafb;
+  }
+
+  .learning-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .learning-item {
+    padding: 0.875rem 1rem;
+    background: #ffffff;
+    border-left: 4px solid #10b981;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    color: #1f2937;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* 价值主张区 */
+  .value-section {
+    padding: 1.75rem 1.25rem;
+    background: #ffffff;
+  }
+
+  .value-box {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .value-main {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .value-highlight {
+    font-size: 1.25rem;
+    color: #fbbf24;
+    font-weight: 700;
+  }
+
+  /* CTA区 */
+  .cta-section {
+    padding: 1.75rem 1.25rem;
+    background: #f9fafb;
+  }
+
+  .cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(16, 185, 129, 0.5);
+  }
+
+  .button-arrow {
+    font-size: 1.5rem;
+  }
+
+  /* 页脚 */
+  .footer-section {
+    padding: 1.5rem 1.25rem;
+    background: #ffffff;
+    text-align: center;
+  }
+
+  .disclaimer {
+    font-size: 0.75rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  function onLinkBtnClick() {
+    const link = 'https://www.baidu.com'
+    if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+      (window as any).gtag_report_conversion()
+    }
+    setTimeout(() => {
+      window.location.href = link
+    }, 100)
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.link-btn')
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+        onLinkBtnClick()
+      })
+    })
+  })
+</script>

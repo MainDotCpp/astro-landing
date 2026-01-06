@@ -1,0 +1,291 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 每日港股盤面分析'
+const description = '系統化框架解讀市場動態，資金流向、板塊強弱、關鍵價位、風險位置'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <div class="profile-section">
+            <div class="avatar-container">
+              <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="avatar-img" />
+            </div>
+            <h1 class="hero-title">陳永陸</h1>
+          </div>
+
+          <div class="main-content">
+            <h2 class="main-title">每日港股盤面分析</h2>
+            <p class="main-subtitle">用系統化框架解讀市場動態</p>
+
+            <div class="value-points">
+              <div class="value-item">
+                <span class="value-label">資金流向</span>
+              </div>
+              <div class="value-item">
+                <span class="value-label">板塊強弱</span>
+              </div>
+              <div class="value-item">
+                <span class="value-label">關鍵價位</span>
+              </div>
+              <div class="value-item">
+                <span class="value-label">風險位置</span>
+              </div>
+            </div>
+
+            <div class="benefit-section">
+              <p class="benefit-text">清晰整理每日市場重點</p>
+              <p class="benefit-subtext">幫助你更好理解市場節奏</p>
+            </div>
+
+            <div class="cta-section">
+              <a href="javascript:void(0)" class="cta-button link-btn">
+                <span class="button-text">查看今日分析</span>
+                <span class="button-icon">→</span>
+              </a>
+            </div>
+
+            <p class="disclaimer">學習交流為主，投資有風險，請獨立判斷</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .landing-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-section {
+    width: 100%;
+  }
+
+  .hero-content {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(34, 211, 238, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .profile-section {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .avatar-container {
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(34, 211, 238, 0.3);
+    object-fit: cover;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .main-content {
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #22d3ee;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .main-subtitle {
+    font-size: 1.25rem;
+    color: #cbd5e1;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+  }
+
+  .benefit-section {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: rgba(34, 211, 238, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(34, 211, 238, 0.15);
+  }
+
+  .benefit-text {
+    font-size: 1.125rem;
+    color: #22d3ee;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-subtext {
+    font-size: 0.9375rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .value-points {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .value-item {
+    padding: 1rem;
+    background: rgba(34, 211, 238, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .value-item:hover {
+    background: rgba(34, 211, 238, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .value-label {
+    font-size: 0.9375rem;
+    color: #22d3ee;
+    font-weight: 600;
+  }
+
+  .cta-section {
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.125rem 2rem;
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    color: #0a0e27;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(34, 211, 238, 0.4);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+  }
+
+  .button-icon {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .disclaimer {
+    font-size: 0.8125rem;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 2rem 1.5rem;
+    }
+
+    .main-title {
+      font-size: 1.25rem;
+    }
+
+    .main-subtitle {
+      font-size: 1.125rem;
+    }
+
+    .value-points {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+      font-size: 1rem;
+      padding: 1rem 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  function onLinkBtnClick() {
+    const link = 'https://www.baidu.com'
+    if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+      (window as any).gtag_report_conversion()
+    }
+    setTimeout(() => {
+      window.location.href = link
+    }, 100)
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.link-btn')
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+        onLinkBtnClick()
+      })
+    })
+  })
+</script>
+

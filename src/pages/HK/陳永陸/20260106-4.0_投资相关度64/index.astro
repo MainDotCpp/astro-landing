@@ -1,0 +1,1744 @@
+---
+import { ArrowRight, BarChart3, CheckCircle, Clock, Menu, Shield, Star, TrendingUp, Users, X, Zap } from 'lucide-astro'
+import ButtonAction from '@/components/ButtonAction.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 市場分析與投資策略研究'
+const description = '資深市場分析師陳永陸分享市場分析與投資策略研究，基於公開信息進行技術分析方法學習，幫助投資者提升市場分析能力'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="premium-landing">
+    <!-- Navigation -->
+    <nav class="premium-nav">
+      <div class="nav-wrapper">
+        <div class="nav-brand">
+          <span class="brand-name">陳永陸</span>
+          <span class="brand-tagline">市場分析研究</span>
+        </div>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <div class="nav-menu" id="navMenu">
+          <button class="nav-close" id="navClose" aria-label="Close navigation">
+            <X />
+          </button>
+          <a href="#features" class="nav-link">核心優勢</a>
+          <a href="#markets" class="nav-link">市場覆蓋</a>
+          <a href="#methods" class="nav-link">分析方法</a>
+          <a href="#join" class="nav-link">立即加入</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <Menu id="menuIcon" />
+          <X id="closeIcon" style="display: none;" />
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-premium">
+      <div class="hero-background"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <Clock />
+            <span>限時開放 • 名額有限</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="title-highlight">20年市場分析經驗</span>
+            <span class="title-main">專業投資策略研究</span>
+          </h1>
+          <p class="hero-subtitle">
+            資深市場分析師陳永陸親自分享市場分析方法與投資策略研究，基於公開信息進行技術分析學習，幫助投資者提升市場判斷能力與投資決策水平。
+          </p>
+          <div class="hero-stats">
+            <div class="stat-box">
+              <div class="stat-number">20+</div>
+              <div class="stat-label">年市場分析經驗</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">專業</div>
+              <div class="stat-label">投資策略研究</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">系統化</div>
+              <div class="stat-label">分析方法論</div>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <a href="javascript:void(0)" class="cta-primary link-btn">
+              <span>立即加入市場分析研究</span>
+              <ArrowRight />
+            </a>
+            <p class="cta-note">✓ 限時開放 • 名額有限 • 立即行動</p>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="image-frame">
+            <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="profile-photo" />
+            <div class="image-badge">
+              <Star />
+              <span>資深分析師</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-premium">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">為什麼選擇陳永陸的市場分析研究</h2>
+          <p class="section-description">專業的市場分析方法與投資策略研究，幫助投資者提升市場分析能力</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <TrendingUp />
+            </div>
+            <h3 class="feature-title">專業市場分析</h3>
+            <p class="feature-text">20年市場分析實戰經驗，專注於圖表形態識別與技術指標應用，基於公開信息進行市場分析方法研究，幫助投資者提升市場判斷能力。</p>
+            <ul class="feature-list">
+              <li><CheckCircle /> 圖表形態識別</li>
+              <li><CheckCircle /> 技術指標應用</li>
+              <li><CheckCircle /> 市場趨勢分析</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <BarChart3 />
+            </div>
+            <h3 class="feature-title">投資策略研究</h3>
+            <p class="feature-text">深入分享投資策略研究方法，基於公開信息進行投資決策分析，幫助投資者學習投資策略制定與風險管理方法。</p>
+            <ul class="feature-list">
+              <li><CheckCircle /> 投資策略制定</li>
+              <li><CheckCircle /> 風險管理方法</li>
+              <li><CheckCircle /> 決策分析技巧</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <Users />
+            </div>
+            <h3 class="feature-title">實時市場指導</h3>
+            <p class="feature-text">提供實時市場分析與投資策略研究，解答市場分析疑問，協助投資者學習市場分析方法與投資決策技巧。</p>
+            <ul class="feature-list">
+              <li><CheckCircle /> 實時市場分析</li>
+              <li><CheckCircle /> 投資策略研究</li>
+              <li><CheckCircle /> 專業指導支持</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <Shield />
+            </div>
+            <h3 class="feature-title">系統化學習</h3>
+            <p class="feature-text">從基礎市場分析到高級投資策略，系統化分享市場分析方法與投資策略研究，適合不同水平的投資者學習。</p>
+            <ul class="feature-list">
+              <li><CheckCircle /> 系統化課程</li>
+              <li><CheckCircle /> 分階段學習</li>
+              <li><CheckCircle /> 實戰案例分析</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section id="markets" class="markets-premium">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">市場分析覆蓋範圍</h2>
+          <p class="section-description">涵蓋多個市場的分析方法與投資策略研究</p>
+        </div>
+        <div class="markets-grid">
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <TrendingUp />
+              </div>
+              <h3 class="market-title">恒指市場</h3>
+            </div>
+            <p class="market-desc">恒指市場技術分析與投資策略研究，學習識別關鍵支撐位與阻力位，掌握突破分析方法與投資決策技巧。</p>
+            <div class="market-tags">
+              <span>支撐位分析</span>
+              <span>阻力位判斷</span>
+              <span>突破策略</span>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <Star />
+              </div>
+              <h3 class="market-title">黃金市場</h3>
+            </div>
+            <p class="market-desc">黃金市場圖表形態分析與投資策略研究，學習識別頭肩頂、雙底等經典形態，掌握趨勢線分析與投資決策方法。</p>
+            <div class="market-tags">
+              <span>形態識別</span>
+              <span>趨勢分析</span>
+              <span>投資策略</span>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <Zap />
+              </div>
+              <h3 class="market-title">原油市場</h3>
+            </div>
+            <p class="market-desc">原油市場技術指標應用與投資策略研究，學習MACD、RSI等指標組合分析，掌握成交量分析與投資決策技巧。</p>
+            <div class="market-tags">
+              <span>技術指標</span>
+              <span>成交量分析</span>
+              <span>投資決策</span>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div class="market-icon">
+                <BarChart3 />
+              </div>
+              <h3 class="market-title">外匯市場</h3>
+            </div>
+            <p class="market-desc">外匯市場技術分析與投資策略研究，學習貨幣對價格走勢分析，掌握市場波動分析方法與投資決策技巧。</p>
+            <div class="market-tags">
+              <span>價格走勢</span>
+              <span>波動分析</span>
+              <span>投資策略</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methods Section -->
+    <section id="methods" class="methods-premium">
+      <div class="container">
+        <div class="methods-content">
+          <div class="methods-text">
+            <h2 class="section-title">核心分析方法</h2>
+            <p class="section-description">系統化學習市場分析方法與投資策略研究</p>
+            <div class="methods-list">
+              <div class="method-item">
+                <div class="method-number">01</div>
+                <div class="method-content">
+                  <h3 class="method-title">圖表形態識別</h3>
+                  <p class="method-text">學習頭肩頂、雙底、三角形、旗形等經典圖表形態的識別方法，掌握形態突破分析與投資決策技巧，基於公開信息進行市場分析學習。</p>
+                </div>
+              </div>
+              <div class="method-item">
+                <div class="method-number">02</div>
+                <div class="method-content">
+                  <h3 class="method-title">技術指標應用</h3>
+                  <p class="method-text">深入學習MACD、RSI、KDJ、布林帶等技術指標的組合應用方法，提升市場分析能力與投資決策水平，基於公開信息進行投資策略研究。</p>
+                </div>
+              </div>
+              <div class="method-item">
+                <div class="method-number">03</div>
+                <div class="method-content">
+                  <h3 class="method-title">投資策略制定</h3>
+                  <p class="method-text">系統化學習投資策略制定方法，了解風險管理技巧與投資決策流程，建立完善的市場分析與投資策略知識體系。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="join" class="cta-premium">
+      <div class="cta-background"></div>
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">立即加入市場分析研究</h2>
+          <p class="cta-description">
+            掌握專業的市場分析方法與投資策略研究，提升投資決策能力。無論您是恒指、黃金、原油還是外匯市場的投資者，都能獲得專業的市場分析指導與投資策略研究。
+          </p>
+          <div class="cta-benefits">
+            <div class="benefit-item">
+              <CheckCircle />
+              <span>20+年市場分析經驗</span>
+            </div>
+            <div class="benefit-item">
+              <CheckCircle />
+              <span>專業投資策略研究</span>
+            </div>
+            <div class="benefit-item">
+              <CheckCircle />
+              <span>實時市場分析指導</span>
+            </div>
+            <div class="benefit-item">
+              <CheckCircle />
+              <span>系統化學習方法</span>
+            </div>
+          </div>
+          <a href="javascript:void(0)" class="cta-button link-btn">
+            <span>立即加入 • 限時開放</span>
+            <ArrowRight />
+          </a>
+          <p class="cta-urgency">⏰ 名額有限，立即行動！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="disclaimer-premium">
+      <div class="container">
+        <div class="disclaimer-box">
+          <h3 class="disclaimer-title">風險提示與重要聲明</h3>
+          <div class="disclaimer-content">
+            <p><strong>投資涉及風險：</strong>投資涉及風險，過往表現不代表未來表現。本平台提供市場分析與投資策略研究服務，基於公開信息進行技術分析方法學習。</p>
+            <p><strong>不構成投資建議：</strong>本平台內容不構成任何投資建議、金融產品推薦、交易建議、買賣建議或投資決定。投資者應根據自身風險承受能力謹慎投資，並尋求專業投資顧問意見。</p>
+            <p><strong>投資決定責任：</strong>所有投資決定應由投資者自行作出，本平台不對任何投資決策的結果承擔責任。投資者應充分了解投資風險，並根據自身情況作出投資決定。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <h4 class="footer-title">公司資訊</h4>
+            <div class="footer-info">
+              <p><strong>公司名稱：</strong>香港技術分析教育有限公司</p>
+              <p><strong>註冊地址：</strong>香港中環金融街8號國際金融中心二期35樓3501室</p>
+              <p><strong>電話：</strong>+852 2123 4567</p>
+              <p><strong>電郵：</strong><a href="mailto:info@hktechanalysis.com">info@hktechanalysis.com</a></p>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-title">市場分析</h4>
+            <ul class="footer-links">
+              <li><a href="javascript:void(0)">恒指市場</a></li>
+              <li><a href="javascript:void(0)">黃金市場</a></li>
+              <li><a href="javascript:void(0)">原油市場</a></li>
+              <li><a href="javascript:void(0)">外匯市場</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-title">投資策略</h4>
+            <ul class="footer-links">
+              <li><a href="javascript:void(0)">市場分析方法</a></li>
+              <li><a href="javascript:void(0)">投資策略研究</a></li>
+              <li><a href="javascript:void(0)">風險管理</a></li>
+              <li><a href="javascript:void(0)">決策分析</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 香港技術分析教育有限公司. 版權所有.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<ButtonAction />
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  .premium-landing {
+    font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1a1a1a;
+    line-height: 1.6;
+    background: #ffffff;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Navigation */
+  .premium-nav {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .nav-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .brand-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .brand-tagline {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: #2563eb;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #1a1a1a;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .nav-toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-overlay {
+    display: none;
+  }
+
+  .nav-close {
+    display: none;
+  }
+
+  /* Hero Section */
+  .hero-premium {
+    position: relative;
+    padding: 8rem 0 6rem;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 30%, #2d1b4e 70%, #1a1f3a 100%);
+    color: white;
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 85% 75%, rgba(168, 85, 247, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    animation: backgroundShift 20s ease-in-out infinite;
+  }
+
+  @keyframes backgroundShift {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  .hero-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    width: fit-content;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+    animation: badgePulse 3s ease-in-out infinite;
+  }
+
+  @keyframes badgePulse {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+    }
+    50% {
+      box-shadow: 0 4px 24px rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  .hero-badge svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title-highlight {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .title-main {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stat-box {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .stat-box:hover::before {
+    left: 100%;
+  }
+
+  .stat-box:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #60a5fa;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: #94a3b8;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #a855f7 100%);
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.25rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      0 10px 40px rgba(59, 130, 246, 0.4),
+      0 0 0 0 rgba(59, 130, 246, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .cta-primary:hover::before {
+    left: 100%;
+  }
+
+  .cta-primary:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+      0 20px 60px rgba(59, 130, 246, 0.5),
+      0 0 0 4px rgba(59, 130, 246, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-primary:active {
+    transform: translateY(-2px) scale(1);
+  }
+
+  .cta-primary svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-primary:hover svg {
+    transform: translateX(4px);
+  }
+
+  .cta-note {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-frame {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    border: 3px solid transparent;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #a855f7) padding-box,
+                linear-gradient(135deg, #3b82f6, #8b5cf6, #a855f7) border-box;
+    box-shadow: 
+      0 25px 80px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(59, 130, 246, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+  }
+
+  .image-frame:hover .profile-photo {
+    transform: scale(1.02);
+    box-shadow: 
+      0 30px 100px rgba(59, 130, 246, 0.5),
+      0 0 0 2px rgba(59, 130, 246, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .image-badge {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #a855f7 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-weight: 800;
+    font-size: 1rem;
+    box-shadow: 
+      0 10px 40px rgba(59, 130, 246, 0.5),
+      0 0 0 2px rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: badgeFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes badgeFloat {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-8px);
+    }
+  }
+
+  .image-badge svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Features Section */
+  .features-premium {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+    position: relative;
+  }
+
+  .features-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #1a1a1a 0%, #4b5563 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    color: #6b7280;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.06),
+      0 0 0 0 rgba(59, 130, 246, 0);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #a855f7);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .feature-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 20px 60px rgba(59, 130, 246, 0.15),
+      0 0 0 1px rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .feature-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #a855f7 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: 
+      0 8px 24px rgba(59, 130, 246, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+  }
+
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 
+      0 12px 32px rgba(59, 130, 246, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .feature-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .feature-title {
+    font-size: 1.625rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-text {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: #6b7280;
+  }
+
+  .feature-list svg {
+    width: 18px;
+    height: 18px;
+    color: #2563eb;
+    flex-shrink: 0;
+  }
+
+  /* Markets Section */
+  .markets-premium {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    position: relative;
+  }
+
+  .markets-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+  }
+
+  .markets-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .market-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .market-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .market-card:hover::after {
+    opacity: 1;
+  }
+
+  .market-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+      0 16px 48px rgba(59, 130, 246, 0.15),
+      0 0 0 1px rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .market-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .market-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #a855f7 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    transition: all 0.4s ease;
+  }
+
+  .market-card:hover .market-icon {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  }
+
+  .market-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .market-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .market-desc {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .market-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .market-tags span {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+    padding: 0.375rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  /* Methods Section */
+  .methods-premium {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  }
+
+  .methods-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .method-item {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .method-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #3b82f6, #8b5cf6, #a855f7);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+
+  .method-item:hover::before {
+    transform: scaleY(1);
+  }
+
+  .method-item:hover {
+    transform: translateX(12px);
+    box-shadow: 
+      0 16px 48px rgba(59, 130, 246, 0.15),
+      0 0 0 1px rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .method-number {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #e5e7eb 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 80px;
+    transition: all 0.4s ease;
+  }
+
+  .method-item:hover .method-number {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .method-content {
+    flex: 1;
+  }
+
+  .method-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .method-text {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  /* CTA Section */
+  .cta-premium {
+    position: relative;
+    padding: 8rem 0;
+    background: linear-gradient(135deg, #1e40af 0%, #5b21b6 30%, #7c3aed 70%, #9333ea 100%);
+    color: white;
+    overflow: hidden;
+  }
+
+  .cta-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    animation: ctaBackgroundShift 15s ease-in-out infinite;
+  }
+
+  @keyframes ctaBackgroundShift {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.1);
+    }
+  }
+
+  .cta-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-description {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .cta-benefits {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .benefit-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+  }
+
+  .benefit-item svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: white;
+    color: #1e40af;
+    padding: 1.75rem 4rem;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.375rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.25),
+      0 0 0 0 rgba(255, 255, 255, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .cta-button:hover::before {
+    left: 100%;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.35),
+      0 0 0 4px rgba(255, 255, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+    background: #ffffff;
+  }
+
+  .cta-button:active {
+    transform: translateY(-3px) scale(1);
+  }
+
+  .cta-button svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover svg {
+    transform: translateX(6px);
+  }
+
+  .cta-urgency {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.95);
+    animation: urgencyPulse 2s ease-in-out infinite;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes urgencyPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+  }
+
+  /* Disclaimer Section */
+  .disclaimer-premium {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border-top: 3px solid #fb923c;
+    border-bottom: 3px solid #fb923c;
+    position: relative;
+  }
+
+  .disclaimer-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c2410c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .disclaimer-box {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .disclaimer-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #c2410c;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .disclaimer-content {
+    font-size: 1rem;
+    color: #9a3412;
+    line-height: 1.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  .disclaimer-content p {
+    margin-bottom: 1rem;
+  }
+
+  .disclaimer-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .disclaimer-content strong {
+    color: #c2410c;
+  }
+
+  /* Footer */
+  .premium-footer {
+    background: #1a1a1a;
+    color: #9ca3af;
+    padding: 4rem 0 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-info {
+    font-size: 0.875rem;
+    line-height: 1.8;
+  }
+
+  .footer-info p {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-info a {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+
+  .footer-info a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-links {
+    list-style: none;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: #60a5fa;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #374151;
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero-image {
+      order: -1;
+    }
+
+    .image-frame {
+      width: 280px;
+      height: 280px;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .markets-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1.5rem;
+    }
+
+    .nav-wrapper {
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-overlay {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      width: 100dvw;
+      height: 100vh;
+      height: 100dvh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 320px;
+      height: 100vh;
+      height: 100dvh;
+      background: white;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem 1.5rem;
+      box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 999;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .nav-menu.active {
+      right: 0;
+    }
+
+    .nav-toggle {
+      display: block;
+      position: relative;
+    }
+
+    .nav-close {
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #1a1a1a;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+
+    .nav-close svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .hero-premium {
+      padding: 4rem 0 3rem;
+    }
+
+    .hero-title .title-main {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+    }
+
+    .hero-stats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .cta-primary {
+      width: 100%;
+      padding: 1.125rem 2rem;
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .markets-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-title {
+      font-size: 2rem;
+    }
+
+    .cta-description {
+      font-size: 1.125rem;
+    }
+
+    .cta-benefits {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+      width: 100%;
+      padding: 1.25rem 2rem;
+      font-size: 1.125rem;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title .title-main {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .cta-title {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.getElementById('navToggle')
+    const navMenu = document.getElementById('navMenu')
+    const navClose = document.getElementById('navClose')
+    const navOverlay = document.getElementById('navOverlay')
+    const menuIcon = document.getElementById('menuIcon')
+    const closeIcon = document.getElementById('closeIcon')
+
+    function openMenu() {
+      if (navMenu) navMenu.classList.add('active')
+      if (navOverlay) navOverlay.classList.add('active')
+      if (menuIcon) menuIcon.style.display = 'none'
+      if (closeIcon) closeIcon.style.display = 'block'
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+      document.documentElement.style.overflowX = 'hidden'
+    }
+
+    function closeMenu() {
+      if (navMenu) navMenu.classList.remove('active')
+      if (navOverlay) navOverlay.classList.remove('active')
+      if (menuIcon) menuIcon.style.display = 'block'
+      if (closeIcon) closeIcon.style.display = 'none'
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      document.documentElement.style.overflowX = ''
+    }
+
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        if (navMenu && navMenu.classList.contains('active')) {
+          closeMenu()
+        } else {
+          openMenu()
+        }
+      })
+    }
+
+    if (navClose) {
+      navClose.addEventListener('click', closeMenu)
+    }
+
+    if (navOverlay) {
+      navOverlay.addEventListener('click', closeMenu)
+    }
+
+    if (navMenu) {
+      const navLinks = navMenu.querySelectorAll('.nav-link')
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          closeMenu()
+        })
+      })
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeMenu()
+      }
+    })
+
+    const buttons = document.querySelectorAll('.link-btn')
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+          (window as any).gtag_report_conversion()
+        }
+      })
+    })
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        const target = document.querySelector(this.getAttribute('href') || '')
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
+      })
+    })
+  })
+</script>
+

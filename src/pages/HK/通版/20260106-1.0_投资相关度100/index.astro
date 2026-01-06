@@ -1,0 +1,718 @@
+---
+import { Award, BarChart3, BookOpen, CheckCircle2, Clock, DollarSign, Droplets, Gift, MessageSquare, TrendingUp, Users } from 'lucide-astro'
+import ButtonAction from '@/components/ButtonAction.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '專業投資技術教學群組'
+const description = '免費加入投資技術教學群組，獲取專業選股分析、黃金期貨外匯交易指導，以及實用投資工具'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-pattern"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="badge">
+            <Clock class="badge-icon" />
+            <span>限時開放</span>
+          </div>
+          <h1 class="hero-title">專業投資技術教學群組</h1>
+          <p class="hero-subtitle">
+            加入專業投資技術教學群組，即時獲取優質股票推薦、專業交易分析軟件及實用購物優惠。我們提供全面的黃金期貨、原油及外匯投資指導，與其他投資者交流心得，共同提升投資技能。
+          </p>
+          <div class="highlight-box">
+            <div class="highlight-divider"></div>
+            <p class="highlight-text">完全免費 • 專業教學 • 實戰指導</p>
+            <div class="highlight-divider"></div>
+          </div>
+          <a href="javascript:void(0)" class="cta-button link-btn">
+            <span class="button-text">立即加入群組</span>
+            <span class="button-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Investment Areas Section -->
+    <section class="investment-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">全面投資領域覆蓋</h2>
+          <p class="section-subtitle">無論您想學習股票選股、黃金期貨交易，還是掌握投資邏輯，我們都能為您提供專業指導</p>
+        </div>
+
+        <div class="investment-grid">
+          <div class="investment-card">
+            <div class="investment-icon-wrapper">
+              <div class="investment-icon">
+                <TrendingUp />
+              </div>
+            </div>
+            <h3 class="investment-title">港股投資</h3>
+            <p class="investment-desc">專業選股技巧分析，優質股票推薦，與群組成員分享投資經驗與策略</p>
+          </div>
+
+          <div class="investment-card">
+            <div class="investment-icon-wrapper">
+              <div class="investment-icon">
+                <Award />
+              </div>
+            </div>
+            <h3 class="investment-title">黃金期貨</h3>
+            <p class="investment-desc">深入分析黃金期貨市場走勢，掌握交易時機，學習風險管理策略</p>
+          </div>
+
+          <div class="investment-card">
+            <div class="investment-icon-wrapper">
+              <div class="investment-icon">
+                <Droplets />
+              </div>
+            </div>
+            <h3 class="investment-title">原油投資</h3>
+            <p class="investment-desc">原油市場趨勢分析，投資策略制定，風險控制與資金管理技巧</p>
+          </div>
+
+          <div class="investment-card">
+            <div class="investment-icon-wrapper">
+              <div class="investment-icon">
+                <DollarSign />
+              </div>
+            </div>
+            <h3 class="investment-title">外匯投資</h3>
+            <p class="investment-desc">外匯交易技術教學，專業分析軟件使用指導，提升交易執行效率</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">加入即享三大福利</h2>
+        </div>
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <div class="benefit-number">01</div>
+            <div class="benefit-icon-wrapper">
+              <div class="benefit-icon">
+                <BarChart3 />
+              </div>
+            </div>
+            <div class="benefit-content">
+              <h3 class="benefit-title">優質股票推薦</h3>
+              <p class="benefit-desc">由專業分析師團隊精心篩選的優質股票，助您把握市場投資機會，提升投資回報</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-number">02</div>
+            <div class="benefit-icon-wrapper">
+              <div class="benefit-icon">
+                <TrendingUp />
+              </div>
+            </div>
+            <div class="benefit-content">
+              <h3 class="benefit-title">專業分析軟件</h3>
+              <p class="benefit-desc">獲得專業交易分析工具使用權限，實時市場數據分析，提升投資決策效率與準確性</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-number">03</div>
+            <div class="benefit-icon-wrapper">
+              <div class="benefit-icon">
+                <Gift />
+              </div>
+            </div>
+            <div class="benefit-content">
+              <h3 class="benefit-title">實用購物優惠</h3>
+              <p class="benefit-desc">加入即獲實用購物優惠券，在學習投資知識的同時享受日常生活優惠</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="why-join-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">為何選擇我們</h2>
+        </div>
+        <div class="reasons-grid">
+          <div class="reason-card">
+            <div class="reason-icon-wrapper">
+              <div class="reason-icon">
+                <CheckCircle2 />
+              </div>
+            </div>
+            <h3 class="reason-title">完全免費</h3>
+            <p class="reason-desc">不收取任何費用，不推銷課程，純粹分享專業投資技術與經驗</p>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon-wrapper">
+              <div class="reason-icon">
+                <Users />
+              </div>
+            </div>
+            <h3 class="reason-title">專業指導</h3>
+            <p class="reason-desc">資深投資導師提供專業指導，解答您的投資疑問，協助制定投資策略</p>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon-wrapper">
+              <div class="reason-icon">
+                <MessageSquare />
+              </div>
+            </div>
+            <h3 class="reason-title">學員交流</h3>
+            <p class="reason-desc">與群組內其他投資者交流心得，分享實戰經驗，共同學習成長</p>
+          </div>
+
+          <div class="reason-card">
+            <div class="reason-icon-wrapper">
+              <div class="reason-icon">
+                <BookOpen />
+              </div>
+            </div>
+            <h3 class="reason-title">全面教學</h3>
+            <p class="reason-desc">涵蓋港股、黃金期貨、原油、外匯等多個投資領域的系統化教學</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-pattern"></div>
+      <div class="container">
+        <h2 class="cta-title">開始您的投資學習之旅</h2>
+        <p class="cta-subtitle">無論您想學習股票選股技巧、黃金期貨交易，還是掌握投資邏輯，我們都能為您提供專業指導。點擊下方按鈕立即加入群組：</p>
+        <a href="javascript:void(0)" class="cta-button-large link-btn">
+          <span class="button-text">立即加入專業投資技術教學群組</span>
+          <span class="button-arrow">→</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .landing-page {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #fafafa;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    padding: 3.5rem 0 4.5rem;
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+    opacity: 0.6;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #d4af37;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .badge-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    opacity: 0.92;
+    text-align: left;
+    max-width: 100%;
+    color: #e2e8f0;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 1.75rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .highlight-divider {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.4) 50%, transparent 100%);
+  }
+
+  .highlight-text {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.05em;
+    color: #d4af37;
+    white-space: nowrap;
+  }
+
+  .cta-button,
+  .cta-button-large {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 1.25rem 1.75rem;
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    color: #0f172a;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-button::before,
+  .cta-button-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .cta-button:active::before,
+  .cta-button-large:active::before {
+    left: 100%;
+  }
+
+  .cta-button:active,
+  .cta-button-large:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .button-text {
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .button-arrow {
+    font-size: 1.25rem;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Investment Section */
+  .investment-section {
+    padding: 4rem 0;
+    background: #ffffff;
+    position: relative;
+  }
+
+  .section-title {
+    font-size: 1.625rem;
+    font-weight: 700;
+    margin-bottom: 0.875rem;
+    color: #0f172a;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .section-subtitle {
+    font-size: 0.9375rem;
+    color: #64748b;
+    line-height: 1.7;
+    max-width: 100%;
+  }
+
+  .investment-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .investment-card {
+    background: #ffffff;
+    padding: 2rem 1.75rem;
+    border-radius: 16px;
+    text-align: left;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .investment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .investment-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .investment-card:active::before {
+    opacity: 1;
+  }
+
+  .investment-icon-wrapper {
+    margin-bottom: 1.25rem;
+  }
+
+  .investment-icon {
+    width: 56px;
+    height: 56px;
+    color: #d4af37;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .investment-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .investment-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #0f172a;
+  }
+
+  .investment-desc {
+    font-size: 0.9375rem;
+    color: #64748b;
+    line-height: 1.7;
+  }
+
+  /* Benefits Section */
+  .benefits-section {
+    padding: 4rem 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  }
+
+  .benefits-list {
+    margin-top: 2.5rem;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem 1.75rem;
+    margin-bottom: 1.5rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .benefit-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+    border-radius: 16px 0 0 16px;
+  }
+
+  .benefit-item:active {
+    transform: translateX(4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .benefit-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(212, 175, 55, 0.3);
+    letter-spacing: 0.1em;
+  }
+
+  .benefit-icon-wrapper {
+    flex-shrink: 0;
+  }
+
+  .benefit-icon {
+    width: 48px;
+    height: 48px;
+    color: #d4af37;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .benefit-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .benefit-content {
+    flex: 1;
+  }
+
+  .benefit-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    color: #0f172a;
+  }
+
+  .benefit-desc {
+    font-size: 0.9375rem;
+    color: #64748b;
+    line-height: 1.7;
+  }
+
+  /* Why Join Section */
+  .why-join-section {
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .reason-card {
+    background: #ffffff;
+    padding: 2rem 1.75rem;
+    border-radius: 16px;
+    text-align: left;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .reason-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .reason-icon-wrapper {
+    margin-bottom: 1.25rem;
+  }
+
+  .reason-icon {
+    width: 48px;
+    height: 48px;
+    color: #d4af37;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .reason-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .reason-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #0f172a;
+  }
+
+  .reason-desc {
+    font-size: 0.9375rem;
+    color: #64748b;
+    line-height: 1.7;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 0 5rem;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+    opacity: 0.6;
+  }
+
+  .cta-title {
+    font-size: 1.625rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    text-align: left;
+    color: #e2e8f0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-button-large {
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    color: #0f172a;
+    font-size: 1.0625rem;
+    padding: 1.25rem 1.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 360px) {
+    .hero-title {
+      font-size: 1.75rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .cta-title {
+      font-size: 1.5rem;
+    }
+
+    .container {
+      padding: 0 1.25rem;
+    }
+  }
+</style>
+

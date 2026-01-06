@@ -1,0 +1,750 @@
+---
+import { ArrowRight, BookOpen, CheckCircle, Clock, FileText, GraduationCap, Lightbulb, Users } from 'lucide-astro'
+import ButtonAction from '@/components/ButtonAction.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 技術分析學習與研究'
+const description = '資深技術分析師陳永陸分享技術分析知識、圖表形態識別方法，基於公開信息進行市場分析學習，不涉及任何投資建議或金融產品推薦'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="page-wrapper">
+    <!-- Top Banner -->
+    <div class="top-banner">
+      <div class="banner-content">
+        <span class="banner-badge">學習與研究平台</span>
+        <p class="banner-text">基於公開信息的技術分析知識分享</p>
+      </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+      <!-- Header Card -->
+      <article class="header-card">
+        <div class="header-image">
+          <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="profile-image" />
+        </div>
+        <div class="header-text">
+          <h1 class="main-title">陳永陸</h1>
+          <p class="subtitle">技術分析學習與研究</p>
+          <div class="intro-text">
+            <p>專注於技術分析與圖表形態識別的研究與學習，基於公開信息分享市場分析方法。本平台僅提供學習及研究目的的信息分享，不包含任何投資建議、金融產品推薦或交易建議。</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Learning Path Timeline -->
+      <section class="timeline-section">
+        <h2 class="section-heading">學習路徑</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <BookOpen />
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">圖表形態識別</h3>
+              <p class="timeline-description">學習頭肩頂、雙底、三角形、旗形等經典圖表形態的識別方法，了解形態分析的技術知識。基於公開信息進行學習研究，不涉及任何交易策略或投資建議。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <Lightbulb />
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">技術指標應用</h3>
+              <p class="timeline-description">深入學習MACD、RSI、KDJ、布林帶等技術指標的組合應用方法，提升市場分析能力與技術研究水平。本內容僅供學習及研究目的，不涉及任何交易信號或投資建議。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <FileText />
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">市場分析方法</h3>
+              <p class="timeline-description">系統化學習市場分析的技術方法，了解價格波動的研究技巧，建立完善的技術分析知識體系。本內容僅供學習目的，不涉及任何風險管理策略或投資建議。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research Areas Grid -->
+      <section class="research-grid-section">
+        <h2 class="section-heading">研究領域</h2>
+        <div class="research-grid">
+          <div class="research-card">
+            <div class="card-header">
+              <h3 class="card-title">恒指市場</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text">恒指市場技術分析研究，學習識別關鍵支撐位與阻力位的方法，了解突破形態的分析技巧。基於公開信息進行市場分析學習，不涉及任何投資建議。</p>
+              <ul class="card-tags">
+                <li>支撐位</li>
+                <li>阻力位</li>
+                <li>突破</li>
+                <li>形態分析</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <div class="card-header">
+              <h3 class="card-title">黃金市場</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text">黃金市場圖表形態分析研究，學習識別頭肩頂、雙底等經典形態的方法。了解趨勢線繪製與斐波那契回調位的技術分析知識，僅供學習目的。</p>
+              <ul class="card-tags">
+                <li>頭肩頂</li>
+                <li>雙底</li>
+                <li>趨勢線</li>
+                <li>斐波那契</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <div class="card-header">
+              <h3 class="card-title">原油市場</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text">原油市場技術指標應用研究，學習MACD、RSI、布林帶等指標的組合分析方法。了解成交量分析與價格動量的技術分析知識，基於公開信息進行學習。</p>
+              <ul class="card-tags">
+                <li>MACD</li>
+                <li>RSI</li>
+                <li>布林帶</li>
+                <li>成交量</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <div class="card-header">
+              <h3 class="card-title">外匯市場</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text">外匯市場技術分析研究，學習貨幣對價格走勢的分析方法。了解市場波動的技術分析知識，基於公開信息進行學習，不涉及任何交易建議或投資建議。</p>
+              <ul class="card-tags">
+                <li>貨幣對</li>
+                <li>價格走勢</li>
+                <li>市場波動</li>
+                <li>技術指標</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Learn Section -->
+      <section class="why-learn-section">
+        <div class="why-learn-container">
+          <div class="why-learn-header">
+            <h2 class="section-heading">為何選擇這個學習平台</h2>
+          </div>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <GraduationCap />
+              </div>
+              <div class="benefit-content">
+                <h3 class="benefit-title">專業技術分析</h3>
+                <p class="benefit-text">20年技術分析實戰經驗，專注圖表形態識別與技術指標應用，不涉及基本面分析，純技術流學習。</p>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <Users />
+              </div>
+              <div class="benefit-content">
+                <h3 class="benefit-title">市場分析學習</h3>
+                <p class="benefit-text">基於公開信息分享市場分析方法，解答技術分析疑問，協助學習技術分析知識與研究方法。本平台不提供任何交易信號、交易策略或投資建議。</p>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <Clock />
+              </div>
+              <div class="benefit-content">
+                <h3 class="benefit-title">學習者交流</h3>
+                <p class="benefit-text">與其他學習者交流技術分析心得，分享圖表形態識別經驗，共同提升市場分析學習能力。本平台僅供學習及研究目的，不涉及任何交易相關內容。</p>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <CheckCircle />
+              </div>
+              <div class="benefit-content">
+                <h3 class="benefit-title">系統化學習</h3>
+                <p class="benefit-text">從基礎圖表分析到高級形態識別，系統化分享技術分析知識，適合不同水平的學習者。本平台基於公開信息進行學習及研究，不涉及任何投資建議或金融產品推薦。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Card -->
+      <div class="cta-card">
+        <div class="cta-content">
+          <h2 class="cta-title">開始您的技術分析學習之旅</h2>
+          <p class="cta-description">學習圖表形態識別、技術指標應用、市場分析方法等核心知識。基於公開信息進行技術分析學習與研究，不涉及任何投資建議、金融產品推薦或交易建議。本平台僅供學習及研究目的，適合對技術分析感興趣的學習者。</p>
+          <a href="javascript:void(0)" class="cta-button link-btn">
+            <span>立即加入學習</span>
+            <ArrowRight />
+          </a>
+        </div>
+      </div>
+
+      <!-- Disclaimer Card -->
+      <div class="disclaimer-card">
+        <h3 class="disclaimer-title">重要聲明</h3>
+        <div class="disclaimer-content">
+          <p>本平台僅提供技術分析學習及研究服務，基於公開信息進行市場分析方法分享。本平台不包含任何投資建議、金融產品推薦、交易建議、買賣建議或投資決定相關內容。</p>
+          <p>本平台明確禁止任何形式的投資建議、金融產品推薦或交易建議。所有內容僅供學習及研究目的，不構成任何投資建議。請勿將本平台內容用於任何投資決策，投資決定應尋求專業投資顧問意見。</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 class="footer-title">公司資訊</h4>
+          <div class="footer-info">
+            <p><strong>公司名稱：</strong>香港技術分析教育有限公司</p>
+            <p><strong>註冊地址：</strong>香港中環金融街8號國際金融中心二期35樓3501室</p>
+            <p><strong>電話：</strong>+852 2123 4567</p>
+            <p><strong>電郵：</strong><a href="mailto:info@hktechanalysis.com">info@hktechanalysis.com</a></p>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-title">學習內容</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)">技術分析</a></li>
+            <li><a href="javascript:void(0)">圖表形態識別</a></li>
+            <li><a href="javascript:void(0)">市場分析方法</a></li>
+            <li><a href="javascript:void(0)">技術指標研究</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-title">研究市場</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)">恒指市場</a></li>
+            <li><a href="javascript:void(0)">黃金市場</a></li>
+            <li><a href="javascript:void(0)">原油市場</a></li>
+            <li><a href="javascript:void(0)">外匯市場</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© 2026 香港技術分析教育有限公司. 版權所有.</p>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<ButtonAction />
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .page-wrapper {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f8f9fa;
+    color: #1a1a1a;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Top Banner */
+  .top-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .banner-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-text {
+    font-size: 0.875rem;
+    opacity: 0.95;
+  }
+
+  /* Main Content */
+  .main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* Header Card */
+  .header-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .header-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .header-text {
+    width: 100%;
+  }
+
+  .main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .intro-text {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+  }
+
+  .intro-text p {
+    font-size: 0.9375rem;
+    color: #4a5568;
+    line-height: 1.7;
+  }
+
+  /* Section Heading */
+  .section-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  /* Timeline Section */
+  .timeline-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 48px;
+    width: 2px;
+    height: calc(100% + 1rem);
+    background: #e2e8f0;
+  }
+
+  .timeline-marker {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .timeline-marker svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .timeline-content {
+    flex: 1;
+    padding-top: 0.25rem;
+  }
+
+  .timeline-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-description {
+    font-size: 0.9375rem;
+    color: #4a5568;
+    line-height: 1.7;
+  }
+
+  /* Research Grid */
+  .research-grid-section {
+    margin-bottom: 2rem;
+  }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .research-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .research-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-header {
+    margin-bottom: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .card-text {
+    font-size: 0.9375rem;
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .card-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .card-tags li {
+    background: #f0f4ff;
+    color: #667eea;
+    padding: 0.375rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  /* Why Learn Section */
+  .why-learn-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+  }
+
+  .why-learn-header .section-heading {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .benefit-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .benefit-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .benefit-icon svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
+
+  .benefit-content {
+    flex: 1;
+  }
+
+  .benefit-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-text {
+    font-size: 0.9375rem;
+    opacity: 0.95;
+    line-height: 1.7;
+  }
+
+  /* CTA Card */
+  .cta-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+  }
+
+  .cta-description {
+    font-size: 0.9375rem;
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cta-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+  }
+
+  .cta-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Disclaimer Card */
+  .disclaimer-card {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .disclaimer-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #856404;
+    margin-bottom: 1rem;
+  }
+
+  .disclaimer-content {
+    font-size: 0.875rem;
+    color: #856404;
+    line-height: 1.7;
+  }
+
+  .disclaimer-content p {
+    margin-bottom: 0.75rem;
+  }
+
+  .disclaimer-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Footer */
+  .page-footer {
+    background: #1a1a1a;
+    color: #cbd5e1;
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .footer-info {
+    font-size: 0.875rem;
+    line-height: 1.8;
+  }
+
+  .footer-info p {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-info a {
+    color: #667eea;
+    text-decoration: none;
+  }
+
+  .footer-links {
+    list-style: none;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:active {
+    color: #667eea;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+  }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    .main-content {
+      padding: 3rem 2rem;
+    }
+
+    .header-card {
+      flex-direction: row;
+      text-align: left;
+      padding: 3rem;
+    }
+
+    .header-image {
+      width: 150px;
+      height: 150px;
+    }
+
+    .research-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.link-btn')
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+          (window as any).gtag_report_conversion()
+        }
+      })
+    })
+  })
+</script>

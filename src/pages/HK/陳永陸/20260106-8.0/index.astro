@@ -1,0 +1,371 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 提前發現市場機會'
+const description = '每日整理近期潛力股相關資訊，資金流向、板塊強弱、關鍵價位、風險位置'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <div class="magazine-layout">
+      <!-- 左上角头像区 -->
+      <div class="corner-profile">
+        <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="profile-img" />
+        <div class="profile-name">陳永陸</div>
+      </div>
+
+      <!-- 主标题区 - 大号字体 -->
+      <div class="headline-area">
+        <h1 class="main-headline">點解有啲機會</h1>
+        <h1 class="main-headline-accent">你永遠都係升完先至見到？</h1>
+      </div>
+
+      <!-- 左侧大卡片 -->
+      <div class="large-card">
+        <div class="card-label">真相</div>
+        <h2 class="card-title">真正嘅機會</h2>
+        <p class="card-text">通常唔會喺新聞頭條出現</p>
+      </div>
+
+      <!-- 右侧时间线 -->
+      <div class="timeline-area">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-icon">💹</div>
+            <p class="timeline-text">資金一動</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-icon">📊</div>
+            <p class="timeline-text">板塊一轉</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-icon">⚡</div>
+            <p class="timeline-text">市場節奏已經變咗</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中间说明区 -->
+      <div class="statement-area">
+        <p class="statement-line-1">我哋唔薦股</p>
+        <p class="statement-line-2">只係每日整理近期潛力股相關資訊</p>
+      </div>
+
+      <!-- 底部信息网格 -->
+      <div class="info-grid-area">
+        <div class="info-item info-item-1">
+          <div class="info-icon-large">💰</div>
+          <h3 class="info-title">資金流向</h3>
+        </div>
+        <div class="info-item info-item-2">
+          <div class="info-icon-large">📈</div>
+          <h3 class="info-title">板塊強弱</h3>
+        </div>
+        <div class="info-item info-item-3">
+          <div class="info-icon-large">🎯</div>
+          <h3 class="info-title">關鍵價位</h3>
+        </div>
+        <div class="info-item info-item-4">
+          <div class="info-icon-large">⚠️</div>
+          <h3 class="info-title">風險位置</h3>
+        </div>
+      </div>
+
+      <!-- CTA按钮区 - 占据底部 -->
+      <div class="cta-area">
+        <p class="cta-prompt">想提前了解今日市場節奏同潛力方向</p>
+        <a href="javascript:void(0)" class="cta-button link-btn">
+          <span>立即查看</span>
+        </a>
+      </div>
+
+      <!-- 免责声明 - 小字底部 -->
+      <div class="disclaimer-area">
+        <p>學習交流為主，投資有風險，請獨立判斷</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a1628;
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .landing-page {
+    min-height: 100vh;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  /* 杂志式网格布局 - 移动端单列 */
+  .magazine-layout {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* 顶部头像 */
+  .corner-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  .profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #3b82f6;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .profile-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #60a5fa;
+  }
+
+  /* 主标题区 */
+  .headline-area {
+    padding: 1rem 0;
+  }
+
+  .main-headline {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: #cbd5e1;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .main-headline-accent {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #3b82f6;
+    line-height: 1.3;
+  }
+
+  /* 大卡片 */
+  .large-card {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    padding: 1.75rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid #3b82f6;
+  }
+
+  .card-label {
+    font-size: 0.6875rem;
+    color: #93c5fd;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 1.125rem;
+    color: #60a5fa;
+    font-weight: 600;
+  }
+
+  /* 时间线 */
+  .timeline-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: rgba(59, 130, 246, 0.05);
+    border-radius: 12px;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .timeline-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #3b82f6;
+    flex-shrink: 0;
+  }
+
+  .timeline-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .timeline-icon {
+    font-size: 1.5rem;
+  }
+
+  .timeline-text {
+    font-size: 1rem;
+    color: #cbd5e1;
+    font-weight: 500;
+  }
+
+  /* 说明区 */
+  .statement-area {
+    padding: 1.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 12px;
+    border-left: 4px solid #3b82f6;
+  }
+
+  .statement-line-1 {
+    font-size: 1rem;
+    color: #93c5fd;
+    margin-bottom: 0.5rem;
+  }
+
+  .statement-line-2 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* 信息网格 */
+  .info-grid-area {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .info-item {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .info-item:active {
+    background: rgba(59, 130, 246, 0.2);
+    transform: scale(0.98);
+  }
+
+  .info-icon-large {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .info-title {
+    font-size: 0.9375rem;
+    color: #60a5fa;
+    font-weight: 600;
+  }
+
+  /* CTA区 */
+  .cta-area {
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+
+  .cta-prompt {
+    font-size: 1.125rem;
+    color: #cbd5e1;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .cta-button {
+    display: inline-block;
+    width: 100%;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(59, 130, 246, 0.5);
+  }
+
+  /* 免责声明 */
+  .disclaimer-area {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  .disclaimer-area p {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  function onLinkBtnClick() {
+    const link = 'https://www.baidu.com'
+    if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+      (window as any).gtag_report_conversion()
+    }
+    setTimeout(() => {
+      window.location.href = link
+    }, 100)
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.link-btn')
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+        onLinkBtnClick()
+      })
+    })
+  })
+</script>

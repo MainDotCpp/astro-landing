@@ -1,0 +1,313 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '陳永陸 - 港股交易規則教學'
+const description = '從零開始學習判斷邏輯，掌握何時等待、試倉、止蝕的執行規則'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <div class="layout-container">
+      <!-- 左侧栏 -->
+      <aside class="sidebar">
+        <div class="profile-card">
+          <img src="/HK/images/陳永陸_avatar.png" alt="陳永陸" class="avatar-img" />
+          <h1 class="name">陳永陸</h1>
+          <p class="role">公開學習直播</p>
+        </div>
+        <div class="sidebar-cta">
+          <a href="javascript:void(0)" class="sidebar-button link-btn">
+            <span>立即報名</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- 右侧主内容 -->
+      <main class="main-area">
+        <div class="content-wrapper">
+          <div class="header-block">
+            <h2 class="main-heading">建立你的交易規則</h2>
+            <p class="sub-heading">從零開始學習判斷邏輯</p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-label">問題根源</div>
+            <div class="problem-content">缺乏系統化的判斷與執行規則</div>
+          </div>
+
+          <div class="rules-grid">
+            <div class="rule-card rule-card-1">
+              <div class="rule-number">01</div>
+              <h3 class="rule-title">何時應該等待</h3>
+              <p class="rule-desc">學會識別最佳入場時機</p>
+            </div>
+            <div class="rule-card rule-card-2">
+              <div class="rule-number">02</div>
+              <h3 class="rule-title">何時可以試倉</h3>
+              <p class="rule-desc">掌握試探性建倉的時機</p>
+            </div>
+            <div class="rule-card rule-card-3">
+              <div class="rule-number">03</div>
+              <h3 class="rule-title">何時必須止蝕</h3>
+              <p class="rule-desc">建立風險控制機制</p>
+            </div>
+          </div>
+
+          <div class="footer-note">
+            <p>學習交流為主，投資有風險，請獨立判斷</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f8f9fa;
+    color: #1a1a1a;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .landing-page {
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* 顶部栏 - 移动端优化 */
+  .sidebar {
+    width: 100%;
+    background: linear-gradient(180deg, #ff6b35 0%, #f7931e 100%);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .profile-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+
+  .avatar-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+  }
+
+  .name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+
+  .role {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  .sidebar-button {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    background: #ffffff;
+    color: #ff6b35;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sidebar-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 主内容区 */
+  .main-area {
+    flex: 1;
+    background: #ffffff;
+    padding: 2rem 1.25rem;
+    overflow-y: auto;
+  }
+
+  .content-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .header-block {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid #ff6b35;
+  }
+
+  .main-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .sub-heading {
+    font-size: 1rem;
+    color: #666666;
+    font-weight: 400;
+  }
+
+  .problem-card {
+    background: #fff5f0;
+    border-left: 5px solid #ff6b35;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+  }
+
+  .problem-label {
+    font-size: 0.75rem;
+    color: #ff6b35;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .problem-content {
+    font-size: 1.125rem;
+    color: #1a1a1a;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .rules-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .rule-card {
+    background: #ffffff;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rule-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #ff6b35;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .rule-card:hover {
+    border-color: #ff6b35;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.15);
+  }
+
+  .rule-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .rule-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff6b35;
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .rule-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+
+  .rule-desc {
+    font-size: 0.875rem;
+    color: #666666;
+    line-height: 1.6;
+  }
+
+  .footer-note {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .footer-note p {
+    font-size: 0.75rem;
+    color: #999999;
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  function onLinkBtnClick() {
+    const link = 'https://www.baidu.com'
+    if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+      (window as any).gtag_report_conversion()
+    }
+    setTimeout(() => {
+      window.location.href = link
+    }, 100)
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.link-btn')
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+        onLinkBtnClick()
+      })
+    })
+  })
+</script>
