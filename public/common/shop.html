@@ -1,0 +1,1655 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Scorpion（スコーピオン）エキゾーストシステムの公式オンラインショップ。高性能バイク・車両用エキゾーストパーツを豊富に取り揃えています。"
+    />
+    <title>Scorpion エキゾーストシステム | 公式オンラインショップ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      /* Prevent horizontal scroll on all block elements */
+      div,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      ul,
+      ol,
+      li {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      /* Prevent horizontal scroll */
+      img,
+      video,
+      iframe,
+      svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Ensure all sections don't overflow */
+      section,
+      header,
+      footer,
+      main,
+      article,
+      aside {
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #dc2626;
+        --primary-dark: #b91c1c;
+        --secondary: #1f2937;
+        --accent: #f59e0b;
+        --bg-light: #f9fafb;
+        --bg-white: #ffffff;
+        --text-primary: #111827;
+        --text-secondary: #6b7280;
+        --text-muted: #9ca3af;
+        --border: #e5e7eb;
+        --success: #10b981;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family:
+          'Noto Sans JP',
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Header */
+      .header {
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow-sm);
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .header-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--primary);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-white);
+        box-shadow: var(--shadow-lg);
+        padding: 1rem;
+        gap: 0;
+        border-top: 1px solid var(--border);
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+      }
+
+      .nav-links.mobile-open li {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.mobile-open li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links.mobile-open a {
+        display: block;
+        padding: 1rem;
+        color: var(--text-primary);
+      }
+
+      .nav-links.mobile-open a:hover {
+        background: var(--bg-light);
+        color: var(--primary);
+      }
+
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .cart-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.5rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .cart-btn:hover {
+        background: var(--primary-dark);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: background 0.2s;
+      }
+
+      .mobile-menu-btn:hover {
+        background: var(--bg-light);
+      }
+
+      .mobile-menu-btn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, var(--secondary) 0%, #374151 100%);
+        color: white;
+        padding: 4rem 1.5rem;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .hero-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0 1rem;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Products Section */
+      .products-section {
+        padding: 4rem 0;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+        color: var(--text-secondary);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .product-card {
+        background: var(--bg-white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 1px solid var(--border);
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-width: 100%;
+        display: block;
+      }
+
+      .product-image::after {
+        display: none;
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--primary);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-category {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .product-description {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .product-specs {
+        margin-bottom: 1rem;
+      }
+
+      .spec-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875rem;
+        padding: 0.25rem 0;
+        color: var(--text-secondary);
+      }
+
+      .spec-label {
+        font-weight: 500;
+      }
+
+      .product-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .product-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .product-price-unit {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+
+      .add-to-cart-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.625rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.875rem;
+      }
+
+      .add-to-cart-btn:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+      }
+
+      /* Featured Product */
+      .featured-section {
+        padding: 4rem 0;
+        background: var(--bg-white);
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .featured-product {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .featured-image {
+        width: 100%;
+        height: 500px;
+        background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .featured-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-width: 100%;
+        display: block;
+      }
+
+      .featured-image::after {
+        display: none;
+      }
+
+      .featured-content h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .featured-content p {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+      }
+
+      .feature-list {
+        list-style: none;
+        margin-bottom: 2rem;
+      }
+
+      .feature-list li {
+        padding: 0.75rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .feature-list li::before {
+        content: '✓';
+        width: 24px;
+        height: 24px;
+        background: var(--success);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .price-section {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+      }
+
+      .current-price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .original-price {
+        font-size: 1.5rem;
+        color: var(--text-muted);
+        text-decoration: line-through;
+      }
+
+      .discount-badge {
+        background: var(--accent);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .buy-now-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .buy-now-btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .add-to-cart-large {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        width: 100%;
+      }
+
+      .add-to-cart-large:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 4rem 0;
+        background: var(--bg-white);
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+        gap: 2rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .feature-card {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .feature-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .feature-card p {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--secondary);
+        color: white;
+        padding: 3rem 0 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .footer-section h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-section a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.875rem;
+      }
+
+      /* Responsive */
+      /* Tablet and below */
+      @media (max-width: 1024px) {
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+          gap: 1.5rem;
+        }
+
+        .featured-product {
+          gap: 2rem;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .header-content {
+          padding: 0.75rem 1rem;
+        }
+
+        .logo {
+          font-size: 1.25rem;
+        }
+
+        .logo-icon {
+          width: 28px;
+          height: 28px;
+          font-size: 0.875rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-links.mobile-open {
+          display: flex;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .header-content {
+          flex-wrap: wrap;
+        }
+
+        .cart-btn {
+          padding: 0.5rem 1rem;
+          font-size: 0.875rem;
+        }
+
+        .cart-btn svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .hero {
+          padding: 2.5rem 1rem;
+        }
+
+        .hero-badge {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.8rem;
+          margin-bottom: 1rem;
+        }
+
+        .hero-title {
+          font-size: clamp(1.5rem, 6vw, 2rem);
+          margin-bottom: 0.75rem;
+        }
+
+        .hero-subtitle {
+          font-size: clamp(0.875rem, 3vw, 1rem);
+          margin-bottom: 1.5rem;
+        }
+
+        .container {
+          padding: 0 1rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .hero {
+          padding: 2.5rem 1rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .header-content {
+          padding: 0.75rem 1rem;
+          max-width: 100%;
+        }
+
+        .products-section {
+          padding: 2.5rem 0;
+        }
+
+        .section-header {
+          margin-bottom: 2rem;
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+          font-size: 0.875rem;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          margin-bottom: 2.5rem;
+        }
+
+        .product-card {
+          border-radius: 10px;
+        }
+
+        .product-image {
+          height: 220px;
+        }
+
+        .product-badge {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.6rem;
+          top: 0.75rem;
+          right: 0.75rem;
+        }
+
+        .product-info {
+          padding: 1.25rem;
+        }
+
+        .product-name {
+          font-size: 1.125rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+          font-size: 0.8125rem;
+          margin-bottom: 0.875rem;
+        }
+
+        .spec-item {
+          font-size: 0.8125rem;
+          padding: 0.2rem 0;
+        }
+
+        .product-footer {
+          padding-top: 0.875rem;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: stretch;
+        }
+
+        .product-price {
+          font-size: 1.375rem;
+        }
+
+        .product-price-unit {
+          font-size: 0.8125rem;
+        }
+
+        .add-to-cart-btn {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          font-size: 0.875rem;
+          min-height: 44px; /* Better touch target */
+        }
+
+        .featured-section {
+          padding: 2.5rem 0;
+        }
+
+        .featured-product {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .featured-image {
+          height: 280px;
+          border-radius: 10px;
+        }
+
+        .featured-content h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .featured-content p {
+          font-size: 0.9375rem;
+          margin-bottom: 1.25rem;
+          line-height: 1.7;
+        }
+
+        .feature-list {
+          margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+          padding: 0.625rem 0;
+          font-size: 0.875rem;
+        }
+
+        .feature-list li::before {
+          width: 20px;
+          height: 20px;
+          font-size: 0.75rem;
+        }
+
+        .price-section {
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .current-price {
+          font-size: 2rem;
+        }
+
+        .original-price {
+          font-size: 1.25rem;
+        }
+
+        .discount-badge {
+          font-size: 0.8125rem;
+          padding: 0.2rem 0.6rem;
+        }
+
+        .buy-now-btn,
+        .add-to-cart-large {
+          padding: 0.875rem 1.5rem;
+          font-size: 1rem;
+          min-height: 48px; /* Better touch target */
+          border-radius: 8px;
+        }
+
+        .features-section {
+          padding: 2.5rem 0;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .feature-card {
+          padding: 1.5rem;
+        }
+
+        .feature-icon {
+          width: 56px;
+          height: 56px;
+          font-size: 1.25rem;
+          margin-bottom: 0.875rem;
+        }
+
+        .feature-card h3 {
+          font-size: 1.125rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+          font-size: 0.8125rem;
+        }
+
+        .footer {
+          padding: 2rem 0 1rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .footer-section h4 {
+          font-size: 1rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li {
+          margin-bottom: 0.4rem;
+          font-size: 0.875rem;
+        }
+
+        .footer-bottom {
+          padding-top: 1.5rem;
+          font-size: 0.8125rem;
+        }
+      }
+
+      /* Small Mobile */
+      @media (max-width: 480px) {
+        .header-content {
+          padding: 0.625rem 0.875rem;
+        }
+
+        .logo {
+          font-size: 1.125rem;
+        }
+
+        .logo span {
+          display: none; /* Hide text on very small screens */
+        }
+
+        .cart-btn {
+          padding: 0.5rem 0.875rem;
+          font-size: 0.8125rem;
+        }
+
+        .cart-btn span {
+          display: none; /* Hide "カート" text, show only icon */
+        }
+
+        .hero {
+          padding: 2rem 0.875rem;
+        }
+
+        .hero-title {
+          font-size: 1.375rem;
+        }
+
+        .hero-subtitle {
+          font-size: 0.8125rem;
+        }
+
+        .container {
+          padding: 0 0.875rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .hero {
+          padding: 2rem 0.875rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .header-content {
+          padding: 0.625rem 0.875rem;
+          max-width: 100%;
+        }
+
+        .products-section {
+          padding: 2rem 0;
+        }
+
+        .section-title {
+          font-size: 1.375rem;
+        }
+
+        .section-subtitle {
+          font-size: 0.8125rem;
+        }
+
+        .products-grid {
+          gap: 1.25rem;
+        }
+
+        .product-image {
+          height: 200px;
+        }
+
+        .product-info {
+          padding: 1rem;
+        }
+
+        .product-name {
+          font-size: 1rem;
+        }
+
+        .product-description {
+          font-size: 0.75rem;
+        }
+
+        .product-price {
+          font-size: 1.25rem;
+        }
+
+        .featured-image {
+          height: 240px;
+        }
+
+        .featured-content h2 {
+          font-size: 1.25rem;
+        }
+
+        .featured-content p {
+          font-size: 0.875rem;
+        }
+
+        .current-price {
+          font-size: 1.75rem;
+        }
+
+        .original-price {
+          font-size: 1.125rem;
+        }
+
+        .feature-card {
+          padding: 1.25rem;
+        }
+
+        .footer {
+          padding: 1.5rem 0 0.875rem;
+        }
+      }
+
+      /* Touch device optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        .product-card:hover {
+          transform: none;
+        }
+
+        .product-card:active {
+          transform: scale(0.98);
+        }
+
+        .add-to-cart-btn:active,
+        .buy-now-btn:active,
+        .add-to-cart-large:active {
+          transform: scale(0.95);
+        }
+      }
+    </style>
+  </head>
+  <body style="overflow-x: hidden; width: 100%; max-width: 100%; position: relative">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="#" class="logo">
+          <div class="logo-icon">S</div>
+          <span>Scorpion Exhaust</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#products">製品一覧</a></li>
+            <li><a href="#features">特徴</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="メニュー">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12H21M3 6H21M3 18H21" />
+          </svg>
+        </button>
+        <button class="cart-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 2L7 6H2L4 20H20L22 6H17L15 2H9Z" />
+            <path d="M9 6L12 10L15 6" />
+          </svg>
+          カート (0)
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">🚀 高性能エキゾーストシステム</div>
+        <h1 class="hero-title">Scorpion エキゾーストシステム</h1>
+        <p class="hero-subtitle">
+          最高品質の素材と最先端の技術で製造されたエキゾーストシステム。
+          パフォーマンス向上とスポーティなサウンドを実現します。
+        </p>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">製品ラインナップ</h2>
+          <p class="section-subtitle">お客様の車両に最適なエキゾーストシステムをお選びください</p>
+        </div>
+
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1558980664-2506fca6bfc2?w=600&h=400&fit=crop&q=80"
+                alt="Scorpion S1 スリップオン マフラー"
+                loading="lazy"
+                onerror="this.src = 'https://picsum.photos/600/400?random=1'"
+              />
+              <div class="product-badge">人気</div>
+            </div>
+            <div class="product-info">
+              <div class="product-category">スリップオンライン</div>
+              <h3 class="product-name">Scorpion S1 スリップオン マフラー</h3>
+              <p class="product-description">
+                既存のエキゾーストシステムに簡単に取り付け可能。軽量設計でパフォーマンスとサウンドを向上させます。
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">材質</span>
+                  <span>ステンレス鋼</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">重量</span>
+                  <span>約2.5kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">適合車種</span>
+                  <span>主要バイクモデル</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">¥89,800</span>
+                  <span class="product-price-unit">（税込）</span>
+                </div>
+                <button class="add-to-cart-btn">カートに追加</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1558980663-3685c1d673c5?w=600&h=400&fit=crop&q=80"
+                alt="Scorpion Evo フルエキゾーストシステム"
+                loading="lazy"
+                onerror="this.src = 'https://picsum.photos/600/400?random=2'"
+              />
+              <div class="product-badge">新着</div>
+            </div>
+            <div class="product-info">
+              <div class="product-category">エボリューションライン</div>
+              <h3 class="product-name">Scorpion Evo フルエキゾーストシステム</h3>
+              <p class="product-description">
+                エキゾーストシステム全体を交換するフルシステム。最大限のパフォーマンス向上と重量軽減を実現。
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">材質</span>
+                  <span>チタン合金</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">重量</span>
+                  <span>約1.8kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">出力向上</span>
+                  <span>最大15%</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">¥298,000</span>
+                  <span class="product-price-unit">（税込）</span>
+                </div>
+                <button class="add-to-cart-btn">カートに追加</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop&q=80"
+                alt="Scorpion R1 レーシングエキゾースト"
+                loading="lazy"
+                onerror="this.src = 'https://picsum.photos/600/400?random=3'"
+              />
+            </div>
+            <div class="product-info">
+              <div class="product-category">レーシングライン</div>
+              <h3 class="product-name">Scorpion R1 レーシングエキゾースト</h3>
+              <p class="product-description">
+                サーキット走行を想定した高性能モデル。最適な排気効率と耐久性を備えています。
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">材質</span>
+                  <span>チタン + カーボン</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">重量</span>
+                  <span>約1.5kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">認証</span>
+                  <span>FIM適合</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">¥398,000</span>
+                  <span class="product-price-unit">（税込）</span>
+                </div>
+                <button class="add-to-cart-btn">カートに追加</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1558980664-1b0a0d6c6a46?w=600&h=400&fit=crop&q=80"
+                alt="Scorpion Carbon テールパイプ"
+                loading="lazy"
+                onerror="this.src = 'https://picsum.photos/600/400?random=4'"
+              />
+            </div>
+            <div class="product-info">
+              <div class="product-category">カーボンライン</div>
+              <h3 class="product-name">Scorpion Carbon テールパイプ</h3>
+              <p class="product-description">
+                カーボンファイバー製のテールパイプ。スポーティな外観と軽量化を実現します。
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">材質</span>
+                  <span>カーボンファイバー</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">重量</span>
+                  <span>約0.8kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">デザイン</span>
+                  <span>カーボンウィーブ</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">¥128,000</span>
+                  <span class="product-price-unit">（税込）</span>
+                </div>
+                <button class="add-to-cart-btn">カートに追加</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&h=400&fit=crop&q=80"
+                alt="Scorpion Titanium マフラー"
+                loading="lazy"
+                onerror="this.src = 'https://picsum.photos/600/400?random=5'"
+              />
+            </div>
+            <div class="product-info">
+              <div class="product-category">チタンライン</div>
+              <h3 class="product-name">Scorpion Titanium マフラー</h3>
+              <p class="product-description">
+                高品質チタン合金製。優れた耐腐食性と軽量性を兼ね備えたプレミアムモデル。
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">材質</span>
+                  <span>チタン合金</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">重量</span>
+                  <span>約1.2kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">耐久性</span>
+                  <span>10年保証</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">¥248,000</span>
+                  <span class="product-price-unit">（税込）</span>
+                </div>
+                <button class="add-to-cart-btn">カートに追加</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1558980665-4e14e9abd0b0?w=600&h=400&fit=crop&q=80"
+                alt="Scorpion VCS バルブコントロールシステム"
+                loading="lazy"
+                onerror="this.src = 'https://picsum.photos/600/400?random=6'"
+              />
+            </div>
+            <div class="product-info">
+              <div class="product-category">バルブコントロール</div>
+              <h3 class="product-name">Scorpion VCS バルブコントロールシステム</h3>
+              <p class="product-description">
+                エキゾーストサウンドを調整可能なシステム。ドライビング体験をカスタマイズできます。
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">制御方式</span>
+                  <span>電動バルブ</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">モード</span>
+                  <span>3段階調整</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">操作</span>
+                  <span>リモートコントロール</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">¥158,000</span>
+                  <span class="product-price-unit">（税込）</span>
+                </div>
+                <button class="add-to-cart-btn">カートに追加</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Product Section -->
+    <section class="featured-section">
+      <div class="container">
+        <div class="featured-product">
+          <div class="featured-image">
+            <img
+              src="https://images.unsplash.com/photo-1558980663-3685c1d673c5?w=800&h=600&fit=crop&q=80"
+              alt="Scorpion Evo フルエキゾーストシステム"
+              loading="lazy"
+              onerror="this.src = 'https://picsum.photos/800/600?random=7'"
+            />
+          </div>
+          <div class="featured-content">
+            <h2>Scorpion Evo フルエキゾーストシステム</h2>
+            <p>
+              最高性能を追求したフルエキゾーストシステム。チタン合金を使用した軽量設計により、
+              車両のパフォーマンスを最大限に引き出します。独自の排気設計により、
+              エンジン出力とトルクの向上を実現し、スポーティなサウンドを提供します。
+            </p>
+            <ul class="feature-list">
+              <li>チタン合金製で大幅な軽量化を実現</li>
+              <li>エンジン出力最大15%向上</li>
+              <li>優れた耐腐食性と耐久性</li>
+              <li>深みのあるスポーティなサウンド</li>
+              <li>主要バイクモデルに対応</li>
+              <li>5年間のメーカー保証付き</li>
+            </ul>
+            <div class="price-section">
+              <span class="current-price">¥298,000</span>
+              <span class="original-price">¥348,000</span>
+              <span class="discount-badge">14% OFF</span>
+            </div>
+            <button class="buy-now-btn">今すぐ購入</button>
+            <button class="add-to-cart-large">カートに追加</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Scorpionの特徴</h2>
+          <p class="section-subtitle">高品質とパフォーマンスを追求したエキゾーストシステム</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>パフォーマンス向上</h3>
+            <p>最適化された排気フローにより、エンジンの出力とトルクを向上させます。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎵</div>
+            <h3>スポーティなサウンド</h3>
+            <p>独自の設計により、深みのある魅力的なエキゾーストサウンドを実現します。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚖️</div>
+            <h3>軽量設計</h3>
+            <p>高品質な素材を使用し、車両の総重量を削減し、ハンドリングを向上させます。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>高耐久性</h3>
+            <p>優れた耐腐食性と高強度により、長期間にわたって性能を維持します。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3>簡単取り付け</h3>
+            <p>純正部品との互換性が高く、専門技術者による取り付けが可能です。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✅</div>
+            <h3>認証取得</h3>
+            <p>FIM騒音規制など、各種認証を取得し、安心してご使用いただけます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>会社情報</h4>
+            <ul>
+              <li><a href="#">会社概要</a></li>
+              <li><a href="#">企業理念</a></li>
+              <li><a href="#">採用情報</a></li>
+              <li><a href="#">ニュース</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>製品情報</h4>
+            <ul>
+              <li><a href="#">製品一覧</a></li>
+              <li><a href="#">適合車種検索</a></li>
+              <li><a href="#">カタログダウンロード</a></li>
+              <li><a href="#">技術資料</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>サポート</h4>
+            <ul>
+              <li><a href="#">お問い合わせ</a></li>
+              <li><a href="#">よくある質問</a></li>
+              <li><a href="#">取り付け方法</a></li>
+              <li><a href="#">保証について</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>お問い合わせ</h4>
+            <ul>
+              <li>電話: 03-1234-5678</li>
+              <li>メール: info@scorpion-exhaust.jp</li>
+              <li>営業時間: 平日 9:00-18:00</li>
+              <li>住所: 東京都渋谷区○○1-2-3</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Scorpion Exhaust Systems. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Simple cart functionality
+      let cartCount = 0
+      const cartBtn = document.querySelector('.cart-btn')
+      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn, .add-to-cart-large')
+
+      addToCartButtons.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          cartCount++
+          cartBtn.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 2L7 6H2L4 20H20L22 6H17L15 2H9Z"/>
+            <path d="M9 6L12 10L15 6"/>
+          </svg>
+          カート (${cartCount})
+        `
+
+          // Visual feedback
+          this.textContent = '追加しました！'
+          this.style.background = '#10B981'
+          setTimeout(() => {
+            this.textContent = this.classList.contains('add-to-cart-large') ? 'カートに追加' : 'カートに追加'
+            this.style.background = ''
+          }, 2000)
+        })
+      })
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn')
+      const navLinks = document.querySelector('.nav-links')
+
+      if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function () {
+          navLinks.classList.toggle('mobile-open')
+          // Change icon
+          const svg = this.querySelector('svg')
+          if (navLinks.classList.contains('mobile-open')) {
+            svg.innerHTML = '<path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round"/>'
+          } else {
+            svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
+          }
+        })
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', function () {
+            navLinks.classList.remove('mobile-open')
+            const svg = mobileMenuBtn.querySelector('svg')
+            svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
+          })
+        })
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
+          const target = document.querySelector(this.getAttribute('href'))
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            })
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

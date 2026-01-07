@@ -658,25 +658,4 @@ const description = '資深投資分析師，幫你提供專業市場洞察同�
   }
 </style>
 
-<script>
-  function onLinkBtnClick() {
-    const link = 'https://www.baidu.com'
-    if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
-      (window as any).gtag_report_conversion()
-    }
-    setTimeout(() => {
-      window.location.href = link
-    }, 100)
-  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.link-btn')
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault()
-        onLinkBtnClick()
-      })
-    })
-  })
-</script>

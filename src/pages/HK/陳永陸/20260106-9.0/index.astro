@@ -404,26 +404,5 @@ const description = '每日市場分析、個股深度解析、短期投資機�
   }
 </style>
 
-<script>
-  function onLinkBtnClick() {
-    const link = 'https://www.baidu.com'
-    if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
-      (window as any).gtag_report_conversion()
-    }
-    setTimeout(() => {
-      window.location.href = link
-    }, 100)
-  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.link-btn')
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault()
-        onLinkBtnClick()
-      })
-    })
-  })
-</script>
 
