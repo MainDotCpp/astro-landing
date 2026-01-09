@@ -1,0 +1,723 @@
+---
+// Landing page 2.0 - Retro-Futurism Style
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = 'Premium Stock Intelligence - Daily Market Picks'
+const description = 'Even in a down market, you can still profit. Get daily stock recommendations on WhatsApp. Check yesterday\'s picks (GPPL & Rico Auto) and get today\'s recommendation (Ajamna Auto) with full analysis.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    
+    <script is:inline>
+      window.onLinkBtnClick = function () {
+        const link = 'https://www.baidu.com'
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion()
+        }
+        setTimeout(() => {
+          window.location.href = link
+        }, 100)
+      }
+    </script>
+
+    <!-- Fonts: Geometric Modern (Outfit + Work Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Retro-Futurism Style Variables */
+      :root {
+        --neon-blue: #0080FF;
+        --neon-pink: #FF006E;
+        --neon-cyan: #00FFFF;
+        --neon-purple: #5D34D0;
+        --dark-bg: #1A1A2E;
+        --dark-surface: #16213E;
+      }
+
+      @keyframes neon-glow {
+        0%, 100% {
+          text-shadow: 
+            0 0 5px var(--neon-cyan),
+            0 0 10px var(--neon-cyan),
+            0 0 15px var(--neon-cyan),
+            0 0 20px var(--neon-blue);
+        }
+        50% {
+          text-shadow: 
+            0 0 2px var(--neon-cyan),
+            0 0 5px var(--neon-cyan),
+            0 0 8px var(--neon-cyan),
+            0 0 12px var(--neon-blue);
+        }
+      }
+
+      @keyframes scanline {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(100vh); }
+      }
+
+      @keyframes glitch {
+        0%, 100% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+      }
+
+      @keyframes pulse-neon {
+        0%, 100% { 
+          box-shadow: 
+            0 0 5px var(--neon-pink),
+            0 0 10px var(--neon-pink),
+            0 0 15px var(--neon-pink),
+            inset 0 0 5px var(--neon-pink);
+        }
+        50% { 
+          box-shadow: 
+            0 0 10px var(--neon-pink),
+            0 0 20px var(--neon-pink),
+            0 0 30px var(--neon-pink),
+            inset 0 0 10px var(--neon-pink);
+        }
+      }
+
+      @keyframes float-geometric {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+      }
+
+      @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      body {
+        font-family: 'Work Sans', sans-serif;
+        background: var(--dark-bg);
+        color: #fff;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* CRT Scanline Effect */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 255, 255, 0.03) 0px,
+          transparent 1px,
+          transparent 2px,
+          rgba(0, 255, 255, 0.03) 3px
+        );
+        pointer-events: none;
+        z-index: 1000;
+        animation: scanline 8s linear infinite;
+      }
+
+      /* Geometric Background Pattern */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(45deg, rgba(0, 128, 255, 0.05) 25%, transparent 25%),
+          linear-gradient(-45deg, rgba(0, 128, 255, 0.05) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, rgba(255, 0, 110, 0.05) 75%),
+          linear-gradient(-45deg, transparent 75%, rgba(0, 128, 255, 0.05) 75%);
+        background-size: 60px 60px;
+        background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+      }
+
+      .neon-text {
+        color: var(--neon-cyan);
+        font-weight: 700;
+      }
+
+      .neon-text-pink {
+        color: var(--neon-pink);
+        font-weight: 700;
+      }
+
+      .neon-border {
+        border: 2px solid var(--neon-cyan);
+        box-shadow: 
+          0 0 3px rgba(0, 255, 255, 0.3),
+          inset 0 0 3px rgba(0, 255, 255, 0.1);
+      }
+
+      .neon-button {
+        background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 100%);
+        border: 2px solid var(--neon-cyan);
+        box-shadow: 
+          0 0 8px rgba(0, 255, 255, 0.4),
+          0 0 15px rgba(0, 128, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .neon-button:hover {
+        box-shadow: 
+          0 0 15px rgba(0, 255, 255, 0.6),
+          0 0 25px rgba(0, 128, 255, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .card-retro {
+        background: var(--dark-surface);
+        border: 2px solid var(--neon-blue);
+        box-shadow: 
+          0 0 10px rgba(0, 128, 255, 0.3),
+          inset 0 0 10px rgba(0, 128, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-retro::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(0, 255, 255, 0.1) 50%,
+          transparent 70%
+        );
+        animation: gradient-shift 3s linear infinite;
+      }
+
+      .geometric-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float-geometric 6s ease-in-out infinite;
+      }
+
+      .glitch-text {
+        animation: glitch 0.3s infinite;
+      }
+
+      .whatsapp-icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+
+      @media (max-width: 640px) {
+        .whatsapp-icon {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <!-- Geometric Decorative Shapes -->
+  <div class="geometric-shape" style="top: 10%; left: 5%; width: 100px; height: 100px; background: var(--neon-pink); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation-delay: 0s;"></div>
+  <div class="geometric-shape" style="top: 20%; right: 10%; width: 80px; height: 80px; background: var(--neon-cyan); clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%); animation-delay: 1s;"></div>
+  <div class="geometric-shape" style="bottom: 15%; left: 8%; width: 120px; height: 120px; background: var(--neon-blue); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); animation-delay: 2s;"></div>
+  <div class="geometric-shape" style="bottom: 25%; right: 5%; width: 90px; height: 90px; background: var(--neon-purple); clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%); animation-delay: 3s;"></div>
+
+  <div class="relative z-10 min-h-screen">
+    <!-- Navigation -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 top-0">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="card-retro rounded-lg px-6 py-4 flex justify-between items-center">
+          <!-- Logo -->
+          <a href="#" class="flex items-center space-x-3 cursor-pointer group">
+            <div class="w-12 h-12 neon-border rounded-lg flex items-center justify-center bg-gradient-to-br from-[var(--neon-blue)] to-[var(--neon-purple)] group-hover:scale-110 transition-transform duration-200">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-white" style="font-family: 'Outfit', sans-serif;">STOCKINTEL</span>
+          </a>
+
+          <!-- CTA Button -->
+          <button
+            onclick="onLinkBtnClick()"
+            class="hidden md:flex items-center space-x-2 neon-button px-6 py-2.5 rounded-lg font-semibold text-white cursor-pointer"
+          >
+            <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            <span>JOIN NOW</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+      <div class="container mx-auto max-w-7xl">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Left: Content -->
+          <div class="text-center lg:text-left space-y-8">
+            <!-- Badge -->
+            <div class="inline-flex items-center space-x-2 card-retro px-4 py-2 rounded-full">
+              <span class="w-3 h-3 bg-[var(--neon-pink)] rounded-full animate-pulse" style="box-shadow: 0 0 6px rgba(255, 0, 110, 0.6);"></span>
+              <span class="text-sm font-medium text-white">EVEN IN DOWN MARKETS</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white" style="font-family: 'Outfit', sans-serif;">
+              PROFIT IN ANY MARKET
+              <br />
+              <span class="neon-text">GET PICKS ON</span>
+              <br />
+              <span class="neon-text-pink">WHATSAPP</span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              Even in a down market, you can still make profits. Get daily stock recommendations on WhatsApp. Check yesterday's picks and see the results yourself.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button
+                onclick="onLinkBtnClick()"
+                class="neon-button group relative px-8 py-4 rounded-lg font-bold text-white text-lg cursor-pointer"
+                style="font-family: 'Outfit', sans-serif;"
+              >
+                <span class="relative z-10 flex items-center justify-center space-x-3">
+                  <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                  <span>JOIN WHATSAPP</span>
+                  <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </button>
+
+              <button class="card-retro px-8 py-4 rounded-lg font-bold text-white text-lg hover:border-[var(--neon-pink)] transition-all duration-200 cursor-pointer" style="font-family: 'Outfit', sans-serif;">
+                CHECK YESTERDAY'S PICKS
+              </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-8">
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 bg-[var(--neon-cyan)] rounded-full" style="box-shadow: 0 0 6px rgba(0, 255, 255, 0.6);"></div>
+                <span class="text-gray-200">VERIFY YESTERDAY'S PICKS</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 bg-[var(--neon-pink)] rounded-full" style="box-shadow: 0 0 6px rgba(255, 0, 110, 0.6);"></div>
+                <span class="text-gray-200">ANALYSIS & REASONING</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 bg-[var(--neon-blue)] rounded-full" style="box-shadow: 0 0 6px rgba(0, 128, 255, 0.6);"></div>
+                <span class="text-gray-200">WORKS IN DOWN MARKETS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Visual Element -->
+          <div class="relative hidden lg:block">
+            <div class="relative">
+              <!-- Retro Chart Display -->
+              <div class="card-retro rounded-lg p-8">
+                <div class="space-y-6">
+                  <!-- Stock Cards -->
+                  <div class="card-retro rounded p-4 border-[var(--neon-blue)]">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-gray-300 text-sm font-mono">GPPL</span>
+                      <span class="neon-text-pink font-bold">+12.5%</span>
+                    </div>
+                    <div class="h-2 bg-[var(--dark-bg)] rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-[var(--neon-pink)] to-[var(--neon-purple)] rounded-full" style="width: 75%; box-shadow: 0 0 6px rgba(255, 0, 110, 0.5);"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="card-retro rounded p-4 border-[var(--neon-cyan)]">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-gray-200 text-sm font-mono">RICO AUTO</span>
+                      <span class="neon-text font-bold">+8.3%</span>
+                    </div>
+                    <div class="h-2 bg-[var(--dark-bg)] rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-[var(--neon-cyan)] to-[var(--neon-blue)] rounded-full" style="width: 50%; box-shadow: 0 0 6px rgba(0, 255, 255, 0.5);"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="card-retro rounded p-4 border-[var(--neon-purple)]">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-gray-200 text-sm font-mono">AJAMNA AUTO</span>
+                      <span class="neon-text-pink font-bold">+15.2%</span>
+                    </div>
+                    <div class="h-2 bg-[var(--dark-bg)] rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-[var(--neon-purple)] to-[var(--neon-pink)] rounded-full" style="width: 90%; box-shadow: 0 0 6px rgba(93, 52, 208, 0.5);"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Neon Elements -->
+              <div class="absolute -top-8 -right-8 w-24 h-24 bg-[var(--neon-pink)] opacity-20 blur-xl rounded-full animate-pulse"></div>
+              <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-[var(--neon-cyan)] opacity-20 blur-xl rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 relative">
+      <div class="container mx-auto max-w-7xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="card-retro rounded-lg p-6 text-center">
+            <div class="text-4xl font-bold neon-text mb-2" data-target="12500" style="font-family: 'Outfit', sans-serif;">0</div>
+            <p class="text-gray-400 text-sm uppercase tracking-wider">MEMBERS</p>
+          </div>
+          <div class="card-retro rounded-lg p-6 text-center">
+            <div class="text-4xl font-bold neon-text-pink mb-2" data-target="98" style="font-family: 'Outfit', sans-serif;">0</div>
+            <p class="text-gray-400 text-sm uppercase tracking-wider">SUCCESS %</p>
+          </div>
+          <div class="card-retro rounded-lg p-6 text-center">
+            <div class="text-4xl font-bold neon-text mb-2" data-target="365" style="font-family: 'Outfit', sans-serif;">0</div>
+            <p class="text-gray-400 text-sm uppercase tracking-wider">DAYS</p>
+          </div>
+          <div class="card-retro rounded-lg p-6 text-center">
+            <div class="text-4xl font-bold neon-text-pink mb-2" data-target="24" style="font-family: 'Outfit', sans-serif;">0</div>
+            <p class="text-gray-400 text-sm uppercase tracking-wider">HOURS</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <div class="container mx-auto max-w-7xl">
+        <!-- Section Header -->
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white" style="font-family: 'Outfit', sans-serif;">
+              WHY CHOOSE <span class="neon-text-pink">STOCKINTEL</span>?
+            </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Even in a down market, you can still profit. Get daily stock picks with full analysis and reasoning delivered to your WhatsApp.
+          </p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Feature 1 -->
+          <div class="card-retro rounded-lg p-8 cursor-pointer hover:border-[var(--neon-pink)] transition-all duration-300">
+            <div class="w-16 h-16 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-blue)] to-[var(--neon-purple)] flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3 neon-text-pink" style="font-family: 'Outfit', sans-serif;">DAILY PICKS</h3>
+            <p class="text-gray-300 leading-relaxed">
+              Get carefully researched stock recommendations every day. Check yesterday's picks on WhatsApp to verify the results yourself.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="card-retro rounded-lg p-8 cursor-pointer hover:border-[var(--neon-cyan)] transition-all duration-300">
+            <div class="w-16 h-16 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-cyan)] to-[var(--neon-blue)] flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3 neon-text" style="font-family: 'Outfit', sans-serif;">VERIFY RESULTS</h3>
+            <p class="text-gray-300 leading-relaxed">
+              Check yesterday's recommendations on WhatsApp. See GPPL and Rico Auto - both recommended yesterday and showing results today.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="card-retro rounded-lg p-8 cursor-pointer hover:border-[var(--neon-purple)] transition-all duration-300">
+            <div class="w-16 h-16 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-purple)] to-[var(--neon-pink)] flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3 neon-text-pink" style="font-family: 'Outfit', sans-serif;">FULL ANALYSIS</h3>
+            <p class="text-gray-300 leading-relaxed">
+              Get complete judgment and reasoning. I tell you why I gave the recommendation and how I analyzed it - not just the pick, but the method.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="card-retro rounded-lg p-8 cursor-pointer hover:border-[var(--neon-blue)] transition-all duration-300">
+            <div class="w-16 h-16 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-blue)] to-[var(--neon-cyan)] flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3 neon-text" style="font-family: 'Outfit', sans-serif;">DOWN MARKET PROOF</h3>
+            <p class="text-gray-300 leading-relaxed">
+              Even when the market is down, you can still make profits. Our picks are designed to work in any market condition.
+            </p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="card-retro rounded-lg p-8 cursor-pointer hover:border-[var(--neon-pink)] transition-all duration-300">
+            <div class="w-16 h-16 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-pink)] to-[var(--neon-purple)] flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3 neon-text-pink" style="font-family: 'Outfit', sans-serif;">WHATSAPP DELIVERY</h3>
+            <p class="text-gray-300 leading-relaxed">
+              Get your daily stock picks directly on WhatsApp. Easy to access, easy to verify, easy to act on.
+            </p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="card-retro rounded-lg p-8 cursor-pointer hover:border-[var(--neon-cyan)] transition-all duration-300">
+            <div class="w-16 h-16 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-cyan)] to-[var(--neon-blue)] flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3 neon-text" style="font-family: 'Outfit', sans-serif;">TODAY: AJAMNA AUTO</h3>
+            <p class="text-gray-300 leading-relaxed">
+              Join now and get today's recommendation - Ajamna Auto. See the big opportunity that's waiting for you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Picks Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <div class="container mx-auto max-w-7xl">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white" style="font-family: 'Outfit', sans-serif;">
+              RECENT <span class="neon-text-pink">STOCK PICKS</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+              Check yesterday's recommendations on WhatsApp - GPPL and Rico Auto. See today's pick: Ajamna Auto
+            </p>
+          </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Pick 1 -->
+          <div class="card-retro rounded-lg p-6 cursor-pointer hover:border-[var(--neon-cyan)] transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-white" style="font-family: 'Outfit', sans-serif;">GPPL</h3>
+                <p class="text-gray-400 text-sm uppercase">CHECK ON WHATSAPP - YESTERDAY</p>
+              </div>
+              <div class="w-12 h-12 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-cyan)] to-[var(--neon-blue)] flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-200 uppercase text-sm">PERFORMANCE</span>
+                <span class="neon-text-pink font-bold">+12.5%</span>
+              </div>
+              <div class="h-2 bg-[var(--dark-bg)] rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[var(--neon-pink)] to-[var(--neon-purple)] rounded-full" style="width: 75%; box-shadow: 0 0 6px rgba(255, 0, 110, 0.5);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pick 2 -->
+          <div class="card-retro rounded-lg p-6 cursor-pointer hover:border-[var(--neon-blue)] transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-white" style="font-family: 'Outfit', sans-serif;">RICO AUTO</h3>
+                <p class="text-gray-400 text-sm uppercase">CHECK ON WHATSAPP - YESTERDAY</p>
+              </div>
+              <div class="w-12 h-12 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-blue)] to-[var(--neon-purple)] flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-200 uppercase text-sm">PERFORMANCE</span>
+                <span class="neon-text font-bold">+8.3%</span>
+              </div>
+              <div class="h-2 bg-[var(--dark-bg)] rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[var(--neon-cyan)] to-[var(--neon-blue)] rounded-full" style="width: 50%; box-shadow: 0 0 6px rgba(0, 255, 255, 0.5);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pick 3 -->
+          <div class="card-retro rounded-lg p-6 cursor-pointer hover:border-[var(--neon-pink)] transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-white" style="font-family: 'Outfit', sans-serif;">AJAMNA AUTO</h3>
+                <p class="text-gray-400 text-sm uppercase">TODAY'S RECOMMENDATION - BIG OPPORTUNITY</p>
+              </div>
+              <div class="w-12 h-12 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-pink)] to-[var(--neon-purple)] flex items-center justify-center animate-pulse">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-200 uppercase text-sm">STATUS</span>
+                <span class="neon-text-pink font-bold">LIVE</span>
+              </div>
+              <div class="h-2 bg-[var(--dark-bg)] rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[var(--neon-purple)] to-[var(--neon-pink)] rounded-full animate-pulse" style="width: 100%; box-shadow: 0 0 8px rgba(93, 52, 208, 0.6);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <div class="container mx-auto max-w-4xl">
+        <div class="card-retro rounded-lg p-12 md:p-16 text-center relative overflow-hidden">
+          <!-- Background Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-r from-[var(--neon-blue)]/10 via-[var(--neon-purple)]/10 to-[var(--neon-pink)]/10 opacity-50"></div>
+
+          <div class="relative z-10 space-y-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white" style="font-family: 'Outfit', sans-serif;">
+              READY TO PROFIT IN <span class="neon-text-pink">ANY MARKET</span>?
+            </h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+              Get my WhatsApp link now. Check yesterday's picks (GPPL & Rico Auto) and get today's recommendation (Ajamna Auto). I'll show you the judgment, the why, and the how.
+            </p>
+            <button
+              onclick="onLinkBtnClick()"
+              class="neon-button group relative px-4 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-white text-base sm:text-xl cursor-pointer w-full sm:w-auto"
+              style="font-family: 'Outfit', sans-serif;"
+            >
+              <span class="relative z-10 flex items-center justify-center space-x-1.5 sm:space-x-3 flex-nowrap overflow-hidden">
+                <svg class="whatsapp-icon shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                <span class="whitespace-nowrap shrink-0 text-sm sm:text-base">JOIN WHATSAPP</span>
+                <span class="hidden sm:inline shrink-0"> NOW - MOVEMENT</span>
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform duration-200 shrink-0 ml-0.5 sm:ml-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </span>
+            </button>
+            <p class="text-sm text-gray-400 uppercase tracking-wider">
+              ✓ CHECK YESTERDAY'S PICKS • ✓ GET TODAY'S RECOMMENDATION • ✓ FULL ANALYSIS & REASONING
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t-2 border-[var(--neon-blue)]">
+      <div class="container mx-auto max-w-7xl">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 neon-border rounded-lg bg-gradient-to-br from-[var(--neon-blue)] to-[var(--neon-purple)] flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <span class="text-lg font-bold text-white" style="font-family: 'Outfit', sans-serif;">STOCKINTEL</span>
+          </div>
+          <p class="text-gray-400 text-sm uppercase tracking-wider">
+            © 2025 STOCKINTEL. ALL RIGHTS RESERVED.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Advanced Scripts -->
+    <script is:inline>
+      (function () {
+        // Smooth scroll for anchor links
+        const anchors = document.querySelectorAll('a[href^="#"]')
+        for (let i = 0; i < anchors.length; i++) {
+          anchors[i].addEventListener('click', function (e) {
+            e.preventDefault()
+            const href = this.getAttribute('href')
+            if (href) {
+              const target = document.querySelector(href)
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }
+            }
+          })
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar')
+        if (navbar) {
+          window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset
+            if (currentScroll > 100) {
+              navbar.querySelector('div').style.borderColor = 'var(--neon-pink)'
+            } else {
+              navbar.querySelector('div').style.borderColor = 'var(--neon-blue)'
+            }
+          })
+        }
+
+        // Counter animation
+        function animateCounter(element) {
+          const target = Number.parseInt(element.getAttribute('data-target'))
+          const duration = 2000
+          const increment = target / (duration / 16)
+          let current = 0
+
+          const timer = setInterval(() => {
+            current += increment
+            if (current >= target) {
+              element.textContent = target.toLocaleString()
+              clearInterval(timer)
+            } else {
+              element.textContent = Math.floor(current).toLocaleString()
+            }
+          }, 16)
+        }
+
+        const counters = document.querySelectorAll('[data-target]')
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+              entry.target.classList.add('counted')
+              animateCounter(entry.target)
+            }
+          })
+        }, { threshold: 0.5 })
+
+        counters.forEach(counter => counterObserver.observe(counter))
+      })()
+    </script>
+  </div>
+</BaseLayout>
+

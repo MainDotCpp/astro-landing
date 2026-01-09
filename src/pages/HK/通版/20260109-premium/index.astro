@@ -1,0 +1,1859 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import {
+  AlertCircle,
+  ArrowRight,
+  Award,
+  BarChart3,
+  Brain,
+  Check,
+  CheckCircle,
+  Clock,
+  Code,
+  Cpu,
+  Database,
+  Lightbulb,
+  LineChart,
+  Shield,
+  Sparkles,
+  Star,
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
+} from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+// Import generated images
+import bgPremium1 from './static/images/bg-premium-1-new.jpg'
+import bgPremium2 from './static/images/bg-premium-2-new.jpg'
+import bgPremium3 from './static/images/bg-premium-3.jpg'
+import heroBg from './static/images/hero-bg-new.jpg'
+import successIllustration from './static/images/success-illustration-new.jpg'
+import techIllustration from './static/images/tech-illustration-new.jpg'
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { version: '1.0' }, props: { title: 'AI智能投資系統 | 專業投資分析工具' } },
+  ]
+}) satisfies GetStaticPaths
+
+const { title } = Astro.props
+
+// Generate data particles array
+const dataParticles = Array.from({ length: 20 }, (_, i) => ({
+  id: i,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+  delay: Math.random() * 10,
+}))
+---
+
+<BaseLayout title={title} description="運用AI技術的智能投資分析工具，提供專業市場分析和投資建議，免費試用">
+  <style>
+    :global(body) {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      color: #F8FAFC;
+      background: #000000;
+    }
+
+    /* Professional Fintech Color Palette - Subtle & Elegant */
+    :root {
+      --color-primary: #3B82F6;
+      --color-primary-light: #60A5FA;
+      --color-accent: #6366F1;
+      --color-accent-light: #818CF8;
+      --color-success: #10B981;
+      --color-text-primary: #F8FAFC;
+      --color-text-secondary: #CBD5E1;
+      --color-text-muted: #94A3B8;
+      --color-bg-dark: #0F172A;
+      --color-bg-darker: #020617;
+      --color-border: #1E293B;
+    }
+
+    /* Grid Background - Subtle */
+    .grid-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Scanline Effect */
+    .scanlines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      z-index: 1;
+      pointer-events: none;
+      animation: scanline-move 8s linear infinite;
+    }
+
+    @keyframes scanline-move {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100px); }
+    }
+
+    /* Neon Glow Effects */
+    @keyframes neon-glow {
+      0%, 100% {
+        text-shadow:
+          0 0 2px currentColor,
+          0 0 4px currentColor,
+          0 0 6px currentColor;
+      }
+      50% {
+        text-shadow:
+          0 0 1px currentColor,
+          0 0 2px currentColor,
+          0 0 3px currentColor;
+      }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow:
+          0 0 3px currentColor,
+          0 0 6px currentColor;
+      }
+      50% {
+        box-shadow:
+          0 0 5px currentColor,
+          0 0 10px currentColor,
+          0 0 15px currentColor;
+      }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slide-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes data-flow {
+      0% { transform: translateX(-100%) translateY(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(100vw) translateY(-100px); opacity: 0; }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 0.8s ease-out forwards;
+    }
+
+    .animate-slide-up {
+      animation: slide-up 0.8s ease-out forwards;
+    }
+
+    .animate-neon {
+      animation: neon-glow 2s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Glassmorphism - Professional */
+    .glass {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(59, 130, 246, 0.05);
+    }
+
+    .glass-strong {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(59, 130, 246, 0.08);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #0F172A;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.95) 0%,
+        rgba(15, 23, 42, 0.85) 50%,
+        rgba(2, 6, 23, 0.95) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-content {
+        padding: 2rem;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #93C5FD;
+      margin-bottom: 1.5rem;
+      cursor: default;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+    }
+
+    @media (min-width: 768px) {
+      .badge {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .stat-card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 0.625rem;
+      padding: 0.875rem 0.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .stat-card {
+        padding: 1rem 0.75rem;
+        border-radius: 0.75rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .stat-card {
+        border-radius: 1rem;
+        padding: 1.25rem 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .stat-card {
+        padding: 1.5rem;
+      }
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(59, 130, 246, 0.08),
+        transparent
+      );
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
+
+    .stat-card:hover::before {
+      animation: shimmer 1.5s infinite;
+    }
+
+    .stat-card:hover {
+      background: rgba(15, 23, 42, 0.8);
+      border-color: rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      min-height: 44px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      box-shadow:
+        0 4px 20px rgba(59, 130, 246, 0.4),
+        0 0 30px rgba(59, 130, 246, 0.2);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .cta-button {
+        width: auto;
+        padding: 1rem 2rem;
+        font-size: 1.0625rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .cta-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.125rem;
+      }
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
+      box-shadow:
+        0 6px 30px rgba(59, 130, 246, 0.5),
+        0 0 40px rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+    }
+
+    /* Section with Background */
+    .section-with-bg {
+      position: relative;
+      overflow: hidden;
+      background: #0F172A;
+    }
+
+    .section-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.2;
+    }
+
+    .section-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.95) 0%,
+        rgba(15, 23, 42, 0.98) 100%
+      );
+      z-index: 1;
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 2;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 2.5rem 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .section-content {
+        padding: 3.5rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .section-content {
+        padding: 4.5rem 2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section-content {
+        padding: 5rem 2.5rem;
+      }
+    }
+
+    /* Feature Card */
+    .feature-card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 0.875rem;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .feature-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .feature-card {
+        border-radius: 1.25rem;
+        padding: 1.75rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .feature-card {
+        border-radius: 1.5rem;
+        padding: 2rem;
+      }
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 2px solid transparent;
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2)) padding-box,
+                  linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(99, 102, 241, 0.3)) border-box;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover::after {
+      opacity: 1;
+    }
+
+    .feature-card:hover {
+      background: rgba(15, 23, 42, 0.8);
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(59, 130, 246, 0.2);
+    }
+
+    .feature-icon {
+      width: 3rem;
+      height: 3rem;
+      background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      box-shadow:
+        0 10px 30px rgba(59, 130, 246, 0.3),
+        0 0 20px rgba(59, 130, 246, 0.15);
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .feature-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1rem;
+        margin: 0 auto 1.5rem;
+      }
+    }
+
+    .feature-icon::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 1rem;
+      padding: 2px;
+      background: linear-gradient(135deg, #3B82F6, #6366F1);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover .feature-icon::before {
+      opacity: 1;
+    }
+
+    /* Testimonial Card */
+    .testimonial-card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-left: 3px solid #3B82F6;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    @media (min-width: 640px) {
+      .testimonial-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .testimonial-card {
+        padding: 2rem;
+      }
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #3B82F6, #6366F1);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .testimonial-card:hover::before {
+      opacity: 1;
+    }
+
+    .testimonial-card:hover {
+      background: rgba(15, 23, 42, 0.8);
+      border-color: rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 1rem;
+      padding: 2rem 1rem;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 40px rgba(59, 130, 246, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .stats-section {
+        border-radius: 1.5rem;
+        padding: 3rem 2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .stats-section {
+        border-radius: 2rem;
+        padding: 4rem 3rem;
+      }
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .section-title {
+        font-size: 2.25rem;
+        margin-bottom: 0.875rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    @media (min-width: 640px) {
+      .section-subtitle {
+        font-size: 1.125rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .section-subtitle {
+        font-size: 1.25rem;
+      }
+    }
+
+    .accent-text {
+      color: #60A5FA;
+      text-shadow:
+        0 0 5px rgba(96, 165, 250, 0.5),
+        0 0 10px rgba(96, 165, 250, 0.3);
+    }
+
+    .check-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin: 0 0.75rem;
+    }
+
+    .partner-logo {
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    @media (min-width: 768px) {
+      .partner-logo {
+        padding: 1.5rem;
+        border-radius: 1rem;
+      }
+    }
+
+    .partner-logo:hover {
+      background: rgba(15, 23, 42, 0.6);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .fixed-bottom-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 1.5rem;
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(59, 130, 246, 0.2);
+      box-shadow:
+        0 -4px 20px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(59, 130, 246, 0.08);
+    }
+
+    .fixed-cta-btn {
+      width: 100%;
+      max-width: 500px;
+      font-size: 1rem;
+      padding: 0.875rem 1.5rem;
+      min-height: 44px;
+      background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow:
+        0 4px 20px rgba(59, 130, 246, 0.4),
+        0 0 25px rgba(59, 130, 246, 0.2);
+    }
+
+    .fixed-cta-btn:hover {
+      background: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
+      box-shadow:
+        0 6px 30px rgba(59, 130, 246, 0.5),
+        0 0 35px rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Data Flow Particles */
+    .data-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .data-particle {
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      background: linear-gradient(180deg, transparent, #00FFFF, transparent);
+      opacity: 0.6;
+      animation: data-flow 10s linear infinite;
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 639px) {
+      .hero-section {
+        min-height: 100svh;
+      }
+
+      .check-item {
+        display: block;
+        margin: 0.5rem 0;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .grid-bg {
+        background-size: 30px 30px;
+      }
+
+      .stats-section {
+        padding: 1.5rem 1rem;
+      }
+
+      .partner-logo {
+        padding: 0.875rem;
+      }
+
+      .partner-logo div {
+        font-size: 0.875rem;
+      }
+    }
+
+    /* Tablet Optimizations */
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .hero-content {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Prevent horizontal scroll */
+    * {
+      max-width: 100%;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <div class="data-particles">
+      {dataParticles.map(particle => (
+        <div
+          class="data-particle"
+          style={`left: ${particle.left}%; top: ${particle.top}%; animation-delay: ${particle.delay}s;`}
+        />
+      ))}
+    </div>
+    <Image
+      src={heroBg}
+      alt="Premium Investment Platform Background"
+      class="hero-bg"
+      width={1920}
+      height={1080}
+      loading="eager"
+    />
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="animate-fade-in" style="animation-delay: 0.1s; opacity: 0;">
+        <div class="badge">
+          <Sparkles size={14} style="width: 14px; height: 14px;" />
+          <span>AI驅動 · 智能投資 · 專業平台</span>
+        </div>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight animate-slide-up px-4" style="animation-delay: 0.2s; opacity: 0;">
+        <span class="block text-white mb-2">AI智能投資分析系統</span>
+        <span class="block accent-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl">專業 · 智能 · 可靠</span>
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-medium mb-6 sm:mb-8 md:mb-10 text-gray-300 max-w-3xl mx-auto px-4 animate-slide-up" style="animation-delay: 0.3s; opacity: 0;">
+        運用最新AI技術，為您提供專業的市場分析和投資建議
+      </p>
+
+      <div class="grid grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10 max-w-4xl mx-auto px-4 animate-slide-up" style="animation-delay: 0.4s; opacity: 0;">
+        <div class="stat-card">
+          <div class="text-2xl md:text-3xl lg:text-4xl font-bold accent-text mb-1">24/7</div>
+          <div class="text-xs md:text-sm text-gray-400">全天候監控</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-2xl md:text-3xl lg:text-4xl font-bold accent-text mb-1">10年+</div>
+          <div class="text-xs md:text-sm text-gray-400">歷史數據分析</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-2xl md:text-3xl lg:text-4xl font-bold accent-text mb-1">50K+</div>
+          <div class="text-xs md:text-sm text-gray-400">活躍用戶</div>
+        </div>
+      </div>
+
+      <div class="mb-8 animate-slide-up" style="animation-delay: 0.5s; opacity: 0;">
+        <div class="glass-strong inline-flex items-center px-4 py-2 rounded-lg">
+          <Clock size={18} class="mr-2 text-blue-400" style="width: 18px; height: 18px;" />
+          <span class="text-base font-medium text-blue-300">
+            限時免費領取：<span id="countdown" class="text-xl font-semibold accent-text">02:15:00</span>
+          </span>
+        </div>
+      </div>
+
+      <a
+        href="#"
+        class="link-btn cta-button animate-slide-up"
+        style="animation-delay: 0.6s; opacity: 0;"
+        data-umami-event="contact"
+        data-umami-event-method="cta"
+        data-umami-event-position="hero"
+      >
+        <span>免費試用AI投資分析工具</span>
+        <ArrowRight size={20} style="width: 20px; height: 20px;" />
+      </a>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4 animate-slide-up" style="animation-delay: 0.7s; opacity: 0;">
+        <div class="check-item">
+          <CheckCircle size={16} class="text-green-400" style="width: 16px; height: 16px;" />
+          <span>免費試用</span>
+        </div>
+        <div class="check-item">
+          <CheckCircle size={16} class="text-green-400" style="width: 16px; height: 16px;" />
+          <span>專業分析</span>
+        </div>
+        <div class="check-item">
+          <CheckCircle size={16} class="text-green-400" style="width: 16px; height: 16px;" />
+          <span>風險提示</span>
+        </div>
+      </div>
+
+      <p class="mt-6 text-xs text-gray-500 text-center animate-slide-up" style="animation-delay: 0.8s; opacity: 0;">
+        * 投資有風險，過往表現不代表未來收益。請根據自身情況謹慎投資。
+      </p>
+    </div>
+  </section>
+
+  <!-- Features Section with Background -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <Image
+      src={bgPremium1}
+      alt="Features Background"
+      class="section-bg"
+      width={1920}
+      height={1080}
+    />
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 glass rounded-full text-xs md:text-sm font-semibold mb-3 md:mb-4">
+          <Zap size={12} class="mr-1.5 md:mr-2 text-blue-400" style="width: 12px; height: 12px;" />
+          <span class="text-blue-300">核心優勢</span>
+        </div>
+        <h2 class="section-title">
+          為什麼選擇<span class="accent-text">AI智能投資分析</span>？
+        </h2>
+        <p class="section-subtitle max-w-2xl mx-auto px-4">
+          運用最新的人工智能技術，24小時不間斷分析市場數據，為您提供專業的投資建議和風險評估
+        </p>
+      </div>
+
+      <div class="mb-8 md:mb-12 text-center px-4">
+        <div class="inline-block rounded-xl md:rounded-2xl overflow-hidden shadow-2xl relative group max-w-full">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+          <Image
+            src={techIllustration}
+            alt="AI技術投資系統展示"
+            width={800}
+            height={500}
+            class="max-w-full h-auto transform group-hover:scale-105 transition-transform duration-300"
+          />
+          <div class="absolute top-2 right-2 md:top-4 md:right-4 w-12 h-12 md:w-16 md:h-16 bg-blue-500/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+            <Sparkles size={18} class="md:w-6 md:h-6 text-blue-400" style="width: 18px; height: 18px;" />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="feature-card relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+          <div class="feature-icon relative z-10">
+            <BarChart3 size={28} class="text-white" style="width: 28px; height: 28px;" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3 text-white relative z-10">智能市場分析</h3>
+          <p class="text-gray-300 text-center leading-relaxed text-sm relative z-10">
+            機器學習算法分析過去10年的市場數據，識別投資機會和風險，為您提供專業的市場洞察
+          </p>
+        </div>
+
+        <div class="feature-card relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+          <div class="feature-icon relative z-10">
+            <Shield size={28} class="text-white" style="width: 28px; height: 28px;" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3 text-white relative z-10">風險評估系統</h3>
+          <p class="text-gray-300 text-center leading-relaxed text-sm relative z-10">
+            AI實時監控市場變化，評估投資風險，為您提供風險提示和建議，幫助您做出更明智的決策
+          </p>
+        </div>
+
+        <div class="feature-card relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+          <div class="feature-icon relative z-10">
+            <Target size={28} class="text-white" style="width: 28px; height: 28px;" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3 text-white relative z-10">投資策略建議</h3>
+          <p class="text-gray-300 text-center leading-relaxed text-sm relative z-10">
+            根據市場數據和您的風險偏好，提供個性化的投資策略建議，幫助您建立適合的投資組合
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-section text-white relative">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-10 left-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-10 right-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl"></div>
+        </div>
+        <div class="text-center mb-8 relative z-10">
+          <div class="inline-flex items-center justify-center mb-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <TrendingUp size={32} class="text-white" style="width: 32px; height: 32px;" />
+            </div>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-bold mb-2">系統核心優勢</h3>
+          <p class="text-gray-400">專業的投資分析工具</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
+          <div class="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
+            <div class="text-3xl md:text-5xl font-bold accent-text mb-1">10年+</div>
+            <div class="text-sm text-gray-400">歷史數據庫</div>
+          </div>
+          <div class="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
+            <div class="text-3xl md:text-5xl font-bold accent-text mb-1">24/7</div>
+            <div class="text-sm text-gray-400">實時監控</div>
+          </div>
+          <div class="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
+            <div class="text-3xl md:text-5xl font-bold accent-text mb-1">50,000+</div>
+            <div class="text-sm text-gray-400">活躍用戶</div>
+          </div>
+          <div class="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
+            <div class="text-3xl md:text-5xl font-bold accent-text mb-1">專業</div>
+            <div class="text-sm text-gray-400">分析團隊</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center px-4 py-2 glass rounded-full text-sm font-semibold mb-4">
+          <Award size={14} class="mr-2 text-blue-400" style="width: 14px; height: 14px;" />
+          <span class="text-blue-300">機構認證</span>
+        </div>
+        <h2 class="section-title">
+          獲得<span class="accent-text">權威機構認證</span>
+        </h2>
+        <p class="section-subtitle max-w-2xl mx-auto">
+          通過國際標準認證，與知名金融機構建立合作關係
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <div class="feature-card text-center py-6">
+          <div class="text-2xl font-bold text-white mb-2">ISO</div>
+          <div class="text-lg font-semibold text-blue-400 mb-1">27001</div>
+          <p class="text-xs text-gray-400">信息安全管理</p>
+          <p class="text-xs text-gray-500 mt-2">認證通過</p>
+        </div>
+
+        <div class="feature-card text-center py-6">
+          <div class="text-2xl font-bold text-white mb-2">SOC 2</div>
+          <div class="text-lg font-semibold text-blue-400 mb-1">Type II</div>
+          <p class="text-xs text-gray-400">安全與合規</p>
+          <p class="text-xs text-gray-500 mt-2">年度審計</p>
+        </div>
+
+        <div class="feature-card text-center py-6">
+          <div class="text-2xl font-bold text-white mb-2">GDPR</div>
+          <div class="text-lg font-semibold text-blue-400 mb-1">合規</div>
+          <p class="text-xs text-gray-400">數據保護</p>
+          <p class="text-xs text-gray-500 mt-2">歐盟標準</p>
+        </div>
+
+        <div class="feature-card text-center py-6">
+          <div class="text-2xl font-bold text-white mb-2">PCI DSS</div>
+          <div class="text-lg font-semibold text-blue-400 mb-1">Level 1</div>
+          <p class="text-xs text-gray-400">支付安全</p>
+          <p class="text-xs text-gray-500 mt-2">最高等級</p>
+        </div>
+      </div>
+
+      <div class="text-center mb-8">
+        <p class="text-gray-400 text-sm mb-6">合作機構與合作夥伴</p>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 items-center">
+          <div class="partner-logo">
+            <div class="text-xl font-bold text-white/60">Goldman Sachs</div>
+            <p class="text-xs text-gray-500 mt-1">數據合作</p>
+          </div>
+          <div class="partner-logo">
+            <div class="text-xl font-bold text-white/60">Morgan Stanley</div>
+            <p class="text-xs text-gray-500 mt-1">技術支持</p>
+          </div>
+          <div class="partner-logo">
+            <div class="text-xl font-bold text-white/60">JP Morgan</div>
+            <p class="text-xs text-gray-500 mt-1">市場數據</p>
+          </div>
+          <div class="partner-logo">
+            <div class="text-xl font-bold text-white/60">Bloomberg</div>
+            <p class="text-xs text-gray-500 mt-1">數據源</p>
+          </div>
+          <div class="partner-logo">
+            <div class="text-xl font-bold text-white/60">Reuters</div>
+            <p class="text-xs text-gray-500 mt-1">新聞資訊</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-strong p-6 rounded-xl text-center">
+        <p class="text-sm text-gray-300 mb-2">
+          <Shield size={16} class="inline mr-2 text-green-400" style="width: 16px; height: 16px;" />
+          所有數據均通過加密傳輸，嚴格遵守金融監管要求
+        </p>
+        <p class="text-xs text-gray-500">
+          系統定期接受第三方安全審計，確保數據安全和用戶隱私保護
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <Image
+      src={bgPremium1}
+      alt="How It Works Background"
+      class="section-bg"
+      width={1920}
+      height={1080}
+    />
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center px-4 py-2 glass rounded-full text-sm font-semibold mb-4">
+          <Brain size={14} class="mr-2 text-blue-400" style="width: 14px; height: 14px;" />
+          <span class="text-blue-300">工作原理</span>
+        </div>
+        <h2 class="section-title">
+          AI智能投資分析<span class="accent-text">如何運作</span>？
+        </h2>
+        <p class="section-subtitle max-w-2xl mx-auto">
+          基於深度學習和機器學習技術，結合金融市場專業知識，為投資者提供科學、客觀的分析結果
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
+        <div class="feature-card">
+          <div class="flex items-start gap-4 md:gap-5 mb-4">
+            <div class="feature-icon shrink-0">
+              <Database size={24} class="text-white" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">數據收集與處理</h3>
+              <p class="text-gray-300 leading-relaxed text-sm">
+                系統自動收集全球主要金融市場的實時數據，包括股票、債券、外匯、商品等超過10,000種金融產品的歷史價格、成交量、財務報表、新聞資訊等。每天處理超過100GB的市場數據，確保分析的全面性和時效性。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="flex items-start gap-4 md:gap-5 mb-4">
+            <div class="feature-icon shrink-0">
+              <Cpu size={24} class="text-white" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">AI模型分析</h3>
+              <p class="text-gray-300 leading-relaxed text-sm">
+                採用深度神經網絡、時間序列分析、自然語言處理等多種AI技術，對市場數據進行多維度分析。模型經過超過10年的歷史數據訓練，能夠識別市場趨勢、價格模式、風險信號等複雜模式，並持續學習優化。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="flex items-start gap-4 md:gap-5 mb-4">
+            <div class="feature-icon shrink-0">
+              <LineChart size={24} class="text-white" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">風險評估與預測</h3>
+              <p class="text-gray-300 leading-relaxed text-sm">
+                基於歷史波動率、相關性分析、壓力測試等方法，評估不同投資組合的風險水平。系統會分析市場可能出現的各種情景，包括極端市場條件，為投資者提供風險預警和應對建議。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="flex items-start gap-4 md:gap-5 mb-4">
+            <div class="feature-icon shrink-0">
+              <Target size={24} class="text-white" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-white">個性化建議生成</h3>
+              <p class="text-gray-300 leading-relaxed text-sm">
+                根據用戶的風險承受能力、投資目標、時間期限等個人情況，結合AI分析結果，生成個性化的投資策略建議。系統會定期更新建議，並根據市場變化及時調整，確保建議的相關性和有效性。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Development Process Section -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <Image
+      src={bgPremium2}
+      alt="Development Background"
+      class="section-bg"
+      width={1920}
+      height={1080}
+    />
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center px-4 py-2 glass rounded-full text-sm font-semibold mb-4">
+          <Code size={14} class="mr-2 text-blue-400" style="width: 14px; height: 14px;" />
+          <span class="text-blue-300">研發歷程</span>
+        </div>
+        <h2 class="section-title">
+          專業團隊<span class="accent-text">5年研發</span>成果
+        </h2>
+        <p class="section-subtitle max-w-2xl mx-auto">
+          由金融專家、數據科學家、AI工程師組成的專業團隊，歷時5年精心研發
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="space-y-8">
+          <div class="feature-card">
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg mr-4 shrink-0">
+                1
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2 text-white">2019年 - 項目啟動</h3>
+                <p class="text-gray-300 leading-relaxed text-sm mb-2">
+                  由前華爾街量化分析師和頂尖AI研究員共同發起，組建了包含15名金融專家和20名AI工程師的研發團隊。開始收集和整理全球金融市場歷史數據，建立數據庫基礎架構。
+                </p>
+                <p class="text-gray-400 text-xs">
+                  投入資金：$500萬 | 團隊規模：35人
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="flex items-start relative z-10">
+              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg mr-4 shrink-0 shadow-lg relative">
+                <div class="absolute inset-0 bg-purple-500/30 rounded-lg blur-md"></div>
+                <span class="relative z-10">2</span>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2 text-white">2020-2021年 - 核心算法開發</h3>
+                <p class="text-gray-300 leading-relaxed text-sm mb-2">
+                  開發了多個核心AI模型，包括市場趨勢預測模型、風險評估模型、投資組合優化模型等。經過數千次迭代優化，模型準確率不斷提升。與多家金融機構合作，進行實盤測試和驗證。
+                </p>
+                <p class="text-gray-400 text-xs">
+                  模型迭代：3,000+次 | 實盤測試：12個月
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="flex items-start relative z-10">
+              <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg mr-4 shrink-0 shadow-lg relative">
+                <div class="absolute inset-0 bg-indigo-500/30 rounded-lg blur-md"></div>
+                <span class="relative z-10">3</span>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2 text-white">2022-2023年 - 系統整合與優化</h3>
+                <p class="text-gray-300 leading-relaxed text-sm mb-2">
+                  整合各個AI模型，建立統一的投資分析平台。優化用戶界面和體驗，開發移動端應用。進行大規模內測，收集用戶反饋並持續改進。通過ISO 27001信息安全管理體系認證。
+                </p>
+                <p class="text-gray-400 text-xs">
+                  內測用戶：10,000+ | 系統穩定性：99.9%
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="flex items-start relative z-10">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg mr-4 shrink-0 shadow-lg relative">
+                <div class="absolute inset-0 bg-blue-500/30 rounded-lg blur-md"></div>
+                <span class="relative z-10">4</span>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2 text-white">2024年 - 正式發布</h3>
+                <p class="text-gray-300 leading-relaxed text-sm mb-2">
+                  經過5年的研發和測試，系統正式對外發布。獲得金融科技創新獎，並與多家知名投資機構建立合作關係。持續更新和優化，每月發布新功能和改進。
+                </p>
+                <p class="text-gray-400 text-xs">
+                  正式用戶：50,000+ | 合作機構：15家
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points & Solutions Section -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <Image
+      src={bgPremium3}
+      alt="Pain Points Background"
+      class="section-bg"
+      width={1920}
+      height={1080}
+    />
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center px-4 py-2 glass rounded-full text-sm font-semibold mb-4">
+          <Lightbulb size={14} class="mr-2 text-blue-400" style="width: 14px; height: 14px;" />
+          <span class="text-blue-300">解決方案</span>
+        </div>
+        <h2 class="section-title">
+          解決投資者的<span class="accent-text">核心痛點</span>
+        </h2>
+        <p class="section-subtitle max-w-2xl mx-auto">
+          針對投資者在投資過程中遇到的實際問題，提供專業的解決方案
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="feature-card">
+          <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
+            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-red-500/20 rounded-lg flex items-center justify-center shrink-0">
+              <AlertCircle size={24} class="text-red-400" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base sm:text-lg font-bold mb-2 text-white">痛點：缺乏專業知識</h3>
+              <p class="text-gray-400 text-sm mb-4">
+                許多投資者缺乏專業的金融知識，不知道如何分析市場、評估風險、選擇投資標的。
+              </p>
+              <div class="flex flex-col sm:flex-row items-start gap-4 pt-4 border-t border-white/10">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                  <Check size={24} class="text-green-400" style="width: 24px; height: 24px;" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-sm sm:text-base font-semibold mb-2 text-white">解決方案</h4>
+                  <p class="text-gray-300 text-sm">
+                    AI系統將複雜的市場數據轉化為易懂的分析報告，提供清晰的投資建議和風險提示。即使沒有專業背景，也能理解市場動態並做出明智決策。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
+            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-red-500/20 rounded-lg flex items-center justify-center shrink-0">
+              <AlertCircle size={24} class="text-red-400" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base sm:text-lg font-bold mb-2 text-white">痛點：時間不足</h3>
+              <p class="text-gray-400 text-sm mb-4">
+                工作繁忙，沒有時間每天關注市場動態、分析數據、調整投資策略。
+              </p>
+              <div class="flex flex-col sm:flex-row items-start gap-4 pt-4 border-t border-white/10">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                  <Check size={24} class="text-green-400" style="width: 24px; height: 24px;" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-sm sm:text-base font-semibold mb-2 text-white">解決方案</h4>
+                  <p class="text-gray-300 text-sm">
+                    24/7自動監控市場，實時分析數據，及時推送重要信息和建議。您只需每週花幾分鐘查看報告，就能掌握市場動態和投資機會。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
+            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-red-500/20 rounded-lg flex items-center justify-center shrink-0">
+              <AlertCircle size={24} class="text-red-400" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base sm:text-lg font-bold mb-2 text-white">痛點：情緒化決策</h3>
+              <p class="text-gray-400 text-sm mb-4">
+                市場波動時容易受情緒影響，做出衝動的買賣決策，導致不必要的損失。
+              </p>
+              <div class="flex flex-col sm:flex-row items-start gap-4 pt-4 border-t border-white/10">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                  <Check size={24} class="text-green-400" style="width: 24px; height: 24px;" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-sm sm:text-base font-semibold mb-2 text-white">解決方案</h4>
+                  <p class="text-gray-300 text-sm">
+                    AI基於數據和邏輯進行分析，不受情緒影響。提供客觀的市場評估和風險提示，幫助您保持理性，避免情緒化決策。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
+            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-red-500/20 rounded-lg flex items-center justify-center shrink-0">
+              <AlertCircle size={24} class="text-red-400" style="width: 24px; height: 24px;" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base sm:text-lg font-bold mb-2 text-white">痛點：信息不對稱</h3>
+              <p class="text-gray-400 text-sm mb-4">
+                個人投資者難以獲得專業機構的市場分析和研究報告，信息獲取渠道有限。
+              </p>
+              <div class="flex flex-col sm:flex-row items-start gap-4 pt-4 border-t border-white/10">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-500/20 rounded-lg flex items-center justify-center shrink-0">
+                  <Check size={24} class="text-green-400" style="width: 24px; height: 24px;" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-sm sm:text-base font-semibold mb-2 text-white">解決方案</h4>
+                  <p class="text-gray-300 text-sm">
+                    整合全球市場數據和專業分析，為個人投資者提供與機構同等水平的市場洞察。讓每個人都能獲得專業的投資分析支持。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results & Effects Section -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <Image
+      src={bgPremium1}
+      alt="Results Background"
+      class="section-bg"
+      width={1920}
+      height={1080}
+    />
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center px-4 py-2 glass rounded-full text-sm font-semibold mb-4">
+          <TrendingUp size={14} class="mr-2 text-blue-400" style="width: 14px; height: 14px;" />
+          <span class="text-blue-300">使用效果</span>
+        </div>
+        <h2 class="section-title">
+          使用後的<span class="accent-text">實際效果</span>
+        </h2>
+        <p class="section-subtitle max-w-2xl mx-auto">
+          基於真實用戶反饋和使用數據，展示系統帶來的實際價值
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="feature-card text-center">
+          <div class="feature-icon mx-auto mb-4">
+            <BarChart3 size={28} class="text-white" style="width: 28px; height: 28px;" />
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">投資決策更理性</h3>
+          <p class="text-gray-300 leading-relaxed text-sm mb-4">
+            85%的用戶表示，使用系統後投資決策更加理性，減少了衝動交易。系統提供的客觀分析和風險提示，幫助用戶避免情緒化決策。
+          </p>
+          <div class="text-blue-400 font-semibold text-sm">85% 用戶認同</div>
+        </div>
+
+        <div class="feature-card text-center">
+          <div class="feature-icon mx-auto mb-4">
+            <Clock size={28} class="text-white" style="width: 28px; height: 28px;" />
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">節省時間成本</h3>
+          <p class="text-gray-300 leading-relaxed text-sm mb-4">
+            平均每週節省8-10小時的市場分析時間。系統自動處理數據分析，用戶只需查看關鍵報告和建議，大幅提升投資效率。
+          </p>
+          <div class="text-blue-400 font-semibold text-sm">每週節省 8-10小時</div>
+        </div>
+
+        <div class="feature-card text-center">
+          <div class="feature-icon mx-auto mb-4">
+            <Shield size={28} class="text-white" style="width: 28px; height: 28px;" />
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">風險意識提升</h3>
+          <p class="text-gray-300 leading-relaxed text-sm mb-4">
+            78%的用戶表示，使用系統後對投資風險有了更清晰的認識。系統的風險評估和預警功能，幫助用戶更好地管理投資風險。
+          </p>
+          <div class="text-blue-400 font-semibold text-sm">78% 用戶認同</div>
+        </div>
+      </div>
+
+      <div class="glass-strong p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-6 text-center text-white">用戶滿意度調查</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-gray-300 text-sm">分析準確性</span>
+              <span class="text-blue-400 font-semibold">4.6/5.0</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 92%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-gray-300 text-sm">易用性</span>
+              <span class="text-blue-400 font-semibold">4.7/5.0</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 94%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-gray-300 text-sm">風險提示有效性</span>
+              <span class="text-blue-400 font-semibold">4.5/5.0</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-gray-300 text-sm">整體滿意度</span>
+              <span class="text-blue-400 font-semibold">4.6/5.0</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 92%"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-400 text-xs text-center mt-6">
+          數據來源：2024年Q4用戶滿意度調查，樣本數：5,000+
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section with Background -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <Image
+      src={bgPremium2}
+      alt="Success Stories Background"
+      class="section-bg"
+      width={1920}
+      height={1080}
+    />
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center px-4 py-2 glass rounded-full text-sm font-semibold mb-4">
+          <Users size={14} class="mr-2 text-blue-400" style="width: 14px; height: 14px;" />
+          <span class="text-blue-300">成功案例</span>
+        </div>
+        <h2 class="section-title">
+          用戶真實<span class="accent-text">使用體驗</span>
+        </h2>
+      </div>
+
+      <div class="mb-12 text-center">
+        <div class="inline-block rounded-2xl overflow-hidden shadow-2xl relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+          <div class="relative rounded-2xl overflow-hidden">
+            <Image
+              src={successIllustration}
+              alt="成功案例展示"
+              width={600}
+              height={400}
+              class="max-w-full h-auto transform group-hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+              <div class="text-white text-sm font-semibold">查看詳細案例</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="testimonial-card">
+          <div class="flex items-start mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-semibold text-lg mr-4 shrink-0">
+              張
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold text-white mb-1">張先生（工程師·38歲）</p>
+              <p class="text-blue-400 font-semibold mb-3 text-sm">使用時間：6個月</p>
+              <p class="text-gray-300 leading-relaxed text-sm mb-4">
+                「AI分析工具幫助我更好地理解市場趨勢，提供的風險評估很實用。作為投資新手，這個工具讓我更有信心做出投資決策。雖然投資有風險，但有了專業的分析支持，感覺更踏實了。」
+              </p>
+              <div class="flex items-center text-yellow-400">
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <span class="ml-2 text-gray-400 text-xs">5星好評</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="flex items-start mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-semibold text-lg mr-4 shrink-0">
+              李
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold text-white mb-1">李女士（設計師·29歲）</p>
+              <p class="text-blue-400 font-semibold mb-3 text-sm">使用時間：4個月</p>
+              <p class="text-gray-300 leading-relaxed text-sm mb-4">
+                「作為投資新手，這個AI分析工具幫我學習了很多投資知識。系統提供的市場分析和風險提示很清晰，讓我能夠根據自己的風險承受能力做出決策。雖然投資有賺有賠，但有了專業工具的支持，感覺更有方向了。」
+              </p>
+              <div class="flex items-center text-yellow-400">
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <Star size={16} class="fill-current" style="width: 16px; height: 16px;" />
+                <span class="ml-2 text-gray-400 text-xs">5星好評</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section with Background -->
+  <section class="section-with-bg">
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+    <Image
+      src={bgPremium3}
+      alt="Final CTA Background"
+      class="section-bg"
+      width={1920}
+      height={1080}
+    />
+    <div class="section-overlay"></div>
+    <div class="section-content text-center">
+      <h2 class="section-title mb-6">
+        開始使用<span class="accent-text">AI投資分析工具</span>
+      </h2>
+
+      <p class="section-subtitle mb-8 max-w-3xl mx-auto">
+        運用AI智能分析系統，獲取專業的市場洞察和投資建議。<br >
+        <span class="accent-text font-semibold">免費試用</span>，體驗專業投資分析工具。
+      </p>
+
+      <div class="glass-strong p-6 rounded-xl mb-8 inline-block">
+        <div class="flex items-center justify-center">
+          <Clock size={20} class="mr-2 text-blue-400" style="width: 20px; height: 20px;" />
+          <p class="text-xl font-semibold text-blue-300">今日23:59前限時免費</p>
+        </div>
+      </div>
+
+      <a
+        href="#"
+        class="link-btn cta-button inline-flex items-center mb-8"
+        data-umami-event="contact"
+        data-umami-event-method="cta"
+        data-umami-event-position="final-cta"
+      >
+        <span>免費試用專業分析工具</span>
+        <ArrowRight size={20} style="width: 20px; height: 20px;" />
+      </a>
+
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <div>
+          <CheckCircle size={20} class="mx-auto mb-2 text-green-400" style="width: 20px; height: 20px;" />
+          <p class="text-green-400 font-semibold text-sm">註冊用戶：50,000+</p>
+        </div>
+        <div>
+          <Award size={20} class="mx-auto mb-2 text-yellow-400" style="width: 20px; height: 20px;" />
+          <p class="text-yellow-400 font-semibold text-sm">專業分析工具</p>
+        </div>
+        <div>
+          <TrendingUp size={20} class="mx-auto mb-2 text-blue-400" style="width: 20px; height: 20px;" />
+          <p class="text-blue-400 font-semibold text-sm">免費試用</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fixed Bottom CTA -->
+  <div class="fixed-bottom-cta">
+    <a
+      href="#"
+      class="link-btn fixed-cta-btn inline-flex items-center justify-center gap-2"
+      data-umami-event="contact"
+      data-umami-event-method="cta"
+      data-umami-event-position="fixed-bottom"
+    >
+      <span>免費試用分析工具</span>
+      <ArrowRight size={18} style="width: 18px; height: 18px;" />
+    </a>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Additional spacing for fixed CTA */
+  body {
+    padding-bottom: 100px;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 90px;
+    }
+  }
+</style>
+
+<script>
+ // Countdown timer
+ function initCountdown() {
+   const storageKey = 'premium_countdown_start_time'
+   let startTime: number
+   const stored = localStorage.getItem(storageKey)
+
+   if (!stored) {
+     startTime = new Date().getTime()
+     localStorage.setItem(storageKey, startTime.toString())
+   }
+ else {
+     startTime = Number.parseInt(stored, 10)
+   }
+
+   const countdownDuration = 2 * 60 * 60 * 1000 + 15 * 60 * 1000 // 2 hours 15 minutes
+   const endTime = startTime + countdownDuration
+
+   function updateCountdown() {
+     const now = new Date().getTime()
+     const distance = endTime - now
+
+     if (distance < 0) {
+       const countdownElement = document.getElementById('countdown')
+       if (countdownElement) {
+         countdownElement.innerHTML = '00:00:00'
+       }
+       return
+     }
+
+     const hours = Math.floor(distance / (1000 * 60 * 60))
+     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+     const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+     const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+
+     const countdownElement = document.getElementById('countdown')
+     if (countdownElement) {
+       countdownElement.innerHTML = timeString
+     }
+   }
+
+   setInterval(updateCountdown, 1000)
+   updateCountdown()
+ }
+
+ // Intersection Observer for animations
+ function initScrollAnimations() {
+   const observerOptions = {
+     threshold: 0.1,
+     rootMargin: '0px 0px -50px 0px',
+   }
+
+   const observer = new IntersectionObserver((entries) => {
+     entries.forEach((entry) => {
+       if (entry.isIntersecting) {
+         entry.target.classList.add('animate-slide-up')
+         observer.unobserve(entry.target)
+       }
+     })
+   }, observerOptions)
+
+   const elements = document.querySelectorAll('.feature-card, .testimonial-card')
+   elements.forEach((el) => {
+     observer.observe(el)
+   })
+ }
+
+ // Initialize on page load
+ if (typeof window !== 'undefined') {
+   initCountdown()
+   initScrollAnimations()
+ }
+</script>

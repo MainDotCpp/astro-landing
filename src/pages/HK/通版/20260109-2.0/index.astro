@@ -1,0 +1,2780 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '趨勢跟蹤策略深度解析 · 專業投資技術分享'
+const description = '深入解析趨勢跟蹤策略的技術原理與實戰應用，加WhatsApp好友獲取更多專業投資知識與策略分析'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <div class="landing-page">
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="logo-text">STRATEGY</span>
+        </div>
+        <a href="javascript:void(0)" class="nav-cta link-btn">
+          <span>獲取策略</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-decorative-bg">
+        <svg class="trend-chart-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="trendGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.15" />
+              <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.05" />
+            </linearGradient>
+          </defs>
+          <path d="M20,150 Q100,100 180,80 T340,50" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round" />
+          <path d="M20,150 Q100,100 180,80 T340,50" stroke="url(#trendGradient)" stroke-width="3" fill="none" opacity="0.3" />
+          <circle cx="20" cy="150" r="3" fill="#D4AF37" opacity="0.5" />
+          <circle cx="340" cy="50" r="3" fill="#D4AF37" opacity="0.5" />
+        </svg>
+      </div>
+      <div class="hero-image-container">
+        <img src="https://ark-content-generation-v2-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-3-0-t2i/021767943926038f819a70ccfcb34f701bfee049253c600e5f425_0.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20260109%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260109T073209Z&X-Tos-Expires=86400&X-Tos-Signature=ce1df51388a427e9d292564464b79a568db179d0e0276d20943e0c32274d32c2&X-Tos-SignedHeaders=host&x-tos-process=image%2Fwatermark%2Cimage_YXNzZXRzL3dhdGVybWFya192MS5wbmc_eC10b3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUscF83OA%3D%3D%2Cx_69%2Cy_69" alt="趨勢跟蹤策略專業投資分析" class="hero-main-image" />
+      </div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-label">專業投資策略</div>
+          <h1 class="hero-title">
+            <span class="title-line">趨勢跟蹤</span>
+            <span class="title-line accent">策略解析</span>
+          </h1>
+          <p class="hero-description">
+            市場趨勢是投資者最可靠的盟友。通過系統化的技術分析與嚴謹的風險管理，<br />
+            掌握趨勢跟蹤策略的核心邏輯，在波動中尋找確定性機會。
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-value">68.5%</div>
+              <div class="stat-label">策略勝率</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">2.8:1</div>
+              <div class="stat-label">風險回報比</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">1.85</div>
+              <div class="stat-label">夏普比率</div>
+            </div>
+          </div>
+          <a href="javascript:void(0)" class="hero-cta link-btn">
+            <span>加WhatsApp好友獲取完整策略</span>
+            <svg class="cta-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategy Overview -->
+    <section class="overview-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <div class="section-content">
+            <span class="section-label">核心原理</span>
+            <h2 class="section-title">趨勢跟蹤策略架構</h2>
+          </div>
+        </div>
+        <div class="overview-grid">
+          <div class="overview-card main-card">
+            <div class="card-image-wrapper">
+              <img src="https://ark-content-generation-v2-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-3-0-t2i/021767943930495e94dfd37f88856a39045f6d12708556f92c433_0.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20260109%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260109T073213Z&X-Tos-Expires=86400&X-Tos-Signature=1145998a86b574ff39cd8c336b917a2c911c9d8087170f7b24a4dce73c671b7b&X-Tos-SignedHeaders=host&x-tos-process=image%2Fwatermark%2Cimage_YXNzZXRzL3dhdGVybWFya192MS5wbmc_eC10b3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUscF83OA%3D%3D%2Cx_69%2Cy_69" alt="趨勢識別" class="card-image" />
+            </div>
+            <div class="card-icon">
+              <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,45 L20,35 L30,40 L40,25 L50,30" stroke="#D4AF37" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" />
+                <circle cx="20" cy="35" r="2.5" fill="#D4AF37" opacity="0.8" />
+                <circle cx="40" cy="25" r="2.5" fill="#D4AF37" opacity="0.8" />
+              </svg>
+            </div>
+            <div class="card-number">01</div>
+            <h3 class="card-title">趨勢識別</h3>
+            <p class="card-description">
+              運用移動平均線（MA）、MACD、ADX等技術指標，精確識別市場趨勢方向。通過多時間框架分析，確認趨勢的強度與持續性，為後續交易決策提供可靠依據。
+            </p>
+            <div class="card-features">
+              <div class="feature-item">
+                <span class="feature-dot"></span>
+                <span>MA均線系統：20、50、200日移動平均線</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-dot"></span>
+                <span>MACD指標：動量與趨勢轉換識別</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-dot"></span>
+                <span>ADX趨勢強度：量化趨勢可靠性</span>
+              </div>
+            </div>
+          </div>
+          <div class="overview-card">
+            <div class="card-image-wrapper">
+              <img src="https://ark-content-generation-v2-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-3-0-t2i/021767943930495e94dfd37f88856a39045f6d12708556f92c433_0.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20260109%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260109T073213Z&X-Tos-Expires=86400&X-Tos-Signature=1145998a86b574ff39cd8c336b917a2c911c9d8087170f7b24a4dce73c671b7b&X-Tos-SignedHeaders=host&x-tos-process=image%2Fwatermark%2Cimage_YXNzZXRzL3dhdGVybWFya192MS5wbmc_eC10b3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUscF83OA%3D%3D%2Cx_69%2Cy_69" alt="進場時機" class="card-image" />
+            </div>
+            <div class="card-icon">
+              <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <rect x="15" y="20" width="30" height="25" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6" rx="2" />
+                <line x1="20" y1="30" x2="40" y2="30" stroke="#D4AF37" stroke-width="2" opacity="0.6" />
+                <line x1="30" y1="20" x2="30" y2="45" stroke="#D4AF37" stroke-width="2" opacity="0.6" />
+                <circle cx="30" cy="30" r="3" fill="#D4AF37" opacity="0.8" />
+              </svg>
+            </div>
+            <div class="card-number">02</div>
+            <h3 class="card-title">進場時機</h3>
+            <p class="card-description">
+              在趨勢確認後，等待回調至關鍵支撐位或突破阻力位時進場。結合成交量分析與價格行為，優化進場點位，提高交易成功率。
+            </p>
+            <div class="card-features">
+              <div class="feature-item">
+                <span class="feature-dot"></span>
+                <span>支撐阻力分析</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-dot"></span>
+                <span>成交量確認</span>
+              </div>
+            </div>
+          </div>
+          <div class="overview-card">
+            <div class="card-image-wrapper">
+              <img src="https://ark-content-generation-v2-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-3-0-t2i/021767943934797d522dfe667f11f532747f925ca69749c7ae501_0.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20260109%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260109T073218Z&X-Tos-Expires=86400&X-Tos-Signature=771443e783b4253965ad7d8a0a9e15aa688c3911f8cfae6d2c13657c9eb14ca2&X-Tos-SignedHeaders=host&x-tos-process=image%2Fwatermark%2Cimage_YXNzZXRzL3dhdGVybWFya192MS5wbmc_eC10b3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUscF83OA%3D%3D%2Cx_69%2Cy_69" alt="風險管理" class="card-image" />
+            </div>
+            <div class="card-icon">
+              <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30,15 L40,25 L35,25 L35,40 L25,40 L25,25 L20,25 Z" stroke="#D4AF37" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" />
+                <circle cx="30" cy="15" r="3" fill="#D4AF37" opacity="0.8" />
+              </svg>
+            </div>
+            <div class="card-number">03</div>
+            <h3 class="card-title">風險管理</h3>
+            <p class="card-description">
+              設置動態止損位，根據ATR（平均真實波幅）調整止損距離。採用金字塔加倉與分批減倉策略，在保護資本的同時最大化收益。
+            </p>
+            <div class="card-features">
+              <div class="feature-item">
+                <span class="feature-dot"></span>
+                <span>ATR動態止損</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-dot"></span>
+                <span>倉位管理系統</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Indicators -->
+    <section class="indicators-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-number">02</div>
+          <div class="section-content">
+            <span class="section-label">技術指標</span>
+            <h2 class="section-title">核心分析工具</h2>
+          </div>
+        </div>
+        <div class="indicators-grid">
+          <div class="indicator-card">
+            <div class="indicator-visual">
+              <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="maGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.2" />
+                    <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.05" />
+                  </linearGradient>
+                </defs>
+                <path d="M10,50 L30,45 L50,40 L70,35 L90,30 L110,25" stroke="#8B7355" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="3,3" />
+                <path d="M10,45 L30,42 L50,38 L70,33 L90,28 L110,23" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6" />
+                <path d="M10,50 L30,48 L50,45 L70,42 L90,38 L110,35" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.5" />
+              </svg>
+            </div>
+            <div class="indicator-header">
+              <h3 class="indicator-name">移動平均線</h3>
+              <span class="indicator-code">MA(20, 50, 200)</span>
+            </div>
+            <div class="indicator-content">
+              <div class="indicator-values">
+                <div class="value-row">
+                  <span class="value-label">MA(20)</span>
+                  <span class="value-number">28,420</span>
+                </div>
+                <div class="value-row">
+                  <span class="value-label">MA(50)</span>
+                  <span class="value-number">28,380</span>
+                </div>
+                <div class="value-row">
+                  <span class="value-label">MA(200)</span>
+                  <span class="value-number">28,320</span>
+                </div>
+                <div class="value-row highlight">
+                  <span class="value-label">當前價格</span>
+                  <span class="value-number">28,450</span>
+                </div>
+              </div>
+              <p class="indicator-desc">
+                通過多條均線的排列與交叉，判斷趨勢方向。金叉確認上升趨勢，死叉確認下降趨勢。當前均線呈多頭排列，顯示上升趨勢強勁。
+              </p>
+            </div>
+          </div>
+          <div class="indicator-card">
+            <div class="indicator-visual">
+              <img src="https://ark-content-generation-v2-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-3-0-t2i/0217679439389495630b2fa661ac131412e72f6bdd3759f13c083_0.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20260109%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260109T073222Z&X-Tos-Expires=86400&X-Tos-Signature=37c7323da59d1186943002caf8fbb88b593e4fd571ba3d8b89b97e29b22ca257&X-Tos-SignedHeaders=host&x-tos-process=image%2Fwatermark%2Cimage_YXNzZXRzL3dhdGVybWFya192MS5wbmc_eC10b3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUscF83OA%3D%3D%2Cx_69%2Cy_69" alt="MACD指標" class="indicator-image" />
+              <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" class="indicator-svg-overlay">
+                <path d="M10,30 Q30,25 50,20 T90,15" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6" />
+                <path d="M10,35 Q30,32 50,28 T90,25" stroke="#8B7355" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="2,2" />
+                <rect x="20" y="18" width="3" height="8" fill="#D4AF37" opacity="0.6" />
+                <rect x="40" y="15" width="3" height="10" fill="#D4AF37" opacity="0.6" />
+                <rect x="60" y="12" width="3" height="12" fill="#D4AF37" opacity="0.6" />
+                <rect x="80" y="10" width="3" height="14" fill="#D4AF37" opacity="0.6" />
+              </svg>
+            </div>
+            <div class="indicator-header">
+              <h3 class="indicator-name">MACD指標</h3>
+              <span class="indicator-code">MACD(12, 26, 9)</span>
+            </div>
+            <div class="indicator-content">
+              <div class="indicator-values">
+                <div class="value-row">
+                  <span class="value-label">MACD線</span>
+                  <span class="value-number positive">+2.12</span>
+                </div>
+                <div class="value-row">
+                  <span class="value-label">信號線</span>
+                  <span class="value-number">+1.85</span>
+                </div>
+                <div class="value-row highlight">
+                  <span class="value-label">柱狀圖</span>
+                  <span class="value-number positive">+2.35</span>
+                </div>
+                <div class="value-row">
+                  <span class="value-label">狀態</span>
+                  <span class="value-status positive">多頭信號</span>
+                </div>
+              </div>
+              <p class="indicator-desc">
+                通過MACD線與信號線的交叉，以及柱狀圖的變化，識別趨勢動能與轉折點。當前MACD線位於信號線上方，柱狀圖為正值，顯示強勁的多頭動能。
+              </p>
+            </div>
+          </div>
+          <div class="indicator-card">
+            <div class="indicator-visual">
+              <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+                <line x1="10" y1="50" x2="110" y2="50" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+                <line x1="10" y1="40" x2="110" y2="40" stroke="#E5E5E5" stroke-width="1" opacity="0.3" />
+                <line x1="10" y1="30" x2="110" y2="30" stroke="#E5E5E5" stroke-width="1" opacity="0.3" />
+                <path d="M10,50 L30,45 L50,38 L70,32 L90,28 L110,25" stroke="#D4AF37" stroke-width="2.5" fill="none" opacity="0.7" />
+                <circle cx="110" cy="25" r="3" fill="#D4AF37" opacity="0.8" />
+              </svg>
+            </div>
+            <div class="indicator-header">
+              <h3 class="indicator-name">ADX趨勢強度</h3>
+              <span class="indicator-code">ADX(14)</span>
+            </div>
+            <div class="indicator-content">
+              <div class="indicator-values">
+                <div class="value-row highlight">
+                  <span class="value-label">ADX值</span>
+                  <span class="value-number large">35</span>
+                </div>
+                <div class="value-row">
+                  <span class="value-label">+DI</span>
+                  <span class="value-number">28</span>
+                </div>
+                <div class="value-row">
+                  <span class="value-label">-DI</span>
+                  <span class="value-number">22</span>
+                </div>
+                <div class="value-row">
+                  <span class="value-label">趨勢狀態</span>
+                  <span class="value-status">中等強度</span>
+                </div>
+              </div>
+              <div class="adx-levels">
+                <div class="level-item">
+                  <span class="level-range">弱勢 (0-20)</span>
+                  <span class="level-bar"><span class="level-fill" style="width: 0%;"></span></span>
+                </div>
+                <div class="level-item">
+                  <span class="level-range">震盪 (20-25)</span>
+                  <span class="level-bar"><span class="level-fill" style="width: 0%;"></span></span>
+                </div>
+                <div class="level-item active">
+                  <span class="level-range">強勢 (25+)</span>
+                  <span class="level-bar"><span class="level-fill" style="width: 35%;"></span></span>
+                </div>
+              </div>
+              <p class="indicator-desc">
+                ADX值高於25表示趨勢強勁，適合趨勢跟蹤策略。當前ADX值為35，顯示市場處於中等強度趨勢中，適合採用趨勢跟蹤策略。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance Metrics -->
+    <section class="performance-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <div class="section-content">
+            <span class="section-label">策略表現</span>
+            <h2 class="section-title">回測數據分析</h2>
+          </div>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-image-wrapper">
+              <img src="https://ark-content-generation-v2-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-3-0-t2i/021767943943334c7348914d5b1871f6564269127b52d1d34ff4f_0.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20260109%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260109T073226Z&X-Tos-Expires=86400&X-Tos-Signature=dc2855003eb23dea80a517eb367bc00bbff6db4bbc9c3422b9e382453bf36e0c&X-Tos-SignedHeaders=host&x-tos-process=image%2Fwatermark%2Cimage_YXNzZXRzL3dhdGVybWFya192MS5wbmc_eC10b3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUscF83OA%3D%3D%2Cx_69%2Cy_69" alt="策略表現數據" class="metric-image" />
+            </div>
+            <div class="metric-icon">
+              <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="25" r="18" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.3" />
+                <path d="M25,7 A18,18 0 0,1 25,43" stroke="#D4AF37" stroke-width="3" fill="none" opacity="0.6" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="metric-header">
+              <span class="metric-label">勝率</span>
+              <span class="metric-trend positive">↑ +5.2%</span>
+            </div>
+            <div class="metric-value">68.5%</div>
+            <div class="metric-detail">過去12個月平均勝率</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">
+              <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,35 L25,15 L40,35" stroke="#D4AF37" stroke-width="2.5" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round" />
+                <line x1="10" y1="35" x2="40" y2="35" stroke="#D4AF37" stroke-width="2" opacity="0.6" />
+              </svg>
+            </div>
+            <div class="metric-header">
+              <span class="metric-label">風險回報比</span>
+              <span class="metric-trend positive">↑ 優化</span>
+            </div>
+            <div class="metric-value">2.8:1</div>
+            <div class="metric-detail">平均盈利/平均虧損</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">
+              <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,20 L25,30 L40,20" stroke="#8B7355" stroke-width="2.5" fill="none" opacity="0.5" stroke-linecap="round" stroke-linejoin="round" />
+                <line x1="10" y1="20" x2="40" y2="20" stroke="#8B7355" stroke-width="2" opacity="0.5" />
+              </svg>
+            </div>
+            <div class="metric-header">
+              <span class="metric-label">最大回撤</span>
+              <span class="metric-trend">↓ 可控</span>
+            </div>
+            <div class="metric-value">-12.3%</div>
+            <div class="metric-detail">歷史最大回撤幅度</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">
+              <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,30 Q25,10 40,30" stroke="#D4AF37" stroke-width="2.5" fill="none" opacity="0.6" stroke-linecap="round" />
+                <line x1="10" y1="30" x2="40" y2="30" stroke="#D4AF37" stroke-width="1.5" opacity="0.4" stroke-dasharray="2,2" />
+              </svg>
+            </div>
+            <div class="metric-header">
+              <span class="metric-label">夏普比率</span>
+              <span class="metric-trend positive">↑ 優秀</span>
+            </div>
+            <div class="metric-value">1.85</div>
+            <div class="metric-detail">風險調整後收益指標</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Knowledge Preview -->
+    <section class="knowledge-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-number">04</div>
+          <div class="section-content">
+            <span class="section-label">更多內容</span>
+            <h2 class="section-title">加WhatsApp好友後獲取</h2>
+          </div>
+        </div>
+        <div class="knowledge-grid">
+          <div class="knowledge-item">
+            <div class="knowledge-icon">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="24" height="24" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6" rx="2" />
+                <line x1="12" y1="16" x2="28" y2="16" stroke="#D4AF37" stroke-width="1.5" opacity="0.6" />
+                <line x1="12" y1="20" x2="24" y2="20" stroke="#D4AF37" stroke-width="1.5" opacity="0.5" />
+                <line x1="12" y1="24" x2="20" y2="24" stroke="#D4AF37" stroke-width="1.5" opacity="0.5" />
+              </svg>
+            </div>
+            <div class="knowledge-number">01</div>
+            <h3 class="knowledge-title">進階策略組合</h3>
+            <p class="knowledge-desc">
+              均值回歸、動量策略、突破策略等多種策略的組合應用與優化方法，幫助您構建更完善的投資體系。
+            </p>
+          </div>
+          <div class="knowledge-item">
+            <div class="knowledge-icon">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="12" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6" />
+                <path d="M20,8 L20,20 L28,28" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="knowledge-number">02</div>
+            <h3 class="knowledge-title">實戰案例分析</h3>
+            <p class="knowledge-desc">
+              真實市場環境下的策略應用案例，包含進場、持倉、出場的完整邏輯，讓理論與實踐完美結合。
+            </p>
+          </div>
+          <div class="knowledge-item">
+            <div class="knowledge-icon">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="10" width="16" height="20" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6" rx="1" />
+                <line x1="16" y1="16" x2="24" y2="16" stroke="#D4AF37" stroke-width="2" opacity="0.6" />
+                <line x1="16" y1="20" x2="24" y2="20" stroke="#D4AF37" stroke-width="2" opacity="0.6" />
+                <circle cx="20" cy="26" r="2" fill="#D4AF37" opacity="0.6" />
+              </svg>
+            </div>
+            <div class="knowledge-number">03</div>
+            <h3 class="knowledge-title">風險控制系統</h3>
+            <p class="knowledge-desc">
+              資金管理、倉位控制、止損止盈的系統化方法與實戰技巧，保護您的投資資本。
+            </p>
+          </div>
+          <div class="knowledge-item">
+            <div class="knowledge-icon">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,20 Q15,12 20,20 T30,20" stroke="#D4AF37" stroke-width="2.5" fill="none" opacity="0.6" stroke-linecap="round" />
+                <circle cx="15" cy="18" r="1.5" fill="#D4AF37" opacity="0.8" />
+                <circle cx="25" cy="22" r="1.5" fill="#D4AF37" opacity="0.8" />
+              </svg>
+            </div>
+            <div class="knowledge-number">04</div>
+            <h3 class="knowledge-title">市場情緒分析</h3>
+            <p class="knowledge-desc">
+              如何結合市場情緒指標與技術分析，提升策略的準確性與適應性，把握市場脈動。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <div class="cta-content">
+          <h2 class="cta-title">想要深入學習更多投資策略？</h2>
+          <p class="cta-description">
+            加WhatsApp好友後，您將獲得：<br />
+            <span class="cta-highlight">完整策略文檔 · 實戰案例分析 · 技術指標深度解析 · 風險管理系統</span>
+          </p>
+          <a href="javascript:void(0)" class="cta-button link-btn">
+            <span>立即加WhatsApp好友獲取知識</span>
+            <svg class="cta-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <p class="footer-disclaimer">學習交流為主，投資有風險，請獨立判斷</p>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    font-family: 'Libre Baskerville', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', serif;
+    background: #FAFAFA;
+    color: #1A1A1A;
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.01em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  .landing-page {
+    position: relative;
+    min-height: 100vh;
+    background: #FAFAFA;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.02) 1px, rgba(0, 0, 0, 0.02) 2px),
+      repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0, 0, 0, 0.02) 1px, rgba(0, 0, 0, 0.02) 2px);
+    background-size: 40px 40px;
+  }
+
+  @media (max-width: 768px) {
+    .landing-page {
+      background-size: 30px 30px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .landing-page {
+      background-size: 25px 25px;
+    }
+  }
+
+  /* Navigation */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250, 250, 250, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  }
+
+  .main-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  }
+
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 1rem 1.25rem;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-cta {
+      padding: 0.625rem 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      min-height: 40px;
+    }
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.75rem 2.5rem;
+    background: #1A1A1A;
+    color: #FFFFFF;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #1A1A1A;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  @media (hover: hover) {
+    .nav-cta:hover {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      border-color: #D4AF37;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+    }
+
+    .nav-cta:hover::before {
+      left: 100%;
+    }
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 14rem 2rem 10rem;
+    margin-top: 80px;
+    position: relative;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #FFFFFF;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+  }
+
+  .hero-decorative-bg {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    width: 300px;
+    height: 150px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-image-container {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 500px;
+    height: 400px;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .hero-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.5);
+  }
+
+  @media (max-width: 1024px) {
+    .hero-image-container {
+      width: 400px;
+      height: 300px;
+      top: 15%;
+      right: 2%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-image-container {
+      width: 300px;
+      height: 200px;
+      top: 10%;
+      right: 2%;
+      opacity: 0.05;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-image-container {
+      display: none;
+    }
+  }
+
+  .trend-chart-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .hero-decorative-bg {
+      width: 200px;
+      height: 100px;
+      top: 15%;
+      right: 2%;
+      opacity: 0.1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-decorative-bg {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 6rem 1.25rem 4rem;
+      margin-top: 70px;
+    }
+
+    .hero-label {
+      font-size: 0.625rem;
+      letter-spacing: 0.15em;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-label::before {
+      width: 25px;
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 14vw, 5rem);
+      margin-bottom: 1.25rem;
+      line-height: 1.05;
+    }
+
+    .hero-title {
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title::after {
+      width: 60px;
+      bottom: 0;
+      height: 1px;
+    }
+
+    .hero-description {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-stats {
+      gap: 1rem;
+      padding: 1.5rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      padding-top: 0.5rem;
+    }
+
+    .stat-value::before {
+      width: 30px;
+      top: 0;
+    }
+
+    .stat-label {
+      font-size: 0.625rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-cta {
+      padding: 1.25rem 2rem;
+      font-size: 0.8125rem;
+      min-height: 52px;
+      width: 100%;
+      gap: 0.75rem;
+    }
+  }
+
+  .hero-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      gap: 2rem;
+    }
+  }
+
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #8B7355;
+    width: fit-content;
+    position: relative;
+  }
+
+  .hero-label::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .hero-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 14vw, 8.5rem);
+    font-weight: 600;
+    line-height: 0.92;
+    color: #1A1A1A;
+    letter-spacing: -0.03em;
+    font-style: italic;
+    position: relative;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .title-line {
+    display: block;
+  }
+
+  .title-line.accent {
+    color: #8B7355;
+    font-weight: 500;
+  }
+
+  .hero-description {
+    font-size: clamp(1.0625rem, 2vw, 1.3125rem);
+    color: #4A4A4A;
+    line-height: 1.85;
+    font-weight: 400;
+    max-width: 720px;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .hero-stats::before,
+  .hero-stats::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .hero-stats::before {
+    top: 0;
+  }
+
+  .hero-stats::after {
+    bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .hero-stats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 2rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .stat-label {
+      font-size: 0.625rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding: 1.5rem 0;
+    }
+
+    .stat-value {
+      font-size: clamp(1.25rem, 5vw, 1.75rem);
+    }
+
+    .stat-label {
+      font-size: 0.5625rem;
+    }
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 500;
+    color: #1A1A1A;
+    line-height: 1;
+    font-style: italic;
+    position: relative;
+    padding-top: 0.75rem;
+  }
+
+  .stat-value::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background: #D4AF37;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: #8B7355;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-top: 0.5rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    min-height: 68px;
+    padding: 1.75rem 5rem;
+    background: #1A1A1A;
+    color: #FFFFFF;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #1A1A1A;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+    transition: left 0.6s ease;
+  }
+
+  @media (min-width: 640px) {
+    .hero-cta {
+      width: fit-content;
+    }
+  }
+
+  @media (hover: hover) {
+    .hero-cta:hover {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      border-color: #D4AF37;
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
+    }
+
+    .hero-cta:hover::before {
+      left: 100%;
+    }
+  }
+
+  .cta-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+  }
+
+  @media (hover: hover) {
+    .hero-cta:hover .cta-icon {
+      transform: translateX(4px);
+    }
+  }
+
+  /* Overview Section */
+  .overview-section {
+    padding: 10rem 2rem;
+    background: #FFFFFF;
+    position: relative;
+  }
+
+  .overview-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .overview-section {
+      padding: 5rem 1.25rem;
+    }
+
+    .section-header {
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-number {
+      font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .section-number::after {
+      width: 40px;
+    }
+
+    .section-label {
+      font-size: 0.625rem;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      width: 25px;
+    }
+
+    .section-title {
+      font-size: clamp(1.875rem, 8vw, 2.5rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .overview-grid {
+      gap: 1.25rem;
+    }
+
+    .overview-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .card-number {
+      top: 1.25rem;
+      right: 1.25rem;
+      font-size: 4rem;
+    }
+
+    .card-title {
+      font-size: clamp(1.375rem, 4vw, 1.75rem);
+      margin-bottom: 1rem;
+      padding-bottom: 0.625rem;
+    }
+
+    .card-title::after {
+      width: 35px;
+    }
+
+    .card-description {
+      font-size: 0.9375rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.75;
+    }
+
+    .card-features {
+      gap: 0.75rem;
+    }
+
+    .feature-item {
+      font-size: 0.875rem;
+      gap: 0.875rem;
+      padding: 0.25rem 0;
+      line-height: 1.6;
+    }
+
+    .feature-dot {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 6rem;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+  }
+
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 300;
+    color: #F0F0F0;
+    line-height: 1;
+    flex-shrink: 0;
+    font-style: italic;
+    opacity: 0.6;
+    position: relative;
+  }
+
+  .section-number::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .section-content {
+    flex: 1;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #8B7355;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+    position: relative;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .section-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, transparent);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.75rem, 9vw, 5.5rem);
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    font-style: italic;
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .overview-grid {
+      grid-template-columns: 1.5fr 1fr 1fr;
+    }
+  }
+
+  .overview-card {
+    padding: 3.5rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.95);
+  }
+
+  @media (hover: hover) {
+    .overview-card:hover .card-image-wrapper {
+      opacity: 0.15;
+    }
+  }
+
+  .card-icon {
+    position: absolute;
+    top: 2.5rem;
+    left: 2.5rem;
+    width: 50px;
+    height: 50px;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  @media (hover: hover) {
+    .overview-card:hover .card-icon {
+      opacity: 0.7;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+  }
+
+  .overview-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #D4AF37, transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  @media (min-width: 768px) {
+    .overview-card {
+      padding: 4.5rem;
+    }
+  }
+
+  @media (hover: hover) {
+    .overview-card:hover::before {
+      opacity: 1;
+    }
+  }
+
+  .main-card {
+    grid-row: span 1;
+  }
+
+  @media (min-width: 1024px) {
+    .main-card {
+      grid-row: span 2;
+    }
+  }
+
+  @media (hover: hover) {
+    .overview-card:hover {
+      background: #1A1A1A;
+      color: #FFFFFF;
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .overview-card:hover .card-title,
+    .overview-card:hover .card-description,
+    .overview-card:hover .feature-item {
+      color: #FFFFFF;
+    }
+  }
+
+  .card-number {
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 7rem;
+    font-weight: 300;
+    color: #F5F5F5;
+    line-height: 1;
+    font-style: italic;
+    opacity: 0.4;
+  }
+
+  @media (hover: hover) {
+    .overview-card:hover .card-number {
+      color: #2A2A2A;
+      opacity: 0.3;
+    }
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 1.5rem;
+    line-height: 1.25;
+    font-style: italic;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+
+  .card-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 1px;
+    background: #D4AF37;
+  }
+
+  .card-description {
+    font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+    color: #4A4A4A;
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .card-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+    color: #4A4A4A;
+    line-height: 1.75;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+
+  .feature-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 0;
+    height: 1px;
+    background: #D4AF37;
+    transition: width 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .overview-card:hover .feature-item::before {
+      width: 20px;
+    }
+  }
+
+  .feature-dot {
+    width: 4px;
+    height: 4px;
+    background: #D4AF37;
+    border-radius: 50%;
+    margin-top: 0.65rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .overview-card:hover .feature-dot {
+      background: #FFFFFF;
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  /* Indicators Section */
+  .indicators-section {
+    padding: 10rem 2rem;
+    background: #FAFAFA;
+    position: relative;
+  }
+
+  .indicators-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .indicators-section {
+      padding: 5rem 1.25rem;
+    }
+
+    .indicators-grid {
+      gap: 1.25rem;
+    }
+
+    .indicator-card {
+      padding: 1.75rem 1.5rem;
+    }
+
+    .indicator-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+    }
+
+    .indicator-header::after {
+      width: 35px;
+    }
+
+    .indicator-name {
+      font-size: clamp(1.125rem, 4vw, 1.375rem);
+    }
+
+    .indicator-code {
+      font-size: 0.625rem;
+      padding: 0.375rem 0.625rem;
+      align-self: flex-start;
+    }
+
+    .indicator-content {
+      gap: 1rem;
+    }
+
+    .value-row {
+      padding: 0.5rem 0;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+    }
+
+    .value-row.highlight {
+      padding: 0.875rem 0.625rem;
+      margin-left: -0.625rem;
+      margin-right: -0.625rem;
+    }
+
+    .value-label {
+      font-size: 0.6875rem;
+    }
+
+    .value-number {
+      font-size: 0.9375rem;
+    }
+
+    .value-number.large {
+      font-size: 1.375rem;
+    }
+
+    .indicator-desc {
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+
+    .adx-levels {
+      padding: 1.25rem;
+      gap: 0.75rem;
+    }
+
+    .level-range {
+      font-size: 0.625rem;
+    }
+  }
+
+  .indicators-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .indicators-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .indicators-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .indicator-card {
+    padding: 3rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    position: relative;
+  }
+
+  .indicator-visual {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    position: relative;
+  }
+
+  .indicator-visual svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .indicator-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    filter: grayscale(100%) brightness(0.9);
+    z-index: 0;
+    border-radius: 4px;
+  }
+
+  .indicator-svg-overlay {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (hover: hover) {
+    .indicator-card:hover .indicator-image {
+      opacity: 0.5;
+    }
+  }
+
+  @media (hover: hover) {
+    .indicator-card:hover .indicator-visual {
+      opacity: 0.8;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .indicator-visual {
+      height: 60px;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .indicator-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #D4AF37, transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  @media (min-width: 768px) {
+    .indicator-card {
+      padding: 3.5rem;
+    }
+  }
+
+  @media (hover: hover) {
+    .indicator-card:hover {
+      background: #1A1A1A;
+      color: #FFFFFF;
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .indicator-card:hover::before {
+      opacity: 1;
+    }
+
+    .indicator-card:hover .indicator-name,
+    .indicator-card:hover .indicator-desc,
+    .indicator-card:hover .value-label,
+    .indicator-card:hover .value-number,
+    .indicator-card:hover .value-status {
+      color: #FFFFFF;
+    }
+  }
+
+  .indicator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .indicator-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 1px;
+    background: #D4AF37;
+  }
+
+  .indicator-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+    font-weight: 500;
+    color: #1A1A1A;
+    line-height: 1.3;
+    font-style: italic;
+  }
+
+  .indicator-code {
+    font-size: 0.6875rem;
+    color: #8B7355;
+    font-family: 'Courier New', monospace;
+    background: #FAFAFA;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .indicator-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .indicator-values {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .value-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    position: relative;
+  }
+
+  .value-row:last-child {
+    border-bottom: none;
+  }
+
+  .value-row.highlight {
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    margin-top: 0.75rem;
+    background: rgba(212, 175, 55, 0.05);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .value-label {
+    font-size: 0.8125rem;
+    color: #8B7355;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .value-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    font-style: italic;
+  }
+
+  .value-number.large {
+    font-size: 1.875rem;
+    font-weight: 400;
+  }
+
+  .value-number.positive {
+    color: #1A1A1A;
+  }
+
+  .value-status {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #8B7355;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .value-status.positive {
+    color: #8B7355;
+  }
+
+  .indicator-desc {
+    font-size: 0.9375rem;
+    color: #4A4A4A;
+    line-height: 1.85;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    font-style: italic;
+  }
+
+  .adx-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    background: #FAFAFA;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .level-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .level-item.active .level-range {
+    font-weight: 700;
+    color: #000000;
+  }
+
+  .level-range {
+    font-size: 0.75rem;
+    color: #666666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .level-bar {
+    height: 6px;
+    background: #E5E5E5;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .level-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #D4AF37, rgba(212, 175, 55, 0.6));
+    transition: width 0.5s ease-out;
+  }
+
+  .level-item.active .level-fill {
+    background: linear-gradient(90deg, #D4AF37, rgba(212, 175, 55, 0.8));
+  }
+
+  /* Performance Section */
+  .performance-section {
+    padding: 10rem 2rem;
+    background: #FFFFFF;
+    position: relative;
+  }
+
+  .performance-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .performance-section {
+      padding: 5rem 1.25rem;
+    }
+
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .metric-card {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .metric-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.375rem;
+      margin-bottom: 1rem;
+    }
+
+    .metric-label {
+      font-size: 0.625rem;
+    }
+
+    .metric-trend {
+      font-size: 0.625rem;
+    }
+
+    .metric-value {
+      font-size: clamp(1.75rem, 7vw, 2.5rem);
+      margin-bottom: 0.625rem;
+    }
+
+    .metric-value::after {
+      width: 25px;
+    }
+
+    .metric-detail {
+      font-size: 0.6875rem;
+      line-height: 1.6;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .metric-card {
+      padding: 1.5rem 1.25rem;
+    }
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .metrics-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .metric-card {
+    padding: 3rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    position: relative;
+  }
+
+  .metric-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .metric-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.95);
+  }
+
+  @media (hover: hover) {
+    .metric-card:hover .metric-image-wrapper {
+      opacity: 0.12;
+    }
+  }
+
+  .metric-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .metric-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (hover: hover) {
+    .metric-card:hover .metric-icon {
+      opacity: 0.7;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .metric-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    transition: width 0.4s ease;
+  }
+
+  @media (min-width: 768px) {
+    .metric-card {
+      padding: 3.5rem;
+    }
+  }
+
+  @media (hover: hover) {
+    .metric-card:hover {
+      background: #1A1A1A;
+      color: #FFFFFF;
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .metric-card:hover::before {
+      width: 100%;
+    }
+
+    .metric-card:hover .metric-value,
+    .metric-card:hover .metric-label,
+    .metric-card:hover .metric-detail {
+      color: #FFFFFF;
+    }
+  }
+
+  .metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .metric-label {
+    font-size: 0.75rem;
+    color: #000000;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .metric-trend {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .metric-trend.positive {
+    color: #000000;
+  }
+
+  .metric-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    font-style: italic;
+    position: relative;
+  }
+
+  .metric-value::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background: #D4AF37;
+  }
+
+  .metric-detail {
+    font-size: 0.8125rem;
+    color: #8B7355;
+    font-weight: 400;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* Knowledge Section */
+  .knowledge-section {
+    padding: 10rem 2rem;
+    background: #FAFAFA;
+    position: relative;
+  }
+
+  .knowledge-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .knowledge-section {
+      padding: 5rem 1.25rem;
+    }
+
+    .knowledge-grid {
+      gap: 1.25rem;
+    }
+
+    .knowledge-item {
+      padding: 1.75rem 1.5rem;
+      gap: 0.875rem;
+    }
+
+    .knowledge-number {
+      font-size: 2.5rem;
+    }
+
+    .knowledge-title {
+      font-size: clamp(1.125rem, 4vw, 1.375rem);
+      padding-bottom: 0.5rem;
+    }
+
+    .knowledge-title::after {
+      width: 30px;
+    }
+
+    .knowledge-desc {
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+  }
+
+  .knowledge-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .knowledge-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .knowledge-item {
+    padding: 3rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #D4AF37;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    position: relative;
+  }
+
+  .knowledge-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .knowledge-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (hover: hover) {
+    .knowledge-item:hover .knowledge-icon {
+      opacity: 0.8;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .knowledge-icon {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .knowledge-item {
+      padding: 3.5rem;
+    }
+  }
+
+  @media (hover: hover) {
+    .knowledge-item:hover {
+      background: #1A1A1A;
+      color: #FFFFFF;
+      border-left-color: #D4AF37;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      transform: translateX(4px);
+    }
+
+    .knowledge-item:hover .knowledge-title,
+    .knowledge-item:hover .knowledge-desc {
+      color: #FFFFFF;
+    }
+  }
+
+  .knowledge-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #F0F0F0;
+    line-height: 1;
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  @media (hover: hover) {
+    .knowledge-item:hover .knowledge-number {
+      color: #2A2A2A;
+      opacity: 0.3;
+    }
+  }
+
+  .knowledge-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.375rem, 2.5vw, 1.625rem);
+    font-weight: 500;
+    color: #1A1A1A;
+    line-height: 1.3;
+    font-style: italic;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+
+  .knowledge-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background: #D4AF37;
+  }
+
+  .knowledge-desc {
+    font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+    color: #4A4A4A;
+    line-height: 1.85;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    font-style: italic;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 12rem 2rem;
+    background: #1A1A1A;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+  }
+
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+    animation: cta-glow 20s ease-in-out infinite;
+  }
+
+  @keyframes cta-glow {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(10%, -10%) scale(1.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cta-section {
+      padding: 5rem 1.25rem;
+    }
+
+    .cta-title {
+      font-size: clamp(2rem, 10vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-title::after {
+      width: 60px;
+      bottom: -0.5rem;
+    }
+
+    .cta-description {
+      font-size: 0.9375rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-button {
+      padding: 1.25rem 2.5rem;
+      font-size: 0.8125rem;
+      min-height: 52px;
+      width: 100%;
+      letter-spacing: 0.1em;
+      gap: 0.75rem;
+    }
+  }
+
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cta-content {
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  }
+
+  .cta-description {
+    font-size: clamp(1.0625rem, 2vw, 1.3125rem);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.85;
+    margin-bottom: 4rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-highlight {
+    color: #D4AF37;
+    font-weight: 500;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    min-height: 72px;
+    padding: 1.75rem 5rem;
+    background: #D4AF37;
+    color: #1A1A1A;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+
+  @media (min-width: 640px) {
+    .cta-button {
+      width: fit-content;
+    }
+  }
+
+  @media (hover: hover) {
+    .cta-button:hover {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      border-color: #D4AF37;
+      box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+  }
+
+  /* Footer */
+  .footer-section {
+    padding: 5rem 2rem;
+    background: #FFFFFF;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .footer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .footer-section {
+      padding: 3rem 1.25rem;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.75rem;
+      line-height: 1.7;
+    }
+  }
+
+  .footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.8125rem;
+    color: #8B7355;
+    line-height: 1.85;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  /* Mobile Optimizations - Small Screens */
+  @media (max-width: 480px) {
+    :global(body) {
+      font-size: 15px;
+    }
+
+    .hero-section {
+      padding: 5rem 1rem 3.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 12vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero-description {
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-stats {
+      gap: 0.75rem;
+      padding: 1.25rem 0;
+    }
+
+    .stat-value {
+      font-size: clamp(1.375rem, 5vw, 1.75rem);
+      padding-top: 0.375rem;
+    }
+
+    .stat-value::before {
+      width: 25px;
+      top: 0;
+    }
+
+    .stat-label {
+      font-size: 0.5625rem;
+    }
+
+    .hero-cta {
+      padding: 1.125rem 1.75rem;
+      font-size: 0.75rem;
+    }
+
+    .overview-section,
+    .indicators-section,
+    .performance-section,
+    .knowledge-section {
+      padding: 4rem 1rem;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+      gap: 0.75rem;
+    }
+
+    .section-number {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .section-title {
+      font-size: clamp(1.625rem, 7vw, 2rem);
+    }
+
+    .overview-grid,
+    .indicators-grid,
+    .knowledge-grid {
+      gap: 1rem;
+    }
+
+    .overview-card,
+    .indicator-card,
+    .metric-card,
+    .knowledge-item {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .card-number {
+      font-size: 3rem;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .card-title,
+    .indicator-name,
+    .knowledge-title {
+      font-size: clamp(1.125rem, 4vw, 1.375rem);
+    }
+
+    .card-description,
+    .indicator-desc,
+    .knowledge-desc {
+      font-size: 0.8125rem;
+    }
+
+    .knowledge-number {
+      font-size: 2rem;
+    }
+
+    .cta-section {
+      padding: 4rem 1rem;
+    }
+
+    .cta-title {
+      font-size: clamp(1.75rem, 8vw, 2.5rem);
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-description {
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      padding: 1.125rem 2rem;
+      font-size: 0.75rem;
+    }
+
+    .footer-section {
+      padding: 2.5rem 1rem;
+    }
+  }
+
+  /* Touch optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .overview-card,
+    .indicator-card,
+    .metric-card,
+    .knowledge-item {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+    }
+
+    .hero-cta,
+    .cta-button,
+    .nav-cta {
+      -webkit-tap-highlight-color: rgba(212, 175, 55, 0.15);
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+    }
+
+    /* Remove hover effects on touch devices */
+    .overview-card:hover,
+    .indicator-card:hover,
+    .metric-card:hover,
+    .knowledge-item:hover {
+      transform: none;
+      background: #FFFFFF;
+      color: inherit;
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .overview-card:hover .card-title,
+    .overview-card:hover .card-description,
+    .overview-card:hover .feature-item,
+    .indicator-card:hover .indicator-name,
+    .indicator-card:hover .indicator-desc,
+    .indicator-card:hover .value-label,
+    .indicator-card:hover .value-number,
+    .indicator-card:hover .value-status,
+    .metric-card:hover .metric-value,
+    .metric-card:hover .metric-label,
+    .metric-card:hover .metric-detail,
+    .knowledge-item:hover .knowledge-title,
+    .knowledge-item:hover .knowledge-desc {
+      color: inherit;
+    }
+
+    .overview-card:hover .card-number,
+    .knowledge-item:hover .knowledge-number {
+      color: #F0F0F0;
+      opacity: 0.5;
+    }
+
+    .overview-card:hover::before,
+    .indicator-card:hover::before,
+    .metric-card:hover::before {
+      opacity: 0;
+    }
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    /* Improve scrolling performance */
+    .landing-page {
+      -webkit-overflow-scrolling: touch;
+      overflow-x: hidden;
+    }
+
+    /* Optimize animations for mobile */
+    .cta-section::after {
+      animation: none;
+    }
+
+    /* Reduce backdrop blur on mobile for performance */
+    .main-nav {
+      backdrop-filter: blur(10px) saturate(150%);
+      -webkit-backdrop-filter: blur(10px) saturate(150%);
+      background: rgba(250, 250, 250, 0.95);
+    }
+
+    /* Ensure text is readable */
+    .hero-description,
+    .card-description,
+    .indicator-desc,
+    .knowledge-desc {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Optimize spacing for mobile */
+    .section-container {
+      padding: 0;
+    }
+  }
+
+  /* Very small screens */
+  @media (max-width: 360px) {
+    .nav-container {
+      padding: 0.875rem 1rem;
+    }
+
+    .logo-text {
+      font-size: 1.125rem;
+    }
+
+    .nav-cta {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.6875rem;
+    }
+
+    .hero-section {
+      padding: 6rem 1rem 4rem;
+    }
+
+    .overview-section,
+    .indicators-section,
+    .performance-section,
+    .knowledge-section {
+      padding: 5rem 1rem;
+    }
+
+    .cta-section {
+      padding: 5rem 1rem;
+    }
+
+    .footer-section {
+      padding: 2.5rem 1rem;
+    }
+  }
+</style>
