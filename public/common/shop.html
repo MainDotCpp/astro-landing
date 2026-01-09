@@ -115,7 +115,7 @@
         border-bottom: 1px solid var(--border);
         position: sticky;
         top: 0;
-        z-index: 100;
+        z-index: 1000;
         box-shadow: var(--shadow-sm);
         width: 100%;
         max-width: 100%;
@@ -167,22 +167,63 @@
       .nav-links.mobile-open {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
-        background: var(--bg-white);
-        box-shadow: var(--shadow-lg);
-        padding: 1rem;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+        padding: 0;
         gap: 0;
-        border-top: 1px solid var(--border);
         width: 100%;
-        max-width: 100vw;
+        max-width: 100%;
         box-sizing: border-box;
+        margin: 0;
+        overflow-y: auto;
+        animation: fadeIn 0.3s ease-out;
       }
 
-      .nav-links.mobile-open li {
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .nav-links.mobile-open > li {
+        background: var(--bg-white);
+        margin: 0;
         border-bottom: 1px solid var(--border);
+        animation: slideIn 0.3s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .nav-links.mobile-open > li:nth-child(1) {
+        animation-delay: 0.05s;
+        margin-top: 60px; /* Space for header */
+      }
+
+      .nav-links.mobile-open > li:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+
+      .nav-links.mobile-open > li:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
       }
 
       .nav-links.mobile-open li:last-child {
@@ -191,11 +232,17 @@
 
       .nav-links.mobile-open a {
         display: block;
-        padding: 1rem;
+        padding: 1.25rem 1.5rem;
         color: var(--text-primary);
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.2s;
+        min-height: 48px; /* Better touch target */
+        display: flex;
+        align-items: center;
       }
 
-      .nav-links.mobile-open a:hover {
+      .nav-links.mobile-open a:active {
         background: var(--bg-light);
         color: var(--primary);
       }
@@ -237,16 +284,33 @@
         cursor: pointer;
         padding: 0.5rem;
         border-radius: 6px;
-        transition: background 0.2s;
+        transition: all 0.2s;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        position: relative;
       }
 
       .mobile-menu-btn:hover {
         background: var(--bg-light);
       }
 
+      .mobile-menu-btn:active {
+        background: var(--bg-light);
+        transform: scale(0.95);
+      }
+
       .mobile-menu-btn svg {
         width: 24px;
         height: 24px;
+        pointer-events: none;
+      }
+
+      .mobile-menu-btn.active {
+        color: var(--primary);
       }
 
       /* Hero Section */
@@ -271,7 +335,9 @@
       }
 
       .hero-badge {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
         padding: 0.5rem 1rem;
@@ -280,6 +346,12 @@
         font-weight: 500;
         margin-bottom: 1.5rem;
         border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-badge svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
       }
 
       .hero-title {
@@ -660,7 +732,11 @@
         justify-content: center;
         margin: 0 auto 1rem;
         color: white;
-        font-size: 1.5rem;
+      }
+
+      .feature-icon svg {
+        width: 32px;
+        height: 32px;
       }
 
       .feature-card h3 {
@@ -766,11 +842,26 @@
         }
 
         .mobile-menu-btn {
-          display: block;
+          display: flex;
         }
 
         .header-content {
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
+          gap: 0.5rem;
+        }
+
+        nav {
+          order: -1; /* Move nav before buttons */
+        }
+
+        .cart-btn {
+          order: 1;
+          flex-shrink: 0;
+        }
+
+        .mobile-menu-btn {
+          order: 0;
+          flex-shrink: 0;
         }
 
         .cart-btn {
@@ -984,8 +1075,12 @@
         .feature-icon {
           width: 56px;
           height: 56px;
-          font-size: 1.25rem;
           margin-bottom: 0.875rem;
+        }
+
+        .feature-icon svg {
+          width: 28px;
+          height: 28px;
         }
 
         .feature-card h3 {
@@ -1192,7 +1287,26 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-badge">🚀 高性能エキゾーストシステム</div>
+        <div class="hero-badge">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+            <path
+              d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+            ></path>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+          </svg>
+          高性能エキゾーストシステム
+        </div>
         <h1 class="hero-title">Scorpion エキゾーストシステム</h1>
         <p class="hero-subtitle">
           最高品質の素材と最先端の技術で製造されたエキゾーストシステム。
@@ -1213,12 +1327,7 @@
           <!-- Product 1 -->
           <div class="product-card">
             <div class="product-image">
-              <img
-                src="https://images.unsplash.com/photo-1558980664-2506fca6bfc2?w=600&h=400&fit=crop&q=80"
-                alt="Scorpion S1 スリップオン マフラー"
-                loading="lazy"
-                onerror="this.src = 'https://picsum.photos/600/400?random=1'"
-              />
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion S1 スリップオン マフラー" loading="lazy" />
               <div class="product-badge">人気</div>
             </div>
             <div class="product-info">
@@ -1254,12 +1363,7 @@
           <!-- Product 2 -->
           <div class="product-card">
             <div class="product-image">
-              <img
-                src="https://images.unsplash.com/photo-1558980663-3685c1d673c5?w=600&h=400&fit=crop&q=80"
-                alt="Scorpion Evo フルエキゾーストシステム"
-                loading="lazy"
-                onerror="this.src = 'https://picsum.photos/600/400?random=2'"
-              />
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion Evo フルエキゾーストシステム" loading="lazy" />
               <div class="product-badge">新着</div>
             </div>
             <div class="product-info">
@@ -1295,12 +1399,7 @@
           <!-- Product 3 -->
           <div class="product-card">
             <div class="product-image">
-              <img
-                src="https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop&q=80"
-                alt="Scorpion R1 レーシングエキゾースト"
-                loading="lazy"
-                onerror="this.src = 'https://picsum.photos/600/400?random=3'"
-              />
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion R1 レーシングエキゾースト" loading="lazy" />
             </div>
             <div class="product-info">
               <div class="product-category">レーシングライン</div>
@@ -1335,12 +1434,7 @@
           <!-- Product 4 -->
           <div class="product-card">
             <div class="product-image">
-              <img
-                src="https://images.unsplash.com/photo-1558980664-1b0a0d6c6a46?w=600&h=400&fit=crop&q=80"
-                alt="Scorpion Carbon テールパイプ"
-                loading="lazy"
-                onerror="this.src = 'https://picsum.photos/600/400?random=4'"
-              />
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion Carbon テールパイプ" loading="lazy" />
             </div>
             <div class="product-info">
               <div class="product-category">カーボンライン</div>
@@ -1375,12 +1469,7 @@
           <!-- Product 5 -->
           <div class="product-card">
             <div class="product-image">
-              <img
-                src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&h=400&fit=crop&q=80"
-                alt="Scorpion Titanium マフラー"
-                loading="lazy"
-                onerror="this.src = 'https://picsum.photos/600/400?random=5'"
-              />
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion Titanium マフラー" loading="lazy" />
             </div>
             <div class="product-info">
               <div class="product-category">チタンライン</div>
@@ -1415,12 +1504,7 @@
           <!-- Product 6 -->
           <div class="product-card">
             <div class="product-image">
-              <img
-                src="https://images.unsplash.com/photo-1558980665-4e14e9abd0b0?w=600&h=400&fit=crop&q=80"
-                alt="Scorpion VCS バルブコントロールシステム"
-                loading="lazy"
-                onerror="this.src = 'https://picsum.photos/600/400?random=6'"
-              />
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion VCS バルブコントロールシステム" loading="lazy" />
             </div>
             <div class="product-info">
               <div class="product-category">バルブコントロール</div>
@@ -1460,12 +1544,7 @@
       <div class="container">
         <div class="featured-product">
           <div class="featured-image">
-            <img
-              src="https://images.unsplash.com/photo-1558980663-3685c1d673c5?w=800&h=600&fit=crop&q=80"
-              alt="Scorpion Evo フルエキゾーストシステム"
-              loading="lazy"
-              onerror="this.src = 'https://picsum.photos/800/600?random=7'"
-            />
+            <img src="/mjSFqQ/images/moto.png" alt="Scorpion Evo フルエキゾーストシステム" loading="lazy" />
           </div>
           <div class="featured-content">
             <h2>Scorpion Evo フルエキゾーストシステム</h2>
@@ -1504,32 +1583,103 @@
 
         <div class="features-grid">
           <div class="feature-card">
-            <div class="feature-icon">⚡</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
             <h3>パフォーマンス向上</h3>
             <p>最適化された排気フローにより、エンジンの出力とトルクを向上させます。</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🎵</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+              </svg>
+            </div>
             <h3>スポーティなサウンド</h3>
             <p>独自の設計により、深みのある魅力的なエキゾーストサウンドを実現します。</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">⚖️</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="2" x2="12" y2="22"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
             <h3>軽量設計</h3>
             <p>高品質な素材を使用し、車両の総重量を削減し、ハンドリングを向上させます。</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
             <h3>高耐久性</h3>
             <p>優れた耐腐食性と高強度により、長期間にわたって性能を維持します。</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🔧</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                ></path>
+              </svg>
+            </div>
             <h3>簡単取り付け</h3>
             <p>純正部品との互換性が高く、専門技術者による取り付けが可能です。</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">✅</div>
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
             <h3>認証取得</h3>
             <p>FIM騒音規制など、各種認証を取得し、安心してご使用いただけます。</p>
           </div>
@@ -1614,26 +1764,72 @@
       // Mobile menu toggle
       const mobileMenuBtn = document.querySelector('.mobile-menu-btn')
       const navLinks = document.querySelector('.nav-links')
+      const body = document.body
+
+      function toggleMobileMenu() {
+        if (!mobileMenuBtn || !navLinks) return
+
+        const isOpen = navLinks.classList.contains('mobile-open')
+        const svg = mobileMenuBtn.querySelector('svg')
+
+        if (isOpen) {
+          // Close menu
+          navLinks.classList.remove('mobile-open')
+          mobileMenuBtn.classList.remove('active')
+          body.style.overflow = ''
+          svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
+        } else {
+          // Open menu
+          navLinks.classList.add('mobile-open')
+          mobileMenuBtn.classList.add('active')
+          body.style.overflow = 'hidden' // Prevent body scroll
+          svg.innerHTML = '<path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round"/>'
+        }
+      }
+
+      function closeMobileMenu() {
+        if (!mobileMenuBtn || !navLinks) return
+
+        navLinks.classList.remove('mobile-open')
+        mobileMenuBtn.classList.remove('active')
+        body.style.overflow = ''
+        const svg = mobileMenuBtn.querySelector('svg')
+        svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
+      }
 
       if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function () {
-          navLinks.classList.toggle('mobile-open')
-          // Change icon
-          const svg = this.querySelector('svg')
-          if (navLinks.classList.contains('mobile-open')) {
-            svg.innerHTML = '<path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round"/>'
-          } else {
-            svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
-          }
+        // Toggle menu on button click
+        mobileMenuBtn.addEventListener('click', function (e) {
+          e.stopPropagation()
+          toggleMobileMenu()
         })
 
         // Close menu when clicking on a link
         navLinks.querySelectorAll('a').forEach((link) => {
           link.addEventListener('click', function () {
-            navLinks.classList.remove('mobile-open')
-            const svg = mobileMenuBtn.querySelector('svg')
-            svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
+            closeMobileMenu()
           })
+        })
+
+        // Close menu when clicking outside (on backdrop)
+        navLinks.addEventListener('click', function (e) {
+          if (e.target === navLinks) {
+            closeMobileMenu()
+          }
+        })
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+            closeMobileMenu()
+          }
+        })
+
+        // Prevent menu from opening on desktop resize
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 768 && navLinks.classList.contains('mobile-open')) {
+            closeMobileMenu()
+          }
         })
       }
 
