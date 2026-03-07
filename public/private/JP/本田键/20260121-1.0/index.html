@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>本田健の投資情報サービス｜LINEで無料配信</title>
+    <meta
+      name="description"
+      content="経済評論家・本田健が監修する投資情報をLINEで無料配信中。市場分析と経済動向をお届けします。"
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+    <script is:inline>
+        window.onLinkBtnClick = function () {
+          const link = 'https://www.baidu.com'
+          if (typeof gtag_report_conversion === 'function') {
+            gtag_report_conversion()
+          }
+          setTimeout(() => {
+            window.location.href = link
+          }, 100)
+        }
+      </script>
+
+    <style>
+      /* リセットとベーススタイル */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f9fa;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        font-family: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ヘッダー */
+      .header {
+        background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.1;
+        z-index: 0;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+      }
+
+      .header-subtitle {
+        font-size: 16px;
+        opacity: 0.9;
+        font-weight: 300;
+      }
+
+      /* ヒーローセクション */
+      .hero {
+        padding: 60px 0;
+        background-color: white;
+        position: relative;
+      }
+
+      .hero-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+
+      @media (min-width: 992px) {
+        .hero-container {
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+
+      .profile-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid #e8eaf6;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-name {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1a237e;
+        margin-bottom: 10px;
+      }
+
+      .profile-title {
+        font-size: 18px;
+        color: #5c6bc0;
+        margin-bottom: 15px;
+        font-weight: 500;
+      }
+
+      .profile-badge {
+        display: inline-block;
+        background-color: #e8eaf6;
+        color: #3949ab;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .content-section {
+        flex: 1.5;
+      }
+
+      .section-title {
+        font-size: 32px;
+        color: #1a237e;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, #3949ab, #5c6bc0);
+        border-radius: 2px;
+      }
+
+      .description {
+        font-size: 17px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+        color: #444;
+      }
+
+      .highlight-box {
+        background-color: #f3f4f9;
+        border-left: 4px solid #3949ab;
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+      }
+
+      .highlight-title {
+        font-size: 20px;
+        color: #1a237e;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .feature-list {
+        list-style-type: none;
+      }
+
+      .feature-list li {
+        padding: 10px 0;
+        padding-left: 30px;
+        position: relative;
+      }
+
+      .feature-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #4caf50;
+        font-weight: bold;
+      }
+
+      /* CTAセクション */
+      .cta-section {
+        background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .cta-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .cta-title {
+        font-size: 36px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .cta-subtitle {
+        font-size: 18px;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        line-height: 1.7;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        background-color: #00b900;
+        color: white;
+        padding: 20px 40px;
+        border-radius: 50px;
+        font-size: 20px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(0, 185, 0, 0.3);
+      }
+
+      .cta-button:hover {
+        background-color: #009900;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 185, 0, 0.4);
+      }
+
+      .cta-button i {
+        font-size: 24px;
+      }
+
+      .cta-note {
+        margin-top: 25px;
+        font-size: 14px;
+        opacity: 0.8;
+      }
+
+      /* ステップセクション */
+      .steps-section {
+        padding: 60px 0;
+        background-color: white;
+      }
+
+      .steps-title {
+        text-align: center;
+        font-size: 32px;
+        color: #1a237e;
+        margin-bottom: 50px;
+      }
+
+      .steps-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .step-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+        border: 1px solid #e0e0e0;
+      }
+
+      .step-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background-color: #e8eaf6;
+        color: #3949ab;
+        border-radius: 50%;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .step-title {
+        font-size: 22px;
+        color: #1a237e;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .step-description {
+        color: #666;
+        line-height: 1.7;
+      }
+
+      /* リスク警告セクション */
+      .risk-section {
+        padding: 60px 0;
+        background-color: #fff8e1;
+      }
+
+      .risk-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .risk-title {
+        font-size: 28px;
+        color: #d84315;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .risk-title i {
+        font-size: 28px;
+      }
+
+      .risk-content {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .risk-item {
+        margin-bottom: 20px;
+        padding-left: 25px;
+        position: relative;
+      }
+
+      .risk-item::before {
+        content: '⚠';
+        position: absolute;
+        left: 0;
+        color: #f57c00;
+        font-weight: bold;
+      }
+
+      /* フッター */
+      .footer {
+        background-color: #1a237e;
+        color: white;
+        padding: 40px 0 20px;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        margin-bottom: 30px;
+      }
+
+      .footer-link {
+        color: #c5cae9;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .footer-link:hover {
+        color: white;
+      }
+
+      .footer-disclaimer {
+        text-align: center;
+        font-size: 12px;
+        color: #9fa8da;
+        max-width: 800px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .footer-copyright {
+        text-align: center;
+        font-size: 12px;
+        color: #9fa8da;
+        padding-top: 20px;
+        border-top: 1px solid #283593;
+        width: 100%;
+      }
+
+      /* ポップアップ */
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        overflow-y: auto;
+        padding: 20px;
+      }
+
+      .popup-body {
+        background: white;
+        margin: 50px auto;
+        padding: 40px;
+        max-width: 800px;
+        border-radius: 12px;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .popup-close {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        font-size: 30px;
+        cursor: pointer;
+        color: #777;
+        transition: color 0.3s;
+      }
+
+      .popup-close:hover {
+        color: #333;
+      }
+
+      .popup-title {
+        font-size: 28px;
+        color: #1a237e;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #e8eaf6;
+      }
+
+      .popup-content {
+        max-height: 60vh;
+        overflow-y: auto;
+        padding-right: 10px;
+      }
+
+      .popup-content h3 {
+        color: #1a237e;
+        margin: 20px 0 10px;
+        font-size: 20px;
+      }
+
+      .popup-content p {
+        margin-bottom: 15px;
+        line-height: 1.7;
+      }
+
+      .popup-content ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      @media (min-width: 769px) {
+        .fangda {
+          width: 500px;
+        }
+      }
+
+        /* レスポンシブ調整 */
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 24px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .cta-title {
+          font-size: 28px;
+        }
+
+        .cta-button {
+          padding: 18px 30px;
+          font-size: 18px;
+        }
+
+        .popup-body {
+          margin: 20px;
+          padding: 25px;
+        }
+
+        .steps-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .fangda {
+          width: 92%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header h1 {
+          font-size: 20px;
+        }
+
+        .section-title {
+          font-size: 24px;
+        }
+
+        .cta-title {
+          font-size: 24px;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+        }
+      }
+
+      @keyframes scaleAnimation {
+        0% {
+          transform: scale(1); /* 初始大小 */
+        }
+        50% {
+          transform: scale(0.8); /* 中间缩小到50% */
+        }
+        100% {
+          transform: scale(1); /* 最终恢复到初始大小 */
+        }
+      }
+
+      .fangda {
+        position: fixed;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        animation: scaleAnimation 4s infinite; /* 应用动画，2秒周期，无限次播放 */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ヘッダー -->
+    <header class="header">
+      <div class="container header-content">
+        <h1>本田健の投資情報サービス</h1>
+        <div class="header-subtitle">LINEで無料配信｜プロ監修の市場分析と経済動向</div>
+      </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+      <div class="container hero-container">
+        <div class="profile-section">
+          <div class="profile-image">
+            <img style="width: 100%" src="static/picture/690.jpg" alt="本田健 プロフィール画像" />
+          </div>
+          <h2 class="profile-name">Ken Honda 本田健</h2>
+          <div class="profile-title">経済評論家・投資情報アドバイザー</div>
+          <div class="profile-badge">先着30名限定サポート</div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="section-title">投資情報サービスへようこそ</h2>
+          <p class="description">
+            皆様、こんにちは。経済評論家の本田健です。多くの皆様から寄せられたご要望にお応えし、先着30名の方に限り、専門家による特別サポートを無料でご提供いたします。
+          </p>
+
+          <div class="highlight-box">
+            <h3 class="highlight-title">サービス内容</h3>
+            <ul class="feature-list">
+              <li>市場分析情報の定期的な配信</li>
+              <li>経済動向と投資環境の解説</li>
+              <li>投資に関する基礎知識の学習サポート</li>
+              <li>タイムリーな情報提供と解説</li>
+            </ul>
+          </div>
+
+          <p class="description">
+            物価上昇や通貨価値の変動など、現代の経済環境に適応するために、多くの一般の方々が投資に関する正しい知識を身につけられるようサポートいたします。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="cta-section">
+      <div class="container cta-container">
+        <h2 class="cta-title">LINEで無料情報を受け取る</h2>
+        <p class="cta-subtitle">
+          本田健の公式LINEを追加して「7」と送信するだけで、最新の市場分析と経済情報を無料で受け取れます。投資の知識を深め、情報に基づいた判断をサポートします。
+        </p>
+        <a onclick="onLinkBtnClick()" class="cta-button">
+          <i class="fab fa-line"></i>
+          投資情報をお届けします
+        </a>
+        <p class="cta-note">今すぐクリックして、限定情報にアクセスしましょう！</p>
+      </div>
+    </section>
+
+    <!-- ステップセクション -->
+    <section class="steps-section">
+      <div class="container">
+        <h2 class="steps-title">簡単3ステップで始められます</h2>
+        <div class="steps-container">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3 class="step-title">LINEを追加</h3>
+            <p class="step-description">上のボタンから本田健の公式LINEアカウントを友だち追加します</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3 class="step-title">「7」と送信</h3>
+            <p class="step-description">LINEで「7」とメッセージを送信して、サービス登録を完了します</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3 class="step-title">情報を受け取る</h3>
+            <p class="step-description">最新の市場分析と経済情報を定期的に受け取ることができます</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps-section">
+      <div class="container cta-container">
+        <a onclick="onLinkBtnClick()" class="cta-button fangda">
+          <i class="fab fa-line"></i>
+          LINE追加で無料情報を受け取る
+        </a>
+      </div>
+    </section>
+
+    <!-- リスク警告セクション -->
+    <!--<section class="risk-section">
+        <div class="container risk-container">
+            <h2 class="risk-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                投資リスクに関する重要なお知らせ
+            </h2>
+            <div class="risk-content">
+                <div class="risk-item">
+                    投資には価格変動リスク等があり、元本保証はありません。損失が生じる可能性があります。
+                </div>
+                <div class="risk-item">
+                    過去の実績や将来の予測は、将来の結果を保証するものではありません。
+                </div>
+                <div class="risk-item">
+                    本サービスは金融商品取引法上の投資助言ではなく、情報提供と教育を目的としています。
+                </div>
+                <div class="risk-item">
+                    投資に関する最終的な判断は、ご自身の責任において行ってください。
+                </div>
+                <div class="risk-item">
+                    特に投資初心者の方は、少額から始め、余剰資金での投資をお勧めします。
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- フッター -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-links">
+          <a class="footer-link" id="privacyBtn">プライバシーポリシー</a>
+          <a class="footer-link" id="termsBtn">利用規約</a>
+          <!--<a class="footer-link" id="contactBtn">お問い合わせ</a>
+                <a class="footer-link" id="riskBtn">投資リスクについて</a>-->
+        </div>
+
+        <div class="footer-disclaimer">
+          本サービスは情報提供を目的としており、金融商品の勧誘や投資助言を行うものではありません。投資に関する決定は、お客様ご自身の判断と責任において行われます。当社は、本サービスを利用されたことによるいかなる損害についても責任を負いません。
+        </div>
+
+        <div class="footer-copyright">&copy; 2025 本田健 投資情報サービス. All Rights Reserved.</div>
+      </div>
+    </footer>
+
+    <!-- ポップアップ: プライバシーポリシー -->
+    <div id="popupPrivacy" class="popup">
+      <div class="popup-body">
+        <span class="popup-close" onclick="closePopup('popupPrivacy')">×</span>
+        <h2 class="popup-title">プライバシーポリシー</h2>
+        <div class="popup-content">
+          <p>
+            株式情報研究所（以下「当社」）は、個人情報の保護に関する法律を遵守し、お客様の個人情報を適切に取り扱います。
+
+          <h3>1. 個人情報の収集</h3>
+          <p>当社は、LINE公式アカウントへのご登録時に、LINEアカウントID、表示名、プロフィール画像等を取得します。</p>
+
+          <h3>2. 個人情報の利用目的</h3>
+          <p>収集した個人情報は、以下の目的で利用します：</p>
+          <ul>
+            <li>本サービスの提供・運営</li>
+            <li>お客様からのお問い合わせ対応</li>
+            <li>重要なお知らせ等のご連絡</li>
+            <li>サービス改善のための分析</li>
+          </ul>
+
+          <h3>3. 第三者提供</h3>
+          <p>当社は、法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供しません。</p>
+
+          <h3>4. 個人情報の管理</h3>
+          <p>
+            当社は、個人情報への不正アクセス、紛失、改ざん、漏えい等を防止するため、適切なセキュリティ対策を講じます。
+
+          <h3>5. お問い合わせ</h3>
+          <p>個人情報に関するお問い合わせは、以下の窓口までご連絡ください。</p>
+          <p>メール：privacy@example.com</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ポップアップ: 利用規約 -->
+    <div id="popupTerms" class="popup">
+      <div class="popup-body">
+        <span class="popup-close" onclick="closePopup('popupTerms')">×</span>
+        <h2 class="popup-title">利用規約</h2>
+        <div class="popup-content">
+          <p>本利用規約は、本田健の投資情報サービス（以下「本サービス」）の利用条件を定めるものです。</p>
+
+          <h3>第1条（適用）</h3>
+          <p>本規約は、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されます。</p>
+
+          <h3>第2条（禁止事項）</h3>
+          <p>ユーザーは、以下の行為を行ってはなりません：</p>
+          <ul>
+            <li>法令または公序良俗に違反する行為</li>
+            <li>犯罪行為に関連する行為</li>
+            <li>本サービスの運営を妨害する行為</li>
+            <li>他のユーザーに関する個人情報等を収集する行為</li>
+          </ul>
+
+          <h3>第3条（サービスの提供停止等）</h3>
+          <p>
+            当社は、以下の場合に、ユーザーに事前に通知することなく、本サービスの全部または一部の提供を停止または中断することがあります：
+          </p>
+          <ul>
+            <li>システムの保守点検または更新を行う場合</li>
+            <li>地震、停電等の不可抗力によりサービス提供が困難な場合</li>
+            <li>その他、運営上やむを得ない場合</li>
+          </ul>
+
+          <h3>第4条（免責事項）</h3>
+          <p>当社は、本サービスに関してユーザーに生じたあらゆる損害について、一切の責任を負いません。</p>
+
+          <h3>第5条（規約の変更）</h3>
+          <p>当社は、必要と判断した場合には、ユーザーに通知することなく、本規約を変更することができます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ポップアップ: お問い合わせ -->
+    <div id="popupContact" class="popup">
+      <div class="popup-body">
+        <span class="popup-close" onclick="closePopup('popupContact')">×</span>
+        <h2 class="popup-title">お問い合わせ</h2>
+        <div class="popup-content">
+          <p>サービスに関するお問い合わせは、以下の連絡先までお願いいたします。</p>
+
+          <h3>運営会社</h3>
+          <p>株式情報研究所</p>
+
+          <h3>住所</h3>
+          <p>〒313-0134<br />茨城県ひたちおおた市中野町168-1108</p>
+
+          <h3>電話番号</h3>
+          <p>050-XXXX-XXXX</p>
+
+          <h3>受付時間</h3>
+          <p>平日 10:00〜17:00（土日祝日除く）</p>
+
+          <h3>メールアドレス</h3>
+          <p>info@example.com</p>
+
+          <p class="risk-item">投資相談や個別銘柄のアドバイスは行っておりませんのでご了承ください。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ポップアップ: 投資リスクについて -->
+    <div id="popupRisk" class="popup">
+      <div class="popup-body">
+        <span class="popup-close" onclick="closePopup('popupRisk')">×</span>
+        <h2 class="popup-title">投資リスクについて</h2>
+        <div class="popup-content">
+          <p>投資には様々なリスクが伴います。投資を行う前に、以下のリスクを十分に理解してください。</p>
+
+          <h3>主な投資リスク</h3>
+          <ul>
+            <li><strong>価格変動リスク：</strong>市場環境の変化により、投資資産の価格が変動するリスク</li>
+            <li><strong>流動性リスク：</strong>市場で取引されていない場合、希望価格で売却できないリスク</li>
+            <li><strong>信用リスク：</strong>投資先の企業等が経営破綻するリスク</li>
+            <li><strong>為替リスク：</strong>外貨建て資産の場合、為替レート変動によるリスク</li>
+          </ul>
+
+          <h3>重要な注意点</h3>
+          <ul>
+            <li>投資元本は保証されていません</li>
+            <li>過去の実績は将来の結果を保証するものではありません</li>
+            <li>投資判断は複数の情報源を参照し、自身の責任で行ってください</li>
+            <li>投資経験の浅い方は、少額から始めることをお勧めします</li>
+          </ul>
+
+          <h3>本サービスの位置付け</h3>
+          <p>本サービスは、投資教育と情報提供を目的としており、以下のものではありません：</p>
+          <ul>
+            <li>金融商品の推奨や勧誘</li>
+            <li>投資判断の代行</li>
+            <li>利益を保証するサービス</li>
+            <li>金融商品取引法に基づく投資助言業務</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ポップアップ制御関数
+      function openPopup(id) {
+        document.getElementById(id).style.display = 'block'
+        document.body.style.overflow = 'hidden'
+      }
+
+      function closePopup(id) {
+        document.getElementById(id).style.display = 'none'
+        document.body.style.overflow = 'auto'
+      }
+
+      // イベントリスナー設定
+      document.addEventListener('DOMContentLoaded', function () {
+        // フッターリンクのイベントリスナー
+        document.getElementById('privacyBtn').addEventListener('click', function () {
+          openPopup('popupPrivacy')
+        })
+
+        document.getElementById('termsBtn').addEventListener('click', function () {
+          openPopup('popupTerms')
+        })
+
+        document.getElementById('contactBtn').addEventListener('click', function () {
+          openPopup('popupContact')
+        })
+
+        document.getElementById('riskBtn').addEventListener('click', function () {
+          openPopup('popupRisk')
+        })
+
+        // ESCキーでポップアップを閉じる
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') {
+            const popups = document.querySelectorAll('.popup')
+            popups.forEach(function (popup) {
+              if (popup.style.display === 'block') {
+                closePopup(popup.id)
+              }
+            })
+          }
+        })
+
+        // ポップアップ外をクリックで閉じる
+        document.querySelectorAll('.popup').forEach(function (popup) {
+          popup.addEventListener('click', function (event) {
+            if (event.target === this) {
+              closePopup(this.id)
+            }
+          })
+        })
+
+        // モバイル最適化
+        if ('ontouchstart' in window) {
+          // タッチデバイス用の調整
+          document.querySelectorAll('.cta-button, .footer-link').forEach(function (element) {
+            element.style.minHeight = '44px'
+            element.style.minWidth = '44px'
+          })
+        }
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault()
+            const targetId = this.getAttribute('href')
+            if (targetId !== '#') {
+              const targetElement = document.querySelector(targetId)
+              if (targetElement) {
+                window.scrollTo({
+                  top: targetElement.offsetTop - 80,
+                  behavior: 'smooth',
+                })
+              }
+            }
+          })
+        })
+
+        // アニメーション（スクロール時に要素を表示）
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px',
+        }
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1'
+              entry.target.style.transform = 'translateY(0)'
+            }
+          })
+        }, observerOptions)
+
+        // アニメーション対象の要素
+        document.querySelectorAll('.step-card, .highlight-box').forEach((element) => {
+          element.style.opacity = '0'
+          element.style.transform = 'translateY(20px)'
+          element.style.transition = 'opacity 0.5s ease, transform 0.5s ease'
+          observer.observe(element)
+        })
+      })
+
+      // プライバシー同意チェック
+      /*function checkPrivacyAgreement() {
+            if (!localStorage.getItem('privacyAgreed')) {
+                const agree = confirm('本サービスを利用するにはプライバシーポリシーへの同意が必要です。同意しますか？\n\n同意いただけない場合はサービスをご利用いただけません。');
+                if (agree) {
+                    localStorage.setItem('privacyAgreed', 'true');
+                    return true;
+                } else {
+                    alert('プライバシーポリシーに同意されない場合は、本サービスをご利用いただけません。');
+                    return false;
+                }
+            }
+            return true;
+        }*/
+
+      // CTAボタンに同意チェックを追加
+      document.querySelector('.cta-button').addEventListener('click', function (e) {
+        if (!checkPrivacyAgreement()) {
+          e.preventDefault()
+          return false
+        }
+      })
+
+      // アナリティクスイベントトラッキング
+      document.querySelectorAll('[onclick*="gtag_report_conversion"]').forEach(function (element) {
+        element.addEventListener('click', function () {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion_click', {
+              event_category: 'CTA',
+              event_label: element.className.includes('cta-button') ? 'main_cta' : 'secondary_cta',
+            })
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

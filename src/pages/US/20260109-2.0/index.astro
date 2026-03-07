@@ -8,22 +8,6 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
 
 <BaseLayout title={title} description={description} lang="en">
   <Fragment slot="head">
-    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
-
-    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
-    
-    <script is:inline>
-      window.onLinkBtnClick = function () {
-        const link = 'https://www.baidu.com'
-        if (typeof gtag_report_conversion === 'function') {
-          gtag_report_conversion()
-        }
-        setTimeout(() => {
-          window.location.href = link
-        }, 100)
-      }
-    </script>
-
     <!-- Fonts: Geometric Modern (Outfit + Work Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,14 +26,14 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
 
       @keyframes neon-glow {
         0%, 100% {
-          text-shadow: 
+          text-shadow:
             0 0 5px var(--neon-cyan),
             0 0 10px var(--neon-cyan),
             0 0 15px var(--neon-cyan),
             0 0 20px var(--neon-blue);
         }
         50% {
-          text-shadow: 
+          text-shadow:
             0 0 2px var(--neon-cyan),
             0 0 5px var(--neon-cyan),
             0 0 8px var(--neon-cyan),
@@ -71,15 +55,15 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
       }
 
       @keyframes pulse-neon {
-        0%, 100% { 
-          box-shadow: 
+        0%, 100% {
+          box-shadow:
             0 0 5px var(--neon-pink),
             0 0 10px var(--neon-pink),
             0 0 15px var(--neon-pink),
             inset 0 0 5px var(--neon-pink);
         }
-        50% { 
-          box-shadow: 
+        50% {
+          box-shadow:
             0 0 10px var(--neon-pink),
             0 0 20px var(--neon-pink),
             0 0 30px var(--neon-pink),
@@ -142,7 +126,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: 
+        background-image:
           linear-gradient(45deg, rgba(0, 128, 255, 0.05) 25%, transparent 25%),
           linear-gradient(-45deg, rgba(0, 128, 255, 0.05) 25%, transparent 25%),
           linear-gradient(45deg, transparent 75%, rgba(255, 0, 110, 0.05) 75%),
@@ -170,7 +154,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
 
       .neon-border {
         border: 2px solid var(--neon-cyan);
-        box-shadow: 
+        box-shadow:
           0 0 3px rgba(0, 255, 255, 0.3),
           inset 0 0 3px rgba(0, 255, 255, 0.1);
       }
@@ -178,14 +162,14 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
       .neon-button {
         background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 100%);
         border: 2px solid var(--neon-cyan);
-        box-shadow: 
+        box-shadow:
           0 0 8px rgba(0, 255, 255, 0.4),
           0 0 15px rgba(0, 128, 255, 0.3);
         transition: all 0.3s ease;
       }
 
       .neon-button:hover {
-        box-shadow: 
+        box-shadow:
           0 0 15px rgba(0, 255, 255, 0.6),
           0 0 25px rgba(0, 128, 255, 0.5);
         transform: translateY(-2px);
@@ -194,7 +178,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
       .card-retro {
         background: var(--dark-surface);
         border: 2px solid var(--neon-blue);
-        box-shadow: 
+        box-shadow:
           0 0 10px rgba(0, 128, 255, 0.3),
           inset 0 0 10px rgba(0, 128, 255, 0.1);
         position: relative;
@@ -269,7 +253,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
             class="hidden md:flex items-center space-x-2 neon-button px-6 py-2.5 rounded-lg font-semibold text-white cursor-pointer"
           >
             <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
             </svg>
             <span>JOIN NOW</span>
           </button>
@@ -312,7 +296,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
               >
                 <span class="relative z-10 flex items-center justify-center space-x-3">
                   <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                   </svg>
                   <span>JOIN WHATSAPP</span>
                   <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -359,7 +343,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
                       <div class="h-full bg-gradient-to-r from-[var(--neon-pink)] to-[var(--neon-purple)] rounded-full" style="width: 75%; box-shadow: 0 0 6px rgba(255, 0, 110, 0.5);"></div>
                     </div>
                   </div>
-                  
+
                   <div class="card-retro rounded p-4 border-[var(--neon-cyan)]">
                     <div class="flex items-center justify-between mb-2">
                       <span class="text-gray-200 text-sm font-mono">RICO AUTO</span>
@@ -369,7 +353,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
                       <div class="h-full bg-gradient-to-r from-[var(--neon-cyan)] to-[var(--neon-blue)] rounded-full" style="width: 50%; box-shadow: 0 0 6px rgba(0, 255, 255, 0.5);"></div>
                     </div>
                   </div>
-                  
+
                   <div class="card-retro rounded p-4 border-[var(--neon-purple)]">
                     <div class="flex items-center justify-between mb-2">
                       <span class="text-gray-200 text-sm font-mono">AJAMNA AUTO</span>
@@ -620,7 +604,7 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
             >
               <span class="relative z-10 flex items-center justify-center space-x-1.5 sm:space-x-3 flex-nowrap overflow-hidden">
                 <svg class="whatsapp-icon shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                 </svg>
                 <span class="whitespace-nowrap shrink-0 text-sm sm:text-base">JOIN WHATSAPP</span>
                 <span class="hidden sm:inline shrink-0"> NOW - MOVEMENT</span>
@@ -658,66 +642,68 @@ const description = 'Even in a down market, you can still profit. Get daily stoc
 
     <!-- Advanced Scripts -->
     <script is:inline>
-      (function () {
-        // Smooth scroll for anchor links
-        const anchors = document.querySelectorAll('a[href^="#"]')
-        for (let i = 0; i < anchors.length; i++) {
-          anchors[i].addEventListener('click', function (e) {
-            e.preventDefault()
-            const href = this.getAttribute('href')
-            if (href) {
-              const target = document.querySelector(href)
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-              }
-            }
-          })
-        }
+ (function () {
+   // Smooth scroll for anchor links
+   const anchors = document.querySelectorAll('a[href^="#"]')
+   for (let i = 0; i < anchors.length; i++) {
+     anchors[i].addEventListener('click', function (e) {
+       e.preventDefault()
+       const href = this.getAttribute('href')
+       if (href) {
+         const target = document.querySelector(href)
+         if (target) {
+           target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+         }
+       }
+     })
+   }
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar')
-        if (navbar) {
-          window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset
-            if (currentScroll > 100) {
-              navbar.querySelector('div').style.borderColor = 'var(--neon-pink)'
-            } else {
-              navbar.querySelector('div').style.borderColor = 'var(--neon-blue)'
-            }
-          })
-        }
+   // Navbar scroll effect
+   const navbar = document.getElementById('navbar')
+   if (navbar) {
+     window.addEventListener('scroll', () => {
+       const currentScroll = window.pageYOffset
+       if (currentScroll > 100) {
+         navbar.querySelector('div').style.borderColor = 'var(--neon-pink)'
+       }
+ else {
+         navbar.querySelector('div').style.borderColor = 'var(--neon-blue)'
+       }
+     })
+   }
 
-        // Counter animation
-        function animateCounter(element) {
-          const target = Number.parseInt(element.getAttribute('data-target'))
-          const duration = 2000
-          const increment = target / (duration / 16)
-          let current = 0
+   // Counter animation
+   function animateCounter(element) {
+     const target = Number.parseInt(element.getAttribute('data-target'))
+     const duration = 2000
+     const increment = target / (duration / 16)
+     let current = 0
 
-          const timer = setInterval(() => {
-            current += increment
-            if (current >= target) {
-              element.textContent = target.toLocaleString()
-              clearInterval(timer)
-            } else {
-              element.textContent = Math.floor(current).toLocaleString()
-            }
-          }, 16)
-        }
+     const timer = setInterval(() => {
+       current += increment
+       if (current >= target) {
+         element.textContent = target.toLocaleString()
+         clearInterval(timer)
+       }
+ else {
+         element.textContent = Math.floor(current).toLocaleString()
+       }
+     }, 16)
+   }
 
-        const counters = document.querySelectorAll('[data-target]')
-        const counterObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-              entry.target.classList.add('counted')
-              animateCounter(entry.target)
-            }
-          })
-        }, { threshold: 0.5 })
+   const counters = document.querySelectorAll('[data-target]')
+   const counterObserver = new IntersectionObserver((entries) => {
+     entries.forEach((entry) => {
+       if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+         entry.target.classList.add('counted')
+         animateCounter(entry.target)
+       }
+     })
+   }, { threshold: 0.5 })
 
-        counters.forEach(counter => counterObserver.observe(counter))
-      })()
-    </script>
+   counters.forEach(counter => counterObserver.observe(counter))
+ })()
+ </script>
   </div>
 </BaseLayout>
 

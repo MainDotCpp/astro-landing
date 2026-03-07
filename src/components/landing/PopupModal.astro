@@ -1,24 +1,70 @@
 ---
-// Import images
-import stocksPngImg from './static/stocks.png'
+// PopupModal.astro
+interface Props {
+    title?: string;
+    content?: string;
+    ctaText?: string;
+    ctaLink?: string;
+    id?: string;
+}
 
 const {
-  stocksPng = stocksPngImg.src,
+    title = "Special Offer",
+    content = "Sign up now to get exclusive access to our premium features.",
+    ctaText = "Get Started",
+    ctaLink = "#",
+    id = "popup1"
 } = Astro.props;
 ---
 
-<div id="popup1" class="popup">
-  <div class="popup-content">
-    <span class="close-popup">×</span>
-    <p><br /></p>
-    <p style="text-align: center; font-weight: bold; font-size: larger;">LINEの友達を追加で即無料入手</p>
-    <img src={stocksPng} alt="Report Image" style="display: block; margin: 15px auto; max-width: 100%;" />
-    ✅独自の市場分析<br />✅リアルタイム取引戦略<br />✅毎月5つの高精度有望株を提供<br />⏱️<span style="color: red;">時間限定 / 人数限定</span>
-    <br /><br />
-    <p></p>
-    <div class="popup-buttons">
-      <button id="confirm-button">友だち追加</button>
-      <button id="cancel-button" style="float: right;">放棄</button>
+<div id={id} class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+              {title}
+            </h3>
+            <div class="mt-2">
+              <p class="text-sm text-gray-500">
+                {content}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <a href={ctaLink} class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+          {ctaText}
+        </a>
+        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm close-modal-btn">
+          Cancel
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+    // Simple script to handle modal opening and closing if needed
+    // This expects some other code to remove the 'hidden' class to show it
+    const closeBtns = document.querySelectorAll('.close-modal-btn');
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+             const modal = (e.target as HTMLElement).closest('[role="dialog"]');
+             if (modal) {
+                 modal.classList.add('hidden');
+             }
+        });
+    });
+</script>

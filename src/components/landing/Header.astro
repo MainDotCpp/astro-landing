@@ -1,29 +1,37 @@
 ---
-// Import images
-import logoImg from './static/header-logo.jpg'
-import headerImgImg from './static/header-img.png'
+// Header.astro
+interface Props {
+  companyName?: string;
+  registerNo?: string;
+  association?: string;
+}
 
 const {
-  logo = logoImg.src,
-  headerImg = headerImgImg.src,
-  companyName = '株式会社SQIジャパン (金融商品取引業者)',
-  registerNo = '関東財務局長（金商）第850号',
-  association = '一般社団法人 日本投資顧問業協会 会員番号：第012-02468号',
+  companyName = 'Haishi Solutions',
+  registerNo = 'Reg. No. 12345678',
+  association = 'Member of Tech Association'
 } = Astro.props;
 ---
 
-<header class="l-header">
-  <div class="l-header--pc">
-    <div class="l-header__inner--pc">
-      <div class="l-header__logo-wrapper">
-        <img src={logo} alt="初心者から上級者まで株マイスター" />
+<header class="w-full bg-white shadow-sm z-50 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <span class="text-2xl font-bold text-blue-600">Haishi</span>
       </div>
-      <div class="l-header__company-info">
-        <p>運営元：{companyName}</p>
-        <p>登録番号：{registerNo}</p>
-        <p>加入協会：{association}</p>
+      <div class="hidden md:flex flex-col items-end text-xs text-gray-500 space-y-0.5">
+          <p>{companyName}</p>
+          <p>{registerNo}</p>
+          <p>{association}</p>
+      </div>
+      <div class="md:hidden">
+          <!-- Mobile menu button placeholder -->
+            <button type="button" class="text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900" aria-label="Toggle menu">
+            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            </button>
       </div>
     </div>
   </div>
-  <img class="l-header__img" src={headerImg} alt="初心者から上級者まで株マイスター" />
 </header>

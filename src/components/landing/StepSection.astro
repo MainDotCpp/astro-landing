@@ -1,39 +1,46 @@
 ---
-// Import images
-import icStep1PngImg from './static/ic_step1.png'
-import icStep2PngImg from './static/ic_step2.png'
-import icStep3PngImg from './static/ic_step3.png'
-import arrow01PngImg from './static/arrow01.png'
+// StepSection.astro
+interface Step {
+    title: string;
+    description: string;
+    icon?: string;
+}
+
+interface Props {
+    title?: string;
+    steps?: Step[];
+}
 
 const {
-  personName = '大前 研一',
-  icStep1Png = icStep1PngImg.src,
-  icStep2Png = icStep2PngImg.src,
-  icStep3Png = icStep3PngImg.src,
-  arrow01Png = arrow01PngImg.src,
+    title = "How It Works",
+    steps = [
+        { title: "Step 1", description: "Sign up for an account", icon: "user-plus" },
+        { title: "Step 2", description: "Configure your settings", icon: "settings" },
+        { title: "Step 3", description: "Start enjoying the benefits", icon: "check-circle" }
+    ]
 } = Astro.props;
 ---
 
-<section id="step">
-  <h2>
-    {personName}<br />
-    保有株一発診断までの<br />
-    簡単<span>3</span>ステップ
-  </h2>
-  <div class="step_flex01">
-    <div class="step_box01">
-      <h3><img decoding="async" src={icStep1Png} alt="" /></h3>
-      <p>スパッと回答くんの<br /><span class="txt_g">LINE友だち追加</span></p>
+<section id="steps" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        {title}
+      </h2>
     </div>
-    <picture><img decoding="async" src={arrow01Png} alt="" /></picture>
-    <div class="step_box01">
-      <h3><img decoding="async" src={icStep2Png} alt="" /></h3>
-      <p>気になる銘柄の<br /><span class="txt_g">LINEに銘柄配信</span></p>
-    </div>
-    <picture><img decoding="async" src={arrow01Png} alt="" /></picture>
-    <div class="step_box01">
-      <h3><img decoding="async" src={icStep3Png} alt="" /></h3>
-      <p>アナリストが<br /><span class="txt_g">即時回答</span></p>
+    
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {steps.map((step, index) => (
+            <div class="relative flex flex-col items-center bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                 <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mb-5 text-xl font-bold">
+                    {index + 1}
+                 </div>
+                 <h3 class="text-lg leading-6 font-medium text-gray-900">{step.title}</h3>
+                 <p class="mt-2 text-base text-gray-500 text-center">
+                    {step.description}
+                 </p>
+            </div>
+        ))}
     </div>
   </div>
 </section>

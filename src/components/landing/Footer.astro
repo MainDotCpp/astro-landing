@@ -1,0 +1,53 @@
+---
+const { class: className } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class:list={["w-full py-12 bg-gray-50 border-t border-gray-200 mt-auto", className]}>
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div class="col-span-1 md:col-span-1">
+        <div class="text-2xl font-bold text-gray-900 mb-4">Haishi</div>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Professional solutions for your digital growth. Connecting you to the future of technology.
+        </p>
+      </div>
+      
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-4">Product</h3>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li><a href="#" class="hover:text-blue-600 transition-colors">Features</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition-colors">Pricing</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition-colors">Showcase</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-4">Company</h3>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li><a href="#" class="hover:text-blue-600 transition-colors">About Us</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition-colors">Careers</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-4">Legal</h3>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li><a href="#" class="hover:text-blue-600 transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-blue-600 transition-colors">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+      <p>&copy; {currentYear} Haishi. All rights reserved.</p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <!-- Social placeholders -->
+        <div class="w-5 h-5 bg-gray-300 rounded-full"></div>
+        <div class="w-5 h-5 bg-gray-300 rounded-full"></div>
+        <div class="w-5 h-5 bg-gray-300 rounded-full"></div>
+      </div>
+    </div>
+  </div>
+</footer>

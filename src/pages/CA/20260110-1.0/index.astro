@@ -1,0 +1,243 @@
+---
+// Premium Investment Mindset Landing Page - Canada (English)
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = 'Master the Canadian Market - Free Investment Guide'
+const description = 'Discover why knowing more doesn\'t always mean better decisions. A guide focused on mindset, risk, and probability for investors in Canada.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <!-- Google Fonts: Playfair Display for Serifs, Inter for Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      :root {
+        --color-gold: #D4AF37;
+        --color-gold-light: #F4D03F;
+        --color-slate-950: #020617;
+        --color-slate-900: #0f172a;
+        --color-slate-800: #1e293b;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--color-slate-950);
+        color: #f8fafc;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, .serif {
+        font-family: 'Playfair Display', serif;
+      }
+
+      .text-gold-gradient {
+        background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .glass-card {
+        background: rgba(30, 41, 59, 0.4);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 1.5rem;
+      }
+
+      .btn-glow {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </Fragment>
+
+  <div class="relative min-h-screen">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4">
+      <div class="max-w-7xl w-full flex justify-between items-center px-6 py-4 glass-card shadow-2xl">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 bg-linear-to-tr from-amber-500 to-yellow-200 rounded-xl flex items-center justify-center shadow-lg">
+            <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold tracking-tight serif italic">Smart Investing</span>
+        </div>
+        <button onclick="window.onLinkBtnClick()" class="hidden md:flex items-center gap-2 bg-white text-slate-950 px-6 py-2.5 rounded-full font-bold hover:bg-amber-400 transition-colors cursor-pointer">
+          Download Guide
+        </button>
+      </div>
+    </nav>
+
+    <!-- Background Decoration -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-amber-500/10 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-blue-500/5 rounded-full blur-[150px]"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 pt-48 pb-20 px-4 flex flex-col items-center text-center">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-amber-500/30 text-amber-200 text-sm font-medium animate-fade-in">
+          <span class="flex h-2 w-2 rounded-full bg-amber-400 animate-pulse"></span>
+          Investment Mindset for Canadian Investors
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-white reveal">
+          Knowing More is Not <br />
+          <span class="text-gold-gradient italic">Deciding Better</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto leading-relaxed reveal" style="transition-delay: 200ms;">
+          Without a solid foundation, excess news only complicates your investments. Learn to master risk and probability.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 reveal" style="transition-delay: 400ms;">
+          <button onclick="window.onLinkBtnClick()" class="btn-primary w-full sm:w-auto px-10 py-5 bg-linear-to-r from-amber-500 to-yellow-300 text-slate-950 font-black text-xl rounded-2xl shadow-[0_20px_50px_rgba(245,158,11,0.3)] hover:scale-105 active:scale-95 transition-all cursor-pointer">
+            Get Free Guide
+          </button>
+          <p class="text-slate-500 text-sm italic">Instant access for investors</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="relative z-10 py-24 px-4 bg-slate-900/50">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 space-y-4">
+          <h2 class="text-4xl md:text-5xl font-bold reveal">What <span class="text-gold-gradient italic">Actually Matters</span></h2>
+          <p class="text-slate-400 max-w-xl mx-auto reveal" style="transition-delay: 100ms;">Three fundamental pillars to navigate the market successfully.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-20">
+          <!-- Point 1 -->
+          <div class="glass-card p-8 group hover:border-amber-500/50 transition-all reveal" style="transition-delay: 200ms;">
+            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Filtering Noise</h3>
+            <p class="text-slate-400 leading-relaxed">
+              More news and opinions often make decision-making harder. Learn to focus only on what generates real value.
+            </p>
+          </div>
+
+          <!-- Point 2 -->
+          <div class="glass-card p-8 group hover:border-amber-500/50 transition-all reveal" style="transition-delay: 300ms;">
+            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Risk and Probability</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Investing is not guesswork; it's statistics. Understanding these concepts is the difference between gambling and investing.
+            </p>
+          </div>
+
+          <!-- Point 3 -->
+          <div class="glass-card p-8 group hover:border-amber-500/50 transition-all reveal" style="transition-delay: 400ms;">
+            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Behavioral Patterns</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Your emotions are your biggest obstacle. Discover how your behavioral patterns affect your returns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authority Section -->
+    <section class="py-32 px-4 relative overflow-hidden">
+      <div class="absolute inset-0 bg-linear-to-b from-transparent via-amber-500/5 to-transparent"></div>
+      <div class="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+        <div class="space-y-4">
+          <h2 class="text-4xl md:text-6xl font-bold reveal">A Different <span class="italic serif text-amber-500">Strategy</span></h2>
+          <p class="text-2xl text-slate-300 leading-relaxed reveal" style="transition-delay: 100ms;">
+            "I have prepared this guide for investors in Canada seeking clarity and professionalism in their financial decisions."
+          </p>
+        </div>
+
+        <div class="pt-12 reveal" style="transition-delay: 300ms;">
+          <button onclick="window.onLinkBtnClick()" class="inline-flex items-center gap-4 text-2xl font-bold text-amber-400 hover:text-white transition-colors cursor-pointer border-b-2 border-amber-500/30 pb-2">
+            Get the Mindset Guide
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-slate-800/50 bg-slate-950">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-10">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <span class="text-xl font-bold serif italic">Smart Investing</span>
+          </div>
+          <p class="text-slate-500 text-sm max-w-xs">
+            High-level financial education for investors in Canada.
+          </p>
+        </div>
+
+        <div class="flex gap-8 text-slate-400 text-sm">
+          <a href="#" class="hover:text-amber-400 transition-colors">Risk Disclosure</a>
+          <a href="#" class="hover:text-amber-400 transition-colors">Privacy</a>
+          <a href="#" class="hover:text-amber-400 transition-colors">Terms</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <p class="text-slate-400 text-sm">Join hundreds of informed investors</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script is:inline>
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+  </script>
+</BaseLayout>

@@ -1,0 +1,208 @@
+---
+// Swiss Minimalist Investment Landing Page - Canada (English) v2.0
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = 'Rational Investment 2.0 - Canadian Investor Guide'
+const description = 'A rational perspective on investing. Less noise, better decisions. Free guide to establish a solid foundation.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <!-- Google Fonts: Inter for that clean Swiss look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      :root {
+        --color-accent: #2563eb; /* Investment Blue */
+        --color-bg: #ffffff;
+        --color-text: #000000;
+        --color-border: #e5e7eb;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .swiss-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+      }
+
+      .border-swiss {
+        border: 1.5px solid var(--color-text);
+      }
+
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal-up.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .text-outline {
+        -webkit-text-stroke: 1px var(--color-text);
+        color: transparent;
+      }
+
+      .btn-swiss {
+        background-color: var(--color-text);
+        color: var(--color-bg);
+        transition: all 0.2s ease;
+      }
+
+      .btn-swiss:hover {
+        background-color: var(--color-accent);
+        transform: translate(-4px, -4px);
+        box-shadow: 4px 4px 0px var(--color-text);
+      }
+    </style>
+  </Fragment>
+
+  <div class="max-w-[1440px] mx-auto px-4 md:px-8">
+    <!-- Header -->
+    <header class="py-8 border-b-2 border-black flex justify-between items-end">
+      <div class="space-y-1">
+        <p class="text-sm font-bold uppercase tracking-tighter">Edition 02.0</p>
+        <h1 class="text-3xl font-black uppercase tracking-tighter leading-none">Rational<br />Investing</h1>
+      </div>
+      <div class="hidden md:block text-right max-w-xs text-xs font-medium uppercase leading-tight">
+        Mathematical approach for Canadian resident investors. Less noise, more probability.
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="py-12 md:py-24">
+      <div class="swiss-grid">
+        <div class="col-span-12 lg:col-span-8 space-y-12">
+          <h2 class="text-6xl md:text-8xl lg:text-[120px] font-black uppercase tracking-tighter leading-[0.85] reveal-up">
+            Knowing more <br />
+            <span class="text-accent">is not</span> <br />
+            <span class="text-outline">deciding</span> <br />
+            better.
+          </h2>
+
+          <div class="max-w-xl space-y-6 reveal-up" style="transition-delay: 200ms;">
+            <p class="text-xl md:text-2xl font-medium leading-tight">
+              Many beginners discover too late that information overload is the enemy of profitability.
+            </p>
+            <p class="text-slate-500">
+              Without a solid foundation, more news and opinions only make investing harder. The key is not in the headlines, but in the system.
+            </p>
+          </div>
+
+          <div class="reveal-up" style="transition-delay: 400ms;">
+            <button onclick="window.onLinkBtnClick()" class="btn-swiss px-8 py-4 text-xl font-bold uppercase tracking-tight cursor-pointer">
+              Download Mindset Guide
+            </button>
+          </div>
+        </div>
+
+        <!-- Side Stats/Info (Desktop) -->
+        <div class="hidden lg:col-span-4 lg:flex flex-col justify-between border-l-2 border-black pl-8 reveal-up" style="transition-delay: 600ms;">
+          <div class="space-y-8">
+            <div class="space-y-2">
+              <span class="text-xs font-black uppercase">Data Filter</span>
+              <div class="text-4xl font-bold italic">90%</div>
+              <p class="text-xs font-medium text-slate-500">of media noise is irrelevant to your long-term portfolio.</p>
+            </div>
+            <div class="space-y-2">
+              <span class="text-xs font-black uppercase">Guide Focus</span>
+              <ul class="text-sm font-bold space-y-1">
+                <li>→ Risk Management</li>
+                <li>→ Probability Calculation</li>
+                <li>→ Cognitive Biases</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-black text-white p-6 aspect-square flex flex-col justify-end">
+            <p class="text-3xl font-black uppercase leading-none tracking-tighter">
+              Canada<br />Invests<br />Better.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Chapters Section -->
+    <section class="py-24 border-t-2 border-black">
+      <div class="mb-16">
+        <h3 class="text-4xl font-black uppercase tracking-tighter italic">The Three Pillars</h3>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-0 border-2 border-black">
+        <div class="p-8 border-b-2 md:border-b-0 md:border-r-2 border-black hover:bg-blue-50 transition-colors group">
+          <span class="text-6xl font-black text-outline group-hover:text-blue-600 transition-colors">01</span>
+          <h4 class="text-2xl font-black uppercase mt-4 mb-4">Probability</h4>
+          <p class="text-sm text-slate-600">Stop guessing the future. Learn to think in terms of scenarios and success percentages.</p>
+        </div>
+        <div class="p-8 border-b-2 md:border-b-0 md:border-r-2 border-black hover:bg-blue-50 transition-colors group">
+          <span class="text-6xl font-black text-outline group-hover:text-blue-600 transition-colors">02</span>
+          <h4 class="text-2xl font-black uppercase mt-4 mb-4">Risk</h4>
+          <p class="text-sm text-slate-600">It's not how much you can win, but how much you can afford to lose. Survival is Rule #1.</p>
+        </div>
+        <div class="p-8 hover:bg-blue-50 transition-colors group">
+          <span class="text-6xl font-black text-outline group-hover:text-blue-600 transition-colors">03</span>
+          <h4 class="text-2xl font-black uppercase mt-4 mb-4">Behavior</h4>
+          <p class="text-sm text-slate-600">Understand your own biases before the market uses them against you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 mb-12">
+      <div class="bg-black text-white p-12 md:p-24 text-center space-y-12">
+        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none reveal-up">
+          Are you ready to <br /> change your mindset?
+        </h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto reveal-up">
+          I have prepared this free guide exclusively for investors in Canada looking for a professional system.
+        </p>
+        <div class="reveal-up">
+          <button onclick="window.onLinkBtnClick()" class="bg-white text-black px-12 py-6 text-2xl font-black uppercase hover:bg-blue-600 hover:text-white transition-all cursor-pointer">
+            Get the Guide Now
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t-2 border-black flex flex-col md:flex-row justify-between items-start gap-8">
+      <div class="space-y-4">
+        <h5 class="text-xl font-black uppercase italic">Rational Investing</h5>
+        <p class="text-xs font-bold text-slate-500 max-w-xs uppercase">
+          Financial education based on data and psychology. Designed for the Canadian market.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-x-12 gap-y-2 text-xs font-black uppercase tracking-widest">
+        <a href="#" class="hover:text-blue-600">Legal Notice</a>
+        <a href="#" class="hover:text-blue-600">Privacy</a>
+        <a href="#" class="hover:text-blue-600">Terms</a>
+        <a href="#" class="hover:text-blue-600">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <script is:inline>
+    // Reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el))
+  </script>
+</BaseLayout>
