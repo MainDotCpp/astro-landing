@@ -125,5 +125,6 @@
     }
   ],
   "git.ignoreLimitWarning": true,
-  "kiroAgent.configureMCP": "Enabled"
+  "kiroAgent.configureMCP": "Enabled",
+  "liveServer.settings.multiRootWorkspaceName": "astro-landing/dist"
 }

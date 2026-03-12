@@ -1,0 +1,625 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = 'AI 주식 진단 - 스마트 투자의 시작'
+const description = 'AI 기반 실시간 주식 분석으로 더 나은 투자 결정을 내리세요'
+---
+
+<BaseLayout title={title} description={description} plugins={[]}>
+  <script is:inline>
+    const stockData = [
+      { c: '005930', n: '삼성전자' },
+      { c: '000660', n: 'SK하이닉스' },
+      { c: '005380', n: '현대차' },
+      { c: '035420', n: 'NAVER' },
+      { c: '035720', n: '카카오' },
+      { c: '051910', n: 'LG화학' },
+      { c: '006400', n: '삼성SDI' },
+      { c: '003670', n: '포스코홀딩스' },
+      { c: '068270', n: '셀트리온' },
+      { c: '000270', n: '기아' },
+      { c: '207940', n: '삼성바이오로직스' },
+      { c: '005490', n: 'POSCO홀딩스' },
+      { c: '012330', n: '현대모비스' },
+      { c: '028260', n: '삼성물산' },
+      { c: '066570', n: 'LG전자' },
+      { c: '003550', n: 'LG' },
+      { c: '017670', n: 'SK텔레콤' },
+      { c: '096770', n: 'SK이노베이션' },
+      { c: '034730', n: 'SK' },
+      { c: '009150', n: '삼성전기' },
+      { c: '055550', n: '신한지주' },
+      { c: '105560', n: 'KB금융' },
+      { c: '086790', n: '하나금융지주' },
+      { c: '316140', n: '우리금융지주' },
+      { c: '015760', n: '한국전력' },
+      { c: '036570', n: '엔씨소프트' },
+      { c: '251270', n: '넷마블' },
+      { c: '259960', n: '크래프톤' },
+      { c: '352820', n: '하이브' },
+      { c: '041510', n: 'SM' },
+    ]
+  </script>
+
+  <!-- ==================== Modal ==================== -->
+  <div id="modal" class="fixed inset-0 z-[999] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" style="background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);">
+    <button id="modalClose" class="absolute top-5 right-5 w-10 h-10 rounded-full border border-white/15 text-white/50 text-2xl flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400/40 transition-all cursor-pointer">&times;</button>
+
+    <div class="w-[90vw] max-w-[420px]">
+      <!-- Loading Phase -->
+      <div id="modalLoading" class="rounded-2xl border border-cyan-500/20 bg-[#0a0f1e] p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/5 to-transparent pointer-events-none"></div>
+        <div class="relative z-10">
+          <!-- Spinner -->
+          <div class="flex justify-center mb-6">
+            <div class="relative w-20 h-20">
+              <div class="absolute inset-0 rounded-full border-2 border-cyan-500/20"></div>
+              <div class="absolute inset-0 rounded-full border-t-2 border-cyan-400 tb-spin"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h4m12 0h4M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" /></svg>
+              </div>
+            </div>
+          </div>
+          <div class="text-center text-cyan-400 text-lg font-medium tracking-wider mb-1">ANALYZING</div>
+          <div class="text-center text-white/30 text-[10px] tracking-[0.3em] uppercase mb-6">Real-time AI Processing</div>
+          <!-- Progress bar -->
+          <div class="w-full h-[2px] bg-slate-800 rounded overflow-hidden mb-6">
+            <div id="progressBar" class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded transition-all duration-[3500ms] ease-out" style="width:0%"></div>
+          </div>
+          <!-- Steps -->
+          <div id="steps" class="space-y-2.5 font-mono text-sm">
+            <div class="text-slate-600 opacity-0 transition-all duration-500"><span class="text-cyan-500/50 mr-2">[01]</span>거래소 데이터베이스 연결 중...</div>
+            <div class="text-slate-600 opacity-0 transition-all duration-500"><span class="text-cyan-500/50 mr-2">[02]</span>기술적 지표 분석 중...</div>
+            <div class="text-slate-600 opacity-0 transition-all duration-500"><span class="text-cyan-500/50 mr-2">[03]</span>기관 매매 동향 파악 중...</div>
+            <div class="text-slate-600 opacity-0 transition-all duration-500"><span class="text-cyan-500/50 mr-2">[04]</span>AI 모델 예측 중...</div>
+            <div class="text-slate-600 opacity-0 transition-all duration-500"><span class="text-cyan-500/50 mr-2">[05]</span>종합 리포트 생성 중...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Phase (hidden initially) -->
+      <div id="modalResult" class="hidden rounded-2xl border border-cyan-500/30 bg-[#0a0f1e] p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/8 to-transparent pointer-events-none"></div>
+        <div class="relative z-10">
+          <!-- Check icon -->
+          <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center">
+              <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 13l4 4L19 7" /></svg>
+            </div>
+          </div>
+          <div class="text-center text-cyan-400 text-lg font-semibold tracking-wide mb-1">분석 완료</div>
+          <div class="text-center text-white text-base mb-1">"<span id="resultStock" class="text-cyan-300 font-semibold"></span>" 분석 결과</div>
+          <div class="text-center text-slate-400 text-sm mb-5">최신 데이터 기반 AI 예측 리포트 생성됨</div>
+          <!-- Preview cards -->
+          <div class="grid grid-cols-3 gap-3 mb-5">
+            <div class="bg-slate-800/80 border border-slate-700/50 rounded-lg p-3 text-center">
+              <div class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">투자 등급</div>
+              <div class="text-cyan-400 font-bold text-xl">A+</div>
+            </div>
+            <div class="bg-slate-800/80 border border-slate-700/50 rounded-lg p-3 text-center">
+              <div class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">예상 수익</div>
+              <div class="text-emerald-400 font-bold text-xl">+24.5%</div>
+            </div>
+            <div class="bg-slate-800/80 border border-slate-700/50 rounded-lg p-3 text-center">
+              <div class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">리스크</div>
+              <div class="text-amber-400 font-bold text-xl">중간</div>
+            </div>
+          </div>
+          <div class="text-center text-slate-300 text-sm mb-5 leading-relaxed">
+            전체 리포트를 받으시려면<br /><strong class="text-cyan-300">카카오톡 친구 추가</strong>가 필요합니다
+          </div>
+          <a href="javascript:{mixinJump()}" class="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold text-base hover:shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all no-underline">
+            <span>💬</span> 카카오톡으로 전체 리포트 받기
+          </a>
+          <p class="text-center text-slate-500 text-xs mt-3.5 tracking-wide">"리포트 요청"이라고 메시지를 보내주세요</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Hero ==================== -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030712]">
+    <!-- Grid background -->
+    <div class="absolute inset-0 tb-grid-bg"></div>
+    <!-- Glows -->
+    <div class="absolute top-[15%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-cyan-500/[0.07] blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[10%] right-[5%] w-[350px] h-[350px] rounded-full bg-violet-500/[0.05] blur-[100px] pointer-events-none"></div>
+    <!-- Particles -->
+    <div class="absolute top-[12%] left-[18%] w-[3px] h-[3px] rounded-full bg-cyan-400/40 tb-particle" style="animation-delay:0s"></div>
+    <div class="absolute top-[35%] right-[22%] w-[2px] h-[2px] rounded-full bg-violet-400/30 tb-particle" style="animation-delay:3s"></div>
+    <div class="absolute bottom-[25%] left-[12%] w-[3px] h-[3px] rounded-full bg-emerald-400/30 tb-particle" style="animation-delay:7s"></div>
+    <div class="absolute top-[60%] right-[10%] w-[2px] h-[2px] rounded-full bg-cyan-400/30 tb-particle" style="animation-delay:11s"></div>
+
+    <div class="relative z-10 max-w-2xl mx-auto px-5 py-24 text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/[0.04] mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span class="text-cyan-400 text-xs tracking-[0.15em] uppercase font-medium">AI-Powered Stock Analysis</span>
+      </div>
+
+      <h1 class="text-[2.75rem] md:text-6xl lg:text-7xl font-bold mb-5 leading-[1.12] tracking-tight">
+        <span class="text-white">당신의 주식,</span><br />
+        <span class="tb-gradient-text">AI가 진단합니다</span>
+      </h1>
+
+      <p class="text-base md:text-lg text-slate-400 mb-3 leading-relaxed">
+        보유 주식이 <span class="text-emerald-400 font-medium">매수</span>할 타이밍인지, <span class="text-rose-400 font-medium">매도</span>할 타이밍인지
+      </p>
+      <p class="text-sm text-cyan-400/80 font-medium mb-10 tracking-wide">실시간 데이터 기반 AI 분석을 지금 바로 실행</p>
+
+      <!-- Scan ring -->
+      <div class="flex justify-center mb-10">
+        <div class="relative w-[140px] h-[140px] flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full border border-cyan-500/15"></div>
+          <div class="absolute inset-2 rounded-full border border-cyan-500/10"></div>
+          <div class="absolute inset-0 rounded-full border-t-2 border-cyan-400/60 tb-spin"></div>
+          <svg class="relative z-10 w-12 h-12 text-cyan-400/80 tb-pulse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex items-center justify-center gap-6 md:gap-8 mb-10">
+        <div class="text-center">
+          <div class="text-cyan-400 text-2xl font-bold tabular-nums" id="totalUsers">12,847</div>
+          <div class="text-slate-500 text-[11px] tracking-widest uppercase mt-0.5">분석 완료</div>
+        </div>
+        <div class="w-px h-8 bg-slate-700/60"></div>
+        <div class="text-center">
+          <div class="text-emerald-400 text-2xl font-bold">94.2%</div>
+          <div class="text-slate-500 text-[11px] tracking-widest uppercase mt-0.5">만족도</div>
+        </div>
+        <div class="w-px h-8 bg-slate-700/60"></div>
+        <div class="text-center">
+          <div class="text-white/50 text-sm tabular-nums" id="updateDate"></div>
+          <div class="text-slate-500 text-[11px] tracking-widest uppercase mt-0.5">데이터 업데이트</div>
+        </div>
+      </div>
+
+      <!-- Search input -->
+      <div class="relative max-w-md mx-auto mb-5">
+        <div class="flex items-center bg-[#0b1120] border border-slate-700/80 rounded-xl overflow-hidden transition-all duration-300 focus-within:border-cyan-500/50 focus-within:shadow-[0_0_25px_rgba(6,182,212,0.08)]">
+          <svg class="w-5 h-5 text-slate-500 ml-4 mr-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+          <input type="text" id="heroInput" class="flex-1 bg-transparent border-none outline-none text-white text-base py-4 px-2 placeholder-slate-500" placeholder="종목코드 또는 종목명 입력" />
+          <button id="heroBtn" class="flex items-center gap-1.5 px-5 py-2.5 m-1.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold text-sm whitespace-nowrap hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all cursor-pointer border-none">
+            분석
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+          </button>
+        </div>
+        <div id="heroDropdown" class="absolute top-full left-0 right-0 mt-1 bg-[#0b1120] border border-cyan-500/20 rounded-xl max-h-[280px] overflow-y-auto z-50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] hidden"></div>
+      </div>
+
+      <p class="text-slate-500 text-xs tracking-wide">또 다른 시각을 더하는 것만으로도 <span class="text-cyan-400/70">승률이 올라갑니다</span></p>
+    </div>
+  </section>
+
+  <!-- ==================== Features ==================== -->
+  <section class="py-20 bg-[#030712]">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <p class="text-cyan-400 text-xs tracking-[0.25em] uppercase font-medium mb-3">Features</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">AI가 분석하는 핵심 지표</h2>
+        <p class="text-slate-500 text-sm mt-3">전문가 수준의 종합 분석을 단 몇 초 만에</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="flex gap-4 p-5 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-cyan-500/20 hover:bg-slate-900/80 transition-all duration-300">
+          <div class="flex-shrink-0 w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/15 flex items-center justify-center">
+            <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
+          </div>
+          <div>
+            <h3 class="text-white font-semibold text-[15px] mb-1">기술적 분석</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">차트 패턴, RSI, MACD 등 20개 이상의 기술적 지표를 실시간 분석</p>
+            <div class="flex gap-1.5 mt-2.5">
+              <span class="px-2 py-0.5 rounded-full bg-cyan-500/[0.06] border border-cyan-500/10 text-slate-500 text-[11px]">차트 패턴</span>
+              <span class="px-2 py-0.5 rounded-full bg-cyan-500/[0.06] border border-cyan-500/10 text-slate-500 text-[11px]">이동평균선</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-4 p-5 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-violet-500/20 hover:bg-slate-900/80 transition-all duration-300">
+          <div class="flex-shrink-0 w-11 h-11 rounded-lg bg-violet-500/10 border border-violet-500/15 flex items-center justify-center">
+            <svg class="w-5 h-5 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9" rx="1" /><rect x="14" y="3" width="7" height="5" rx="1" /><rect x="14" y="12" width="7" height="9" rx="1" /><rect x="3" y="16" width="7" height="5" rx="1" /></svg>
+          </div>
+          <div>
+            <h3 class="text-white font-semibold text-[15px] mb-1">기관 동향 분석</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">기관 투자자와 외국인의 매매 동향을 추적하여 자금 흐름 파악</p>
+            <div class="flex gap-1.5 mt-2.5">
+              <span class="px-2 py-0.5 rounded-full bg-violet-500/[0.06] border border-violet-500/10 text-slate-500 text-[11px]">기관 매매</span>
+              <span class="px-2 py-0.5 rounded-full bg-violet-500/[0.06] border border-violet-500/10 text-slate-500 text-[11px]">외국인 동향</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-4 p-5 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-emerald-500/20 hover:bg-slate-900/80 transition-all duration-300">
+          <div class="flex-shrink-0 w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/15 flex items-center justify-center">
+            <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
+          </div>
+          <div>
+            <h3 class="text-white font-semibold text-[15px] mb-1">뉴스 & 이벤트</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">기업 공시, 뉴스, 업종 동향 등 최신 정보를 실시간 분석</p>
+            <div class="flex gap-1.5 mt-2.5">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-500/[0.06] border border-emerald-500/10 text-slate-500 text-[11px]">실시간 뉴스</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-500/[0.06] border border-emerald-500/10 text-slate-500 text-[11px]">공시 분석</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-4 p-5 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-amber-500/20 hover:bg-slate-900/80 transition-all duration-300">
+          <div class="flex-shrink-0 w-11 h-11 rounded-lg bg-amber-500/10 border border-amber-500/15 flex items-center justify-center">
+            <svg class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+          </div>
+          <div>
+            <h3 class="text-white font-semibold text-[15px] mb-1">AI 매매 신호</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">딥러닝 알고리즘이 과거 데이터를 학습하여 최적 매매 시점 제안</p>
+            <div class="flex gap-1.5 mt-2.5">
+              <span class="px-2 py-0.5 rounded-full bg-amber-500/[0.06] border border-amber-500/10 text-slate-500 text-[11px]">딥러닝</span>
+              <span class="px-2 py-0.5 rounded-full bg-amber-500/[0.06] border border-amber-500/10 text-slate-500 text-[11px]">예측 모델</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3 Steps ==================== -->
+  <section class="py-20 bg-[#030712] relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-950/[0.04] to-transparent pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-5 relative z-10">
+      <div class="text-center mb-14">
+        <p class="text-cyan-400 text-xs tracking-[0.25em] uppercase font-medium mb-3">Process</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">간단한 3단계</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="relative p-8 bg-slate-900/40 border border-slate-800 rounded-xl text-center hover:border-cyan-500/25 hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(6,182,212,0.04)] transition-all duration-300">
+          <div class="absolute top-3 right-4 text-[11px] font-mono font-bold text-cyan-500/15 tracking-wider">01</div>
+          <div class="flex justify-center mb-4">
+            <svg class="w-10 h-10 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-2">종목 입력</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">보유 주식의 종목코드 또는<br />종목명을 입력하세요</p>
+        </div>
+        <div class="relative p-8 bg-slate-900/40 border border-slate-800 rounded-xl text-center hover:border-violet-500/25 hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(139,92,246,0.04)] transition-all duration-300">
+          <div class="absolute top-3 right-4 text-[11px] font-mono font-bold text-violet-500/15 tracking-wider">02</div>
+          <div class="flex justify-center mb-4">
+            <svg class="w-10 h-10 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h4m12 0h4M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" /></svg>
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-2">AI 분석</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">AI가 실시간으로<br />종합적인 분석을 진행합니다</p>
+        </div>
+        <div class="relative p-8 bg-slate-900/40 border border-slate-800 rounded-xl text-center hover:border-emerald-500/25 hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(16,185,129,0.04)] transition-all duration-300">
+          <div class="absolute top-3 right-4 text-[11px] font-mono font-bold text-emerald-500/15 tracking-wider">03</div>
+          <div class="flex justify-center mb-4">
+            <svg class="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-2">리포트 수령</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">카카오톡으로<br />상세 분석 리포트를 받으세요</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Live Feed ==================== -->
+  <section class="py-20 bg-[#030712] relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-cyan-950/[0.03] via-transparent to-cyan-950/[0.03] pointer-events-none"></div>
+    <div class="max-w-3xl mx-auto px-5 relative z-10">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="text-cyan-400 text-xs tracking-[0.25em] uppercase font-medium mb-1.5">Live Feed</p>
+          <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight">실시간 분석 현황</h2>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.04]">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-emerald-400 text-xs font-semibold tracking-wider">LIVE</span>
+        </div>
+      </div>
+      <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 h-[280px] overflow-hidden">
+        <div class="tb-scroll-feed">
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***6295</span> 님이 <span class="text-cyan-400 font-medium">삼성전자(005930)</span> 분석 완료</span><span class="text-slate-600 text-xs">방금 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***0051</span> 님이 <span class="text-cyan-400 font-medium">SK하이닉스(000660)</span> 분석 완료</span><span class="text-slate-600 text-xs">1분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***0509</span> 님이 <span class="text-cyan-400 font-medium">현대차(005380)</span> 분석 완료</span><span class="text-slate-600 text-xs">2분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***3859</span> 님이 <span class="text-cyan-400 font-medium">NAVER(035420)</span> 분석 완료</span><span class="text-slate-600 text-xs">3분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***0438</span> 님이 <span class="text-cyan-400 font-medium">카카오(035720)</span> 분석 완료</span><span class="text-slate-600 text-xs">4분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***2150</span> 님이 <span class="text-cyan-400 font-medium">LG화학(051910)</span> 분석 완료</span><span class="text-slate-600 text-xs">5분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***3110</span> 님이 <span class="text-cyan-400 font-medium">삼성SDI(006400)</span> 분석 완료</span><span class="text-slate-600 text-xs">6분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***3597</span> 님이 <span class="text-cyan-400 font-medium">셀트리온(068270)</span> 분석 완료</span><span class="text-slate-600 text-xs">7분 전</span></div>
+          <!-- duplicate for seamless loop -->
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***6295</span> 님이 <span class="text-cyan-400 font-medium">삼성전자(005930)</span> 분석 완료</span><span class="text-slate-600 text-xs">방금 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***0051</span> 님이 <span class="text-cyan-400 font-medium">SK하이닉스(000660)</span> 분석 완료</span><span class="text-slate-600 text-xs">1분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***0509</span> 님이 <span class="text-cyan-400 font-medium">현대차(005380)</span> 분석 완료</span><span class="text-slate-600 text-xs">2분 전</span></div>
+          <div class="py-3 text-slate-400 text-sm border-b border-slate-800/60 flex justify-between"><span><span class="text-slate-600 font-mono text-xs">***3859</span> 님이 <span class="text-cyan-400 font-medium">NAVER(035420)</span> 분석 완료</span><span class="text-slate-600 text-xs">3분 전</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Testimonials ==================== -->
+  <section class="py-20 bg-[#030712]">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="text-center mb-12">
+        <p class="text-cyan-400 text-xs tracking-[0.25em] uppercase font-medium mb-3">Reviews</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight">사용자 후기</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="p-5 bg-slate-900/40 border border-slate-800 rounded-xl hover:border-cyan-500/15 transition-all duration-300">
+          <div class="text-amber-400 text-xs mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">"AI 분석 덕분에 투자 결정이 훨씬 쉬워졌어요. 특히 기술적 지표 분석이 정확해서 놀랐습니다."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs font-semibold">김</div>
+            <div><div class="text-white text-xs font-medium">김** 님</div><div class="text-slate-500 text-[11px]">3개월 사용 · +32%</div></div>
+          </div>
+        </div>
+        <div class="p-5 bg-slate-900/40 border border-slate-800 rounded-xl hover:border-violet-500/15 transition-all duration-300">
+          <div class="text-amber-400 text-xs mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">"주식 초보인데도 AI 리포트를 보고 쉽게 이해할 수 있었어요. 매매 타이밍을 잡는 데 큰 도움이 됩니다."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400 text-xs font-semibold">이</div>
+            <div><div class="text-white text-xs font-medium">이** 님</div><div class="text-slate-500 text-[11px]">1개월 사용 · +18%</div></div>
+          </div>
+        </div>
+        <div class="p-5 bg-slate-900/40 border border-slate-800 rounded-xl hover:border-emerald-500/15 transition-all duration-300">
+          <div class="text-amber-400 text-xs mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">"기관 동향 분석이 특히 유용해요. 큰 손들의 움직임을 미리 파악할 수 있어서 좋습니다."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-semibold">박</div>
+            <div><div class="text-white text-xs font-medium">박** 님</div><div class="text-slate-500 text-[11px]">6개월 사용 · +45%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="py-20 bg-[#030712] relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-cyan-950/[0.06] to-transparent pointer-events-none"></div>
+    <div class="max-w-xl mx-auto px-5 relative z-10">
+      <div class="rounded-2xl border border-cyan-500/15 bg-gradient-to-b from-cyan-500/[0.05] to-transparent p-8 md:p-10 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">지금 바로 시작하세요</h2>
+        <p class="text-slate-400 text-sm mb-2">무료로 AI 주식 분석 리포트를 받아보세요</p>
+        <p class="text-rose-400 font-semibold text-lg mb-6">선착순 <span class="tabular-nums" id="limitSlots">150</span>명 한정</p>
+
+        <!-- CTA input -->
+        <div class="relative mb-4">
+          <input type="text" id="ctaInput" class="w-full px-5 py-4 bg-[#0b1120] border border-slate-700/80 rounded-xl text-white text-base placeholder-slate-500 outline-none transition-all duration-300 focus:border-cyan-500/50 focus:shadow-[0_0_20px_rgba(6,182,212,0.08)]" placeholder="종목코드 또는 종목명 입력" />
+          <div id="ctaDropdown" class="absolute top-full left-0 right-0 mt-1 bg-[#0b1120] border border-cyan-500/20 rounded-xl max-h-[280px] overflow-y-auto z-50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] hidden"></div>
+        </div>
+        <button id="ctaBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold text-base hover:shadow-[0_0_30px_rgba(6,182,212,0.35)] transition-all duration-300 cursor-pointer border-none flex items-center justify-center gap-2">
+          무료 AI 진단 받기
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+        </button>
+
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+          <div class="flex items-center gap-1.5 text-slate-400 text-sm">
+            <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" /></svg>
+            100% 무료
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-400 text-sm">
+            <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" /></svg>
+            즉시 분석
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-400 text-sm">
+            <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" /></svg>
+            카카오톡 전송
+          </div>
+        </div>
+      </div>
+      <p class="text-slate-600 text-[11px] text-center mt-6 leading-relaxed max-w-md mx-auto">
+        본 서비스는 투자 권유가 아닌 정보 제공 목적입니다. 투자의 최종 결정은 본인의 판단에 따라야 하며, 그 결과에 대한 책임은 투자자 본인에게 있습니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== JS ==================== -->
+  <script is:inline>
+// === Autocomplete ===
+function setupAC(inputId, dropdownId) {
+  const input = document.getElementById(inputId)
+  const dd = document.getElementById(dropdownId)
+  if (!input || !dd)
+    return
+
+  input.addEventListener('input', function () {
+    const val = this.value.trim()
+    if (!val) {
+      dd.classList.add('hidden')
+      return
+    }
+    const upper = val.toUpperCase()
+    const matches = stockData.filter(s =>
+      s.c.includes(upper) || s.n.toUpperCase().includes(upper),
+    )
+    if (matches.length === 0) {
+      dd.classList.add('hidden')
+      return
+    }
+    dd.innerHTML = matches.slice(0, 8).map(item =>
+      `<div class="flex justify-between items-center px-4 py-3 cursor-pointer border-b border-slate-800/50 last:border-0 hover:bg-cyan-500/[0.04] transition-colors" data-name="${item.n}"><span class="text-cyan-400/60 text-xs font-mono">${item.c}</span><span class="text-white text-sm">${item.n}</span></div>`,
+    ).join('')
+    dd.classList.remove('hidden')
+
+    dd.querySelectorAll('[data-name]').forEach((el) => {
+      el.addEventListener('click', function () {
+        input.value = this.getAttribute('data-name')
+        dd.classList.add('hidden')
+      })
+    })
+  })
+
+  document.addEventListener('click', (e) => {
+    if (!input.contains(e.target) && !dd.contains(e.target)) {
+      dd.classList.add('hidden')
+    }
+  })
+}
+
+// === Modal ===
+function openModal(stockName) {
+  const modal = document.getElementById('modal')
+  const modalLoading = document.getElementById('modalLoading')
+  const modalResult = document.getElementById('modalResult')
+
+  document.getElementById('resultStock').textContent = stockName
+  modal.classList.remove('opacity-0', 'pointer-events-none')
+  modal.classList.add('opacity-100', 'pointer-events-auto')
+  modalLoading.classList.remove('hidden')
+  modalResult.classList.add('hidden')
+  document.body.style.overflow = 'hidden'
+
+  const bar = document.getElementById('progressBar')
+  bar.style.width = '0%'
+  setTimeout(() => {
+    bar.style.width = '100%'
+  }, 50)
+
+  const steps = document.querySelectorAll('#steps > div')
+  steps.forEach((step, i) => {
+    setTimeout(() => {
+      step.style.opacity = '1'
+      step.classList.remove('text-slate-600')
+      step.classList.add('text-cyan-400/80')
+    }, i * 650)
+  })
+
+  setTimeout(() => {
+    modalLoading.classList.add('hidden')
+    modalResult.classList.remove('hidden')
+  }, 3500)
+}
+
+function closeModal() {
+  const modal = document.getElementById('modal')
+  modal.classList.add('opacity-0', 'pointer-events-none')
+  modal.classList.remove('opacity-100', 'pointer-events-auto')
+  document.body.style.overflow = ''
+  document.querySelectorAll('#steps > div').forEach((step) => {
+    step.style.opacity = '0'
+    step.classList.add('text-slate-600')
+    step.classList.remove('text-cyan-400/80')
+  })
+}
+
+function startAnalysis(inputId) {
+  const input = document.getElementById(inputId)
+  if (!input)
+    return
+  const val = input.value.trim()
+  if (!val) {
+    // eslint-disable-next-line no-alert
+    window.alert('종목을 입력해주세요')
+    return
+  }
+  const valid = stockData.some(s => s.n === val || s.c === val)
+  if (!valid) {
+    // eslint-disable-next-line no-alert
+    window.alert('종목을 찾을 수 없습니다')
+    return
+  }
+  openModal(val)
+}
+
+// === Stats ===
+function runStats() {
+  const totalEl = document.getElementById('totalUsers')
+  const limitEl = document.getElementById('limitSlots')
+  const dateEl = document.getElementById('updateDate')
+
+  if (totalEl) {
+    let count = 12847
+    setInterval(() => {
+      count += Math.floor(Math.random() * 4) + 1
+      totalEl.textContent = count.toLocaleString()
+    }, 2800)
+  }
+  if (limitEl) {
+    let slots = 150
+    setInterval(() => {
+      if (slots > 0) {
+        slots -= Math.floor(Math.random() * 2) + 1
+        if (slots < 0)
+          slots = 0
+        limitEl.textContent = slots
+      }
+    }, 3500)
+  }
+  if (dateEl) {
+    const d = new Date()
+    d.setDate(d.getDate() - 1)
+    dateEl.textContent = `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()} 15:00`
+  }
+}
+
+// === Init ===
+document.addEventListener('DOMContentLoaded', () => {
+  setupAC('heroInput', 'heroDropdown')
+  setupAC('ctaInput', 'ctaDropdown')
+  runStats()
+
+  document.getElementById('heroBtn').addEventListener('click', () => {
+    startAnalysis('heroInput')
+  })
+  document.getElementById('ctaBtn').addEventListener('click', () => {
+    startAnalysis('ctaInput')
+  })
+  document.getElementById('modalClose').addEventListener('click', closeModal)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape')
+      closeModal()
+  })
+})
+</script>
+
+  <!-- ==================== Global styles for animations ==================== -->
+  <style is:global>
+    .tb-grid-bg {
+      background-image:
+        linear-gradient(rgba(6, 182, 212, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent);
+    }
+
+    .tb-gradient-text {
+      background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tb-spin {
+      animation: tb-spin 3s linear infinite;
+    }
+
+    @keyframes tb-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .tb-pulse-icon {
+      animation: tb-pulse-icon 3s ease-in-out infinite;
+    }
+
+    @keyframes tb-pulse-icon {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+
+    .tb-particle {
+      animation: tb-particle 18s ease-in-out infinite;
+    }
+
+    @keyframes tb-particle {
+      0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+      25% { transform: translate(18px, -22px); opacity: 0.7; }
+      50% { transform: translate(-12px, 14px); opacity: 0.25; }
+      75% { transform: translate(22px, 10px); opacity: 0.6; }
+    }
+
+    .tb-scroll-feed {
+      animation: tb-scroll-feed 22s linear infinite;
+    }
+
+    @keyframes tb-scroll-feed {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    @media (max-width: 768px) {
+      .tb-particle { display: none; }
+    }
+  </style>
+</BaseLayout>

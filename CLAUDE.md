@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Astro-based landing page generator for multi-regional campaign pages. The project creates landing pages in different languages (JP, KR, US) with dynamic routing for different people/campaigns and versions.
+Astro-based landing page generator for multi-regional campaign pages. Creates landing pages across regions (JP, KR, US, etc.) with dynamic routing for different people/campaigns, versions, and social channel types (Kakao, Band).
 
 ## Development Commands
 
@@ -14,60 +14,89 @@ This is an Astro-based landing page generator for multi-regional campaign pages.
 | `bun dev` | Start development server at localhost:4321 |
 | `bun build` | Build production site to ./dist/ |
 | `bun preview` | Preview build locally |
-| `bun astro ...` | Run Astro CLI commands |
-| `./deploy_static.sh` | Build and deploy to cf-cloak project |
-
-## Code Quality Commands
-
-| Command | Description |
-|---------|-------------|
 | `bunx eslint .` | Run ESLint linting |
 | `bunx astro check` | Type-check Astro files |
+| `./deploy_static.sh` | Build and copy assets to cf-cloak project for deployment |
+
+## Technology Stack
+
+- **Astro 5** with static site generation (SSG) and file-based routing
+- **React 19** for interactive components (modals, forms)
+- **Tailwind CSS 4** via `@tailwindcss/vite` plugin (not UnoCSS)
+- **TypeScript** with strict config extending `astro/tsconfigs/strict`
+- **Bun** as package manager and runtime
+- **ESLint** with `@antfu/eslint-config` + Astro + Prettier formatting
 
 ## Architecture
 
-### Directory Structure
-- `/src/pages/` - File-based routing with region-specific folders (JP/, KR/, US/)
-- `/src/components/` - Reusable Astro and React components
-- `/src/layouts/` - Page layout templates
-- `/src/utils/` - Utility functions and shared logic
-
 ### Dynamic Routing Pattern
-The project uses a complex dynamic routing system:
-- `[people]/YYYYMMDD-N.[version].[t]/index.astro` - Campaign pages with date, version, and type parameters
-- `getStaticPaths()` functions generate routes for different people/campaigns
-- Static assets are organized in campaign-specific `static/` folders
 
-### Technology Stack
-- **Astro 5.11.0** - Static site generator with file-based routing
-- **React 19** - Component library for interactive elements  
-- **UnoCSS** - Utility-first CSS framework with custom animations
-- **TypeScript** - Type checking with strict configuration
-- **Bun** - Package manager and runtime
+Campaign pages use Astro's `getStaticPaths()` to generate all routes at build time:
 
-### Key Components
-- `BaseLayout.astro` - Main layout wrapper
-- `RedirectCode.astro` - Handles campaign redirects
-- Landing page components with region-specific styling
+```
+src/pages/{REGION}/[people]/{YYYYMMDD-N}.[version].[t]/index.astro
+```
 
-### Build Configuration
-- Assets are built to `mjSFqQ/` directory (configured in astro.config.mjs)
-- Custom deployment script copies built assets to cf-cloak project
+- `[people]` — person/influencer identifier (Chinese character key from config)
+- `[version]` — variant number for A/B testing (0, 1, 2...)
+- `[t]` — social channel type: `卡扣` (Kakao) or `棒群` (Band)
+
+**KR campaigns** use `generateKrConfig()` from `src/utils/kr_config.ts` which maps person configs to static paths. Each person has versions with `img_prefix` for loading campaign-specific images.
+
+**JP campaigns** use copy variant configs with `ext` parameter for A/B testing different ad copy.
+
+### Config-Driven Generation (kr_config.ts)
+
+Central KR configuration defines people/influencers with:
+- Korean display name, image prefix, version variants
+- Social type constraints: `ALL_SOCIAL`, `BAND_ONLY`, `KAKAO_ONLY`
+- Filter utilities: `exact()`, `byPerson()`, `byVersion()`, `exclude()`, `and()`, `or()`
+
+Pages call `generateKrConfig(filter?, excludeList?)` in `getStaticPaths()` to get route arrays with `{ params: { people, version, t }, props: { name, img_prefix } }`.
+
+### Social Channel Polymorphism
+
+A single campaign page serves both Kakao and Band via the `t` parameter:
+- `CtaButton.astro` dispatches to the correct button component based on `social` prop
+- Button types: `卡扣` → KakaoCtaButton, `棒群` → BandCtaButton, `混合` → MixedCtaButton, `引导弹窗` → KakaoCopyButton (React), `提高质量_` → KakaoFormButton (React)
+- `src/utils/jump.ts` handles redirects with GA tracking (`jumpToKakao()`, `jumpToBand()`, `mixinJump()`)
+
+### Layout System
+
+- `BaseLayout.astro` — generic wrapper (BaseHead + PluginLoader + RedirectCode)
+- `KRBaseLayout.astro` — KR-specific (uses KRRedirectCode, includes ButtonAction)
+- `RedirectCode.astro` / `KRRedirectCode.astro` — inject tracking variables and load tracking script
+
+### Plugin System (PluginLoader.astro)
+
+Centralized third-party library management with loading strategies:
+- `blocking` — synchronous (e.g., Google Fonts)
+- `defer` — after page load (e.g., AOS, GSAP, Swiper, jQuery)
+- `async` — non-blocking
+
+Pages specify plugins via props: `plugins={['aos', 'jquery', 'googleFontsKR']}`
+
+### Asset Organization
+
+- Campaign images: `src/pages/{REGION}/[people]/images/{img_prefix}*.jpg`
+- Campaign static assets: `src/pages/{CAMPAIGN}/static/css/`, `static/picture/`
+- Built assets output to `mjSFqQ/` directory (configured in astro.config.mjs)
 - Path alias `@/` points to `./src/`
 
-### Styling
-- UnoCSS with custom animations (breathing effect)
-- CSS files imported directly in components
-- Responsive design with mobile-first approach
+### Build & Deploy Pipeline
 
-### Image Management
-- Images stored in region/campaign-specific folders
-- Dynamic imports used for campaign-specific assets
-- Astro:assets integration for optimization
+`deploy_static.sh` runs `bun run build`, then copies `dist/mjSFqQ/` and `dist/favicon.ico` to the `cf-cloak` project and runs its deploy.
 
-## Development Notes
+### Vite Configuration Notes
 
-- The root index.astro page auto-discovers all available pages using `import.meta.glob()`
-- Each campaign has its own static assets folder for images and CSS
-- Dynamic routes support multiple versions and types (kakao, band) for A/B testing
-- ESLint uses @antfu/eslint-config with Astro and Prettier formatting
+- Custom plugin `excludeThirdPartyCss()` prevents Tailwind from processing third-party CSS (bootstrap, style-static, et-core-unified)
+- HTML compression disabled (`compressHTML: false`)
+- Build format set to `preserve`
+
+## Development Patterns
+
+- Images are imported in frontmatter and used via `.src` property: `<img src={img.src} />`
+- Dynamic image imports: `const headImg = import(\`../images/${img_prefix}head.jpg\`)`
+- `.link-btn` class elements automatically get `mixinJump` click handler via `src/utils/main.js`
+- Responsive breakpoints: 768px (mobile), 480px (small mobile), 1024px (tablet)
+- Root `index.astro` auto-discovers all pages using `import.meta.glob()`
