@@ -1,0 +1,1851 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Scorpion(스콜피온) 배기시스템 공식 온라인샵. 고성능 바이크·차량용 배기 부품을 풍부하게 보유하고 있습니다."
+    />
+    <title>Scorpion 배기시스템 | 공식 온라인샵</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      /* Prevent horizontal scroll on all block elements */
+      div,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      ul,
+      ol,
+      li {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      /* Prevent horizontal scroll */
+      img,
+      video,
+      iframe,
+      svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Ensure all sections don't overflow */
+      section,
+      header,
+      footer,
+      main,
+      article,
+      aside {
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #dc2626;
+        --primary-dark: #b91c1c;
+        --secondary: #1f2937;
+        --accent: #f59e0b;
+        --bg-light: #f9fafb;
+        --bg-white: #ffffff;
+        --text-primary: #111827;
+        --text-secondary: #6b7280;
+        --text-muted: #9ca3af;
+        --border: #e5e7eb;
+        --success: #10b981;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family:
+          'Noto Sans KR',
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Header */
+      .header {
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow-sm);
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .header-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--primary);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+        padding: 0;
+        gap: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        overflow-y: auto;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .nav-links.mobile-open > li {
+        background: var(--bg-white);
+        margin: 0;
+        border-bottom: 1px solid var(--border);
+        animation: slideIn 0.3s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .nav-links.mobile-open > li:nth-child(1) {
+        animation-delay: 0.05s;
+        margin-top: 60px; /* Space for header */
+      }
+
+      .nav-links.mobile-open > li:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+
+      .nav-links.mobile-open > li:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .nav-links.mobile-open li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links.mobile-open a {
+        display: block;
+        padding: 1.25rem 1.5rem;
+        color: var(--text-primary);
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.2s;
+        min-height: 48px; /* Better touch target */
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-links.mobile-open a:active {
+        background: var(--bg-light);
+        color: var(--primary);
+      }
+
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .cart-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.5rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .cart-btn:hover {
+        background: var(--primary-dark);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: all 0.2s;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        position: relative;
+      }
+
+      .mobile-menu-btn:hover {
+        background: var(--bg-light);
+      }
+
+      .mobile-menu-btn:active {
+        background: var(--bg-light);
+        transform: scale(0.95);
+      }
+
+      .mobile-menu-btn svg {
+        width: 24px;
+        height: 24px;
+        pointer-events: none;
+      }
+
+      .mobile-menu-btn.active {
+        color: var(--primary);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, var(--secondary) 0%, #374151 100%);
+        color: white;
+        padding: 4rem 1.5rem;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .hero-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0 1rem;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-badge svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Products Section */
+      .products-section {
+        padding: 4rem 0;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+        color: var(--text-secondary);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .product-card {
+        background: var(--bg-white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 1px solid var(--border);
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-width: 100%;
+        display: block;
+      }
+
+      .product-image::after {
+        display: none;
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--primary);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-category {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .product-description {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .product-specs {
+        margin-bottom: 1rem;
+      }
+
+      .spec-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875rem;
+        padding: 0.25rem 0;
+        color: var(--text-secondary);
+      }
+
+      .spec-label {
+        font-weight: 500;
+      }
+
+      .product-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .product-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .product-price-unit {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+
+      .add-to-cart-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.625rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.875rem;
+      }
+
+      .add-to-cart-btn:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+      }
+
+      /* Featured Product */
+      .featured-section {
+        padding: 4rem 0;
+        background: var(--bg-white);
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .featured-product {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .featured-image {
+        width: 100%;
+        height: 500px;
+        background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .featured-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-width: 100%;
+        display: block;
+      }
+
+      .featured-image::after {
+        display: none;
+      }
+
+      .featured-content h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .featured-content p {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+      }
+
+      .feature-list {
+        list-style: none;
+        margin-bottom: 2rem;
+      }
+
+      .feature-list li {
+        padding: 0.75rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .feature-list li::before {
+        content: '✓';
+        width: 24px;
+        height: 24px;
+        background: var(--success);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .price-section {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+      }
+
+      .current-price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .original-price {
+        font-size: 1.5rem;
+        color: var(--text-muted);
+        text-decoration: line-through;
+      }
+
+      .discount-badge {
+        background: var(--accent);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .buy-now-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .buy-now-btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .add-to-cart-large {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        width: 100%;
+      }
+
+      .add-to-cart-large:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 4rem 0;
+        background: var(--bg-white);
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+        gap: 2rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .feature-card {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .feature-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: white;
+      }
+
+      .feature-icon svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .feature-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .feature-card p {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--secondary);
+        color: white;
+        padding: 3rem 0 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .footer-section h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-section a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.875rem;
+      }
+
+      /* Responsive */
+      /* Tablet and below */
+      @media (max-width: 1024px) {
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+          gap: 1.5rem;
+        }
+
+        .featured-product {
+          gap: 2rem;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .header-content {
+          padding: 0.75rem 1rem;
+        }
+
+        .logo {
+          font-size: 1.25rem;
+        }
+
+        .logo-icon {
+          width: 28px;
+          height: 28px;
+          font-size: 0.875rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-links.mobile-open {
+          display: flex;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+        }
+
+        .header-content {
+          flex-wrap: nowrap;
+          gap: 0.5rem;
+        }
+
+        nav {
+          order: -1; /* Move nav before buttons */
+        }
+
+        .cart-btn {
+          order: 1;
+          flex-shrink: 0;
+        }
+
+        .mobile-menu-btn {
+          order: 0;
+          flex-shrink: 0;
+        }
+
+        .cart-btn {
+          padding: 0.5rem 1rem;
+          font-size: 0.875rem;
+        }
+
+        .cart-btn svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .hero {
+          padding: 2.5rem 1rem;
+        }
+
+        .hero-badge {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.8rem;
+          margin-bottom: 1rem;
+        }
+
+        .hero-title {
+          font-size: clamp(1.5rem, 6vw, 2rem);
+          margin-bottom: 0.75rem;
+        }
+
+        .hero-subtitle {
+          font-size: clamp(0.875rem, 3vw, 1rem);
+          margin-bottom: 1.5rem;
+        }
+
+        .container {
+          padding: 0 1rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .hero {
+          padding: 2.5rem 1rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .header-content {
+          padding: 0.75rem 1rem;
+          max-width: 100%;
+        }
+
+        .products-section {
+          padding: 2.5rem 0;
+        }
+
+        .section-header {
+          margin-bottom: 2rem;
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+          font-size: 0.875rem;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          margin-bottom: 2.5rem;
+        }
+
+        .product-card {
+          border-radius: 10px;
+        }
+
+        .product-image {
+          height: 220px;
+        }
+
+        .product-badge {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.6rem;
+          top: 0.75rem;
+          right: 0.75rem;
+        }
+
+        .product-info {
+          padding: 1.25rem;
+        }
+
+        .product-name {
+          font-size: 1.125rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+          font-size: 0.8125rem;
+          margin-bottom: 0.875rem;
+        }
+
+        .spec-item {
+          font-size: 0.8125rem;
+          padding: 0.2rem 0;
+        }
+
+        .product-footer {
+          padding-top: 0.875rem;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: stretch;
+        }
+
+        .product-price {
+          font-size: 1.375rem;
+        }
+
+        .product-price-unit {
+          font-size: 0.8125rem;
+        }
+
+        .add-to-cart-btn {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          font-size: 0.875rem;
+          min-height: 44px; /* Better touch target */
+        }
+
+        .featured-section {
+          padding: 2.5rem 0;
+        }
+
+        .featured-product {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .featured-image {
+          height: 280px;
+          border-radius: 10px;
+        }
+
+        .featured-content h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .featured-content p {
+          font-size: 0.9375rem;
+          margin-bottom: 1.25rem;
+          line-height: 1.7;
+        }
+
+        .feature-list {
+          margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+          padding: 0.625rem 0;
+          font-size: 0.875rem;
+        }
+
+        .feature-list li::before {
+          width: 20px;
+          height: 20px;
+          font-size: 0.75rem;
+        }
+
+        .price-section {
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .current-price {
+          font-size: 2rem;
+        }
+
+        .original-price {
+          font-size: 1.25rem;
+        }
+
+        .discount-badge {
+          font-size: 0.8125rem;
+          padding: 0.2rem 0.6rem;
+        }
+
+        .buy-now-btn,
+        .add-to-cart-large {
+          padding: 0.875rem 1.5rem;
+          font-size: 1rem;
+          min-height: 48px; /* Better touch target */
+          border-radius: 8px;
+        }
+
+        .features-section {
+          padding: 2.5rem 0;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .feature-card {
+          padding: 1.5rem;
+        }
+
+        .feature-icon {
+          width: 56px;
+          height: 56px;
+          margin-bottom: 0.875rem;
+        }
+
+        .feature-icon svg {
+          width: 28px;
+          height: 28px;
+        }
+
+        .feature-card h3 {
+          font-size: 1.125rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+          font-size: 0.8125rem;
+        }
+
+        .footer {
+          padding: 2rem 0 1rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .footer-section h4 {
+          font-size: 1rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li {
+          margin-bottom: 0.4rem;
+          font-size: 0.875rem;
+        }
+
+        .footer-bottom {
+          padding-top: 1.5rem;
+          font-size: 0.8125rem;
+        }
+      }
+
+      /* Small Mobile */
+      @media (max-width: 480px) {
+        .header-content {
+          padding: 0.625rem 0.875rem;
+        }
+
+        .logo {
+          font-size: 1.125rem;
+        }
+
+        .logo span {
+          display: none; /* Hide text on very small screens */
+        }
+
+        .cart-btn {
+          padding: 0.5rem 0.875rem;
+          font-size: 0.8125rem;
+        }
+
+        .cart-btn span {
+          display: none; /* Hide "장바구니" text, show only icon */
+        }
+
+        .hero {
+          padding: 2rem 0.875rem;
+        }
+
+        .hero-title {
+          font-size: 1.375rem;
+        }
+
+        .hero-subtitle {
+          font-size: 0.8125rem;
+        }
+
+        .container {
+          padding: 0 0.875rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .hero {
+          padding: 2rem 0.875rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .header-content {
+          padding: 0.625rem 0.875rem;
+          max-width: 100%;
+        }
+
+        .products-section {
+          padding: 2rem 0;
+        }
+
+        .section-title {
+          font-size: 1.375rem;
+        }
+
+        .section-subtitle {
+          font-size: 0.8125rem;
+        }
+
+        .products-grid {
+          gap: 1.25rem;
+        }
+
+        .product-image {
+          height: 200px;
+        }
+
+        .product-info {
+          padding: 1rem;
+        }
+
+        .product-name {
+          font-size: 1rem;
+        }
+
+        .product-description {
+          font-size: 0.75rem;
+        }
+
+        .product-price {
+          font-size: 1.25rem;
+        }
+
+        .featured-image {
+          height: 240px;
+        }
+
+        .featured-content h2 {
+          font-size: 1.25rem;
+        }
+
+        .featured-content p {
+          font-size: 0.875rem;
+        }
+
+        .current-price {
+          font-size: 1.75rem;
+        }
+
+        .original-price {
+          font-size: 1.125rem;
+        }
+
+        .feature-card {
+          padding: 1.25rem;
+        }
+
+        .footer {
+          padding: 1.5rem 0 0.875rem;
+        }
+      }
+
+      /* Touch device optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        .product-card:hover {
+          transform: none;
+        }
+
+        .product-card:active {
+          transform: scale(0.98);
+        }
+
+        .add-to-cart-btn:active,
+        .buy-now-btn:active,
+        .add-to-cart-large:active {
+          transform: scale(0.95);
+        }
+      }
+    </style>
+  </head>
+  <body style="overflow-x: hidden; width: 100%; max-width: 100%; position: relative">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="#" class="logo">
+          <div class="logo-icon">S</div>
+          <span>Scorpion Exhaust</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#products">제품 목록</a></li>
+            <li><a href="#features">특징</a></li>
+            <li><a href="#contact">문의하기</a></li>
+          </ul>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="메뉴">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12H21M3 6H21M3 18H21" />
+          </svg>
+        </button>
+        <button class="cart-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 2L7 6H2L4 20H20L22 6H17L15 2H9Z" />
+            <path d="M9 6L12 10L15 6" />
+          </svg>
+          장바구니 (0)
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+            <path
+              d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+            ></path>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+          </svg>
+          고성능 배기시스템
+        </div>
+        <h1 class="hero-title">Scorpion 배기시스템</h1>
+        <p class="hero-subtitle">
+          최고 품질의 소재와 최첨단 기술로 제조된 배기시스템.
+          성능 향상과 스포티한 사운드를 실현합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">제품 라인업</h2>
+          <p class="section-subtitle">고객님의 차량에 최적의 배기시스템을 선택하세요</p>
+        </div>
+
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion S1 슬립온 머플러" loading="lazy" />
+              <div class="product-badge">인기</div>
+            </div>
+            <div class="product-info">
+              <div class="product-category">슬립온 라인</div>
+              <h3 class="product-name">Scorpion S1 슬립온 머플러</h3>
+              <p class="product-description">
+                기존 배기시스템에 쉽게 장착 가능. 경량 설계로 성능과 사운드를 향상시킵니다.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">소재</span>
+                  <span>스테인리스강</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">중량</span>
+                  <span>약 2.5kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">적합 차종</span>
+                  <span>주요 바이크 모델</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">₩89,800</span>
+                  <span class="product-price-unit">(세금 포함)</span>
+                </div>
+                <button class="add-to-cart-btn">장바구니에 담기</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion Evo 풀 배기시스템" loading="lazy" />
+              <div class="product-badge">신규</div>
+            </div>
+            <div class="product-info">
+              <div class="product-category">에볼루션 라인</div>
+              <h3 class="product-name">Scorpion Evo 풀 배기시스템</h3>
+              <p class="product-description">
+                배기시스템 전체를 교환하는 풀 시스템. 최대 성능 향상과 중량 감소를 실현합니다.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">소재</span>
+                  <span>티타늄 합금</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">중량</span>
+                  <span>약 1.8kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">출력 향상</span>
+                  <span>최대 15%</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">₩298,000</span>
+                  <span class="product-price-unit">(세금 포함)</span>
+                </div>
+                <button class="add-to-cart-btn">장바구니에 담기</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion R1 레이싱 배기" loading="lazy" />
+            </div>
+            <div class="product-info">
+              <div class="product-category">레이싱 라인</div>
+              <h3 class="product-name">Scorpion R1 레이싱 배기</h3>
+              <p class="product-description">
+                서킷 주행을 상정한 고성능 모델. 최적의 배기 효율과 내구성을 갖추고 있습니다.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">소재</span>
+                  <span>티타늄 + 카본</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">중량</span>
+                  <span>약 1.5kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">인증</span>
+                  <span>FIM 적합</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">₩398,000</span>
+                  <span class="product-price-unit">(세금 포함)</span>
+                </div>
+                <button class="add-to-cart-btn">장바구니에 담기</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion Carbon 테일파이프" loading="lazy" />
+            </div>
+            <div class="product-info">
+              <div class="product-category">카본 라인</div>
+              <h3 class="product-name">Scorpion Carbon 테일파이프</h3>
+              <p class="product-description">
+                카본 파이버 제작 테일파이프. 스포티한 외관과 경량화를 실현합니다.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">소재</span>
+                  <span>카본 파이버</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">중량</span>
+                  <span>약 0.8kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">디자인</span>
+                  <span>카본 위브</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">₩128,000</span>
+                  <span class="product-price-unit">(세금 포함)</span>
+                </div>
+                <button class="add-to-cart-btn">장바구니에 담기</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion Titanium 머플러" loading="lazy" />
+            </div>
+            <div class="product-info">
+              <div class="product-category">티타늄 라인</div>
+              <h3 class="product-name">Scorpion Titanium 머플러</h3>
+              <p class="product-description">
+                고품질 티타늄 합금 제작. 우수한 내식성과 경량성을 겸비한 프리미엄 모델.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">소재</span>
+                  <span>티타늄 합금</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">중량</span>
+                  <span>약 1.2kg</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">내구성</span>
+                  <span>10년 보증</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">₩248,000</span>
+                  <span class="product-price-unit">(세금 포함)</span>
+                </div>
+                <button class="add-to-cart-btn">장바구니에 담기</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/mjSFqQ/images/moto.png" alt="Scorpion VCS 밸브 컨트롤 시스템" loading="lazy" />
+            </div>
+            <div class="product-info">
+              <div class="product-category">밸브 컨트롤</div>
+              <h3 class="product-name">Scorpion VCS 밸브 컨트롤 시스템</h3>
+              <p class="product-description">
+                배기 사운드 조절이 가능한 시스템. 드라이빙 경험을 커스터마이징할 수 있습니다.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <span class="spec-label">제어 방식</span>
+                  <span>전동 밸브</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">모드</span>
+                  <span>3단계 조절</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">조작</span>
+                  <span>리모컨</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">₩158,000</span>
+                  <span class="product-price-unit">(세금 포함)</span>
+                </div>
+                <button class="add-to-cart-btn">장바구니에 담기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Product Section -->
+    <section class="featured-section">
+      <div class="container">
+        <div class="featured-product">
+          <div class="featured-image">
+            <img src="/mjSFqQ/images/moto.png" alt="Scorpion Evo 풀 배기시스템" loading="lazy" />
+          </div>
+          <div class="featured-content">
+            <h2>Scorpion Evo 풀 배기시스템</h2>
+            <p>
+              최고 성능을 추구한 풀 배기시스템. 티타늄 합금을 사용한 경량 설계로
+              차량의 성능을 최대한 끌어냅니다. 독자적인 배기 설계로
+              엔진 출력과 토크 향상을 실현하고, 스포티한 사운드를 제공합니다.
+            </p>
+            <ul class="feature-list">
+              <li>티타늄 합금으로 대폭 경량화 실현</li>
+              <li>엔진 출력 최대 15% 향상</li>
+              <li>우수한 내식성과 내구성</li>
+              <li>깊이 있는 스포티한 사운드</li>
+              <li>주요 바이크 모델 지원</li>
+              <li>5년 제조사 보증</li>
+            </ul>
+            <div class="price-section">
+              <span class="current-price">₩298,000</span>
+              <span class="original-price">₩348,000</span>
+              <span class="discount-badge">14% OFF</span>
+            </div>
+            <button class="buy-now-btn">지금 구매하기</button>
+            <button class="add-to-cart-large">장바구니에 담기</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Scorpion 특징</h2>
+          <p class="section-subtitle">고품질과 성능을 추구한 배기시스템</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
+            <h3>성능 향상</h3>
+            <p>최적화된 배기 플로우로 엔진 출력과 토크를 향상시킵니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+              </svg>
+            </div>
+            <h3>스포티한 사운드</h3>
+            <p>독자적인 설계로 깊이 있는 매력적인 배기 사운드를 실현합니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="2" x2="12" y2="22"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3>경량 설계</h3>
+            <p>고품질 소재를 사용해 차량 총중량을 줄이고 핸들링을 향상시킵니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3>고내구성</h3>
+            <p>우수한 내식성과 고강도로 장기간 성능을 유지합니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                ></path>
+              </svg>
+            </div>
+            <h3>간편한 장착</h3>
+            <p>순정 부품과 호환성이 높아 전문 기술자의 장착이 가능합니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <h3>인증 취득</h3>
+            <p>FIM 소음 규제 등 다양한 인증을 취득해 안심하고 사용할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>회사 정보</h4>
+            <ul>
+              <li><a href="#">회사 개요</a></li>
+              <li><a href="#">기업 이념</a></li>
+              <li><a href="#">채용 정보</a></li>
+              <li><a href="#">뉴스</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>제품 정보</h4>
+            <ul>
+              <li><a href="#">제품 목록</a></li>
+              <li><a href="#">적합 차종 검색</a></li>
+              <li><a href="#">카탈로그 다운로드</a></li>
+              <li><a href="#">기술 자료</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>고객지원</h4>
+            <ul>
+              <li><a href="#">문의하기</a></li>
+              <li><a href="#">자주 묻는 질문</a></li>
+              <li><a href="#">장착 방법</a></li>
+              <li><a href="#">보증 안내</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>연락처</h4>
+            <ul>
+              <li>전화: 02-1234-5678</li>
+              <li>이메일: info@scorpion-exhaust.kr</li>
+              <li>영업시간: 평일 09:00-18:00</li>
+              <li>주소: 서울시 ○○구 ○○1-2-3</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Scorpion Exhaust Systems. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Simple cart functionality
+      let cartCount = 0
+      const cartBtn = document.querySelector('.cart-btn')
+      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn, .add-to-cart-large')
+
+      addToCartButtons.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          cartCount++
+          cartBtn.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 2L7 6H2L4 20H20L22 6H17L15 2H9Z"/>
+            <path d="M9 6L12 10L15 6"/>
+          </svg>
+          장바구니 (${cartCount})
+        `
+
+          // Visual feedback
+          this.textContent = '추가되었습니다!'
+          this.style.background = '#10B981'
+          setTimeout(() => {
+            this.textContent = this.classList.contains('add-to-cart-large') ? '장바구니에 담기' : '장바구니에 담기'
+            this.style.background = ''
+          }, 2000)
+        })
+      })
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn')
+      const navLinks = document.querySelector('.nav-links')
+      const body = document.body
+
+      function toggleMobileMenu() {
+        if (!mobileMenuBtn || !navLinks) return
+
+        const isOpen = navLinks.classList.contains('mobile-open')
+        const svg = mobileMenuBtn.querySelector('svg')
+
+        if (isOpen) {
+          // Close menu
+          navLinks.classList.remove('mobile-open')
+          mobileMenuBtn.classList.remove('active')
+          body.style.overflow = ''
+          svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
+        } else {
+          // Open menu
+          navLinks.classList.add('mobile-open')
+          mobileMenuBtn.classList.add('active')
+          body.style.overflow = 'hidden' // Prevent body scroll
+          svg.innerHTML = '<path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round"/>'
+        }
+      }
+
+      function closeMobileMenu() {
+        if (!mobileMenuBtn || !navLinks) return
+
+        navLinks.classList.remove('mobile-open')
+        mobileMenuBtn.classList.remove('active')
+        body.style.overflow = ''
+        const svg = mobileMenuBtn.querySelector('svg')
+        svg.innerHTML = '<path d="M3 12H21M3 6H21M3 18H21" />'
+      }
+
+      if (mobileMenuBtn && navLinks) {
+        // Toggle menu on button click
+        mobileMenuBtn.addEventListener('click', function (e) {
+          e.stopPropagation()
+          toggleMobileMenu()
+        })
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', function () {
+            closeMobileMenu()
+          })
+        })
+
+        // Close menu when clicking outside (on backdrop)
+        navLinks.addEventListener('click', function (e) {
+          if (e.target === navLinks) {
+            closeMobileMenu()
+          }
+        })
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+            closeMobileMenu()
+          }
+        })
+
+        // Prevent menu from opening on desktop resize
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 768 && navLinks.classList.contains('mobile-open')) {
+            closeMobileMenu()
+          }
+        })
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
+          const target = document.querySelector(this.getAttribute('href'))
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            })
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

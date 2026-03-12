@@ -225,6 +225,12 @@ const c = {
       { static_prefix: 'aly0_', version: 0, sockal_type: KAKAO_ONLY },
     ],
   },
+  朴斗焕: {
+    name: '박두환',
+    versions: [
+      { static_prefix: 'pdh_', version: 0, sockal_type: ['卡扣', '棒群'] },
+    ],
+  },
 } as const
 
 export function generateKrConfig(
