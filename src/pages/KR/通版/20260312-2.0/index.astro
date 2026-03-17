@@ -1,0 +1,558 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+const title = 'AI 주식 진단 2.0 — 실시간 종합 분석'
+const description = 'AI가 실시간으로 종목을 분석합니다. 기술적 지표, 수급, 시장 심리를 종합한 핵심 리포트를 지금 받아보세요.'
+---
+<BaseLayout title={title} description={description} plugins={[]}>
+
+<!-- ═══════════════ MODAL ═══════════════ -->
+<div id="modal" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(2,6,18,0.93);backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:opacity .28s;">
+  <button id="modalClose" style="position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.4);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.borderColor='rgba(6,182,212,.5)';this.style.color='rgb(6,182,212)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.4)'">×</button>
+
+  <div style="width:92vw;max-width:460px;">
+
+    <!-- Loading -->
+    <div id="modalLoading" style="border-radius:20px;overflow:hidden;border:1px solid rgba(6,182,212,.18);box-shadow:0 0 80px rgba(6,182,212,.08),0 40px 80px rgba(0,0,0,.6);">
+      <div style="background:linear-gradient(135deg,#060d1f 0%,#080f22 100%);padding:36px;">
+        <div style="text-align:center;margin-bottom:28px;">
+          <div style="position:relative;width:80px;height:80px;margin:0 auto 16px;">
+            <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(6,182,212,.12)"></div>
+            <div id="spinRing" style="position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:rgba(6,182,212,.85);animation:spin 1.2s linear infinite;"></div>
+            <div style="position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(6,182,212,.06)"></div>
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgba(6,182,212,.75)" stroke-width="1.5"><path d="M2 12h4m12 0h4M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+            </div>
+          </div>
+          <div style="color:rgb(6,182,212);font-size:1rem;font-weight:600;letter-spacing:.12em;margin-bottom:4px;">ANALYZING</div>
+          <div style="color:rgba(255,255,255,.2);font-size:.6rem;letter-spacing:.3em;">REAL-TIME AI PROCESSING</div>
+        </div>
+        <div style="height:2px;background:rgba(255,255,255,.05);border-radius:9999px;overflow:hidden;margin-bottom:24px;">
+          <div id="progressBar" style="height:100%;width:0%;background:linear-gradient(90deg,#06b6d4,#3b82f6,#8b5cf6);border-radius:9999px;transition:width 3.8s ease-out;box-shadow:0 0 12px rgba(6,182,212,.5);"></div>
+        </div>
+        <div id="steps" style="display:flex;flex-direction:column;gap:10px;font-family:monospace;font-size:.8rem;">
+          <div style="opacity:0;color:#374151;transition:all .5s;"><span style="color:rgba(6,182,212,.4);margin-right:8px;">[01]</span>거래소 데이터베이스 연결 중...</div>
+          <div style="opacity:0;color:#374151;transition:all .5s;"><span style="color:rgba(6,182,212,.4);margin-right:8px;">[02]</span>기술적 지표 분석 중...</div>
+          <div style="opacity:0;color:#374151;transition:all .5s;"><span style="color:rgba(6,182,212,.4);margin-right:8px;">[03]</span>기관 매매 동향 파악 중...</div>
+          <div style="opacity:0;color:#374151;transition:all .5s;"><span style="color:rgba(6,182,212,.4);margin-right:8px;">[04]</span>시장 심리 & 뉴스 분석 중...</div>
+          <div style="opacity:0;color:#374151;transition:all .5s;"><span style="color:rgba(6,182,212,.4);margin-right:8px;">[05]</span>AI 종합 리포트 생성 중...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="modalResult" style="display:none;border-radius:20px;overflow:hidden;border:1px solid rgba(6,182,212,.25);box-shadow:0 0 80px rgba(6,182,212,.1),0 40px 80px rgba(0,0,0,.7);">
+      <div style="background:linear-gradient(160deg,#060d1f 0%,#07112a 50%,#060d1f 100%);padding:32px;">
+        <!-- Top accent line -->
+        <div style="height:2px;background:linear-gradient(90deg,transparent,#06b6d4,#3b82f6,transparent);border-radius:9999px;margin-bottom:28px;box-shadow:0 0 16px rgba(6,182,212,.4);"></div>
+
+        <div style="text-align:center;margin-bottom:20px;">
+          <div style="width:52px;height:52px;border-radius:50%;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(6,182,212)" stroke-width="2.5" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div style="color:rgb(6,182,212);font-size:.95rem;font-weight:600;letter-spacing:.06em;margin-bottom:4px;">분석 완료</div>
+          <div style="color:rgba(255,255,255,.75);font-size:.85rem;"><span style="color:rgb(103,232,249);font-weight:600;" id="resultStock"></span> 종합 리포트</div>
+        </div>
+
+        <!-- Metric grid -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;">
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;text-align:center;">
+            <div style="color:rgba(255,255,255,.35);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">투자 등급</div>
+            <div style="color:rgb(6,182,212);font-size:1.5rem;font-weight:700;line-height:1;">A+</div>
+          </div>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;text-align:center;">
+            <div style="color:rgba(255,255,255,.35);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">예상 수익</div>
+            <div style="color:rgb(52,211,153);font-size:1.5rem;font-weight:700;line-height:1;">+24.5%</div>
+          </div>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;text-align:center;">
+            <div style="color:rgba(255,255,255,.35);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">리스크</div>
+            <div style="color:rgb(251,191,36);font-size:1.5rem;font-weight:700;line-height:1;">중간</div>
+          </div>
+        </div>
+
+        <!-- Locked hint -->
+        <div style="border:1px dashed rgba(6,182,212,.2);border-radius:12px;padding:14px 16px;text-align:center;background:rgba(6,182,212,.03);margin-bottom:16px;">
+          <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:3px;">전체 리포트를 받으시려면</div>
+          <div style="color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;">카카오톡 <span style="color:rgb(6,182,212);">친구 추가</span>가 필요합니다</div>
+        </div>
+
+        <!-- ★ 분석 완료 후만 표시되는 점프 버튼 ★ -->
+        <a href="javascript:void(0)" onclick="mixinJump()"
+           style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;border-radius:12px;background:linear-gradient(135deg,rgb(6,182,212),rgb(59,130,246));color:white;font-weight:600;font-size:.92rem;text-decoration:none;cursor:pointer;transition:all .25s;box-shadow:0 8px 32px rgba(6,182,212,.25);"
+           onmouseover="this.style.boxShadow='0 12px 40px rgba(6,182,212,.4)';this.style.transform='translateY(-1px)'"
+           onmouseout="this.style.boxShadow='0 8px 32px rgba(6,182,212,.25)';this.style.transform=''">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.477 5.09 3.746 6.56L4.8 21l4.08-2.13C9.88 19.27 10.92 19.4 12 19.4c5.523 0 10-3.477 10-7.8S17.523 3 12 3z"/></svg>
+          카카오톡으로 전체 리포트 받기
+        </a>
+        <p style="text-align:center;margin-top:10px;color:rgba(255,255,255,.2);font-size:.68rem;letter-spacing:.04em;">"리포트 요청"이라고 메시지를 보내주세요</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ CANVAS BG ═══════════════ -->
+<canvas id="bgCanvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+
+<!-- ═══════════════ AURORA GLOWS ═══════════════ -->
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
+  <div style="position:absolute;top:-20%;left:20%;width:55vw;height:55vw;max-width:700px;max-height:700px;border-radius:50%;background:radial-gradient(circle,rgba(6,182,212,.07) 0%,transparent 70%);filter:blur(40px);animation:aurora1 14s ease-in-out infinite;"></div>
+  <div style="position:absolute;bottom:-10%;right:10%;width:45vw;height:45vw;max-width:600px;max-height:600px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.055) 0%,transparent 70%);filter:blur(50px);animation:aurora2 18s ease-in-out infinite;"></div>
+  <div style="position:absolute;top:40%;left:-10%;width:35vw;height:35vw;max-width:450px;max-height:450px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.05) 0%,transparent 70%);filter:blur(60px);animation:aurora3 22s ease-in-out infinite;"></div>
+</div>
+
+<!-- ═══════════════ PAGE CONTENT ═══════════════ -->
+<div style="position:relative;z-index:1;">
+
+  <!-- ── NAV ── -->
+  <nav style="position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(3,7,18,.75);backdrop-filter:blur(20px);">
+    <div style="max-width:1100px;margin:0 auto;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#06b6d4,#3b82f6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(6,182,212,.3);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <span style="color:white;font-weight:700;font-size:.95rem;letter-spacing:.02em;">StockAI <span style="color:rgb(6,182,212);">진단</span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:9999px;border:1px solid rgba(52,211,153,.25);background:rgba(52,211,153,.04);">
+        <span style="width:6px;height:6px;border-radius:50%;background:rgb(52,211,153);animation:pulse 2s infinite;display:inline-block;"></span>
+        <span style="color:rgb(52,211,153);font-size:.65rem;font-weight:600;letter-spacing:.1em;">LIVE</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section style="min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+    <div style="max-width:720px;margin:0 auto;padding:80px 20px 80px;text-align:center;">
+
+      <!-- Badge -->
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border-radius:9999px;border:1px solid rgba(6,182,212,.25);background:rgba(6,182,212,.04);margin-bottom:32px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:rgb(6,182,212);animation:pulse 2s infinite;display:inline-block;"></span>
+        <span style="color:rgb(6,182,212);font-size:.68rem;letter-spacing:.18em;font-weight:500;">AI-POWERED · REAL-TIME STOCK ANALYSIS</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 style="font-size:clamp(2.6rem,7.5vw,4.4rem);font-weight:800;line-height:1.08;letter-spacing:-.025em;margin-bottom:20px;">
+        <span style="color:white;">당신의 주식,</span><br/>
+        <span style="background:linear-gradient(135deg,#06b6d4 0%,#3b82f6 50%,#8b5cf6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AI가 진단합니다</span>
+      </h1>
+
+      <p style="color:rgba(148,163,184,.9);font-size:clamp(.9rem,2.5vw,1.05rem);margin-bottom:10px;line-height:1.7;">
+        보유 주식이 <span style="color:rgb(52,211,153);font-weight:500;">매수</span>할 타이밍인지,
+        <span style="color:rgb(248,113,113);font-weight:500;">매도</span>할 타이밍인지
+      </p>
+      <p style="color:rgba(6,182,212,.7);font-size:.82rem;font-weight:500;letter-spacing:.06em;margin-bottom:48px;">실시간 데이터 기반 AI 분석을 지금 바로 실행</p>
+
+      <!-- Orbital ring -->
+      <div style="position:relative;width:140px;height:140px;margin:0 auto 48px;display:flex;align-items:center;justify-content:center;">
+        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(6,182,212,.1);"></div>
+        <div style="position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(6,182,212,.06);"></div>
+        <div style="position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:rgba(6,182,212,.6);animation:spin 2.5s linear infinite;"></div>
+        <div style="position:absolute;inset:4px;border-radius:50%;border:1px solid transparent;border-bottom-color:rgba(139,92,246,.3);animation:spin 4s linear infinite reverse;"></div>
+        <svg style="position:relative;z-index:1;width:44px;height:44px;animation:pulseIcon 3s ease-in-out infinite;" viewBox="0 0 24 24" fill="none" stroke="rgba(6,182,212,.8)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+
+      <!-- Stats row -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:32px;margin-bottom:40px;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div id="totalUsers" style="color:rgb(6,182,212);font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1;">12,847</div>
+          <div style="color:rgba(100,116,139,.8);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-top:4px;">분석 완료</div>
+        </div>
+        <div style="width:1px;height:36px;background:rgba(255,255,255,.07);"></div>
+        <div style="text-align:center;">
+          <div style="color:rgb(52,211,153);font-size:1.5rem;font-weight:700;line-height:1;">94.2%</div>
+          <div style="color:rgba(100,116,139,.8);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-top:4px;">만족도</div>
+        </div>
+        <div style="width:1px;height:36px;background:rgba(255,255,255,.07);"></div>
+        <div style="text-align:center;">
+          <div id="updateDate" style="color:rgba(255,255,255,.35);font-size:.78rem;line-height:1;font-variant-numeric:tabular-nums;"></div>
+          <div style="color:rgba(100,116,139,.8);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-top:4px;">업데이트</div>
+        </div>
+      </div>
+
+      <!-- Search box -->
+      <div style="max-width:480px;margin:0 auto 16px;position:relative;">
+        <div id="heroInputWrap" style="display:flex;align-items:center;border-radius:14px;overflow:hidden;background:rgba(8,15,35,.8);border:1px solid rgba(71,85,105,.5);backdrop-filter:blur(12px);transition:all .3s;box-shadow:0 8px 40px rgba(0,0,0,.4);">
+          <svg style="width:18px;height:18px;color:rgba(100,116,139,.7);margin-left:16px;flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="heroInput" type="text" autocomplete="off"
+                 placeholder="종목코드 또는 종목명 입력"
+                 style="flex:1;background:transparent;border:none;outline:none;color:white;padding:15px 12px;font-size:.92rem;" />
+          <button id="heroBtn"
+                  style="display:flex;align-items:center;gap:6px;margin:8px;padding:10px 18px;border-radius:10px;background:linear-gradient(135deg,rgb(6,182,212),rgb(59,130,246));color:white;font-weight:600;font-size:.8rem;border:none;cursor:pointer;white-space:nowrap;transition:all .2s;box-shadow:0 4px 16px rgba(6,182,212,.3);"
+                  onmouseover="this.style.boxShadow='0 6px 24px rgba(6,182,212,.5)';this.style.transform='translateY(-1px)'"
+                  onmouseout="this.style.boxShadow='0 4px 16px rgba(6,182,212,.3)';this.style.transform=''">
+            분석
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </button>
+        </div>
+        <div id="heroDropdown" style="position:absolute;top:calc(100% + 8px);left:0;right:0;background:rgba(8,15,35,.95);border:1px solid rgba(6,182,212,.18);border-radius:14px;max-height:280px;overflow-y:auto;z-index:50;box-shadow:0 24px 60px rgba(0,0,0,.7);display:none;backdrop-filter:blur(16px);"></div>
+      </div>
+      <p style="color:rgba(100,116,139,.7);font-size:.73rem;letter-spacing:.04em;">
+        또 다른 시각을 더하는 것만으로도 <span style="color:rgba(6,182,212,.6);">승률이 올라갑니다</span>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section style="padding:80px 20px;background:rgba(3,6,15,.6);">
+    <div style="max-width:960px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="color:rgb(6,182,212);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;margin-bottom:12px;">Features</p>
+        <h2 style="color:white;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;">AI가 분석하는 핵심 지표</h2>
+        <p style="color:rgba(100,116,139,.8);font-size:.85rem;margin-top:10px;">전문가 수준의 종합 분석을 단 몇 초 만에</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+        {[
+          {icon:'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',color:'6,182,212',title:'기술적 분석',desc:'차트 패턴, RSI, MACD 등 20개 이상의 기술적 지표를 실시간 분석',tags:['차트 패턴','이동평균선']},
+          {icon:'<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>',color:'139,92,246',title:'기관 동향 분석',desc:'기관 투자자와 외국인의 매매 동향을 추적하여 자금 흐름 파악',tags:['기관 매매','외국인 동향']},
+          {icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',color:'52,211,153',title:'뉴스 & 공시 분석',desc:'기업 공시, 뉴스, 업종 동향 등 최신 정보를 실시간 분석',tags:['실시간 뉴스','공시 분석']},
+          {icon:'<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>',color:'251,191,36',title:'AI 매매 신호',desc:'딥러닝 알고리즘이 과거 데이터를 학습하여 최적 매매 시점 제안',tags:['딥러닝','예측 모델']},
+        ].map(({icon,color,title,desc,tags}) => (
+          <div style={`display:flex;gap:16px;padding:20px;border-radius:16px;background:rgba(${color},.04);border:1px solid rgba(${color},.1);transition:all .3s;cursor:default;`}
+               onmouseover={`this.style.borderColor='rgba(${color},.22)';this.style.background='rgba(${color},.07)';this.style.transform='translateY(-2px)';`}
+               onmouseout={`this.style.borderColor='rgba(${color},.1)';this.style.background='rgba(${color},.04)';this.style.transform='';`}>
+            <div style={`flex-shrink:0;width:42px;height:42px;border-radius:12px;background:rgba(${color},.1);border:1px solid rgba(${color},.15);display:flex;align-items:center;justify-content:center;`}>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke={`rgb(${color})`} stroke-width="1.5" set:html={icon}></svg>
+            </div>
+            <div>
+              <h3 style="color:white;font-size:.88rem;font-weight:600;margin-bottom:6px;">{title}</h3>
+              <p style="color:rgba(148,163,184,.8);font-size:.78rem;line-height:1.6;margin-bottom:10px;">{desc}</p>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                {tags.map(t => <span style={`padding:3px 10px;border-radius:9999px;background:rgba(${color},.06);border:1px solid rgba(${color},.1);color:rgba(148,163,184,.7);font-size:.65rem;`}>{t}</span>)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3 STEPS ── -->
+  <section style="padding:80px 20px;position:relative;overflow:hidden;">
+    <div style="max-width:960px;margin:0 auto;position:relative;z-index:1;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p style="color:rgb(6,182,212);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;margin-bottom:12px;">Process</p>
+        <h2 style="color:white;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;">간단한 3단계</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+        {[
+          {num:'01',icon:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',color:'6,182,212',title:'종목 입력',desc:'보유 주식의 종목코드 또는 종목명을 입력하세요'},
+          {num:'02',icon:'<path d="M2 12h4m12 0h4M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>',color:'139,92,246',title:'AI 분석',desc:'AI가 실시간으로 종합적인 분석을 진행합니다'},
+          {num:'03',icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',color:'52,211,153',title:'리포트 수령',desc:'카카오톡으로 상세 분석 리포트를 받으세요'},
+        ].map(({num,icon,color,title,desc}) => (
+          <div style={`position:relative;padding:32px 24px;border-radius:18px;text-align:center;background:rgba(${color},.03);border:1px solid rgba(${color},.1);transition:all .3s;`}
+               onmouseover={`this.style.borderColor='rgba(${color},.28)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(${color},.07)';`}
+               onmouseout={`this.style.borderColor='rgba(${color},.1)';this.style.transform='';this.style.boxShadow='';`}>
+            <div style={`position:absolute;top:14px;right:18px;font-size:.62rem;font-family:monospace;font-weight:700;letter-spacing:.1em;color:rgba(${color},.15);`}>{num}</div>
+            <div style="display:flex;justify-content:center;margin-bottom:16px;">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke={`rgb(${color})`} stroke-width="1.5" set:html={icon}></svg>
+            </div>
+            <h3 style="color:white;font-size:1rem;font-weight:600;margin-bottom:8px;">{title}</h3>
+            <p style="color:rgba(100,116,139,.8);font-size:.8rem;line-height:1.65;">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LIVE FEED ── -->
+  <section style="padding:80px 20px;background:rgba(3,6,15,.5);">
+    <div style="max-width:760px;margin:0 auto;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <p style="color:rgb(6,182,212);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;margin-bottom:8px;">Live Feed</p>
+          <h2 style="color:white;font-size:clamp(1.3rem,3.5vw,1.75rem);font-weight:700;letter-spacing:-.015em;">실시간 분석 현황</h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:9999px;border:1px solid rgba(52,211,153,.3);background:rgba(52,211,153,.04);">
+          <span style="width:7px;height:7px;border-radius:50%;background:rgb(52,211,153);animation:pulse 2s infinite;display:inline-block;"></span>
+          <span style="color:rgb(52,211,153);font-size:.65rem;font-weight:700;letter-spacing:.12em;">LIVE</span>
+        </div>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.05);background:rgba(8,15,35,.6);height:280px;">
+        <div id="liveFeed" style="animation:scrollFeed 22s linear infinite;">
+          {[
+            ['***6295','삼성전자(005930)','방금 전'],['***0051','SK하이닉스(000660)','1분 전'],
+            ['***0509','현대차(005380)','2분 전'],['***3859','NAVER(035420)','3분 전'],
+            ['***0438','카카오(035720)','4분 전'],['***2150','LG화학(051910)','5분 전'],
+            ['***3110','삼성SDI(006400)','6분 전'],['***3597','셀트리온(068270)','7분 전'],
+            ['***6295','삼성전자(005930)','방금 전'],['***0051','SK하이닉스(000660)','1분 전'],
+            ['***0509','현대차(005380)','2분 전'],['***3859','NAVER(035420)','3분 전'],
+          ].map(([id,stock,time]) => (
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.03);font-size:.83rem;">
+              <span style="color:rgba(148,163,184,.7);">
+                <span style="color:rgba(71,85,105,.8);font-family:monospace;font-size:.72rem;">{id}</span>{' '}님이{' '}
+                <span style="color:rgb(6,182,212);font-weight:500;">{stock}</span>{' '}분석 완료
+              </span>
+              <span style="color:rgba(71,85,105,.7);font-size:.7rem;flex-shrink:0;margin-left:12px;">{time}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REVIEWS ── -->
+  <section style="padding:80px 20px;">
+    <div style="max-width:960px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <p style="color:rgb(6,182,212);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;margin-bottom:12px;">Reviews</p>
+        <h2 style="color:white;font-size:clamp(1.3rem,3.5vw,1.75rem);font-weight:700;letter-spacing:-.015em;">사용자 후기</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+        {[
+          {init:'김',c:'6,182,212',text:'"AI 분석 덕분에 투자 결정이 훨씬 쉬워졌어요. 기술적 지표 분석이 정확해서 놀랐습니다."',name:'김** 님',sub:'3개월 사용 · +32%'},
+          {init:'이',c:'139,92,246',text:'"주식 초보인데도 AI 리포트를 보고 쉽게 이해할 수 있었어요. 매매 타이밍에 큰 도움이 됩니다."',name:'이** 님',sub:'1개월 사용 · +18%'},
+          {init:'박',c:'52,211,153',text:'"기관 동향 분석이 특히 유용해요. 큰 손들의 움직임을 미리 파악할 수 있어서 좋습니다."',name:'박** 님',sub:'6개월 사용 · +45%'},
+        ].map(({init,c,text,name,sub}) => (
+          <div style={`padding:20px;border-radius:16px;background:rgba(${c},.03);border:1px solid rgba(${c},.08);transition:all .3s;`}
+               onmouseover={`this.style.borderColor='rgba(${c},.18)';this.style.transform='translateY(-2px)';`}
+               onmouseout={`this.style.borderColor='rgba(${c},.08)';this.style.transform='';`}>
+            <div style="color:rgb(251,191,36);font-size:.72rem;margin-bottom:10px;">★★★★★</div>
+            <p style="color:rgba(203,213,225,.8);font-size:.8rem;line-height:1.7;margin-bottom:16px;">{text}</p>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style={`width:32px;height:32px;border-radius:50%;background:rgba(${c},.1);border:1px solid rgba(${c},.2);display:flex;align-items:center;justify-content:center;color:rgb(${c});font-size:.75rem;font-weight:600;`}>{init}</div>
+              <div>
+                <div style="color:white;font-size:.78rem;font-weight:500;">{name}</div>
+                <div style="color:rgba(100,116,139,.7);font-size:.68rem;">{sub}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BOTTOM CTA ── -->
+  <section style="padding:80px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,182,212,.04),transparent);pointer-events:none;"></div>
+    <div style="max-width:520px;margin:0 auto;position:relative;z-index:1;">
+      <div style="border-radius:24px;padding:36px 32px;text-align:center;border:1px solid rgba(6,182,212,.15);background:linear-gradient(160deg,rgba(6,182,212,.04) 0%,rgba(59,130,246,.03) 50%,transparent 100%);box-shadow:0 0 80px rgba(6,182,212,.06);">
+        <h2 style="color:white;font-size:clamp(1.5rem,4vw,2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:10px;">지금 바로 시작하세요</h2>
+        <p style="color:rgba(148,163,184,.7);font-size:.85rem;margin-bottom:6px;">무료로 AI 주식 분석 리포트를 받아보세요</p>
+        <p style="color:rgb(248,113,113);font-weight:600;font-size:1rem;margin-bottom:28px;">선착순 <span id="limitSlots" style="font-variant-numeric:tabular-nums;">150</span>명 한정</p>
+
+        <div style="position:relative;margin-bottom:12px;">
+          <input id="ctaInput" type="text" autocomplete="off"
+                 placeholder="종목코드 또는 종목명 입력"
+                 style="width:100%;padding:15px 18px;background:rgba(8,15,35,.8);border:1px solid rgba(71,85,105,.5);border-radius:14px;color:white;font-size:.9rem;outline:none;transition:all .3s;box-sizing:border-box;"
+                 onfocus="this.style.borderColor='rgba(6,182,212,.5)';this.style.boxShadow='0 0 20px rgba(6,182,212,.06)'"
+                 onblur="this.style.borderColor='rgba(71,85,105,.5)';this.style.boxShadow=''"/>
+          <div id="ctaDropdown" style="position:absolute;top:calc(100% + 8px);left:0;right:0;background:rgba(8,15,35,.95);border:1px solid rgba(6,182,212,.18);border-radius:14px;max-height:280px;overflow-y:auto;z-index:50;box-shadow:0 24px 60px rgba(0,0,0,.7);display:none;backdrop-filter:blur(16px);"></div>
+        </div>
+
+        <button id="ctaBtn"
+                style="width:100%;padding:15px;border-radius:14px;background:linear-gradient(135deg,rgb(6,182,212),rgb(59,130,246));color:white;font-weight:600;font-size:.92rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .25s;box-shadow:0 8px 32px rgba(6,182,212,.3);"
+                onmouseover="this.style.boxShadow='0 12px 40px rgba(6,182,212,.5)';this.style.transform='translateY(-1px)'"
+                onmouseout="this.style.boxShadow='0 8px 32px rgba(6,182,212,.3)';this.style.transform=''">
+          무료 AI 진단 받기
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </button>
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:20px;">
+          {['100% 무료','즉시 분석','카카오톡 전송'].map(t => (
+            <div style="display:flex;align-items:center;gap:6px;color:rgba(148,163,184,.6);font-size:.78rem;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgb(6,182,212)" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+              {t}
+            </div>
+          ))}
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:20px;color:rgba(55,65,81,.9);font-size:.67rem;line-height:1.7;max-width:400px;margin-left:auto;margin-right:auto;">
+        본 서비스는 투자 권유가 아닌 정보 제공 목적입니다. 투자의 최종 결정은 본인의 판단에 따라야 하며, 그 결과에 대한 책임은 투자자 본인에게 있습니다.
+      </p>
+    </div>
+  </section>
+
+</div><!-- /z-index:1 -->
+
+<!-- ═══════════════ JS ═══════════════ -->
+<script is:inline>
+const stockData=[
+  {c:'005930',n:'삼성전자'},{c:'000660',n:'SK하이닉스'},{c:'005380',n:'현대차'},
+  {c:'035420',n:'NAVER'},{c:'035720',n:'카카오'},{c:'051910',n:'LG화학'},
+  {c:'006400',n:'삼성SDI'},{c:'003670',n:'포스코홀딩스'},{c:'068270',n:'셀트리온'},
+  {c:'000270',n:'기아'},{c:'207940',n:'삼성바이오로직스'},{c:'012330',n:'현대모비스'},
+  {c:'028260',n:'삼성물산'},{c:'066570',n:'LG전자'},{c:'003550',n:'LG'},
+  {c:'017670',n:'SK텔레콤'},{c:'096770',n:'SK이노베이션'},{c:'034730',n:'SK'},
+  {c:'009150',n:'삼성전기'},{c:'055550',n:'신한지주'},{c:'105560',n:'KB금융'},
+  {c:'086790',n:'하나금융지주'},{c:'316140',n:'우리금융지주'},{c:'015760',n:'한국전력'},
+  {c:'036570',n:'엔씨소프트'},{c:'251270',n:'넷마블'},{c:'259960',n:'크래프톤'},
+  {c:'352820',n:'하이브'},{c:'041510',n:'SM'},
+]
+
+// ── 파티클 캔버스 배경 ──
+;(function initCanvas(){
+  const canvas=document.getElementById('bgCanvas')
+  if(!canvas)return
+  const ctx=canvas.getContext('2d')
+  let W,H,pts=[]
+  const N=85,DIST=130,COL='rgba(6,182,212,'
+  function resize(){
+    W=canvas.width=window.innerWidth
+    H=canvas.height=window.innerHeight
+  }
+  function makePts(){
+    pts=[]
+    for(let i=0;i<N;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.38,vy:(Math.random()-.5)*.38,r:Math.random()*1.5+.5})
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H)
+    // update
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy
+      if(p.x<0||p.x>W)p.vx*=-1
+      if(p.y<0||p.y>H)p.vy*=-1
+    })
+    // lines
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y
+        const d=Math.sqrt(dx*dx+dy*dy)
+        if(d<DIST){
+          ctx.beginPath()
+          ctx.moveTo(pts[i].x,pts[i].y)
+          ctx.lineTo(pts[j].x,pts[j].y)
+          ctx.strokeStyle=COL+(1-d/DIST)*.18+')'
+          ctx.lineWidth=.6
+          ctx.stroke()
+        }
+      }
+    }
+    // dots
+    pts.forEach(p=>{
+      ctx.beginPath()
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+      ctx.fillStyle=COL+'.55)'
+      ctx.fill()
+    })
+    requestAnimationFrame(draw)
+  }
+  resize(); makePts(); draw()
+  window.addEventListener('resize',()=>{resize();makePts()})
+})()
+
+// ── 자동완성 ──
+function setupAC(inputId,dropdownId){
+  const input=document.getElementById(inputId), dd=document.getElementById(dropdownId)
+  if(!input||!dd)return
+  input.addEventListener('input',function(){
+    const val=this.value.trim()
+    if(!val){dd.style.display='none';return}
+    const upper=val.toUpperCase()
+    const matches=stockData.filter(s=>s.c.includes(upper)||s.n.toUpperCase().includes(upper))
+    if(!matches.length){dd.style.display='none';return}
+    dd.innerHTML=matches.slice(0,8).map(item=>
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.06)'" onmouseout="this.style.background=''" data-name="${item.n}">
+         <span style="color:rgba(6,182,212,.5);font-family:monospace;font-size:.72rem;">${item.c}</span>
+         <span style="color:white;font-size:.85rem;">${item.n}</span>
+       </div>`
+    ).join('')
+    dd.style.display='block'
+    dd.querySelectorAll('[data-name]').forEach(el=>{
+      el.addEventListener('click',function(){
+        input.value=this.getAttribute('data-name')
+        dd.style.display='none'
+      })
+    })
+  })
+  document.addEventListener('click',e=>{
+    if(!input.contains(e.target)&&!dd.contains(e.target))dd.style.display='none'
+  })
+}
+
+// ── 모달 ──
+function openModal(name){
+  const modal=document.getElementById('modal')
+  const loading=document.getElementById('modalLoading')
+  const result=document.getElementById('modalResult')
+  document.getElementById('resultStock').textContent=name
+  loading.style.display='block'
+  result.style.display='none'
+  document.body.style.overflow='hidden'
+  requestAnimationFrame(()=>{
+    modal.style.opacity='1'
+    modal.style.pointerEvents='auto'
+  })
+  const bar=document.getElementById('progressBar')
+  bar.style.width='0%'
+  setTimeout(()=>bar.style.width='100%',80)
+  document.querySelectorAll('#steps>div').forEach((s,i)=>{
+    s.style.opacity='0'; s.style.color='#374151'
+    setTimeout(()=>{s.style.opacity='1'; s.style.color='rgba(6,182,212,.75)'},i*680)
+  })
+  setTimeout(()=>{loading.style.display='none'; result.style.display='block'},3800)
+}
+function closeModal(){
+  const modal=document.getElementById('modal')
+  modal.style.opacity='0'
+  setTimeout(()=>modal.style.pointerEvents='none',280)
+  document.body.style.overflow=''
+}
+function startAnalysis(inputId){
+  const input=document.getElementById(inputId)
+  if(!input)return
+  const val=input.value.trim()
+  if(!val){alert('종목을 입력해주세요');return}
+  const valid=stockData.some(s=>s.n===val||s.c===val)
+  if(!valid){alert('종목을 찾을 수 없습니다');return}
+  openModal(val)
+}
+
+// ── 통계 ──
+function runStats(){
+  const totalEl=document.getElementById('totalUsers')
+  const limitEl=document.getElementById('limitSlots')
+  const dateEl=document.getElementById('updateDate')
+  if(totalEl){let n=12847;setInterval(()=>{n+=Math.floor(Math.random()*4)+1;totalEl.textContent=n.toLocaleString()},2800)}
+  if(limitEl){let s=150;setInterval(()=>{if(s>0){s=Math.max(0,s-(Math.floor(Math.random()*2)+1));limitEl.textContent=s}},3500)}
+  if(dateEl){const d=new Date();d.setDate(d.getDate()-1);dateEl.textContent=`${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()} 15:00`}
+}
+
+// ── 초기화 ──
+document.addEventListener('DOMContentLoaded',()=>{
+  setupAC('heroInput','heroDropdown')
+  setupAC('ctaInput','ctaDropdown')
+  runStats()
+  document.getElementById('heroBtn').addEventListener('click',()=>startAnalysis('heroInput'))
+  document.getElementById('ctaBtn').addEventListener('click',()=>startAnalysis('ctaInput'))
+  document.getElementById('heroInput').addEventListener('keydown',e=>{if(e.key==='Enter')startAnalysis('heroInput')})
+  document.getElementById('ctaInput').addEventListener('keydown',e=>{if(e.key==='Enter')startAnalysis('ctaInput')})
+  document.getElementById('modalClose').addEventListener('click',closeModal)
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
+  document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal()})
+  const wrap=document.getElementById('heroInputWrap'), inp=document.getElementById('heroInput')
+  if(wrap&&inp){
+    inp.addEventListener('focus',()=>{wrap.style.borderColor='rgba(6,182,212,.45)';wrap.style.boxShadow='0 0 0 3px rgba(6,182,212,.07),0 8px 40px rgba(0,0,0,.4)'})
+    inp.addEventListener('blur',()=>{wrap.style.borderColor='rgba(71,85,105,.5)';wrap.style.boxShadow='0 8px 40px rgba(0,0,0,.4)'})
+  }
+})
+</script>
+
+<!-- ═══════════════ GLOBAL CSS ═══════════════ -->
+<style is:global>
+  body { background:#030712; }
+
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.85)} }
+  @keyframes pulseIcon { 0%,100%{transform:scale(1);opacity:.8} 50%{transform:scale(1.06);opacity:1} }
+
+  @keyframes aurora1 {
+    0%,100%{transform:translate(0,0) scale(1)}
+    33%{transform:translate(5%,3%) scale(1.08)}
+    66%{transform:translate(-3%,5%) scale(.95)}
+  }
+  @keyframes aurora2 {
+    0%,100%{transform:translate(0,0) scale(1)}
+    40%{transform:translate(-6%,-4%) scale(1.1)}
+    70%{transform:translate(4%,-2%) scale(.92)}
+  }
+  @keyframes aurora3 {
+    0%,100%{transform:translate(0,0)}
+    50%{transform:translate(8%,-6%)}
+  }
+  @keyframes scrollFeed {
+    0%{transform:translateY(0)}
+    100%{transform:translateY(-50%)}
+  }
+</style>
+
+</BaseLayout>
