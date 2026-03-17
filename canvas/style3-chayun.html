@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=420, initial-scale=1.0">
+<title>Style 3 — 茶韵 (Chayun) 高端韩式禅意风</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --parchment: #F0EBE0;
+    --parchment2: #E8E0D0;
+    --forest: #2C3E2D;
+    --forest2: #3A5240;
+    --forest3: #4D6B52;
+    --gold: #C49A3C;
+    --gold2: #D4AE5A;
+    --gold-light: #E8C97A;
+    --sage: #8BA888;
+    --ink: #1C2B1E;
+    --ink-mid: #3D4F3E;
+    --ink-light: #6B7E6C;
+    --ink-muted: #9AA898;
+    --rule: rgba(44, 62, 45, 0.12);
+    --rule-gold: rgba(196, 154, 60, 0.2);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Gowun Batang', serif;
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Subtle grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    padding: 20px 24px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .logo-mark {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-kr {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--forest);
+    letter-spacing: 0.15em;
+  }
+
+  .logo-sub {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .header-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule-gold);
+    background: rgba(196,154,60,0.06);
+  }
+
+  .header-badge-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: glow 2.5s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%,100% { opacity: 0.6; box-shadow: 0 0 0 0 transparent; }
+    50% { opacity: 1; box-shadow: 0 0 6px var(--gold-light); }
+  }
+
+  .header-badge-text {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 40px 24px 0;
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Botanical SVG decoration */
+  .botanical {
+    position: absolute;
+    right: -20px;
+    top: 20px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .botanical-2 {
+    position: absolute;
+    left: -30px;
+    bottom: 30px;
+    width: 130px;
+    height: 130px;
+    opacity: 0.06;
+    pointer-events: none;
+    transform: scaleX(-1) rotate(20deg);
+  }
+
+  /* Vertical text accent */
+  .vertical-accent {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    writing-mode: vertical-rl;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    opacity: 0.5;
+  }
+
+  .hero-season {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-season::before, .hero-season::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--rule-gold);
+    max-width: 32px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--forest2);
+  }
+
+  .hero-title-kr {
+    font-family: 'Gowun Batang', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--ink-light);
+    letter-spacing: 0.12em;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--ink-mid);
+    font-weight: 300;
+    margin-bottom: 28px;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-desc strong {
+    color: var(--forest);
+    font-weight: 600;
+  }
+
+  /* CTA Button — minimal, refined */
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--forest);
+    color: var(--parchment);
+    font-family: 'Gowun Batang', serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    transition: background 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .cta-btn:hover { background: var(--forest2); }
+  .cta-btn:hover::after { transform: translateX(100%); }
+
+  .cta-btn-arrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    opacity: 0.6;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .cta-btn:hover .cta-btn-arrow {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+
+  .cta-note {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    margin-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* ===== DIVIDER ===== */
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    padding: 28px 24px;
+    gap: 12px;
+  }
+
+  .ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rule-gold), transparent);
+  }
+
+  .ornament-symbol {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  /* ===== PHILOSOPHY SECTION ===== */
+  .philosophy {
+    padding: 0 24px 32px;
+  }
+
+  .section-eyebrow {
+    font-size: 8.5px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule-gold);
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .philosophy-item {
+    padding: 20px;
+    background: var(--parchment);
+    border: 1px solid var(--rule);
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .philosophy-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+
+  .philosophy-item:hover { border-color: var(--rule-gold); box-shadow: 0 4px 20px rgba(44,62,45,0.06); }
+  .philosophy-item:hover::before { transform: scaleY(1); }
+
+  .phil-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+
+  .phil-title {
+    font-family: 'Gowun Batang', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .phil-body {
+    font-size: 11.5px;
+    line-height: 1.85;
+    color: var(--ink-light);
+    font-weight: 300;
+  }
+
+  /* ===== NUMBERS SECTION ===== */
+  .numbers-section {
+    background: var(--forest);
+    padding: 36px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .numbers-section::before {
+    content: '信';
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.025);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .numbers-eyebrow {
+    font-size: 8.5px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .numbers-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(196,154,60,0.25);
+  }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 28px;
+  }
+
+  .number-cell {
+    background: var(--forest);
+    padding: 20px 16px;
+    position: relative;
+  }
+
+  .number-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--parchment);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .number-val sup {
+    font-size: 16px;
+    color: var(--gold);
+    vertical-align: super;
+  }
+
+  .number-label {
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    color: rgba(240,235,224,0.45);
+    text-transform: uppercase;
+  }
+
+  .numbers-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(240,235,224,0.7);
+    line-height: 1.7;
+    text-align: center;
+    padding: 0 8px;
+    position: relative;
+  }
+
+  .numbers-quote::before {
+    content: '"';
+    display: block;
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonial-section {
+    padding: 32px 24px;
+    background: var(--parchment);
+  }
+
+  .testimonial-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .test-serif-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    color: var(--gold);
+    opacity: 0.25;
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    line-height: 1;
+  }
+
+  .test-text {
+    font-size: 12.5px;
+    line-height: 1.9;
+    color: var(--ink-mid);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 14px;
+    padding-top: 8px;
+  }
+
+  .test-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .test-name {
+    font-size: 10.5px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+  }
+
+  .test-return {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--forest2);
+  }
+
+  /* ===== INVITATION SECTION ===== */
+  .invitation {
+    padding: 36px 24px 40px;
+    text-align: center;
+    background: var(--cream);
+    position: relative;
+  }
+
+  .invitation::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 24px; right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rule-gold), transparent);
+  }
+
+  .invitation-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .invitation-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .invitation-title em {
+    font-style: italic;
+    color: var(--forest);
+  }
+
+  .invitation-subtitle {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--ink-light);
+    font-weight: 300;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+
+  .invitation-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .inv-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .inv-leaf {
+    color: var(--sage);
+    font-size: 12px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .inv-text {
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    font-weight: 300;
+  }
+
+  .inv-text strong { color: var(--ink); font-weight: 600; }
+
+  /* Limited spots indicator */
+  .limited-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .limited-track {
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: var(--rule-gold);
+    position: relative;
+    overflow: visible;
+  }
+
+  .limited-fill {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 72%;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  .limited-text {
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .limited-count { color: var(--forest); font-weight: 700; }
+
+  /* Kakao CTA - styled elegantly */
+  .kakao-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    background: #FEE500;
+    color: #1A1200;
+    font-family: 'Gowun Batang', serif;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    transition: filter 0.2s, box-shadow 0.2s;
+    margin-bottom: 12px;
+  }
+
+  .kakao-cta:hover {
+    filter: brightness(0.97);
+    box-shadow: 0 6px 24px rgba(196,154,60,0.15);
+  }
+
+  .kakao-icon {
+    font-size: 18px;
+  }
+
+  .forest-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-light);
+    font-family: 'Gowun Batang', serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s;
+  }
+
+  .forest-cta:hover {
+    border-color: var(--forest3);
+    color: var(--forest);
+  }
+
+  .disclaimer {
+    font-size: 8.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--forest);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--parchment);
+    letter-spacing: 0.3em;
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+
+  .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: rgba(196,154,60,0.3);
+    margin: 10px auto 10px;
+  }
+
+  .footer-text {
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    color: rgba(240,235,224,0.3);
+    line-height: 1.8;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 43, 30, 0.88);
+    backdrop-filter: blur(8px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal-box {
+    background: var(--cream);
+    padding: 36px 28px 28px;
+    width: 88%;
+    max-width: 340px;
+    text-align: center;
+    position: relative;
+    transform: translateY(16px);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid var(--rule);
+  }
+
+  .modal-overlay.open .modal-box { transform: translateY(0); }
+
+  .modal-box::before, .modal-box::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+  }
+  .modal-box::before {
+    top: 6px; left: 6px;
+    border-top: 1px solid var(--gold);
+    border-left: 1px solid var(--gold);
+  }
+  .modal-box::after {
+    bottom: 6px; right: 6px;
+    border-bottom: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 12px; right: 16px;
+    background: none; border: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--ink-muted);
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--forest); }
+
+  .modal-seal {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--forest);
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+  }
+
+  .modal-eyebrow {
+    font-size: 8.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .modal-title em { font-style: italic; color: var(--forest); }
+
+  .modal-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--rule-gold);
+    margin: 0 auto 14px;
+  }
+
+  .modal-body {
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--ink-light);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .modal-kakao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    background: #FEE500;
+    color: #1A1200;
+    font-family: 'Gowun Batang', serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: filter 0.2s;
+  }
+  .modal-kakao:hover { filter: brightness(0.97); }
+
+  .modal-sub {
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+
+  /* Fade-in animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero { animation: fadeIn 0.8s ease both; }
+  .philosophy { animation: fadeIn 0.8s 0.15s ease both; }
+  .numbers-section { animation: fadeIn 0.8s 0.2s ease both; }
+  .testimonial-section { animation: fadeIn 0.8s 0.25s ease both; }
+  .invitation { animation: fadeIn 0.8s 0.3s ease both; }
+
+  /* Intersection Observer animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="logo-mark">
+    <div class="logo-kr">Harvest Capital</div>
+    <div class="logo-sub">투자 멘토링 채널</div>
+  </div>
+  <div class="header-badge">
+    <div class="header-badge-dot"></div>
+    <span class="header-badge-text">무료 상담 중</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Botanical decoration -->
+  <svg class="botanical" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 180 Q80 140 60 100 Q40 60 80 30 Q100 15 120 30 Q160 50 140 90 Q130 115 100 180Z" fill="var(--forest)" opacity="0.8"/>
+    <path d="M100 180 Q110 145 125 110 Q140 75 160 55 Q145 80 130 105 Q115 130 100 180Z" fill="var(--forest)" opacity="0.4"/>
+    <path d="M100 180 Q88 150 72 120 Q55 88 65 60 Q78 80 88 105 Q96 128 100 180Z" fill="var(--forest)" opacity="0.4"/>
+    <!-- stems -->
+    <line x1="100" y1="100" x2="80" y2="55" stroke="var(--forest)" stroke-width="1" opacity="0.3"/>
+    <line x1="100" y1="100" x2="130" y2="60" stroke="var(--forest)" stroke-width="1" opacity="0.3"/>
+    <path d="M60 85 Q70 72 82 78 Q68 78 60 85Z" fill="var(--forest)" opacity="0.5"/>
+    <path d="M140 70 Q148 55 132 50 Q148 52 140 70Z" fill="var(--forest)" opacity="0.5"/>
+  </svg>
+
+  <svg class="botanical-2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 180 Q80 140 60 100 Q40 60 80 30 Q100 15 120 30 Q160 50 140 90 Q130 115 100 180Z" fill="var(--forest)" opacity="0.8"/>
+  </svg>
+
+  <div class="vertical-accent">봄 · 2026 · 투자의 계절</div>
+
+  <div class="hero-season">봄 · 春 · Spring 2026</div>
+
+  <h1 class="hero-title">
+    당신의 자산을<br>
+    <em>조용히 가꾸다</em>
+  </h1>
+
+  <div class="hero-title-kr">현명한 투자자의 첫 번째 선택</div>
+
+  <p class="hero-desc">
+    소음이 아닌 <strong>신호</strong>를 따르는 투자.<br>
+    25년 경력 전문가가 매일 아침,<br>
+    당신의 자산이 자라도록 돕겠습니다.
+  </p>
+
+  <button class="cta-btn" onclick="openModal()">
+    <span>지금 멘토링 시작하기</span>
+    <span class="cta-btn-arrow">→</span>
+  </button>
+  <div class="cta-note">무료 · 카카오톡 · 즉시 연결</div>
+</section>
+
+<!-- ORNAMENT -->
+<div class="ornament-divider">
+  <div class="ornament-line"></div>
+  <div class="ornament-symbol">✦</div>
+  <div class="ornament-line"></div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy reveal">
+  <div class="section-eyebrow">철학 · Philosophy</div>
+  <div class="philosophy-grid">
+    <div class="philosophy-item">
+      <div class="phil-num">I.</div>
+      <div class="phil-title">느린 확신이 빠른 후회를 이긴다</div>
+      <p class="phil-body">충동적인 매매 대신, 데이터에 근거한 확신이 설 때만 움직이는 원칙. 우리 채널 구독자의 평균 보유 기간은 47일, 평균 수익률은 +29.4%입니다.</p>
+    </div>
+    <div class="philosophy-item">
+      <div class="phil-num">II.</div>
+      <div class="phil-title">정보의 밀도보다 판단의 질</div>
+      <p class="phil-body">하루 수백 개의 리포트가 아닌, 엄선된 3개의 인사이트. 무엇을 읽을지가 아니라 어떻게 생각할지를 배웁니다.</p>
+    </div>
+    <div class="philosophy-item">
+      <div class="phil-num">III.</div>
+      <div class="phil-title">지식의 나눔이 함께의 수익으로</div>
+      <p class="phil-body">기관투자자가 독점하던 정보를 개인 투자자에게. 공정한 시장을 위한 우리의 약속입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section reveal">
+  <div class="numbers-eyebrow">신뢰의 수치</div>
+
+  <div class="numbers-grid">
+    <div class="number-cell">
+      <div class="number-val"><span id="memberNum">14</span><sup>k+</sup></div>
+      <div class="number-label">누적 구독자</div>
+    </div>
+    <div class="number-cell">
+      <div class="number-val">+29<sup>%</sup></div>
+      <div class="number-label">평균 수익률</div>
+    </div>
+    <div class="number-cell">
+      <div class="number-val">94<sup>%</sup></div>
+      <div class="number-label">추천 적중률</div>
+    </div>
+    <div class="number-cell">
+      <div class="number-val">5<sup>년+</sup></div>
+      <div class="number-label">운영 기간</div>
+    </div>
+  </div>
+
+  <div class="numbers-quote">
+    현명한 투자는 빠른 것이 아니라,<br>
+    꾸준히 옳은 것입니다
+  </div>
+</section>
+
+<!-- ORNAMENT -->
+<div class="ornament-divider" style="background:var(--parchment);">
+  <div class="ornament-line"></div>
+  <div class="ornament-symbol">❧</div>
+  <div class="ornament-line"></div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section reveal">
+  <div class="section-eyebrow">구독자 이야기</div>
+
+  <div class="testimonial-card">
+    <div class="test-serif-quote">"</div>
+    <p class="test-text">
+      처음에는 정보가 너무 많아서 무엇을 봐야 할지 몰랐어요. 이 채널을 시작하고 나서 하루 10분만 집중하면 됩니다. 단순한데 왜 이렇게 잘 맞는지 신기할 따름이에요.
+    </p>
+    <div class="test-footer">
+      <div class="test-name">이○○ 님 · 40대 · 주부</div>
+      <div class="test-return">+38%</div>
+    </div>
+  </div>
+
+  <div class="testimonial-card">
+    <div class="test-serif-quote">"</div>
+    <p class="test-text">
+      25년 경험에서 나오는 판단이 다릅니다. 다른 채널에서는 "매수"만 외치는데, 여기는 "지금은 기다리세요"도 솔직하게 말해줘요. 그 신뢰 하나로 1년을 함께했습니다.
+    </p>
+    <div class="test-footer">
+      <div class="test-name">박○○ 님 · 50대 · 자영업</div>
+      <div class="test-return">+51%</div>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION -->
+<section class="invitation reveal">
+  <div class="invitation-eyebrow">초대 · Invitation</div>
+
+  <h2 class="invitation-title">
+    조용하고 <em>꾸준한</em><br>
+    성장의 길로
+  </h2>
+
+  <p class="invitation-subtitle">
+    매일 아침 7시, 오늘 주목해야 할<br>
+    단 하나의 인사이트가 도착합니다.
+  </p>
+
+  <div class="invitation-features">
+    <div class="inv-feature">
+      <span class="inv-leaf">❧</span>
+      <p class="inv-text"><strong>오늘의 핵심 종목 분석</strong> — 매일 아침 1개 종목을 심층 분석해 카카오톡으로 발송</p>
+    </div>
+    <div class="inv-feature">
+      <span class="inv-leaf">❧</span>
+      <p class="inv-text"><strong>주간 포트폴리오 전략</strong> — 매주 월요일 이번 주 시장 전망과 배분 전략 제공</p>
+    </div>
+    <div class="inv-feature">
+      <span class="inv-leaf">❧</span>
+      <p class="inv-text"><strong>1:1 질문 응답</strong> — 구독자 전용 채팅방에서 전문가에게 직접 질문 가능</p>
+    </div>
+  </div>
+
+  <div class="limited-wrap">
+    <div class="limited-track">
+      <div class="limited-fill"></div>
+    </div>
+    <span class="limited-text">잔여 정원 <span class="limited-count" id="remainSpots">42</span>명</span>
+  </div>
+
+  <button class="kakao-cta" onclick="openModal()">
+    <span class="kakao-icon">💬</span>
+    카카오톡 채널 구독하기
+  </button>
+
+  <button class="forest-cta" onclick="openModal()">
+    밴드 채널로 참여하기
+  </button>
+
+  <p class="disclaimer">
+    본 채널은 투자 권유를 목적으로 하지 않으며, 정보 제공만을 위한 것입니다.<br>
+    투자 결정에 대한 책임은 전적으로 투자자 본인에게 있습니다.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Harvest Capital</div>
+  <div class="footer-rule"></div>
+  <p class="footer-text">
+    매일 아침 7시, 당신의 투자를 깨웁니다.<br>
+    © 2026 Harvest Capital · 투자 멘토링 채널
+  </p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-seal">HC</div>
+    <div class="modal-eyebrow">구독 신청</div>
+    <h3 class="modal-title">
+      카카오톡 채널에서<br>
+      <em>멘토링을 시작하세요</em>
+    </h3>
+    <div class="modal-divider"></div>
+    <p class="modal-body">
+      친구 추가 후 <strong>"구독 신청"</strong>이라고<br>
+      메시지를 보내주시면 됩니다.<br><br>
+      ❧ 오늘의 핵심 인사이트 즉시 발송<br>
+      ❧ 지난 30일치 리포트 무료 제공<br>
+      ❧ 언제든 구독 해지 가능
+    </p>
+    <a href="javascript:void(0)" class="modal-kakao">
+      💬 카카오톡 채널 친구추가
+    </a>
+    <p class="modal-sub">친구추가 후 "구독 신청" 입력</p>
+  </div>
+</div>
+
+<script>
+// Modal
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Intersection Observer for reveal animations
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+
+// Animated member count
+let members = 14823;
+setInterval(() => {
+  members += Math.floor(Math.random() * 2) + 1;
+  const k = Math.floor(members / 1000);
+  document.getElementById('memberNum').textContent = k;
+}, 3000);
+
+// Remaining spots slow countdown
+let spots = 42;
+setInterval(() => {
+  if (spots > 18 && Math.random() > 0.75) {
+    spots--;
+    document.getElementById('remainSpots').textContent = spots;
+  }
+}, 5000);
+</script>
+
+</body>
+</html>

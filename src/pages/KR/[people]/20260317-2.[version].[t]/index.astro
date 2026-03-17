@@ -1,0 +1,428 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), ['安迪李_0'])
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+---
+
+<KRBaseLayout title={`${name} — 투자 챌린지 2026`} description="AI가 당신의 투자 점수를 평가합니다">
+  <style is:global slot="head">
+    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
+
+    :root {
+      --gg-black: #000000;
+      --gg-gray: #1A1A1A;
+      --gg-gray2: #2A2A2A;
+      --gg-red: #E8000F;
+      --gg-red2: #FF1A26;
+      --gg-gold: #FFD600;
+      --gg-white: #FFFFFF;
+      --gg-dim: rgba(255,255,255,0.55);
+      --gg-muted: #888;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--gg-black); color: var(--gg-white);
+      font-family: 'Noto Sans KR', sans-serif;
+      max-width: 420px; margin: 0 auto; min-height: 100vh; overflow-x: hidden;
+    }
+    /* HERO */
+    .gg-hero {
+      min-height: 100svh; background: var(--gg-black);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 32px;
+    }
+    .gg-shard1 {
+      position: absolute; inset: 0;
+      background: linear-gradient(148deg, transparent 0%, transparent 40%, var(--gg-red) 40%, var(--gg-red) 58%, transparent 58%);
+      opacity: 0.1;
+    }
+    .gg-shard2 {
+      position: absolute; inset: 0;
+      background: linear-gradient(148deg, transparent 55%, var(--gg-red) 55%, var(--gg-red) 64%, transparent 64%);
+      opacity: 0.05;
+    }
+    .gg-scanlines {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.01) 2px, rgba(255,255,255,0.01) 4px);
+      pointer-events: none;
+    }
+    .gg-bg-num {
+      position: absolute; top: -20px; right: -20px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 240px; line-height: 1;
+      color: var(--gg-white); opacity: 0.025; user-select: none; pointer-events: none;
+    }
+    /* LIVE BADGE */
+    .gg-live {
+      position: absolute; top: 20px; left: 16px;
+      display: flex; align-items: center; gap: 6px;
+      background: var(--gg-red); padding: 4px 10px 4px 8px; z-index: 10;
+    }
+    .gg-live-dot { width: 7px; height: 7px; border-radius: 50%; background: white; animation: gg-blink 1s ease-in-out infinite; }
+    @keyframes gg-blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .gg-live-text { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; }
+    /* SCORE BADGE */
+    .gg-score-badge { position: absolute; top: 16px; right: 16px; text-align: right; z-index: 10; }
+    .gg-score-label { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: var(--gg-muted); text-transform: uppercase; }
+    .gg-score-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--gg-gold); line-height: 1; }
+    /* HERO CONTENT */
+    .gg-hero-content { position: relative; z-index: 10; padding: 0 16px; }
+    .gg-overline {
+      font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 0.25em; color: var(--gg-red); text-transform: uppercase;
+      margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+    }
+    .gg-overline::before { content: ''; display: block; width: 24px; height: 2px; background: var(--gg-red); }
+    .gg-h1 {
+      font-family: 'Black Han Sans', sans-serif; font-size: 52px; line-height: 0.95;
+      letter-spacing: -0.02em; margin-bottom: 6px;
+    }
+    .gg-h1 span { color: var(--gg-red); }
+    .gg-sub { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 400; color: var(--gg-dim); letter-spacing: 0.08em; margin-bottom: 20px; }
+    /* SCORE BAR */
+    .gg-bar-wrap { margin-bottom: 20px; }
+    .gg-bar-labels { display: flex; justify-content: space-between; font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: var(--gg-muted); text-transform: uppercase; margin-bottom: 5px; }
+    .gg-bar-track { width: 100%; height: 6px; background: var(--gg-gray2); overflow: hidden; }
+    .gg-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gg-red), var(--gg-gold)); width: 0%; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+    /* BUTTONS */
+    .gg-btn-primary {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 18px; background: var(--gg-red); color: white;
+      font-family: 'Black Han Sans', sans-serif; font-size: 16px; letter-spacing: 0.02em;
+      cursor: pointer; border: none; width: 100%; position: relative; overflow: hidden; transition: background 0.2s;
+    }
+    .gg-btn-primary:hover { background: var(--gg-red2); }
+    .gg-btn-primary .arrow { font-size: 18px; }
+    .gg-btn-secondary { padding: 13px 18px; background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-family: 'Oswald', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-align: center; width: 100%; margin-top: 8px; }
+    .gg-btn-secondary:hover { border-color: rgba(255,255,255,0.4); color: white; }
+    /* EXPERT CARD */
+    .gg-expert {
+      margin: 0 16px 24px; border: 1px solid rgba(232,0,15,0.3);
+      background: rgba(232,0,15,0.04); padding: 16px;
+      display: flex; gap: 14px; align-items: center; position: relative;
+    }
+    .gg-expert::before, .gg-expert::after { content: ''; position: absolute; width: 14px; height: 14px; border-color: var(--gg-red); border-style: solid; }
+    .gg-expert::before { top:-1px; left:-1px; border-width: 2px 0 0 2px; }
+    .gg-expert::after { bottom:-1px; right:-1px; border-width: 0 2px 2px 0; }
+    .gg-expert-img { width: 68px; height: 68px; border-radius: 0; object-fit: cover; flex-shrink: 0; border: 2px solid var(--gg-red); }
+    .gg-expert-title { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: var(--gg-red); text-transform: uppercase; margin-bottom: 4px; }
+    .gg-expert-name { font-family: 'Black Han Sans', sans-serif; font-size: 20px; color: white; margin-bottom: 6px; }
+    .gg-expert-stats { display: flex; gap: 12px; }
+    .gg-stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gg-gold); display: block; line-height: 1; }
+    .gg-stat-label { font-family: 'Oswald', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: var(--gg-muted); }
+    /* SECTION HEADER */
+    .gg-section-header { display: flex; align-items: center; padding: 20px 16px 12px; gap: 10px; }
+    .gg-section-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: rgba(255,255,255,0.06); line-height: 1; }
+    .gg-section-en { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: var(--gg-red); text-transform: uppercase; display: block; }
+    .gg-section-kr { font-family: 'Black Han Sans', sans-serif; font-size: 20px; color: white; line-height: 1.1; }
+    /* RANK */
+    .gg-rank-section { background: var(--gg-gray); }
+    .gg-rank-list { padding: 0 16px 16px; }
+    .gg-rank-item {
+      display: flex; align-items: center; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06); cursor: pointer;
+    }
+    .gg-rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: rgba(255,255,255,0.15); width: 28px; text-align: center; flex-shrink: 0; }
+    .gg-rank-item.top1 .gg-rank-num { color: var(--gg-gold); font-size: 26px; }
+    .gg-rank-item.top2 .gg-rank-num { color: #C0C0C0; }
+    .gg-rank-item.top3 .gg-rank-num { color: #CD7F32; }
+    .gg-rank-name { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700; color: white; margin-bottom: 5px; }
+    .gg-rank-track { width: 100%; height: 4px; background: rgba(255,255,255,0.06); overflow: hidden; }
+    .gg-rank-fill { height: 100%; background: var(--gg-red); width: 0%; transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+    .gg-rank-item.top1 .gg-rank-fill { background: linear-gradient(90deg, var(--gg-red), var(--gg-gold)); }
+    .gg-rank-stat { text-align: right; flex-shrink: 0; }
+    .gg-rank-pct { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: var(--gg-gold); display: block; }
+    .gg-rank-period { font-size: 9px; color: var(--gg-muted); }
+    /* STATS BOARD */
+    .gg-stats-board { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.04); }
+    .gg-stat-cell { background: var(--gg-gray); padding: 12px 14px; }
+    .gg-stat-cell-val { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: white; line-height: 1; display: block; margin-bottom: 2px; }
+    .gg-stat-cell-val.gold { color: var(--gg-gold); }
+    .gg-stat-cell-label { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.12em; color: var(--gg-muted); text-transform: uppercase; }
+    /* CHALLENGE */
+    .gg-challenge { background: var(--gg-black); padding: 24px 16px; }
+    .gg-challenge-card { border: 1px solid rgba(232,0,15,0.3); padding: 20px; text-align: center; background: rgba(232,0,15,0.04); position: relative; }
+    .gg-challenge-card::before, .gg-challenge-card::after { content: ''; position: absolute; width: 16px; height: 16px; border-color: var(--gg-red); border-style: solid; }
+    .gg-challenge-card::before { top:-1px; left:-1px; border-width: 2px 0 0 2px; }
+    .gg-challenge-card::after { bottom:-1px; right:-1px; border-width: 0 2px 2px 0; }
+    .gg-challenge-kicker { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.3em; color: var(--gg-red); text-transform: uppercase; margin-bottom: 10px; }
+    .gg-challenge-title { font-family: 'Black Han Sans', sans-serif; font-size: 22px; line-height: 1.2; color: white; margin-bottom: 8px; }
+    .gg-challenge-score {
+      display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1;
+      background: linear-gradient(135deg, var(--gg-red), var(--gg-gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin: 4px 0 8px;
+    }
+    .gg-challenge-score-label { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 14px; }
+    .gg-breakdown { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .gg-break-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 8px 6px; }
+    .gg-break-val { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: var(--gg-gold); display: block; }
+    .gg-break-label { font-size: 9px; color: rgba(255,255,255,0.35); margin-top: 2px; display: block; }
+    /* COUNTDOWN */
+    .gg-countdown { background: var(--gg-red); padding: 16px; text-align: center; position: relative; overflow: hidden; }
+    .gg-countdown::before { content: 'DEADLINE'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: rgba(0,0,0,0.08); white-space: nowrap; pointer-events: none; }
+    .gg-cd-label { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 6px; position: relative; z-index: 1; }
+    .gg-cd-nums { display: flex; justify-content: center; align-items: center; gap: 4px; position: relative; z-index: 1; }
+    .gg-cd-unit { display: flex; flex-direction: column; align-items: center; }
+    .gg-cd-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; color: white; min-width: 54px; text-align: center; background: rgba(0,0,0,0.2); padding: 4px 8px; }
+    .gg-cd-sub { font-family: 'Oswald', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-top: 3px; }
+    .gg-cd-sep { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: rgba(255,255,255,0.4); padding-bottom: 12px; }
+    /* REVIEWS */
+    .gg-reviews { background: var(--gg-black); padding: 24px 16px; }
+    .gg-review { background: var(--gg-gray); padding: 16px; margin-bottom: 10px; border-left: 3px solid transparent; transition: border-color 0.2s; }
+    .gg-review:hover { border-left-color: var(--gg-red); }
+    .gg-review-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .gg-review-name { font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; color: white; }
+    .gg-review-badge { background: var(--gg-red); color: white; font-family: 'Oswald', sans-serif; font-size: 10px; font-weight: 700; padding: 2px 7px; letter-spacing: 0.05em; }
+    .gg-review-text { font-size: 11.5px; line-height: 1.65; color: rgba(255,255,255,0.6); }
+    .gg-review-result { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-family: 'Oswald', sans-serif; font-size: 12px; color: var(--gg-gold); letter-spacing: 0.05em; }
+    /* FINAL CTA */
+    .gg-final-cta { background: var(--gg-black); padding: 24px 16px 32px; text-align: center; border-top: 3px solid var(--gg-red); }
+    .gg-final-kicker { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.25em; color: var(--gg-red); text-transform: uppercase; margin-bottom: 10px; }
+    .gg-final-title { font-family: 'Black Han Sans', sans-serif; font-size: 28px; line-height: 1.1; color: white; margin-bottom: 6px; }
+    .gg-final-sub { font-family: 'Oswald', sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; margin-bottom: 20px; }
+    .gg-slots { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; }
+    .gg-slots-bar { flex: 1; max-width: 160px; height: 4px; background: var(--gg-gray2); overflow: hidden; }
+    .gg-slots-fill { height: 100%; background: linear-gradient(90deg, var(--gg-red), var(--gg-gold)); width: 78%; animation: gg-pulse 2s ease-in-out infinite; }
+    @keyframes gg-pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+    .gg-slots-text { font-family: 'Oswald', sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; white-space: nowrap; }
+    .gg-slots-count { color: var(--gg-gold); font-weight: 700; }
+    .gg-disc { font-size: 9px; color: rgba(255,255,255,0.2); letter-spacing: 0.04em; margin-top: 8px; }
+  </style>
+
+  <!-- HERO -->
+  <section class="gg-hero">
+    <div class="gg-shard1"></div>
+    <div class="gg-shard2"></div>
+    <div class="gg-scanlines"></div>
+    <div class="gg-bg-num">92</div>
+
+    <div class="gg-live"><div class="gg-live-dot"></div><span class="gg-live-text">LIVE 분석중</span></div>
+    <div class="gg-score-badge">
+      <div class="gg-score-label">오늘의 점수</div>
+      <div class="gg-score-num" id="gg-hero-score">92</div>
+    </div>
+
+    <div class="gg-hero-content">
+      <div class="gg-overline">투자 챌린지 2026</div>
+      <h1 class="gg-h1">당신의<br>투자<br><span>점수는?</span></h1>
+      <p class="gg-sub">AI가 당신의 포트폴리오를 평가합니다</p>
+      <div class="gg-bar-wrap">
+        <div class="gg-bar-labels"><span>위험</span><span>시장 기회 지수</span><span>최적</span></div>
+        <div class="gg-bar-track"><div class="gg-bar-fill" id="gg-hero-bar"></div></div>
+      </div>
+      <div>
+        <button class="gg-btn-primary link-btn">
+          <span>내 투자 점수 확인하기</span>
+          <span class="arrow">→</span>
+        </button>
+        <div class="gg-btn-secondary">무료 · 10초 완성 · 즉시 결과</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERT -->
+  <div class="gg-expert">
+    <Image src={headImg} alt={name} class="gg-expert-img" width={68} height={68} />
+    <div>
+      <div class="gg-expert-title">투자 코치</div>
+      <div class="gg-expert-name">{name}</div>
+      <div class="gg-expert-stats">
+        <div><span class="gg-stat-val">15<span style="font-size:10px">+</span></span><span class="gg-stat-label">년 경력</span></div>
+        <div><span class="gg-stat-val">85<span style="font-size:10px">%</span></span><span class="gg-stat-label">적중률</span></div>
+        <div><span class="gg-stat-val">5K<span style="font-size:10px">+</span></span><span class="gg-stat-label">회원</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RANK -->
+  <section class="gg-rank-section">
+    <div class="gg-section-header">
+      <div class="gg-section-num">01</div>
+      <div>
+        <span class="gg-section-en">This Week</span>
+        <div class="gg-section-kr">수익률 랭킹</div>
+      </div>
+    </div>
+    <div class="gg-rank-list">
+      <div class="gg-rank-item top1">
+        <div class="gg-rank-num">1</div>
+        <div style="flex:1;">
+          <div class="gg-rank-name">삼성전자 포트폴리오</div>
+          <div class="gg-rank-track"><div class="gg-rank-fill" data-w="94"></div></div>
+        </div>
+        <div class="gg-rank-stat"><span class="gg-rank-pct">+47.3%</span><span class="gg-rank-period">3개월</span></div>
+      </div>
+      <div class="gg-rank-item top2">
+        <div class="gg-rank-num">2</div>
+        <div style="flex:1;">
+          <div class="gg-rank-name">반도체 집중 전략</div>
+          <div class="gg-rank-track"><div class="gg-rank-fill" data-w="78"></div></div>
+        </div>
+        <div class="gg-rank-stat"><span class="gg-rank-pct">+38.9%</span><span class="gg-rank-period">3개월</span></div>
+      </div>
+      <div class="gg-rank-item top3">
+        <div class="gg-rank-num">3</div>
+        <div style="flex:1;">
+          <div class="gg-rank-name">성장주 분산 전략</div>
+          <div class="gg-rank-track"><div class="gg-rank-fill" data-w="65"></div></div>
+        </div>
+        <div class="gg-rank-stat"><span class="gg-rank-pct">+31.2%</span><span class="gg-rank-period">3개월</span></div>
+      </div>
+      <div class="gg-rank-item">
+        <div class="gg-rank-num">4</div>
+        <div style="flex:1;">
+          <div class="gg-rank-name">배당 안정형 전략</div>
+          <div class="gg-rank-track"><div class="gg-rank-fill" data-w="52"></div></div>
+        </div>
+        <div class="gg-rank-stat"><span class="gg-rank-pct">+24.7%</span><span class="gg-rank-period">3개월</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BOARD -->
+  <div class="gg-stats-board">
+    <div class="gg-stat-cell">
+      <span class="gg-stat-cell-val gold" id="gg-member-count">14,823</span>
+      <span class="gg-stat-cell-label">참여 회원</span>
+    </div>
+    <div class="gg-stat-cell">
+      <span class="gg-stat-cell-val">+29.4%</span>
+      <span class="gg-stat-cell-label">평균 수익률</span>
+    </div>
+    <div class="gg-stat-cell">
+      <span class="gg-stat-cell-val gold">94.2%</span>
+      <span class="gg-stat-cell-label">추천 적중률</span>
+    </div>
+    <div class="gg-stat-cell">
+      <span class="gg-stat-cell-val">24H</span>
+      <span class="gg-stat-cell-label">실시간 분석</span>
+    </div>
+  </div>
+
+  <!-- CHALLENGE CARD -->
+  <section class="gg-challenge">
+    <div class="gg-challenge-card">
+      <div class="gg-challenge-kicker">● {name} 코치가 산정한 점수</div>
+      <div class="gg-challenge-title">AI 투자 실력 점수</div>
+      <div class="gg-challenge-score" id="gg-score-display">87</div>
+      <div class="gg-challenge-score-label">/ 100 점 (상위 12%)</div>
+      <div class="gg-breakdown">
+        <div class="gg-break-item"><span class="gg-break-val">A+</span><span class="gg-break-label">분석력</span></div>
+        <div class="gg-break-item"><span class="gg-break-val">B+</span><span class="gg-break-label">타이밍</span></div>
+        <div class="gg-break-item"><span class="gg-break-val">A</span><span class="gg-break-label">리스크</span></div>
+      </div>
+      <CtaButton social={t} />
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <div class="gg-countdown">
+    <div class="gg-cd-label">무료 분석 마감까지</div>
+    <div class="gg-cd-nums">
+      <div class="gg-cd-unit"><div class="gg-cd-num" id="gg-h">05</div><div class="gg-cd-sub">시간</div></div>
+      <div class="gg-cd-sep">:</div>
+      <div class="gg-cd-unit"><div class="gg-cd-num" id="gg-m">27</div><div class="gg-cd-sub">분</div></div>
+      <div class="gg-cd-sep">:</div>
+      <div class="gg-cd-unit"><div class="gg-cd-num" id="gg-s">43</div><div class="gg-cd-sub">초</div></div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="gg-reviews">
+    <div class="gg-section-header" style="padding-top:0;">
+      <div class="gg-section-num">02</div>
+      <div>
+        <span class="gg-section-en">Real Results</span>
+        <div class="gg-section-kr">실제 성과</div>
+      </div>
+    </div>
+    <div class="gg-review">
+      <div class="gg-review-top">
+        <div class="gg-review-name">김○○ · 직장인 · 서울</div>
+        <div class="gg-review-badge">+47%</div>
+      </div>
+      <p class="gg-review-text">"처음엔 반신반의했는데 첫 추천 종목에서 3주 만에 22% 수익이 났어요. 매일 리포트가 너무 정확해서 이제는 없으면 안 될 것 같습니다."</p>
+      <div class="gg-review-result">▲ 3개월 누적 수익 +47.3%</div>
+    </div>
+    <div class="gg-review">
+      <div class="gg-review-top">
+        <div class="gg-review-name">이○○ · 자영업 · 부산</div>
+        <div class="gg-review-badge">+31%</div>
+      </div>
+      <p class="gg-review-text">"주식 완전 초보인데 AI 점수 보고 어디서 뭘 잘못하는지 바로 알았어요. {name} 코치님 덕분에 전략이 완전히 바뀌었습니다."</p>
+      <div class="gg-review-result">▲ 2개월 누적 수익 +31.2%</div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="gg-final-cta">
+    <div class="gg-final-kicker">● 지금 바로 참여</div>
+    <h2 class="gg-final-title">{name}에게<br>코칭받아라</h2>
+    <p class="gg-final-sub">즉시 맞춤 전략 & 추천 종목 바로 받기</p>
+    <div class="gg-slots">
+      <div class="gg-slots-bar"><div class="gg-slots-fill"></div></div>
+      <span class="gg-slots-text">잔여 <span class="gg-slots-count" id="gg-slots">38</span>명</span>
+    </div>
+    <CtaButton social={t} />
+    <p class="gg-disc">본 콘텐츠는 투자 권유가 아닌 정보 제공 목적입니다. 투자에 대한 최종 책임은 투자자 본인에게 있습니다.</p>
+  </section>
+
+  <script is:inline>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('gg-hero-bar').style.width = '78%';
+        document.querySelectorAll('.gg-rank-fill').forEach(el => {
+          el.style.width = (el.getAttribute('data-w') || '0') + '%';
+        });
+      }, 800);
+    });
+
+    // Countdown
+    let secs = 5 * 3600 + 27 * 60 + 43;
+    function updateCd() {
+      const h = Math.floor(secs / 3600), m = Math.floor((secs % 3600) / 60), s = secs % 60;
+      document.getElementById('gg-h').textContent = String(h).padStart(2,'0');
+      document.getElementById('gg-m').textContent = String(m).padStart(2,'0');
+      document.getElementById('gg-s').textContent = String(s).padStart(2,'0');
+      if (secs > 0) secs--;
+    }
+    setInterval(updateCd, 1000);
+    updateCd();
+
+    // Animated score
+    const scores = [85, 87, 91, 89, 92, 88, 94];
+    let si = 0;
+    setInterval(() => {
+      si = (si + 1) % scores.length;
+      const v = scores[si];
+      document.getElementById('gg-score-display').textContent = v;
+      document.getElementById('gg-hero-score').textContent = v;
+    }, 3200);
+
+    // Member count
+    let mc = 14823;
+    setInterval(() => {
+      mc += Math.floor(Math.random() * 3) + 1;
+      document.getElementById('gg-member-count').textContent = mc.toLocaleString();
+    }, 2500);
+
+    // Slots
+    let slots = 38;
+    setInterval(() => {
+      if (slots > 12 && Math.random() > 0.7) {
+        slots--;
+        document.getElementById('gg-slots').textContent = slots;
+      }
+    }, 4000);
+  </script>
+</KRBaseLayout>
