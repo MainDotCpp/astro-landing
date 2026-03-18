@@ -1,16 +1,28 @@
 ---
+/**
+ * Sinmun (신문) template — newspaper aesthetic.
+ * Extracted from src/pages/KR/[people]/20260317-1.[version].[t]/index.astro
+ *
+ * Props:
+ *   name        – Korean display name of the persona
+ *   img_prefix  – image file prefix, e.g. "psy_"
+ *   action      – CtaAction { platform, mode } from resolveAction()
+ *   headImg     – resolved head image (pass as `import(...)` promise or ImageMetadata)
+ */
+import type { ImageMetadata } from 'astro'
+import type { CtaAction } from '@/campaigns/types'
 import { Image } from 'astro:assets'
-import CtaButton from '@/components/CtaButton.astro'
+import CtaButton from '@/components/v2/CtaButton.astro'
 import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
-import { generateKrConfig, Filters } from '@/utils/kr_config'
 
-export function getStaticPaths() {
-  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+export interface Props {
+  name: string
+  img_prefix: string
+  action: CtaAction
+  headImg: Promise<{ default: ImageMetadata }>
 }
 
-const { t = '卡扣' } = Astro.params
-const { img_prefix, name } = Astro.props
-const headImg = import(`../images/${img_prefix}head.jpg`)
+const { name, action, headImg } = Astro.props
 
 const today = new Date()
 const dateStr = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`
@@ -49,7 +61,6 @@ const dayStr = days[today.getDay()]
       pointer-events: none; z-index: 1000; opacity: 0.35;
     }
     a { color: inherit; }
-    /* MASTHEAD */
     .sn-masthead { border-bottom: 3px double var(--ink); }
     .sn-masthead-top {
       display: flex; justify-content: space-between; align-items: center;
@@ -63,7 +74,6 @@ const dayStr = days[today.getDay()]
     }
     .sn-tagline { font-size: 9px; letter-spacing: 0.25em; color: var(--ink-light); margin-top: 3px; text-transform: uppercase; }
     .sn-masthead-meta { display: flex; justify-content: space-between; padding: 5px 14px; font-size: 9px; color: var(--ink-light); }
-    /* BREAKING */
     .sn-breaking { background: var(--red); color: white; display: flex; align-items: center; overflow: hidden; height: 28px; }
     .sn-breaking-label {
       background: var(--ink); color: white; font-family: 'Nanum Myeongjo', serif;
@@ -72,14 +82,11 @@ const dayStr = days[today.getDay()]
     }
     .sn-breaking-ticker { font-size: 10px; font-weight: 500; padding: 0 14px; white-space: nowrap; animation: sn-ticker 25s linear infinite; }
     @keyframes sn-ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-    /* MAIN */
     .sn-main { padding: 14px 14px 0; }
-    /* HERO */
     .sn-hero { border-bottom: 2px solid var(--ink); padding-bottom: 14px; margin-bottom: 14px; }
     .sn-category { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 6px; }
     .sn-headline { font-family: 'Nanum Myeongjo', serif; font-size: 26px; font-weight: 800; line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 8px; }
     .sn-subhead { font-size: 12px; font-weight: 500; line-height: 1.55; color: var(--ink-mid); border-left: 3px solid var(--red); padding-left: 10px; margin-bottom: 12px; }
-    /* TICKER STRIP */
     .sn-ticker-strip {
       display: flex; gap: 8px; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
       margin-bottom: 12px; padding: 8px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
@@ -90,7 +97,6 @@ const dayStr = days[today.getDay()]
     .sn-tick-price { font-family: 'Nanum Myeongjo', serif; font-size: 13px; font-weight: 700; }
     .sn-tick-up { color: var(--red); font-size: 9px; font-weight: 600; }
     .sn-tick-down { color: #1d4ed8; font-size: 9px; font-weight: 600; }
-    /* EXPERT CARD */
     .sn-expert-card {
       display: flex; gap: 12px; background: var(--paper-dark);
       border: 1px solid var(--rule); padding: 12px; margin-bottom: 12px;
@@ -103,13 +109,11 @@ const dayStr = days[today.getDay()]
     .sn-stat { text-align: center; }
     .sn-stat-val { font-family: 'Nanum Myeongjo', serif; font-size: 15px; font-weight: 800; color: var(--ink); display: block; }
     .sn-stat-label { font-size: 8px; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.08em; }
-    /* TWO COL */
     .sn-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
     .sn-col-divider { border-right: 1px solid var(--rule); padding-right: 12px; }
     .sn-small-headline { font-family: 'Nanum Myeongjo', serif; font-size: 14px; font-weight: 700; line-height: 1.35; color: var(--ink); margin-bottom: 5px; }
     .sn-small-body { font-size: 10.5px; line-height: 1.65; color: var(--ink-mid); }
     .sn-rule { height: 1px; background: var(--rule); margin: 12px 0; }
-    /* QUOTE BOX */
     .sn-quote {
       background: var(--ink); color: var(--paper); padding: 14px;
       margin-bottom: 14px; position: relative; overflow: hidden;
@@ -120,7 +124,6 @@ const dayStr = days[today.getDay()]
     }
     .sn-quote-text { font-family: 'Nanum Myeongjo', serif; font-size: 15px; font-style: italic; line-height: 1.6; position: relative; z-index: 1; margin-bottom: 8px; }
     .sn-quote-attr { font-size: 10px; letter-spacing: 0.08em; color: rgba(243,237,216,0.5); text-transform: uppercase; position: relative; z-index: 1; }
-    /* TABLE */
     .sn-section-title { font-family: 'Nanum Myeongjo', serif; font-size: 16px; font-weight: 800; border-bottom: 2px solid var(--ink); padding-bottom: 4px; margin-bottom: 10px; }
     .sn-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
     .sn-table th { text-align: left; padding: 4px 0; color: var(--ink-light); font-weight: 600; letter-spacing: 0.06em; border-bottom: 1px solid var(--rule); font-size: 9px; text-transform: uppercase; }
@@ -128,7 +131,6 @@ const dayStr = days[today.getDay()]
     .sn-table td:last-child { text-align: right; }
     .sn-up { color: var(--red); font-weight: 600; }
     .sn-down { color: #1d4ed8; font-weight: 600; }
-    /* CTA SECTION */
     .sn-cta {
       background: var(--paper-dark); border: 2px solid var(--ink);
       padding: 18px 16px; margin: 14px 0; text-align: center; position: relative;
@@ -140,7 +142,6 @@ const dayStr = days[today.getDay()]
     .sn-cta-title { font-family: 'Nanum Myeongjo', serif; font-size: 19px; font-weight: 800; line-height: 1.3; color: var(--ink); margin-bottom: 8px; }
     .sn-cta-body { font-size: 11px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 14px; }
     .sn-cta-note { font-size: 9px; color: var(--ink-light); margin-top: 8px; letter-spacing: 0.05em; }
-    /* TESTIMONIALS */
     .sn-test { padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 10px; }
     .sn-test-avatar {
       width: 32px; height: 32px; border-radius: 50%; background: var(--paper-dark);
@@ -151,11 +152,9 @@ const dayStr = days[today.getDay()]
     .sn-test-name { font-size: 11px; font-weight: 600; color: var(--ink); }
     .sn-test-return { font-size: 10px; color: var(--red); font-weight: 700; }
     .sn-test-text { font-size: 10.5px; line-height: 1.55; color: var(--ink-mid); font-style: italic; }
-    /* FOOTER */
     footer.sn-footer { border-top: 3px double var(--ink); padding: 12px 14px; text-align: center; }
     .sn-footer-logo { font-family: 'Nanum Myeongjo', serif; font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
     .sn-footer-disc { font-size: 8.5px; color: var(--ink-light); line-height: 1.6; }
-    /* Custom link-btn style override — invisible so our styles show */
     .sn-cta .link-btn, .sn-cta-wrap .link-btn { display: block; width: 100%; }
   </style>
 
@@ -284,7 +283,9 @@ const dayStr = days[today.getDay()]
       <p class="sn-cta-body">
         매일 아침 7시, 오늘 주목해야 할 종목 분석이 자동 발송됩니다. 구독 즉시 지난 리포트 30일치도 함께 제공됩니다.
       </p>
-      <CtaButton social={t} />
+      <CtaButton {action}>
+        <slot name="modal-content" slot="modal-content" />
+      </CtaButton>
       <div class="sn-cta-note">무료 · 언제든 구독 해지 가능 · 스팸 없음</div>
     </div>
 
@@ -319,7 +320,9 @@ const dayStr = days[today.getDay()]
       <p style="font-size:11px; color:var(--ink-mid); margin-bottom:10px; line-height:1.6;">
         지금 바로 구독하면 <strong style="color:var(--red);">{name}의 오늘 아침 긴급 리포트</strong>를 즉시 받으실 수 있습니다
       </p>
-      <CtaButton social={t} />
+      <CtaButton {action}>
+        <slot name="modal-content" slot="modal-content" />
+      </CtaButton>
     </div>
 
   </main>
@@ -333,7 +336,6 @@ const dayStr = days[today.getDay()]
   </footer>
 
   <script is:inline>
-    // Animate ticker prices
     const prices = [
       { id: 'p1', base: 84200 },
       { id: 'p2', base: 198500 },
@@ -342,7 +344,7 @@ const dayStr = days[today.getDay()]
       { id: 'p5', base: 178000 },
     ]
     setInterval(() => {
-      prices.forEach(p => {
+      prices.forEach((p) => {
         const el = document.getElementById(p.id)
         if (el) {
           const change = Math.floor(Math.random() * 300) - 150

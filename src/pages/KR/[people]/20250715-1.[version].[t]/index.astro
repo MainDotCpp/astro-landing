@@ -30,7 +30,7 @@ import './static/css/slick-theme.css'
 
 
 export function getStaticPaths() {
- return generateKrConfig(Filters.byVersion(0), ['安迪李_0'])
+ return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
 }
 
 const { t = '棒群' } = Astro.params

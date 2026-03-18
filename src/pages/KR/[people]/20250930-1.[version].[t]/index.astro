@@ -11,7 +11,7 @@ import './static/css/animate.min.css'
 import './static/css/slick-theme.css'
 
 export function getStaticPaths() {
- return generateKrConfig(undefined, ['安迪李_0'])
+ return generateKrConfig(undefined, undefined, { requireImages: ['head'] })
 }
 
 const { t = '棒群' } = Astro.params

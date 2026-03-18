@@ -2,6 +2,9 @@ export const ALL_SOCIAL = ['卡扣', '棒群', '混合', '引导弹窗', '提高
 export const BAND_ONLY = ['棒群']
 export const KAKAO_ONLY = ['卡扣', '引导弹窗', '提高质量_']
 
+// 图片类型
+export type ImageKey = 'head' | 'header' | 'img1'
+
 // 过滤条件类型：支持函数、字符串、正则、数组/Set
 type FilterCondition
   = | ((nameVersion: string) => boolean)
@@ -92,150 +95,155 @@ const c = {
   柳秀真: {
     name: '유수진',
     versions: [
-      { static_prefix: 'lxz_', version: 0, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'lxz1_', version: 1, sockal_type: KAKAO_ONLY },
+      { static_prefix: 'lxz_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'lxz1_', version: 1, social_type: KAKAO_ONLY, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   宣大仁: {
     name: '선대인',
     versions: [
-      { static_prefix: 'xdr_', version: 0, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'xdr1_', version: 1, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'xdr2_', version: 2, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'xdr3_', version: 3, sockal_type: KAKAO_ONLY },
+      { static_prefix: 'xdr_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'xdr1_', version: 1, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'xdr2_', version: 2, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'xdr3_', version: 3, social_type: KAKAO_ONLY, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   南锡宽: {
     name: '남석관',
     versions: [
-      { static_prefix: 'nxk_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'nxk_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   富人电视: {
     name: '부자티비',
     versions: [
-      { static_prefix: 'frds_', version: 0, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'frds1_', version: 1, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'frds_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'frds1_', version: 1, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   闵秀雅: {
     name: '민수아',
     versions: [
-      { static_prefix: 'mxy_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'mxy_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   朴世益: {
     name: '박세익',
     versions: [
-      { static_prefix: 'psy_', version: 0, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'psy1_', version: 1, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'psy_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'psy1_', version: 1, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   金永益: {
     name: '김영익',
     versions: [
-      { static_prefix: 'jyy_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'jyy_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   金光石: {
     name: '김광석',
     versions: [
-      { static_prefix: 'jgs_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'jgs_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   廉承煥: {
     name: '염승환',
     versions: [
-      { static_prefix: 'lch_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'lch_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   洪春旭: {
     name: '홍춘욱',
     versions: [
-      { static_prefix: 'hcx_', version: 0, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'hcx1_', version: 1, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'hcx_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'hcx1_', version: 1, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   总理猴: {
     name: '소수몽키',
     versions: [
-      { static_prefix: 'zlh_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'zlh_', version: 0, social_type: ALL_SOCIAL, images: ['head'] as ImageKey[] },
     ],
   },
   国家人口和经济研究所: {
     name: '전인구경제연구소',
     versions: [
-      { static_prefix: 'yjs_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'yjs_', version: 0, social_type: ALL_SOCIAL, images: ['head'] as ImageKey[] },
     ],
   },
   小猴属: {
     name: '소수몽키',
     versions: [
-      { static_prefix: 'xhs_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'xhs_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   金美京: {
     name: '김미경',
     versions: [
-      { static_prefix: 'jmj_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'jmj_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   舒卡世界漫画: {
     name: '슈카월드 코믹스',
     versions: [
-      { static_prefix: 'yu_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'yu_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   常言道语: {
     name: '노말이',
     versions: [
-      { static_prefix: 'cydy_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'cydy_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   郑在浩: {
     name: '정재호',
     versions: [
-      { static_prefix: 'zzh_', version: 0, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'zzh_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   孔炳浩: {
     name: '공병호',
     versions: [
-      { static_prefix: 'kbh1_', version: 0, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'kbh2_', version: 1, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'kbh1_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'kbh2_', version: 1, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   吴建英: {
     name: '오건영',
     versions: [
-      { static_prefix: 'wjy1_', version: 0, sockal_type: ALL_SOCIAL },
-      { static_prefix: 'wjy2_', version: 1, sockal_type: ALL_SOCIAL },
+      { static_prefix: 'wjy1_', version: 0, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'wjy2_', version: 1, social_type: ALL_SOCIAL, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   金钟锋: {
     name: '김종봉',
     versions: [
-      { static_prefix: 'jzf_', version: 0, sockal_type: BAND_ONLY },
-      { static_prefix: 'jzf1_', version: 1, sockal_type: KAKAO_ONLY },
+      { static_prefix: 'jzf_', version: 0, social_type: BAND_ONLY, images: ['head', 'header', 'img1'] as ImageKey[] },
+      { static_prefix: 'jzf1_', version: 1, social_type: KAKAO_ONLY, images: ['head', 'header', 'img1'] as ImageKey[] },
     ],
   },
   安迪李: {
     name: '안디 이',
     versions: [
-      { static_prefix: 'aly0_', version: 0, sockal_type: KAKAO_ONLY },
+      { static_prefix: 'aly0_', version: 0, social_type: KAKAO_ONLY, images: [] as ImageKey[] },
     ],
   },
   朴斗焕: {
     name: '박두환',
     versions: [
-      { static_prefix: 'pdh_', version: 0, sockal_type: ['卡扣', '棒群'] },
+      { static_prefix: 'pdh_', version: 0, social_type: ['卡扣', '棒群'], images: ['head'] as ImageKey[] },
     ],
   },
-} as const
+}
+
+interface GenerateOptions {
+  requireImages?: ImageKey[]
+}
 
 export function generateKrConfig(
   filter?: FilterCondition,
   exclude?: FilterCondition,
+  options?: GenerateOptions,
 ) {
   const filterFn = normalizeFilter(filter)
   const excludeFn = normalizeFilter(exclude)
@@ -255,7 +263,13 @@ export function generateKrConfig(
           return []
         }
 
-        return version.sockal_type.map(t => ({
+        // 如果页面声明了所需图片，自动过滤掉缺少这些图片的人设版本
+        if (options?.requireImages) {
+          const hasAll = options.requireImages.every(img => version.images.includes(img))
+          if (!hasAll) return []
+        }
+
+        return version.social_type.map(t => ({
           params: { people: name_zh, version: String(version.version), t },
           props: { name: person.name, img_prefix: version.static_prefix },
         }))

@@ -1,16 +1,22 @@
 ---
+/**
+ * Gyeonggi (경기) template — K-competition / gaming aesthetic.
+ * Extracted from src/pages/KR/[people]/20260317-2.[version].[t]/index.astro
+ */
+import type { ImageMetadata } from 'astro'
+import type { CtaAction } from '@/campaigns/types'
 import { Image } from 'astro:assets'
-import CtaButton from '@/components/CtaButton.astro'
+import CtaButton from '@/components/v2/CtaButton.astro'
 import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
-import { generateKrConfig, Filters } from '@/utils/kr_config'
 
-export function getStaticPaths() {
-  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+export interface Props {
+  name: string
+  img_prefix: string
+  action: CtaAction
+  headImg: Promise<{ default: ImageMetadata }>
 }
 
-const { t = '卡扣' } = Astro.params
-const { img_prefix, name } = Astro.props
-const headImg = import(`../images/${img_prefix}head.jpg`)
+const { name, action, headImg } = Astro.props
 ---
 
 <KRBaseLayout title={`${name} — 투자 챌린지 2026`} description="AI가 당신의 투자 점수를 평가합니다">
@@ -35,7 +41,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
       font-family: 'Noto Sans KR', sans-serif;
       max-width: 420px; margin: 0 auto; min-height: 100vh; overflow-x: hidden;
     }
-    /* HERO */
     .gg-hero {
       min-height: 100svh; background: var(--gg-black);
       position: relative; overflow: hidden;
@@ -61,7 +66,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
       font-family: 'Bebas Neue', sans-serif; font-size: 240px; line-height: 1;
       color: var(--gg-white); opacity: 0.025; user-select: none; pointer-events: none;
     }
-    /* LIVE BADGE */
     .gg-live {
       position: absolute; top: 20px; left: 16px;
       display: flex; align-items: center; gap: 6px;
@@ -70,11 +74,9 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .gg-live-dot { width: 7px; height: 7px; border-radius: 50%; background: white; animation: gg-blink 1s ease-in-out infinite; }
     @keyframes gg-blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
     .gg-live-text { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; }
-    /* SCORE BADGE */
     .gg-score-badge { position: absolute; top: 16px; right: 16px; text-align: right; z-index: 10; }
     .gg-score-label { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: var(--gg-muted); text-transform: uppercase; }
     .gg-score-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--gg-gold); line-height: 1; }
-    /* HERO CONTENT */
     .gg-hero-content { position: relative; z-index: 10; padding: 0 16px; }
     .gg-overline {
       font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 400;
@@ -88,12 +90,10 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     }
     .gg-h1 span { color: var(--gg-red); }
     .gg-sub { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 400; color: var(--gg-dim); letter-spacing: 0.08em; margin-bottom: 20px; }
-    /* SCORE BAR */
     .gg-bar-wrap { margin-bottom: 20px; }
     .gg-bar-labels { display: flex; justify-content: space-between; font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: var(--gg-muted); text-transform: uppercase; margin-bottom: 5px; }
     .gg-bar-track { width: 100%; height: 6px; background: var(--gg-gray2); overflow: hidden; }
     .gg-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gg-red), var(--gg-gold)); width: 0%; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
-    /* BUTTONS */
     .gg-btn-primary {
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 18px; background: var(--gg-red); color: white;
@@ -104,7 +104,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .gg-btn-primary .arrow { font-size: 18px; }
     .gg-btn-secondary { padding: 13px 18px; background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-family: 'Oswald', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-align: center; width: 100%; margin-top: 8px; }
     .gg-btn-secondary:hover { border-color: rgba(255,255,255,0.4); color: white; }
-    /* EXPERT CARD */
     .gg-expert {
       margin: 0 16px 24px; border: 1px solid rgba(232,0,15,0.3);
       background: rgba(232,0,15,0.04); padding: 16px;
@@ -119,12 +118,10 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .gg-expert-stats { display: flex; gap: 12px; }
     .gg-stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gg-gold); display: block; line-height: 1; }
     .gg-stat-label { font-family: 'Oswald', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: var(--gg-muted); }
-    /* SECTION HEADER */
     .gg-section-header { display: flex; align-items: center; padding: 20px 16px 12px; gap: 10px; }
     .gg-section-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: rgba(255,255,255,0.06); line-height: 1; }
     .gg-section-en { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: var(--gg-red); text-transform: uppercase; display: block; }
     .gg-section-kr { font-family: 'Black Han Sans', sans-serif; font-size: 20px; color: white; line-height: 1.1; }
-    /* RANK */
     .gg-rank-section { background: var(--gg-gray); }
     .gg-rank-list { padding: 0 16px 16px; }
     .gg-rank-item {
@@ -142,13 +139,11 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .gg-rank-stat { text-align: right; flex-shrink: 0; }
     .gg-rank-pct { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: var(--gg-gold); display: block; }
     .gg-rank-period { font-size: 9px; color: var(--gg-muted); }
-    /* STATS BOARD */
     .gg-stats-board { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.04); }
     .gg-stat-cell { background: var(--gg-gray); padding: 12px 14px; }
     .gg-stat-cell-val { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: white; line-height: 1; display: block; margin-bottom: 2px; }
     .gg-stat-cell-val.gold { color: var(--gg-gold); }
     .gg-stat-cell-label { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.12em; color: var(--gg-muted); text-transform: uppercase; }
-    /* CHALLENGE */
     .gg-challenge { background: var(--gg-black); padding: 24px 16px; }
     .gg-challenge-card { border: 1px solid rgba(232,0,15,0.3); padding: 20px; text-align: center; background: rgba(232,0,15,0.04); position: relative; }
     .gg-challenge-card::before, .gg-challenge-card::after { content: ''; position: absolute; width: 16px; height: 16px; border-color: var(--gg-red); border-style: solid; }
@@ -167,7 +162,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .gg-break-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 8px 6px; }
     .gg-break-val { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: var(--gg-gold); display: block; }
     .gg-break-label { font-size: 9px; color: rgba(255,255,255,0.35); margin-top: 2px; display: block; }
-    /* COUNTDOWN */
     .gg-countdown { background: var(--gg-red); padding: 16px; text-align: center; position: relative; overflow: hidden; }
     .gg-countdown::before { content: 'DEADLINE'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: rgba(0,0,0,0.08); white-space: nowrap; pointer-events: none; }
     .gg-cd-label { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 6px; position: relative; z-index: 1; }
@@ -176,7 +170,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .gg-cd-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; color: white; min-width: 54px; text-align: center; background: rgba(0,0,0,0.2); padding: 4px 8px; }
     .gg-cd-sub { font-family: 'Oswald', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-top: 3px; }
     .gg-cd-sep { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: rgba(255,255,255,0.4); padding-bottom: 12px; }
-    /* REVIEWS */
     .gg-reviews { background: var(--gg-black); padding: 24px 16px; }
     .gg-review { background: var(--gg-gray); padding: 16px; margin-bottom: 10px; border-left: 3px solid transparent; transition: border-color 0.2s; }
     .gg-review:hover { border-left-color: var(--gg-red); }
@@ -185,7 +178,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .gg-review-badge { background: var(--gg-red); color: white; font-family: 'Oswald', sans-serif; font-size: 10px; font-weight: 700; padding: 2px 7px; letter-spacing: 0.05em; }
     .gg-review-text { font-size: 11.5px; line-height: 1.65; color: rgba(255,255,255,0.6); }
     .gg-review-result { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-family: 'Oswald', sans-serif; font-size: 12px; color: var(--gg-gold); letter-spacing: 0.05em; }
-    /* FINAL CTA */
     .gg-final-cta { background: var(--gg-black); padding: 24px 16px 32px; text-align: center; border-top: 3px solid var(--gg-red); }
     .gg-final-kicker { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.25em; color: var(--gg-red); text-transform: uppercase; margin-bottom: 10px; }
     .gg-final-title { font-family: 'Black Han Sans', sans-serif; font-size: 28px; line-height: 1.1; color: white; margin-bottom: 6px; }
@@ -321,7 +313,9 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
         <div class="gg-break-item"><span class="gg-break-val">B+</span><span class="gg-break-label">타이밍</span></div>
         <div class="gg-break-item"><span class="gg-break-val">A</span><span class="gg-break-label">리스크</span></div>
       </div>
-      <CtaButton social={t} />
+      <CtaButton {action}>
+        <slot name="modal-content" slot="modal-content" />
+      </CtaButton>
     </div>
   </section>
 
@@ -373,56 +367,57 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
       <div class="gg-slots-bar"><div class="gg-slots-fill"></div></div>
       <span class="gg-slots-text">잔여 <span class="gg-slots-count" id="gg-slots">38</span>명</span>
     </div>
-    <CtaButton social={t} />
+    <CtaButton {action}>
+      <slot name="modal-content" slot="modal-content" />
+    </CtaButton>
     <p class="gg-disc">본 콘텐츠는 투자 권유가 아닌 정보 제공 목적입니다. 투자에 대한 최종 책임은 투자자 본인에게 있습니다.</p>
   </section>
 
   <script is:inline>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('gg-hero-bar').style.width = '78%';
-        document.querySelectorAll('.gg-rank-fill').forEach(el => {
-          el.style.width = (el.getAttribute('data-w') || '0') + '%';
-        });
-      }, 800);
-    });
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('gg-hero-bar').style.width = '78%'
+    document.querySelectorAll('.gg-rank-fill').forEach((el) => {
+      el.style.width = `${el.getAttribute('data-w') || '0'}%`
+    })
+  }, 800)
+})
 
-    // Countdown
-    let secs = 5 * 3600 + 27 * 60 + 43;
-    function updateCd() {
-      const h = Math.floor(secs / 3600), m = Math.floor((secs % 3600) / 60), s = secs % 60;
-      document.getElementById('gg-h').textContent = String(h).padStart(2,'0');
-      document.getElementById('gg-m').textContent = String(m).padStart(2,'0');
-      document.getElementById('gg-s').textContent = String(s).padStart(2,'0');
-      if (secs > 0) secs--;
-    }
-    setInterval(updateCd, 1000);
-    updateCd();
+let secs = 5 * 3600 + 27 * 60 + 43
+function updateCd() {
+  const h = Math.floor(secs / 3600)
+  const m = Math.floor((secs % 3600) / 60)
+  const s = secs % 60
+  document.getElementById('gg-h').textContent = String(h).padStart(2, '0')
+  document.getElementById('gg-m').textContent = String(m).padStart(2, '0')
+  document.getElementById('gg-s').textContent = String(s).padStart(2, '0')
+  if (secs > 0)
+    secs--
+}
+setInterval(updateCd, 1000)
+updateCd()
 
-    // Animated score
-    const scores = [85, 87, 91, 89, 92, 88, 94];
-    let si = 0;
-    setInterval(() => {
-      si = (si + 1) % scores.length;
-      const v = scores[si];
-      document.getElementById('gg-score-display').textContent = v;
-      document.getElementById('gg-hero-score').textContent = v;
-    }, 3200);
+const scores = [85, 87, 91, 89, 92, 88, 94]
+let si = 0
+setInterval(() => {
+  si = (si + 1) % scores.length
+  const v = scores[si]
+  document.getElementById('gg-score-display').textContent = v
+  document.getElementById('gg-hero-score').textContent = v
+}, 3200)
 
-    // Member count
-    let mc = 14823;
-    setInterval(() => {
-      mc += Math.floor(Math.random() * 3) + 1;
-      document.getElementById('gg-member-count').textContent = mc.toLocaleString();
-    }, 2500);
+let mc = 14823
+setInterval(() => {
+  mc += Math.floor(Math.random() * 3) + 1
+  document.getElementById('gg-member-count').textContent = mc.toLocaleString()
+}, 2500)
 
-    // Slots
-    let slots = 38;
-    setInterval(() => {
-      if (slots > 12 && Math.random() > 0.7) {
-        slots--;
-        document.getElementById('gg-slots').textContent = slots;
-      }
-    }, 4000);
-  </script>
+let slots = 38
+setInterval(() => {
+  if (slots > 12 && Math.random() > 0.7) {
+    slots--
+    document.getElementById('gg-slots').textContent = slots
+  }
+}, 4000)
+</script>
 </KRBaseLayout>

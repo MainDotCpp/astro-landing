@@ -1,0 +1,44 @@
+---
+/**
+ * V2.0 CTA dispatcher.
+ *
+ * Accepts a CtaAction (platform + mode) and delegates to the appropriate
+ * sub-component. No Chinese-character type strings. No global variable reliance.
+ *
+ * Usage:
+ *   <CtaButton action={action}>
+ *     <div slot="modal-content">…custom modal body…</div>
+ *   </CtaButton>
+ */
+import type { CtaAction } from '@/campaigns/types'
+import ChoiceButton from './ChoiceButton.astro'
+import DirectButton from './DirectButton.astro'
+import FormButton from './FormButton.astro'
+import ModalButton from './ModalButton.astro'
+
+type Props = {
+  action: CtaAction
+  size?: 'sm' | 'md' | 'lg'
+  animate?: boolean
+}
+
+const { action, size = 'md', animate = true } = Astro.props
+---
+
+{action.mode === 'direct' && (
+  <DirectButton platform={action.platform} {size} {animate} />
+)}
+
+{action.mode === 'modal' && (
+  <ModalButton platform={action.platform} {size} {animate}>
+    <slot name="modal-content" slot="modal-content" />
+  </ModalButton>
+)}
+
+{action.mode === 'form' && (
+  <FormButton platform={action.platform} />
+)}
+
+{action.mode === 'choice' && action.secondary && (
+  <ChoiceButton primary={action} secondary={action.secondary} {size} />
+)}

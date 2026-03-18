@@ -1,0 +1,117 @@
+---
+import DirectButton from '@/components/v2/DirectButton.astro'
+/**
+ * V2 KR common page — no persona, fixed layout.
+ *
+ * URL: /KR/common/20260312-1/
+ *
+ * This is a placeholder/example. Replace the body content with the real
+ * common campaign HTML once a template is extracted to
+ * src/templates/KR/common-invest/.
+ */
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+---
+
+<KRBaseLayout title="한국 주식 투자 채널 — 무료 구독" description="오늘의 주식 핵심 인사이트를 카카오톡으로 받아보세요">
+  <style is:global slot="head">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+    :root {
+      --bg: #0D1117; --card: #161B22; --border: rgba(255,255,255,0.07);
+      --accent: #FEE500; --text: #E6EDF3; --muted: #8B949E;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      max-width: 420px; margin: 0 auto; min-height: 100vh;
+    }
+    .cm-hero { padding: 48px 24px 40px; text-align: center; }
+    .cm-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(254,229,0,0.08); border: 1px solid rgba(254,229,0,0.2);
+      padding: 4px 12px; border-radius: 99px; margin-bottom: 20px;
+    }
+    .cm-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 1.2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .cm-badge-text { font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+    .cm-h1 { font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+    .cm-h1 em { color: var(--accent); font-style: normal; }
+    .cm-sub { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+    .cm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px; }
+    .cm-stat { background: var(--card); border: 1px solid var(--border); padding: 16px 10px; text-align: center; }
+    .cm-stat-val { font-size: 24px; font-weight: 900; color: var(--accent); display: block; line-height: 1; }
+    .cm-stat-label { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; display: block; }
+    .cm-features { padding: 0 24px 40px; }
+    .cm-feat { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .cm-feat-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(254,229,0,0.1); border: 1px solid rgba(254,229,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .cm-feat-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .cm-feat-body { font-size: 11.5px; color: var(--muted); line-height: 1.6; }
+    .cm-cta { padding: 24px 24px 40px; text-align: center; }
+    .cm-cta-title { font-size: 20px; font-weight: 900; margin-bottom: 6px; }
+    .cm-cta-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+    .cm-disc { font-size: 8.5px; color: var(--muted); line-height: 1.6; margin-top: 16px; }
+  </style>
+
+  <!-- HERO -->
+  <section class="cm-hero">
+    <div class="cm-badge">
+      <div class="cm-badge-dot"></div>
+      <span class="cm-badge-text">무료 구독 진행 중</span>
+    </div>
+    <h1 class="cm-h1">오늘 주목해야 할<br><em>핵심 종목</em> 3가지</h1>
+    <p class="cm-sub">매일 아침 7시, 전문 애널리스트가 선별한<br>종목 분석을 카카오톡으로 받아보세요.</p>
+
+    <div class="cm-stats">
+      <div class="cm-stat">
+        <span class="cm-stat-val">14K+</span>
+        <span class="cm-stat-label">구독자</span>
+      </div>
+      <div class="cm-stat">
+        <span class="cm-stat-val">+29%</span>
+        <span class="cm-stat-label">평균수익</span>
+      </div>
+      <div class="cm-stat">
+        <span class="cm-stat-val">94%</span>
+        <span class="cm-stat-label">적중률</span>
+      </div>
+    </div>
+
+    <DirectButton platform="kakao" />
+  </section>
+
+  <!-- FEATURES -->
+  <section class="cm-features">
+    <div class="cm-feat">
+      <div class="cm-feat-icon">📊</div>
+      <div>
+        <div class="cm-feat-title">매일 아침 종목 분석</div>
+        <p class="cm-feat-body">기관 매집 신호와 기술적 분석을 결합한 당일 핵심 종목 리포트</p>
+      </div>
+    </div>
+    <div class="cm-feat">
+      <div class="cm-feat-icon">⚡</div>
+      <div>
+        <div class="cm-feat-title">실시간 시장 알림</div>
+        <p class="cm-feat-body">급등 신호 포착 시 즉시 카카오톡 알림 발송 — 기회를 놓치지 않도록</p>
+      </div>
+    </div>
+    <div class="cm-feat">
+      <div class="cm-feat-icon">🎯</div>
+      <div>
+        <div class="cm-feat-title">목표가 & 손절가 제공</div>
+        <p class="cm-feat-body">매수 가격, 목표가, 손절가를 명확히 제시하여 감정 없는 투자 실현</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cm-cta">
+    <div class="cm-cta-title">지금 무료로 시작하기</div>
+    <p class="cm-cta-sub">언제든 해지 가능 · 스팸 없음 · 즉시 구독 완료</p>
+    <DirectButton platform="kakao" />
+    <p class="cm-disc">
+      본 채널의 정보는 투자 권유를 목적으로 하지 않으며 정보 제공만을 위한 것입니다.<br>
+      투자 결정에 대한 책임은 전적으로 투자자 본인에게 있습니다.
+    </p>
+  </section>
+</KRBaseLayout>

@@ -1,0 +1,29 @@
+---
+import type { Platform } from '@/campaigns/types'
+import KakaoFormButton from '@/components/button/KaKaoFormButton.tsx'
+
+type Props = {
+  platform: Platform
+}
+
+const { platform } = Astro.props
+---
+
+{platform === 'kakao' && <KakaoFormButton client:only="react" />}
+
+{platform !== 'kakao' && (
+  <button class="v2-form-fallback link-btn" type="button">
+    <slot>지금 신청하기</slot>
+  </button>
+)}
+
+<style>
+  .v2-form-fallback {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 5rem; border: none; border-radius: 9999px;
+    font-weight: 700; font-size: 1.25rem; cursor: pointer;
+    background: #FEE500; color: #3C1E1E;
+    transition: filter 0.2s;
+  }
+  .v2-form-fallback:hover { filter: brightness(0.97); }
+</style>

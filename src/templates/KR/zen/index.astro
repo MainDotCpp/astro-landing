@@ -1,16 +1,22 @@
 ---
+/**
+ * Zen (茶韵) template — luxury / serene aesthetic.
+ * Extracted from src/pages/KR/[people]/20260317-3.[version].[t]/index.astro
+ */
+import type { ImageMetadata } from 'astro'
+import type { CtaAction } from '@/campaigns/types'
 import { Image } from 'astro:assets'
-import CtaButton from '@/components/CtaButton.astro'
+import CtaButton from '@/components/v2/CtaButton.astro'
 import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
-import { generateKrConfig, Filters } from '@/utils/kr_config'
 
-export function getStaticPaths() {
-  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+export interface Props {
+  name: string
+  img_prefix: string
+  action: CtaAction
+  headImg: Promise<{ default: ImageMetadata }>
 }
 
-const { t = '卡扣' } = Astro.params
-const { img_prefix, name } = Astro.props
-const headImg = import(`../images/${img_prefix}head.jpg`)
+const { name, action, headImg } = Astro.props
 ---
 
 <KRBaseLayout title={`${name} — 투자 멘토링 채널`} description="현명한 투자자의 첫 번째 선택, 조용히 가꾸는 자산">
@@ -46,7 +52,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 999;
     }
-    /* HEADER */
     .cy-header {
       padding: 20px 24px 16px; display: flex; justify-content: space-between;
       align-items: flex-start; border-bottom: 1px solid var(--cy-rule);
@@ -57,7 +62,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cy-gold); animation: cy-glow 2.5s ease-in-out infinite; }
     @keyframes cy-glow { 0%,100%{opacity:0.6;box-shadow:0 0 0 transparent} 50%{opacity:1;box-shadow:0 0 6px var(--cy-gold2)} }
     .cy-badge-text { font-size: 8px; letter-spacing: 0.18em; color: var(--cy-gold); text-transform: uppercase; }
-    /* HERO */
     .cy-hero { padding: 40px 24px 0; position: relative; min-height: 420px; display: flex; flex-direction: column; justify-content: center; }
     .cy-botanical { position: absolute; right: -20px; top: 20px; width: 170px; height: 170px; opacity: 0.07; pointer-events: none; }
     .cy-vertical-accent { position: absolute; right: 20px; top: 40px; writing-mode: vertical-rl; font-family: 'Cormorant Garamond', serif; font-size: 10px; font-style: italic; letter-spacing: 0.2em; color: var(--cy-ink-muted); opacity: 0.45; }
@@ -69,7 +73,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-h1 { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 400; line-height: 1.1; color: var(--cy-ink); margin-bottom: 4px; }
     .cy-h1 em { font-style: italic; color: var(--cy-forest2); }
     .cy-h1-kr { font-size: 17px; font-weight: 400; color: var(--cy-ink-light); letter-spacing: 0.12em; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--cy-rule); }
-    /* EXPERT PORTRAIT */
     .cy-portrait-wrap { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
     .cy-portrait-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cy-rule-gold); }
     .cy-portrait-info { flex: 1; }
@@ -78,7 +81,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-portrait-desc { font-size: 11px; line-height: 1.7; color: var(--cy-ink-light); font-weight: 300; }
     .cy-hero-desc { font-size: 13px; line-height: 2; color: var(--cy-ink-mid); font-weight: 300; margin-bottom: 28px; letter-spacing: 0.03em; }
     .cy-hero-desc strong { color: var(--cy-forest); font-weight: 600; }
-    /* BUTTONS */
     .cy-btn-primary {
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 20px; background: var(--cy-forest); color: var(--cy-parch);
@@ -89,11 +91,9 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-btn-arrow { font-family: 'Cormorant Garamond', serif; font-size: 18px; opacity: 0.6; transition: transform 0.3s, opacity 0.3s; }
     .cy-btn-primary:hover .cy-btn-arrow { transform: translateX(4px); opacity: 1; }
     .cy-btn-note { font-size: 9px; letter-spacing: 0.2em; color: var(--cy-ink-muted); margin-top: 10px; text-align: center; text-transform: uppercase; }
-    /* ORNAMENT */
     .cy-ornament { display: flex; align-items: center; padding: 28px 24px; gap: 12px; }
     .cy-orn-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--cy-rule-gold), transparent); }
     .cy-orn-sym { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--cy-gold); opacity: 0.7; }
-    /* PHILOSOPHY */
     .cy-philosophy { padding: 0 24px 32px; }
     .cy-eyebrow { font-size: 8.5px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--cy-gold); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
     .cy-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--cy-rule-gold); }
@@ -104,7 +104,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-phil-num { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; color: var(--cy-gold); letter-spacing: 0.15em; margin-bottom: 6px; }
     .cy-phil-title { font-size: 15px; font-weight: 700; color: var(--cy-ink); margin-bottom: 6px; letter-spacing: 0.05em; }
     .cy-phil-body { font-size: 11.5px; line-height: 1.85; color: var(--cy-ink-light); font-weight: 300; }
-    /* NUMBERS */
     .cy-numbers { background: var(--cy-forest); padding: 36px 24px; position: relative; overflow: hidden; }
     .cy-numbers::before { content: '富'; position: absolute; right: -20px; bottom: -30px; font-family: 'Cormorant Garamond', serif; font-size: 200px; color: rgba(255,255,255,0.025); line-height: 1; pointer-events: none; }
     .cy-numbers-eyebrow { font-size: 8.5px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--cy-gold); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
@@ -116,7 +115,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-num-label { font-size: 9.5px; letter-spacing: 0.12em; color: rgba(240,235,224,0.45); text-transform: uppercase; }
     .cy-numbers-quote { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; font-weight: 300; color: rgba(240,235,224,0.7); line-height: 1.7; text-align: center; padding: 0 8px; position: relative; }
     .cy-numbers-quote::before { content: '"'; display: block; font-size: 48px; color: var(--cy-gold); opacity: 0.3; line-height: 1; margin-bottom: -16px; }
-    /* TESTIMONIAL */
     .cy-testimonial-section { padding: 32px 24px; background: var(--cy-parch); }
     .cy-test-card { background: var(--cy-cream); border: 1px solid var(--cy-rule); padding: 24px; margin-bottom: 16px; position: relative; }
     .cy-test-open { font-family: 'Cormorant Garamond', serif; font-size: 42px; color: var(--cy-gold); opacity: 0.25; position: absolute; top: 8px; left: 14px; line-height: 1; }
@@ -124,7 +122,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-test-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--cy-rule); }
     .cy-test-name { font-size: 10.5px; color: var(--cy-ink-light); letter-spacing: 0.06em; }
     .cy-test-return { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--cy-forest2); }
-    /* INVITATION */
     .cy-invitation { padding: 36px 24px 40px; text-align: center; background: var(--cy-cream); position: relative; }
     .cy-invitation::before { content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 1px; background: linear-gradient(90deg, transparent, var(--cy-rule-gold), transparent); }
     .cy-inv-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--cy-gold); margin-bottom: 16px; }
@@ -136,29 +133,16 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     .cy-leaf { color: var(--cy-sage); font-size: 12px; margin-top: 1px; flex-shrink: 0; }
     .cy-inv-text { font-size: 11.5px; line-height: 1.7; color: var(--cy-ink-mid); font-weight: 300; }
     .cy-inv-text strong { color: var(--cy-ink); font-weight: 600; }
-    /* LIMITED */
     .cy-limited { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px; }
     .cy-limited-track { flex: 1; max-width: 120px; height: 1px; background: var(--cy-rule-gold); position: relative; }
     .cy-limited-fill { position: absolute; top: 50%; transform: translateY(-50%); left: 0; width: 72%; height: 2px; background: var(--cy-gold); }
     .cy-limited-text { font-size: 9.5px; letter-spacing: 0.15em; color: var(--cy-ink-light); text-transform: uppercase; white-space: nowrap; }
     .cy-limited-count { color: var(--cy-forest); font-weight: 700; }
-    /* KAKAO CTA */
-    .cy-kakao-cta {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 16px 24px; background: #FEE500; color: #1A1200;
-      font-family: 'Gowun Batang', serif; font-size: 14px; letter-spacing: 0.06em;
-      cursor: pointer; border: none; width: 100%; transition: filter 0.2s, box-shadow 0.2s; margin-bottom: 12px;
-    }
-    .cy-kakao-cta:hover { filter: brightness(0.97); box-shadow: 0 6px 24px rgba(196,154,60,0.15); }
-    .cy-band-btn { display: flex; align-items: center; justify-content: center; padding: 14px 24px; background: transparent; border: 1px solid var(--cy-rule); color: var(--cy-ink-light); font-family: 'Gowun Batang', serif; font-size: 12px; letter-spacing: 0.1em; cursor: pointer; width: 100%; transition: all 0.3s; }
-    .cy-band-btn:hover { border-color: var(--cy-forest3); color: var(--cy-forest); }
     .cy-disc { font-size: 8.5px; letter-spacing: 0.04em; color: var(--cy-ink-muted); line-height: 1.7; margin-top: 20px; }
-    /* FOOTER */
     footer.cy-footer { background: var(--cy-forest); padding: 24px; text-align: center; }
     .cy-footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--cy-parch); letter-spacing: 0.3em; margin-bottom: 6px; opacity: 0.8; }
     .cy-footer-rule { width: 40px; height: 1px; background: rgba(196,154,60,0.3); margin: 10px auto; }
     .cy-footer-text { font-size: 8.5px; letter-spacing: 0.08em; color: rgba(240,235,224,0.3); line-height: 1.8; }
-    /* REVEAL */
     .cy-reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .cy-reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
@@ -177,23 +161,20 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
 
   <!-- HERO -->
   <section class="cy-hero">
-    <!-- Botanical SVG -->
     <svg class="cy-botanical" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 180 Q80 140 60 100 Q40 60 80 30 Q100 15 120 30 Q160 50 140 90 Q130 115 100 180Z" fill="#2C3E2D" opacity="0.8"/>
-      <path d="M100 180 Q110 145 125 110 Q140 75 160 55 Q145 80 130 105 Q115 130 100 180Z" fill="#2C3E2D" opacity="0.4"/>
-      <path d="M100 180 Q88 150 72 120 Q55 88 65 60 Q78 80 88 105 Q96 128 100 180Z" fill="#2C3E2D" opacity="0.4"/>
-      <line x1="100" y1="100" x2="80" y2="55" stroke="#2C3E2D" stroke-width="1" opacity="0.3"/>
-      <line x1="100" y1="100" x2="130" y2="60" stroke="#2C3E2D" stroke-width="1" opacity="0.3"/>
+      <path d="M100 180 Q80 140 60 100 Q40 60 80 30 Q100 15 120 30 Q160 50 140 90 Q130 115 100 180Z" fill="#2C3E2D" opacity="0.8" />
+      <path d="M100 180 Q110 145 125 110 Q140 75 160 55 Q145 80 130 105 Q115 130 100 180Z" fill="#2C3E2D" opacity="0.4" />
+      <path d="M100 180 Q88 150 72 120 Q55 88 65 60 Q78 80 88 105 Q96 128 100 180Z" fill="#2C3E2D" opacity="0.4" />
+      <line x1="100" y1="100" x2="80" y2="55" stroke="#2C3E2D" stroke-width="1" opacity="0.3" />
+      <line x1="100" y1="100" x2="130" y2="60" stroke="#2C3E2D" stroke-width="1" opacity="0.3" />
     </svg>
 
     <div class="cy-vertical-accent">봄 · 2026 · 투자의 계절</div>
-
     <div class="cy-season">봄 · Spring 2026</div>
 
     <h1 class="cy-h1">당신의 자산을<br><em>조용히 가꾸다</em></h1>
     <div class="cy-h1-kr">현명한 투자자의 첫 번째 선택</div>
 
-    <!-- EXPERT PORTRAIT -->
     <div class="cy-portrait-wrap">
       <Image src={headImg} alt={name} class="cy-portrait-img" width={80} height={80} />
       <div class="cy-portrait-info">
@@ -216,7 +197,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     <div class="cy-btn-note">무료 · 카카오톡 · 즉시 연결</div>
   </section>
 
-  <!-- ORNAMENT -->
   <div class="cy-ornament">
     <div class="cy-orn-line"></div>
     <div class="cy-orn-sym">✦</div>
@@ -270,7 +250,6 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     </div>
   </section>
 
-  <!-- ORNAMENT -->
   <div class="cy-ornament" style="background:var(--cy-parch);">
     <div class="cy-orn-line"></div>
     <div class="cy-orn-sym">❧</div>
@@ -290,7 +269,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
     </div>
     <div class="cy-test-card">
       <div class="cy-test-open">"</div>
-      <p class="cy-test-text">25년 경험에서 나오는 판단이 다릅니다. 다른 채널에서는 "매수"만 외치는데, {name}은 "지금은 기다리세요"도 솔직하게 말해줘요. 그 신뢰 하나로 1년을 함께했습니다.</p>
+      <p class="cy-test-text">15년 경험에서 나오는 판단이 다릅니다. 다른 채널에서는 "매수"만 외치는데, {name}은 "지금은 기다리세요"도 솔직하게 말해줘요. 그 신뢰 하나로 1년을 함께했습니다.</p>
       <div class="cy-test-footer">
         <div class="cy-test-name">박○○ 님 · 50대 · 자영업</div>
         <div class="cy-test-return">+51%</div>
@@ -324,7 +303,9 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
       <div class="cy-limited-track"><div class="cy-limited-fill"></div></div>
       <span class="cy-limited-text">남은 자리 <span class="cy-limited-count" id="cy-spots">42</span>명</span>
     </div>
-    <CtaButton social={t} />
+    <CtaButton {action}>
+      <slot name="modal-content" slot="modal-content" />
+    </CtaButton>
     <p class="cy-disc">본 채널은 투자 권유를 목적으로 하지 않으며, 정보 제공만을 위한 것입니다. 투자 결정에 대한 책임은 전적으로 투자자 본인에게 있습니다.</p>
   </section>
 
@@ -338,31 +319,30 @@ const headImg = import(`../images/${img_prefix}head.jpg`)
   </footer>
 
   <script is:inline>
-    // Intersection Observer for reveal animations
-    const reveals = document.querySelectorAll('.cy-reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-    reveals.forEach(el => observer.observe(el));
+const reveals = document.querySelectorAll('.cy-reveal')
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting)
+      entry.target.classList.add('visible')
+  })
+}, { threshold: 0.15 })
+reveals.forEach(el => observer.observe(el))
 
-    // Animated member count
-    let members = 14823;
-    setInterval(() => {
-      members += Math.floor(Math.random() * 2) + 1;
-      const el = document.getElementById('cy-member-num');
-      if (el) el.textContent = Math.floor(members / 1000);
-    }, 3000);
+let members = 14823
+setInterval(() => {
+  members += Math.floor(Math.random() * 2) + 1
+  const el = document.getElementById('cy-member-num')
+  if (el)
+    el.textContent = Math.floor(members / 1000)
+}, 3000)
 
-    // Remaining spots
-    let spots = 42;
-    setInterval(() => {
-      const el = document.getElementById('cy-spots');
-      if (el && spots > 18 && Math.random() > 0.75) {
-        spots--;
-        el.textContent = spots;
-      }
-    }, 5000);
-  </script>
+let spots = 42
+setInterval(() => {
+  const el = document.getElementById('cy-spots')
+  if (el && spots > 18 && Math.random() > 0.75) {
+    spots--
+    el.textContent = spots
+  }
+}, 5000)
+</script>
 </KRBaseLayout>

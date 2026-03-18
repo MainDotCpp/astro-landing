@@ -1,0 +1,59 @@
+---
+import type { RouteEntry } from '@/campaigns/types'
+import { resolveAction } from '@/campaigns/KR/channels'
+import { generateRoutes } from '@/campaigns/KR/personas'
+
+import GyeonggiTemplate from '@/templates/KR/gyeonggi/index.astro'
+/**
+ * V2 KR persona route.
+ *
+ * URL pattern: /KR/[name]/[variant]/
+ *   variant = "{campaignId}.{version}.{routeId}"
+ *   e.g.   "20260317-1.0.kakao"
+ *          "20260317-2.0.band"
+ *          "20260317-3.0.modal-kakao"
+ *
+ * To add a new campaign:
+ *   1. Call generateRoutes('20260317-X', { requireImages: [...] }) and merge
+ *      the results into the array returned by getStaticPaths().
+ *   2. Add a matching case in the template selector below.
+ */
+import SinmunTemplate from '@/templates/KR/sinmun/index.astro'
+import ZenTemplate from '@/templates/KR/zen/index.astro'
+
+export function getStaticPaths(): RouteEntry[] {
+  return [
+    ...generateRoutes('20260317-1', { requireImages: ['head'] }),
+    ...generateRoutes('20260317-2', { requireImages: ['head'] }),
+    ...generateRoutes('20260317-3', { requireImages: ['head'] }),
+  ]
+}
+
+const { variant } = Astro.params
+const { name, img_prefix } = Astro.props
+
+// Decode variant: "20260317-1.0.kakao" → campaignId = "20260317-1", routeId = "kakao"
+const dotIdx = variant.lastIndexOf('.')
+const routeId = variant.slice(dotIdx + 1)
+const rest = variant.slice(0, dotIdx)
+const campaignId = rest.slice(0, rest.lastIndexOf('.'))
+
+const action = resolveAction(routeId)
+
+// Dynamically import the head image for this persona
+const headImg = import(`../../[people]/images/${img_prefix}head.jpg`)
+
+// Template selection is done at runtime via conditional rendering below.
+---
+
+{campaignId === '20260317-1' && (
+  <SinmunTemplate {name} {img_prefix} {action} {headImg} />
+)}
+
+{campaignId === '20260317-2' && (
+  <GyeonggiTemplate {name} {img_prefix} {action} {headImg} />
+)}
+
+{campaignId === '20260317-3' && (
+  <ZenTemplate {name} {img_prefix} {action} {headImg} />
+)}

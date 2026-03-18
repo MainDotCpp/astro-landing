@@ -1,0 +1,42 @@
+---
+import type { CtaAction } from '@/campaigns/types'
+import BandCtaButton from '@/components/button/BandCtaButton.astro'
+import KakaoCtaButton from '@/components/button/KakaoCtaButton.astro'
+
+type Props = {
+  primary: CtaAction
+  secondary: CtaAction
+  size?: 'sm' | 'md' | 'lg'
+  stackBelow?: number
+}
+
+const { primary, secondary, size = 'md', stackBelow = 480 } = Astro.props
+---
+
+<div class="v2-choice-wrap" data-stack-below={stackBelow}>
+  <div class="v2-choice-item">
+    {primary.platform === 'kakao' && <KakaoCtaButton {size} />}
+    {primary.platform === 'band' && <BandCtaButton {size} />}
+  </div>
+  <div class="v2-choice-item">
+    {secondary.platform === 'kakao' && <KakaoCtaButton {size} />}
+    {secondary.platform === 'band' && <BandCtaButton {size} />}
+  </div>
+</div>
+
+<style>
+  .v2-choice-wrap {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+  .v2-choice-item {
+    flex: 1;
+    min-width: 0;
+  }
+  @media (max-width: 480px) {
+    .v2-choice-wrap {
+      flex-direction: column;
+    }
+  }
+</style>
