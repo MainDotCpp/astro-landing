@@ -1,0 +1,647 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+const timeStr = `${String(today.getHours()).padStart(2, '0')}:${String(today.getMinutes()).padStart(2, '0')}`
+---
+
+<KRBaseLayout title={`${name} — 투자 커뮤니티`} description="전문가 투자 채널 인기 게시글">
+  <style is:global slot="head">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --bg: #F8F8FA;
+      --surface: #FFFFFF;
+      --border: #E5E5EA;
+      --nav: #1A3A5C;
+      --nav-text: rgba(255,255,255,0.85);
+      --red: #FF4444;
+      --green: #00A651;
+      --green-light: #E6F7EE;
+      --blue: #1A3A5C;
+      --blue-light: #EAF0F7;
+      --text: #1A1A1A;
+      --text-2: #333333;
+      --text-3: #666666;
+      --text-4: #999999;
+      --orange: #FF6B00;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100vh;
+      font-size: 13px;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .cf-nav {
+      background: var(--nav);
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 44px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .cf-nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .cf-nav-logo span { color: #FFD700; }
+    .cf-nav-board {
+      font-size: 11px;
+      color: var(--nav-text);
+    }
+    .cf-nav-date {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* BOARD TABS */
+    .cf-tabs {
+      background: var(--surface);
+      border-bottom: 2px solid var(--nav);
+      display: flex;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .cf-tabs::-webkit-scrollbar { display: none; }
+    .cf-tab {
+      padding: 9px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-3);
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: default;
+    }
+    .cf-tab.active {
+      color: var(--nav);
+      font-weight: 700;
+      border-bottom: 2px solid var(--nav);
+      margin-bottom: -2px;
+    }
+
+    /* HOT LIST HEADER */
+    .cf-hot-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cf-hot-badge {
+      background: var(--red);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .cf-hot-title { font-size: 12px; font-weight: 600; color: var(--text-2); }
+    .cf-hot-count { margin-left: auto; font-size: 10px; color: var(--text-4); }
+
+    /* POST LIST */
+    .cf-post-list {
+      background: var(--surface);
+      border-bottom: 4px solid var(--border);
+    }
+    .cf-post-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cf-post-item:last-child { border-bottom: none; }
+    .cf-post-rank {
+      font-size: 13px;
+      font-weight: 700;
+      width: 18px;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .cf-post-rank.r1 { color: var(--red); }
+    .cf-post-rank.r2 { color: var(--orange); }
+    .cf-post-rank.r3 { color: #888; }
+    .cf-post-info { flex: 1; min-width: 0; }
+    .cf-post-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      padding: 1px 5px;
+      border-radius: 2px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+    .cf-post-tag.hot { background: #FFEBEB; color: var(--red); }
+    .cf-post-tag.rise { background: #FFF3E6; color: var(--orange); }
+    .cf-post-tag.new { background: var(--green-light); color: var(--green); }
+    .cf-post-title-text {
+      font-size: 12px;
+      color: var(--text);
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline;
+    }
+    .cf-post-meta { font-size: 10px; color: var(--text-4); margin-top: 2px; }
+    .cf-post-views { font-size: 10px; color: var(--text-4); flex-shrink: 0; }
+
+    /* EXPERT POST CARD */
+    .cf-expert-wrap { padding: 10px 10px 0; }
+    .cf-expert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cf-expert-top {
+      background: var(--nav);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cf-expert-badge-hot {
+      background: var(--red);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .cf-expert-hot-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+    .cf-expert-views {
+      margin-left: auto;
+      font-size: 10px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* POST META ROW */
+    .cf-post-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cf-author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--nav);
+    }
+    .cf-author-info { flex: 1; min-width: 0; }
+    .cf-author-name-row { display: flex; align-items: center; gap: 5px; }
+    .cf-author-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .cf-expert-label {
+      background: var(--nav);
+      color: #FFD700;
+      font-size: 8px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .cf-author-sub { font-size: 10px; color: var(--text-4); margin-top: 1px; }
+
+    /* POST TITLE */
+    .cf-post-title-full {
+      padding: 10px 12px 6px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* POST BODY */
+    .cf-post-body {
+      padding: 12px;
+    }
+    .cf-post-text {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-2);
+      margin-bottom: 12px;
+    }
+
+    /* CHART PLACEHOLDER */
+    .cf-chart-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 12px;
+      margin-bottom: 12px;
+    }
+    .cf-chart-title { font-size: 11px; font-weight: 600; color: var(--text-3); margin-bottom: 10px; }
+    .cf-chart-bars { display: flex; align-items: flex-end; gap: 4px; height: 60px; }
+    .cf-chart-bar { flex: 1; border-radius: 3px 3px 0 0; }
+    .cf-chart-labels { display: flex; gap: 4px; margin-top: 4px; }
+    .cf-chart-label { flex: 1; font-size: 8px; color: var(--text-4); text-align: center; }
+    .cf-chart-note { font-size: 9px; color: var(--text-4); margin-top: 6px; text-align: right; }
+
+    /* INLINE CTA (looks like post content) */
+    .cf-inline-cta {
+      background: var(--blue-light);
+      border: 1px solid #C7D8EB;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .cf-inline-cta-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--nav);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .cf-inline-cta-text {
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .cf-inline-cta .link-btn { display: block; width: 100%; }
+
+    /* INTERACTION BAR */
+    .cf-interact {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      padding: 0 12px;
+    }
+    .cf-interact-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 12px 10px 0;
+      font-size: 12px;
+      color: var(--text-3);
+      margin-right: 12px;
+    }
+    .cf-interact-btn.liked { color: var(--red); }
+    .cf-interact-count { font-weight: 600; }
+    .cf-interact-share {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-4);
+    }
+
+    /* COMMENT SECTION */
+    .cf-comments-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 12px 8px;
+      border-top: 4px solid var(--bg);
+    }
+    .cf-comments-title { font-size: 13px; font-weight: 700; color: var(--text); }
+    .cf-comments-count {
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .cf-comment {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+    }
+    .cf-comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--nav);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cf-comment-body { flex: 1; }
+    .cf-comment-top { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
+    .cf-comment-name { font-size: 12px; font-weight: 600; color: var(--text-2); }
+    .cf-comment-return {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-light);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .cf-comment-time { font-size: 10px; color: var(--text-4); margin-left: auto; }
+    .cf-comment-text { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .cf-comment-like { font-size: 10px; color: var(--text-4); margin-top: 5px; }
+
+    /* SECOND CTA BLOCK */
+    .cf-cta-block {
+      background: var(--nav);
+      margin: 10px 10px 0;
+      border-radius: 8px;
+      padding: 18px 16px;
+      text-align: center;
+      color: #fff;
+    }
+    .cf-cta-eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #FFD700;
+      margin-bottom: 8px;
+    }
+    .cf-cta-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .cf-cta-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .cf-cta-note { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 10px; }
+    .cf-cta-block .link-btn { display: block; width: 100%; }
+
+    /* FOOTER */
+    footer.cf-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 16px 14px;
+      margin-top: 14px;
+      text-align: center;
+    }
+    .cf-footer-name { font-size: 12px; font-weight: 600; color: var(--text-3); margin-bottom: 6px; }
+    .cf-footer-disc { font-size: 9px; color: var(--text-4); line-height: 1.7; }
+  </style>
+
+  <!-- NAV -->
+  <nav class="cf-nav">
+    <div class="cf-nav-logo">투자<span>채널</span></div>
+    <div class="cf-nav-board">전문가 분석 게시판</div>
+    <div class="cf-nav-date">{dateStr}</div>
+  </nav>
+
+  <!-- BOARD TABS -->
+  <div class="cf-tabs">
+    <div class="cf-tab">전체</div>
+    <div class="cf-tab active">전문가 분석</div>
+    <div class="cf-tab">종목추천</div>
+    <div class="cf-tab">수익인증</div>
+    <div class="cf-tab">Q&A</div>
+  </div>
+
+  <!-- HOT LIST HEADER -->
+  <div class="cf-hot-header">
+    <span class="cf-hot-badge">HOT</span>
+    <span class="cf-hot-title">오늘의 인기글 TOP 3</span>
+    <span class="cf-hot-count">실시간 업데이트</span>
+  </div>
+
+  <!-- HOT POST LIST -->
+  <div class="cf-post-list">
+    <div class="cf-post-item">
+      <div class="cf-post-rank r1">1</div>
+      <div class="cf-post-info">
+        <div>
+          <span class="cf-post-tag hot">HOT</span>
+          <span class="cf-post-title-text">[전문가 분석] 오늘 기관이 몰래 담은 종목 3개</span>
+        </div>
+        <div class="cf-post-meta">{name} · {timeStr}</div>
+      </div>
+      <div class="cf-post-views">👁 8,241</div>
+    </div>
+    <div class="cf-post-item">
+      <div class="cf-post-rank r2">2</div>
+      <div class="cf-post-info">
+        <div>
+          <span class="cf-post-tag rise">급상승</span>
+          <span class="cf-post-title-text">이번 주 코스피 2,900 돌파 가능성 분석</span>
+        </div>
+        <div class="cf-post-meta">투자고수 · 3시간 전</div>
+      </div>
+      <div class="cf-post-views">👁 5,103</div>
+    </div>
+    <div class="cf-post-item">
+      <div class="cf-post-rank r3">3</div>
+      <div class="cf-post-info">
+        <div>
+          <span class="cf-post-tag new">NEW</span>
+          <span class="cf-post-title-text">반도체 섹터 단기 반등 신호 포착!</span>
+        </div>
+        <div class="cf-post-meta">시장분석단 · 5시간 전</div>
+      </div>
+      <div class="cf-post-views">👁 3,887</div>
+    </div>
+  </div>
+
+  <!-- EXPERT POST CARD -->
+  <div class="cf-expert-wrap">
+    <div class="cf-expert-card">
+
+      <!-- TOP HOT BAR -->
+      <div class="cf-expert-top">
+        <span class="cf-expert-badge-hot">🔥 오늘 1위</span>
+        <span class="cf-expert-hot-label">실시간 급상승 인기글</span>
+        <span class="cf-expert-views">👁 8,241 조회</span>
+      </div>
+
+      <!-- AUTHOR ROW -->
+      <div class="cf-post-meta-row">
+        <Image src={headImg} alt={name} class="cf-author-avatar" width={42} height={42} />
+        <div class="cf-author-info">
+          <div class="cf-author-name-row">
+            <span class="cf-author-name">{name}</span>
+            <span class="cf-expert-label">전문가</span>
+          </div>
+          <div class="cf-author-sub">가입 2019.03 · 팔로워 52,400명 · 게시글 1,247개</div>
+        </div>
+      </div>
+
+      <!-- POST TITLE -->
+      <div class="cf-post-title-full">
+        [긴급 분석] 오늘 기관이 집중 매수한 종목 3개 — 지금 안 담으면 후회합니다
+      </div>
+
+      <!-- POST BODY -->
+      <div class="cf-post-body">
+        <p class="cf-post-text">
+          안녕하세요, {name}입니다.<br><br>
+          오늘 장 시작 30분 만에 이례적인 신호를 포착했습니다. 기관이 특정 3개 종목에 집중적으로 매수를 쏟아붓고 있었는데, 이 패턴은 지난해 11월에도 딱 한 번 나타났었고 — 그때 해당 종목들은 이후 3주 만에 평균 <strong style="color:var(--green)">+31.4%</strong> 상승했습니다.<br><br>
+          단순 수급이 아닙니다. 이번엔 실적 서프라이즈 가능성까지 겹쳐 있어서 더 강력한 복합 신호입니다. 저는 이런 신호가 세 가지 이상 겹칠 때만 포스팅을 올립니다. 올해 들어 세 번째입니다.
+        </p>
+
+        <!-- CHART -->
+        <div class="cf-chart-block">
+          <div class="cf-chart-title">📊 기관 순매수 강도 (최근 5거래일)</div>
+          <div class="cf-chart-bars">
+            <div class="cf-chart-bar" style="height:30%;background:#CBD8E8;"></div>
+            <div class="cf-chart-bar" style="height:45%;background:#CBD8E8;"></div>
+            <div class="cf-chart-bar" style="height:38%;background:#CBD8E8;"></div>
+            <div class="cf-chart-bar" style="height:52%;background:#CBD8E8;"></div>
+            <div class="cf-chart-bar" style="height:95%;background:var(--nav);"></div>
+          </div>
+          <div class="cf-chart-labels">
+            <div class="cf-chart-label">5일전</div>
+            <div class="cf-chart-label">4일전</div>
+            <div class="cf-chart-label">3일전</div>
+            <div class="cf-chart-label">2일전</div>
+            <div class="cf-chart-label" style="color:var(--red);font-weight:700;">오늘</div>
+          </div>
+          <div class="cf-chart-note">오늘 기관 매수 강도 — 최근 5일 대비 최고치</div>
+        </div>
+
+        <p class="cf-post-text">
+          종목명은 채널 구독자에게만 공개합니다. 찾아오셔서 확인하시거나, 아래에서 바로 채널에 합류하시면 오늘 분석 리포트 전문을 즉시 받으실 수 있습니다.
+        </p>
+
+        <!-- INLINE CTA -->
+        <div class="cf-inline-cta">
+          <div class="cf-inline-cta-label">📌 채널 공지</div>
+          <div class="cf-inline-cta-text">
+            오늘 포착한 3개 종목 + 매매 타이밍 전략을 지금 채널에서 공개 중입니다. 구독 즉시 전문 리포트를 받아보세요.
+          </div>
+          <CtaButton social={t} />
+        </div>
+
+      </div>
+
+      <!-- INTERACTION BAR -->
+      <div class="cf-interact">
+        <div class="cf-interact-btn liked">
+          👍 <span class="cf-interact-count">1,847</span>
+        </div>
+        <div class="cf-interact-btn">
+          💬 <span class="cf-interact-count">댓글 234</span>
+        </div>
+        <div class="cf-interact-btn">
+          🔖 <span class="cf-interact-count">저장 892</span>
+        </div>
+        <div class="cf-interact-share">공유 ↗</div>
+      </div>
+
+      <!-- COMMENTS HEADER -->
+      <div class="cf-comments-header">
+        <span class="cf-comments-title">댓글</span>
+        <span class="cf-comments-count">234</span>
+      </div>
+
+      <!-- COMMENTS -->
+      <div class="cf-comment">
+        <div class="cf-comment-avatar">김</div>
+        <div class="cf-comment-body">
+          <div class="cf-comment-top">
+            <span class="cf-comment-name">김○○</span>
+            <span class="cf-comment-return">+41% 달성</span>
+            <span class="cf-comment-time">23분 전</span>
+          </div>
+          <p class="cf-comment-text">지난달에 알려주신 종목 어제 팔았는데 수익률 41% 나왔어요!! 이번에도 바로 합류합니다 ㅎㅎ</p>
+          <div class="cf-comment-like">👍 138</div>
+        </div>
+      </div>
+
+      <div class="cf-comment">
+        <div class="cf-comment-avatar">이</div>
+        <div class="cf-comment-body">
+          <div class="cf-comment-top">
+            <span class="cf-comment-name">이○○</span>
+            <span class="cf-comment-return">+28% 달성</span>
+            <span class="cf-comment-time">51분 전</span>
+          </div>
+          <p class="cf-comment-text">채널 구독한 지 5개월 됐는데 진짜 매달 수익이 나고 있어요. 이런 분석 무료로 주는 거 맞나요? 감사합니다</p>
+          <div class="cf-comment-like">👍 97</div>
+        </div>
+      </div>
+
+      <div class="cf-comment">
+        <div class="cf-comment-avatar">박</div>
+        <div class="cf-comment-body">
+          <div class="cf-comment-top">
+            <span class="cf-comment-name">박○○</span>
+            <span class="cf-comment-return">+33% 달성</span>
+            <span class="cf-comment-time">1시간 전</span>
+          </div>
+          <p class="cf-comment-text">기관 매수 패턴 분석은 {name} 님이 국내 최고 수준인 것 같아요. 올해 3번 다 따라 들어갔는데 전부 수익 냈습니다.</p>
+          <div class="cf-comment-like">👍 74</div>
+        </div>
+      </div>
+
+      <div class="cf-comment">
+        <div class="cf-comment-avatar">최</div>
+        <div class="cf-comment-body">
+          <div class="cf-comment-top">
+            <span class="cf-comment-name">최○○</span>
+            <span class="cf-comment-time">2시간 전</span>
+          </div>
+          <p class="cf-comment-text">방금 채널 구독 완료했어요! 리포트 확인해보겠습니다. 좋은 글 감사합니다 🙏</p>
+          <div class="cf-comment-like">👍 41</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECOND CTA BLOCK -->
+  <div class="cf-cta-block">
+    <div class="cf-cta-eyebrow">전문가 채널 구독</div>
+    <div class="cf-cta-title">{name}의 오늘 분석<br>지금 바로 받으세요</div>
+    <p class="cf-cta-sub">
+      매일 아침 장 시작 전, 오늘 주목해야 할 종목과 매매 전략을 직접 발송합니다. 구독자 52,000명이 함께하고 있습니다.
+    </p>
+    <CtaButton social={t} />
+    <div class="cf-cta-note">무료 구독 · 언제든 해지 가능 · 개인정보 보호</div>
+  </div>
+
+  <footer class="cf-footer">
+    <div class="cf-footer-name">투자채널 · 전문가 분석 게시판</div>
+    <p class="cf-footer-disc">
+      본 게시글은 투자 참고 정보 제공을 목적으로 하며, 특정 종목에 대한 투자 권유가 아닙니다.<br>
+      모든 투자 결정 및 그에 따른 손익은 투자자 본인에게 귀속됩니다.<br>
+      과거 수익률이 미래 수익을 보장하지 않습니다.
+    </p>
+  </footer>
+
+</KRBaseLayout>

@@ -1,0 +1,573 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+---
+
+<KRBaseLayout title={`${name} — 투자 대시보드`} description="실시간 시장 분석 및 전문가 투자 신호">
+  <style is:global slot="head">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;600&display=swap');
+
+    :root {
+      --bg: #F0F2F5;
+      --surface: #FFFFFF;
+      --surface-2: #F7F9FC;
+      --border: #E2E8F0;
+      --blue: #1A56DB;
+      --blue-light: #EBF0FF;
+      --blue-dark: #1240A8;
+      --green: #0E9F6E;
+      --green-light: #E3FCF0;
+      --red: #E02424;
+      --red-light: #FDE8E8;
+      --text: #111827;
+      --text-2: #374151;
+      --text-3: #6B7280;
+      --text-4: #9CA3AF;
+      --mono: 'Roboto Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+
+    /* HEADER BAR */
+    .ft-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .ft-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ft-logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--blue);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--mono);
+    }
+    .ft-logo-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .ft-logo-text span { color: var(--blue); }
+    .ft-header-date {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+    }
+
+    /* MARKET STRIP */
+    .ft-market-strip {
+      background: var(--blue);
+      padding: 7px 16px;
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .ft-market-strip::-webkit-scrollbar { display: none; }
+    .ft-mkt {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .ft-mkt-name { font-size: 9px; color: rgba(255,255,255,0.7); font-weight: 500; }
+    .ft-mkt-val { font-family: var(--mono); font-size: 11px; color: #fff; font-weight: 600; }
+    .ft-mkt-up { font-size: 9px; color: #6EE7B7; font-weight: 600; }
+    .ft-mkt-dn { font-size: 9px; color: #FCA5A5; font-weight: 600; }
+
+    /* MAIN */
+    .ft-main { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+
+    /* CARDS */
+    .ft-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .ft-card-header {
+      padding: 10px 14px 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ft-card-tag {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .ft-card-tag.live::before { content: '● '; color: var(--green); }
+    .ft-card-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-2);
+    }
+    .ft-card-body { padding: 14px; }
+
+    /* PROFILE CARD */
+    .ft-profile {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .ft-profile-img {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--blue);
+    }
+    .ft-profile-info { flex: 1; }
+    .ft-profile-role {
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      margin-bottom: 2px;
+    }
+    .ft-profile-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .ft-badge-row { display: flex; gap: 4px; flex-wrap: wrap; }
+    .ft-badge {
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 20px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+
+    /* STATS STRIP */
+    .ft-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .ft-stat {
+      padding: 12px 10px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .ft-stat:last-child { border-right: none; }
+    .ft-stat-val {
+      font-family: var(--mono);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--blue);
+      display: block;
+      letter-spacing: -0.03em;
+    }
+    .ft-stat-val.up { color: var(--green); }
+    .ft-stat-label {
+      font-size: 9px;
+      color: var(--text-3);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    /* SIGNAL CARD */
+    .ft-signal-header {
+      background: linear-gradient(135deg, #1A56DB 0%, #1240A8 100%);
+      padding: 14px;
+      color: #fff;
+    }
+    .ft-signal-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+    .ft-signal-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .ft-signal-meta {
+      display: flex;
+      gap: 10px;
+      font-size: 10px;
+      opacity: 0.8;
+    }
+    .ft-signal-meta span { display: flex; align-items: center; gap: 3px; }
+    .ft-signal-body { padding: 14px; }
+    .ft-signal-text {
+      font-size: 12px;
+      line-height: 1.75;
+      color: var(--text-2);
+      margin-bottom: 12px;
+    }
+    .ft-alert-box {
+      background: var(--blue-light);
+      border: 1px solid #BDD3FF;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .ft-alert-icon { font-size: 16px; flex-shrink: 0; }
+    .ft-alert-text { font-size: 11px; color: var(--blue-dark); line-height: 1.6; font-weight: 500; }
+
+    /* INDICATOR BARS */
+    .ft-indicators { display: flex; flex-direction: column; gap: 10px; }
+    .ft-ind {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ft-ind-label { font-size: 11px; color: var(--text-2); font-weight: 500; width: 70px; flex-shrink: 0; }
+    .ft-ind-bar-wrap { flex: 1; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+    .ft-ind-bar { height: 100%; border-radius: 3px; background: var(--blue); }
+    .ft-ind-val { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--text); width: 36px; text-align: right; flex-shrink: 0; }
+
+    /* CTA CARD */
+    .ft-cta {
+      background: linear-gradient(135deg, #1A56DB 0%, #0E3FA0 100%);
+      border-radius: 10px;
+      padding: 20px 16px;
+      text-align: center;
+      color: #fff;
+    }
+    .ft-cta-eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+    .ft-cta-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .ft-cta-sub {
+      font-size: 12px;
+      opacity: 0.8;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .ft-cta-note {
+      font-size: 10px;
+      opacity: 0.55;
+      margin-top: 10px;
+    }
+    .ft-cta .link-btn, .ft-cta-wrap .link-btn { display: block; width: 100%; }
+
+    /* TESTIMONIALS */
+    .ft-testi { display: flex; flex-direction: column; gap: 0; }
+    .ft-testi-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+    }
+    .ft-testi-item:last-child { border-bottom: none; }
+    .ft-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .ft-testi-name { font-size: 12px; font-weight: 600; color: var(--text); }
+    .ft-testi-return {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    .ft-testi-role { font-size: 10px; color: var(--text-3); margin-bottom: 4px; }
+    .ft-testi-text { font-size: 11px; color: var(--text-2); line-height: 1.65; }
+
+    /* SECOND CTA */
+    .ft-cta2 {
+      background: var(--surface);
+      border: 2px solid var(--blue);
+      border-radius: 10px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .ft-cta2-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .ft-cta2-sub {
+      font-size: 11px;
+      color: var(--text-3);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .ft-cta2 strong { color: var(--blue); }
+
+    /* FOOTER */
+    footer.ft-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 16px;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .ft-footer-logo { font-size: 13px; font-weight: 700; color: var(--text-3); margin-bottom: 6px; }
+    .ft-footer-disc { font-size: 9px; color: var(--text-4); line-height: 1.7; }
+  </style>
+
+  <!-- HEADER BAR -->
+  <header class="ft-header">
+    <div class="ft-logo">
+      <div class="ft-logo-mark">K</div>
+      <div class="ft-logo-text">Korea<span>Signal</span></div>
+    </div>
+    <div class="ft-header-date">{dateStr}</div>
+  </header>
+
+  <!-- MARKET STRIP -->
+  <div class="ft-market-strip">
+    <div class="ft-mkt"><span class="ft-mkt-name">KOSPI</span><span class="ft-mkt-val">2,847.33</span><span class="ft-mkt-up">▲1.24%</span></div>
+    <div class="ft-mkt"><span class="ft-mkt-name">삼성전자</span><span class="ft-mkt-val">84,200</span><span class="ft-mkt-up">▲3.2%</span></div>
+    <div class="ft-mkt"><span class="ft-mkt-name">SK하이닉스</span><span class="ft-mkt-val">198,500</span><span class="ft-mkt-up">▲5.7%</span></div>
+    <div class="ft-mkt"><span class="ft-mkt-name">NAVER</span><span class="ft-mkt-val">178,000</span><span class="ft-mkt-dn">▼1.1%</span></div>
+    <div class="ft-mkt"><span class="ft-mkt-name">카카오</span><span class="ft-mkt-val">52,300</span><span class="ft-mkt-up">▲4.0%</span></div>
+  </div>
+
+  <main class="ft-main">
+
+    <!-- EXPERT PROFILE CARD -->
+    <div class="ft-card">
+      <div class="ft-card-header">
+        <span class="ft-card-tag">전문가 프로필</span>
+        <span class="ft-card-title">오늘의 분석 담당</span>
+      </div>
+      <div class="ft-card-body">
+        <div class="ft-profile">
+          <Image src={headImg} alt={name} class="ft-profile-img" width={76} height={76} />
+          <div class="ft-profile-info">
+            <div class="ft-profile-role">수석 애널리스트</div>
+            <div class="ft-profile-name">{name}</div>
+            <div class="ft-badge-row">
+              <span class="ft-badge">경력 15년+</span>
+              <span class="ft-badge">CFA</span>
+              <span class="ft-badge">전직 증권사</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERFORMANCE STATS STRIP -->
+    <div class="ft-card">
+      <div class="ft-card-header">
+        <span class="ft-card-tag live">실시간</span>
+        <span class="ft-card-title">이달 성과 지표</span>
+      </div>
+      <div class="ft-stats">
+        <div class="ft-stat">
+          <span class="ft-stat-val up">85%</span>
+          <div class="ft-stat-label">종목 적중률</div>
+        </div>
+        <div class="ft-stat">
+          <span class="ft-stat-val">52K</span>
+          <div class="ft-stat-label">구독자 수</div>
+        </div>
+        <div class="ft-stat">
+          <span class="ft-stat-val up">+27%</span>
+          <div class="ft-stat-label">평균 수익률</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKET SIGNAL CARD -->
+    <div class="ft-card">
+      <div class="ft-signal-header">
+        <div class="ft-signal-label">● LIVE SIGNAL · 긴급 포착</div>
+        <div class="ft-signal-title">
+          기관 매집 + 기술적 돌파<br>동시 신호 포착
+        </div>
+        <div class="ft-signal-meta">
+          <span>📊 3개 종목</span>
+          <span>🕐 오전 9:27 업데이트</span>
+        </div>
+      </div>
+      <div class="ft-signal-body">
+        <p class="ft-signal-text">
+          오늘 장 시작 직후, {name}이 포착한 이례적 패턴 — 기관이 장 초반 27분 만에 집중 매수에 나선 3개 종목에서 기술적 저항선 돌파와 실적 상향이 동시에 확인됐습니다.
+        </p>
+
+        <!-- INDICATOR BARS -->
+        <div class="ft-indicators" style="margin-bottom:14px;">
+          <div class="ft-ind">
+            <span class="ft-ind-label">기관 매수</span>
+            <div class="ft-ind-bar-wrap"><div class="ft-ind-bar" style="width:91%;"></div></div>
+            <span class="ft-ind-val">91</span>
+          </div>
+          <div class="ft-ind">
+            <span class="ft-ind-label">기술 신호</span>
+            <div class="ft-ind-bar-wrap"><div class="ft-ind-bar" style="width:78%;"></div></div>
+            <span class="ft-ind-val">78</span>
+          </div>
+          <div class="ft-ind">
+            <span class="ft-ind-label">실적 모멘텀</span>
+            <div class="ft-ind-bar-wrap"><div class="ft-ind-bar" style="width:85%;"></div></div>
+            <span class="ft-ind-val">85</span>
+          </div>
+          <div class="ft-ind">
+            <span class="ft-ind-label">전체 신호강도</span>
+            <div class="ft-ind-bar-wrap"><div class="ft-ind-bar" style="width:88%; background:var(--green);"></div></div>
+            <span class="ft-ind-val" style="color:var(--green);">88</span>
+          </div>
+        </div>
+
+        <div class="ft-alert-box">
+          <span class="ft-alert-icon">⚡</span>
+          <p class="ft-alert-text">
+            이런 신호가 세 지표 모두 80점 이상으로 겹치는 경우는 올해 들어 단 2번 — 두 번 모두 이후 한 달 내 평균 +23% 수익이 발생했습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMARY CTA -->
+    <div class="ft-cta">
+      <div class="ft-cta-eyebrow">무료 구독</div>
+      <div class="ft-cta-title">{name}의 시그널을<br>지금 바로 받으세요</div>
+      <p class="ft-cta-sub">
+        매일 아침 7시, 오늘 주목해야 할 종목과 매매 타이밍을 카카오톡으로 직접 발송합니다
+      </p>
+      <CtaButton social={t} />
+      <div class="ft-cta-note">무료 · 언제든 해지 가능 · 개인정보 보호</div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="ft-card">
+      <div class="ft-card-header">
+        <span class="ft-card-tag">구독자 후기</span>
+        <span class="ft-card-title">실제 수익 인증</span>
+      </div>
+      <div class="ft-testi">
+        <div class="ft-testi-item">
+          <div class="ft-avatar">김</div>
+          <div>
+            <div>
+              <span class="ft-testi-name">김○○ 님</span>
+              <span class="ft-testi-return">+38%</span>
+            </div>
+            <div class="ft-testi-role">직장인 · 구독 4개월</div>
+            <p class="ft-testi-text">"처음엔 반신반의했는데 첫 추천 종목에서 3주 만에 22% 수익. 그 후로 매일 꼭 확인합니다."</p>
+          </div>
+        </div>
+        <div class="ft-testi-item">
+          <div class="ft-avatar">이</div>
+          <div>
+            <div>
+              <span class="ft-testi-name">이○○ 님</span>
+              <span class="ft-testi-return">+51%</span>
+            </div>
+            <div class="ft-testi-role">주부 · 구독 7개월</div>
+            <p class="ft-testi-text">"주식 완전 초보였는데 용어 설명부터 매매 타이밍까지 너무 쉽게 알려줘서 따라 하기만 해도 수익이 납니다."</p>
+          </div>
+        </div>
+        <div class="ft-testi-item">
+          <div class="ft-avatar">박</div>
+          <div>
+            <div>
+              <span class="ft-testi-name">박○○ 님</span>
+              <span class="ft-testi-return">+29%</span>
+            </div>
+            <div class="ft-testi-role">자영업 · 구독 6개월</div>
+            <p class="ft-testi-text">"6개월 평균 수익률 29%. 이미 주변 10명에게 소개했고 모두 만족하고 있습니다."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECOND CTA -->
+    <div class="ft-cta2">
+      <div class="ft-cta2-title">지금 구독하면 즉시 제공</div>
+      <p class="ft-cta2-sub">
+        <strong>지난 30일 리포트 전체</strong> + 오늘 {name}의 긴급 분석 리포트를 구독 즉시 받으실 수 있습니다
+      </p>
+      <CtaButton social={t} />
+    </div>
+
+  </main>
+
+  <footer class="ft-footer">
+    <div class="ft-footer-logo">KoreaSignal · 한국투자시그널</div>
+    <p class="ft-footer-disc">
+      본 서비스는 투자 참고 정보 제공을 목적으로 하며, 투자 권유가 아닙니다.<br>
+      모든 투자 결정 및 그에 따른 결과는 투자자 본인에게 있습니다.<br>
+      과거 수익률이 미래 수익을 보장하지 않습니다.
+    </p>
+  </footer>
+
+</KRBaseLayout>
