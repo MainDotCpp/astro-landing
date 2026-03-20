@@ -1,0 +1,447 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+---
+
+<KRBaseLayout title={`${name} - 증권 정보 커뮤니티`} description="실시간 종목 토론 및 전문가 분석">
+  <style is:global slot="head">
+    /*
+     * Pretendard is the most popular font for KR modern apps like Toss/Stockplus.
+     * Falling back to Noto Sans KR.
+     */
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+    :root {
+      --sp-bg: #F2F4F6;
+      --sp-white: #FFFFFF;
+      --sp-text-main: #191F28;
+      --sp-text-sub: #8B95A1;
+      --sp-border: #F2F4F6;
+      --sp-divider: #E5E8EB;
+      --sp-blue: #3182F6;
+      --sp-blue-light: #E8F3FF;
+      --sp-red: #F04452; /* KR stock UP color */
+      --sp-red-light: #FDE8E9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #E5E8EB;
+      color: var(--sp-text-main);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Mobile App Shell */
+    .sp-app {
+      max-width: 420px;
+      margin: 0 auto;
+      background: var(--sp-white);
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      padding-bottom: 90px; /* Space for sticky button */
+    }
+
+    /* Header Nav */
+    .sp-nav {
+      position: sticky;
+      top: 0;
+      background: var(--sp-white);
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--sp-border);
+      z-index: 100;
+    }
+    .sp-nav-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sp-text-main);
+    }
+    .sp-nav-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* Feed Post */
+    .sp-post {
+      padding: 20px 20px 16px;
+    }
+    .sp-user-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .sp-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--sp-border);
+    }
+    .sp-user-info {
+      flex: 1;
+    }
+    .sp-user-name {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .sp-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      background: var(--sp-blue);
+      color: #fff;
+      border-radius: 50%;
+    }
+    .sp-user-meta {
+      font-size: 12px;
+      color: var(--sp-text-sub);
+    }
+
+    .sp-content {
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: keep-all;
+      margin-bottom: 16px;
+    }
+
+    .sp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .sp-tag {
+      background: var(--sp-blue-light);
+      color: var(--sp-blue);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    /* Stock Embed Box */
+    .sp-stock-box {
+      border: 1px solid var(--sp-divider);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      background: #FAFAFB;
+    }
+    .sp-stock-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sp-stock-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--sp-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .sp-stock-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .sp-stock-code {
+      font-size: 12px;
+      color: var(--sp-text-sub);
+    }
+    .sp-stock-price {
+      text-align: right;
+    }
+    .sp-price-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--sp-red);
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .sp-price-diff {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sp-red);
+      background: var(--sp-red-light);
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    /* Engagement Bar */
+    .sp-actions {
+      display: flex;
+      border-top: 1px solid var(--sp-divider);
+      padding-top: 16px;
+      gap: 16px;
+    }
+    .sp-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--sp-text-sub);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Gray Divider Area */
+    .sp-section-divider {
+      height: 8px;
+      background: var(--sp-bg);
+      border-top: 1px solid var(--sp-divider);
+      border-bottom: 1px solid var(--sp-divider);
+    }
+
+    /* Comments Section */
+    .sp-comments {
+      padding: 20px;
+    }
+    .sp-comments-header {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .sp-comment {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .sp-comment-av {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #D1D5DB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+    .sp-comment-body {
+      flex: 1;
+    }
+    .sp-comment-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .sp-comment-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--sp-text-main);
+      margin-bottom: 4px;
+    }
+    .sp-comment-meta {
+      font-size: 11px;
+      color: var(--sp-text-sub);
+    }
+
+    /* Bottom Fixed CTA */
+    .sp-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      max-width: 420px;
+      background: var(--sp-white);
+      padding: 12px 16px 24px;
+      border-top: 1px solid var(--sp-divider);
+      z-index: 100;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* Make the original button component fit perfectly */
+    .sp-bottom-bar .link-btn {
+      width: 100%;
+      height: 52px;
+      border-radius: 12px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+    }
+
+    .sp-cta-text {
+      text-align: center;
+      font-size: 11px;
+      color: var(--sp-text-sub);
+      margin-top: 8px;
+    }
+  </style>
+
+  <div class="sp-app">
+    <!-- Top Nav -->
+    <header class="sp-nav">
+      <div class="sp-nav-icon">
+        <!-- Back Arrow -->
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </div>
+      <div class="sp-nav-title">종목토론</div>
+      <div class="sp-nav-icon">
+        <!-- Search/More -->
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+      </div>
+    </header>
+
+    <!-- Main Post -->
+    <section class="sp-post">
+      <div class="sp-user-row">
+        <Image src={headImg} alt={name} class="sp-avatar" width={42} height={42} />
+        <div class="sp-user-info">
+          <div class="sp-user-name">
+            {name}
+            <span class="sp-badge">
+              <svg fill="currentColor" viewBox="0 0 20 20" width="10" height="10"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </span>
+          </div>
+          <div class="sp-user-meta">공식 인증 전문가 · 5분 전</div>
+        </div>
+      </div>
+
+      <div class="sp-content">
+최근 시장 흔들림에 손실 보신 분들 많으시죠?
+
+방금 외인과 연기금이 바닥에서 쓸어담고 있는 <strong>[핵심 주도주 1종목]</strong> 포착했습니다.
+단순 테마가 아니라 다음 주 확실한 재료(M&A 및 실적서프라이즈)가 터집니다.
+
+어제 무료방에서 드렸던 종목, 오늘 장중 상한가 달성했습니다.
+이번 종목은 더 강하게 올라갈 수 있습니다.
+
+지금 바로 카카오톡 무료 입장해서 <strong>[종목명 + 매수가]</strong> 확인하세요.
+늦기 전에 탑승하셔야 합니다.
+      </div>
+
+      <div class="sp-tags">
+        <span class="sp-tag">#급등주포착</span>
+        <span class="sp-tag">#외인매집</span>
+        <span class="sp-tag">#VVIP정보</span>
+      </div>
+
+      <!-- Fake Stock Embed -->
+      <div class="sp-stock-box">
+        <div class="sp-stock-info">
+          <div class="sp-stock-icon">?</div>
+          <div>
+            <div class="sp-stock-name">시크릿 비공개 종목</div>
+            <div class="sp-stock-code">******</div>
+          </div>
+        </div>
+        <div class="sp-stock-price">
+          <div class="sp-price-val">수익 목표</div>
+          <div class="sp-price-diff">상한가 예상 ▲</div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="sp-actions">
+        <div class="sp-action-btn">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+          </svg>
+          2,391
+        </div>
+        <div class="sp-action-btn">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
+          </svg>
+          148
+        </div>
+        <div class="sp-action-btn" style="margin-left:auto;">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+          </svg>
+          공유
+        </div>
+      </div>
+    </section>
+
+    <div class="sp-section-divider"></div>
+
+    <!-- Comments Section -->
+    <section class="sp-comments">
+      <div class="sp-comments-header">댓글 148개</div>
+
+      <div class="sp-comment">
+        <img class="sp-comment-av" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&q=80" alt="avatar" />
+        <div class="sp-comment-body">
+          <div class="sp-comment-name">김*훈</div>
+          <div class="sp-comment-text">어제 주신 종목 진짜 상한가 갔네요;; 카톡방 방금 또 들어갔습니다 이번 것도 기대할게요!</div>
+          <div class="sp-comment-meta">1분 전 · 답글 달기</div>
+        </div>
+      </div>
+
+      <div class="sp-comment">
+        <img class="sp-comment-av" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&q=80" alt="avatar" />
+        <div class="sp-comment-body">
+          <div class="sp-comment-name">이*영</div>
+          <div class="sp-comment-text">최근에 손실이 커서 너무 힘들었는데, 덕분에 많이 복구하고 있습니다. 정말 감사합니다 대표님ㅠㅠ</div>
+          <div class="sp-comment-meta">3분 전 · 답글 달기</div>
+        </div>
+      </div>
+
+      <div class="sp-comment">
+        <img class="sp-comment-av" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&q=80" alt="avatar" />
+        <div class="sp-comment-body">
+          <div class="sp-comment-name">박*진</div>
+          <div class="sp-comment-text">무료로 이런 정보를 주시는게 믿기지가 않네요. 당장 받아봅니다.</div>
+          <div class="sp-comment-meta">5분 전 · 답글 달기</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky Bottom Fixed CTA -->
+    <div class="sp-bottom-bar">
+      <CtaButton social={t} />
+      <div class="sp-cta-text">✅ 무료 카톡방 입장 후 즉시 종목명 확인 가능</div>
+    </div>
+  </div>
+
+</KRBaseLayout>

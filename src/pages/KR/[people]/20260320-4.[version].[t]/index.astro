@@ -1,0 +1,322 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+---
+
+<KRBaseLayout title={`${name} — 프리미엄 투자 인사이트`} description="간결하고 명확한 프리미엄 투자 분석">
+  <style is:global slot="head">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+    :root {
+      --bg: #F9FAFB;
+      --bg-white: #FFFFFF;
+      --text-main: #111827;
+      --text-soft: #4B5563;
+      --text-light: #9CA3AF;
+      --border: #E5E7EB;
+      --accent: #0F172A; /* 深藏青色/纯黑，极简风主色调 */
+      --accent-light: #F1F5F9;
+      --red: #DC2626;
+      --green: #059669;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      max-width: 440px;
+      margin: 0 auto;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      box-shadow: 0 0 40px rgba(0,0,0,0.03);
+    }
+
+    /* HEADER */
+    .m-header {
+      background: var(--bg-white);
+      padding: 24px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+    .m-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .m-date {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    /* HERO SECTION */
+    .m-hero {
+      background: var(--bg-white);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .m-hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .m-hero-tag::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+      margin: 8px auto 0;
+    }
+    .m-hero-title {
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .m-hero-title strong {
+      font-weight: 700;
+      display: block;
+    }
+    .m-hero-desc {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* PROFILE */
+    .m-profile {
+      background: var(--bg-white);
+      padding: 0 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .m-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+      filter: grayscale(10%);
+    }
+    .m-profile-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .m-profile-role {
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    /* STATS (Minimal Data) */
+    .m-stats {
+      padding: 32px 24px;
+      background: var(--bg);
+      display: flex;
+      justify-content: space-between;
+    }
+    .m-stat {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .m-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: var(--border);
+    }
+    .m-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .m-stat-label {
+      font-size: 11px;
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    /* CONTENT / ARTICLE */
+    .m-article {
+      background: var(--bg-white);
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .m-article-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .m-article-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-soft);
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+    .m-quote {
+      border-left: 2px solid var(--accent);
+      padding-left: 16px;
+      margin: 24px 0;
+      font-style: italic;
+      color: var(--text-main);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* CTA AREA */
+    .m-cta-section {
+      padding: 48px 24px;
+      background: var(--bg-white);
+      text-align: center;
+    }
+    .m-cta-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .m-cta-desc {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    /* override CtaButton styling slightly for minimal feel if possible */
+    .m-cta-wrap .link-btn {
+      width: 100%;
+      border-radius: 4px !important;
+      box-shadow: none !important;
+    }
+
+    /* FOOTER */
+    .m-footer {
+      padding: 40px 24px;
+      text-align: center;
+      background: var(--bg);
+    }
+    .m-footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .m-footer-text {
+      font-size: 10px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+  </style>
+
+  <header class="m-header">
+    <div class="m-logo">Insight.</div>
+    <div class="m-date">{dateStr}</div>
+  </header>
+
+  <main>
+    <section class="m-hero">
+      <span class="m-hero-tag">Daily Briefing</span>
+      <h1 class="m-hero-title">
+        시장의 소음을 지우고<br>
+        <strong>명확한 신호만 남기다.</strong>
+      </h1>
+      <p class="m-hero-desc">
+        복잡한 차트와 넘쳐나는 뉴스는 투자의 본질을 가립니다. 오직 핵심 데이터에 집중한 프라이빗 분석을 만나보세요.
+      </p>
+    </section>
+
+    <section class="m-profile">
+      <Image src={headImg} alt={name} class="m-avatar" width={80} height={80} />
+      <div class="m-profile-name">{name}</div>
+      <div class="m-profile-role">수석 투자 전략가</div>
+    </section>
+
+    <section class="m-stats">
+      <div class="m-stat">
+        <div class="m-stat-val">82%</div>
+        <div class="m-stat-label">분석 적중률</div>
+      </div>
+      <div class="m-stat">
+        <div class="m-stat-val">3</div>
+        <div class="m-stat-label">일일 추천 종목</div>
+      </div>
+      <div class="m-stat">
+        <div class="m-stat-val">Top 1%</div>
+        <div class="m-stat-label">기관 수익률 기준</div>
+      </div>
+    </section>
+
+    <section class="m-article">
+      <h2 class="m-article-title">오늘 집중해야 할 단 하나의 섹터</h2>
+      <p class="m-article-text">
+        시장은 매일 변동하지만, 큰 자본의 흐름은 일정한 방향을 가리킵니다. 어제 장 마감 직후 포착된 특정 섹터의 매집 신호는 일반적인 기술적 반등이 아닙니다.
+      </p>
+
+      <div class="m-quote">
+        "진짜 기회는 화려한 뉴스에 있지 않습니다. 거래량 속에 조용히 숨어있는 스마트머니의 흔적을 찾아야 합니다."
+      </div>
+
+      <p class="m-article-text">
+        현재 기관과 외국인이 동시에 비중을 확대하고 있는 3개의 핵심 종목을 선별했습니다. 복잡한 분석은 저희가 하겠습니다. 당신은 정확한 매수 타이밍만 확인하세요.
+      </p>
+    </section>
+
+    <section class="m-cta-section">
+      <h2 class="m-cta-title">프라이빗 리포트 수신</h2>
+      <p class="m-cta-desc">
+        매일 아침 가장 정제된 3개의 종목과<br>정확한 매매 타점을 카카오톡으로 보내드립니다.
+      </p>
+      <div class="m-cta-wrap">
+        <CtaButton social={t} />
+      </div>
+    </section>
+  </main>
+
+  <footer class="m-footer">
+    <div class="m-footer-logo">Insight.</div>
+    <div class="m-footer-text">
+      본 서비스는 투자 참고용 콘텐츠이며, 투자의 최종 결정은 본인에게 있습니다.<br>
+      © 2026 Insight Financial. All rights reserved.
+    </div>
+  </footer>
+
+</KRBaseLayout>

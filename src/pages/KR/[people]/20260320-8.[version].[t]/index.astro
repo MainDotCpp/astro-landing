@@ -1,0 +1,284 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+---
+
+<KRBaseLayout title={`[특징주] 외국인 순매수 1위... ${name} 수석의 분석 - 한국경제`} description="증시 특보, 상한가 임박 종목">
+  <style is:global slot="head">
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap');
+
+    :root {
+      --hk-blue: #005B9E; /* Hankyung Blue */
+      --hk-text: #191B20;
+      --hk-sub: #8B8B8B;
+      --hk-border: #E8E8E8;
+      --hk-bg: #FFFFFF;
+      --hk-gray: #F6F7F9;
+      --hk-red: #E22B2A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F0F2F5; /* Darker bg outside mobile container */
+      color: var(--hk-text);
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    .hk-app {
+      max-width: 440px;
+      margin: 0 auto;
+      background: var(--hk-bg);
+      min-height: 100vh;
+      border-left: 1px solid var(--hk-border);
+      border-right: 1px solid var(--hk-border);
+      box-shadow: 0 0 15px rgba(0,0,0,0.03);
+    }
+
+    /* HEADER */
+    .hk-header {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center logo */
+      position: relative;
+      height: 54px;
+      border-bottom: 2px solid var(--hk-blue);
+    }
+    .hk-menu-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .hk-logo {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--hk-blue);
+      letter-spacing: -0.5px;
+    }
+
+    /* SUB NAV (Stock Ticker) */
+    .hk-ticker {
+      background: var(--hk-gray);
+      border-bottom: 1px solid var(--hk-border);
+      padding: 8px 16px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow-x: hidden;
+    }
+    .hk-ticker-item { display: flex; align-items: center; gap: 4px; color: var(--hk-sub); font-weight: 500;}
+    .hk-ticker-item span { color: var(--hk-red); font-family: monospace; font-size: 12px;}
+
+    /* TITLE AREA */
+    .hk-title-area {
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--hk-border);
+    }
+    .hk-category {
+      color: var(--hk-blue);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hk-title {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #000;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+    .hk-reporter-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--hk-sub);
+      font-size: 12px;
+    }
+    .hk-rep-left { display: flex; align-items: center; gap: 8px; }
+    .hk-rep-img {
+      width: 28px; height: 28px; border-radius: 50%; border: 1px solid #D9D9D9; object-fit: cover;
+    }
+
+    /* ICONS (Share, Font Size) */
+    .hk-util-icons {
+      display: flex;
+      gap: 12px;
+      padding: 16px 20px;
+      justify-content: flex-end;
+      border-bottom: 1px solid var(--hk-border);
+    }
+    .hk-util-icons svg {
+      width: 20px; height: 20px; stroke: #555; fill: none; stroke-width: 1.5;
+    }
+
+    /* BODY */
+    .hk-body {
+      padding: 0 0 30px;
+    }
+    .hk-lead {
+      padding: 24px 20px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--hk-blue);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hk-text {
+      padding: 0 20px;
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: #222;
+      margin-bottom: 24px;
+      word-break: keep-all;
+    }
+
+    /* STOCK HIGHLIGHT BLOCK */
+    .hk-stock-highlight {
+      margin: 30px 20px;
+      background: var(--hk-bg);
+      border-top: 2px solid #222;
+      border-bottom: 1px solid #222;
+      padding: 24px 20px;
+    }
+    .hk-sh-title { font-size: 17px; font-weight: 700; margin-bottom: 16px; color: #000; }
+    .hk-sh-list { list-style: none; margin: 0; padding: 0; }
+    .hk-sh-list li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .hk-sh-list li::before {
+      content: "■";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--hk-blue);
+      font-size: 10px;
+    }
+
+    /* IN-ARTICLE CTA (Like a "Sponsored Link" or "Related Info") */
+    .hk-ad {
+      margin: 0 20px 30px;
+      padding: 20px;
+      background: var(--hk-gray);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .hk-ad p { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 16px; line-height: 1.4; }
+    .hk-ad .link-btn { width: 100%; border-radius: 4px; }
+
+    /* FOOTER */
+    .hk-footer {
+      border-top: 1px solid var(--hk-border);
+      padding: 24px 20px;
+      text-align: center;
+      background: var(--hk-bg);
+      font-size: 12px;
+      color: var(--hk-sub);
+      line-height: 1.6;
+    }
+    .hk-footer-logo { font-family: 'Nanum Myeongjo', serif; font-size: 16px; color: #D5D5D5; font-weight: 800; margin-bottom: 10px; }
+  </style>
+
+  <div class="hk-app">
+    <!-- Header -->
+    <header class="hk-header">
+      <svg class="hk-menu-icon" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <div class="hk-logo">한국경제</div>
+    </header>
+
+    <!-- Ticker -->
+    <div class="hk-ticker">
+      <div class="hk-ticker-item">코스피 <span>2,704.51 ▲11.0</span></div>
+      <div class="hk-ticker-item">코스닥 <span>862.33 ▲5.4</span></div>
+      <div class="hk-ticker-item">삼성전자 <span>81,200 ▲1,300</span></div>
+    </div>
+
+    <!-- Title Area -->
+    <div class="hk-title-area">
+      <div class="hk-category">[특징주]</div>
+      <h1 class="hk-title">"[단독] 기관·외인 1.5조 싹쓸이..." 다음주 급등 임박한 반도체 대장주 포착</h1>
+      <div class="hk-reporter-info">
+        <div class="hk-rep-left">
+          <Image src={headImg} alt={name} class="hk-rep-img" width={28} height={28} />
+          <span>{name} 애널리스트</span>
+        </div>
+        <span>입력 {dateStr} 08:35</span>
+      </div>
+    </div>
+
+    <div class="hk-util-icons">
+      <!-- Font size icon -->
+      <svg><path d="M4 19V5H20V19M8 15V9M12 15V9M16 15V9M4 12H20"></path></svg>
+      <!-- Share icon -->
+      <svg><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"></path></svg>
+    </div>
+
+    <main class="hk-body">
+      <div class="hk-lead">
+        - 외인 매수세 유입 본격화... AI 반도체 밸류체인 핵심 수혜주<br>
+        - 증권가 "과도한 저평가, 실적 턴어라운드 원년 될 것"
+      </div>
+
+      <div class="hk-text">
+        수조원대 자금을 굴리는 외국인과 연기금이 국내 AI 반도체 소부장(소재·부품·장비) 관련주 중 특정 한 종목을 은밀하게 쓸어 담고 있어 시장의 이목이 쏠리고 있다.
+      </div>
+
+      <div class="hk-text">
+        자체 데이터 분석 결과, 전일 장 마감 직전 블록딜(시간외 대량매매) 형태로 대규모 물량이 체결됐으며, 이는 해당 기업의 중대한 수주 공시가 임박했음을 시사하는강력한 시그널로 분석된다.
+      </div>
+
+      <div class="hk-stock-highlight">
+        <div class="hk-sh-title">▶ 증권가 선정 이번 주 'Top-Pick' 요약</div>
+        <ul class="hk-sh-list">
+          <li><strong>글로벌 빅테크 납품 임박:</strong> NDA(비밀유지계약) 체결 완료설</li>
+          <li><strong>역대급 실적 어닝 서프라이즈:</strong> 영업이익 전년 대비 400% 급증 예상</li>
+          <li><strong>품절주 가능성:</strong> 유통 주식수 부족으로 인한 단기 급등 탄력성 보유</li>
+        </ul>
+      </div>
+
+      <div class="hk-text">
+        주식 시장의 격언 중에 "뉴스가 나오기 전에 선점하라"는 말이 있다. 이미 HTS에 뉴스가 뜨고 나면 개인투자자들은 상한가 따라잡기(상따)를 하다가 고점에 물리기 십상이다. 하지만 아직 바닥권에서 조용히 움직이고 있는 지금이 바로 매수의 적기다.
+      </div>
+
+      <!-- AD / CTA -->
+      <div class="hk-ad">
+        <p>※ {name} 수석 애널리스트가 선정한<br>오늘의 [긴급 매수 추천 1종목] 무료 확인하기</p>
+        <CtaButton social={t} />
+      </div>
+
+      <div class="hk-text" style="font-size: 14.5px; color: #666; background: #FAFAFA; padding: 16px; border-radius: 4px;">
+        본 기사와 관련된 정보는 '투데이 종목 분석'에서 개인 투자자 보호를 위해 무료로 제공하며, 정보 수신 후 투자 판단은 구독자 본인에게 있습니다.
+      </div>
+    </main>
+
+    <footer class="hk-footer">
+      <div class="hk-footer-logo">한국경제</div>
+      ⓒ 한경닷컴, 무단전재 및 재배포 금지<br>
+      (이 페이지는 마케팅을 위해 제작된 스폰서 페이지입니다.)
+    </footer>
+  </div>
+</KRBaseLayout>

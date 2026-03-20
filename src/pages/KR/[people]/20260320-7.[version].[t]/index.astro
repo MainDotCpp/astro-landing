@@ -1,0 +1,290 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+import institutionalNetbuy from './static/institutional_netbuy.jpg'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}. ${String(today.getMonth() + 1).padStart(2, '0')}. ${String(today.getDate()).padStart(2, '0')}. 09:15`
+---
+
+<KRBaseLayout title={`[단독] 외인 매집주 포착... ${name}의 긴급 분석 - 매일경제`} description="실시간 경제 뉴스 및 상한가 예측">
+  <style is:global slot="head">
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+    :root {
+      --mk-orange: #FF4B00;
+      --mk-blue: #0A2E65;
+      --mk-text: #222222;
+      --mk-sub: #777777;
+      --mk-border: #EEEEEE;
+      --mk-bg: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F4F4F4;
+      color: var(--mk-text);
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    .mk-app {
+      max-width: 440px;
+      margin: 0 auto;
+      background: var(--mk-bg);
+      min-height: 100vh;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    /* TOP AD BANNER */
+    .mk-top-ad {
+      background: #F8F9FA;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      color: #999;
+      border-bottom: 1px solid var(--mk-border);
+    }
+
+    /* HEADER */
+    .mk-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 55px;
+      padding: 0 16px;
+      border-bottom: 2px solid var(--mk-blue);
+      background: var(--mk-bg);
+    }
+    .mk-logo {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--mk-blue);
+      letter-spacing: -1px;
+    }
+    .mk-logo span { color: var(--mk-orange); }
+
+    /* ARTICLE HEADER */
+    .mk-article-header {
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--mk-border);
+    }
+    .mk-label {
+      display: inline-block;
+      background: var(--mk-orange);
+      color: #FFF;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      margin-bottom: 12px;
+    }
+    .mk-title {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: #111;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+      word-break: keep-all;
+    }
+    .mk-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .mk-reporter {
+      font-size: 13px;
+      color: #444;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mk-reporter img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #DDD;
+      object-fit: cover;
+    }
+    .mk-time {
+      font-size: 11px;
+      color: var(--mk-sub);
+      text-align: right;
+    }
+
+    /* ARTICLE BODY */
+    .mk-body {
+      padding: 24px 20px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #222;
+    }
+    .mk-p {
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+    .mk-strong {
+      font-weight: 700;
+      color: #000;
+      background: linear-gradient(to top, rgba(255, 75, 0, 0.2) 40%, transparent 40%);
+    }
+    .mk-quote-box {
+      border: 1px solid var(--mk-border);
+      background: #F8F9FA;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--mk-blue);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* GRAPH */
+    .mk-graph {
+      background: #FAFAFA;
+      border: 1px solid #ECECEC;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .mk-graph-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ARTICLE CTA / AD */
+    .mk-ad-box {
+      border: 2px solid var(--mk-orange);
+      padding: 20px;
+      margin: 30px 0 10px;
+      text-align: center;
+    }
+    .mk-ad-tag {
+      font-size: 11px;
+      color: var(--mk-sub);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .mk-ad-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .mk-ad-title strong { color: var(--mk-orange); }
+
+    /* FOOTER */
+    .mk-footer {
+      background: #333;
+      padding: 30px 20px;
+      text-align: center;
+      color: #999;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .mk-icons { display: flex; gap: 12px; justify-content: center; margin-bottom:20px; }
+  </style>
+
+  <div class="mk-app">
+    <!-- Top Ad -->
+    <div class="mk-top-ad">스폰서 링크 | 프리미엄 증권 정보</div>
+
+    <!-- Header -->
+    <header class="mk-header">
+      <div class="mk-logo">매일경<span>제</span></div>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </header>
+
+    <!-- News Title -->
+    <div class="mk-article-header">
+      <span class="mk-label">단독 · 마켓인사이트</span>
+      <h1 class="mk-title">외국인·연기금 쌍끌이 매수 포착... "내일 상한가 직행 유력한 1종목"</h1>
+      <div class="mk-meta">
+        <div class="mk-reporter">
+          <Image src={headImg} alt={name} width={24} height={24} />
+          {name} 기자
+        </div>
+        <div class="mk-time">
+          입력 {dateStr}<br>
+          수정 {dateStr}
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <main class="mk-body">
+      <p class="mk-p">
+        (매일경제) 최근 코스피 변동성이 커지는 가운데, 스마트머니(Smart Money)의 은밀한 자금 이동이 포착돼 투자자들의 이목이 집중되고 있다.
+      </p>
+
+      <p class="mk-p">
+        여의도 증권가와 자체 AI 퀀트 분석 모델에 따르면, 특정 반도체 소부장(소재·부품·장비) 기업에 <span class="mk-strong">외국인과 연기금이 5거래일 연속 대규모 순매수</span>를 기록 중인 것으로 확인됐다.
+      </p>
+
+      <div class="mk-graph">
+        <Image src={institutionalNetbuy} alt="외인/기관 누적 순매수 동향 (추정치)" class="mk-graph-img" width={400} height={180} />
+      </div>
+
+      <div class="mk-quote-box">
+        "단순한 기술적 반등이 아닙니다.<br>초대형 M&A 공시가 임박했다는<br>결정적 신호입니다."
+      </div>
+
+      <p class="mk-p">
+        전문가들은 해당 기업이 다음 주 중 역대급 실적 서프라이즈와 함께 대기업 편입 관련 공시를 낼 확률이 높다고 입을 모은다. 이미 차트상으로는 바닥을 다지고 전고점 돌파를 목전에 둔 폭풍 전야의 모습이다.
+      </p>
+
+      <p class="mk-p">
+        이에 프라이빗 투자 리서치 센터에서는 개인 투자자들을 위해 <strong>해당 종목의 정확한 종목명과 매수 타점</strong>을 선착순으로 긴급 무료 공개하기로 결정했다.
+      </p>
+
+      <!-- In-Article Banner (CTA) -->
+      <div class="mk-ad-box">
+        <span class="mk-ad-tag">관련 정보 자세히 보기</span>
+        <div class="mk-ad-title">
+          지금 사두면 터진다!<br>
+          <strong>[극비] 기관 매집 1순위 타점 공개</strong>
+        </div>
+        <CtaButton social={t} />
+      </div>
+
+      <p class="mk-p" style="font-size: 13px; color: #888; margin-top: 20px;">
+        ※ 본 기사는 투자 참고용이며, 투자 결정 및 결과에 대한 책임은 투자자 본인에게 있습니다.
+      </p>
+
+      <div class="mk-icons">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+        </svg>
+      </div>
+    </main>
+
+    <footer class="mk-footer">
+      ⓒ 매일경제, 무단 전재 및 재배포 금지<br>
+      이 페이지는 모의 뉴스 형태의 스폰서 콘텐츠입니다.
+    </footer>
+  </div>
+</KRBaseLayout>

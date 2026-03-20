@@ -1,0 +1,429 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+---
+
+<KRBaseLayout title={`${name} — AI 퀀트 시스템`} description="인공지능 실시간 알고리즘 매매 신호 포착 시스템">
+  <style is:global slot="head">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Orbitron:wght@500;700;900&display=swap');
+
+    :root {
+      --bg-dark: #07090F;
+      --card-bg: #111625;
+      --card-border: #1E293B;
+      --neon-green: #00FF41;
+      --neon-green-dim: rgba(0, 255, 65, 0.15);
+      --cyan: #00E5FF;
+      --cyan-dim: rgba(0, 229, 255, 0.15);
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --red-alert: #FF3366;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background-image:
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+      position: relative;
+    }
+
+    /* 헤더 / 스캐너 배너 */
+    .qt-header {
+      background: linear-gradient(180deg, #111625 0%, transparent 100%);
+      padding: 20px 16px 30px;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid var(--neon-green-dim);
+      overflow: hidden;
+    }
+
+    .qt-scanner-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--neon-green);
+      box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+      animation: scan 3s infinite linear;
+    }
+
+    @keyframes scan {
+      0% { top: 0; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .qt-sys-badge {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      color: var(--neon-green);
+      border: 1px solid var(--neon-green);
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      background: var(--neon-green-dim);
+    }
+    .qt-header-title {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .qt-header-title span { color: var(--cyan); }
+    .qt-header-date {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    /* 메인 콘텐츠 영역 */
+    .qt-main {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: -15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 데이터 카드 공통 */
+    .qt-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .qt-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--cyan);
+    }
+
+    /* 애널리스트 프로필 (터미널 스타일) */
+    .qt-profile-card::before { background: var(--neon-green); }
+    .qt-terminal-header {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      color: var(--text-muted);
+      border-bottom: 1px dashed var(--card-border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .qt-profile-content { display: flex; gap: 16px; align-items: center; }
+    .qt-avatar-wrap {
+      position: relative;
+      width: 70px; height: 70px;
+    }
+    .qt-avatar {
+      width: 100%; height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--neon-green);
+      filter: grayscale(20%) contrast(120%);
+    }
+    .qt-avatar-wrap::after {
+      content: '';
+      position: absolute;
+      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      border: 1px solid var(--neon-green);
+      border-radius: 10px;
+      opacity: 0.3;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.05); opacity: 0; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+
+    .qt-info h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .qt-info p {
+      font-size: 12px;
+      color: var(--neon-green);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .qt-tags span {
+      display: inline-block;
+      font-size: 9px;
+      background: #1E293B;
+      color: var(--text-main);
+      padding: 3px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+
+    /* 실시간 신호 분석 */
+    .qt-signal-card::before { background: var(--red-alert); }
+    .qt-alert-title {
+      color: var(--red-alert);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .qt-alert-title .blink {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--red-alert);
+      border-radius: 50%;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .qt-algo-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .qt-data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .qt-data-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--card-border);
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .qt-data-val {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+    .qt-data-label {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* 매수 강도 게이지 */
+    .qt-gauge-wrap { margin-top: 16px; }
+    .qt-gauge-title {
+      font-size: 11px; color: var(--text-muted); margin-bottom: 6px;
+      display: flex; justify-content: space-between;
+    }
+    .qt-gauge-title span:last-child { color: var(--neon-green); font-family: 'Orbitron', sans-serif;}
+    .qt-gauge-bg {
+      height: 8px;
+      background: #1E293B;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .qt-gauge-fill {
+      height: 100%;
+      width: 94%;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--neon-green) 100%);
+      box-shadow: 0 0 10px var(--neon-green);
+    }
+
+    /* CTA 공통 */
+    .qt-cta-wrap {
+      background: linear-gradient(145deg, rgba(0, 229, 255, 0.1) 0%, rgba(0, 255, 65, 0.05) 100%);
+      border: 1px solid var(--cyan);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+    }
+    .qt-cta-wrap h2 {
+      font-size: 20px; font-weight: 900; margin-bottom: 10px; text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+    .qt-cta-wrap p {
+      font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;
+    }
+    .qt-cta-wrap .link-btn { display: block; width: 100%; }
+
+    /* 투자자 피드백 (로그 스타일) */
+    .qt-log-box {
+      background: #000;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .qt-log-line {
+      font-size: 11px;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1E293B;
+      display: flex;
+      gap: 10px;
+    }
+    .qt-log-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+    .qt-log-time { color: var(--text-muted); }
+    .qt-log-user { color: var(--cyan); }
+    .qt-log-msg { color: var(--neon-green); flex: 1; font-family: 'Noto Sans KR', sans-serif; font-size: 12px; }
+
+    /* Footer */
+    .qt-footer {
+      text-align: center;
+      padding: 20px 16px 40px;
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+  </style>
+
+  <!-- 헤더 영역 -->
+  <header class="qt-header">
+    <div class="qt-scanner-line"></div>
+    <div class="qt-sys-badge">AI QUANT SYSTEM v3.0</div>
+    <h1 class="qt-header-title">세력 매집 돌파 신호<br><span>실시간 포착 완료</span></h1>
+    <div class="qt-header-date">SYSTEM DATETIME : {dateStr} 09:12 KST</div>
+  </header>
+
+  <main class="qt-main">
+
+    <!-- 애널리스트 프로필 -->
+    <div class="qt-card qt-profile-card">
+      <div class="qt-terminal-header">
+        <span>> LOAD_EXPERT_PROFILE</span>
+        <span>[ OK ]</span>
+      </div>
+      <div class="qt-profile-content">
+        <div class="qt-avatar-wrap">
+          <Image src={headImg} alt={name} class="qt-avatar" width={70} height={70} />
+        </div>
+        <div class="qt-info">
+          <h3>{name}</h3>
+          <p>AI 알고리즘 설계 / 수석 연구원</p>
+          <div class="qt-tags">
+            <span>#퀀트기반</span>
+            <span>#세력추적</span>
+            <span>#알고리즘매매</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 분석 데이터 -->
+    <div class="qt-card qt-signal-card">
+      <div class="qt-alert-title">
+        <span class="blink"></span> 긴급: VVIP 알고리즘 발동
+      </div>
+      <p class="qt-algo-text">
+        자체 개발된 딥러닝 AI가 오늘 오전 <strong>외국인과 기관의 비정상적 양매수 패턴</strong>을 포착했습니다. 과거 동일 패턴 발생 시 100% 확률로 단기 급등이 연출된 차트 흐름입니다.
+      </p>
+
+      <div class="qt-data-grid">
+        <div class="qt-data-box">
+          <div class="qt-data-val">98.4%</div>
+          <div class="qt-data-label">상승 확률 모델링</div>
+        </div>
+        <div class="qt-data-box">
+          <div class="qt-data-val">3종목</div>
+          <div class="qt-data-label">돌파 확정 타점</div>
+        </div>
+      </div>
+
+      <div class="qt-gauge-wrap">
+        <div class="qt-gauge-title">
+          <span>AI 시스템 AI 매수 강도 측정</span>
+          <span>94% / 100%</span>
+        </div>
+        <div class="qt-gauge-bg">
+          <div class="qt-gauge-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1차 CTA -->
+    <div class="qt-cta-wrap">
+      <h2>포착된 3종목 선취매 구간</h2>
+      <p>지금 바로 알고리즘이 포착한 단기 폭등 예상 종목의 정확한 매수가를 카카오톡으로 확인하세요.</p>
+      <CtaButton social={t} />
+    </div>
+
+    <!-- 피드백 & 로그 -->
+    <div class="qt-card">
+      <div class="qt-terminal-header">
+        <span>> FETCH_USER_LOGS --limit=3</span>
+        <span>[ CONNECTED ]</span>
+      </div>
+      <div class="qt-log-box">
+        <div class="qt-log-line">
+          <span class="qt-log-time">09:14</span>
+          <span class="qt-log-user">USER_KIM</span>
+          <span class="qt-log-msg">"알고리즘 신호 미쳤네요.. 어제 주신거 벌써 상한가 진입"</span>
+        </div>
+        <div class="qt-log-line">
+          <span class="qt-log-time">09:08</span>
+          <span class="qt-log-user">USER_LEE</span>
+          <span class="qt-log-msg">"감정 안 섞고 기계적으로 타점 주니까 수익이 알아서 따라옵니다."</span>
+        </div>
+        <div class="qt-log-line">
+          <span class="qt-log-time">08:55</span>
+          <span class="qt-log-user">USER_PARK</span>
+          <span class="qt-log-msg">"무료인데 이정도 퀄리티라니. 오늘 신호도 대기중입니다!"</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2차 CTA -->
+    <div class="qt-cta-wrap" style="background:var(--card-bg); border-color:var(--card-border); box-shadow:none;">
+      <h2 style="font-size:18px;">선착순 100명 포트폴리오 진단</h2>
+      <p>물린 종목 탈출구가 안 보이시나요?<br>AI 데이터로 현재 보유 종목 진단까지 도와드립니다.</p>
+      <CtaButton social={t} />
+    </div>
+
+  </main>
+
+  <footer class="qt-footer">
+    AI QUANT TRADING SYSTEM KOREA<br>
+    본 정보는 투자 참고용이며, 시스템의 과거의 수익률이 미래의 수익을 보장하지 않습니다.
+    투자의 최종 책임은 본인에게 있습니다.
+  </footer>
+
+</KRBaseLayout>
