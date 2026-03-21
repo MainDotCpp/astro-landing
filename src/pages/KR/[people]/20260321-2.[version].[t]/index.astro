@@ -1,0 +1,315 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+---
+
+<KRBaseLayout title={`[Global Capital] ${name} - 2026 Private Wealth Outlook`} description="Institutional Analysis">
+  <style is:global slot="head">
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Noto+Serif+KR:wght@400;700;900&display=swap');
+    
+    :root {
+      --bg-dark: #000a1f;      /* Deep extreme navy */
+      --panel-dark: #011432;    /* Slightly lighter navy */
+      --accent-gold: #c5a059;   /* Elegant Gold */
+      --accent-gold-light: #e8d08b;
+      --text-main: #fcfcfc;
+      --text-muted: #a3b1c6;
+      --border-color: rgba(197, 160, 89, 0.2);
+    }
+
+    body {
+      background: #000;
+      color: var(--text-main);
+      font-family: 'Pretendard', sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pb-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--bg-dark);
+      min-height: 100vh;
+      border-left: 1px solid rgba(255,255,255,0.05);
+      border-right: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+    }
+
+    /* Header */
+    .pb-header {
+      padding: 24px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--panel-dark);
+    }
+    .pb-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-gold);
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .pb-logo-sub {
+      font-size: 10px;
+      color: var(--accent-gold-light);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* Report Title */
+    .pb-title-sec {
+      padding: 40px 20px 24px;
+      text-align: center;
+    }
+    .pb-doc-type {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--accent-gold);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .pb-headline {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.4;
+      color: #fff;
+      margin-bottom: 16px;
+      word-break: keep-all;
+    }
+    .pb-meta-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 16px;
+      background: rgba(197, 160, 89, 0.1);
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--accent-gold-light);
+      font-family: monospace;
+      letter-spacing: 0.5px;
+    }
+
+    /* Profile / Author */
+    .pb-author {
+      margin: 0 20px 32px;
+      padding: 20px;
+      background: var(--panel-dark);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .author-img {
+      width: 54px;
+      height: 54px;
+      object-fit: cover;
+      border: 1px solid var(--accent-gold);
+      border-radius: 4px; /* Square with slight rounding for an ID look */
+      filter: grayscale(20%) contrast(1.1);
+    }
+    .author-info h3 {
+      font-size: 18px;
+      color: #fff;
+      margin: 0 0 4px;
+      font-weight: 700;
+    }
+    .author-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Article Content */
+    .pb-content {
+      padding: 0 20px 40px;
+    }
+    .pb-lead {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.7;
+      color: var(--accent-gold-light);
+      margin-bottom: 24px;
+      padding-left: 16px;
+      border-left: 3px solid var(--accent-gold);
+    }
+    .pb-text {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+      word-break: keep-all;
+      font-weight: 300;
+      text-align: justify;
+    }
+    .pb-text strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Executive Summary Box */
+    .exec-summary {
+      margin: 32px 0;
+      padding: 24px;
+      border: 1px solid var(--accent-gold);
+      background: rgba(197, 160, 89, 0.05);
+      position: relative;
+    }
+    .exec-summary::before {
+      content: 'EXECUTIVE SUMMARY';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: var(--bg-dark);
+      padding: 0 10px;
+      color: var(--accent-gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .exec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .exec-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #f8fafc;
+    }
+    .exec-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-gold);
+      border-radius: 50%;
+    }
+
+    /* Disclaimer */
+    .pb-disclaimer {
+      font-size: 11px;
+      color: rgba(163, 177, 198, 0.5);
+      line-height: 1.5;
+      padding: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: justify;
+    }
+
+    /* CTA Area */
+    .pb-cta-wrap {
+      position: sticky;
+      bottom: 0;
+      background: rgba(0, 10, 31, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 20px;
+      border-top: 1px solid var(--accent-gold);
+      text-align: center;
+      z-index: 50;
+    }
+    .cta-hint {
+      color: var(--accent-gold-light);
+      font-size: 13px;
+      margin-bottom: 12px;
+      font-family: 'Noto Serif KR', serif;
+    }
+
+    /* Gold-themed Button override */
+    .pb-cta-wrap :global(.hk-btn) { /* Attempt overriding nested generic styles if CtaButton has them */
+      background: linear-gradient(135deg, #d4af37, #b8860b) !important;
+      color: #000 !important;
+      border: none !important;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+      font-weight: 800 !important;
+    }
+  </style>
+
+  <div class="pb-container">
+    <header class="pb-header">
+      <div class="pb-logo">GLOBAL CAPITAL</div>
+      <div class="pb-logo-sub">Private Wealth Management</div>
+    </header>
+
+    <section class="pb-title-sec">
+      <div class="pb-doc-type">Global Strategy Input</div>
+      <h1 class="pb-headline">"기관 자금 대이동 시작"... 2026 하반기 포트폴리오 핵심 편입 종목</h1>
+      <div class="pb-meta-line">
+        <span>CONFIDENTIAL</span>
+        <span>|</span>
+        <span>DATE: {dateStr}</span>
+      </div>
+    </section>
+
+    <div class="pb-author">
+      <Image src={headImg} alt={name} class="author-img" width={54} height={54} />
+      <div class="author-info">
+        <h3>{name}</h3>
+        <p>Chief Global Strategist<br>Private Wealth Research Div.</p>
+      </div>
+    </div>
+
+    <main class="pb-content">
+      <div class="pb-lead">
+        "변동성 장세 속에서 글로벌 큰손들이 이미 비중을 확대하고 있는 1순위 자산에 주목하라."
+      </div>
+
+      <div class="pb-text">
+        당사 글로벌 리서치 본부의 최근 자금 흐름 분석에 따르면, 조 단위 자금을 운용하는 글로벌 헤지펀드와 국부펀드들이 국내 특정 <strong>AI 인프라 부품사</strong>에 대한 지분을 조용히 매집 중인 것으로 확인되었습니다.
+      </div>
+
+      <div class="pb-text">
+        해당 기업은 압도적인 기술 격차를 기반으로 북미 최고 빅테크와의 <strong>NDA(비밀유지협약) 체결</strong>을 완료한 정황이 포착되었으며, 이는 하반기 론칭될 차세대 AI 칩셋 벤더 등록으로 이어질 확률이 매우 높습니다.
+      </div>
+
+      <div class="exec-summary">
+        <ul class="exec-list">
+          <li><strong>절대적 밸류에이션 매력:</strong> 독점적 지위에도 불구, 시장 대비 현저히 저평가된 P/E 멀티플.</li>
+          <li><strong>구조적 성장 구간:</strong> 일회성 테마가 아닌 향후 5년간 실적 우상향이 확정된 펀더멘털.</li>
+          <li><strong>강력한 수요 시그널:</strong> 주요 기관계좌를 통한 유통 주식 30% 이상 매집 완료.</li>
+        </ul>
+      </div>
+
+      <div class="pb-text">
+        투자자들에게 밸류에이션 리레이팅 초기 국면에서의 진입은 막대한 알파(α) 수익을 의미합니다. 당사는 우수 고객(HNWI)분들께만 해당 종목의 분석 리포트와 구체적인 진입 타점을 우선 공개하고 있습니다.
+      </div>
+
+      <div class="pb-text">
+        현재 시장에 재료가 완전히 노출되기 전, 이 포트폴리오 편입 적기를 놓치지 마시길 권고합니다. 상세한 리포트는 아래 채널을 통해 즉시 수령 가능합니다.
+      </div>
+    </main>
+
+    <div class="pb-disclaimer">
+      IMPORTANT DISCLOSURES: This material is for informational purposes only and does not constitute a recommendation, offer, or solicitation to buy or sell any security. Past performance is not indicative of future results. Private Wealth Management clients only.
+    </div>
+
+    <div class="pb-cta-wrap">
+      <div class="cta-hint">전략 리포트 무료 열람하기</div>
+      <!-- Inject custom styling into the child using global wrapper inside Astro if need be, but we trust global styles above. -->
+      <CtaButton social={t} />
+    </div>
+  </div>
+</KRBaseLayout>
