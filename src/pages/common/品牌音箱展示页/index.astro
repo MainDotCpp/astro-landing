@@ -1,0 +1,636 @@
+---
+// SONANCE — Premium Wireless Speaker Product Detail Page
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+import variantsImg from './images/color-variants.png'
+import driverImg from './images/detail-driver.png'
+// Import images
+import heroImg from './images/hero-speaker.png'
+import lifestyleImg from './images/lifestyle.png'
+import outdoorImg from './images/outdoor.png'
+import techImg from './images/tech-cutaway.png'
+
+const title = 'SONANCE | Premium Wireless Speaker'
+const description = 'Experience sound in its purest form. SONANCE delivers studio-grade audio with 360° immersive sound, 24-hour battery life, and IP67 waterproof design.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      :root {
+        --bg-primary: #0A0A0A;
+        --bg-secondary: #111111;
+        --bg-card: #161616;
+        --text-primary: #FAFAFA;
+        --text-secondary: #999999;
+        --accent: #4F46E5;
+        --accent-light: #818CF8;
+        --accent-glow: rgba(79, 70, 229, 0.15);
+        --border: rgba(255, 255, 255, 0.06);
+      }
+
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+
+      .serif { font-family: 'Playfair Display', serif; }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #4F46E5 0%, #818CF8 50%, #C084FC 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .glass {
+        background: rgba(22, 22, 22, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.2); }
+        50% { box-shadow: 0 0 80px rgba(79, 70, 229, 0.4); }
+      }
+
+      @keyframes scroll-x {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+    </style>
+  </Fragment>
+
+  <div class="relative min-h-screen">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
+      <div class="max-w-6xl w-full flex justify-between items-center px-6 py-3 glass rounded-2xl">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-[#4F46E5] flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M9 18V5l12-2v13" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
+            </svg>
+          </div>
+          <span class="text-lg font-bold tracking-wider uppercase">Sonance</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm text-[var(--text-secondary)] font-medium">
+          <a href="#features" class="hover:text-white transition-colors">Features</a>
+          <a href="#technology" class="hover:text-white transition-colors">Technology</a>
+          <a href="#gallery" class="hover:text-white transition-colors">Gallery</a>
+          <a href="#reviews" class="hover:text-white transition-colors">Reviews</a>
+        </div>
+        <button onclick="window.onLinkBtnClick && window.onLinkBtnClick()" class="px-6 py-2 bg-[#4F46E5] text-white text-sm font-semibold rounded-xl hover:bg-[#4338CA] transition-colors cursor-pointer">
+          Buy Now
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20">
+      <!-- Background glow -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--accent-glow)] blur-[150px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 w-full grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left: Text -->
+        <div class="space-y-8 relative z-10">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/5 text-[var(--accent-light)] text-xs tracking-[0.15em] uppercase font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-light)]"></span>
+            New Release — 2026
+          </div>
+
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight reveal">
+            Feel Every<br />
+            <span class="gradient-text serif italic">Frequency.</span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-[var(--text-secondary)] max-w-lg leading-relaxed font-light reveal" style="transition-delay: 150ms;">
+            Studio-grade 360° immersive audio. Engineered with titanium drivers and spatial sound technology for an experience beyond listening.
+          </p>
+
+          <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 300ms;">
+            <button onclick="window.onLinkBtnClick && window.onLinkBtnClick()" class="px-10 py-4 bg-[#4F46E5] text-white font-bold text-base rounded-2xl shadow-[0_8px_40px_rgba(79,70,229,0.4)] hover:shadow-[0_8px_60px_rgba(79,70,229,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+              Order Now — $349
+            </button>
+            <button class="px-10 py-4 border border-white/10 text-white font-semibold text-base rounded-2xl hover:bg-white/5 transition-all cursor-pointer">
+              Watch Demo
+            </button>
+          </div>
+
+          <!-- Mini specs -->
+          <div class="flex gap-8 pt-4 reveal" style="transition-delay: 450ms;">
+            <div>
+              <div class="text-2xl font-bold">24<span class="text-[var(--accent-light)] text-lg">hr</span></div>
+              <div class="text-xs text-[var(--text-secondary)] uppercase tracking-wider">Battery Life</div>
+            </div>
+            <div class="w-px bg-white/10"></div>
+            <div>
+              <div class="text-2xl font-bold">IP67</div>
+              <div class="text-xs text-[var(--text-secondary)] uppercase tracking-wider">Waterproof</div>
+            </div>
+            <div class="w-px bg-white/10"></div>
+            <div>
+              <div class="text-2xl font-bold">360°</div>
+              <div class="text-xs text-[var(--text-secondary)] uppercase tracking-wider">Spatial Audio</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Hero Image -->
+        <div class="relative flex justify-center items-center reveal" style="transition-delay: 200ms;">
+          <div class="absolute w-[400px] h-[400px] rounded-full border border-white/5" style="animation: pulse-glow 4s ease-in-out infinite;"></div>
+          <img src={heroImg.src} alt="SONANCE Wireless Speaker" class="relative z-10 w-full max-w-md animate-float drop-shadow-2xl" />
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div class="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+          <div class="w-1 h-3 rounded-full bg-white/40 animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scrolling Marquee -->
+    <div class="border-y border-[var(--border)] py-4 overflow-hidden bg-[var(--bg-secondary)]">
+      <div class="flex whitespace-nowrap" style="animation: scroll-x 30s linear infinite;">
+        {[1, 2].map(() => (
+          <div class="flex items-center gap-8 px-4 text-sm font-medium tracking-widest uppercase text-[var(--text-secondary)]">
+            <span>Studio-Grade Audio</span>
+            <span class="text-[var(--accent)]">◆</span>
+            <span>Titanium Drivers</span>
+            <span class="text-[var(--accent)]">◆</span>
+            <span>24-Hour Battery</span>
+            <span class="text-[var(--accent)]">◆</span>
+            <span>IP67 Waterproof</span>
+            <span class="text-[var(--accent)]">◆</span>
+            <span>Spatial Audio</span>
+            <span class="text-[var(--accent)]">◆</span>
+            <span>USB-C Fast Charge</span>
+            <span class="text-[var(--accent)]">◆</span>
+            <span>Multi-Room Sync</span>
+            <span class="text-[var(--accent)]">◆</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 md:py-32 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-20 space-y-4">
+          <h2 class="text-4xl md:text-6xl font-bold reveal">
+            Engineered for <span class="gradient-text serif italic">Perfection</span>
+          </h2>
+          <p class="text-[var(--text-secondary)] text-lg max-w-2xl mx-auto reveal" style="transition-delay: 100ms;">
+            Every component meticulously designed to deliver an uncompromising audio experience.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Feature 1 -->
+          <div class="group p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border)] hover:border-[var(--accent)]/30 transition-all reveal" style="transition-delay: 150ms;">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--accent)]/20 transition-colors">
+              <svg class="w-7 h-7 text-[var(--accent-light)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">360° Spatial Audio</h3>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              Custom-tuned array of 6 drivers delivers true omnidirectional sound. No sweet spot needed — every seat is the best seat.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="group p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border)] hover:border-[var(--accent)]/30 transition-all reveal" style="transition-delay: 250ms;">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--accent)]/20 transition-colors">
+              <svg class="w-7 h-7 text-[var(--accent-light)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">24-Hour Endurance</h3>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              High-density lithium polymer battery with intelligent power management. 15 minutes of USB-C fast charge gives you 4 hours of playback.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="group p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border)] hover:border-[var(--accent)]/30 transition-all reveal" style="transition-delay: 350ms;">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--accent)]/20 transition-colors">
+              <svg class="w-7 h-7 text-[var(--accent-light)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">IP67 Waterproof</h3>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              Fully sealed construction withstands submersion up to 1 meter for 30 minutes. Take it to the pool, the beach, or the shower.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Deep-dive with Image -->
+    <section id="technology" class="py-24 md:py-32 px-4 bg-[var(--bg-secondary)]">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative reveal">
+          <div class="absolute -top-20 -left-20 w-60 h-60 bg-[var(--accent)]/5 rounded-full blur-[100px] pointer-events-none"></div>
+          <img src={techImg.src} alt="SONANCE Internal Technology" class="rounded-3xl shadow-2xl relative z-10 w-full" />
+        </div>
+
+        <div class="space-y-8 reveal" style="transition-delay: 200ms;">
+          <div class="text-xs tracking-[0.2em] uppercase text-[var(--accent-light)] font-semibold">Under the Hood</div>
+          <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+            Precision <span class="gradient-text serif italic">Acoustics</span>
+          </h2>
+          <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+            Our proprietary Titanium Composite Driver technology combines a rigid titanium dome with a flexible surround, delivering crystal-clear highs and deep, punchy bass that defies the speaker's compact size.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center shrink-0 mt-1">
+                <span class="text-[var(--accent-light)] font-bold text-sm">01</span>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">40mm Titanium Woofer</h4>
+                <p class="text-[var(--text-secondary)] text-sm">Custom-engineered diaphragm delivers distortion-free bass down to 45Hz.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center shrink-0 mt-1">
+                <span class="text-[var(--accent-light)] font-bold text-sm">02</span>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Dual Passive Radiators</h4>
+                <p class="text-[var(--text-secondary)] text-sm">Balanced force design eliminates vibration while maximizing low-end output.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center shrink-0 mt-1">
+                <span class="text-[var(--accent-light)] font-bold text-sm">03</span>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">DSP Audio Engine</h4>
+                <p class="text-[var(--text-secondary)] text-sm">Real-time room calibration adapts EQ to your environment automatically.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Driver Detail -->
+    <section class="py-24 md:py-32 px-4">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8 order-2 lg:order-1 reveal">
+          <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+            Hear the <span class="gradient-text serif italic">Details</span>
+          </h2>
+          <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+            The precision-machined acoustic grille protects the driver array while maintaining acoustic transparency. Every perforation is laser-cut to exact tolerances, ensuring zero sound coloration.
+          </p>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+              <div class="text-3xl font-bold gradient-text">108</div>
+              <div class="text-xs text-[var(--text-secondary)] uppercase tracking-wider mt-1">dB Max Output</div>
+            </div>
+            <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+              <div class="text-3xl font-bold gradient-text">20Hz</div>
+              <div class="text-xs text-[var(--text-secondary)] uppercase tracking-wider mt-1">Low Frequency</div>
+            </div>
+            <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+              <div class="text-3xl font-bold gradient-text">40kHz</div>
+              <div class="text-xs text-[var(--text-secondary)] uppercase tracking-wider mt-1">High Frequency</div>
+            </div>
+            <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+              <div class="text-3xl font-bold gradient-text">&lt;0.5%</div>
+              <div class="text-xs text-[var(--text-secondary)] uppercase tracking-wider mt-1">THD Distortion</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative order-1 lg:order-2 reveal" style="transition-delay: 200ms;">
+          <img src={driverImg.src} alt="SONANCE Driver Unit Detail" class="rounded-3xl shadow-2xl w-full" />
+          <div class="absolute -bottom-6 -left-6 glass p-4 rounded-2xl">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[var(--accent)] flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-sm font-bold">Hi-Res Certified</div>
+                <div class="text-xs text-[var(--text-secondary)]">JAS & LDAC Supported</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lifestyle Gallery -->
+    <section id="gallery" class="py-24 md:py-32 px-4 bg-[var(--bg-secondary)]">
+      <div class="max-w-7xl mx-auto space-y-16">
+        <div class="text-center space-y-4">
+          <h2 class="text-4xl md:text-6xl font-bold reveal">
+            Your Sound, <span class="gradient-text serif italic">Everywhere</span>
+          </h2>
+          <p class="text-[var(--text-secondary)] text-lg max-w-2xl mx-auto reveal" style="transition-delay: 100ms;">
+            From morning yoga to pool parties, SONANCE adapts to every moment of your life.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="relative group overflow-hidden rounded-3xl aspect-[4/3] reveal" style="transition-delay: 200ms;">
+            <img src={lifestyleImg.src} alt="SONANCE in Living Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6">
+              <div class="text-xs uppercase tracking-widest text-[var(--accent-light)] mb-1">Indoor</div>
+              <div class="text-xl font-bold">Living Room Harmony</div>
+            </div>
+          </div>
+
+          <div class="relative group overflow-hidden rounded-3xl aspect-[4/3] reveal" style="transition-delay: 300ms;">
+            <img src={outdoorImg.src} alt="SONANCE by the Pool" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6">
+              <div class="text-xs uppercase tracking-widest text-[var(--accent-light)] mb-1">Outdoor</div>
+              <div class="text-xl font-bold">Poolside Vibes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color Variants -->
+    <section class="py-24 md:py-32 px-4">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8 reveal">
+          <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+            Choose Your <span class="gradient-text serif italic">Expression</span>
+          </h2>
+          <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+            Available in three carefully curated finishes. Each crafted from recycled aluminum with a soft-touch matte coating that resists fingerprints.
+          </p>
+
+          <div class="flex gap-4 items-center">
+            <button class="w-10 h-10 rounded-full bg-[#1a1a1a] border-2 border-[var(--accent)] shadow-[0_0_12px_var(--accent-glow)] transition-all cursor-pointer" title="Midnight Black"></button>
+            <button class="w-10 h-10 rounded-full bg-[#C9B99A] border-2 border-transparent hover:border-white/30 transition-all cursor-pointer" title="Desert Sand"></button>
+            <button class="w-10 h-10 rounded-full bg-[#2D4A3E] border-2 border-transparent hover:border-white/30 transition-all cursor-pointer" title="Forest Green"></button>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] space-y-3">
+            <div class="flex justify-between text-sm">
+              <span class="text-[var(--text-secondary)]">Material</span>
+              <span class="font-medium">Recycled Aluminum + Silicone</span>
+            </div>
+            <div class="w-full h-px bg-[var(--border)]"></div>
+            <div class="flex justify-between text-sm">
+              <span class="text-[var(--text-secondary)]">Weight</span>
+              <span class="font-medium">680g</span>
+            </div>
+            <div class="w-full h-px bg-[var(--border)]"></div>
+            <div class="flex justify-between text-sm">
+              <span class="text-[var(--text-secondary)]">Dimensions</span>
+              <span class="font-medium">185mm × 75mm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="transition-delay: 200ms;">
+          <img src={variantsImg.src} alt="SONANCE Color Variants" class="rounded-3xl shadow-2xl w-full" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-24 md:py-32 px-4 bg-[var(--bg-secondary)] relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[var(--accent)]/5 blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto relative z-10 space-y-16">
+        <div class="text-center space-y-4">
+          <h2 class="text-4xl md:text-6xl font-bold reveal">What People <span class="gradient-text serif italic">Say</span></h2>
+          <div class="flex items-center justify-center gap-2 reveal" style="transition-delay: 100ms;">
+            {[1, 2, 3, 4, 5].map(() => (
+              <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+            <span class="ml-2 text-sm text-[var(--text-secondary)]">4.9 / 5 from 2,847 reviews</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border)] reveal" style="transition-delay: 200ms;">
+            <div class="flex gap-1 mb-4">
+              {[1, 2, 3, 4, 5].map(() => (
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-6 italic">
+              "The bass on this thing is absolutely insane for its size. I brought it to a beach party and everyone thought we had a full sound system."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-light)] flex items-center justify-center text-white font-bold text-sm">M</div>
+              <div>
+                <div class="text-sm font-bold">Marcus T.</div>
+                <div class="text-xs text-[var(--text-secondary)]">Verified Buyer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border)] reveal" style="transition-delay: 300ms;">
+            <div class="flex gap-1 mb-4">
+              {[1, 2, 3, 4, 5].map(() => (
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-6 italic">
+              "As an audio engineer, I'm extremely picky about sound quality. The SONANCE genuinely surprised me — the spatial audio is not a gimmick."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center text-white font-bold text-sm">S</div>
+              <div>
+                <div class="text-sm font-bold">Sarah K.</div>
+                <div class="text-xs text-[var(--text-secondary)]">Audio Engineer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border)] reveal" style="transition-delay: 400ms;">
+            <div class="flex gap-1 mb-4">
+              {[1, 2, 3, 4, 5].map(() => (
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-6 italic">
+              "Dropped it in the pool twice already. Still works perfectly. The build quality is exceptional and the desert sand color is gorgeous."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-400 flex items-center justify-center text-white font-bold text-sm">J</div>
+              <div>
+                <div class="text-sm font-bold">James L.</div>
+                <div class="text-xs text-[var(--text-secondary)]">Frequent Traveler</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 md:py-40 px-4 relative overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-[var(--bg-primary)] via-[var(--accent)]/5 to-[var(--bg-primary)] pointer-events-none"></div>
+
+      <div class="max-w-4xl mx-auto text-center space-y-10 relative z-10">
+        <h2 class="text-5xl md:text-8xl font-bold leading-tight reveal">
+          Ready to<br />
+          <span class="gradient-text serif italic">Listen?</span>
+        </h2>
+        <p class="text-xl text-[var(--text-secondary)] font-light reveal" style="transition-delay: 100ms;">
+          Free shipping worldwide. 30-day risk-free trial. 2-year warranty.
+        </p>
+
+        <div class="flex flex-col items-center gap-6 reveal" style="transition-delay: 200ms;">
+          <button onclick="window.onLinkBtnClick && window.onLinkBtnClick()" class="px-16 py-6 bg-[#4F46E5] text-white font-bold text-xl rounded-2xl shadow-[0_20px_60px_rgba(79,70,229,0.4)] hover:shadow-[0_20px_80px_rgba(79,70,229,0.6)] hover:scale-[1.02] transition-all cursor-pointer">
+            Order SONANCE — $349
+          </button>
+
+          <div class="flex flex-wrap justify-center items-center gap-6 text-[var(--text-secondary)] text-xs tracking-widest uppercase">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H4.875c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125H6m12.75 0H18.75m0 0v-5.25A2.25 2.25 0 0016.5 6.75h-1.875" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>Free Shipping</span>
+            </div>
+            <span class="w-1 h-1 bg-white/20 rounded-full"></span>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>2-Year Warranty</span>
+            </div>
+            <span class="w-1 h-1 bg-white/20 rounded-full"></span>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>30-Day Returns</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-[var(--border)] bg-[var(--bg-primary)]">
+      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12 mb-16">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-[#4F46E5] flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M9 18V5l12-2v13" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
+              </svg>
+            </div>
+            <span class="font-bold tracking-wider uppercase">Sonance</span>
+          </div>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+            Premium audio engineered for modern life. Studio-grade sound, everywhere you go.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-widest">Products</h4>
+          <ul class="space-y-3 text-sm text-[var(--text-secondary)]">
+            <li><a href="#" class="hover:text-white transition-colors">SONANCE Speaker</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">SONANCE Mini</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Accessories</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Gift Cards</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-widest">Support</h4>
+          <ul class="space-y-3 text-sm text-[var(--text-secondary)]">
+            <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Warranty</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Returns</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-widest">Legal</h4>
+          <ul class="space-y-3 text-sm text-[var(--text-secondary)]">
+            <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Accessibility</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[var(--text-secondary)] text-xs tracking-widest uppercase">&copy; 2026 Sonance Audio Technologies</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[var(--text-secondary)] hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+          </a>
+          <a href="#" class="text-[var(--text-secondary)] hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
+          </a>
+          <a href="#" class="text-[var(--text-secondary)] hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" /></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script is:inline>
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+  </script>
+</BaseLayout>

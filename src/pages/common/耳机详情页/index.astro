@@ -1,0 +1,768 @@
+---
+// Amazon 풍 상품 상세 페이지 — 무선 노이즈 캔슬링 헤드폰
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = 'AURA Pro 무선 노이즈 캔슬링 헤드폰 | 하이파이 오디오'
+const description = 'AURA Pro 무선 블루투스 노이즈 캔슬링 오버이어 헤드폰. 50mm 티타늄 드라이버, 40시간 배터리, Hi-Res 오디오 인증.'
+
+import heroImg from './images/hero-headphone.png'
+import sideImg from './images/headphone-side.png'
+import cushionImg from './images/ear-cushion.png'
+import noiseCancelImg from './images/noise-cancellation.png'
+import driverImg from './images/driver-unit.png'
+import caseImg from './images/headphone-case.png'
+import lifestyleImg from './images/headphone-lifestyle.png'
+---
+
+<BaseLayout title={title} description={description} lang="ko">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      :root {
+        --amz-dark: #131921;
+        --amz-dark2: #232F3E;
+        --amz-orange: #FF9900;
+        --amz-yellow: #FFD814;
+        --amz-yellow-hover: #F7CA00;
+        --amz-blue: #007185;
+        --amz-blue-hover: #C7511F;
+        --amz-red: #B12704;
+        --amz-green: #067D62;
+        --amz-bg: #EAEDED;
+        --amz-white: #FFFFFF;
+        --amz-border: #DDD;
+        --amz-text: #0F1111;
+        --amz-text-sec: #565959;
+      }
+
+      body {
+        font-family: 'Noto Sans KR', 'Arial', sans-serif;
+        background-color: var(--amz-bg);
+        color: var(--amz-text);
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .amz-btn-yellow {
+        background: linear-gradient(to bottom, #FFD814, #F7CA00);
+        border: 1px solid #FCD200;
+        border-radius: 8px;
+        color: var(--amz-text);
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.1s;
+      }
+      .amz-btn-yellow:hover {
+        background: linear-gradient(to bottom, #F7CA00, #EFC800);
+      }
+
+      .amz-btn-orange {
+        background: linear-gradient(to bottom, #FFA41C, #FF8F00);
+        border: 1px solid #E77600;
+        border-radius: 8px;
+        color: var(--amz-text);
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.1s;
+      }
+      .amz-btn-orange:hover {
+        background: linear-gradient(to bottom, #FF8F00, #E77600);
+      }
+
+      .amz-link {
+        color: var(--amz-blue);
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .amz-link:hover {
+        color: var(--amz-blue-hover);
+        text-decoration: underline;
+      }
+
+      .star-filled { color: #FFA41C; }
+
+      .thumb-btn {
+        width: 56px;
+        height: 56px;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        background: white;
+        padding: 2px;
+        transition: border-color 0.15s;
+      }
+      .thumb-btn:hover, .thumb-btn.active {
+        border-color: var(--amz-blue);
+        box-shadow: 0 0 0 2px rgba(0,113,133,0.15);
+      }
+      .thumb-btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .rating-bar-bg {
+        background: #F0F2F2;
+        border-radius: 4px;
+        height: 20px;
+        flex: 1;
+        overflow: hidden;
+      }
+      .rating-bar-fill {
+        background: var(--amz-orange);
+        height: 100%;
+        border-radius: 4px;
+      }
+    </style>
+  </Fragment>
+
+  <!-- 상단 네비게이션 -->
+  <header>
+    <div class="bg-[var(--amz-dark)] text-white">
+      <div class="max-w-[1500px] mx-auto flex items-center gap-4 px-4 py-2 text-sm">
+        <!-- 로고 -->
+        <a href="#" class="flex items-center gap-1 shrink-0 py-1 px-2 border border-transparent hover:border-white rounded">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <span class="text-xl font-bold tracking-tight">aura</span>
+          <span class="text-[10px] text-gray-400">.kr</span>
+        </a>
+
+        <!-- 배송지 -->
+        <a href="#" class="hidden md:flex items-center gap-1 text-xs text-gray-300 hover:text-white border border-transparent hover:border-white rounded px-2 py-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <div class="text-[10px] text-gray-400">배송지</div>
+            <div class="text-xs font-bold text-white">서울 강남구</div>
+          </div>
+        </a>
+
+        <!-- 검색바 -->
+        <div class="flex-1 flex rounded-lg overflow-hidden">
+          <select class="hidden md:block bg-[#F3F3F3] text-[var(--amz-text)] text-xs px-2 border-r border-gray-300 rounded-l-lg cursor-pointer">
+            <option>전체</option>
+            <option>전자제품</option>
+            <option>헤드폰</option>
+          </select>
+          <input type="text" placeholder="검색어를 입력하세요" class="flex-1 px-3 py-2 text-sm text-[var(--amz-text)] outline-none" />
+          <button class="bg-[var(--amz-orange)] hover:bg-[#E8900A] px-4 rounded-r-lg cursor-pointer">
+            <svg class="w-5 h-5 text-[var(--amz-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <!-- 우측 아이콘 -->
+        <div class="hidden md:flex items-center gap-1">
+          <a href="#" class="flex flex-col items-start px-2 py-1 border border-transparent hover:border-white rounded text-xs">
+            <span class="text-[10px] text-gray-400">안녕하세요, 로그인</span>
+            <span class="font-bold text-xs">계정 및 목록 <span class="text-[8px]">▼</span></span>
+          </a>
+          <a href="#" class="flex flex-col items-start px-2 py-1 border border-transparent hover:border-white rounded text-xs">
+            <span class="text-[10px] text-gray-400">반품 &</span>
+            <span class="font-bold text-xs">주문내역</span>
+          </a>
+        </div>
+
+        <a href="#" class="flex items-end gap-1 px-2 py-1 border border-transparent hover:border-white rounded">
+          <div class="relative">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="absolute -top-1 right-0 bg-[var(--amz-orange)] text-[var(--amz-dark)] text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+          </div>
+          <span class="text-xs font-bold hidden md:inline">장바구니</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 하위 네비게이션 -->
+    <div class="bg-[var(--amz-dark2)] text-white text-sm">
+      <div class="max-w-[1500px] mx-auto flex items-center gap-4 px-4 py-1.5 overflow-x-auto whitespace-nowrap">
+        <a href="#" class="flex items-center gap-1 hover:text-gray-300 font-bold text-xs px-1 py-0.5 border border-transparent hover:border-white rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          전체 카테고리
+        </a>
+        <a href="#" class="text-xs hover:text-gray-300 px-1 py-0.5 border border-transparent hover:border-white rounded">오늘의 딜</a>
+        <a href="#" class="text-xs hover:text-gray-300 px-1 py-0.5 border border-transparent hover:border-white rounded">베스트셀러</a>
+        <a href="#" class="text-xs hover:text-gray-300 px-1 py-0.5 border border-transparent hover:border-white rounded">신규 출시</a>
+        <a href="#" class="text-xs hover:text-gray-300 px-1 py-0.5 border border-transparent hover:border-white rounded">고객 서비스</a>
+        <a href="#" class="text-xs hover:text-gray-300 px-1 py-0.5 border border-transparent hover:border-white rounded">전자제품</a>
+        <a href="#" class="text-xs hover:text-gray-300 px-1 py-0.5 border border-transparent hover:border-white rounded">패션</a>
+        <a href="#" class="text-xs hover:text-gray-300 px-1 py-0.5 border border-transparent hover:border-white rounded">식료품</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 브레드크럼 -->
+  <div class="max-w-[1500px] mx-auto px-4 py-2 text-xs text-[var(--amz-text-sec)]">
+    <a href="#" class="amz-link">전자제품</a> ›
+    <a href="#" class="amz-link">헤드폰 & 이어폰</a> ›
+    <a href="#" class="amz-link">오버이어 헤드폰</a> ›
+    <span class="text-[var(--amz-text)]">무선 노이즈 캔슬링</span>
+  </div>
+
+  <!-- 상품 메인 영역 -->
+  <div class="max-w-[1500px] mx-auto px-4 pb-8">
+    <div class="bg-white rounded-lg p-4 md:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr_280px] gap-6 lg:gap-8">
+
+        <!-- 좌측: 이미지 갤러리 -->
+        <div class="flex flex-col-reverse md:flex-row gap-3">
+          <!-- 썸네일 목록 -->
+          <div id="thumbnails" class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible">
+            <button class="thumb-btn active" data-index="0"><img src={heroImg.src} alt="정면" /></button>
+            <button class="thumb-btn" data-index="1"><img src={sideImg.src} alt="측면" /></button>
+            <button class="thumb-btn" data-index="2"><img src={cushionImg.src} alt="이어쿠션" /></button>
+            <button class="thumb-btn" data-index="3"><img src={driverImg.src} alt="드라이버" /></button>
+            <button class="thumb-btn" data-index="4"><img src={noiseCancelImg.src} alt="노이즈캔슬링" /></button>
+            <button class="thumb-btn" data-index="5"><img src={caseImg.src} alt="케이스" /></button>
+            <button class="thumb-btn" data-index="6"><img src={lifestyleImg.src} alt="라이프스타일" /></button>
+          </div>
+
+          <!-- 메인 이미지 -->
+          <div class="flex-1 flex items-center justify-center bg-white rounded-lg border border-[var(--amz-border)] p-4 min-h-[300px] md:min-h-[450px]">
+            <img id="mainImage" src={heroImg.src} alt="AURA Pro 헤드폰" class="max-w-full max-h-[450px] object-contain" />
+          </div>
+        </div>
+
+        <!-- 중앙: 상품 정보 -->
+        <div class="space-y-3">
+          <h1 class="text-xl md:text-2xl font-medium leading-snug text-[var(--amz-text)]">
+            AURA Pro 무선 블루투스 노이즈 캔슬링 오버이어 헤드폰 — 50mm 티타늄 드라이버, Hi-Res 오디오, 40시간 재생, 멀티포인트 연결, 접이식 디자인, 전용 케이스 포함 (매트 블랙)
+          </h1>
+
+          <div class="flex items-center gap-2">
+            <a href="#" class="amz-link text-sm">AURA 공식 스토어 방문</a>
+          </div>
+
+          <!-- 평점 -->
+          <div class="flex items-center gap-2 flex-wrap text-sm">
+            <span class="font-medium text-[var(--amz-blue)]">4.7</span>
+            <div class="flex items-center gap-0.5">
+              {[1,2,3,4].map(() => (
+                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              ))}
+              <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20" style="clip-path: inset(0 30% 0 0);"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            </div>
+            <a href="#reviews" class="amz-link text-sm">3,847개의 평가</a>
+            <span class="text-[var(--amz-border)]">|</span>
+            <a href="#" class="amz-link text-sm">500+ 답변된 질문</a>
+          </div>
+
+          <div class="text-sm text-[var(--amz-text-sec)]">
+            지난 한 달간 <span class="font-medium text-[var(--amz-text)]">10,000+</span>건 이상 구매
+          </div>
+
+          <hr class="border-[var(--amz-border)]" />
+
+          <!-- 가격 -->
+          <div class="space-y-1">
+            <div class="flex items-baseline gap-2">
+              <span class="text-[var(--amz-red)] text-sm font-medium">-42%</span>
+              <span class="text-3xl font-light">₩189,000</span>
+            </div>
+            <div class="text-xs text-[var(--amz-text-sec)]">
+              정가: <span class="line-through">₩329,000</span>
+            </div>
+            <div class="text-xs text-[var(--amz-text-sec)]">
+              세금 포함. <a href="#" class="amz-link">배송비 및 수입 관세</a> 포함
+            </div>
+          </div>
+
+          <!-- 쿠폰 -->
+          <div class="flex items-center gap-2 bg-[#F0F8F0] border border-green-200 rounded-lg px-3 py-2">
+            <input type="checkbox" class="accent-[var(--amz-green)] cursor-pointer" checked />
+            <span class="text-sm text-[var(--amz-green)] font-medium">₩10,000 쿠폰 적용</span>
+            <span class="text-xs text-[var(--amz-text-sec)]">결제 시 자동 적용</span>
+          </div>
+
+          <hr class="border-[var(--amz-border)]" />
+
+          <!-- 색상 선택 -->
+          <div>
+            <div class="text-sm mb-2"><span class="font-medium">색상:</span> 매트 블랙</div>
+            <div class="flex gap-2">
+              <button class="w-10 h-10 rounded-full bg-[#1a1a1a] border-2 border-[var(--amz-blue)] shadow-[0_0_0_2px_rgba(0,113,133,0.3)] cursor-pointer" title="매트 블랙"></button>
+              <button class="w-10 h-10 rounded-full bg-[#C0C0C0] border-2 border-transparent hover:border-[var(--amz-blue)] cursor-pointer" title="실버"></button>
+              <button class="w-10 h-10 rounded-full bg-[#1B3A5C] border-2 border-transparent hover:border-[var(--amz-blue)] cursor-pointer" title="미드나잇 블루"></button>
+            </div>
+          </div>
+
+          <hr class="border-[var(--amz-border)]" />
+
+          <!-- 주요 특징 (About this item) -->
+          <div>
+            <h3 class="text-sm font-bold mb-2">이 상품에 대하여</h3>
+            <ul class="space-y-2 text-sm text-[var(--amz-text)]">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--amz-text)] mt-1 shrink-0">•</span>
+                <span><strong>업계 최고 수준의 노이즈 캔슬링:</strong> 듀얼 피드백 마이크와 AI 기반 적응형 노이즈 캔슬링 기술로 주변 소음을 최대 98% 차단합니다.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--amz-text)] mt-1 shrink-0">•</span>
+                <span><strong>50mm 커스텀 티타늄 드라이버:</strong> Hi-Res 오디오 인증을 받은 프리미엄 드라이버로 20Hz~40kHz의 넓은 주파수 대역을 재생합니다.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--amz-text)] mt-1 shrink-0">•</span>
+                <span><strong>40시간 연속 재생:</strong> 노이즈 캔슬링 활성화 상태에서도 40시간 사용 가능. 10분 급속 충전으로 5시간 재생.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--amz-text)] mt-1 shrink-0">•</span>
+                <span><strong>멀티포인트 블루투스 5.3:</strong> 노트북과 스마트폰을 동시에 연결하여 자유롭게 전환. LDAC & aptX Adaptive 코덱 지원.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--amz-text)] mt-1 shrink-0">•</span>
+                <span><strong>프리미엄 착용감:</strong> 메모리 폼 이어쿠션과 경량 티타늄 헤드밴드로 장시간 착용해도 편안합니다. 무게 단 250g.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--amz-text)] mt-1 shrink-0">•</span>
+                <span><strong>구성품:</strong> AURA Pro 헤드폰, 전용 하드 케이스, USB-C 충전 케이블, 3.5mm 오디오 케이블, 항공기 어댑터, 퀵 스타트 가이드.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 우측: 구매 박스 (Buy Box) -->
+        <div class="border border-[var(--amz-border)] rounded-lg p-4 space-y-3 h-fit lg:sticky lg:top-4">
+          <div class="text-3xl font-light">₩189,000</div>
+          <div class="text-xs text-[var(--amz-text-sec)]">
+            세금 포함. <a href="#" class="amz-link">배송비 및 수입 관세</a> 포함
+          </div>
+
+          <!-- 배송 정보 -->
+          <div class="space-y-1 text-sm">
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 shrink-0 text-[var(--amz-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H4.875c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125H6m12.75 0H18.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <span class="font-medium">무료 배송</span>
+                <span class="text-[var(--amz-text-sec)]"> 3월 25일 월요일 도착</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 shrink-0 text-[var(--amz-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="amz-link text-sm">서울 강남구에 배송</span>
+            </div>
+          </div>
+
+          <!-- 재고 -->
+          <div class="text-lg font-medium text-[var(--amz-green)]">재고 있음</div>
+
+          <!-- 수량 -->
+          <div class="flex items-center gap-2 text-sm">
+            <span>수량:</span>
+            <select class="border border-[var(--amz-border)] rounded-lg px-3 py-1.5 bg-[#F0F2F2] text-sm cursor-pointer shadow-sm">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
+          <!-- 버튼 -->
+          <button onclick="window.onLinkBtnClick && window.onLinkBtnClick()" class="amz-btn-yellow w-full py-2.5 text-sm">장바구니에 담기</button>
+          <button onclick="window.onLinkBtnClick && window.onLinkBtnClick()" class="amz-btn-orange w-full py-2.5 text-sm">바로 구매</button>
+
+          <!-- 보안 정보 -->
+          <div class="space-y-1 text-xs text-[var(--amz-text-sec)]">
+            <div class="flex justify-between">
+              <span>배송</span>
+              <a href="#" class="amz-link">Aura Korea</a>
+            </div>
+            <div class="flex justify-between">
+              <span>판매</span>
+              <a href="#" class="amz-link">AURA 공식 스토어</a>
+            </div>
+            <div class="flex justify-between">
+              <span>반품</span>
+              <a href="#" class="amz-link">30일 이내 무료 반품</a>
+            </div>
+          </div>
+
+          <hr class="border-[var(--amz-border)]" />
+
+          <div class="flex items-center gap-2 text-sm">
+            <svg class="w-5 h-5 text-[var(--amz-text-sec)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs">안전한 거래</span>
+          </div>
+
+          <!-- 선물 옵션 -->
+          <div class="flex items-center gap-2 text-sm">
+            <input type="checkbox" class="accent-[var(--amz-blue)] cursor-pointer" />
+            <label class="cursor-pointer">선물 포장 추가</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 제품 사양 -->
+  <div class="max-w-[1500px] mx-auto px-4 pb-8">
+    <div class="bg-white rounded-lg p-6 md:p-8">
+      <h2 class="text-xl font-bold mb-4" id="tech-specs">제품 사양</h2>
+      <div class="grid md:grid-cols-2 gap-0 border border-[var(--amz-border)] rounded-lg overflow-hidden">
+        {[
+          ['브랜드', 'AURA'],
+          ['모델명', 'AURA Pro ANC-700'],
+          ['색상', '매트 블랙'],
+          ['연결 방식', 'Bluetooth 5.3 / 3.5mm 유선'],
+          ['드라이버 크기', '50mm 커스텀 티타늄'],
+          ['주파수 응답', '20Hz ~ 40kHz'],
+          ['임피던스', '32Ω'],
+          ['감도', '108dB/mW'],
+          ['배터리 수명', 'ANC 켜짐: 40시간 / ANC 꺼짐: 60시간'],
+          ['충전 시간', 'USB-C, 2시간 완충 / 10분 급속충전 = 5시간'],
+          ['무게', '250g'],
+          ['노이즈 캔슬링', '듀얼 피드백 ANC + 투과 모드'],
+          ['코덱 지원', 'SBC, AAC, LDAC, aptX Adaptive'],
+          ['방수 등급', 'IPX4 (생활 방수)'],
+        ].map(([label, value], i) => (
+          <div class={`flex text-sm ${i % 2 === 0 ? 'bg-[#F2F2F2]' : 'bg-white'} border-b border-[var(--amz-border)] last:border-b-0`}>
+            <div class="w-40 md:w-48 px-4 py-2.5 font-medium text-[var(--amz-text-sec)] shrink-0">{label}</div>
+            <div class="px-4 py-2.5 text-[var(--amz-text)]">{value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- 상품 설명 (이미지 포함) -->
+  <div class="max-w-[1500px] mx-auto px-4 pb-8">
+    <div class="bg-white rounded-lg p-6 md:p-8">
+      <h2 class="text-xl font-bold mb-6">상품 설명</h2>
+
+      <div class="space-y-12 max-w-4xl mx-auto">
+        <!-- 설명 1: 노이즈 캔슬링 -->
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <img src={noiseCancelImg.src} alt="노이즈 캔슬링 기술" class="rounded-lg w-full" />
+          <div class="space-y-3">
+            <h3 class="text-lg font-bold">세상의 소음을 차단하세요</h3>
+            <p class="text-sm text-[var(--amz-text-sec)] leading-relaxed">
+              AURA Pro의 듀얼 피드백 ANC 시스템은 외부 소음을 정밀하게 분석하고 실시간으로 역위상 신호를 생성하여 최대 98%의 소음을 차단합니다. 비행기, 지하철, 사무실 등 어떤 환경에서도 당신만의 음악 세계에 몰입할 수 있습니다.
+            </p>
+            <p class="text-sm text-[var(--amz-text-sec)] leading-relaxed">
+              투과 모드를 활성화하면 헤드폰을 벗지 않고도 주변 소리를 자연스럽게 들을 수 있어 대화나 안내 방송을 놓치지 않습니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 설명 2: 드라이버 -->
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="space-y-3 md:order-1">
+            <h3 class="text-lg font-bold">프리미엄 사운드의 비밀</h3>
+            <p class="text-sm text-[var(--amz-text-sec)] leading-relaxed">
+              독자 개발한 50mm 티타늄 합금 드라이버는 초경량이면서도 높은 강성을 자랑합니다. 이를 통해 왜곡 없는 깨끗한 고음과 풍부하고 깊은 저음을 동시에 구현합니다.
+            </p>
+            <p class="text-sm text-[var(--amz-text-sec)] leading-relaxed">
+              Hi-Res 오디오 인증(JAS)을 획득하여 40kHz까지의 초고역대 재생이 가능하며, LDAC 코덱으로 무선에서도 CD 이상의 음질을 경험할 수 있습니다.
+            </p>
+          </div>
+          <img src={driverImg.src} alt="50mm 티타늄 드라이버" class="rounded-lg w-full md:order-2" />
+        </div>
+
+        <!-- 설명 3: 착용감 -->
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <img src={cushionImg.src} alt="프리미엄 이어쿠션" class="rounded-lg w-full" />
+          <div class="space-y-3">
+            <h3 class="text-lg font-bold">하루 종일 편안하게</h3>
+            <p class="text-sm text-[var(--amz-text-sec)] leading-relaxed">
+              인체공학적으로 설계된 오버이어 디자인과 고밀도 메모리 폼 이어쿠션이 귀를 부드럽게 감싸줍니다. 프로틴 가죽 소재로 통기성이 뛰어나 장시간 착용해도 열이 나지 않습니다.
+            </p>
+            <p class="text-sm text-[var(--amz-text-sec)] leading-relaxed">
+              250g의 초경량 설계로 목과 머리에 부담을 주지 않으며, 조절 가능한 헤드밴드가 다양한 머리 크기에 맞게 피팅됩니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 설명 4: 라이프스타일 -->
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="space-y-3 md:order-1">
+            <h3 class="text-lg font-bold">일상의 모든 순간과 함께</h3>
+            <p class="text-sm text-[var(--amz-text-sec)] leading-relaxed">
+              출근길 지하철에서, 카페에서의 작업 시간, 장거리 비행 중에도 AURA Pro는 항상 최고의 사운드를 제공합니다. 멀티포인트 연결로 노트북과 스마트폰을 동시에 연결하여 업무와 일상을 자유롭게 넘나듭니다.
+            </p>
+          </div>
+          <img src={lifestyleImg.src} alt="라이프스타일" class="rounded-lg w-full md:order-2" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 유사 상품 비교 -->
+  <div class="max-w-[1500px] mx-auto px-4 pb-8">
+    <div class="bg-white rounded-lg p-6 md:p-8">
+      <h2 class="text-xl font-bold mb-4">유사 상품 비교</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse min-w-[600px]">
+          <thead>
+            <tr class="border-b-2 border-[var(--amz-border)]">
+              <th class="p-3 text-left w-40"></th>
+              <th class="p-3 text-center font-medium bg-[#FFF8E7]">
+                <div class="space-y-2">
+                  <img src={heroImg.src} alt="AURA Pro" class="w-24 h-24 object-contain mx-auto" />
+                  <div class="text-xs font-bold">AURA Pro ANC-700</div>
+                  <div class="text-xs text-[var(--amz-blue)]">이 상품</div>
+                </div>
+              </th>
+              <th class="p-3 text-center font-medium">
+                <div class="space-y-2">
+                  <div class="w-24 h-24 bg-gray-100 rounded mx-auto flex items-center justify-center text-gray-400 text-xs">이미지</div>
+                  <div class="text-xs font-bold">AURA SE ANC-500</div>
+                  <div class="amz-link text-xs">자세히 보기</div>
+                </div>
+              </th>
+              <th class="p-3 text-center font-medium">
+                <div class="space-y-2">
+                  <div class="w-24 h-24 bg-gray-100 rounded mx-auto flex items-center justify-center text-gray-400 text-xs">이미지</div>
+                  <div class="text-xs font-bold">AURA Lite BT-300</div>
+                  <div class="amz-link text-xs">자세히 보기</div>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['가격', '₩189,000', '₩129,000', '₩79,000'],
+              ['노이즈 캔슬링', '듀얼 피드백 ANC', '싱글 ANC', '—'],
+              ['드라이버', '50mm 티타늄', '40mm 바이오셀룰로오스', '40mm 다이나믹'],
+              ['배터리', '40시간 (ANC ON)', '30시간 (ANC ON)', '50시간'],
+              ['블루투스', '5.3 멀티포인트', '5.2', '5.1'],
+              ['코덱', 'LDAC, aptX Adaptive', 'AAC, SBC', 'AAC, SBC'],
+              ['무게', '250g', '260g', '200g'],
+              ['Hi-Res 인증', '✓', '✓', '—'],
+              ['접이식', '✓', '✓', '—'],
+              ['케이스 포함', '✓', '✓', '파우치'],
+            ].map(([label, ...values], i) => (
+              <tr class={`border-b border-[var(--amz-border)] ${i % 2 === 0 ? 'bg-[#FAFAFA]' : ''}`}>
+                <td class="p-3 font-medium text-[var(--amz-text-sec)]">{label}</td>
+                <td class="p-3 text-center bg-[#FFFCF0]">{values[0]}</td>
+                <td class="p-3 text-center">{values[1]}</td>
+                <td class="p-3 text-center">{values[2]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 리뷰 영역 -->
+  <div id="reviews" class="max-w-[1500px] mx-auto px-4 pb-8">
+    <div class="bg-white rounded-lg p-6 md:p-8">
+      <div class="grid md:grid-cols-[300px_1fr] gap-8">
+        <!-- 좌측: 평점 요약 -->
+        <div class="space-y-4">
+          <h2 class="text-xl font-bold">고객 리뷰</h2>
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-0.5">
+              {[1,2,3,4].map(() => (
+                <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              ))}
+              <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 20 20" style="clip-path: inset(0 30% 0 0);"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            </div>
+            <span class="text-sm font-medium">5점 만점에 4.7점</span>
+          </div>
+          <div class="text-sm text-[var(--amz-text-sec)]">전체 평가 3,847개</div>
+
+          <!-- 평점 분포 바 -->
+          <div class="space-y-1.5">
+            {[
+              ['5점', 72],
+              ['4점', 18],
+              ['3점', 6],
+              ['2점', 2],
+              ['1점', 2],
+            ].map(([label, pct]) => (
+              <div class="flex items-center gap-2 text-sm">
+                <a href="#" class="amz-link whitespace-nowrap w-8">{label}</a>
+                <div class="rating-bar-bg">
+                  <div class="rating-bar-fill" style={`width: ${pct}%`}></div>
+                </div>
+                <span class="text-[var(--amz-text-sec)] w-8 text-right">{pct}%</span>
+              </div>
+            ))}
+          </div>
+
+          <hr class="border-[var(--amz-border)]" />
+
+          <div>
+            <h3 class="text-sm font-bold mb-2">리뷰 작성</h3>
+            <p class="text-xs text-[var(--amz-text-sec)] mb-3">다른 고객들과 의견을 공유하세요</p>
+            <button class="w-full py-1.5 text-sm border border-[var(--amz-border)] rounded-lg bg-[#F0F2F2] hover:bg-gray-200 transition-colors cursor-pointer">
+              고객 리뷰 작성
+            </button>
+          </div>
+        </div>
+
+        <!-- 우측: 리뷰 목록 -->
+        <div class="space-y-6">
+          <h3 class="text-base font-bold">상위 리뷰</h3>
+
+          <!-- 리뷰 1 -->
+          <div class="border-b border-[var(--amz-border)] pb-6">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded-full bg-[var(--amz-dark2)] flex items-center justify-center text-white text-xs font-bold">김</div>
+              <span class="text-sm font-medium">김지현</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <div class="flex gap-0.5">
+                {[1,2,3,4,5].map(() => (
+                  <svg class="w-3.5 h-3.5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                ))}
+              </div>
+              <span class="text-sm font-bold">노이즈 캔슬링이 진짜 미쳤어요</span>
+            </div>
+            <div class="text-xs text-[var(--amz-text-sec)] mb-2">2026년 3월 15일에 대한민국에서 리뷰함 | 색상: 매트 블랙</div>
+            <div class="inline-block text-xs bg-[#F0F2F2] border border-[var(--amz-border)] rounded px-2 py-0.5 mb-2 text-[var(--amz-orange)] font-medium">인증된 구매</div>
+            <p class="text-sm text-[var(--amz-text)] leading-relaxed mb-3">
+              지하철에서 착용하면 진짜 아무 소리도 안 들려요. 이전에 소니 WH-1000XM5를 쓰다가 갈아탔는데 노이즈 캔슬링 성능이 확실히 더 좋습니다. 음질도 LDAC 연결하면 유선 못지않은 퀄리티이고, 특히 저음이 풍부하면서도 깔끔합니다. 착용감도 가볍고 이어쿠션이 부드러워서 하루 종일 써도 귀가 안 아파요. 배터리도 40시간 광고대로 잘 나옵니다. 강력 추천합니다!
+            </p>
+            <div class="text-xs text-[var(--amz-text-sec)]">247명이 이 리뷰가 유용하다고 평가했습니다</div>
+            <div class="flex items-center gap-4 mt-2">
+              <button class="text-xs border border-[var(--amz-border)] rounded-full px-4 py-1 bg-[#F0F2F2] hover:bg-gray-200 cursor-pointer">유용</button>
+              <a href="#" class="amz-link text-xs">신고</a>
+            </div>
+          </div>
+
+          <!-- 리뷰 2 -->
+          <div class="border-b border-[var(--amz-border)] pb-6">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded-full bg-[#2D4A3E] flex items-center justify-center text-white text-xs font-bold">박</div>
+              <span class="text-sm font-medium">박성민</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <div class="flex gap-0.5">
+                {[1,2,3,4].map(() => (
+                  <svg class="w-3.5 h-3.5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                ))}
+                <svg class="w-3.5 h-3.5 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              </div>
+              <span class="text-sm font-bold">음질은 최고, 통화 품질은 아쉬움</span>
+            </div>
+            <div class="text-xs text-[var(--amz-text-sec)] mb-2">2026년 3월 8일에 대한민국에서 리뷰함 | 색상: 미드나잇 블루</div>
+            <div class="inline-block text-xs bg-[#F0F2F2] border border-[var(--amz-border)] rounded px-2 py-0.5 mb-2 text-[var(--amz-orange)] font-medium">인증된 구매</div>
+            <p class="text-sm text-[var(--amz-text)] leading-relaxed mb-3">
+              음악 감상용으로는 정말 최고입니다. 클래식부터 EDM까지 어떤 장르도 잘 소화하고 공간감이 뛰어납니다. 다만 바람이 강한 야외에서 통화할 때 상대방이 바람 소리를 좀 듣는다고 하더라고요. 실내에서의 통화 품질은 괜찮습니다. 멀티포인트 연결이 정말 편리하고, 접이식이라 가방에 넣기 좋습니다.
+            </p>
+            <div class="text-xs text-[var(--amz-text-sec)]">89명이 이 리뷰가 유용하다고 평가했습니다</div>
+            <div class="flex items-center gap-4 mt-2">
+              <button class="text-xs border border-[var(--amz-border)] rounded-full px-4 py-1 bg-[#F0F2F2] hover:bg-gray-200 cursor-pointer">유용</button>
+              <a href="#" class="amz-link text-xs">신고</a>
+            </div>
+          </div>
+
+          <!-- 리뷰 3 -->
+          <div class="pb-4">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded-full bg-[#8B4513] flex items-center justify-center text-white text-xs font-bold">이</div>
+              <span class="text-sm font-medium">이수연</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <div class="flex gap-0.5">
+                {[1,2,3,4,5].map(() => (
+                  <svg class="w-3.5 h-3.5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                ))}
+              </div>
+              <span class="text-sm font-bold">선물용으로 완벽해요!</span>
+            </div>
+            <div class="text-xs text-[var(--amz-text-sec)] mb-2">2026년 2월 28일에 대한민국에서 리뷰함 | 색상: 실버</div>
+            <div class="inline-block text-xs bg-[#F0F2F2] border border-[var(--amz-border)] rounded px-2 py-0.5 mb-2 text-[var(--amz-orange)] font-medium">인증된 구매</div>
+            <p class="text-sm text-[var(--amz-text)] leading-relaxed mb-3">
+              남자친구 생일 선물로 구매했는데 케이스부터 헤드폰까지 고급스럽다고 정말 좋아했어요. 패키징도 깔끔하고 고급스럽습니다. 실버 색상이 정말 예쁘고 고급스러워요. 음질도 좋고 착용감도 편하다고 합니다. 배터리도 일주일에 한 번 충전해도 충분하다고 하네요. 선물용으로 강력 추천합니다!
+            </p>
+            <div class="text-xs text-[var(--amz-text-sec)]">156명이 이 리뷰가 유용하다고 평가했습니다</div>
+            <div class="flex items-center gap-4 mt-2">
+              <button class="text-xs border border-[var(--amz-border)] rounded-full px-4 py-1 bg-[#F0F2F2] hover:bg-gray-200 cursor-pointer">유용</button>
+              <a href="#" class="amz-link text-xs">신고</a>
+            </div>
+          </div>
+
+          <a href="#" class="amz-link text-sm font-medium">모든 리뷰 보기 ›</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="text-center py-4">
+    <a href="#" class="block bg-[#37475A] hover:bg-[#485769] text-white text-xs py-3 text-center transition-colors">
+      맨 위로 돌아가기
+    </a>
+  </div>
+
+  <footer class="bg-[var(--amz-dark)] text-white">
+    <div class="max-w-[1500px] mx-auto px-4 py-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div>
+          <h4 class="text-sm font-bold mb-3">회사 소개</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" class="hover:text-white hover:underline">회사 정보</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">채용 정보</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">보도 자료</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">투자자 관계</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-bold mb-3">쇼핑하기</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" class="hover:text-white hover:underline">오늘의 딜</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">기프트 카드</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">쿠폰</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">포인트</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-bold mb-3">고객 서비스</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" class="hover:text-white hover:underline">도움말</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">반품 및 교환</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">배송 조회</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">문의하기</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-bold mb-3">법적 고지</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="#" class="hover:text-white hover:underline">이용약관</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">개인정보처리방침</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">쿠키 설정</a></li>
+            <li><a href="#" class="hover:text-white hover:underline">광고 설정</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-6 text-center">
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <span class="text-base font-bold">aura</span>
+        </div>
+        <p class="text-xs text-gray-500">&copy; 2026 Aura Technologies Korea. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    // 이미지 갤러리 전환
+    const thumbnails = document.querySelectorAll('.thumb-btn');
+    const mainImage = document.getElementById('mainImage');
+    const imageSources = [
+      document.querySelector('.thumb-btn[data-index="0"] img').src,
+      document.querySelector('.thumb-btn[data-index="1"] img').src,
+      document.querySelector('.thumb-btn[data-index="2"] img').src,
+      document.querySelector('.thumb-btn[data-index="3"] img').src,
+      document.querySelector('.thumb-btn[data-index="4"] img').src,
+      document.querySelector('.thumb-btn[data-index="5"] img').src,
+      document.querySelector('.thumb-btn[data-index="6"] img').src,
+    ];
+
+    thumbnails.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        thumbnails.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const index = parseInt(btn.getAttribute('data-index'));
+        mainImage.src = imageSources[index];
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,490 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="NEXA.CORE | Intelligence Archival" description="Enterprise knowledge retrieval framework. Secure, immutable, instantly accessible.">
+  <style is:global slot="head">
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;0,800;1,400&display=swap');
+
+    :root {
+      /* Palette: Technical Editorial / Swiss Industrial */
+      --blueprint-bg: #EBEAE6; /* Warm newsprint / archival paper */
+      --ink: #111111;
+      --ink-muted: #555555;
+      --accent: #FF3300; /* Industrial Safety Orange */
+      --grid-line: #111111; /* Sharp bold grid lines */
+    }
+
+    body {
+      background-color: var(--blueprint-bg);
+      color: var(--ink);
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Typography */
+    .serif-display {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+    }
+
+    /* Grid Framework */
+    .master-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      max-width: 1400px;
+      margin: 0 auto;
+      border-left: 1px solid var(--grid-line);
+      border-right: 1px solid var(--grid-line);
+      min-height: 100vh;
+      background: var(--blueprint-bg);
+      /* Subtle vertical grid lines for architectural feel */
+      background-image:
+        linear-gradient(to right, rgba(17, 17, 17, 0.05) 1px, transparent 1px);
+      background-size: calc(100% / 12) 100%;
+    }
+
+    .grid-col-full { grid-column: 1 / 13; }
+    .grid-col-half { grid-column: span 6; }
+
+    /* Navigation / Top Bar */
+    .nav-bar {
+      grid-column: 1 / 13;
+      border-bottom: 1px solid var(--grid-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      background: var(--blueprint-bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      padding: 1rem 1.5rem;
+      border-right: 1px solid var(--grid-line);
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-brand span {
+      background: var(--accent);
+      color: var(--blueprint-bg);
+      padding: 0.1rem 0.4rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    .nav-link {
+      padding: 1.2rem 2rem;
+      border-left: 1px solid var(--grid-line);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-link:hover {
+      background: var(--ink);
+      color: var(--blueprint-bg);
+    }
+
+    .nav-link.req-demo {
+      background: var(--accent);
+      color: white;
+      border-left: none;
+    }
+    .nav-link.req-demo:hover {
+      background: var(--ink);
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero-panel {
+      grid-column: 1 / 13;
+      border-bottom: 2px solid var(--grid-line);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .hero-content {
+      grid-column: 1 / 9;
+      padding: 6rem 4rem 8rem 4rem;
+      border-right: 1px solid var(--grid-line);
+    }
+
+    .hero-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 3rem;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-meta::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 6rem;
+      line-height: 0.95;
+      margin: 0 0 2rem 0;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title i {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      max-width: 600px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 4rem;
+    }
+
+    .hero-stats {
+      grid-column: 9 / 13;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-cell {
+      flex: 1;
+      padding: 3rem;
+      border-bottom: 1px solid var(--grid-line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .stat-cell:last-child {
+      border-bottom: none;
+    }
+
+    .stat-num {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--ink);
+      color: var(--blueprint-bg);
+      padding: 1.5rem 3rem;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
+      transition: all 0.3s;
+      border: 1px solid var(--ink);
+    }
+
+    .hero-cta-btn:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .hero-cta-btn svg {
+      transition: transform 0.3s;
+    }
+    .hero-cta-btn:hover svg {
+      transform: translateX(10px);
+    }
+
+    /* Marquee Banner */
+    .compliance-banner {
+      grid-column: 1 / 13;
+      border-bottom: 1px solid var(--grid-line);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      background: #111;
+      color: #fff;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      animation: scroll 20s linear infinite;
+    }
+
+    .marquee-text span {
+      color: var(--accent);
+      margin: 0 2rem;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Core Architecture Modules */
+    .module-header {
+      grid-column: 1 / 13;
+      padding: 4rem;
+      border-bottom: 1px solid var(--grid-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .module-header h2 {
+      font-size: 3.5rem;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .module-header p {
+      text-align: right;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      max-width: 300px;
+    }
+
+    .grid-row {
+      grid-column: 1 / 13;
+      display: flex;
+      border-bottom: 1px solid var(--grid-line);
+    }
+
+    .feature-box {
+      flex: 1;
+      padding: 4rem;
+      border-right: 1px solid var(--grid-line);
+      position: relative;
+    }
+    .feature-box:last-child {
+      border-right: none;
+    }
+
+    .feature-id {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 800;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--accent);
+    }
+
+    .feature-box h3 {
+      font-size: 2rem;
+      margin: 0 0 1.5rem 0;
+      font-weight: 400;
+    }
+
+    .feature-box p {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      max-width: 90%;
+    }
+
+    /* Footer */
+    .vault-footer {
+      grid-column: 1 / 13;
+      padding: 6rem 4rem 2rem;
+      background: var(--blueprint-bg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .brand-large {
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+    }
+
+    .legal-links {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-end;
+    }
+
+    .legal-links a {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .legal-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .hero-title { font-size: 4rem; }
+      .hero-stats { display: none; }
+      .hero-content { grid-column: 1 / 13; border-right: none; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content { padding: 4rem 2rem; }
+      .hero-title { font-size: 3rem; }
+      .grid-row { flex-direction: column; }
+      .feature-box { border-right: none; border-bottom: 1px solid var(--grid-line); }
+      .module-header { flex-direction: column; align-items: flex-start; gap: 2rem; padding: 2rem; }
+      .brand-large { font-size: 3rem; }
+      .footer-top { flex-direction: column; gap: 2rem; }
+    }
+  </style>
+
+  <div class="master-grid">
+    <!-- Navbar -->
+    <nav class="nav-bar">
+      <div class="nav-brand">
+        NEXA <span>CORE</span>
+      </div>
+      <div class="nav-links">
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#security" class="nav-link">Security Protocols</a>
+        <a href="#compliance" class="nav-link">Compliance</a>
+        <a href="#" class="nav-link req-demo">Deploy System</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-panel">
+      <div class="hero-content">
+        <div class="hero-meta">System Manifest — Build 2026.03.22</div>
+        <h1 class="hero-title serif-display">
+          Absolute control over<br/>
+          enterprise <i>intelligence</i>.
+        </h1>
+        <p class="hero-desc">
+          A purely deterministic AI workspace. Nexa ingests, strictly silos, and semantically indexes your organizational data without training external models. Military-grade isolation meets instant knowledge retrieval.
+        </p>
+        <a href="#" class="hero-cta-btn">
+          Initialize Demo
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-cell">
+          <div class="stat-num">0ms</div>
+          <div class="stat-label">Model Training Leakage</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">256</div>
+          <div class="stat-label">Bit AES E2E Encryption</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num serif-display">SOC2</div>
+          <div class="stat-label">Type II Certified Architecture</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="compliance-banner">
+      <div class="marquee-text">
+        Google Cloud Partner <span>//</span> GDPR Compliant <span>//</span> CCPA Verified <span>//</span> Zero Data Retention Policy <span>//</span> SSO Enabled <span>//</span> Audit Logging Active <span>//</span> No Public LLM Training <span>//</span> Immutable Infrastructure <span>//</span> Google Cloud Partner <span>//</span> GDPR Compliant
+      </div>
+    </div>
+
+    <!-- Modules -->
+    <div class="module-header" id="architecture">
+      <h2 class="serif-display">Logical Framework.</h2>
+      <p>Precision-engineered systems designed to securely parse massive internal data structures.</p>
+    </div>
+
+    <div class="grid-row">
+      <div class="feature-box">
+        <div class="feature-id">SYS.01</div>
+        <h3 class="serif-display">Deterministic Retrieval.</h3>
+        <p>Unlike generative hallucinations, our vector-search engine returns strict, verifiable citations mapped directly to source documents in your secure vault.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-id">SYS.02</div>
+        <h3 class="serif-display">Air-Gapped Privacy.</h3>
+        <p>Each enterprise tenant operates in a physically and logically isolated computing cluster. Search queries never cross-pollinate with standard commercial data pools.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-id">SYS.03</div>
+        <h3 class="serif-display">Role-Based Access.</h3>
+        <p>The system inherits your existing IAM permissions. If an employee cannot access a file in Google Workspace, the AI will completely expunge it from their search results.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="vault-footer">
+      <div class="footer-top">
+        <div class="brand-large">NEXA</div>
+        <div class="legal-links">
+          <a href="#">Privacy Protocol</a>
+          <a href="#">Terms of Architecture</a>
+          <a href="#">Security Manifest</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Nexa Core Technologies. Verified secure.</div>
+        <div>Compliant strictly with Google Ads Business Policies.</div>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
