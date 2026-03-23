@@ -1,0 +1,113 @@
+@charset "UTF-8";
+/*
+ Theme Name: SANGO Child
+ Theme URI: https://saruwakakun.design
+ Author: SARUWAKA
+ Author URI: https://saruwakakun.com
+ Template: sango-theme
+ Version: 4.0
+*/
+/*こちらはSANGOの子テーマ用CSSです。以下にCSSを記入していきましょう。*/
+
+.sgb-header__inner--default{
+    min-height: 54px;
+}
+
+header.sgb-header .wp-block-pages-list__item{
+    font-size: 16px;
+}
+
+span.h-small{
+    font-size: 70%;
+}
+
+#breadcrumb li:first-child a:before{
+    content: none;
+}
+
+.footer-menu__btn.dfont{
+    display: none;
+}
+
+.drawer__title{
+    color: #353535 !important;
+}
+.drawer__title__close span, .drawer__title__close span:before{
+    background-color: #353535 !important;
+}
+#drawer__open{
+    color: #353535 !important;
+    line-height: 54px !important;
+}
+.drawer__content ul{
+    padding: 5px 15px 100px;
+}
+.drawer__content li{
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #1A1311;
+    padding: 8px;
+}
+.drawer__content li a{
+    color: #353535 !important;
+}
+.sgb-header__inner--default .sgb-site-branding{
+    padding: 0 !important;
+}
+
+#container>p{
+    margin: 0 !important;
+}
+
+#breadcrumb{
+    padding: 3px 0px !important;
+}
+@media screen and (max-width: 768px) {
+    #breadcrumb{
+        padding: 3px 15px !important;
+    }
+}
+
+/* H2見出し */
+.entry-content h2:not(.sgb-heading) {
+    background: #111111;
+    color: #fff;
+    padding: .75em 1em;
+}
+/* H3見出し */
+.entry-content h3:not(.sgb-heading) {
+    border-color: #111111 !important;
+}
+
+
+.info-line{
+    cursor: pointer;
+}
+.info-line-text{
+    color: #4f96f6;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.info-line-button{
+    background-color: #06c755;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    line-height: 2;
+    width: 80%;
+    border-bottom: solid 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+p.info-line-button-before{
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+}
+span.info-line{
+    text-decoration: underline;
+    font-weight: bold;
+    color: #4f96f6;
+}

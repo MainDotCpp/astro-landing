@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# 使用 Homebrew 安装的 rsync（macOS 自带版本不支持 --chown）
+RSYNC="/opt/homebrew/bin/rsync"
+if [ ! -x "$RSYNC" ]; then
+    echo "错误: 未找到 Homebrew 版 rsync，请运行 'brew install rsync'"
+    exit 1
+fi
+
 # 配置
 SSH_PORT=5522
 SOURCE_DIR="./dist/"
@@ -31,7 +38,7 @@ echo ""
 
 # 部署到 KR 服务器
 echo ">>> 正在部署到 KR 服务器 (coincool.top)..."
-sshpass -p "${PASSWORD_KR}" rsync -rlptzv \
+sshpass -p "${PASSWORD_KR}" $RSYNC -rlptzv \
     --chown=www:www \
     --chmod=D755,F644 \
     --progress \
@@ -52,7 +59,7 @@ echo ""
 
 # 部署到 JP 服务器
 echo ">>> 正在部署到 JP 服务器 (richwise.top)..."
-sshpass -p "${PASSWORD_JP}" rsync -rlptzv \
+sshpass -p "${PASSWORD_JP}" $RSYNC -rlptzv \
     --chown=www:www \
     --chmod=D755,F644 \
     --progress \
@@ -74,7 +81,7 @@ echo ""
 # 部署到第三方服务器 (不忽略 private 文件夹)
 echo ">>> 正在部署到第三方服务器 (xn--ces516hyxm.com)..."
 EXCLUDE_PARAMS_NO_PRIVATE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=*_/ --exclude=**/*_/ --exclude=YY/ --exclude=**/YY/"
-sshpass -p "${PASSWORD_THIRD}" rsync -rlptzv \
+sshpass -p "${PASSWORD_THIRD}" $RSYNC -rlptzv \
     --chown=www:www \
     --chmod=D755,F644 \
     --progress \
@@ -95,7 +102,7 @@ echo ""
 
 # 部署到新服务器 (202.182.125.131)
 echo ">>> 正在部署到新服务器 (202.182.125.131)..."
-sshpass -p "${PASSWORD_JP}" rsync -rlptzv \
+sshpass -p "${PASSWORD_JP}" $RSYNC -rlptzv \
     --chown=www:www \
     --chmod=D755,F644 \
     --progress \
