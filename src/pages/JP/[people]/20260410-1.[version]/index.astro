@@ -1,0 +1,395 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+
+import './static/css/style.css'
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: { people: '三橋貴明', version: '0' },
+      props: {
+        name: '三橋貴明',
+        title: '三橋貴明 投資サロン｜本質を見抜く経済思考',
+        description: '経済評論家・三橋貴明が主宰する投資学習コミュニティ。マクロ経済の本質から投資判断力を鍛える。',
+        role: '経済評論家・作家',
+        heroQuote: '数字の裏にある真実を、\n読み解く力を。',
+        expertise: ['マクロ経済分析', 'デフレ経済論', '財政政策研究'],
+        achievement: { number: '100', unit: '冊+', label: '著書・監修' },
+        philosophy: '経済の本質を理解することが、投資の第一歩です。メディアに流されない、自分の頭で考える力を養いましょう。',
+      },
+    },
+    {
+      params: { people: '馬渕磨理子', version: '0' },
+      props: {
+        name: '馬渕磨理子',
+        title: '馬渕磨理子 投資サロン｜データが導く確かな投資判断',
+        description: '経済アナリスト・馬渕磨理子が主宰する投資学習コミュニティ。データに基づく投資戦略を学ぶ。',
+        role: '経済アナリスト・投資アドバイザー',
+        heroQuote: 'データが語る未来を、\nあなたの資産に変える。',
+        expertise: ['株式市場分析', 'ファンダメンタル分析', 'ポートフォリオ戦略'],
+        achievement: { number: '50', unit: '万+', label: 'フォロワー' },
+        philosophy: '感覚ではなくデータに基づいた投資判断が、長期的な資産形成の鍵です。一緒に学んでいきましょう。',
+      },
+    },
+    {
+      params: { people: '堀江貴文', version: '0' },
+      props: {
+        name: '堀江貴文',
+        title: '堀江貴文 投資サロン｜時代を先読みする投資眼',
+        description: '実業家・堀江貴文が主宰する投資学習コミュニティ。テクノロジーと経済の交差点から投資機会を探る。',
+        role: '実業家・投資家',
+        heroQuote: '常識を疑え。\n未来は、動く者のもの。',
+        expertise: ['テクノロジー投資', 'スタートアップ分析', 'グローバル経済'],
+        achievement: { number: '300', unit: '万+', label: 'フォロワー' },
+        philosophy: '投資とは、未来を信じて行動すること。情報を集め、自分で判断し、恐れずに動く。それが最大のリターンを生む。',
+      },
+    },
+  ]
+}) satisfies GetStaticPaths
+
+const { name, title, description, role, heroQuote, expertise, achievement, philosophy } = Astro.props
+
+let avatarImg
+if (name === '三橋貴明') {
+  const m = await import('../../../../assets/avatar/三橋貴明_avatar.png')
+  avatarImg = m.default
+} else if (name === '馬渕磨理子') {
+  const m = await import('../../../../assets/avatar/馬渕磨理子_avatar.png')
+  avatarImg = m.default
+} else if (name === '堀江貴文') {
+  const m = await import('../../../../assets/avatar/堀江貴文_avatar.png')
+  avatarImg = m.default
+}
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    <script is:inline>
+      function onLinkBtnClick() {
+        const link = 'https://line.me/R/ti/p/@your-line-id'
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion()
+        }
+        setTimeout(() => {
+          window.location.href = link
+        }, 100)
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+      <button onclick="onLinkBtnClick()" class="cta-float-btn">
+        <svg class="line-svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
+        </svg>
+        <span>LINEで無料参加</span>
+      </button>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-grain"></div>
+      <div class="hero-inner">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text">INVESTMENT COMMUNITY</span>
+        </div>
+        <h1 class="hero-title">{heroQuote}</h1>
+        <div class="hero-meta">
+          <div class="hero-avatar">
+            {avatarImg && (
+              <Image
+                src={avatarImg}
+                alt={name}
+                width={72}
+                height={72}
+                style="width:100%;height:100%;object-fit:cover;border-radius:50%"
+              />
+            )}
+          </div>
+          <div class="hero-meta-text">
+            <span class="meta-name">{name}</span>
+            <span class="meta-role">{role}</span>
+          </div>
+        </div>
+        <div class="hero-achievement">
+          <span class="ach-number">{achievement.number}</span>
+          <span class="ach-unit">{achievement.unit}</span>
+          <span class="ach-label">{achievement.label}</span>
+        </div>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy">
+      <div class="section-container">
+        <div class="phil-label">Philosophy</div>
+        <blockquote class="phil-quote">
+          {philosophy}
+        </blockquote>
+        <div class="phil-divider"></div>
+      </div>
+    </section>
+
+    <!-- Expertise -->
+    <section class="expertise">
+      <div class="section-container">
+        <div class="exp-header">
+          <span class="exp-eyebrow">EXPERTISE</span>
+          <h2 class="exp-title">専門領域</h2>
+        </div>
+        <div class="exp-grid">
+          {expertise.map((item: string, i: number) => (
+            <div class="exp-card" data-index={`0${i + 1}`}>
+              <span class="exp-index">0{i + 1}</span>
+              <h3 class="exp-name">{item}</h3>
+              <div class="exp-line"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+      <div class="section-container">
+        <div class="ben-header">
+          <span class="ben-eyebrow">BENEFITS</span>
+          <h2 class="ben-title">参加特典</h2>
+        </div>
+        <div class="ben-list">
+          <div class="ben-item">
+            <div class="ben-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+              </svg>
+            </div>
+            <div class="ben-content">
+              <h3>投資指南書プレゼント</h3>
+              <p>{name}が監修した投資入門ガイドを無料で進呈</p>
+            </div>
+          </div>
+          <div class="ben-item">
+            <div class="ben-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <path d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+              </svg>
+            </div>
+            <div class="ben-content">
+              <h3>限定勉強会</h3>
+              <p>月2〜3回のオンライン勉強会でリアルタイム学習</p>
+            </div>
+          </div>
+          <div class="ben-item">
+            <div class="ben-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+              </svg>
+            </div>
+            <div class="ben-content">
+              <h3>市況分析レポート</h3>
+              <p>最新の市場動向と注目銘柄を定期配信</p>
+            </div>
+          </div>
+          <div class="ben-item">
+            <div class="ben-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+              </svg>
+            </div>
+            <div class="ben-content">
+              <h3>個別質問サポート</h3>
+              <p>投資に関する疑問をいつでも相談可能</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <div class="section-container">
+        <div class="test-header">
+          <span class="test-eyebrow">VOICES</span>
+          <h2 class="test-title">参加者の声</h2>
+        </div>
+        <div class="test-carousel" id="carouselTrack">
+          <div class="test-card">
+            <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="test-body">「{name}さんの解説は本質を突いていて、ニュースの見方が根本から変わりました。投資初心者の私でも、自信を持って判断できるようになりました。」</p>
+            <div class="test-author">
+              <span class="test-name">田中さん</span>
+              <span class="test-detail">30代・会社員</span>
+            </div>
+            <div class="test-result">
+              <span>6ヶ月で+12%の運用成績</span>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="test-body">「家計の見直しから始めて、今では毎月の積立投資が習慣に。{name}さんのコミュニティのおかげで、将来への不安が希望に変わりました。」</p>
+            <div class="test-author">
+              <span class="test-name">佐藤さん</span>
+              <span class="test-detail">40代・主婦</span>
+            </div>
+            <div class="test-result">
+              <span>月3万円の積立を継続中</span>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="test-body">「退職金の運用に悩んでいましたが、リスク管理を学び安心して資産形成できています。同世代の仲間との交流もモチベーションになります。」</p>
+            <div class="test-author">
+              <span class="test-name">高橋さん</span>
+              <span class="test-detail">60代・退職者</span>
+            </div>
+            <div class="test-result">
+              <span>年間配当収入50万円達成</span>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </section>
+
+    <!-- Join CTA -->
+    <section class="join">
+      <div class="section-container">
+        <div class="join-inner">
+          <div class="join-badge">完全無料</div>
+          <h2 class="join-title">{name}と共に、<br />投資の本質を学ぶ。</h2>
+          <ul class="join-checks">
+            <li>参加費無料・退会自由</li>
+            <li>投資指南書を即日プレゼント</li>
+            <li>24時間質問対応</li>
+            <li>月2〜3回の限定勉強会</li>
+          </ul>
+          <div class="join-stats">
+            <div class="js-item">
+              <span class="js-num">1,000+</span>
+              <span class="js-label">参加者</span>
+            </div>
+            <div class="js-divider"></div>
+            <div class="js-item">
+              <span class="js-num">4.9</span>
+              <span class="js-label">満足度</span>
+            </div>
+            <div class="js-divider"></div>
+            <div class="js-item">
+              <span class="js-num">95%</span>
+              <span class="js-label">継続率</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="section-container">
+        <div class="footer-inner">
+          <span class="footer-brand">{name} 投資サロン</span>
+          <span class="footer-copy">&copy; 2025 All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal()
+  initCarousel()
+  initScrollHint()
+})
+
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed')
+        obs.unobserve(e.target)
+      }
+    })
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' })
+
+  document.querySelectorAll('.phil-quote, .exp-card, .ben-item, .test-card, .join-inner').forEach(el => {
+    obs.observe(el)
+  })
+}
+
+function initCarousel() {
+  const track = document.getElementById('carouselTrack')
+  const dotsWrap = document.getElementById('carouselDots')
+  if (!track || !dotsWrap) return
+
+  const cards = track.querySelectorAll('.test-card')
+  let current = 0
+
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button')
+    dot.className = 'c-dot' + (i === 0 ? ' active' : '')
+    dot.addEventListener('click', () => goTo(i))
+    dotsWrap.appendChild(dot)
+  })
+
+  const dots = dotsWrap.querySelectorAll('.c-dot')
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, cards.length - 1))
+    const gap = 20
+    const cardW = cards[0].offsetWidth + gap
+    const containerW = track.parentElement.offsetWidth
+    const offset = (containerW - cards[0].offsetWidth) / 2
+    track.style.transform = `translateX(${offset - current * cardW}px)`
+    dots.forEach((d, i) => d.classList.toggle('active', i === current))
+  }
+
+  let sx = 0, ex = 0
+  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX })
+  track.addEventListener('touchend', e => {
+    ex = e.changedTouches[0].clientX
+    const diff = sx - ex
+    if (Math.abs(diff) > 40) {
+      diff > 0 ? goTo(current + 1) : goTo(current - 1)
+    }
+  })
+
+  goTo(0)
+  window.addEventListener('resize', () => goTo(current))
+
+  setInterval(() => {
+    goTo(current < cards.length - 1 ? current + 1 : 0)
+  }, 5000)
+}
+
+function initScrollHint() {
+  const hint = document.querySelector('.hero-scroll-hint')
+  if (!hint) return
+  window.addEventListener('scroll', () => {
+    hint.style.opacity = window.scrollY > 80 ? '0' : '1'
+  }, { passive: true })
+}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { Smartphone, TrendingDown, ShieldAlert, Banknote, ShieldCheck, MessageCircle } from 'lucide-react';
+---
+
+<BaseLayout title="フォートレス国際法律事務所 - 投資詐欺被害の返金相談" lang="ja">
+  <Fragment slot="head">
+    <script is:inline>
+      window.onLinkBtnClick = function () {
+        const link = 'https://www.baidu.com';
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
+        setTimeout(() => {
+          window.location.href = link;
+        }, 100);
+      };
+    </script>
+    <style>
+      .bg-hero-pattern {
+        background-color: #0b1f38;
+        background-image: radial-gradient(circle at center, #1e3a5f 0%, #0b1f38 100%);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </Fragment>
+
+  <main class="min-h-screen bg-slate-50 font-sans text-slate-800 pb-24">
+    <!-- Header / Hero Section -->
+    <section class="bg-hero-pattern text-white pt-10 pb-16 px-4 relative overflow-hidden">
+      <!-- Decor -->
+      <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+        <div class="absolute top-[-50%] left-[-10%] w-[80%] h-[150%] rounded-full bg-blue-500 blur-3xl"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[100%] rounded-full bg-blue-300 blur-3xl"></div>
+      </div>
+
+      <div class="max-w-3xl mx-auto relative z-10">
+        <div class="text-center mb-6">
+          <p class="inline-block bg-blue-600/30 text-blue-200 border border-blue-500/30 px-4 py-1.5 rounded-full text-sm font-bold tracking-wider mb-4 animate-[pulse_2s_infinite]">
+            ⚠️ 事前調査を無料で実施中
+          </p>
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4 tracking-tight drop-shadow-md">
+            その投資、<span class="text-amber-400">詐欺</span>かもしれません。<br class="hidden md:block"/>
+            被害金を取り戻すなら今すぐ！
+          </h1>
+          <p class="text-lg md:text-xl text-blue-100 font-medium max-w-2xl mx-auto leading-relaxed">
+            「相談するほどじゃないかも…」と迷われている方。<br/>
+            詐欺被害は早期対応が解決に繋がります。<br/>
+            ご依頼の前にまずは詐欺かどうか調査しますのでご相談ください。
+          </p>
+        </div>
+
+        <!-- Metric badges -->
+        <div class="grid grid-cols-3 gap-3 md:gap-6 mt-8 max-w-2xl mx-auto">
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3 md:p-4 text-center">
+            <p class="text-blue-200 text-xs md:text-sm font-bold mb-1">ご相談何度でも</p>
+            <p class="text-2xl md:text-3xl font-extrabold text-white">0<span class="text-base md:text-lg font-bold">円</span></p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3 md:p-4 text-center">
+            <p class="text-blue-200 text-xs md:text-sm font-bold mb-1">事前調査費用</p>
+            <p class="text-2xl md:text-3xl font-extrabold text-white">0<span class="text-base md:text-lg font-bold">円</span></p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3 md:p-4 text-center">
+            <p class="text-blue-200 text-xs md:text-sm font-bold mb-1">返金請求</p>
+            <p class="text-xl md:text-2xl font-extrabold text-amber-400 mt-1 md:mt-0 tracking-tight">即時対応</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="py-16 px-4 relative z-20 -mt-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass-card rounded-2xl p-6 md:p-10 text-center">
+          <h2 class="text-2xl md:text-3xl font-bold mb-8 text-slate-800">
+            こんなお悩みありませんか？<br/>
+            <span class="text-base md:text-xl text-slate-500 font-medium mt-2 block">1つでも当てはまれば詐欺の可能性大です</span>
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+              <Smartphone class="text-red-500 shrink-0 w-6 h-6 mt-1" />
+              <p class="text-slate-700 font-medium leading-relaxed">LINEの投資グループにいきなり招待された</p>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+              <TrendingDown class="text-red-500 shrink-0 w-6 h-6 mt-1" />
+              <p class="text-slate-700 font-medium leading-relaxed">投資で得た利益を引き出そうとしたら出金できなかった</p>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+              <ShieldAlert class="text-red-500 shrink-0 w-6 h-6 mt-1" />
+              <p class="text-slate-700 font-medium leading-relaxed">絶対儲かるという謳い文句で高額プランを契約してしまった</p>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+              <Banknote class="text-red-500 shrink-0 w-6 h-6 mt-1" />
+              <p class="text-slate-700 font-medium leading-relaxed">投資資金を個人口座に振込するよう指示された</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="py-12 px-4 bg-white border-y border-slate-200">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-10 text-slate-800">
+          フォートレス国際法律事務所の<br class="md:hidden"/>
+          <span class="text-blue-600">強力な返金請求サポート</span>
+        </h2>
+        
+        <div class="space-y-6">
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-4 p-6 bg-blue-50/50 rounded-2xl border border-blue-100">
+            <div class="bg-blue-100 text-blue-600 p-4 rounded-full">
+              <ShieldCheck class="w-8 h-8" />
+            </div>
+            <div class="text-center md:text-left">
+              <h3 class="text-xl font-bold text-slate-800 mb-2">返金請求すべき相手の特定</h3>
+              <p class="text-slate-600 leading-relaxed">弁護士会照会制度を利用し、振込先口座情報から氏名や住所を調べ「返還請求すべき対象者を特定」します。連絡がつかない相手でも特定可能です。</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-4 p-6 bg-blue-50/50 rounded-2xl border border-blue-100">
+            <div class="bg-blue-100 text-blue-600 p-4 rounded-full">
+              <Banknote class="w-8 h-8" />
+            </div>
+            <div class="text-center md:text-left">
+              <h3 class="text-xl font-bold text-slate-800 mb-2">口座凍結と被害回復分配金の返還</h3>
+              <p class="text-slate-600 leading-relaxed">振込先の口座が判明している場合は金融機関に口座凍結を要請し、相手がお金を引き出せないようにします。残高があれば被害回復分配金として返還手続きを行います。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flow Section -->
+    <section class="py-16 px-4 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-10">ご依頼の流れ</h2>
+      <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+        
+        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+            1
+          </div>
+          <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-5 rounded-xl shadow-sm border border-slate-100 text-left">
+            <h3 class="font-bold text-lg mb-1 text-slate-800">無料相談（LINE）</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">LINEにて状況をご相談ください。しつこい勧誘は一切ありません。</p>
+          </div>
+        </div>
+        
+        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+            2
+          </div>
+          <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-5 rounded-xl shadow-sm border border-slate-100 text-left">
+            <h3 class="font-bold text-lg mb-1 text-slate-800">事前調査・着手判断</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">いただいた情報をもとに、無料で着手可能かどうかを調査・判断します。</p>
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+            3
+          </div>
+          <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-5 rounded-xl shadow-sm border border-slate-100 text-left">
+            <h3 class="font-bold text-lg mb-1 text-slate-800">口座凍結・返金請求へ</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">口座の凍結要請から返金手続きまで、弁護士が代理でスピーディーに実行します。</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sticky Bottom CTA -->
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 p-3 md:p-4 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.08)]">
+      <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="hidden sm:block text-slate-700">
+          <p class="font-bold text-sm">ご相談何度でも<span class="text-blue-600 mx-1">0円</span></p>
+          <p class="text-xs text-slate-500">24時間受付中・全国対応</p>
+        </div>
+        <button 
+          onclick="onLinkBtnClick()"
+          class="w-full sm:w-auto flex-1 sm:max-w-md bg-[#00c300] hover:bg-[#00ad00] active:scale-95 transition-all text-white font-bold text-lg rounded-xl py-3.5 px-6 shadow-lg shadow-green-500/30 flex items-center justify-center gap-2"
+        >
+           <MessageCircle class="w-6 h-6" />
+           LINEで無料相談する
+        </button>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
