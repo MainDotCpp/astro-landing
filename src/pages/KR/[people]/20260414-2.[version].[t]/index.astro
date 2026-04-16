@@ -1,0 +1,524 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.byVersion(0), undefined, { requireImages: ['head'] })
+}
+
+const { t = '卡扣' } = Astro.params
+const { img_prefix, name } = Astro.props
+const headImg = import(`../images/${img_prefix}head.jpg`)
+
+const today = new Date()
+const dateStr = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`
+---
+
+<KRBaseLayout title={`[긴급] ${name} 투자 시그널`} description="최첨단 AI 기술로 포착한 내일의 급등주">
+  <style is:global slot="head">
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      /* Colors */
+      --app-bg: #f2f4f6;
+      --card-bg: #ffffff;
+      --text-main: #191f28;
+      --text-sub: #8b95a1;
+      --text-link: #3182f6;
+
+      /* Gradients & Accents */
+      --primary-blue: #3182f6;
+      --primary-green: #34c759;
+      --red-up: #f04452;
+      --blue-down: #3182f6;
+
+      --gradient-bg: linear-gradient(135deg, #e0eaf5 0%, #f1f5f9 100%);
+      --gradient-mesh: radial-gradient(at 0% 0%, hsla(213,100%,88%,1) 0, transparent 50%),
+                       radial-gradient(at 100% 0%, hsla(113,80%,88%,1) 0, transparent 50%);
+
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.08);
+
+      /* Borders */
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--app-bg);
+      color: var(--text-main);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    /* CARD CONTAINER */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    /* HEADER */
+    .app-header {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--app-bg);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background-color: rgba(242, 244, 246, 0.85);
+    }
+    .header-logo {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary-blue);
+      letter-spacing: -0.02em;
+    }
+    .header-date {
+      font-size: 13px;
+      color: var(--text-sub);
+      font-weight: 500;
+    }
+
+    /* HERO */
+    .hero-section {
+      background: var(--card-bg);
+      background-image: var(--gradient-mesh);
+      padding: 40px 24px 30px;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(49, 130, 246, 0.1);
+      color: var(--primary-blue);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      word-break: keep-all;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      word-break: keep-all;
+    }
+
+    /* EXPERT PROFILE */
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.7);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .profile-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 32px;
+      object-fit: cover;
+      box-shadow: var(--shadow-sm);
+    }
+    .profile-info { flex: 1; }
+    .profile-title {
+      font-size: 12px;
+      color: var(--primary-blue);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .profile-name {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    /* MARKET TICKER */
+    .main-content {
+      padding: 0 16px;
+    }
+    .market-card {
+      padding: 20px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .section-link {
+      font-size: 13px;
+      color: var(--text-link);
+      font-weight: 600;
+    }
+    .stock-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .stock-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stock-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .stock-logo {
+      width: 40px; height: 40px;
+      border-radius: 20px;
+      background: #f2f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-sub);
+    }
+    .stock-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .stock-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 2px;
+    }
+    .stock-price {
+      text-align: right;
+    }
+    .stock-val {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .stock-change.up { color: var(--red-up); }
+    .stock-change.down { color: var(--blue-down); }
+    .stock-change {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* DATA HIGHLIGHT */
+    .highlight-card {
+      background: linear-gradient(135deg, #191f28 0%, #333d4b 100%);
+      color: white;
+      text-align: center;
+      padding: 32px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight-glow {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 150px; height: 100px;
+      background: var(--primary-blue);
+      filter: blur(50px);
+      opacity: 0.5;
+    }
+    .highlight-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+      position: relative; z-index: 1;
+    }
+    .highlight-val {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+      letter-spacing: -0.02em;
+    }
+    .highlight-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      position: relative; z-index: 1;
+    }
+
+    /* FEATURE GRID */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .feature-item {
+      background: var(--app-bg);
+      padding: 20px 16px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .feature-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+    .feature-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+
+    /* FINAL CTA */
+    .cta-area {
+      padding: 40px 16px;
+      text-align: center;
+    }
+    .cta-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .cta-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+    }
+
+    /* OVERRIDING BUTTON STYLES FOR TOSS-LIKE FEEL */
+    .link-btn {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 8px !important;
+      width: 100% !important;
+      background: var(--primary-blue) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      border: none !important;
+      border-radius: 16px !important;
+      padding: 18px !important;
+      font-size: 17px !important;
+      text-align: center !important;
+      box-shadow: 0 8px 20px rgba(49, 130, 246, 0.25) !important;
+      transition: transform 0.2s, background-color 0.2s !important;
+      text-decoration: none !important;
+    }
+    .link-btn:active {
+      transform: scale(0.97) !important;
+      background: #2b73d9 !important;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 30px 20px 50px;
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 12px;
+      color: #b0b8c1;
+      line-height: 1.6;
+    }
+  </style>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-logo">FINTECH AI</div>
+    <div class="header-date">{dateStr} 기준</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-badge">AI 딥러닝 분석 예측</div>
+    <h1 class="hero-title">상위 0.1%의<br>은밀한 매집 패턴</h1>
+    <p class="hero-desc">
+      매일 쏟아지는 방대한 시장 데이터, AI 알고리즘이 완벽하게 분석하여 내일의 급등주를 먼저 알려드립니다.
+    </p>
+
+    <!-- EXPERT PROFILE -->
+    <div class="profile-card">
+      <Image src={headImg} alt={name} class="profile-img" width={64} height={64} />
+      <div class="profile-info">
+        <div class="profile-title">수석 애널리스트</div>
+        <div class="profile-name">{name} 전문가</div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-content">
+
+    <!-- MARKET LIST -->
+    <section class="card market-card">
+      <div class="section-header">
+        <h2 class="section-title">오늘 집중 매수된 종목</h2>
+        <span class="section-link">실시간 업데이트</span>
+      </div>
+
+      <div class="stock-list" id="stock-list">
+        <div class="stock-item">
+          <div class="stock-info">
+            <div class="stock-logo" style="color: #0c43b7;">삼</div>
+            <div>
+              <div class="stock-name">삼성전자</div>
+              <div class="stock-desc">외국인 + 기관 동시 순매수</div>
+            </div>
+          </div>
+          <div class="stock-price">
+            <div class="stock-val">84,500원</div>
+            <div class="stock-change up">▲ 2.4%</div>
+          </div>
+        </div>
+
+        <div class="stock-item">
+          <div class="stock-info">
+            <div class="stock-logo" style="color: #ea002c;">S</div>
+            <div>
+              <div class="stock-name">SK하이닉스</div>
+              <div class="stock-desc">AI 반도체 수요 급증</div>
+            </div>
+          </div>
+          <div class="stock-price">
+            <div class="stock-val">192,000원</div>
+            <div class="stock-change up">▲ 4.1%</div>
+          </div>
+        </div>
+
+        <div class="stock-item">
+          <div class="stock-info">
+            <div class="stock-logo" style="color: #002c5f;">현</div>
+            <div>
+              <div class="stock-name">현대차</div>
+              <div class="stock-desc">기대치 상회하는 실적 전망</div>
+            </div>
+          </div>
+          <div class="stock-price">
+            <div class="stock-val">245,500원</div>
+            <div class="stock-change up">▲ 1.8%</div>
+          </div>
+        </div>
+
+        <div class="stock-item">
+          <div class="stock-info">
+            <div class="stock-logo" style="color: #03c75a;">N</div>
+            <div>
+              <div class="stock-name">NAVER</div>
+              <div class="stock-desc">저점 확인 & 반등 대기</div>
+            </div>
+          </div>
+          <div class="stock-price">
+            <div class="stock-val">181,200원</div>
+            <div class="stock-change down">▼ 0.5%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHT DATA -->
+    <section class="card highlight-card">
+      <div class="highlight-glow"></div>
+      <div class="highlight-title">최근 3개월 누적 수익률</div>
+      <div class="highlight-val">+142.8%</div>
+      <div class="highlight-desc">
+        {name} 전문가의 AI 시스템이 선별한 포트폴리오를 그대로 따라했을 때의 실제 검증된 성과입니다.
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="card" style="background: transparent; box-shadow: none; padding: 0;">
+      <div class="section-header">
+        <h2 class="section-title">왜 우리를 선택할까요?</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🤖</div>
+          <div class="feature-title">AI 알고리즘</div>
+          <div class="feature-desc">감정이 배제된 철저한 데이터 기반 분석</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">실시간 포착</div>
+          <div class="feature-desc">세력 매집 징후 포착 즉시 알림 전송</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">정확한 타점</div>
+          <div class="feature-desc">매수와 매도 타이밍을 명확히 제시</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-title">리스크 관리</div>
+          <div class="feature-title" style="font-weight: 400; font-size: 12px; color: var(--text-sub);">철저한 분산 투자와 손실 제한</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CTA AREA -->
+  <section class="cta-area">
+    <h2 class="cta-title">내일 당장 오를 3종목<br>무료로 받아보세요</h2>
+    <p class="cta-subtitle">100% 무료 제공, 언제든지 해지 가능합니다.</p>
+    <CtaButton social={t as any} />
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-text">
+      FINTECH AI | 대표 전문가: {name}<br>
+      본 정보는 투자 판단의 참고 자료이며, 모든 투자의 책임은 본인에게 있습니다.
+    </p>
+  </footer>
+
+  <script is:inline>
+    // Simple script to animate stock values randomly to simulate live data
+    setInterval(() => {
+      const vals = document.querySelectorAll('.stock-val');
+      vals.forEach(val => {
+        let text = val.innerText;
+        let numStr = text.replace(/,|원/g, '');
+        let current = parseInt(numStr);
+        if(Math.random() > 0.6) {
+          const change = Math.floor(Math.random() * 400) - 100; // Mostly up
+          current += change;
+          val.innerText = current.toLocaleString() + '원';
+        }
+      });
+    }, 2500);
+  </script>
+
+</KRBaseLayout>
