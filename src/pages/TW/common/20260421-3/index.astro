@@ -1,0 +1,467 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import lineIcon from './static/line.png'
+---
+
+<BaseLayout title="【AI量化選股】單月獲利+342%的數據黑科技" description="耗資5千萬打造，勝率高達92.8%的AI智能選股名單，免費開放100名體驗" lang="zh-TW">
+  <main class="tech-landing">
+
+    <!-- 緊迫性頂部 -->
+    <div class="top-bar">
+      <span class="live-dot"></span>
+      系統運行中 │ 距下一波暴利訊號發布倒數：
+      <span class="countdown-text" id="header-timer">00:14:59</span>
+    </div>
+
+    <!-- 主視覺區塊 -->
+    <header class="header">
+      <div class="badge-tech">Quantum AI 智慧運算技術</div>
+      <h1 class="main-heading">
+        打破人為判斷盲區<br/>
+        <span class="text-gradient">勝率 92.8% </span>的 AI 選股黑科技
+      </h1>
+      <p class="sub-heading">
+        耗資 5,000 萬研發，透過大數據運算超過 10 年台股歷史數據。<br/>
+        只要無腦跟著訊號操作，<strong>本月目標再翻 3 倍！</strong>
+      </p>
+    </header>
+
+    <!-- 誇張數據展示區 -->
+    <section class="data-section">
+      <h2 class="section-title">2026 年第一季 實盤回測數據</h2>
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-label">整體投資勝率</div>
+          <div class="data-value text-red">92.8%</div>
+          <div class="data-desc">近乎百發百中的精準度</div>
+        </div>
+        <div class="data-card">
+          <div class="data-label">平均單月投報率</div>
+          <div class="data-value text-red">+342%</div>
+          <div class="data-desc">輾壓大盤報酬 40 倍</div>
+        </div>
+        <div class="data-card">
+          <div class="data-label">最大連續漲停預測</div>
+          <div class="data-value text-yellow">14 檔</div>
+          <div class="data-desc">提前 3 天抓出飆漲股</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 承諾與保證 -->
+    <section class="promise-section">
+      <h2 class="section-title">我們的 3 大鐵血承諾</h2>
+      <ul class="promise-list">
+        <li>
+          <div class="icon-box">🎯</div>
+          <div class="promise-content">
+            <h3>只報波段飆股，不浪費時間</h3>
+            <p>我們的 AI 系統自動過濾盤整股，只抓準備拉升的「主升段」，買進後一週內絕對見效！</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon-box">💰</div>
+          <div class="promise-content">
+            <h3>跟著訊號操作，穩穩賺進第一桶金</h3>
+            <p>就算你連 K 線都不會看，只要照著機器人發送的「買點／賣點」無腦執行，一個月賺進百萬不是夢！</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon-box">🛡️</div>
+          <div class="promise-content">
+            <h3>完全免費，無隱藏費用</h3>
+            <p>不需要繳交龐大會費，今天加 LINE 立即解鎖系統每日推播 3 檔強勢股！</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 終極 CTA 區塊 -->
+    <section class="cta-section">
+      <div class="cta-card">
+        <h3>🚨 限量 100 人免費公測 🚨</h3>
+        <p class="cta-desc">
+          今天已領取：<strong class="text-yellow">87 / 100</strong> 人<br/>
+          （剩餘名額：<span class="text-red flash">13</span> 人，額滿即鎖死系統）
+        </p>
+
+        <a href="#" class="line-btn link-btn relative-btn">
+          <div class="btn-glow"></div>
+          <img src={lineIcon.src} alt="LINE" class="line-logo" />
+          <div class="btn-text">
+            <span class="hint">立即點擊，搶佔最後名額</span>
+            <span class="action">免費啟動 AI 報牌系統</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 底部資訊 -->
+    <footer class="footer">
+      <p>※ 投資有風險，入市須謹慎。過往回測績效不代表未來收益保證。</p>
+      <p>版權所有 © 2026 AI Algorithm Trading Intelligence</p>
+    </footer>
+
+  </main>
+
+  <style>
+    /* 基礎重置 */
+    body {
+      background-color: #0b1120; /* 深邃科技藍 */
+      font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #e2e8f0;
+    }
+
+    .tech-landing {
+      max-width: 650px;
+      margin: 0 auto;
+      background-color: #0f172a; /* 稍亮的卡片底色 */
+      min-height: 100vh;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+      border-left: 1px solid #1e293b;
+      border-right: 1px solid #1e293b;
+    }
+
+    .text-red { color: #ff4d4f; }      /* 台股上漲為紅 */
+    .text-yellow { color: #fbbf24; }
+    .text-green { color: #22c55e; }    /* 台股下跌為綠 */
+
+    /* 頂部列 */
+    .top-bar {
+      background: linear-gradient(90deg, #1e1b4b, #312e81);
+      color: #a5b4fc;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      border-bottom: 2px solid #4338ca;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      margin-right: 8px;
+      box-shadow: 0 0 8px #22c55e;
+      animation: blink 1.5s infinite;
+    }
+
+    /* 主視覺 */
+    .header {
+      padding: 40px 20px;
+      text-align: center;
+      background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23334155" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
+      background-size: cover;
+      position: relative;
+    }
+
+    .badge-tech {
+      display: inline-block;
+      background-color: rgba(6, 182, 212, 0.1);
+      border: 1px solid #06b6d4;
+      color: #06b6d4;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+    }
+
+    .main-heading {
+      font-size: 32px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.4;
+      margin: 0 0 20px 0;
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #ff4d4f, #ff7875);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 42px;
+      display: inline-block;
+    }
+
+    .sub-heading {
+      font-size: 18px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .sub-heading strong {
+      color: #fbbf24;
+      font-size: 20px;
+    }
+
+    /* 數據展示區 */
+    .data-section {
+      padding: 0 20px 40px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 24px;
+      color: #f8fafc;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .data-card {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .data-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background-color: #ff4d4f;
+    }
+
+    .data-card:nth-child(3)::before {
+      background-color: #fbbf24;
+    }
+
+    .data-label {
+      font-size: 16px;
+      color: #cbd5e1;
+      margin-bottom: 5px;
+    }
+
+    .data-value {
+      font-size: 46px;
+      font-weight: 900;
+      margin-bottom: 5px;
+      text-shadow: 0 0 15px rgba(255, 77, 79, 0.4);
+    }
+
+    .data-card:nth-child(3) .data-value {
+      text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+    }
+
+    .data-desc {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* 承諾區塊 */
+    .promise-section {
+      padding: 30px 20px;
+      background-color: #1e293b;
+    }
+
+    .promise-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .promise-list li {
+      display: flex;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .icon-box {
+      font-size: 32px;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .promise-content h3 {
+      font-size: 18px;
+      color: #38bdf8;
+      margin: 0 0 8px 0;
+    }
+
+    .promise-content p {
+      font-size: 15px;
+      color: #94a3b8;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* 終極 CTA 區塊 */
+    .cta-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .cta-card {
+      background: linear-gradient(180deg, #450a0a, #000000);
+      border: 2px solid #7f1d1d;
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(220, 38, 38, 0.3);
+    }
+
+    .cta-card h3 {
+      font-size: 26px;
+      color: #ffffff;
+      margin: 0 0 15px 0;
+      text-shadow: 0 0 10px #ef4444;
+    }
+
+    .cta-desc {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .flash {
+      animation: blink 0.5s infinite alternate;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* LINE 按鈕設計 */
+    .relative-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #06C755, #00993c);
+      color: white;
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid #7effa8;
+      overflow: hidden;
+      z-index: 1;
+      width: 95%;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(6, 199, 85, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .relative-btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
+      animation: rotate-glow 4s linear infinite;
+      z-index: -1;
+    }
+
+    .line-logo {
+      width: 45px;
+      height: 45px;
+      margin-right: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn-text {
+      text-align: left;
+    }
+
+    .hint {
+      display: block;
+      font-size: 13px;
+      color: #cdffd6;
+      margin-bottom: 3px;
+    }
+
+    .action {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    /* 頁尾 */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #475569;
+      border-top: 1px solid #1e293b;
+    }
+    .footer p { margin: 5px 0; }
+
+    /* 動畫 */
+    @keyframes blink {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes rotate-glow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* RWD */
+    @media (min-width: 481px) {
+      .data-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .data-card::before {
+        width: 100%; height: 4px;
+        top: 0; left: 0;
+      }
+    }
+  </style>
+
+  <script>
+    // 綁定跳轉邏輯
+    document.querySelectorAll('.link-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof window.mixinJump === 'function') {
+          window.mixinJump();
+        }
+      });
+    });
+
+    // 頭部 15 分鐘倒數
+    let totalSeconds = 15 * 60;
+    const timerEl = document.getElementById('header-timer');
+
+    function updateTimer() {
+      if (totalSeconds <= 0) return;
+      totalSeconds--;
+
+      const h = Math.floor(totalSeconds / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
+
+      if (timerEl) {
+        timerEl.innerText =
+          '00' + ':' +
+          (m < 10 ? '0' + m : m) + ':' +
+          (s < 10 ? '0' + s : s);
+      }
+    }
+
+    setInterval(updateTimer, 1000);
+  </script>
+</BaseLayout>

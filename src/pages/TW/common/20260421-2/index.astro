@@ -1,0 +1,438 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import lineIcon from './static/line.png'
+---
+
+<BaseLayout title="【外資絕密】主力鎖碼名單外流" description="立即加入LINE領取主力正在吃貨的3檔跨世代飆股" lang="zh-TW">
+  <main class="sensational-landing">
+
+    <!-- 頂部緊急通知 -->
+    <div class="top-alert">
+      <span class="pulse-dot"></span>
+      【機密流出】外資圈不願公開的內部佈局名單...
+    </div>
+
+    <!-- 首屏主視覺 -->
+    <header class="hero">
+      <h1 class="hero-title">
+        <span class="title-red">主力偷偷吃貨中！</span><br />
+        下週即將<span class="title-yellow">強勢噴出</span>的<br />
+        ３檔神級飆股！
+      </h1>
+      <div class="subtitle-wrap">
+        <p>這是一份不該被公開的主力進出名單...</p>
+        <p class="blink-text">隨時可能遭到強制下架，請盡速加入領取！</p>
+      </div>
+    </header>
+
+    <!-- 痛點引發共鳴 -->
+    <section class="pain-section">
+      <h2 class="pain-heading">錯過了台積電、錯過了長榮...<br/>這次你還要再錯過嗎？</h2>
+      <div class="check-list">
+        <p class="cross">❌ 每天看著別人的股票漲停板</p>
+        <p class="cross">❌ 自己買的永遠一動也不動</p>
+        <p class="cross">❌ 一賣就飛天，一買就套牢</p>
+      </div>
+      <div class="turnaround-box">
+        <p class="turnaround-text">
+          別再憑感覺買賣了！<br/>
+          跟著<strong>千億外資的資金流向</strong>，<br/>
+          享受坐轎的快感 🚀！
+        </p>
+      </div>
+    </section>
+
+    <!-- 假反饋 / 見證區 (俗套必備) -->
+    <section class="witness-section">
+      <div class="witness-box">
+        <div class="witness-title">📣 內部群友真實回報：</div>
+        <div class="witness-item">
+          <span class="user">王大哥 (新北) 💬</span>
+          <span class="comment">「上週跟著名單買的那檔，今天又亮燈了！才四天就賺了我一個月薪水！太神了！」</span>
+        </div>
+        <div class="witness-item">
+          <span class="user">李大姐 (台中) 💬</span>
+          <span class="comment">「以前都是當韭菜，現在終於體驗到甚麼叫做被主力抬轎，謝謝老師無私分享！」</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 終極 CTA 區塊 -->
+    <section class="action-section">
+      <div class="action-box">
+        <h3 class="action-heading">
+          加 LINE 免費領取<br/>
+          <span class="action-highlight">【主力鎖碼飆股清單】</span>
+        </h3>
+        <p class="action-limit">
+          ⚠️ 為了避免籌碼凌亂，<br/>
+          本次限時開放 <span class="limit-num">50</span> 個免審核名額！<br/>
+          滿額立刻關閉邀請連結！
+        </p>
+
+        <a href="#" class="line-btn link-btn">
+          <img src={lineIcon.src} alt="LINE" class="line-logo" />
+          <div class="btn-words">
+            <span class="btn-small">免費獲取內線飆股</span>
+            <span class="btn-big">點擊添加 LINE 好友</span>
+          </div>
+          <div class="pointer-hand">👇 按這裡</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 頁尾聲明 -->
+    <footer class="footer">
+      版權所有 © 2026 財富情報站<br/>
+      免責聲明：本資訊僅供學術交流參考，投資必有風險，請謹慎評估
+    </footer>
+
+  </main>
+
+  <style>
+    /* 重置與基礎 */
+    body {
+      background-color: #121212;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "微軟正黑體", sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+
+    .sensational-landing {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #000000;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      overflow-x: hidden;
+    }
+
+    /* 頂部通知 */
+    .top-alert {
+      background-color: #d32f2f;
+      color: #fff;
+      padding: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #ff5252;
+    }
+
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      border-radius: 50%;
+      margin-right: 10px;
+      animation: pulse 1s infinite;
+    }
+
+    /* 首屏主視覺 */
+    .hero {
+      padding: 30px 15px;
+      text-align: center;
+      background: radial-gradient(circle at center, #3e0b0b 0%, #000000 100%);
+      border-bottom: 3px solid #fbc02d;
+    }
+
+    .hero-title {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.4;
+      margin: 0 0 20px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .title-red {
+      color: #ff5252;
+      background-color: #ffebee;
+      padding: 0 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .title-yellow {
+      color: #fffb00;
+      font-size: 44px;
+      text-shadow: 3px 3px 5px #d32f2f;
+    }
+
+    .subtitle-wrap {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px dashed #fbc02d;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    .subtitle-wrap p { margin: 5px 0; }
+
+    .blink-text {
+      color: #ff5252;
+      font-weight: bold;
+      animation: blink 1s infinite alternate;
+    }
+
+    /* 痛點區塊 */
+    .pain-section {
+      padding: 30px 20px;
+      background-color: #1a1a1a;
+      border-bottom: 1px solid #333;
+    }
+
+    .pain-heading {
+      font-size: 24px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .check-list {
+      background-color: #2b2b2b;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      border-left: 5px solid #d32f2f;
+    }
+
+    .cross {
+      font-size: 18px;
+      color: #ff8a80;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .turnaround-box {
+      text-align: center;
+      background: linear-gradient(90deg, #d32f2f 0%, #b71c1c 100%);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(211, 47, 47, 0.5);
+    }
+
+    .turnaround-text {
+      font-size: 22px;
+      color: #fff;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .turnaround-text strong {
+      color: #fffb00;
+      font-size: 26px;
+    }
+
+    /* 見證區塊 */
+    .witness-section {
+      padding: 30px 20px;
+      background-color: #000;
+    }
+
+    .witness-box {
+      border: 2px solid #fbc02d;
+      border-radius: 8px;
+      padding: 15px;
+      background-color: #121212;
+    }
+
+    .witness-title {
+      background-color: #fbc02d;
+      color: #000;
+      display: inline-block;
+      padding: 5px 15px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-top: -30px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .witness-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #444;
+    }
+    .witness-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .user {
+      display: block;
+      color: #69f0ae;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .comment {
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* CTA 區塊 */
+    .action-section {
+      padding: 40px 20px;
+      background: #111;
+      text-align: center;
+    }
+
+    .action-box {
+      background-color: #222;
+      padding: 30px 15px;
+      border-radius: 10px;
+      border: 2px solid #444;
+    }
+
+    .action-heading {
+      font-size: 26px;
+      margin: 0 0 15px 0;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    .action-highlight {
+      color: #00e676;
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .action-limit {
+      color: #ff8a80;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .limit-num {
+      background-color: #ff5252;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 24px;
+    }
+
+    /* LINE 巨大按鈕 */
+    .line-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #06C755 0%, #05a044 100%);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(6, 199, 85, 0.5);
+      position: relative;
+      animation: heartbeat 1.5s infinite;
+      border: 3px solid #7effa8;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .line-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      margin-right: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .btn-words {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .btn-small {
+      font-size: 16px;
+      color: #e8f5e9;
+    }
+
+    .btn-big {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .pointer-hand {
+      position: absolute;
+      right: 15px;
+      bottom: -25px;
+      font-size: 24px;
+      background-color: #ff5252;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      animation: bounce 1s infinite alternate;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    /* 頁尾 */
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 13px;
+      line-height: 1.6;
+      border-top: 1px solid #222;
+    }
+
+    /* 動畫字典 */
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0; transform: scale(1.5); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes blink {
+      0% { color: #ff5252; }
+      100% { color: #fff; }
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      15% { transform: scale(1.05); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.05); }
+      60% { transform: scale(1); }
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* 響應式優化 */
+    @media (max-width: 480px) {
+      .hero-title { font-size: 28px; }
+      .title-yellow { font-size: 38px; }
+      .btn-big { font-size: 22px; }
+      .line-btn { width: 100%; box-sizing: border-box; }
+    }
+  </style>
+
+  <script>
+    // 綁定跳轉邏輯
+    document.querySelectorAll('.link-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof window.mixinJump === 'function') {
+          window.mixinJump();
+        }
+      });
+    });
+  </script>
+</BaseLayout>

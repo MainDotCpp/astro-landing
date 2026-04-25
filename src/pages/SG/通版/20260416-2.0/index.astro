@@ -1,0 +1,598 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = "How to Read a Stock Chart — A Visual Guide | SG Market Academy"
+const description = "A free visual guide to reading stock charts for beginners. Learn candlesticks, volume, and basic indicators. Join our Singapore learning community on WhatsApp."
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --page-bg: #f6f5f0;
+        --ink: #191919;
+        --ink-mid: #555;
+        --ink-light: #888;
+        --paper: #fffef9;
+        --rule: #d4d0c8;
+        --accent-red: #c0392b;
+        --accent-green: #27ae60;
+        --accent-blue: #2980b9;
+        --highlight: #fef9c3;
+        --font-serif: 'Instrument Serif', Georgia, serif;
+        --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+        --font-mono: 'Geist Mono', 'SF Mono', monospace;
+        --col-max: 42rem;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--page-bg);
+        color: var(--ink);
+        font-size: 1rem;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* --- Layout --- */
+      .col {
+        max-width: var(--col-max);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .col-wide {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* --- Typography --- */
+      .serif { font-family: var(--font-serif); }
+      .mono { font-family: var(--font-mono); font-size: 0.85em; }
+
+      /* --- Lesson elements --- */
+      .lesson-step {
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 2rem 2rem 1.75rem;
+        position: relative;
+      }
+      .lesson-step::before {
+        content: attr(data-step);
+        position: absolute;
+        top: -0.75rem;
+        left: 1.5rem;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--font-mono);
+        font-weight: 600;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.6rem;
+        border-radius: 3px;
+        letter-spacing: 0.06em;
+      }
+
+      .candle-diagram {
+        display: flex;
+        align-items: end;
+        gap: 0.6rem;
+        padding: 1.5rem 0;
+        justify-content: center;
+      }
+      .candle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .candle-wick {
+        width: 2px;
+        background: var(--ink);
+      }
+      .candle-body {
+        width: 1.5rem;
+        border-radius: 2px;
+        min-height: 1rem;
+      }
+      .candle-label {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        color: var(--ink-light);
+        margin-top: 0.4rem;
+      }
+
+      .annotation {
+        background: var(--highlight);
+        padding: 0.15rem 0.3rem;
+        border-radius: 2px;
+        font-weight: 600;
+      }
+
+      .aside-box {
+        border-left: 3px solid var(--rule);
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        color: var(--ink-mid);
+        line-height: 1.6;
+        margin: 1.5rem 0;
+      }
+      .aside-box.warning {
+        border-left-color: var(--accent-red);
+        background: #fef2f2;
+      }
+
+      .volume-bar {
+        border-radius: 2px 2px 0 0;
+        min-width: 1.5rem;
+      }
+
+      /* CTA */
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #25D366;
+        color: white;
+        font-weight: 700;
+        padding: 0.85rem 1.75rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background 0.15s ease;
+      }
+      .cta-btn:hover {
+        background: #1a9e4a;
+      }
+
+      /* Separator */
+      .sep {
+        border: none;
+        border-top: 1px solid var(--rule);
+        margin: 0;
+      }
+
+      /* Quiz */
+      .quiz-option {
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        transition: border-color 0.15s;
+        font-size: 0.9rem;
+      }
+      .quiz-option:hover {
+        border-color: var(--ink);
+      }
+      .quiz-option.correct {
+        border-color: var(--accent-green);
+        background: #f0fdf4;
+      }
+      .quiz-option.wrong {
+        border-color: var(--accent-red);
+        background: #fef2f2;
+      }
+
+      @media (max-width: 640px) {
+        .lesson-step { padding: 1.5rem 1.25rem 1.25rem; }
+      }
+    </style>
+  </Fragment>
+
+  <!-- Article Header -->
+  <section style="padding: clamp(2.5rem, 2rem + 4vw, 5rem) 0 2rem;">
+    <div class="col text-center">
+      <p class="mono text-xs uppercase tracking-widest mb-3" style="color: var(--ink-light);">Lesson 01 &mdash; Beginner Guide</p>
+      <h1 class="serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-5" style="letter-spacing: -0.02em;">
+        How to Read<br>a Stock Chart
+      </h1>
+      <p class="text-base max-w-md mx-auto" style="color: var(--ink-mid);">
+        A visual walkthrough of the three things every chart shows you — and the one thing no chart can tell you.
+      </p>
+
+      <div class="aside-box warning max-w-md mx-auto mt-6 text-left">
+        <strong>Not financial advice.</strong> This is educational content explaining how charts work. It does not tell you what to buy or sell. All investing carries risk of loss.
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="javascript:void(0)" class="link-btn cta-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Join Free WhatsApp Group
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep">
+
+  <!-- Step 1: Candlesticks -->
+  <section style="padding: clamp(2.5rem, 2rem + 3vw, 4rem) 0;">
+    <div class="col">
+      <div class="lesson-step" data-step="STEP 1">
+        <h2 class="serif text-2xl sm:text-3xl mb-4" style="letter-spacing: -0.01em;">The Candlestick: A Story in Four Numbers</h2>
+
+        <p class="mb-4" style="color: var(--ink-mid);">
+          Each "candle" on a stock chart represents one time period (a day, an hour, etc.) and tells you four things: where the price <span class="annotation">opened</span>, where it <span class="annotation">closed</span>, the <span class="annotation">highest</span> point, and the <span class="annotation">lowest</span> point.
+        </p>
+
+        <!-- Visual: annotated candlestick -->
+        <div style="background: var(--page-bg); border-radius: 6px; padding: 1.5rem; margin: 1.5rem 0;">
+          <div style="max-width: 16rem; margin: 0 auto; position: relative;">
+            <!-- Green candle anatomy -->
+            <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+              <!-- Wick -->
+              <line x1="100" y1="20" x2="100" y2="80" stroke="#191919" stroke-width="2.5"/>
+              <line x1="100" y1="180" x2="100" y2="240" stroke="#191919" stroke-width="2.5"/>
+              <!-- Body -->
+              <rect x="72" y="80" width="56" height="100" rx="3" fill="#27ae60" stroke="#191919" stroke-width="2"/>
+              <!-- Labels -->
+              <text x="20" y="24" font-family="Geist Mono, monospace" font-size="11" fill="#888">High</text>
+              <line x1="55" y1="20" x2="97" y2="20" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="20" y="84" font-family="Geist Mono, monospace" font-size="11" fill="#27ae60" font-weight="600">Close</text>
+              <line x1="55" y1="80" x2="72" y2="80" stroke="#27ae60" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="135" y="184" font-family="Geist Mono, monospace" font-size="11" fill="#27ae60" font-weight="600">Open</text>
+              <line x1="128" y1="180" x2="133" y2="180" stroke="#27ae60" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="135" y="244" font-family="Geist Mono, monospace" font-size="11" fill="#888">Low</text>
+              <line x1="100" y1="240" x2="133" y2="240" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+              <!-- Arrow label -->
+              <text x="56" y="140" font-family="Geist Mono, monospace" font-size="9" fill="#fff" text-anchor="end" transform="rotate(-90 56 140)">BODY</text>
+              <text x="110" y="50" font-family="Geist Mono, monospace" font-size="9" fill="#888" transform="rotate(-90 110 50)">WICK</text>
+            </svg>
+          </div>
+          <p class="text-center mono text-xs mt-2" style="color: var(--ink-light);">
+            Green (bullish): price closed higher than it opened
+          </p>
+        </div>
+
+        <p style="color: var(--ink-mid);">
+          If the closing price is <strong>higher</strong> than the opening price, the candle is typically <span style="color: var(--accent-green); font-weight: 600;">green</span>. If it closed <strong>lower</strong>, it's <span style="color: var(--accent-red); font-weight: 600;">red</span>. That's it. The thin lines (wicks) show the range. The thick part (body) shows open-to-close.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 2: Reading a series -->
+  <section style="padding: 0 0 clamp(2.5rem, 2rem + 3vw, 4rem);">
+    <div class="col">
+      <div class="lesson-step" data-step="STEP 2">
+        <h2 class="serif text-2xl sm:text-3xl mb-4">Multiple Candles = A Narrative</h2>
+
+        <p class="mb-4" style="color: var(--ink-mid);">
+          One candle tells you what happened in a single period. A <em>series</em> of candles shows a trend over time. Here's what a simple 7-day chart might look like:
+        </p>
+
+        <!-- Visual: 7-candle series -->
+        <div style="background: var(--page-bg); border-radius: 6px; padding: 1.5rem; margin: 1.5rem 0;">
+          <div class="candle-diagram">
+            <!-- Day 1: small green -->
+            <div class="candle">
+              <div class="candle-wick" style="height: 8px;"></div>
+              <div class="candle-body" style="height: 18px; background: var(--accent-green);"></div>
+              <div class="candle-wick" style="height: 5px;"></div>
+              <div class="candle-label">Mon</div>
+            </div>
+            <!-- Day 2: tall green -->
+            <div class="candle">
+              <div class="candle-wick" style="height: 4px;"></div>
+              <div class="candle-body" style="height: 32px; background: var(--accent-green);"></div>
+              <div class="candle-wick" style="height: 6px;"></div>
+              <div class="candle-label">Tue</div>
+            </div>
+            <!-- Day 3: small green -->
+            <div class="candle">
+              <div class="candle-wick" style="height: 10px;"></div>
+              <div class="candle-body" style="height: 12px; background: var(--accent-green);"></div>
+              <div class="candle-wick" style="height: 14px;"></div>
+              <div class="candle-label">Wed</div>
+            </div>
+            <!-- Day 4: red -->
+            <div class="candle">
+              <div class="candle-wick" style="height: 6px;"></div>
+              <div class="candle-body" style="height: 24px; background: var(--accent-red);"></div>
+              <div class="candle-wick" style="height: 10px;"></div>
+              <div class="candle-label">Thu</div>
+            </div>
+            <!-- Day 5: tall red -->
+            <div class="candle">
+              <div class="candle-wick" style="height: 4px;"></div>
+              <div class="candle-body" style="height: 36px; background: var(--accent-red);"></div>
+              <div class="candle-wick" style="height: 3px;"></div>
+              <div class="candle-label">Fri</div>
+            </div>
+            <!-- Day 6: small red, doji-like -->
+            <div class="candle">
+              <div class="candle-wick" style="height: 16px;"></div>
+              <div class="candle-body" style="height: 4px; background: var(--accent-red);"></div>
+              <div class="candle-wick" style="height: 18px;"></div>
+              <div class="candle-label">Mon</div>
+            </div>
+            <!-- Day 7: green recovery -->
+            <div class="candle">
+              <div class="candle-wick" style="height: 5px;"></div>
+              <div class="candle-body" style="height: 22px; background: var(--accent-green);"></div>
+              <div class="candle-wick" style="height: 8px;"></div>
+              <div class="candle-label">Tue</div>
+            </div>
+          </div>
+          <p class="text-center mono text-xs" style="color: var(--ink-light);">
+            Illustrative only &mdash; not a real stock
+          </p>
+        </div>
+
+        <p style="color: var(--ink-mid);">
+          You can see an uptrend early in the week, followed by selling pressure on Thursday and Friday. Monday shows indecision (a "doji" — very small body with long wicks), then a green candle on Tuesday. This is just <em>description</em>, not prediction. What happens next is unknown.
+        </p>
+
+        <div class="aside-box">
+          <strong>Key concept:</strong> Charts show what <em>has happened</em>. They cannot tell you what <em>will happen</em>. This is the single most important thing to remember.
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="javascript:void(0)" class="link-btn cta-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Discuss Charts with Peers
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 3: Volume -->
+  <section style="padding: 0 0 clamp(2.5rem, 2rem + 3vw, 4rem);">
+    <div class="col">
+      <div class="lesson-step" data-step="STEP 3">
+        <h2 class="serif text-2xl sm:text-3xl mb-4">Volume: How Many People Participated</h2>
+
+        <p class="mb-4" style="color: var(--ink-mid);">
+          Below most charts you'll see a bar chart — that's <span class="annotation">volume</span>. It tells you how many shares were traded during that period. Higher volume means more market participants were active.
+        </p>
+
+        <!-- Visual: volume bars -->
+        <div style="background: var(--page-bg); border-radius: 6px; padding: 1.5rem; margin: 1.5rem 0;">
+          <div style="display: flex; align-items: end; justify-content: center; gap: 0.6rem; height: 80px;">
+            <div class="volume-bar" style="height: 30%; background: var(--accent-green); width: 1.5rem;"></div>
+            <div class="volume-bar" style="height: 65%; background: var(--accent-green); width: 1.5rem;"></div>
+            <div class="volume-bar" style="height: 40%; background: var(--accent-green); width: 1.5rem;"></div>
+            <div class="volume-bar" style="height: 55%; background: var(--accent-red); width: 1.5rem;"></div>
+            <div class="volume-bar" style="height: 90%; background: var(--accent-red); width: 1.5rem;"></div>
+            <div class="volume-bar" style="height: 25%; background: var(--accent-red); width: 1.5rem;"></div>
+            <div class="volume-bar" style="height: 45%; background: var(--accent-green); width: 1.5rem;"></div>
+          </div>
+          <div style="display: flex; justify-content: center; gap: 0.6rem; margin-top: 0.4rem;">
+            <span class="mono text-[10px]" style="color: var(--ink-light); width: 1.5rem; text-align: center;">M</span>
+            <span class="mono text-[10px]" style="color: var(--ink-light); width: 1.5rem; text-align: center;">T</span>
+            <span class="mono text-[10px]" style="color: var(--ink-light); width: 1.5rem; text-align: center;">W</span>
+            <span class="mono text-[10px]" style="color: var(--ink-light); width: 1.5rem; text-align: center;">T</span>
+            <span class="mono text-[10px] font-bold" style="color: var(--accent-red); width: 1.5rem; text-align: center;">F</span>
+            <span class="mono text-[10px]" style="color: var(--ink-light); width: 1.5rem; text-align: center;">M</span>
+            <span class="mono text-[10px]" style="color: var(--ink-light); width: 1.5rem; text-align: center;">T</span>
+          </div>
+          <p class="text-center mono text-xs mt-3" style="color: var(--ink-light);">
+            Notice Friday's spike &mdash; more participants during the big red candle
+          </p>
+        </div>
+
+        <p style="color: var(--ink-mid);">
+          Volume alone doesn't tell you direction. A high-volume day could mean heavy buying <em>or</em> heavy selling. It simply means: a lot of people traded. It adds context to price movement, nothing more.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 4: What charts CAN'T do -->
+  <section style="padding: 0 0 clamp(2.5rem, 2rem + 3vw, 4rem);">
+    <div class="col">
+      <div class="lesson-step" data-step="STEP 4">
+        <h2 class="serif text-2xl sm:text-3xl mb-4">What Charts Cannot Tell You</h2>
+
+        <p class="mb-5" style="color: var(--ink-mid);">
+          This is the most important part of the lesson. Charts are a record of what happened. They are not:
+        </p>
+
+        <div style="display: grid; gap: 0.75rem;">
+          <div style="display: flex; align-items: start; gap: 0.75rem; background: #fef2f2; padding: 0.75rem 1rem; border-radius: 4px; border-left: 3px solid var(--accent-red);">
+            <span style="color: var(--accent-red); font-weight: 700; flex-shrink: 0;">&times;</span>
+            <span class="text-sm" style="color: var(--ink-mid);"><strong>Not a crystal ball.</strong> Past patterns do not predict future prices. Markets can do anything at any time.</span>
+          </div>
+          <div style="display: flex; align-items: start; gap: 0.75rem; background: #fef2f2; padding: 0.75rem 1rem; border-radius: 4px; border-left: 3px solid var(--accent-red);">
+            <span style="color: var(--accent-red); font-weight: 700; flex-shrink: 0;">&times;</span>
+            <span class="text-sm" style="color: var(--ink-mid);"><strong>Not a buy/sell signal.</strong> No chart formation obligates the market to move in any direction.</span>
+          </div>
+          <div style="display: flex; align-items: start; gap: 0.75rem; background: #fef2f2; padding: 0.75rem 1rem; border-radius: 4px; border-left: 3px solid var(--accent-red);">
+            <span style="color: var(--accent-red); font-weight: 700; flex-shrink: 0;">&times;</span>
+            <span class="text-sm" style="color: var(--ink-mid);"><strong>Not a guarantee of anything.</strong> All investing involves risk. You can lose some or all of your capital.</span>
+          </div>
+        </div>
+
+        <div class="aside-box mt-5">
+          Chart reading is a <em>literacy skill</em>, like reading a financial statement. Being able to read a chart does not mean you should trade. It means you understand what you're looking at.
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="javascript:void(0)" class="link-btn cta-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Learn More in WhatsApp Group
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep">
+
+  <!-- Quick Quiz -->
+  <section style="padding: clamp(2.5rem, 2rem + 3vw, 4rem) 0;">
+    <div class="col">
+      <p class="mono text-xs uppercase tracking-widest mb-3" style="color: var(--ink-light);">Quick Check</p>
+      <h2 class="serif text-2xl sm:text-3xl mb-5">Test Your Understanding</h2>
+
+      <div style="background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 1.75rem;">
+        <p class="font-semibold mb-4">A stock has a green candle with a very small body and long wicks on both sides. What does this tell you?</p>
+
+        <div class="space-y-2.5" id="quiz-1">
+          <button class="quiz-option w-full text-left" data-answer="wrong" onclick="handleQuiz(this)">
+            A) The stock will go up tomorrow
+          </button>
+          <button class="quiz-option w-full text-left" data-answer="wrong" onclick="handleQuiz(this)">
+            B) You should buy this stock immediately
+          </button>
+          <button class="quiz-option w-full text-left" data-answer="correct" onclick="handleQuiz(this)">
+            C) The price moved a lot during the day but ended close to where it opened
+          </button>
+          <button class="quiz-option w-full text-left" data-answer="wrong" onclick="handleQuiz(this)">
+            D) Institutional investors are accumulating shares
+          </button>
+        </div>
+
+        <div id="quiz-feedback" class="mt-4 text-sm hidden" style="color: var(--ink-mid);"></div>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="javascript:void(0)" class="link-btn cta-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Join Free WhatsApp Group
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep">
+
+  <!-- Community invitation -->
+  <section style="padding: clamp(2.5rem, 2rem + 4vw, 5rem) 0;">
+    <div class="col">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center;" class="lg:grid-cols-[1fr_1.2fr]">
+
+        <div>
+          <p class="mono text-xs uppercase tracking-widest mb-3" style="color: var(--ink-light);">Continue Learning</p>
+          <h2 class="serif text-2xl sm:text-3xl mb-4">Want to Learn More Like This?</h2>
+
+          <p class="mb-4 text-sm" style="color: var(--ink-mid); line-height: 1.7;">
+            We run a free WhatsApp group for Singapore-based learners who want to study charts, discuss market concepts, and share educational resources with each other.
+          </p>
+
+          <ul class="space-y-2 mb-5 text-sm" style="color: var(--ink-mid);">
+            <li class="flex items-start gap-2"><span style="color: var(--accent-green);">&check;</span> Free forever, no hidden fees</li>
+            <li class="flex items-start gap-2"><span style="color: var(--accent-green);">&check;</span> Peer discussion, not guru advice</li>
+            <li class="flex items-start gap-2"><span style="color: var(--accent-green);">&check;</span> Beginners welcome, questions encouraged</li>
+            <li class="flex items-start gap-2"><span style="color: var(--accent-green);">&check;</span> Leave anytime, no obligations</li>
+          </ul>
+
+          <a href="javascript:void(0)" class="link-btn cta-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Join Free WhatsApp Group
+          </a>
+        </div>
+
+        <!-- SVG illustration: chat bubbles representing peer learning -->
+        <div class="hidden lg:block">
+          <div style="background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 2rem;">
+            <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+              <!-- Grid lines (chart paper feel) -->
+              <line x1="0" y1="60" x2="320" y2="60" stroke="#e8e6e1" stroke-width="0.5"/>
+              <line x1="0" y1="120" x2="320" y2="120" stroke="#e8e6e1" stroke-width="0.5"/>
+              <line x1="0" y1="180" x2="320" y2="180" stroke="#e8e6e1" stroke-width="0.5"/>
+
+              <!-- Chat bubble 1: top-left -->
+              <rect x="20" y="16" width="160" height="52" rx="8" fill="#f0fdf4" stroke="#27ae60" stroke-width="1.5"/>
+              <text x="36" y="38" font-family="Plus Jakarta Sans, system-ui" font-size="10" fill="#555">"What does this doji</text>
+              <text x="36" y="52" font-family="Plus Jakarta Sans, system-ui" font-size="10" fill="#555">candle mean here?"</text>
+              <circle cx="28" y="80" r="0" fill="none"/>
+              <!-- avatar dot -->
+              <circle cx="12" cy="42" r="8" fill="#27ae60" opacity="0.2"/>
+              <circle cx="12" cy="42" r="4" fill="#27ae60"/>
+
+              <!-- Chat bubble 2: right side -->
+              <rect x="140" y="85" width="168" height="52" rx="8" fill="#eff6ff" stroke="#2980b9" stroke-width="1.5"/>
+              <text x="156" y="107" font-family="Plus Jakarta Sans, system-ui" font-size="10" fill="#555">"It shows indecision — the</text>
+              <text x="156" y="121" font-family="Plus Jakarta Sans, system-ui" font-size="10" fill="#555">price opened and closed near."</text>
+              <!-- avatar dot -->
+              <circle cx="316" cy="111" r="8" fill="#2980b9" opacity="0.2"/>
+              <circle cx="316" cy="111" r="4" fill="#2980b9"/>
+
+              <!-- Chat bubble 3: bottom-left -->
+              <rect x="20" y="155" width="190" height="52" rx="8" fill="#fef9c3" stroke="#d4a017" stroke-width="1.5"/>
+              <text x="36" y="177" font-family="Plus Jakarta Sans, system-ui" font-size="10" fill="#555">"Right, but remember it only</text>
+              <text x="36" y="191" font-family="Plus Jakarta Sans, system-ui" font-size="10" fill="#555">describes the past, not the future."</text>
+              <!-- avatar dot -->
+              <circle cx="12" cy="181" r="8" fill="#d4a017" opacity="0.2"/>
+              <circle cx="12" cy="181" r="4" fill="#d4a017"/>
+
+              <!-- Small annotation -->
+              <text x="160" y="230" font-family="Geist Mono, monospace" font-size="8" fill="#aaa" text-anchor="middle">peer learning in action</text>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: var(--ink); color: #999; padding: 2.5rem 0; font-size: 0.75rem; line-height: 1.7;">
+    <div class="col-wide">
+      <p class="font-semibold text-sm mb-4" style="color: #bbb;">SG Market Academy</p>
+
+      <div class="space-y-3 max-w-3xl">
+        <p>
+          <strong style="color: #bbb;">Educational Disclaimer:</strong> All content on this page and within our community is for educational and informational purposes only. Nothing constitutes financial advice, an offer to buy or sell securities, or a personalised investment recommendation. Technical analysis has inherent limitations — past patterns and indicators do not predict or guarantee future market movements.
+        </p>
+        <p>
+          <strong style="color: #bbb;">Risk Warning:</strong> All forms of investing and trading carry risk of financial loss. You should never invest money you cannot afford to lose. Before making any investment decision, consult a qualified financial advisor licensed by the Monetary Authority of Singapore (MAS).
+        </p>
+        <p>
+          <strong style="color: #bbb;">Regulatory Notice:</strong> SG Market Academy is an informal educational community. We are not licensed or regulated by the Monetary Authority of Singapore (MAS) and do not hold a Capital Markets Services (CMS) licence. We do not advise on securities or manage portfolios.
+        </p>
+      </div>
+
+      <div style="height: 1px; background: #333; margin: 1.5rem 0;"></div>
+      <p style="color: #666;">&copy; {new Date().getFullYear()} SG Market Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Quiz script -->
+  <script>
+    function handleQuiz(btn: HTMLButtonElement) {
+      const parent = btn.closest('#quiz-1')
+      if (!parent) return
+      const answered = parent.getAttribute('data-answered')
+      if (answered) return
+
+      parent.setAttribute('data-answered', 'true')
+      const buttons = parent.querySelectorAll('.quiz-option') as NodeListOf<HTMLButtonElement>
+      const feedback = document.getElementById('quiz-feedback')
+
+      buttons.forEach(b => {
+        b.style.cursor = 'default'
+        if (b.dataset.answer === 'correct') {
+          b.classList.add('correct')
+        }
+      })
+
+      if (btn.dataset.answer === 'correct') {
+        if (feedback) {
+          feedback.classList.remove('hidden')
+          feedback.innerHTML = '<strong style="color: #27ae60;">Correct.</strong> The small body means open and close were similar. The long wicks mean the price went much higher and lower during the day. This describes what happened — it says nothing about what will happen next.'
+        }
+      } else {
+        btn.classList.add('wrong')
+        if (feedback) {
+          feedback.classList.remove('hidden')
+          feedback.innerHTML = '<strong style="color: #c0392b;">Not quite.</strong> Remember: candles describe what happened, not what will happen. The correct answer is C — the price moved a lot but ended near the open. No candle pattern can tell you to buy or predict tomorrow\'s price.'
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-\[1fr_1\.2fr\] {
+        grid-template-columns: 1fr 1.2fr;
+      }
+    }
+  </style>
+</BaseLayout>
