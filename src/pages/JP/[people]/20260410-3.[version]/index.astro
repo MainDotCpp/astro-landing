@@ -1,10 +1,12 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
+import JPComplianceFooter from '../../common/JPComplianceFooter.astro'
+import JPSecurityIcons from '../../common/JPSecurityIcons.astro'
 
+import growthArt from './static/images/growth-art.png'
 import heroBg from './static/images/hero-bg.png'
 import zenSection from './static/images/zen-section.png'
-import growthArt from './static/images/growth-art.png'
 
 import './static/css/style.css'
 
@@ -88,10 +90,12 @@ let avatarImg
 if (name === '三橋貴明') {
   const m = await import('../../../../assets/avatar/三橋貴明_avatar.png')
   avatarImg = m.default
-} else if (name === '馬渕磨理子') {
+}
+ else if (name === '馬渕磨理子') {
   const m = await import('../../../../assets/avatar/馬渕磨理子_avatar.png')
   avatarImg = m.default
-} else if (name === '堀江貴文') {
+}
+ else if (name === '堀江貴文') {
   const m = await import('../../../../assets/avatar/堀江貴文_avatar.png')
   avatarImg = m.default
 }
@@ -142,6 +146,11 @@ if (name === '三橋貴明') {
         <div class="hero-divider"></div>
         <p class="hero-sub">{name}の投資コミュニティ</p>
       </div>
+      <div style="margin-top: 32px; font-size: 11px; color: #666; display: flex; justify-content: center; align-items: center; gap: 12px;">
+        <span>関東財務局長（金商）第9999号</span>
+        <span style="width: 1px; height: 12px; background-color: #ccc;"></span>
+        <span style="font-weight: bold;">口座開設数 50万突破</span>
+      </div>
       <div class="hero-scroll">
         <div class="scroll-track"></div>
       </div>
@@ -165,7 +174,7 @@ if (name === '三橋貴明') {
         <p class="profile-role">{role}</p>
         <p class="profile-desc">{profileDesc}</p>
         <div class="profile-stats">
-          {stats.map((s: { value: string; label: string }) => (
+          {stats.map((s: { value: string, label: string }) => (
             <div class="stat">
               <span class="stat-val">{s.value}</span>
               <span class="stat-lbl">{s.label}</span>
@@ -191,7 +200,7 @@ if (name === '三橋貴明') {
         <div class="sec-label">BENEFITS</div>
         <h2 class="sec-title">参加特典</h2>
         <div class="ben-grid">
-          {benefits.map((b: { title: string; desc: string }, i: number) => (
+          {benefits.map((b: { title: string, desc: string }, i: number) => (
             <div class="ben-card">
               <span class="ben-num">0{i + 1}</span>
               <h3 class="ben-name">{b.title}</h3>
@@ -258,12 +267,14 @@ if (name === '三橋貴明') {
             <li>24時間質問対応</li>
             <li>限定勉強会アクセス</li>
           </ul>
+          <JPSecurityIcons />
           <button onclick="onLinkBtnClick()" class="cta-btn">
             <svg viewBox="0 0 24 24" fill="#fff" width="24" height="24">
-              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
             </svg>
             <span>LINEで無料参加する</span>
           </button>
+        <p style="font-size: 9px; line-height: 1.4; color: #888; margin-top: 8px; text-align: center; width: 100%; max-width: 24rem; margin-left: auto; margin-right: auto; letter-spacing: -0.025em; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));">※口座開設は無料ですが、実際の取引には所定の手数料及びリスクが伴います。</p>
         </div>
       </div>
     </section>
@@ -272,19 +283,15 @@ if (name === '三橋貴明') {
     <div class="float-cta">
       <button onclick="onLinkBtnClick()" class="float-btn">
         <svg viewBox="0 0 24 24" fill="#fff" width="22" height="22">
-          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
         </svg>
         <span>LINEで無料参加</span>
       </button>
+        <p style="font-size: 9px; line-height: 1.4; color: #888; margin-top: 8px; text-align: center; width: 100%; max-width: 24rem; margin-left: auto; margin-right: auto; letter-spacing: -0.025em; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));">※口座開設は無料ですが、実際の取引には所定の手数料及びリスクが伴います。</p>
     </div>
 
     <!-- ===== Footer ===== -->
-    <footer class="footer">
-      <div class="wrap">
-        <span class="footer-brand">{name} 投資道場</span>
-        <span class="footer-copy">&copy; 2025 All rights reserved.</span>
-      </div>
-    </footer>
+    <JPComplianceFooter />
 
     <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {
@@ -295,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initReveal() {
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
         e.target.classList.add('in-view')
         obs.unobserve(e.target)
@@ -303,7 +310,7 @@ function initReveal() {
     })
   }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' })
 
-  document.querySelectorAll('.profile, .ben-card, .voice-card, .cta-card, .vb-text, .gv-content').forEach(el => {
+  document.querySelectorAll('.profile, .ben-card, .voice-card, .cta-card, .vb-text, .gv-content').forEach((el) => {
     obs.observe(el)
   })
 }
@@ -311,14 +318,15 @@ function initReveal() {
 function initVoiceCarousel() {
   const track = document.getElementById('voiceTrack')
   const dotsWrap = document.getElementById('voiceDots')
-  if (!track || !dotsWrap) return
+  if (!track || !dotsWrap)
+    return
 
   const cards = track.querySelectorAll('.voice-card')
   let cur = 0
 
   cards.forEach((_, i) => {
     const dot = document.createElement('button')
-    dot.className = 'vd' + (i === 0 ? ' active' : '')
+    dot.className = `vd${i === 0 ? ' active' : ''}`
     dot.addEventListener('click', () => go(i))
     dotsWrap.appendChild(dot)
   })
@@ -335,10 +343,11 @@ function initVoiceCarousel() {
   }
 
   let sx = 0
-  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX }, { passive: true })
-  track.addEventListener('touchend', e => {
+  track.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX }, { passive: true })
+  track.addEventListener('touchend', (e) => {
     const diff = sx - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 40) diff > 0 ? go(cur + 1) : go(cur - 1)
+    if (Math.abs(diff) > 40)
+      diff > 0 ? go(cur + 1) : go(cur - 1)
   })
 
   go(0)
@@ -348,18 +357,20 @@ function initVoiceCarousel() {
 
 function initFloatCta() {
   const btn = document.querySelector('.float-cta')
-  if (!btn) return
+  if (!btn)
+    return
   let shown = false
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400 && !shown) {
       btn.classList.add('visible')
       shown = true
-    } else if (window.scrollY <= 400 && shown) {
+    }
+    else if (window.scrollY <= 400 && shown) {
       btn.classList.remove('visible')
       shown = false
     }
   }, { passive: true })
 }
-    </script>
+</script>
   </body>
 </html>

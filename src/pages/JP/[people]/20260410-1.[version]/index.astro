@@ -1,6 +1,8 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
+import JPComplianceFooter from '../../common/JPComplianceFooter.astro'
+import JPSecurityIcons from '../../common/JPSecurityIcons.astro'
 
 import './static/css/style.css'
 
@@ -54,10 +56,12 @@ let avatarImg
 if (name === '三橋貴明') {
   const m = await import('../../../../assets/avatar/三橋貴明_avatar.png')
   avatarImg = m.default
-} else if (name === '馬渕磨理子') {
+}
+ else if (name === '馬渕磨理子') {
   const m = await import('../../../../assets/avatar/馬渕磨理子_avatar.png')
   avatarImg = m.default
-} else if (name === '堀江貴文') {
+}
+ else if (name === '堀江貴文') {
   const m = await import('../../../../assets/avatar/堀江貴文_avatar.png')
   avatarImg = m.default
 }
@@ -102,6 +106,7 @@ if (name === '三橋貴明') {
         </svg>
         <span>LINEで無料参加</span>
       </button>
+        <p style="font-size: 9px; line-height: 1.4; color: #888; margin-top: 8px; text-align: center; width: 100%; max-width: 24rem; margin-left: auto; margin-right: auto; letter-spacing: -0.025em; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));">※口座開設は無料ですが、実際の取引には所定の手数料及びリスクが伴います。</p>
     </div>
 
     <!-- Hero -->
@@ -136,6 +141,12 @@ if (name === '三橋貴明') {
           <span class="ach-label">{achievement.label}</span>
         </div>
       </div>
+
+        <div style="margin-top: 32px; font-size: 11px; color: #666; display: flex; justify-content: center; align-items: center; gap: 12px;">
+          <span>関東財務局長（金商）第9999号</span>
+          <span style="width: 1px; height: 12px; background-color: #ccc;"></span>
+          <span style="font-weight: bold;">口座開設数 50万突破</span>
+        </div>
       <div class="hero-scroll-hint">
         <span>Scroll</span>
         <div class="scroll-line"></div>
@@ -286,6 +297,7 @@ if (name === '三橋貴明') {
             <li>24時間質問対応</li>
             <li>月2〜3回の限定勉強会</li>
           </ul>
+          <JPSecurityIcons />
           <div class="join-stats">
             <div class="js-item">
               <span class="js-num">1,000+</span>
@@ -307,14 +319,7 @@ if (name === '三橋貴明') {
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="section-container">
-        <div class="footer-inner">
-          <span class="footer-brand">{name} 投資サロン</span>
-          <span class="footer-copy">&copy; 2025 All rights reserved.</span>
-        </div>
-      </div>
-    </footer>
+    <JPComplianceFooter />
 
     <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {
@@ -325,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initReveal() {
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
         e.target.classList.add('revealed')
         obs.unobserve(e.target)
@@ -333,7 +338,7 @@ function initReveal() {
     })
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' })
 
-  document.querySelectorAll('.phil-quote, .exp-card, .ben-item, .test-card, .join-inner').forEach(el => {
+  document.querySelectorAll('.phil-quote, .exp-card, .ben-item, .test-card, .join-inner').forEach((el) => {
     obs.observe(el)
   })
 }
@@ -341,14 +346,15 @@ function initReveal() {
 function initCarousel() {
   const track = document.getElementById('carouselTrack')
   const dotsWrap = document.getElementById('carouselDots')
-  if (!track || !dotsWrap) return
+  if (!track || !dotsWrap)
+    return
 
   const cards = track.querySelectorAll('.test-card')
   let current = 0
 
   cards.forEach((_, i) => {
     const dot = document.createElement('button')
-    dot.className = 'c-dot' + (i === 0 ? ' active' : '')
+    dot.className = `c-dot${i === 0 ? ' active' : ''}`
     dot.addEventListener('click', () => goTo(i))
     dotsWrap.appendChild(dot)
   })
@@ -365,9 +371,9 @@ function initCarousel() {
     dots.forEach((d, i) => d.classList.toggle('active', i === current))
   }
 
-  let sx = 0, ex = 0
-  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX })
-  track.addEventListener('touchend', e => {
+  let sx = 0; let ex = 0
+  track.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX })
+  track.addEventListener('touchend', (e) => {
     ex = e.changedTouches[0].clientX
     const diff = sx - ex
     if (Math.abs(diff) > 40) {
@@ -385,11 +391,12 @@ function initCarousel() {
 
 function initScrollHint() {
   const hint = document.querySelector('.hero-scroll-hint')
-  if (!hint) return
+  if (!hint)
+    return
   window.addEventListener('scroll', () => {
     hint.style.opacity = window.scrollY > 80 ? '0' : '1'
   }, { passive: true })
 }
-    </script>
+</script>
   </body>
 </html>
