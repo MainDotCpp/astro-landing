@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
+import JPComplianceFooter from '../../common/JPComplianceFooter.astro'
 
 // Import CSS files
 import './static/index_files/css2.css'
@@ -415,5 +416,6 @@ const featuresImage = featuresImageModule.default
       src="./static/index_files/saved_resource.html"
     ></iframe> -->
 
-  </body>
+    <JPComplianceFooter />
+</body>
 </html>

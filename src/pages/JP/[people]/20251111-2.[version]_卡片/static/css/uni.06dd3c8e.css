@@ -78,3 +78,8 @@ uni-toast .uni-mask {
 .uni-toast__content {
   margin: 0 0 15px;
 }
+
+/* ===== Safe area for bottom CTA (Overrides for JPComplianceFooter) ===== */
+.jp-compliance-footer {
+  padding-bottom: 100px !important;
+}

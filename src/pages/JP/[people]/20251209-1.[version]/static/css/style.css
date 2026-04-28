@@ -1700,3 +1700,8 @@ p {
     }
 }
 
+
+/* ===== Safe area for bottom CTA (Overrides for JPComplianceFooter) ===== */
+.jp-compliance-footer {
+  padding-bottom: 100px !important;
+}

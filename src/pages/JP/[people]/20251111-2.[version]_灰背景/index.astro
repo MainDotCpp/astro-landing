@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import RedirectCode from '@/components/RedirectCode.astro'
 import lineIcon from './images/line.png'
+import JPComplianceFooter from '../../common/JPComplianceFooter.astro'
 
 export function getStaticPaths() {
   const pages = [
@@ -180,7 +181,11 @@ const img1 = import(`../images/${people}_${version}_1.png`);
                 height: 40px;
             }
         }
-    </style>
+      /* ===== Safe area for bottom CTA (Overrides for JPComplianceFooter) ===== */
+  .jp-compliance-footer {
+    padding-bottom: 100px !important;
+  }
+</style>
 </head>
 <body>
     <!-- 第一张图片 -->
@@ -217,4 +222,5 @@ LINEを追加するだけで、無料で情報をゲット。
         <Image src={lineIcon} alt="lineIcon" />
         LINE追加をクリックして「7」を返信します
     </button>
+  <JPComplianceFooter />
 </body></html>
