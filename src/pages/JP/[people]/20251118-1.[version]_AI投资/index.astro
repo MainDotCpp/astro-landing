@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
-import { Award, BarChart3, Clock, Rocket, Shield, Star, Target, TrendingUp, Users, Zap } from 'lucide-astro'
+import { BarChart3, Clock, Rocket, Shield, Target, Users, Zap } from 'lucide-astro'
 import lineIcon from '@/assets/line-icon.png'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import JPComplianceFooter from '../../common/JPComplianceFooter.astro'
@@ -261,7 +261,7 @@ const contentImage = await import(`../shared-images/static/${img_prefix}img.png`
       </h2>
 
       <p class="text-xl mb-8 text-white/90 leading-relaxed">
-        {people}が開発したAI投資システムで、<span class="text-yellow-300 font-bold">30日で資産を5倍</span>に増やすことが可能です。<br>
+        {people}が開発したAI投資システムで、<span class="text-yellow-300 font-bold">30日で資産を5倍</span>に増やすことが可能です。<br >
         <span class="text-yellow-300 font-bold">今なら完全無料</span>でこの革新的なシステムを公開中です。
       </p>
 

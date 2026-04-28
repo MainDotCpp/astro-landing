@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets'
 import RedirectCode from '@/components/RedirectCode.astro'
-import lineIcon from './images/line.png'
 import JPComplianceFooter from '../../common/JPComplianceFooter.astro'
+import lineIcon from './images/line.png'
 
 export function getStaticPaths() {
   const pages = [
@@ -17,9 +17,9 @@ const headImg = import(`../images/${people}_avatar.png`)
 const img1 = import(`./images/${people}_${version}_1.png`);
 ---
 <!DOCTYPE html>
-<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <RedirectCode />
     <title> {name} の株式投資塾【切り抜き】 | Linktree-RBSSRA010</title>
     <style>
