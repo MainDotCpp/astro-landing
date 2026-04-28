@@ -641,10 +641,6 @@ img { max-width: 100%; display: block; }
 }
 
 /* ===== Footer ===== */
-.footer {
-  padding: 28px 0;
-  border-top: 1px solid var(--c-border);
-}
 
 .footer .wrap {
   display: flex;
@@ -654,18 +650,7 @@ img { max-width: 100%; display: block; }
   gap: 12px;
 }
 
-.footer-brand {
-  font-family: var(--ff-display);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--c-text-muted);
-  letter-spacing: 0.04em;
-}
 
-.footer-copy {
-  font-size: 11px;
-  color: var(--c-text-muted);
-}
 
 /* ===== Responsive ===== */
 @media (min-width: 768px) {
@@ -685,4 +670,9 @@ img { max-width: 100%; display: block; }
   .profile-name { font-size: 24px; }
   .profile-stats { gap: 20px; }
   .stat-val { font-size: 20px; }
+}
+
+/* ===== Safe area for bottom CTA (Overrides for JPComplianceFooter) ===== */
+.jp-compliance-footer {
+  padding-bottom: 100px !important;
 }

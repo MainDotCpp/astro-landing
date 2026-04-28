@@ -712,31 +712,9 @@ img {
 }
 
 /* ===== Footer ===== */
-.footer {
-  padding: 32px 0;
-  border-top: 1px solid var(--c-border);
-}
 
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
 
-.footer-brand {
-  font-family: var(--ff-display);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--c-text-dim);
-  letter-spacing: 0.04em;
-}
 
-.footer-copy {
-  font-size: 12px;
-  color: var(--c-text-muted);
-}
 
 /* ===== Responsive ===== */
 @media (min-width: 768px) {
@@ -777,6 +755,8 @@ img {
 }
 
 /* ===== Safe area for bottom CTA ===== */
-.footer {
-  padding-bottom: 100px;
+
+/* ===== Safe area for bottom CTA (Overrides for JPComplianceFooter) ===== */
+.jp-compliance-footer {
+  padding-bottom: 100px !important;
 }

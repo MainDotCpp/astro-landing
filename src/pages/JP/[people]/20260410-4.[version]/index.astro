@@ -125,7 +125,7 @@ if (name === '三橋貴明') {
     <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
     <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
     <script is:inline>
-      function onLinkBtnClick() {
+      window.onLinkBtnClick = function () {
         const link = 'https://line.me/R/ti/p/@your-line-id'
         if (typeof gtag_report_conversion === 'function') {
           gtag_report_conversion()
