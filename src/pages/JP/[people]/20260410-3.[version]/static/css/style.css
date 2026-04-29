@@ -51,7 +51,7 @@ img { max-width: 100%; display: block; }
   position: relative;
   min-height: 100dvh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   padding: 0 24px 80px;
   overflow: hidden;
