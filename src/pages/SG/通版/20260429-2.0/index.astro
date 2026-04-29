@@ -1,0 +1,625 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroDesktop from './images/hero-desktop.png'
+import heroMobile from './images/hero-mobile.png'
+
+const title = 'Singapore Stock Circle | Investment Discussion Community'
+const description = 'A Singapore-focused WhatsApp investment discussion community for market watchlists, stock conversations, and risk-aware investing ideas.'
+
+const pillars = [
+  ['01', 'Curated market conversations', 'Follow the themes, market movers, and watchlist ideas that active investors are already comparing.'],
+  ['02', 'Singapore-first perspective', 'Discuss Singapore, US, and Asia market opportunities through a lens built for local investors.'],
+  ['03', 'Risk before conviction', 'Every idea is framed with timing, downside, position discipline, and education-first discussion.'],
+]
+
+const agenda = [
+  ['Before open', 'Key market headlines, overnight movers, and sectors worth watching.'],
+  ['During session', 'Watchlist updates, chart levels, and member questions in one focused WhatsApp room.'],
+  ['After close', 'Review what changed, what held up, and what deserves attention tomorrow.'],
+]
+
+const topics = [
+  'SG bank & dividend names',
+  'US technology leaders',
+  'Hong Kong market swings',
+  'Earnings reaction watch',
+  'Sector rotation ideas',
+  'Risk control reminders',
+]
+
+const faqs = [
+  ['Is this a signal group?', 'No. It is a discussion community for market education, watchlist exchange, and investor conversation.'],
+  ['Will the group discuss stock ideas?', 'Yes, members can discuss watchlists and market views, but nothing is a guaranteed outcome or personalized advice.'],
+  ['Who is it for?', 'Singapore readers who want a cleaner, more focused place to discuss stocks and market context on WhatsApp.'],
+  ['Is investment risk involved?', 'Yes. Investing can result in losses. Treat all discussion as educational and make your own decisions.'],
+]
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --paper: #f5efe2;
+        --paper-deep: #eadcc5;
+        --ink: #13251d;
+        --muted: #657063;
+        --emerald: #064b39;
+        --emerald-soft: #0f7658;
+        --gold: #c89d46;
+        --line: rgba(19, 37, 29, 0.14);
+        --cream-card: rgba(255, 250, 241, 0.74);
+        --serif: 'Cormorant Garamond', Georgia, serif;
+        --sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--paper);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 0% 0%, rgba(200, 157, 70, 0.18), transparent 28rem),
+          radial-gradient(circle at 100% 12%, rgba(6, 75, 57, 0.13), transparent 30rem),
+          linear-gradient(180deg, #f8f2e7 0%, #efe1cb 54%, #f7f0e4 100%);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page {
+        min-height: 100vh;
+        isolation: isolate;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .hero-link {
+        display: block;
+        background: #efe3cf;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .hero-link:focus-visible,
+      .cta:focus-visible,
+      .floating-cta:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 4px;
+      }
+
+      .hero-picture img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .marquee {
+        overflow: hidden;
+        border-block: 1px solid var(--line);
+        background: rgba(255, 250, 241, 0.62);
+      }
+
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        gap: 2.25rem;
+        padding: 0.8rem 0;
+        animation: scroll-strip 28s linear infinite;
+      }
+
+      .marquee-track span {
+        color: var(--emerald);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .section {
+        padding: clamp(4rem, 8vw, 7.5rem) 0;
+      }
+
+      .section-kicker {
+        margin: 0 0 0.8rem;
+        color: var(--gold);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        max-width: 12ch;
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(3rem, 7vw, 7rem);
+        font-weight: 700;
+        line-height: 0.86;
+        letter-spacing: -0.055em;
+      }
+
+      .section-copy {
+        max-width: 42rem;
+        margin: 1.25rem 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.82;
+      }
+
+      .editorial-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(18rem, 0.42fr);
+        gap: clamp(1.4rem, 4vw, 3rem);
+        align-items: end;
+      }
+
+      .pillars {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .pillar-card {
+        display: grid;
+        grid-template-columns: 4rem 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid var(--line);
+        border-radius: 1.4rem;
+        background: var(--cream-card);
+        box-shadow: 0 20px 70px rgba(72, 48, 18, 0.1);
+        backdrop-filter: blur(18px);
+      }
+
+      .pillar-index {
+        display: grid;
+        height: 4rem;
+        place-items: center;
+        border-radius: 1rem;
+        background: var(--emerald);
+        color: #f7edda;
+        font-family: var(--serif);
+        font-size: 1.45rem;
+        font-weight: 700;
+      }
+
+      .pillar-card h3,
+      .agenda-card h3,
+      .faq-card h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 1.05rem;
+        letter-spacing: -0.035em;
+      }
+
+      .pillar-card p,
+      .agenda-card p,
+      .faq-card p {
+        margin: 0.55rem 0 0;
+        color: var(--muted);
+        line-height: 1.68;
+      }
+
+      .agenda-section {
+        position: relative;
+        overflow: hidden;
+        background: var(--emerald);
+        color: #f8f0df;
+      }
+
+      .agenda-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 72px 72px;
+        pointer-events: none;
+      }
+
+      .agenda-wrap {
+        position: relative;
+        z-index: 1;
+      }
+
+      .agenda-wrap .section-title,
+      .agenda-wrap .section-copy {
+        color: #f8f0df;
+      }
+
+      .agenda-wrap .section-copy {
+        color: rgba(248, 240, 223, 0.72);
+      }
+
+      .agenda-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      .agenda-card {
+        min-height: 18rem;
+        padding: 1.25rem;
+        border: 1px solid rgba(248, 240, 223, 0.18);
+        border-radius: 1.6rem;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .agenda-card span {
+        display: inline-flex;
+        margin-bottom: 4rem;
+        padding: 0.36rem 0.62rem;
+        border-radius: 999px;
+        background: rgba(200, 157, 70, 0.18);
+        color: #f6d590;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .agenda-card h3,
+      .agenda-card p {
+        color: #f8f0df;
+      }
+
+      .agenda-card p {
+        color: rgba(248, 240, 223, 0.7);
+      }
+
+      .topic-board {
+        display: grid;
+        grid-template-columns: minmax(18rem, 0.45fr) minmax(0, 0.55fr);
+        gap: clamp(1.2rem, 4vw, 3rem);
+        align-items: start;
+      }
+
+      .topic-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+
+      .topic-chip {
+        padding: 0.78rem 1rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 250, 241, 0.74);
+        color: var(--emerald);
+        font-weight: 800;
+      }
+
+      .quote-card {
+        padding: clamp(1.5rem, 4vw, 3rem);
+        border: 1px solid rgba(6, 75, 57, 0.18);
+        border-radius: 2rem;
+        background:
+          linear-gradient(145deg, rgba(255, 250, 241, 0.9), rgba(234, 220, 197, 0.52)),
+          radial-gradient(circle at 100% 0%, rgba(200, 157, 70, 0.2), transparent 18rem);
+        box-shadow: 0 24px 90px rgba(72, 48, 18, 0.12);
+      }
+
+      .quote-card strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: clamp(2.1rem, 4vw, 4.2rem);
+        line-height: 0.96;
+        letter-spacing: -0.05em;
+      }
+
+      .quote-card p {
+        margin: 1.3rem 0 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .faq-card {
+        padding: 1.15rem;
+        border: 1px solid var(--line);
+        border-radius: 1.35rem;
+        background: var(--cream-card);
+      }
+
+      .final-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1.2rem;
+        align-items: center;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        border-radius: 2rem;
+        background: var(--ink);
+        color: #f8f0df;
+      }
+
+      .final-card h2 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(2.7rem, 5vw, 5.5rem);
+        line-height: 0.9;
+        letter-spacing: -0.055em;
+      }
+
+      .final-card p {
+        max-width: 38rem;
+        margin: 1rem 0 0;
+        color: rgba(248, 240, 223, 0.72);
+        line-height: 1.75;
+      }
+
+      .cta {
+        display: inline-flex;
+        min-height: 3.75rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.68rem;
+        padding: 0 1.35rem;
+        border-radius: 999px;
+        background: #f5c86a;
+        color: #102119;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 18px 48px rgba(245, 200, 106, 0.28);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 24px 62px rgba(245, 200, 106, 0.38);
+      }
+
+      .wa-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+
+      .footer {
+        padding: 2rem 0 4rem;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.7;
+      }
+
+      .footer strong {
+        color: var(--ink);
+      }
+
+      .floating-cta {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 30;
+        display: none;
+        width: 3.65rem;
+        height: 3.65rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--emerald);
+        color: #f8f0df;
+        box-shadow: 0 16px 42px rgba(6, 75, 57, 0.32);
+        text-decoration: none;
+      }
+
+      @keyframes scroll-strip {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 860px) {
+        .editorial-grid,
+        .topic-board,
+        .final-card {
+          grid-template-columns: 1fr;
+        }
+
+        .agenda-grid,
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .agenda-card {
+          min-height: auto;
+        }
+
+        .agenda-card span {
+          margin-bottom: 2.2rem;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .shell {
+          width: min(100% - 1.2rem, 1120px);
+        }
+
+        .hero-picture img {
+          width: 100%;
+          height: auto;
+          min-height: 0;
+          object-fit: contain;
+          object-position: center top;
+        }
+
+        .section {
+          padding: 3.4rem 0;
+        }
+
+        .pillar-card {
+          grid-template-columns: 1fr;
+        }
+
+        .pillar-index {
+          width: 4rem;
+        }
+
+        .section-title,
+        .quote-card strong,
+        .final-card h2 {
+          letter-spacing: -0.045em;
+        }
+
+        .final-card .cta {
+          width: 100%;
+        }
+
+        .footer {
+          padding-bottom: 5.8rem;
+        }
+
+        .floating-cta {
+          display: inline-flex;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .marquee-track {
+          animation: none;
+        }
+
+        .cta {
+          transition: none;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <main class="page">
+    <a class="link-btn hero-link" href="javascript:void(0)" aria-label="Join the Singapore Stock Circle WhatsApp group" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+      <picture class="hero-picture">
+        <source media="(max-width: 680px)" srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="Singapore Stock Circle. Discuss smarter watchlists, market moves, and risk before you trade. Join WhatsApp Group. Educational discussion only." width="1536" height="1024" loading="eager" fetchpriority="high" />
+      </picture>
+    </a>
+
+    <div class="marquee" aria-label="Community focus areas">
+      <div class="marquee-track">
+        {[...topics, ...topics].map(topic => <span>{topic}</span>)}
+      </div>
+    </div>
+
+    <section class="shell section editorial-grid">
+      <div>
+        <p class="section-kicker">Why join</p>
+        <h1 class="section-title">A cleaner room for serious stock talk.</h1>
+        <p class="section-copy">This page uses a quieter editorial style, but the offer stays direct: join a Singapore-focused WhatsApp community where investors compare watchlists, market context, and risk-aware views before acting.</p>
+      </div>
+      <div class="pillars">
+        {pillars.map(pillar => (
+          <article class="pillar-card">
+            <span class="pillar-index">{pillar[0]}</span>
+            <div>
+              <h3>{pillar[1]}</h3>
+              <p>{pillar[2]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="agenda-section section">
+      <div class="shell agenda-wrap">
+        <p class="section-kicker">Daily rhythm</p>
+        <h2 class="section-title">Market context, not random noise.</h2>
+        <p class="section-copy">The group is designed around practical discussion windows, so members can follow market narratives without drowning in scattered posts.</p>
+        <div class="agenda-grid">
+          {agenda.map((item, index) => (
+            <article class="agenda-card">
+              <span>0{index + 1}</span>
+              <h3>{item[0]}</h3>
+              <p>{item[1]}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section topic-board">
+      <div>
+        <p class="section-kicker">What gets discussed</p>
+        <h2 class="section-title">Ideas become conversations.</h2>
+        <p class="section-copy">Members can compare what they are watching, why a sector is moving, and where risk needs to be controlled.</p>
+        <div class="topic-list">
+          {topics.map(topic => <span class="topic-chip">{topic}</span>)}
+        </div>
+      </div>
+      <div class="quote-card">
+        <strong>Before you buy, hear another angle.</strong>
+        <p>Use the community to pressure-test a market view, understand the news behind a move, and keep your own investing process disciplined.</p>
+      </div>
+    </section>
+
+    <section class="shell section">
+      <p class="section-kicker">Before joining</p>
+      <h2 class="section-title">Clear expectations.</h2>
+      <div class="faq-grid">
+        {faqs.map(faq => (
+          <article class="faq-card">
+            <h3>{faq[0]}</h3>
+            <p>{faq[1]}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="final-card">
+        <div>
+          <h2>Join the Singapore Stock Circle.</h2>
+          <p>Tap below to enter the WhatsApp community for stock discussions, market watchlists, and risk-aware investing conversations.</p>
+        </div>
+        <a href="javascript:void(0)" class="link-btn cta" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+          <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
+          Join WhatsApp Group
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="shell">
+        <p><strong>Disclaimer:</strong> This landing page and any WhatsApp group content are for general educational discussion only. They are not personalized financial advice, an offer, or a recommendation to buy or sell securities. All investing and trading involves risk, including possible loss of capital. No result is guaranteed, and past performance does not indicate future outcomes. Consider your own circumstances and consult a licensed financial adviser in Singapore before making investment decisions.</p>
+        <p>© {new Date().getFullYear()} Singapore Stock Circle. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <a href="javascript:void(0)" class="link-btn floating-cta" aria-label="Join on WhatsApp" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+      <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.030-.967-.273-.099-.471-.148-.670.150-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.150-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413Z" /></svg>
+    </a>
+  </main>
+</BaseLayout>

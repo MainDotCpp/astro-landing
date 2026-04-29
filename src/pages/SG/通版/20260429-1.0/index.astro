@@ -1,0 +1,963 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import featureImage from './images/landing-template-finance-hero-bg.png'
+import heroImage from './images/landing-template-finance-research.png'
+import mobileHeroImage from './images/landing-template-mobile-hero-bg.png'
+
+const title = 'Singapore Stock Investment Community | WhatsApp Discussion Group'
+const description = 'Join a Singapore-focused WhatsApp investment discussion community for stock ideas, market views, watchlist conversations, and risk-aware investing exchange.'
+
+const benefits = [
+  ['01', 'Stock idea exchange', 'Discuss Singapore, US, and Asia market opportunities with investors who are actively watching the market.'],
+  ['02', 'Daily discussion topics', 'Get group prompts on market movers, earnings, sectors, charts, and news that investors are talking about.'],
+  ['03', 'WhatsApp community', 'Join from your phone and follow practical investment conversations without scrolling through noisy feeds.'],
+]
+
+const noteTypes = [
+  'Stock watchlist chat',
+  'Market mover discussion',
+  'SG & US sector themes',
+  'Risk control reminders',
+]
+
+const discussionTopics = [
+  ['Watchlist', 'Stock watchlist chat', 'Compare what members are tracking before the next market open.'],
+  ['Momentum', 'Market mover discussion', 'Follow the names, sectors, and news catalysts getting attention today.'],
+  ['Themes', 'SG & US sector themes', 'Connect Singapore, US, and Asia market narratives in one mobile room.'],
+  ['Discipline', 'Risk control reminders', 'Keep every stock idea tied to position sizing, timing, and downside risk.'],
+]
+
+const steps = [
+  ['Tap to join the group', 'Open WhatsApp and request access to the Singapore investment discussion community.'],
+  ['Follow today’s topics', 'See what members are discussing: market news, watchlists, chart levels, and portfolio risk.'],
+  ['Exchange views before acting', 'Use the conversation to compare perspectives, ask questions, and make your own informed decision.'],
+]
+
+const faqs = [
+  ['What is this community for?', 'It is a WhatsApp investment exchange group for discussing stocks, market themes, watchlists, and risk-aware investing ideas.'],
+  ['Which markets are discussed?', 'The group is built for Singapore readers and may discuss Singapore, US, Hong Kong, and broader Asia market opportunities.'],
+  ['Will members share stock ideas?', 'Yes. The community may discuss watchlists and market opinions, but every view is for discussion only and not a guaranteed result.'],
+  ['Is there any guaranteed return?', 'No. Investing involves risk, including possible loss of capital. Past performance never guarantees future results.'],
+]
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --bg: #05070b;
+        --panel: rgba(255, 255, 255, 0.075);
+        --panel-strong: rgba(255, 255, 255, 0.13);
+        --line: rgba(255, 255, 255, 0.16);
+        --text: #f8fafc;
+        --muted: #a8b3c7;
+        --soft: #dbe7ff;
+        --gold: #f4c96b;
+        --green: #25d366;
+        --cyan: #3be8ff;
+        --sans: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 9% 8%, rgba(59, 232, 255, 0.18), transparent 28rem),
+          radial-gradient(circle at 95% 4%, rgba(244, 201, 107, 0.15), transparent 30rem),
+          linear-gradient(135deg, #05070b 0%, #0b1220 48%, #081416 100%);
+        color: var(--text);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .page {
+        position: relative;
+        isolation: isolate;
+      }
+
+      .page::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 80px 80px;
+        mask-image: linear-gradient(to bottom, #000 0%, transparent 75%);
+        pointer-events: none;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #020617;
+        box-shadow: inset 0 -120px 120px rgba(5, 7, 11, 0.88);
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(90deg, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.62) 44%, rgba(2, 6, 23, 0.08) 100%);
+        pointer-events: none;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        min-height: inherit;
+        display: grid;
+        grid-template-columns: minmax(0, 0.7fr) minmax(17rem, 0.3fr);
+        gap: clamp(1.5rem, 4vw, 3rem);
+        align-items: end;
+        padding: clamp(5rem, 10vw, 8rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+      }
+
+      .hero-content {
+        max-width: 46rem;
+      }
+
+      .hero-panel {
+        align-self: end;
+        margin-bottom: clamp(0.2rem, 2vw, 1.2rem);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.5rem 0.82rem;
+        border: 1px solid rgba(244, 201, 107, 0.34);
+        border-radius: 999px;
+        background: rgba(244, 201, 107, 0.09);
+        color: #fde68a;
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow-dot {
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 0 0.45rem rgba(37, 211, 102, 0.14);
+      }
+
+      .hero-title {
+        max-width: 13ch;
+        margin: 1.35rem 0 1.2rem;
+        font-family: var(--sans);
+        font-size: clamp(3.4rem, 7vw, 7.2rem);
+        font-weight: 800;
+        line-height: 0.92;
+        letter-spacing: -0.065em;
+      }
+
+      .hero-title span {
+        display: inline-block;
+        background: linear-gradient(120deg, #fff 0%, var(--gold) 45%, var(--cyan) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .lead {
+        max-width: 40rem;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 1.5vw, 1.28rem);
+        line-height: 1.82;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 2rem;
+      }
+
+      .cta,
+      .ghost-cta {
+        display: inline-flex;
+        min-height: 3.85rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        border-radius: 999px;
+        font-weight: 900;
+        text-decoration: none;
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      }
+
+      .cta {
+        padding: 0 1.5rem;
+        background: linear-gradient(135deg, #25d366 0%, #11a685 45%, #0ea5e9 100%);
+        color: white;
+        box-shadow: 0 22px 70px rgba(37, 211, 102, 0.32);
+      }
+
+      .ghost-cta {
+        padding: 0 1.35rem;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.075);
+        color: var(--soft);
+      }
+
+      .cta:hover,
+      .ghost-cta:hover {
+        transform: translateY(-2px);
+      }
+
+      .cta:hover {
+        box-shadow: 0 28px 80px rgba(37, 211, 102, 0.42);
+      }
+
+      .wa-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      .mini-note {
+        max-width: 34rem;
+        margin: 1rem 0 0;
+        color: #8190aa;
+        font-size: 0.86rem;
+        line-height: 1.6;
+      }
+
+      .floating-ticket {
+        padding: 1rem;
+        border: 1px solid rgba(37, 211, 102, 0.28);
+        border-radius: 1.35rem;
+        background: rgba(2, 6, 23, 0.84);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
+        backdrop-filter: blur(18px);
+      }
+
+      .floating-ticket strong {
+        display: block;
+        color: white;
+        font-size: 1rem;
+      }
+
+      .floating-ticket span {
+        display: block;
+        margin-top: 0.35rem;
+        color: var(--muted);
+        font-size: 0.84rem;
+        line-height: 1.55;
+      }
+
+      .metric-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      .metric {
+        padding: 0.8rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .metric b {
+        display: block;
+        color: var(--gold);
+        font-size: 0.88rem;
+      }
+
+      .metric small {
+        color: #8ea0bc;
+      }
+
+      .topic-strip {
+        display: grid;
+        grid-template-columns: minmax(16rem, 0.38fr) minmax(0, 0.62fr);
+        gap: clamp(1rem, 3vw, 2rem);
+        align-items: stretch;
+        padding: clamp(2.25rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
+      }
+
+      .topic-intro,
+      .topic-card,
+      .benefit-card,
+      .step-card,
+      .faq-card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+      }
+
+      .topic-intro {
+        position: relative;
+        overflow: hidden;
+        min-height: 18rem;
+        padding: clamp(1.4rem, 3vw, 2rem);
+        border-radius: 1.8rem;
+        background:
+          radial-gradient(circle at 18% 18%, rgba(244, 201, 107, 0.24), transparent 12rem),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.035));
+      }
+
+      .topic-intro::after {
+        content: 'SG';
+        position: absolute;
+        right: -0.55rem;
+        bottom: -1.25rem;
+        color: rgba(255, 255, 255, 0.05);
+        font-size: clamp(7rem, 18vw, 13rem);
+        font-weight: 800;
+        letter-spacing: -0.12em;
+        line-height: 0.8;
+      }
+
+      .topic-intro h2 {
+        position: relative;
+        z-index: 1;
+        max-width: 9ch;
+        margin: 0;
+        font-size: clamp(2.1rem, 4vw, 4.2rem);
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+      }
+
+      .topic-intro p:last-child {
+        position: relative;
+        z-index: 1;
+        max-width: 24rem;
+        margin: 1.1rem 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .topic-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .topic-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 13.5rem;
+        padding: 1.15rem;
+        border-radius: 1.5rem;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045)),
+          radial-gradient(circle at 100% 0%, rgba(59, 232, 255, 0.15), transparent 12rem);
+      }
+
+      .topic-card::before {
+        content: '';
+        position: absolute;
+        inset: auto 1.1rem 0 1.1rem;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--green), var(--gold), transparent);
+        opacity: 0.75;
+      }
+
+      .topic-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
+      }
+
+      .topic-number {
+        color: rgba(255, 255, 255, 0.32);
+        font-size: 2.35rem;
+        font-weight: 800;
+        line-height: 0.85;
+        letter-spacing: -0.08em;
+      }
+
+      .topic-tag {
+        padding: 0.38rem 0.62rem;
+        border: 1px solid rgba(244, 201, 107, 0.25);
+        border-radius: 999px;
+        color: #fde68a;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .topic-card h3 {
+        margin: 0;
+        color: white;
+        font-size: 1.12rem;
+        letter-spacing: -0.04em;
+      }
+
+      .topic-card p {
+        margin: 0.72rem 0 0;
+        color: var(--muted);
+        line-height: 1.62;
+      }
+
+      .section {
+        padding: clamp(3.5rem, 8vw, 7rem) 0;
+      }
+
+      .section-head {
+        max-width: 48rem;
+        margin-bottom: clamp(1.8rem, 4vw, 3rem);
+      }
+
+      .section-kicker {
+        margin: 0 0 0.8rem;
+        color: var(--gold);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: clamp(2.45rem, 5vw, 4.8rem);
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+      }
+
+      .section-copy {
+        margin: 1rem 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      .benefit-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .benefit-card {
+        min-height: 20rem;
+        padding: 1.2rem;
+        border-radius: 1.5rem;
+      }
+
+      .benefit-index {
+        display: block;
+        margin-bottom: 3.4rem;
+        color: var(--gold);
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 0.8;
+        letter-spacing: -0.06em;
+      }
+
+      .benefit-card h3,
+      .step-card h3,
+      .faq-card h3 {
+        margin: 0;
+        color: white;
+        font-size: 1.14rem;
+        letter-spacing: -0.04em;
+      }
+
+      .benefit-card p,
+      .step-card p,
+      .faq-card p {
+        margin: 0.85rem 0 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .image-section {
+        background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.035) 42%, transparent 100%);
+      }
+
+      .image-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+        gap: clamp(1.2rem, 3vw, 2.4rem);
+        align-items: center;
+      }
+
+      .desk-frame {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 2rem;
+        box-shadow: 0 34px 110px rgba(0, 0, 0, 0.42);
+      }
+
+      .desk-frame img {
+        width: 100%;
+        height: 34rem;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .note-panel {
+        padding: clamp(1.4rem, 4vw, 2.6rem);
+        border: 1px solid rgba(244, 201, 107, 0.24);
+        border-radius: 2rem;
+        background:
+          radial-gradient(circle at 100% 0%, rgba(37, 211, 102, 0.14), transparent 18rem),
+          rgba(255, 255, 255, 0.075);
+        backdrop-filter: blur(18px);
+      }
+
+      .note-list {
+        display: grid;
+        gap: 0.65rem;
+        margin-top: 1.4rem;
+      }
+
+      .note-chip {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.82rem 0.95rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--soft);
+        font-weight: 800;
+      }
+
+      .note-chip::after {
+        content: '→';
+        color: var(--gold);
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .step-card {
+        padding: 1.25rem;
+        border-radius: 1.45rem;
+      }
+
+      .step-number {
+        display: inline-grid;
+        width: 2.5rem;
+        height: 2.5rem;
+        place-items: center;
+        margin-bottom: 1.4rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--cyan));
+        color: #06111f;
+        font-weight: 900;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .faq-card {
+        padding: 1.2rem;
+        border-radius: 1.35rem;
+      }
+
+      .final {
+        padding: clamp(3.5rem, 8vw, 7rem) 0;
+      }
+
+      .final-card {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(2rem, 6vw, 4.5rem);
+        border: 1px solid rgba(37, 211, 102, 0.28);
+        border-radius: 2.2rem;
+        background:
+          linear-gradient(90deg, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.72)),
+          var(--final-bg);
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        box-shadow: 0 36px 120px rgba(0, 0, 0, 0.45);
+      }
+
+      .final-card h2 {
+        max-width: 13ch;
+        margin: 0 auto;
+        font-family: var(--sans);
+        font-size: clamp(2.8rem, 6vw, 5.6rem);
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .final-card p {
+        max-width: 42rem;
+        margin: 1.1rem auto 2rem;
+        color: var(--muted);
+        line-height: 1.78;
+      }
+
+      .footer {
+        padding: 2.5rem 0 5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.09);
+        color: #7f8da6;
+        font-size: 0.82rem;
+        line-height: 1.7;
+      }
+
+      .footer strong {
+        color: var(--soft);
+      }
+
+      .floating-cta {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 30;
+        display: none;
+        width: 3.65rem;
+        height: 3.65rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: white;
+        box-shadow: 0 18px 54px rgba(37, 211, 102, 0.38);
+        text-decoration: none;
+      }
+
+      @media (max-width: 980px) {
+        .hero-inner,
+        .image-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-media img {
+          object-position: 58% center;
+        }
+
+        .topic-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .benefit-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        .shell {
+          width: min(100% - 1.2rem, 1180px);
+        }
+
+        .hero {
+          min-height: 100svh;
+        }
+
+        .hero::before {
+          background: linear-gradient(180deg, rgba(2, 6, 23, 0.18) 0%, rgba(2, 6, 23, 0.46) 38%, rgba(2, 6, 23, 0.94) 100%);
+        }
+
+        .hero-media img {
+          object-position: center top;
+        }
+
+        .hero-inner {
+          gap: 1.25rem;
+          min-height: inherit;
+          padding: 5.2rem 0 1.4rem;
+        }
+
+        .hero-title {
+          max-width: 11ch;
+          font-size: clamp(2.55rem, 12vw, 3.45rem);
+          line-height: 0.98;
+          letter-spacing: -0.055em;
+        }
+
+        .section-title,
+        .final-card h2 {
+          font-size: clamp(2.05rem, 10vw, 2.9rem);
+          line-height: 1.02;
+          letter-spacing: -0.05em;
+        }
+
+        .lead {
+          font-size: 1rem;
+          line-height: 1.68;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+          margin-top: 1.35rem;
+        }
+
+        .cta,
+        .ghost-cta {
+          width: 100%;
+          min-height: 3.45rem;
+        }
+
+        .hero-panel {
+          align-self: stretch;
+        }
+
+        .floating-ticket {
+          width: 100%;
+          border-radius: 1.15rem;
+        }
+
+        .metric-row {
+          grid-template-columns: 1fr;
+          gap: 0.55rem;
+        }
+
+        .topic-grid,
+        .benefit-grid,
+        .steps,
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topic-strip {
+          padding-bottom: 2rem;
+        }
+
+        .topic-intro,
+        .topic-card {
+          border-radius: 1.25rem;
+        }
+
+        .topic-intro {
+          min-height: 14rem;
+        }
+
+        .topic-card {
+          min-height: auto;
+        }
+
+        .section {
+          padding: 3rem 0;
+        }
+
+        .benefit-card {
+          min-height: auto;
+        }
+
+        .benefit-index {
+          margin-bottom: 2rem;
+        }
+
+        .desk-frame {
+          border-radius: 1.35rem;
+        }
+
+        .desk-frame img {
+          height: 18rem;
+        }
+
+        .note-panel,
+        .final-card {
+          border-radius: 1.35rem;
+        }
+
+        .footer {
+          padding-bottom: 5.8rem;
+        }
+
+        .floating-cta {
+          display: inline-flex;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <main class="page">
+    <section class="hero">
+      <picture class="hero-media" aria-hidden="true">
+        <source media="(max-width: 680px)" srcset={mobileHeroImage.src} />
+        <img src={heroImage.src} alt="" width="1536" height="1024" loading="eager" fetchpriority="high" />
+      </picture>
+      <div class="shell hero-inner">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Singapore investment community</div>
+          <h1 class="hero-title">Talk stocks with <span>sharper investors.</span></h1>
+          <p class="lead">Join a WhatsApp investment exchange community for Singapore readers who want active stock discussions, market watchlists, sector themes, and risk-aware viewpoints before making their own moves.</p>
+          <div class="hero-actions">
+            <a href="javascript:void(0)" class="link-btn cta" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+              <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
+              Join Investment Group
+            </a>
+            <a href="#learn" class="ghost-cta">See community benefits</a>
+          </div>
+          <p class="mini-note">Discussion and education only. No guaranteed returns. No personalized investment advice.</p>
+        </div>
+
+        <div class="hero-panel" aria-label="Singapore investment community highlights">
+          <div class="floating-ticket">
+            <strong>Today’s group discussion</strong>
+            <span>Market movers, member watchlists, chart levels, and risk points discussed in a mobile-first WhatsApp format.</span>
+            <div class="metric-row">
+              <div class="metric"><b>Stocks</b><small>active watchlists</small></div>
+              <div class="metric"><b>Views</b><small>member exchange</small></div>
+              <div class="metric"><b>Risk</b><small>before action</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell topic-strip" aria-labelledby="topic-heading">
+      <div class="topic-intro">
+        <p class="section-kicker">Discussion focus</p>
+        <h2 id="topic-heading">What the room talks about.</h2>
+        <p>Designed for investors who want sharper context before acting, not another noisy feed of random tips.</p>
+      </div>
+      <div class="topic-grid">
+        {discussionTopics.map((topic, index) => (
+          <article class="topic-card">
+            <div class="topic-card-top">
+              <span class="topic-number">0{index + 1}</span>
+              <span class="topic-tag">{topic[0]}</span>
+            </div>
+            <h3>{topic[1]}</h3>
+            <p>{topic[2]}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="learn" class="shell section">
+      <div class="section-head">
+        <p class="section-kicker">Why investors join</p>
+        <h2 class="section-title">A sharper room for stock conversation.</h2>
+        <p class="section-copy">Instead of reading the market alone, join a focused WhatsApp room where investors exchange watchlists, compare interpretations, and discuss risk before taking action.</p>
+      </div>
+      <div class="benefit-grid">
+        {benefits.map(benefit => (
+          <article class="benefit-card">
+            <span class="benefit-index">{benefit[0]}</span>
+            <h3>{benefit[1]}</h3>
+            <p>{benefit[2]}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="image-section section">
+      <div class="shell image-layout">
+        <div class="desk-frame">
+          <img src={featureImage.src} alt="Financial research desk with stock chart, printed reports, notes, and portfolio cards" loading="lazy" />
+        </div>
+        <div class="note-panel">
+          <p class="section-kicker">Inside the group</p>
+          <h2 class="section-title">Stock ideas become conversations.</h2>
+          <p class="section-copy">Members can follow daily market topics, compare watchlist logic, discuss chart setups, and stay reminded that every investment view needs risk control.</p>
+          <div class="note-list">
+            {noteTypes.map(note => <div class="note-chip">{note}</div>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="section-head">
+        <p class="section-kicker">How to enter</p>
+        <h2 class="section-title">Join the room before the next market move.</h2>
+      </div>
+      <div class="steps">
+        {steps.map((step, index) => (
+          <article class="step-card">
+            <span class="step-number">{index + 1}</span>
+            <h3>{step[0]}</h3>
+            <p>{step[1]}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="section-head">
+        <p class="section-kicker">Before joining</p>
+        <h2 class="section-title">A real investment group, not a promise machine.</h2>
+      </div>
+      <div class="faq-grid">
+        {faqs.map(faq => (
+          <article class="faq-card">
+            <h3>{faq[0]}</h3>
+            <p>{faq[1]}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="shell final">
+      <div class="final-card" style={`--final-bg: url(${heroImage.src})`}>
+        <p class="section-kicker">Join the discussion</p>
+        <h2>Enter the Singapore investment group.</h2>
+        <p>Tap below to join the WhatsApp community for stock discussions, market themes, watchlist exchange, and disciplined risk reminders.</p>
+        <a href="javascript:void(0)" class="link-btn cta" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+          <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413Z" /></svg>
+Join the Group
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="shell">
+        <p><strong>Disclaimer:</strong> The information on this page and any WhatsApp group messages are for general discussion and educational purposes only. They do not constitute personalized financial advice, an offer, or a recommendation to buy or sell securities. All investing and trading involves risk, including possible loss of capital. No result is guaranteed, and past performance is not indicative of future outcomes. Consider your own circumstances and consult a licensed financial adviser in Singapore before making investment decisions.</p>
+        <p>© {new Date().getFullYear()} SG Investment Community. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <a href="javascript:void(0)" class="link-btn floating-cta" aria-label="Join on WhatsApp" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+      <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.030-.967-.273-.099-.471-.148-.670.150-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.150-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413Z" /></svg>
+    </a>
+  </main>
+</BaseLayout>

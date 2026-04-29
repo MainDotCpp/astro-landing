@@ -1,0 +1,688 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import chatPhone from './images/chat-phone.png'
+import communityScene from './images/community-scene.png'
+import ctaBg from './images/cta-bg.png'
+import heroDesktop from './images/hero-desktop.png'
+import heroMobile from './images/hero-mobile.png'
+import marketAnalysis from './images/market-analysis.png'
+import riskLearning from './images/risk-learning.png'
+
+const title = 'SG Investor Circle | Singapore Stock Discussion Community'
+const description = 'Join a Singapore-focused WhatsApp investor community for stock watchlists, market conversations, sector themes, and risk-aware learning.'
+
+const stats = [
+  ['Market talk', 'Daily themes'],
+  ['Watchlists', 'Member ideas'],
+  ['Risk notes', 'Before action'],
+]
+
+const cards = [
+  ['Community first', 'A brighter place to compare market views, not a noisy feed of random calls.', communityScene.src, 'Singapore investors discussing market ideas in a bright cafe'],
+  ['Market snapshots', 'Track the charts, sectors, and news catalysts that members are watching today.', marketAnalysis.src, 'Colorful market analysis desk with charts and notes'],
+  ['Mobile discussion', 'Follow watchlist updates and market questions directly from your phone.', chatPhone.src, 'Phone showing investment community chat and chart cards'],
+  ['Risk-aware learning', 'Keep each idea connected to timing, sizing, review, and downside planning.', riskLearning.src, 'Risk management learning workspace with notes and checklist'],
+]
+
+const steps = [
+  ['Tap to enter', 'Open the WhatsApp community from the button on this page.'],
+  ['Follow the room', 'Read what other investors are watching across Singapore, US, and Asia markets.'],
+  ['Compare before acting', 'Use the discussion to sharpen your own thinking before making decisions.'],
+]
+
+const topics = [
+  'SG dividend stocks',
+  'US technology leaders',
+  'Hong Kong movers',
+  'Earnings reactions',
+  'Sector rotation',
+  'Risk control',
+  'Chart levels',
+  'News catalysts',
+]
+
+const faqs = [
+  ['Is this personalized advice?', 'No. The group is for educational discussion and market conversation only.'],
+  ['Will people share stock ideas?', 'Members may discuss watchlists and opinions, but no result is guaranteed.'],
+  ['Who should join?', 'Singapore readers who want a focused WhatsApp room for investment discussion.'],
+  ['What should I remember?', 'All investing carries risk, including possible loss of capital.'],
+]
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --cream: #fff6df;
+        --paper: #fffaf0;
+        --ink: #073236;
+        --muted: #627071;
+        --teal: #00a7a0;
+        --deep-teal: #063f42;
+        --coral: #ff715b;
+        --lime: #c9ff4a;
+        --sun: #ffd166;
+        --blue: #5bbcff;
+        --line: rgba(7, 50, 54, 0.13);
+        --sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --display: 'Outfit', system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--cream);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 8% 8%, rgba(255, 113, 91, 0.22), transparent 22rem),
+          radial-gradient(circle at 95% 10%, rgba(0, 167, 160, 0.2), transparent 26rem),
+          linear-gradient(180deg, #fff6df 0%, #fffaf0 42%, #f0fff9 100%);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100vh;
+        isolation: isolate;
+      }
+
+      .shell {
+        width: min(1160px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .hero-link {
+        display: block;
+        background: #dff6ed;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .hero-link:focus-visible,
+      .cta:focus-visible,
+      .floating-cta:focus-visible {
+        outline: 4px solid var(--lime);
+        outline-offset: 4px;
+      }
+
+      .hero-picture img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+      }
+
+      .ticker {
+        overflow: hidden;
+        border-block: 2px solid var(--ink);
+        background: var(--lime);
+      }
+
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        gap: 2rem;
+        padding: 0.8rem 0;
+        animation: ticker 28s linear infinite;
+      }
+
+      .ticker-track span {
+        font-family: var(--display);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .section {
+        padding: clamp(3.8rem, 8vw, 7rem) 0;
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.62fr) minmax(18rem, 0.38fr);
+        gap: clamp(1rem, 4vw, 3rem);
+        align-items: end;
+      }
+
+      .kicker {
+        display: inline-flex;
+        margin: 0 0 1rem;
+        padding: 0.45rem 0.7rem;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--sun);
+        color: var(--ink);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+
+      .title {
+        max-width: 11ch;
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(3.4rem, 8vw, 8rem);
+        font-weight: 900;
+        line-height: 0.82;
+        letter-spacing: -0.075em;
+      }
+
+      .title span {
+        color: var(--coral);
+      }
+
+      .copy {
+        margin: 1.2rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.4vw, 1.18rem);
+        line-height: 1.75;
+      }
+
+      .stat-panel {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .stat-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem;
+        border: 2px solid var(--ink);
+        border-radius: 1.3rem;
+        background: var(--paper);
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+
+      .stat-card strong {
+        font-family: var(--display);
+        font-size: 1.1rem;
+      }
+
+      .stat-card span {
+        color: var(--muted);
+        font-size: 0.88rem;
+        font-weight: 800;
+      }
+
+      .visual-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+      }
+
+      .visual-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 24rem;
+        border: 2px solid var(--ink);
+        border-radius: 1.6rem;
+        background: var(--paper);
+        box-shadow: 8px 8px 0 var(--ink);
+      }
+
+      .visual-card:nth-child(1),
+      .visual-card:nth-child(4) {
+        grid-column: span 7;
+      }
+
+      .visual-card:nth-child(2),
+      .visual-card:nth-child(3) {
+        grid-column: span 5;
+      }
+
+      .visual-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .visual-card.tall img {
+        object-position: center top;
+      }
+
+      .visual-caption {
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+        padding: 1rem;
+        border: 2px solid rgba(7, 50, 54, 0.8);
+        border-radius: 1.1rem;
+        background: rgba(255, 250, 240, 0.86);
+        backdrop-filter: blur(14px);
+      }
+
+      .visual-caption h3 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: 1.35rem;
+        line-height: 1;
+        letter-spacing: -0.045em;
+      }
+
+      .visual-caption p {
+        margin: 0.5rem 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.55;
+      }
+
+      .flow-section {
+        background: var(--deep-teal);
+        color: white;
+      }
+
+      .flow-section .copy {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .flow-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .flow-card {
+        min-height: 18rem;
+        padding: 1.2rem;
+        border: 2px solid rgba(255, 255, 255, 0.82);
+        border-radius: 1.5rem;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .flow-card span {
+        display: inline-grid;
+        width: 3.2rem;
+        height: 3.2rem;
+        place-items: center;
+        margin-bottom: 4rem;
+        border-radius: 50%;
+        background: var(--lime);
+        color: var(--ink);
+        font-family: var(--display);
+        font-weight: 900;
+      }
+
+      .flow-card h3 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: 1.35rem;
+        letter-spacing: -0.04em;
+      }
+
+      .flow-card p {
+        margin: 0.65rem 0 0;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.65;
+      }
+
+      .topic-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+
+      .topic-chip {
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: white;
+        color: var(--ink);
+        font-weight: 900;
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .faq-card {
+        padding: 1.2rem;
+        border: 2px solid var(--ink);
+        border-radius: 1.4rem;
+        background: var(--paper);
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+
+      .faq-card h3 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: 1.15rem;
+        letter-spacing: -0.035em;
+      }
+
+      .faq-card p {
+        margin: 0.7rem 0 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .final-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 30rem;
+        display: grid;
+        place-items: center;
+        padding: clamp(1.5rem, 5vw, 4rem);
+        border: 2px solid var(--ink);
+        border-radius: 2rem;
+        background: var(--deep-teal);
+        box-shadow: 10px 10px 0 var(--ink);
+      }
+
+      .final-card img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.62;
+      }
+
+      .final-content {
+        position: relative;
+        z-index: 1;
+        max-width: 42rem;
+        padding: clamp(1.3rem, 4vw, 2.5rem);
+        border: 2px solid var(--ink);
+        border-radius: 1.6rem;
+        background: rgba(255, 250, 240, 0.88);
+        text-align: center;
+        backdrop-filter: blur(14px);
+      }
+
+      .final-content h2 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(2.6rem, 6vw, 5.8rem);
+        line-height: 0.86;
+        letter-spacing: -0.07em;
+      }
+
+      .final-content p {
+        margin: 1rem 0 1.6rem;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .cta {
+        display: inline-flex;
+        min-height: 3.8rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 0 1.35rem;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--coral);
+        color: var(--ink);
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 5px 5px 0 var(--ink);
+        transition: transform 160ms ease, box-shadow 160ms ease;
+      }
+
+      .cta:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 7px 7px 0 var(--ink);
+      }
+
+      .wa-icon {
+        width: 1.18rem;
+        height: 1.18rem;
+      }
+
+      .footer {
+        padding: 2.4rem 0 4rem;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.7;
+      }
+
+      .footer strong {
+        color: var(--ink);
+      }
+
+      .floating-cta {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 30;
+        display: none;
+        width: 3.65rem;
+        height: 3.65rem;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--coral);
+        color: var(--ink);
+        box-shadow: 5px 5px 0 var(--ink);
+        text-decoration: none;
+      }
+
+      @keyframes ticker {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .intro-grid,
+        .flow-grid,
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .visual-card,
+        .visual-card:nth-child(1),
+        .visual-card:nth-child(2),
+        .visual-card:nth-child(3),
+        .visual-card:nth-child(4) {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .shell {
+          width: min(100% - 1.1rem, 1160px);
+        }
+
+        .section {
+          padding: 3.2rem 0;
+        }
+
+        .title,
+        .final-content h2 {
+          letter-spacing: -0.06em;
+        }
+
+        .visual-grid {
+          gap: 0.8rem;
+        }
+
+        .visual-card {
+          min-height: 22rem;
+          border-radius: 1.2rem;
+          box-shadow: 5px 5px 0 var(--ink);
+        }
+
+        .visual-card.tall {
+          min-height: 34rem;
+        }
+
+        .flow-card {
+          min-height: auto;
+        }
+
+        .flow-card span {
+          margin-bottom: 2rem;
+        }
+
+        .final-content .cta {
+          width: 100%;
+        }
+
+        .footer {
+          padding-bottom: 5.8rem;
+        }
+
+        .floating-cta {
+          display: inline-flex;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .ticker-track {
+          animation: none;
+        }
+
+        .cta {
+          transition: none;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <main class="page">
+    <a class="link-btn hero-link" href="javascript:void(0)" aria-label="Join SG Investor Circle on WhatsApp" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+      <picture class="hero-picture">
+        <source media="(max-width: 680px)" srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="SG Investor Circle. Join the market conversation." width="1536" height="1024" loading="eager" fetchpriority="high" />
+      </picture>
+    </a>
+
+    <div class="ticker" aria-label="Investment discussion topics">
+      <div class="ticker-track">
+        {[...topics, ...topics].map(topic => <span>{topic}</span>)}
+      </div>
+    </div>
+
+    <section class="shell section intro-grid">
+      <div>
+        <p class="kicker">Singapore community</p>
+        <h1 class="title">Stock talk with <span>more energy.</span></h1>
+        <p class="copy">A colorful WhatsApp room for Singapore readers who want to exchange market views, compare watchlists, and keep risk in the conversation before taking action.</p>
+      </div>
+      <div class="stat-panel">
+        {stats.map(stat => (
+          <div class="stat-card">
+            <strong>{stat[0]}</strong>
+            <span>{stat[1]}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="shell section visual-grid" aria-label="Community visuals">
+      {cards.map((card, index) => (
+        <article class:list={["visual-card", index === 2 && "tall"]}>
+          <img src={card[2]} alt={card[3]} width={index === 2 ? "1024" : "1536"} height={index === 2 ? "1536" : "1024"} loading="lazy" />
+          <div class="visual-caption">
+            <h3>{card[0]}</h3>
+            <p>{card[1]}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="flow-section section">
+      <div class="shell">
+        <p class="kicker">How it works</p>
+        <h2 class="title">From market noise to useful context.</h2>
+        <p class="copy">The community flow is simple: enter the room, follow what members are watching, and pressure-test ideas before you decide what to do.</p>
+        <div class="flow-grid">
+          {steps.map((step, index) => (
+            <article class="flow-card">
+              <span>0{index + 1}</span>
+              <h3>{step[0]}</h3>
+              <p>{step[1]}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section">
+      <p class="kicker">What gets discussed</p>
+      <h2 class="title">Watchlists, movers, and risk.</h2>
+      <p class="copy">The group is not built around promises. It is built around conversations that help you see more angles before making your own decision.</p>
+      <div class="topic-cloud">
+        {topics.map(topic => <span class="topic-chip">{topic}</span>)}
+      </div>
+    </section>
+
+    <section class="shell section">
+      <p class="kicker">Before joining</p>
+      <h2 class="title">Clear rules, no false certainty.</h2>
+      <div class="faq-grid">
+        {faqs.map(faq => (
+          <article class="faq-card">
+            <h3>{faq[0]}</h3>
+            <p>{faq[1]}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="final-card">
+        <img src={ctaBg.src} alt="" width="1536" height="1024" loading="lazy" />
+        <div class="final-content">
+          <h2>Join the next discussion.</h2>
+          <p>Enter the WhatsApp community for market themes, stock watchlists, member questions, and risk-aware learning.</p>
+          <a href="javascript:void(0)" class="link-btn cta" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+            <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
+            Join WhatsApp Group
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="shell">
+        <p><strong>Disclaimer:</strong> This landing page and any WhatsApp group content are for general educational discussion only. They are not personalized financial advice, an offer, or a recommendation to buy or sell securities. All investing and trading involves risk, including possible loss of capital. No result is guaranteed, and past performance does not indicate future outcomes. Consider your own circumstances and consult a licensed financial adviser in Singapore before making investment decisions.</p>
+        <p>© {new Date().getFullYear()} SG Investor Circle. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <a href="javascript:void(0)" class="link-btn floating-cta" aria-label="Join on WhatsApp" data-umami-event="cta-click" data-umami-event-platform="whatsapp">
+      <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.030-.967-.273-.099-.471-.148-.670.150-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.150-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413Z" /></svg>
+    </a>
+  </main>
+</BaseLayout>
