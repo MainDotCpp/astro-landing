@@ -1,0 +1,920 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import briefingBoardroom from './images/briefing-boardroom.png'
+import heroMobileResearch from './images/hero-mobile-research.png'
+import heroResearchRoom from './images/hero-research-room.png'
+import valuationDesk from './images/valuation-desk.png'
+
+const title = 'Singapore Stock Research Inner Circle | Professional Equity Briefing'
+const description = 'Join a Singapore-focused stock research community for valuation frameworks, catalyst tracking, sector rotation analysis, and professional market discussion.'
+
+const researchPillars = [
+  ['Valuation', 'Intrinsic value ranges, margin of safety, revenue quality, and what the market may already be pricing in.'],
+  ['Catalysts', 'Earnings dates, policy shifts, liquidity changes, product cycles, and the news that can rerate a stock.'],
+  ['Timing', 'Price action, volume confirmation, key levels, trend strength, and the difference between early and wrong.'],
+  ['Risk', 'Position sizing, invalidation points, drawdown discipline, and when a thesis deserves to be cut.'],
+]
+
+const hooks = [
+  ['The 15-minute stock teardown', 'A compact framework for deciding whether a stock deserves your watchlist before the crowd wakes up.'],
+  ['Institutional-style checklists', 'Use the same categories professionals discuss: fundamentals, catalysts, flow, technicals, and risk.'],
+  ['High-conviction watchlist room', 'See which names are attracting attention, why they matter, and what needs to happen next.'],
+]
+
+const modules = [
+  ['01', 'Business quality screen', 'Moat, balance sheet strength, earnings durability, sector position, and capital allocation.'],
+  ['02', 'Fair value map', 'Bull/base/bear valuation zones so members can discuss price instead of vague opinions.'],
+  ['03', 'Catalyst calendar', 'Upcoming events that may unlock attention: results, guidance, regulation, buybacks, and macro data.'],
+  ['04', 'Entry discipline', 'Technical levels, volume behavior, confirmation signals, and risk limits before any trade idea.'],
+]
+
+const sectors = ['SG banks', 'REITs', 'US AI leaders', 'Semiconductors', 'HK tech', 'Dividend compounders', 'Consumer names', 'Energy & commodities']
+
+const faqs = [
+  ['Is this a professional research service?', 'It is a private education and discussion community using professional-style research frameworks. It is not personalized financial advice.'],
+  ['Will I get stock names?', 'Members may discuss watchlists, market setups, and research notes. The value is in the reasoning framework, not blind copying.'],
+  ['Why join now?', 'Markets often move before consensus becomes obvious. The room helps you spot catalysts, valuation gaps, and risk earlier.'],
+  ['Are returns guaranteed?', 'No. Strong research can improve decision quality, but all investing involves risk and possible loss of capital.'],
+]
+---
+
+<BaseLayout title={title} description={description} lang="en-SG">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --black: #050807;
+        --panel: #0b1210;
+        --panel-soft: #111d18;
+        --ink: #10231d;
+        --cream: #f7f0df;
+        --paper: #fffaf0;
+        --muted: #8c9d94;
+        --green: #00c176;
+        --green-deep: #0c6a4b;
+        --gold: #d9b35c;
+        --red: #ff5d5d;
+        --line-dark: rgba(247, 240, 223, 0.14);
+        --line-light: rgba(16, 35, 29, 0.13);
+        --sans: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --serif: 'IBM Plex Serif', Georgia, serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--black);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 76% 8%, rgba(0, 193, 118, 0.18), transparent 28rem),
+          radial-gradient(circle at 14% 16%, rgba(217, 179, 92, 0.14), transparent 26rem),
+          linear-gradient(180deg, #050807 0%, #0b1210 47%, #f4ecd8 47.1%, #fffaf0 100%);
+        color: var(--cream);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .page {
+        min-height: 100vh;
+        isolation: isolate;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 100svh;
+        padding: clamp(1rem, 2.5vw, 1.6rem);
+      }
+
+      .hero-frame {
+        position: relative;
+        display: grid;
+        min-height: calc(100svh - clamp(2rem, 5vw, 3.2rem));
+        overflow: hidden;
+        border: 1px solid var(--line-dark);
+        border-radius: clamp(1.4rem, 4vw, 3.2rem);
+        background: var(--panel);
+        box-shadow: 0 2.5rem 8rem rgba(0, 0, 0, 0.42);
+      }
+
+      .hero-frame::after {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(90deg, rgba(5, 8, 7, 0.94) 0%, rgba(5, 8, 7, 0.78) 43%, rgba(5, 8, 7, 0.08) 82%),
+          linear-gradient(0deg, rgba(5, 8, 7, 0.8), transparent 45%);
+        content: '';
+      }
+
+      .hero-picture {
+        position: absolute;
+        inset: 0;
+      }
+
+      .hero-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-picture .mobile {
+        display: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        align-content: center;
+        width: min(58rem, 100%);
+        padding: clamp(1.4rem, 5vw, 5rem);
+      }
+
+      .badge {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 1.1rem;
+        padding: 0.55rem 0.82rem;
+        border: 1px solid rgba(0, 193, 118, 0.35);
+        border-radius: 999px;
+        background: rgba(0, 193, 118, 0.09);
+        color: #9effd1;
+        font-size: 0.74rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        backdrop-filter: blur(16px);
+      }
+
+      .badge::before {
+        width: 0.48rem;
+        height: 0.48rem;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 22px var(--green);
+        content: '';
+      }
+
+      .hero-title {
+        max-width: 11ch;
+        margin-bottom: 1.1rem;
+        font-size: clamp(3.7rem, 9.5vw, 9.3rem);
+        font-weight: 900;
+        line-height: 0.84;
+        letter-spacing: -0.082em;
+        text-transform: uppercase;
+      }
+
+      .hero-title em {
+        color: var(--gold);
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 500;
+        letter-spacing: -0.09em;
+        text-transform: none;
+      }
+
+      .hero-copy {
+        max-width: 42rem;
+        margin-bottom: 1.45rem;
+        color: rgba(247, 240, 223, 0.74);
+        font-size: clamp(1rem, 2vw, 1.22rem);
+        line-height: 1.76;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+        max-width: 48rem;
+        margin: 1.25rem 0 1.5rem;
+      }
+
+      .metric {
+        padding: 0.9rem;
+        border: 1px solid var(--line-dark);
+        border-radius: 1.1rem;
+        background: rgba(247, 240, 223, 0.08);
+        backdrop-filter: blur(16px);
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 0.2rem;
+        color: var(--green);
+        font-size: 1.65rem;
+        line-height: 1;
+      }
+
+      .metric span {
+        color: rgba(247, 240, 223, 0.66);
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1.42;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        align-items: center;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.5rem;
+        padding: 0.95rem 1.35rem;
+        border: 1px solid rgba(37, 211, 102, 0.5);
+        border-radius: 999px;
+        background: linear-gradient(135deg, #2eff8f, #08a96b);
+        color: #03110b;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 1rem 2.8rem rgba(0, 193, 118, 0.25);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 1.25rem 3.3rem rgba(0, 193, 118, 0.34);
+      }
+
+      .cta.secondary {
+        border-color: rgba(247, 240, 223, 0.18);
+        background: rgba(247, 240, 223, 0.08);
+        color: var(--cream);
+        box-shadow: none;
+        backdrop-filter: blur(14px);
+      }
+
+      .ticker {
+        overflow: hidden;
+        border-block: 1px solid var(--line-dark);
+        background: #07100d;
+      }
+
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        gap: 2.2rem;
+        padding: 0.82rem 0;
+        animation: ticker 32s linear infinite;
+      }
+
+      .ticker span {
+        color: rgba(247, 240, 223, 0.78);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .dark-section {
+        padding: clamp(4rem, 8vw, 7rem) 0;
+        background: var(--panel);
+      }
+
+      .light-section {
+        padding: clamp(4rem, 8vw, 7rem) 0;
+        color: var(--ink);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.7fr) minmax(18rem, 0.3fr);
+        gap: clamp(1.2rem, 4vw, 3rem);
+        align-items: end;
+        margin-bottom: clamp(2rem, 4vw, 3.4rem);
+      }
+
+      .kicker {
+        margin-bottom: 0.7rem;
+        color: var(--green);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .light-section .kicker {
+        color: var(--green-deep);
+      }
+
+      .section-title {
+        max-width: 14ch;
+        margin-bottom: 0;
+        font-size: clamp(3rem, 7vw, 6.8rem);
+        font-weight: 900;
+        line-height: 0.86;
+        letter-spacing: -0.072em;
+        text-transform: uppercase;
+      }
+
+      .section-title em {
+        color: var(--gold);
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 500;
+        text-transform: none;
+      }
+
+      .light-section .section-title em {
+        color: var(--green-deep);
+      }
+
+      .section-copy {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.82;
+      }
+
+      .dark-section .section-copy {
+        color: rgba(247, 240, 223, 0.62);
+      }
+
+      .hook-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .hook-card,
+      .module-card,
+      .pillar-card,
+      .faq-card {
+        border: 1px solid var(--line-dark);
+        border-radius: 1.55rem;
+        background: rgba(247, 240, 223, 0.07);
+        backdrop-filter: blur(16px);
+      }
+
+      .hook-card {
+        padding: 1.35rem;
+      }
+
+      .hook-card::before {
+        display: block;
+        width: 3rem;
+        height: 0.22rem;
+        margin-bottom: 1.2rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--green), var(--gold));
+        content: '';
+      }
+
+      .hook-card h3,
+      .module-card h3,
+      .pillar-card h3,
+      .faq-card h3 {
+        margin-bottom: 0.55rem;
+        font-size: 1.12rem;
+        line-height: 1.18;
+        letter-spacing: -0.04em;
+      }
+
+      .hook-card p,
+      .module-card p,
+      .pillar-card p,
+      .faq-card p {
+        margin-bottom: 0;
+        color: rgba(247, 240, 223, 0.62);
+        line-height: 1.7;
+      }
+
+      .research-grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .image-panel {
+        overflow: hidden;
+        border: 1px solid var(--line-light);
+        border-radius: 2rem;
+        background: rgba(255, 250, 240, 0.55);
+        box-shadow: 0 2rem 5rem rgba(42, 30, 12, 0.11);
+      }
+
+      .image-panel img {
+        width: 100%;
+        height: 100%;
+        min-height: 34rem;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+
+      .module-list {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .module-card {
+        display: grid;
+        grid-template-columns: 4.5rem 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        border-color: var(--line-light);
+        background: rgba(255, 250, 240, 0.72);
+        box-shadow: 0 1.4rem 4rem rgba(42, 30, 12, 0.09);
+      }
+
+      .module-card p,
+      .pillar-card p,
+      .faq-card p {
+        color: #66736c;
+      }
+
+      .module-index {
+        display: grid;
+        height: 4.2rem;
+        place-items: center;
+        border-radius: 1rem;
+        background: var(--ink);
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      .pillar-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .pillar-card {
+        border-color: var(--line-light);
+        background: rgba(255, 250, 240, 0.76);
+        padding: 1.15rem;
+        color: var(--ink);
+      }
+
+      .pillar-card strong {
+        display: inline-flex;
+        margin-bottom: 1rem;
+        color: var(--green-deep);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .sectors {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.6rem;
+      }
+
+      .sectors span {
+        padding: 0.72rem 0.95rem;
+        border: 1px solid var(--line-light);
+        border-radius: 999px;
+        background: rgba(255, 250, 240, 0.78);
+        color: var(--ink);
+        font-size: 0.88rem;
+        font-weight: 800;
+      }
+
+      .closing {
+        padding: clamp(4rem, 8vw, 7rem) 0 calc(clamp(4rem, 8vw, 7rem) + 4rem);
+        background: var(--black);
+        color: var(--cream);
+      }
+
+      .closing-box {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(1.4rem, 5vw, 4rem);
+        border: 1px solid var(--line-dark);
+        border-radius: 2.4rem;
+        background:
+          linear-gradient(135deg, rgba(0, 193, 118, 0.14), transparent 42%),
+          radial-gradient(circle at 85% 15%, rgba(217, 179, 92, 0.22), transparent 24rem),
+          var(--panel);
+      }
+
+      .closing-box h2 {
+        max-width: 12ch;
+        margin-bottom: 1rem;
+        font-size: clamp(3rem, 7vw, 6.8rem);
+        font-weight: 900;
+        line-height: 0.86;
+        letter-spacing: -0.072em;
+        text-transform: uppercase;
+      }
+
+      .closing-box h2 em {
+        color: var(--gold);
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 500;
+        text-transform: none;
+      }
+
+      .closing-box > p {
+        max-width: 43rem;
+        color: rgba(247, 240, 223, 0.68);
+        font-size: 1.08rem;
+        line-height: 1.78;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .faq-card {
+        padding: 1.15rem;
+      }
+
+      .disclaimer {
+        margin-top: 1.6rem;
+        color: rgba(247, 240, 223, 0.46);
+        font-size: 0.8rem;
+        line-height: 1.72;
+      }
+
+      .floating-cta {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 20;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.2rem;
+        padding: 0.85rem 1.2rem;
+        border-radius: 999px;
+        background: #25d366;
+        color: #03110b;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 1rem 2.8rem rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes ticker {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 920px) {
+        body {
+          background: linear-gradient(180deg, #050807 0%, #0b1210 42rem, #f4ecd8 42.05rem, #fffaf0 100%);
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 0.75rem;
+        }
+
+        .hero-frame {
+          display: block;
+          min-height: auto;
+          border-radius: 1.6rem;
+          background: linear-gradient(180deg, #07110e 0%, #0b1210 100%);
+        }
+
+        .hero-frame::after {
+          display: none;
+        }
+
+        .hero-picture {
+          position: relative;
+          display: block;
+          overflow: hidden;
+          border-radius: 1.35rem;
+          background: #101a16;
+        }
+
+        .hero-picture::after {
+          position: absolute;
+          inset: auto 0 0;
+          height: 42%;
+          background: linear-gradient(180deg, transparent, rgba(5, 8, 7, 0.88));
+          content: '';
+        }
+
+        .hero-picture img {
+          height: auto;
+          aspect-ratio: 4 / 5;
+          object-fit: cover;
+          object-position: center top;
+        }
+
+        .hero-picture .desktop {
+          display: none;
+        }
+
+        .hero-picture .mobile {
+          display: block;
+        }
+
+        .hero-content {
+          align-content: end;
+          padding: 1.05rem 0.95rem 1.15rem;
+        }
+
+        .badge {
+          margin-bottom: 0.85rem;
+          font-size: 0.66rem;
+          letter-spacing: 0.12em;
+        }
+
+        .hero-title {
+          max-width: 10ch;
+          margin-bottom: 0.8rem;
+          font-size: clamp(2.85rem, 12.4vw, 5rem);
+          line-height: 0.88;
+        }
+
+        .hero-copy {
+          margin-bottom: 0.95rem;
+          color: rgba(247, 240, 223, 0.76);
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 0.55rem;
+          margin: 0.9rem 0 1rem;
+        }
+
+        .metric {
+          display: grid;
+          grid-template-columns: 4.2rem 1fr;
+          gap: 0.7rem;
+          align-items: center;
+          padding: 0.62rem 0.75rem;
+        }
+
+        .metric strong {
+          margin-bottom: 0;
+          font-size: 1.35rem;
+        }
+
+        .metric span {
+          font-size: 0.75rem;
+        }
+
+        .section-head,
+        .research-grid,
+        .hook-grid,
+        .pillar-grid,
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-title,
+        .closing-box h2 {
+          max-width: 10ch;
+          font-size: clamp(2.45rem, 11vw, 4.4rem);
+          line-height: 0.9;
+        }
+
+        .image-panel img {
+          height: auto;
+          min-height: 0;
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+        }
+
+        .dark-section,
+        .light-section,
+        .closing {
+          padding-block: 3.5rem;
+        }
+
+        .section-head {
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .hook-card,
+        .pillar-card,
+        .faq-card,
+        .module-card {
+          border-radius: 1.2rem;
+        }
+
+        .cta.secondary {
+          display: none;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .shell {
+          width: min(100% - 1.2rem, 1180px);
+        }
+
+        .hero-copy {
+          font-size: 0.95rem;
+          line-height: 1.58;
+        }
+
+        .hero-picture img {
+          aspect-ratio: 1 / 1.08;
+        }
+
+        .metric {
+          grid-template-columns: 3.65rem 1fr;
+        }
+
+        .actions,
+        .cta,
+        .floating-cta {
+          width: 100%;
+        }
+
+        .floating-cta {
+          right: 0.75rem;
+          bottom: 0.75rem;
+          width: calc(100% - 1.5rem);
+        }
+
+        .module-card {
+          grid-template-columns: 3.8rem 1fr;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <main class="page">
+    <section class="hero" aria-label="Singapore professional stock research hero">
+      <div class="hero-frame">
+        <picture class="hero-picture">
+          <img class="desktop" src={heroResearchRoom.src} alt="Professional Singapore equity research room with market screens" />
+          <img class="mobile" src={heroMobileResearch.src} alt="Mobile professional stock research dashboard for Singapore investors" />
+        </picture>
+        <div class="hero-content">
+          <p class="badge">Professional stock research room</p>
+          <h1 class="hero-title">Stop buying stories. <em>Start reading evidence.</em></h1>
+          <p class="hero-copy">Most retail investors see the stock after the headline. Our private Singapore room breaks down valuation, catalysts, timing, and risk so you can discuss potential winners before they become obvious.</p>
+          <div class="hero-grid" aria-label="Professional research highlights">
+            <div class="metric"><strong>4D</strong><span>Valuation, catalyst, timing, and risk framework</span></div>
+            <div class="metric"><strong>15m</strong><span>Fast stock teardown checklist for serious watchlists</span></div>
+            <div class="metric"><strong>SG</strong><span>Local lens across SG, US, Hong Kong, and Asia names</span></div>
+          </div>
+          <div class="actions">
+            <a class="cta link-btn" href="javascript:void(0)" aria-label="Join the private WhatsApp research room">Enter Private WhatsApp Room</a>
+            <a class="cta secondary" href="#framework">View research framework</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        {[...sectors, ...sectors].map((sector) => <span>{sector}</span>)}
+      </div>
+    </div>
+
+    <section class="dark-section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="kicker">The hook</p>
+            <h2 class="section-title">The market rewards <em>prepared</em> investors.</h2>
+          </div>
+          <p class="section-copy">A good stock idea is rarely just a ticker. It is a thesis, a valuation range, a catalyst, a trigger, and a risk plan. This room is built for Singapore investors who want that level of discussion.</p>
+        </div>
+
+        <div class="hook-grid">
+          {hooks.map((hook) => (
+            <article class="hook-card">
+              <h3>{hook[0]}</h3>
+              <p>{hook[1]}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="light-section" id="framework">
+      <div class="shell research-grid">
+        <div class="image-panel">
+          <img src={valuationDesk.src} alt="Professional stock valuation analysis desk" />
+        </div>
+        <div>
+          <p class="kicker">Research engine</p>
+          <h2 class="section-title">A stock is not cheap until the numbers agree.</h2>
+          <p class="section-copy">Inside the community, discussions are structured around research modules that make each idea easier to challenge, compare, and improve.</p>
+          <div class="module-list">
+            {modules.map((module) => (
+              <article class="module-card">
+                <div class="module-index">{module[0]}</div>
+                <div>
+                  <h3>{module[1]}</h3>
+                  <p>{module[2]}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light-section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Professional lens</p>
+            <h2 class="section-title">Four questions before any stock deserves capital.</h2>
+          </div>
+          <div>
+            <p class="section-copy">The goal is not to hype every moving ticker. The goal is to separate a real setup from a temporary pump before emotions take control.</p>
+            <div class="sectors" aria-label="Market sectors discussed">
+              {sectors.map((sector) => <span>{sector}</span>)}
+            </div>
+          </div>
+        </div>
+
+        <div class="pillar-grid">
+          {researchPillars.map((pillar, index) => (
+            <article class="pillar-card">
+              <strong>{String(index + 1).padStart(2, '0')} / {pillar[0]}</strong>
+              <h3>{pillar[0]} discipline</h3>
+              <p>{pillar[1]}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section">
+      <div class="shell research-grid">
+        <div>
+          <p class="kicker">Private briefing room</p>
+          <h2 class="section-title">Get closer to the conversations serious investors have.</h2>
+          <p class="section-copy">Join the room to follow sharper stock breakdowns, pre-market themes, catalyst watchlists, and member questions. It is designed to feel closer to an analyst desk than a noisy public chat.</p>
+          <div class="actions" style="margin-top: 1.4rem;">
+            <a class="cta link-btn" href="javascript:void(0)" aria-label="Join the Singapore stock research WhatsApp group">Join WhatsApp Research Room</a>
+          </div>
+        </div>
+        <div class="image-panel">
+          <img src={briefingBoardroom.src} alt="Elite Singapore investor briefing group in a boardroom" />
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="shell">
+        <div class="closing-box">
+          <p class="badge">Limited private access</p>
+          <h2>Your next serious stock idea may already be forming. <em>Get in earlier.</em></h2>
+          <p>Enter the private WhatsApp room and receive the research structure serious investors use to discuss stock opportunities: valuation, catalysts, timing, and risk. If you want to stop guessing from headlines, start here.</p>
+          <div class="actions">
+            <a class="cta link-btn" href="javascript:void(0)" aria-label="Enter the private WhatsApp room now">Enter Private WhatsApp Room</a>
+          </div>
+
+          <div class="faq-grid">
+            {faqs.map((faq) => (
+              <article class="faq-card">
+                <h3>{faq[0]}</h3>
+                <p>{faq[1]}</p>
+              </article>
+            ))}
+          </div>
+
+          <p class="disclaimer">Important: This page and community are for general educational discussion only. Content may include market opinions and watchlist ideas, but it is not personalized financial advice, an investment recommendation, or a guarantee of profit. Investing involves risk, including possible loss of capital.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="floating-cta link-btn" href="javascript:void(0)" aria-label="Join private WhatsApp stock research room">Enter WhatsApp Room</a>
+  </main>
+</BaseLayout>
