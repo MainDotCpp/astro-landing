@@ -1,0 +1,834 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import ITComplianceFooter from '@/pages/IT/components/ITComplianceFooter.astro'
+import paolucciAvatar from '../20260517-1.0/images/paolucci.png'
+
+const BRAND = {
+  nome: 'Bussola Mercati',
+  payoff: 'Osservatorio indipendente sui mercati italiani',
+}
+
+const PERSONA = {
+  nome: 'Gianluca Paolucci',
+  titolo: 'Analista indipendente dei mercati finanziari italiani',
+  tagline: 'Oltre 15 anni a osservare i flussi di capitale sull\'economia reale italiana',
+  avatar: paolucciAvatar.src,
+}
+
+const title = 'Bussola Mercati — I segnali che precedono i grandi movimenti sui mercati italiani'
+const description = 'I capitali si muovono in anticipo. Le analisi di Gianluca Paolucci ti aiutano a leggere i segnali prima che diventino evidenti a tutti.'
+---
+
+<BaseLayout title={title} description={description} lang="it">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --bg: #181310;
+        --bg-card: #231E1A;
+        --bg-elevated: #2D2722;
+        --copper: #D46A4A;
+        --copper-soft: rgba(212, 106, 74, 0.12);
+        --copper-glow: rgba(212, 106, 74, 0.06);
+        --amber: #E8C87A;
+        --text: #F0EAE0;
+        --text-soft: #C0B7AB;
+        --text-muted: #8E857A;
+        --border: #3A322C;
+        --border-light: rgba(212, 106, 74, 0.2);
+        --wa-green: #25D366;
+        --radius-sm: 8px;
+        --radius: 14px;
+        --max-w: 800px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1, h2, h3, h4, blockquote, .serif {
+        font-family: 'Playfair Display', serif;
+      }
+
+      /* ─── Animations ─── */
+      .r {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .r.active { opacity: 1; transform: translateY(0); }
+
+      .r-right {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .r-right.active { opacity: 1; transform: translateX(0); }
+
+      /* ─── Container ─── */
+      .w {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* ─── Nav ─── */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(24, 19, 16, 0.82);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-inner {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.65rem 1.5rem;
+        gap: 1rem;
+      }
+
+      .nav-l {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .nav-mark {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--copper);
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-mark::after {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: var(--copper);
+        border-radius: 50%;
+      }
+
+      .nav-cta {
+        font-size: 0.75rem;
+        font-weight: 600;
+        background: var(--copper);
+        color: #fff;
+        border: none;
+        padding: 0.45rem 1rem;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 0.02em;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+
+      .nav-cta:hover { background: #BF5D3E; }
+
+      /* ─── Hero ─── */
+      .hero {
+        padding: 5rem 0 3.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .hero-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: var(--copper);
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-label::before {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: var(--copper);
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5.5vw, 3.25rem);
+        line-height: 1.18;
+        font-weight: 800;
+        color: var(--text);
+        margin: 0 0 1.5rem;
+        max-width: 680px;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        color: var(--copper);
+      }
+
+      .hero-sub {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: var(--text-soft);
+        max-width: 560px;
+        margin: 0 0 1.75rem;
+        font-weight: 300;
+      }
+
+      .hero-byline {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        padding: 1rem 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+      }
+
+      .hero-byline-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+      }
+
+      .hero-byline-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .btn-copper {
+        display: inline-block;
+        background: var(--copper);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        padding: 1rem 2.25rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s;
+        width: 100%;
+        max-width: 440px;
+        text-align: center;
+      }
+
+      .btn-copper:hover {
+        background: #BF5D3E;
+        transform: translateY(-1px);
+      }
+
+      .hero-note {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 0.75rem;
+      }
+
+      /* ─── Section base ─── */
+      .sec {
+        padding: 4rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.4rem, 3.5vw, 2rem);
+        font-weight: 700;
+        color: var(--text);
+        margin: 0 0 1.5rem;
+        line-height: 1.25;
+      }
+
+      .h2 em { color: var(--copper); font-style: italic; }
+
+      /* ─── Due Mondi ─── */
+      .duo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .duo-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 1.75rem;
+        border-radius: var(--radius);
+      }
+
+      .duo-card-label {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+
+      .duo-card-label.who { color: var(--amber); }
+      .duo-card-label.what { color: var(--copper); }
+
+      .duo-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0 0 0.7rem;
+      }
+
+      .duo-card p {
+        font-size: 0.88rem;
+        line-height: 1.7;
+        color: var(--text-soft);
+        margin: 0;
+      }
+
+      /* ─── Segnali (numbered flow) ─── */
+      .segnali-grid {
+        display: grid;
+        gap: 1.25rem;
+        margin-top: 0.5rem;
+      }
+
+      .segnale {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .segnale:last-child { border-bottom: none; }
+
+      .segnale-num {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.25rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--copper);
+        opacity: 0.5;
+        min-width: 3rem;
+        flex-shrink: 0;
+      }
+
+      .segnale-body h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin: 0 0 0.4rem;
+      }
+
+      .segnale-body p {
+        font-size: 0.9rem;
+        color: var(--text-soft);
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* ─── Errore (pull quote with insight) ─── */
+      .errore {
+        background: linear-gradient(180deg, var(--copper-glow), transparent);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 4rem 0;
+      }
+
+      .errore-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .errore-quote {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        line-height: 1.5;
+        color: var(--text);
+        font-style: italic;
+        position: relative;
+        padding-left: 2rem;
+        border-left: 3px solid var(--copper);
+      }
+
+      .errore-quote strong {
+        color: var(--copper);
+        font-style: normal;
+      }
+
+      .errore-text p {
+        font-size: 0.92rem;
+        line-height: 1.8;
+        color: var(--text-soft);
+        margin: 0;
+      }
+
+      .errore-text p + p {
+        margin-top: 1rem;
+      }
+
+      /* ─── Metodo ─── */
+      .metodo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+
+      .metodo-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+      }
+
+      .metodo-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+        background: var(--copper-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+        color: var(--copper);
+      }
+
+      .metodo-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin: 0 0 0.5rem;
+      }
+
+      .metodo-item p {
+        font-size: 0.85rem;
+        color: var(--text-soft);
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      /* ─── About ─── */
+      .about-card {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2rem;
+        margin-top: 0.5rem;
+      }
+
+      .about-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 2px solid var(--border-light);
+      }
+
+      .about-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .about-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0 0 0.15rem;
+      }
+
+      .about-role {
+        font-size: 0.82rem;
+        color: var(--copper);
+        margin: 0 0 0.6rem;
+      }
+
+      .about-bio {
+        font-size: 0.88rem;
+        line-height: 1.7;
+        color: var(--text-soft);
+        margin: 0;
+      }
+
+      /* ─── Benefits ─── */
+      .ben-list {
+        display: grid;
+        gap: 0.9rem;
+        margin-top: 0.5rem;
+      }
+
+      .ben-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+      }
+
+      .ben-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--copper);
+        flex-shrink: 0;
+      }
+
+      .ben-item span {
+        font-size: 0.92rem;
+        color: var(--text-soft);
+        line-height: 1.5;
+      }
+
+      /* ─── CTA Finale ─── */
+      .cta-finale {
+        text-align: center;
+        padding: 5rem 0;
+      }
+
+      .cta-finale h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.6rem, 4vw, 2.3rem);
+        line-height: 1.3;
+        margin: 0 0 0.75rem;
+        color: var(--text);
+      }
+
+      .cta-finale-sub {
+        font-size: 1rem;
+        color: var(--text-soft);
+        max-width: 480px;
+        margin: 0 auto 2.5rem;
+        font-weight: 300;
+      }
+
+      .btn-wa {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        background: var(--wa-green);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 1.1rem 2.5rem;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        transition: all 0.25s;
+        width: 100%;
+        max-width: 440px;
+        text-align: center;
+      }
+
+      .btn-wa:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(37, 211, 102, 0.25);
+      }
+
+      .cta-guarantee {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-top: 1rem;
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 768px) {
+        .hero { padding: 3rem 0 2.5rem; }
+        .sec { padding: 2.5rem 0; }
+
+        .duo { grid-template-columns: 1fr; }
+        .errore-grid { grid-template-columns: 1fr; }
+        .metodo-grid { grid-template-columns: 1fr; }
+
+        .about-card {
+          flex-direction: column;
+          text-align: center;
+          padding: 1.5rem;
+        }
+
+        .btn-copper, .btn-wa { max-width: 100%; }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 { font-size: 1.65rem; }
+        .segnale-num { font-size: 1.75rem; min-width: 2.25rem; }
+        .segnale { gap: 1rem; }
+        .nav-l .nav-label { display: none; }
+      }
+    </style>
+  </Fragment>
+
+  <!-- ─── Nav ─── -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-l">
+        <span class="nav-mark"></span>
+        <span class="nav-label">{BRAND.nome}</span>
+      </div>
+      <button onclick="window.onLinkBtnClick()" class="nav-cta">Ricevi le analisi</button>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ─── -->
+  <section class="hero">
+    <div class="w">
+      <div class="hero-label r">Osservatorio</div>
+      <h1 class="r">
+        I grandi capitali vedono quello che tu non vedi ancora.
+        <em>Ed è proprio lì che si gioca la partita.</em>
+      </h1>
+      <p class="hero-sub r">
+        Non serve essere un professionista per capire dove si stanno muovendo i capitali. Serve avere le informazioni giuste, al momento giusto.
+      </p>
+      <div class="hero-byline r">
+        <div class="hero-byline-avatar">
+          <img src={PERSONA.avatar} alt={PERSONA.nome} width="36" height="36" />
+        </div>
+        <span>{PERSONA.nome} — {PERSONA.titolo}</span>
+      </div>
+      <button onclick="window.onLinkBtnClick()" class="btn-copper r">
+        Accedi alle analisi gratuite
+      </button>
+      <p class="hero-note r">Nessuna registrazione richiesta. Accesso immediato su WhatsApp.</p>
+    </div>
+  </section>
+
+  <!-- ─── Due mondi ─── -->
+  <section class="sec">
+    <div class="w">
+      <p class="r" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.25rem;">Il divario</p>
+      <h2 class="h2 r">Perché c'è <em>chi sa</em> e c'è <em>chi scopre dopo</em></h2>
+      <div class="duo">
+        <div class="duo-card r-right">
+          <span class="duo-card-label who">Chi sa prima</span>
+          <h3>I grandi capitali</h3>
+          <p>
+            Fondi istituzionali e investitori professionali dedicano risorse costanti all'analisi dei flussi macroeconomici. Non agiscono per caso — agiscono sulla base di segnali strutturali che anticipano i movimenti di mercato.
+          </p>
+        </div>
+        <div class="duo-card r-right" style="transition-delay: 120ms;">
+          <span class="duo-card-label what">Chi arriva dopo</span>
+          <h3>La maggioranza</h3>
+          <p>
+            Spesso si parla di un settore solo quando è già sulla stampa mainstream. A quel punto, gran parte del movimento è già avvenuto. La differenza non è l'intelligenza — è l'accesso alle informazioni nel momento giusto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Segnali ─── -->
+  <section class="sec">
+    <div class="w">
+      <p class="r" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.25rem;">I segnali</p>
+      <h2 class="h2 r">Cosa sta succedendo <em>sotto la superficie</em></h2>
+      <div class="segnali-grid">
+        <div class="segnale r">
+          <div class="segnale-num">01</div>
+          <div class="segnale-body">
+            <h4>Il capitale segue le infrastrutture</h4>
+            <p>I piani di investimento annunciati a livello europeo stanno ridisegnando le priorità dei flussi di capitale. I settori che beneficiano di investimenti strutturali tendono ad attrarre capitali prima che il movimento diventi visibile sui listini.</p>
+          </div>
+        </div>
+        <div class="segnale r">
+          <div class="segnale-num">02</div>
+          <div class="segnale-body">
+            <h4>La filiera vale più del prodotto finale</h4>
+            <p>Uno dei cambiamenti meno compresi è lo spostamento dell'attenzione verso le aziende che operano nella catena del valore, non solo verso i nomi noti al grande pubblico. È lì che si concentrano le rivalutazioni silenziose.</p>
+          </div>
+        </div>
+        <div class="segnale r">
+          <div class="segnale-num">03</div>
+          <div class="segnale-body">
+            <h4>Il contesto geopolitico accelera i processi</h4>
+            <p>Le scelte di politica industriale e di sicurezza economica stanno comprimendo i tempi di adattamento dei mercati. Capire la direzione del cambiamento è il primo passo per osservare con chiarezza ciò che accade.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Errore ─── -->
+  <section class="errore">
+    <div class="w">
+      <div class="errore-grid">
+        <div class="errore-quote r">
+          "L'errore più comune non è non sapere. È <strong>sapere quando è troppo tardi</strong>."
+        </div>
+        <div class="errore-text r">
+          <p>
+            La differenza tra chi osserva il mercato con consapevolezza e chi lo subisce non sta nelle competenze tecniche. Sta nella tempistica e nella qualità delle informazioni disponibili.
+          </p>
+          <p>
+            Le analisi di {BRAND.nome} nascono per colmare questo divario: tradurre i movimenti dei grandi capitali in informazioni chiare, utilizzabili da chiunque voglia capire prima — non dopo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Metodo ─── -->
+  <section class="sec">
+    <div class="w">
+      <h2 class="h2 r">Come funziona <em>l'analisi</em></h2>
+      <div class="metodo-grid">
+        <div class="metodo-item r-right">
+          <div class="metodo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </div>
+          <h4>Analisi settimanale</h4>
+          <p>Ogni settimana una sintesi dei settori sotto osservazione, senza linguaggio tecnico e senza promesse.</p>
+        </div>
+        <div class="metodo-item r-right">
+          <div class="metodo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h12M4 18h8" />
+            </svg>
+          </div>
+          <h4>Focus sui flussi</h4>
+          <p>Non azioni calde o raccomandazioni, ma l'analisi dei movimenti di capitale che precedono i cambiamenti.</p>
+        </div>
+        <div class="metodo-item r-right">
+          <div class="metodo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+          </div>
+          <h4>Senza conflitto</h4>
+          <p>L'analisi è indipendente. Nessuna promozione di strumenti finanziari, nessun conflitto di interessi.</p>
+        </div>
+        <div class="metodo-item r-right">
+          <div class="metodo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+            </svg>
+          </div>
+          <h4>Accesso diretto</h4>
+          <p>Le analisi arrivano direttamente su WhatsApp. Niente app, niente portali, niente complicazioni.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── About ─── -->
+  <section class="sec" style="border-bottom: none; padding-bottom: 0;">
+    <div class="w">
+      <div class="about-card r">
+        <div class="about-avatar">
+          <img src={PERSONA.avatar} alt={PERSONA.nome} width="80" height="80" />
+        </div>
+        <div>
+          <h3 class="about-name">{PERSONA.nome}</h3>
+          <p class="about-role">{PERSONA.titolo}</p>
+          <p class="about-bio">{PERSONA.tagline}. Ha creato {BRAND.nome} per condividere l'osservazione dei mercati in modo accessibile, senza promesse di rendimento e senza gergo tecnico. La sua analisi si basa sullo studio dei flussi di capitale, non su previsioni o raccomandazioni.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Benefits ─── -->
+  <section class="sec" style="border-bottom: none;">
+    <div class="w">
+      <h2 class="h2 r">Cosa ricevi, <em>gratuitamente</em></h2>
+      <div class="ben-list">
+        <div class="ben-item r">
+          <span class="ben-dot"></span>
+          <span>Sintesi periodiche sui settori dove si concentrano i capitali</span>
+        </div>
+        <div class="ben-item r">
+          <span class="ben-dot"></span>
+          <span>Analisi dei flussi macroeconomici, in italiano e senza complicazioni</span>
+        </div>
+        <div class="ben-item r">
+          <span class="ben-dot"></span>
+          <span>Contenuti educativi per comprendere la logica dietro i movimenti</span>
+        </div>
+        <div class="ben-item r">
+          <span class="ben-dot"></span>
+          <span>Accesso WhatsApp gratuito, nessuno spam, cancellazione immediata</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA Finale ─── -->
+  <section class="cta-finale">
+    <div class="w">
+      <h2 class="r">Pronto a vedere cosa gli altri non vedono ancora?</h2>
+      <p class="cta-finale-sub r">Le analisi di {PERSONA.nome} ti aspettano su WhatsApp. Gratuite, chiare, indipendenti.</p>
+      <button onclick="window.onLinkBtnClick()" class="btn-wa r">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+        Unisciti al canale WhatsApp
+      </button>
+      <p class="cta-guarantee r">Gratuito · Nessun obbligo · Disiscrizione libera · Nessuna promessa di rendimento</p>
+    </div>
+  </section>
+
+  <ITComplianceFooter brand={BRAND} />
+
+  <script is:inline>
+  (function () {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.08 },
+    )
+
+    document.querySelectorAll('.r, .r-right').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 6) * 70}ms`
+      observer.observe(el)
+    })
+  })()
+  </script>
+</BaseLayout>

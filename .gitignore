@@ -6,6 +6,7 @@ dist/
 # dependencies
 node_modules/
 
+
 # logs
 npm-debug.log*
 yarn-debug.log*
@@ -23,3 +24,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 /www/
+.claude/
+
+# Superpowers brainstorm companion
+.superpowers/

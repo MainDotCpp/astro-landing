@@ -1,0 +1,878 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import ITComplianceFooter from '@/pages/IT/components/ITComplianceFooter.astro'
+import paolucciAvatar from '../20260517-1.0/images/paolucci.png'
+
+const BRAND = {
+  nome: 'Bussola Mercati',
+  payoff: 'Osservatorio indipendente sui mercati italiani',
+}
+
+const PERSONA = {
+  nome: 'Gianluca Paolucci',
+  titolo: 'Analista indipendente dei mercati finanziari italiani',
+  tagline: 'Oltre 15 anni a osservare i flussi di capitale sull\'economia reale italiana',
+  avatar: paolucciAvatar.src,
+}
+
+const title = 'Bussola Mercati — Analisi sui mercati italiani: semiconduttori, energia e difesa'
+const description = 'Analisi indipendente sui flussi di capitale che tornano su tre settori chiave dell\'economia reale italiana. Ricevi gratuitamente le sintesi di mercato su WhatsApp.'
+---
+
+<BaseLayout title={title} description={description} lang="it">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --navy: #0A0E1A;
+        --navy-2: #111827;
+        --navy-card: rgba(26, 35, 65, 0.6);
+        --gold: #C9A84C;
+        --gold-light: rgba(201, 168, 76, 0.12);
+        --gold-glow: rgba(201, 168, 76, 0.08);
+        --cream: #F0EDE6;
+        --cream-soft: rgba(240, 237, 230, 0.65);
+        --cream-muted: rgba(240, 237, 230, 0.4);
+        --border-subtle: rgba(201, 168, 76, 0.18);
+        --wa-green: #25D366;
+        --radius: 16px;
+      }
+
+      body {
+        background: var(--navy);
+        color: var(--cream);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, .serif {
+        font-family: 'Playfair Display', serif;
+      }
+
+      /* ─── Ambient BG ─── */
+      .bg-ambient {
+        position: absolute;
+        pointer-events: none;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.35;
+      }
+
+      .bg-ambient--gold {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent);
+        top: -15%;
+        right: -10%;
+      }
+
+      .bg-ambient--blue {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+        bottom: 10%;
+        left: -10%;
+      }
+
+      /* ─── Animations ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal-scale.active {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+
+      /* ─── Container ─── */
+      .lx-container {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .lx-section {
+        padding: 5rem 0;
+      }
+
+      /* ─── Navigation ─── */
+      .lx-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(10, 14, 26, 0.75);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .lx-nav-inner {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .lx-nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--cream);
+        letter-spacing: 0.06em;
+      }
+
+      .lx-nav-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: inline-block;
+      }
+
+      .lx-nav-cta {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--cream);
+        background: transparent;
+        border: 1px solid var(--gold);
+        padding: 0.45rem 1.1rem;
+        cursor: pointer;
+        letter-spacing: 0.03em;
+        transition: all 0.25s;
+        font-family: 'Inter', sans-serif;
+        white-space: nowrap;
+      }
+
+      .lx-nav-cta:hover {
+        background: var(--gold);
+        color: var(--navy);
+      }
+
+      /* ─── Hero ─── */
+      .lx-hero {
+        position: relative;
+        padding: 5rem 0 4rem;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .lx-hero::before {
+        content: '';
+        position: absolute;
+        top: -30%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .lx-hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--gold-light);
+        border: 1px solid var(--border-subtle);
+        padding: 0.35rem 1rem;
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--gold);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+
+      .lx-hero h1 {
+        font-size: clamp(2rem, 5.5vw, 3.25rem);
+        line-height: 1.2;
+        font-weight: 700;
+        color: var(--cream);
+        margin: 0 auto 1.5rem;
+        max-width: 700px;
+      }
+
+      .lx-accent-gold {
+        background: linear-gradient(135deg, #C9A84C 0%, #E8D48B 50%, #C9A84C 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .lx-hero-standfirst {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: var(--cream-soft);
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        font-weight: 300;
+      }
+
+      .lx-hero-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        font-size: 0.8rem;
+        color: var(--cream-muted);
+        margin-bottom: 2.5rem;
+      }
+
+      .lx-hero-meta-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--border-subtle);
+        flex-shrink: 0;
+      }
+
+      .lx-hero-meta-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .lx-btn-gold {
+        display: inline-block;
+        background: linear-gradient(135deg, #C9A84C, #E0C872);
+        color: #0A0E1A;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 1rem 2.5rem;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 0.02em;
+        transition: all 0.25s;
+        width: 100%;
+        max-width: 440px;
+        text-align: center;
+      }
+
+      .lx-btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(201, 168, 76, 0.25);
+      }
+
+      .lx-hero-note {
+        font-size: 0.75rem;
+        color: var(--cream-muted);
+        margin-top: 0.8rem;
+      }
+
+      /* ─── Section heading ─── */
+      .lx-h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--cream);
+        margin: 0 0 1.5rem;
+      }
+
+      .lx-h2-gold {
+        display: inline-block;
+        background: linear-gradient(135deg, #C9A84C, #E8D48B);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ─── Contesto ─── */
+      .lx-contesto {
+        background: linear-gradient(180deg, transparent, rgba(201, 168, 76, 0.02));
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .lx-contesto p {
+        font-size: 1rem;
+        line-height: 1.85;
+        color: var(--cream-soft);
+        margin: 0;
+      }
+
+      /* ─── Tre settori (glass cards) ─── */
+      .lx-settori-grid {
+        display: grid;
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+
+      .lx-settore-card {
+        background: var(--navy-card);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border-subtle);
+        padding: 1.75rem 2rem;
+        border-radius: var(--radius);
+        transition: all 0.35s;
+      }
+
+      .lx-settore-card:hover {
+        border-color: rgba(201, 168, 76, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      }
+
+      .lx-settore-num {
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+
+      .lx-settore-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--cream);
+        margin: 0 0 0.9rem;
+      }
+
+      .lx-settore-body {
+        font-size: 0.92rem;
+        line-height: 1.8;
+        color: var(--cream-soft);
+        margin: 0;
+      }
+
+      .lx-settore-disclaimer {
+        font-size: 0.68rem;
+        color: var(--cream-muted);
+        margin-top: 1rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      /* ─── Blockquote ─── */
+      .lx-blockquote {
+        background: linear-gradient(180deg, rgba(201, 168, 76, 0.04), transparent);
+        padding: 4.5rem 1.5rem;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        text-align: center;
+      }
+
+      .lx-blockquote-inner {
+        max-width: 640px;
+        margin: 0 auto;
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.35rem, 3vw, 2rem);
+        line-height: 1.5;
+        color: var(--cream);
+        font-style: italic;
+        position: relative;
+      }
+
+      .lx-blockquote-inner::before {
+        content: '\201C';
+        display: block;
+        font-size: 4.5rem;
+        line-height: 1;
+        color: var(--gold);
+        opacity: 0.5;
+        margin-bottom: 0.5rem;
+        font-style: normal;
+      }
+
+      .lx-blockquote-divider {
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        margin: 1.5rem auto 0;
+      }
+
+      /* ─── Chi c'è dietro ─── */
+      .lx-persona {
+        background: linear-gradient(180deg, transparent, rgba(201, 168, 76, 0.02));
+      }
+
+      .lx-persona-block {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 2rem;
+        align-items: start;
+        background: var(--navy-card);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius);
+        padding: 2rem;
+        margin-top: 2rem;
+      }
+
+      .lx-persona-avatar {
+        width: 108px;
+        height: 108px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--border-subtle);
+        background: #1a2341;
+      }
+
+      .lx-persona-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .lx-persona-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--cream);
+        margin: 0 0 0.25rem;
+      }
+
+      .lx-persona-titolo {
+        font-size: 0.85rem;
+        color: var(--gold);
+        margin: 0 0 0.9rem;
+        font-weight: 500;
+      }
+
+      .lx-persona-tagline {
+        font-size: 0.8rem;
+        color: var(--cream-muted);
+        padding: 0.7rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+
+      .lx-persona-bio {
+        font-size: 0.92rem;
+        line-height: 1.8;
+        color: var(--cream-soft);
+        margin: 0;
+      }
+
+      /* ─── Benefits ─── */
+      .lx-benefits-grid {
+        display: grid;
+        gap: 0.9rem;
+        margin-top: 2rem;
+      }
+
+      .lx-benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.1rem;
+        background: var(--navy-card);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        transition: all 0.3s;
+      }
+
+      .lx-benefit-item:hover {
+        border-color: rgba(201, 168, 76, 0.3);
+      }
+
+      .lx-benefit-icon {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        color: var(--gold);
+        margin-top: 0.15rem;
+      }
+
+      .lx-benefit-text {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: var(--cream-soft);
+      }
+
+      /* ─── CTA Finale ─── */
+      .lx-cta-finale {
+        text-align: center;
+        padding: 5rem 0;
+        position: relative;
+      }
+
+      .lx-cta-finale::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .lx-cta-finale h2 {
+        font-size: clamp(1.6rem, 4vw, 2.3rem);
+        line-height: 1.3;
+        margin: 0 0 1rem;
+        color: var(--cream);
+      }
+
+      .lx-cta-finale-sub {
+        color: var(--cream-soft);
+        font-size: 1rem;
+        margin: 0 auto 2.5rem;
+        max-width: 460px;
+        line-height: 1.7;
+        font-weight: 300;
+      }
+
+      .lx-btn-wa {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        background: var(--wa-green);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 1.1rem 2.5rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: all 0.25s;
+        width: 100%;
+        max-width: 440px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .lx-btn-wa:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(37, 211, 102, 0.3);
+      }
+
+      .lx-btn-wa svg {
+        flex-shrink: 0;
+      }
+
+      .lx-cta-guarantee {
+        font-size: 0.72rem;
+        color: var(--cream-muted);
+        margin-top: 1rem;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ─── Divider ─── */
+      .lx-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+        margin: 0;
+        border: none;
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 768px) {
+        .lx-section {
+          padding: 3rem 0;
+        }
+
+        .lx-hero {
+          padding: 3.5rem 0 2.5rem;
+        }
+
+        .lx-persona-block {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+          text-align: center;
+        }
+
+        .lx-persona-avatar {
+          width: 80px;
+          height: 80px;
+          margin: 0 auto;
+        }
+
+        .lx-btn-gold {
+          max-width: 100%;
+        }
+
+        .lx-btn-wa {
+          max-width: 100%;
+        }
+
+        .lx-settore-card {
+          padding: 1.25rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .lx-hero h1 {
+          font-size: 1.7rem;
+        }
+
+        .lx-h2 {
+          font-size: 1.4rem;
+        }
+
+        .lx-persona-block {
+          padding: 1.25rem;
+        }
+
+        .lx-persona-name {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <!-- ─── Navigation ─── -->
+  <nav class="lx-nav">
+    <div class="lx-nav-inner">
+      <span class="lx-nav-brand">
+        <span class="lx-nav-dot"></span>
+        {BRAND.nome}
+      </span>
+      <button onclick="window.onLinkBtnClick()" class="lx-nav-cta">
+        Ricevi le analisi
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ─── -->
+  <section class="lx-hero">
+    <div class="bg-ambient bg-ambient--gold"></div>
+    <div class="lx-container" style="position: relative; z-index: 1;">
+      <div class="lx-hero-badge reveal">Dossier · Mercati</div>
+
+      <h1 class="reveal">
+        Mentre tutti guardano le criptovalute,<br />
+        qualcosa si muove sulle <span class="lx-accent-gold">azioni italiane</span>.
+      </h1>
+
+      <p class="lx-hero-standfirst reveal">
+        Non è fortuna. Non sono criptovalute. È un'analisi dei flussi di capitale che stanno tornando su tre settori chiave dell'economia reale italiana: semiconduttori, energia e difesa.
+      </p>
+
+      <div class="lx-hero-meta reveal">
+        <div class="lx-hero-meta-avatar">
+          <img src={PERSONA.avatar} alt={PERSONA.nome} width="36" height="36" />
+        </div>
+        <span>A cura di <strong style="color: var(--cream); font-weight: 600;">{PERSONA.nome}</strong> · {PERSONA.titolo} · Maggio 2026</span>
+      </div>
+
+      <button onclick="window.onLinkBtnClick()" class="lx-btn-gold reveal">
+        Ricevi gratuitamente le analisi di mercato
+      </button>
+      <p class="lx-hero-note reveal">Accesso gratuito · Nessuna promessa di rendimento</p>
+    </div>
+  </section>
+
+  <hr class="lx-divider" />
+
+  <!-- ─── Il contesto ─── -->
+  <section class="lx-contesto lx-section">
+    <div class="lx-container">
+      <h2 class="lx-h2 reveal">Il <span class="lx-h2-gold">contesto</span></h2>
+      <p class="reveal">
+        Negli ultimi mesi l'attenzione dei grandi capitali si è progressivamente spostata. Non verso asset speculativi, ma verso aziende quotate dell'economia reale italiana. Tre settori, in particolare, concentrano oggi i flussi: semiconduttori, energia e difesa. Capire perché — e con quale logica si muovono i capitali — è ciò che distingue chi osserva il mercato da chi lo subisce.
+      </p>
+    </div>
+  </section>
+
+  <hr class="lx-divider" />
+
+  <!-- ─── I tre settori ─── -->
+  <section class="lx-section">
+    <div class="lx-container">
+      <h2 class="lx-h2 reveal">I tre settori sotto <span class="lx-h2-gold">osservazione</span></h2>
+      <div class="lx-settori-grid">
+
+        <article class="lx-settore-card reveal-scale">
+          <span class="lx-settore-num">01 · Semiconduttori</span>
+          <h3 class="lx-settore-name">Semiconduttori</h3>
+          <p class="lx-settore-body">
+            La domanda globale di chip e la spinta europea verso l'autonomia tecnologica stanno riportando attenzione sulle filiere produttive del continente. Il ruolo dell'Italia nella catena del valore è oggetto di rivalutazione da parte del mercato.
+          </p>
+          <p class="lx-settore-disclaimer">Analisi di contesto. Non costituisce raccomandazione di acquisto.</p>
+        </article>
+
+        <article class="lx-settore-card reveal-scale">
+          <span class="lx-settore-num">02 · Energia</span>
+          <h3 class="lx-settore-name">Energia</h3>
+          <p class="lx-settore-body">
+            La ridefinizione degli approvvigionamenti energetici europei e gli investimenti in infrastrutture stanno ridisegnando il peso del settore. I capitali tendono a seguire dove si concentrano gli investimenti strutturali.
+          </p>
+          <p class="lx-settore-disclaimer">Analisi di contesto. Non costituisce raccomandazione di acquisto.</p>
+        </article>
+
+        <article class="lx-settore-card reveal-scale">
+          <span class="lx-settore-num">03 · Difesa</span>
+          <h3 class="lx-settore-name">Difesa</h3>
+          <p class="lx-settore-body">
+            L'aumento strutturale della spesa per la difesa in Europa è un dato pubblico. Comprendere come questo contesto si rifletta sulle aziende quotate è materia di analisi, non di previsione.
+          </p>
+          <p class="lx-settore-disclaimer">Analisi di contesto. Non costituisce raccomandazione di acquisto.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="lx-divider" />
+
+  <!-- ─── Blockquote ─── -->
+  <section class="lx-blockquote">
+    <div class="lx-blockquote-inner reveal">
+      La vera domanda non è quanto si può guadagnare. È se preferisci capire cosa sta succedendo prima — o dopo tutti gli altri.
+      <div class="lx-blockquote-divider"></div>
+    </div>
+  </section>
+
+  <hr class="lx-divider" />
+
+  <!-- ─── Chi c'è dietro ─── -->
+  <section class="lx-persona lx-section">
+    <div class="lx-container">
+      <h2 class="lx-h2 reveal">Chi c'è dietro <span class="lx-h2-gold">l'analisi</span></h2>
+      <div class="lx-persona-block reveal-scale">
+        <div class="lx-persona-avatar">
+          <img src={PERSONA.avatar} alt={PERSONA.nome} width="108" height="108" />
+        </div>
+        <div>
+          <h3 class="lx-persona-name">{PERSONA.nome}</h3>
+          <p class="lx-persona-titolo">{PERSONA.titolo}</p>
+          <p class="lx-persona-tagline">{PERSONA.tagline}</p>
+          <p class="lx-persona-bio">
+            Seguo i mercati italiani da oltre quindici anni, con un'attenzione particolare ai settori che i grandi capitali scelgono nei momenti di svolta. Ho creato {BRAND.nome} per condividere questa analisi in modo accessibile, senza promesse di rendimento e senza gergo tecnico. Il mio obiettivo è che tu capisca la logica — non che compri qualcosa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="lx-divider" />
+
+  <!-- ─── Cosa ricevi ─── -->
+  <section class="lx-section">
+    <div class="lx-container">
+      <h2 class="lx-h2 reveal">Cosa ricevi, <span class="lx-h2-gold">gratuitamente</span></h2>
+      <div class="lx-benefits-grid" style="list-style: none; padding: 0; margin-top: 2rem;">
+
+        <div class="lx-benefit-item reveal-scale">
+          <svg class="lx-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h12M4 18h8" />
+          </svg>
+          <span class="lx-benefit-text">Sintesi di mercato aggiornate, in italiano e senza gergo tecnico</span>
+        </div>
+
+        <div class="lx-benefit-item reveal-scale">
+          <svg class="lx-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg>
+          <span class="lx-benefit-text">Analisi dei settori dove si stanno concentrando i capitali</span>
+        </div>
+
+        <div class="lx-benefit-item reveal-scale">
+          <svg class="lx-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          </svg>
+          <span class="lx-benefit-text">Contenuti educativi per capire la logica dietro i movimenti</span>
+        </div>
+
+        <div class="lx-benefit-item reveal-scale">
+          <svg class="lx-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+          <span class="lx-benefit-text">Accesso al canale WhatsApp gratuito, nessuno spam, disiscrizione in un tocco</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="lx-divider" />
+
+  <!-- ─── CTA Finale ─── -->
+  <section class="lx-cta-finale">
+    <div class="bg-ambient bg-ambient--blue"></div>
+    <div class="lx-container" style="position: relative; z-index: 1;">
+      <h2 class="serif reveal">Vuoi posizionarti in anticipo, o restare a guardare?</h2>
+      <p class="lx-cta-finale-sub reveal">Ricevi gratuitamente le analisi di mercato più aggiornate, direttamente su WhatsApp.</p>
+      <button onclick="window.onLinkBtnClick()" class="lx-btn-wa reveal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+        Ricevi le analisi gratis su WhatsApp
+      </button>
+      <p class="lx-cta-guarantee reveal">Gratuito · Nessun obbligo · Nessuna promessa di rendimento · Disiscrizione libera</p>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─── -->
+  <ITComplianceFooter brand={BRAND} />
+
+  <script is:inline>
+  (function () {
+    // IntersectionObserver for reveals (staggered by delay)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 5) * 80}ms`
+      observer.observe(el)
+    })
+
+    document.querySelectorAll('.reveal-scale').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 100}ms`
+      observer.observe(el)
+    })
+
+    if (document.querySelector('.lx-hero .reveal')) {
+      document.querySelectorAll('.lx-hero .reveal').forEach((el, i) => {
+        el.style.transitionDelay = `${i * 120}ms`
+      })
+    }
+  })()
+  </script>
+</BaseLayout>

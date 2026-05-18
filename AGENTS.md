@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -100,7 +100,3 @@ Pages specify plugins via props: `plugins={['aos', 'jquery', 'googleFontsKR']}`
 - `.link-btn` class elements automatically get `mixinJump` click handler via `src/utils/main.js`
 - Responsive breakpoints: 768px (mobile), 480px (small mobile), 1024px (tablet)
 - Root `index.astro` auto-discovers all pages using `import.meta.glob()`
-
-## Skill Usage
-
-- 当任务涉及 CSS 样式、UI 视觉设计、页面布局或组件外观时，必须优先调用 `frontend-design` skill 获取设计指导后再实现代码。

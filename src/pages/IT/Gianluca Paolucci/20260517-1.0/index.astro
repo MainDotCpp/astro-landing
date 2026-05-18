@@ -1,0 +1,649 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import ITComplianceFooter from '@/pages/IT/components/ITComplianceFooter.astro'
+import paolucciAvatar from './images/paolucci.png'
+
+// BRAND：虚构品牌，不对应任何真实机构；不得添加监管注册号
+const BRAND = {
+  nome: 'Bussola Mercati',
+  payoff: 'Osservatorio indipendente sui mercati italiani',
+}
+
+// PERSONA：具名人设，以 Gianluca Paolucci 为核心
+const PERSONA = {
+  nome: 'Gianluca Paolucci',
+  titolo: 'Analista indipendente dei mercati finanziari italiani',
+  tagline: 'Oltre 15 anni a osservare i flussi di capitale sull\'economia reale italiana',
+  avatar: paolucciAvatar.src,
+}
+
+const title = 'Bussola Mercati — Analisi sui mercati italiani: semiconduttori, energia e difesa'
+const description = 'Analisi indipendente sui flussi di capitale che tornano su tre settori chiave dell\'economia reale italiana. Ricevi gratuitamente le sintesi di mercato su WhatsApp.'
+---
+
+<BaseLayout title={title} description={description} lang="it">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --paper: #FFFFFF;
+        --ink: #1A1A1A;
+        --ink-soft: #5B5B5B;
+        --rosso: #CD212A;
+        --rule: #E6E6E6;
+        --wa-green: #25D366;
+        --max-w: 720px;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1, h2, h3, .serif {
+        font-family: 'Playfair Display', serif;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .it-container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* ─── Apertura (Hero) ─── */
+      .it-apertura {
+        padding: 4rem 0 3rem;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .it-dossier-label {
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--rosso);
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+      }
+
+      .it-apertura h1 {
+        font-size: clamp(1.85rem, 5vw, 2.75rem);
+        line-height: 1.22;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0 0 1.5rem;
+      }
+
+      .it-accent {
+        text-decoration: underline;
+        text-decoration-color: var(--rosso);
+        text-underline-offset: 5px;
+        text-decoration-thickness: 2px;
+      }
+
+      .it-standfirst {
+        font-size: 1.05rem;
+        color: var(--ink-soft);
+        line-height: 1.75;
+        margin: 0 0 2rem;
+        border-left: 3px solid var(--rule);
+        padding-left: 1rem;
+      }
+
+      .it-byline {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.78rem;
+        color: var(--ink-soft);
+        margin-bottom: 2.25rem;
+      }
+
+      .it-byline-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 1px solid var(--rule);
+      }
+
+      .it-byline-avatar img,
+      .it-byline-avatar svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .it-btn-primary {
+        display: inline-block;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 0.85rem 2rem;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 0.02em;
+        transition: background 0.18s;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .it-btn-primary:hover {
+        background: #2D2D2D;
+      }
+
+      .it-cta-note {
+        font-size: 0.72rem;
+        color: var(--ink-soft);
+        margin-top: 0.6rem;
+      }
+
+      /* ─── Il contesto ─── */
+      .it-contesto {
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .it-section-h2 {
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0 0 1.25rem;
+      }
+
+      .it-contesto p {
+        font-size: 0.975rem;
+        line-height: 1.85;
+        color: var(--ink);
+        margin: 0;
+      }
+
+      /* ─── I tre settori ─── */
+      .it-tre-settori {
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .it-settori-grid {
+        display: grid;
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+
+      .it-settore-card {
+        border: 1px solid var(--rule);
+        padding: 1.5rem 1.75rem;
+      }
+
+      .it-settore-num {
+        display: block;
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: var(--rosso);
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+      }
+
+      .it-settore-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0 0 0.9rem;
+      }
+
+      .it-settore-body {
+        font-size: 0.92rem;
+        line-height: 1.8;
+        color: var(--ink);
+        margin: 0;
+      }
+
+      .it-settore-disclaimer {
+        font-size: 0.68rem;
+        color: var(--ink-soft);
+        margin-top: 1rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--rule);
+      }
+
+      /* ─── La vera domanda ─── */
+      .it-vera-domanda {
+        background: #F9F8F6;
+        padding: 3.5rem 1.5rem;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .it-editorial-quote {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.3rem, 3vw, 1.9rem);
+        line-height: 1.55;
+        color: var(--ink);
+        position: relative;
+        padding-left: 2.5rem;
+      }
+
+      .it-editorial-quote::before {
+        content: '\201C';
+        position: absolute;
+        left: -0.25rem;
+        top: -0.5rem;
+        font-size: 5rem;
+        line-height: 1;
+        color: var(--rosso);
+        font-family: 'Playfair Display', serif;
+        opacity: 0.85;
+      }
+
+      /* ─── Chi c'è dietro l'analisi ─── */
+      .it-chi-dietro {
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .it-persona-block {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 2rem;
+        align-items: start;
+        border: 1px solid var(--rule);
+        padding: 1.75rem;
+        margin-top: 2rem;
+      }
+
+      .it-persona-avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        background: #F0EEE9;
+        flex-shrink: 0;
+      }
+
+      .it-persona-avatar img,
+      .it-persona-avatar svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .it-persona-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0 0 0.2rem;
+      }
+
+      .it-persona-titolo {
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+        margin: 0 0 0.9rem;
+      }
+
+      .it-persona-tagline {
+        font-size: 0.78rem;
+        color: var(--ink-soft);
+        padding: 0.65rem 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+
+      .it-persona-bio {
+        font-size: 0.92rem;
+        line-height: 1.8;
+        color: var(--ink);
+        margin: 0;
+      }
+
+      /* ─── Cosa ricevi ─── */
+      .it-cosa-ricevi {
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .it-benefits-list {
+        display: grid;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .it-benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid var(--rule);
+      }
+
+      .it-benefit-icon {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        color: var(--rosso);
+        margin-top: 0.1rem;
+      }
+
+      .it-benefit-text {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: var(--ink);
+      }
+
+      /* ─── CTA Finale ─── */
+      .it-cta-finale {
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .it-cta-finale h2 {
+        font-size: clamp(1.5rem, 4vw, 2.1rem);
+        line-height: 1.3;
+        margin: 0 0 1rem;
+        color: var(--ink);
+      }
+
+      .it-cta-finale p {
+        color: var(--ink-soft);
+        font-size: 0.975rem;
+        margin: 0 auto 2rem;
+        max-width: 460px;
+        line-height: 1.7;
+      }
+
+      .it-btn-wa {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        background: var(--wa-green);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: opacity 0.18s;
+        text-align: center;
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .it-btn-wa:hover {
+        opacity: 0.9;
+      }
+
+      .it-btn-wa svg {
+        flex-shrink: 0;
+      }
+
+      .it-guarantee-text {
+        font-size: 0.72rem;
+        color: var(--ink-soft);
+        margin-top: 0.9rem;
+        text-align: center;
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 768px) {
+        .it-apertura {
+          padding: 2.5rem 0 2rem;
+        }
+
+        .it-persona-block {
+          grid-template-columns: 1fr;
+        }
+
+        .it-persona-avatar {
+          width: 72px;
+          height: 72px;
+        }
+
+        .it-btn-primary {
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+
+        .it-btn-wa {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .it-apertura h1 {
+          font-size: 1.65rem;
+        }
+
+        .it-editorial-quote {
+          font-size: 1.2rem;
+          padding-left: 2rem;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <!-- ─── Apertura (Hero) ─── -->
+  <section class="it-apertura">
+    <div class="it-container">
+      <span class="it-dossier-label reveal">Dossier · Mercati</span>
+
+      <h1 class="reveal">
+        Mentre tutti guardano le criptovalute, qualcosa si muove sulle <span class="it-accent">azioni italiane</span>.
+      </h1>
+
+      <p class="it-standfirst reveal">
+        Non è fortuna. Non sono criptovalute. È un'analisi dei flussi di capitale che stanno tornando su tre settori chiave dell'economia reale italiana: semiconduttori, energia e difesa.
+      </p>
+
+      <div class="it-byline reveal">
+        <div class="it-byline-avatar">
+          {PERSONA.avatar
+            ? <img src={PERSONA.avatar} alt={PERSONA.nome} width="38" height="38" />
+            : (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+                <rect width="38" height="38" rx="19" fill="#F0EEE9" />
+                <circle cx="19" cy="15" r="6.5" stroke="#5B5B5B" stroke-width="1.2" />
+                <path d="M5 34 Q5 25 19 23 Q33 25 33 34" stroke="#5B5B5B" stroke-width="1.2" />
+              </svg>
+            )}
+        </div>
+        <span>A cura di {PERSONA.nome} · {PERSONA.titolo} · Aggiornato a maggio 2026</span>
+      </div>
+
+      <button onclick="window.onLinkBtnClick()" class="it-btn-primary reveal">
+        Ricevi gratuitamente le analisi di mercato
+      </button>
+      <p class="it-cta-note reveal">Accesso gratuito · Nessuna promessa di rendimento</p>
+    </div>
+  </section>
+
+  <!-- ─── Il contesto ─── -->
+  <section class="it-contesto">
+    <div class="it-container">
+      <h2 class="it-section-h2 reveal">Il contesto</h2>
+      <p class="reveal">
+        Negli ultimi mesi l'attenzione dei grandi capitali si è progressivamente spostata. Non verso asset speculativi, ma verso aziende quotate dell'economia reale italiana. Tre settori, in particolare, concentrano oggi i flussi: semiconduttori, energia e difesa. Capire perché — e con quale logica si muovono i capitali — è ciò che distingue chi osserva il mercato da chi lo subisce.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── I tre settori sotto osservazione ─── -->
+  <section class="it-tre-settori">
+    <div class="it-container">
+      <h2 class="it-section-h2 reveal">I tre settori sotto osservazione</h2>
+      <div class="it-settori-grid">
+
+        <article class="it-settore-card reveal">
+          <span class="it-settore-num">01 · Semiconduttori</span>
+          <h3 class="it-settore-name">Semiconduttori</h3>
+          <p class="it-settore-body">
+            La domanda globale di chip e la spinta europea verso l'autonomia tecnologica stanno riportando attenzione sulle filiere produttive del continente. Il ruolo dell'Italia nella catena del valore è oggetto di rivalutazione da parte del mercato.
+          </p>
+          <p class="it-settore-disclaimer">Analisi di contesto. Non costituisce raccomandazione di acquisto.</p>
+        </article>
+
+        <article class="it-settore-card reveal">
+          <span class="it-settore-num">02 · Energia</span>
+          <h3 class="it-settore-name">Energia</h3>
+          <p class="it-settore-body">
+            La ridefinizione degli approvvigionamenti energetici europei e gli investimenti in infrastrutture stanno ridisegnando il peso del settore. I capitali tendono a seguire dove si concentrano gli investimenti strutturali.
+          </p>
+          <p class="it-settore-disclaimer">Analisi di contesto. Non costituisce raccomandazione di acquisto.</p>
+        </article>
+
+        <article class="it-settore-card reveal">
+          <span class="it-settore-num">03 · Difesa</span>
+          <h3 class="it-settore-name">Difesa</h3>
+          <p class="it-settore-body">
+            L'aumento strutturale della spesa per la difesa in Europa è un dato pubblico. Comprendere come questo contesto si rifletta sulle aziende quotate è materia di analisi, non di previsione.
+          </p>
+          <p class="it-settore-disclaimer">Analisi di contesto. Non costituisce raccomandazione di acquisto.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── La vera domanda (editorial blockquote) ─── -->
+  <section class="it-vera-domanda">
+    <blockquote class="it-editorial-quote reveal">
+      La vera domanda non è quanto si può guadagnare. È se preferisci capire cosa sta succedendo prima — o dopo tutti gli altri.
+    </blockquote>
+  </section>
+
+  <!-- ─── Chi c'è dietro l'analisi ─── -->
+  <section class="it-chi-dietro">
+    <div class="it-container">
+      <h2 class="it-section-h2 reveal">Chi c'è dietro l'analisi</h2>
+      <div class="it-persona-block reveal">
+        <div class="it-persona-avatar">
+          {PERSONA.avatar
+            ? <img src={PERSONA.avatar} alt={PERSONA.nome} width="96" height="96" />
+            : (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+                <rect width="96" height="96" rx="48" fill="#EDE9E2" />
+                <circle cx="48" cy="37" r="16" stroke="#5B5B5B" stroke-width="1.5" />
+                <path d="M12 88 Q12 67 48 63 Q84 67 84 88" stroke="#5B5B5B" stroke-width="1.5" />
+              </svg>
+            )}
+        </div>
+        <div>
+          <h3 class="it-persona-name">{PERSONA.nome}</h3>
+          <p class="it-persona-titolo">{PERSONA.titolo}</p>
+          <p class="it-persona-tagline">{PERSONA.tagline}</p>
+          <p class="it-persona-bio">
+            Seguo i mercati italiani da oltre quindici anni, con un'attenzione particolare ai settori che i grandi capitali scelgono nei momenti di svolta. Ho creato {BRAND.nome} per condividere questa analisi in modo accessibile, senza promesse di rendimento e senza gergo tecnico. Il mio obiettivo è che tu capisca la logica — non che compri qualcosa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Cosa ricevi nel canale ─── -->
+  <section class="it-cosa-ricevi">
+    <div class="it-container">
+      <h2 class="it-section-h2 reveal">Cosa ricevi, gratuitamente</h2>
+      <ul class="it-benefits-list" style="list-style: none; padding: 0; margin: 0;">
+
+        <li class="it-benefit-item reveal">
+          <svg class="it-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h12M4 18h8" />
+          </svg>
+          <span class="it-benefit-text">Sintesi di mercato aggiornate, in italiano e senza gergo tecnico</span>
+        </li>
+
+        <li class="it-benefit-item reveal">
+          <svg class="it-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg>
+          <span class="it-benefit-text">Analisi dei settori dove si stanno concentrando i capitali</span>
+        </li>
+
+        <li class="it-benefit-item reveal">
+          <svg class="it-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          </svg>
+          <span class="it-benefit-text">Contenuti educativi per capire la logica dietro i movimenti</span>
+        </li>
+
+        <li class="it-benefit-item reveal">
+          <svg class="it-benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+          <span class="it-benefit-text">Accesso al canale WhatsApp gratuito, nessuno spam, disiscrizione in un tocco</span>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─── CTA Finale ─── -->
+  <section class="it-cta-finale">
+    <div class="it-container">
+      <h2 class="serif reveal">Vuoi posizionarti in anticipo, o restare a guardare?</h2>
+      <p class="reveal">Ricevi gratuitamente le analisi di mercato più aggiornate, direttamente su WhatsApp.</p>
+      <div style="display: flex; justify-content: center;">
+        <button onclick="window.onLinkBtnClick()" class="it-btn-wa reveal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+          </svg>
+          Ricevi le analisi gratis su WhatsApp
+        </button>
+      </div>
+      <p class="it-guarantee-text reveal">Gratuito · Nessun obbligo · Nessuna promessa di rendimento · Disiscrizione libera</p>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─── -->
+  <ITComplianceFooter brand={BRAND} />
+
+  <script is:inline>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.12 },
+    )
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+  </script>
+</BaseLayout>
