@@ -299,6 +299,21 @@ const description = 'Get the insider list of TSX-V junior miners. Weekly briefin
       @media (max-width: 768px) {
         .site-footer p { font-size: 11px; }
       }
+
+      /* ─── REVEAL ENTRANCE ANIMATION ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity .8s cubic-bezier(.22, 1, .36, 1),
+                    transform .8s cubic-bezier(.22, 1, .36, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+      }
     </style>
   </Fragment>
 
@@ -320,16 +335,16 @@ const description = 'Get the insider list of TSX-V junior miners. Weekly briefin
           <img src={logo.src} alt="TSX-V Insider" class="logo" />
         </header>
 
-        <h1 class="hero-title">
+        <h1 class="hero-title reveal">
           The Next Canadian Mining<br/>
           <span class="gold">Boom Is Already Underway.</span>
         </h1>
 
-        <p class="hero-subtitle">
+        <p class="hero-subtitle reveal">
           Are you on the inside &mdash; or watching from outside?
         </p>
 
-        <div class="benefits">
+        <div class="benefits reveal">
           <div class="benefit-item">
             <svg class="benefit-check" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12.5l4.5 4.5L19 7" stroke="#FFD700" stroke-width="2.5"
@@ -353,7 +368,7 @@ const description = 'Get the insider list of TSX-V junior miners. Weekly briefin
           </div>
         </div>
 
-        <div class="cta-row">
+        <div class="cta-row reveal">
           <a class="cta-primary link-btn" href="#">
             Yes &mdash; Send Me The Insider List
             <span class="arrow">&rarr;</span>
@@ -446,5 +461,21 @@ const description = 'Get the insider list of TSX-V junior miners. Weekly briefin
     }
     updateUrgency();
     setInterval(updateUrgency, 1000);
+
+    // Reveal entrance animation via IntersectionObserver
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('active'), idx * 80);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('active'));
+    }
   </script>
 </BaseLayout>
