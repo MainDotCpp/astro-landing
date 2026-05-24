@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Hero Mockup — MacBook + WhatsApp Channel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 1920px;
+    height: 1080px;
+    font-family: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    color: #0A0A0A;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+    overflow: hidden;
+  }
+
+  /* === STAGE: page gradient background === */
+  .stage {
+    width: 1920px; height: 1080px;
+    background:
+      radial-gradient(circle at 78% 30%, rgba(232, 240, 248, 0.85) 0%, transparent 45%),
+      radial-gradient(circle at 22% 75%, rgba(248, 244, 232, 0.65) 0%, transparent 50%),
+      linear-gradient(135deg, #FAFAFA 0%, #F0F4F8 100%);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stage::before {
+    /* subtle grid overlay for editorial feel */
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(10, 10, 10, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 10, 10, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* === MACBOOK CONTAINER === */
+  .macbook-wrap {
+    position: relative;
+    width: 1500px;
+    /* perspective tilt: half top-down + slight right-to-left to add presence */
+    transform:
+      perspective(2400px)
+      rotateX(8deg)
+      rotateY(-10deg)
+      rotateZ(0deg);
+    transform-origin: center center;
+    /* float shadow */
+    filter: drop-shadow(0 60px 100px rgba(20, 30, 60, 0.18))
+            drop-shadow(0 20px 40px rgba(20, 30, 60, 0.12));
+  }
+
+  /* Top bezel / camera notch — minimalist MacBook chrome */
+  .macbook-bezel {
+    width: 1500px;
+    background: #1C1C20;
+    border-radius: 16px 16px 4px 4px;
+    padding: 14px 18px 0;
+    position: relative;
+  }
+  .macbook-bezel::before {
+    /* camera notch */
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 130px; height: 14px;
+    background: #0A0A0A;
+    border-radius: 0 0 12px 12px;
+  }
+  .macbook-camera {
+    position: absolute;
+    top: 4px; left: 50%;
+    transform: translateX(-50%);
+    width: 6px; height: 6px;
+    background: #2A2A30;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.8);
+  }
+
+  /* === SCREEN === */
+  .screen {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #FFFFFF;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    border: 1px solid #1C1C20;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+  }
+
+  /* Browser-like chrome on top of channel UI */
+  .browser-chrome {
+    background: #F4F5F7;
+    border-bottom: 1px solid #E4E6EC;
+    display: flex; align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+  }
+  .traffic {
+    display: flex; gap: 7px;
+  }
+  .traffic span {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+  .traffic span:nth-child(1) { background: #FF5F57; }
+  .traffic span:nth-child(2) { background: #FEBC2E; }
+  .traffic span:nth-child(3) { background: #28C840; }
+  .addr {
+    flex: 1;
+    margin-left: 16px;
+    background: #FFFFFF;
+    border: 1px solid #E4E6EC;
+    border-radius: 6px;
+    height: 24px;
+    display: flex; align-items: center;
+    padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #525866;
+    letter-spacing: 0.02em;
+  }
+  .addr .lock {
+    margin-right: 8px;
+    color: #525866;
+    font-size: 10px;
+  }
+
+  /* === MAIN UI (WhatsApp Channel admin) === */
+  .ui {
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
+    background: #FFFFFF;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Left sidebar */
+  .side {
+    background: #FAFAFB;
+    border-right: 1px solid #ECECEC;
+    padding: 24px 16px;
+    display: flex; flex-direction: column;
+    gap: 4px;
+  }
+  .side-brand {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 8px 16px;
+    border-bottom: 1px solid #ECECEC;
+    margin-bottom: 14px;
+  }
+  .side-brand .logo {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #2A2A30 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #FFFFFF;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+  }
+  .side-brand .title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    color: #0A0A0A;
+    line-height: 1.2;
+  }
+  .side-brand .sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #9BA0AA;
+    margin-top: 2px;
+  }
+  .side-section {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9BA0AA;
+    padding: 12px 8px 6px;
+  }
+  .side-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #525866;
+    cursor: default;
+  }
+  .side-item .si-ic {
+    width: 16px; height: 16px;
+    color: #9BA0AA;
+    flex-shrink: 0;
+  }
+  .side-item.active {
+    background: #ECECEC;
+    color: #0A0A0A;
+    font-weight: 600;
+  }
+  .side-item.active .si-ic { color: #0A0A0A; }
+  .side-item .badge {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9BA0AA;
+    font-weight: 500;
+  }
+
+  /* Main panel */
+  .main {
+    padding: 28px 36px 0;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    gap: 20px;
+    background: #FFFFFF;
+  }
+  .main-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ECECEC;
+  }
+  .main-head .breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9BA0AA;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .main-head h1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #0A0A0A;
+    line-height: 1.2;
+  }
+  .main-head .followers {
+    display: flex; flex-direction: column; align-items: flex-end;
+    gap: 2px;
+  }
+  .main-head .followers .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 700;
+    color: #0A0A0A;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .main-head .followers .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #9BA0AA;
+    letter-spacing: 0.04em;
+  }
+
+  /* Compose box */
+  .compose {
+    background: #FAFAFB;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: -4px;
+  }
+  .compose .ph {
+    flex: 1;
+    color: #9BA0AA;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+  }
+  .compose .schedule {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #525866;
+    letter-spacing: 0.04em;
+    padding: 6px 10px;
+    border: 1px solid #ECECEC;
+    border-radius: 6px;
+    background: #FFFFFF;
+  }
+  .compose .post-btn {
+    background: #0A0A0A;
+    color: #FFFFFF;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Post timeline / feed */
+  .feed-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9BA0AA;
+    padding-top: 4px;
+  }
+  .feed {
+    display: flex; flex-direction: column;
+    gap: 10px;
+  }
+
+  .post {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+  }
+  .post.featured {
+    border-color: #C8941F;
+    box-shadow: 0 0 0 1px rgba(200, 148, 31, 0.25), 0 4px 12px rgba(200, 148, 31, 0.06);
+  }
+  .post-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0A0A0A 0%, #2A2A30 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #FFFFFF;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+  .post-body { min-width: 0; }
+  .post-meta {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 6px;
+  }
+  .post-meta .name {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    color: #0A0A0A;
+  }
+  .post-meta .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9BA0AA;
+    letter-spacing: 0.04em;
+  }
+  .post-meta .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #C8941F;
+    background: rgba(200, 148, 31, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .post-meta .pill.queued {
+    color: #525866;
+    background: #F4F5F7;
+  }
+  .post-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: #0A0A0A;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .post-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.55;
+    color: #525866;
+  }
+  .post-text .blur {
+    display: inline-block;
+    background: #1C1C20;
+    color: transparent;
+    user-select: none;
+    border-radius: 3px;
+    line-height: 1;
+    margin: 0 2px;
+    vertical-align: -1px;
+  }
+  .post-text .blur.sm { width: 64px; height: 12px; }
+  .post-text .blur.md { width: 96px; height: 12px; }
+  .post-text .blur.lg { width: 140px; height: 12px; }
+  .post-stats {
+    margin-top: 10px;
+    display: flex; gap: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9BA0AA;
+    letter-spacing: 0.04em;
+  }
+  .post-stats .stat strong {
+    color: #525866;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  /* Right panel: analytics + next post widget */
+  .right {
+    background: #FAFAFB;
+    border-left: 1px solid #ECECEC;
+    padding: 28px 22px;
+    display: flex; flex-direction: column;
+    gap: 18px;
+    overflow: hidden;
+  }
+  .right-section-h {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9BA0AA;
+    margin-bottom: 4px;
+  }
+
+  .next-card {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .next-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9BA0AA;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .next-card .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0A0A0A;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .next-card .when {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #525866;
+    margin-top: 6px;
+  }
+  .next-card .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #10B981;
+    margin-right: 6px;
+    vertical-align: 1px;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  }
+
+  /* Mini sparkline */
+  .spark {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    padding: 14px 14px 10px;
+  }
+  .spark .h {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .spark .h .lab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9BA0AA;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .spark .h .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0A0A0A;
+    letter-spacing: -0.01em;
+  }
+  .spark .h .delta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #10B981;
+    margin-left: 6px;
+  }
+  .spark svg { width: 100%; height: 50px; }
+
+  /* Stats list */
+  .stats {
+    display: flex; flex-direction: column;
+    gap: 0;
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px solid #ECECEC;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-row .name {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #525866;
+  }
+  .stat-row .v {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0A0A0A;
+    letter-spacing: -0.01em;
+  }
+
+  /* Floating data callout — small chip drifting next to the laptop, gives editorial annotation feel */
+  .callout {
+    position: absolute;
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 16px 40px rgba(20, 30, 60, 0.12), 0 4px 10px rgba(20, 30, 60, 0.06);
+    z-index: 5;
+  }
+  .callout .lab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9BA0AA;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .callout .v {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0A0A0A;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .callout .v .small { font-size: 14px; color: #525866; margin-left: 2px; }
+  .callout .sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #525866;
+    margin-top: 6px;
+  }
+
+  .callout-1 { top: 110px; left: 90px; transform: rotate(-2deg); }
+  .callout-2 { bottom: 140px; left: 140px; transform: rotate(1.5deg); }
+  .callout-3 { top: 160px; right: 90px; transform: rotate(2deg); }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- Floating editorial callouts around the laptop — these give "this is a product page hero" energy -->
+  <div class="callout callout-1">
+    <div class="lab">SUBSCRIBERS</div>
+    <div class="v">12,438</div>
+    <div class="sub">Toronto · Free channel</div>
+  </div>
+
+  <div class="callout callout-2">
+    <div class="lab">DAILY POST</div>
+    <div class="v">9:30<span class="small"> AM EST</span></div>
+    <div class="sub">One short note per session</div>
+  </div>
+
+  <div class="callout callout-3">
+    <div class="lab">COVERAGE</div>
+    <div class="v">3<span class="small"> yrs</span></div>
+    <div class="sub">TSX-V mining juniors</div>
+  </div>
+
+  <!-- The MacBook -->
+  <div class="macbook-wrap">
+    <div class="macbook-bezel">
+      <div class="macbook-camera"></div>
+      <div class="screen">
+
+        <!-- Browser chrome -->
+        <div class="browser-chrome">
+          <div class="traffic"><span></span><span></span><span></span></div>
+          <div class="addr">
+            <span class="lock">●</span>
+            mininghdesk.private / channel / today
+          </div>
+        </div>
+
+        <!-- WhatsApp Channel admin UI -->
+        <div class="ui">
+
+          <!-- LEFT SIDEBAR -->
+          <aside class="side">
+            <div class="side-brand">
+              <div class="logo">D</div>
+              <div>
+                <div class="title">Daniel Hartman</div>
+                <div class="sub">Mining Desk · Toronto</div>
+              </div>
+            </div>
+
+            <div class="side-section">Workspace</div>
+            <div class="side-item active">
+              <svg class="si-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>
+              <span>Today's note</span>
+              <span class="badge">1</span>
+            </div>
+            <div class="side-item">
+              <svg class="si-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Channel feed</span>
+              <span class="badge">218</span>
+            </div>
+            <div class="side-item">
+              <svg class="si-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-7"/></svg>
+              <span>Coverage stats</span>
+            </div>
+            <div class="side-item">
+              <svg class="si-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              <span>Drafts</span>
+              <span class="badge">3</span>
+            </div>
+
+            <div class="side-section">Watchlist</div>
+            <div class="side-item">
+              <svg class="si-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              <span>Catalysts (this wk)</span>
+              <span class="badge">4</span>
+            </div>
+            <div class="side-item">
+              <svg class="si-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4.5L17 21l-5-4-5 4 1.5-7.5L3 9h7z"/></svg>
+              <span>High-conviction</span>
+              <span class="badge">1</span>
+            </div>
+
+            <div class="side-section">Settings</div>
+            <div class="side-item">
+              <svg class="si-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span>Channel settings</span>
+            </div>
+          </aside>
+
+          <!-- MAIN PANEL -->
+          <section class="main">
+
+            <div class="main-head">
+              <div>
+                <div class="breadcrumb">Channel / Today</div>
+                <h1>Today's note</h1>
+              </div>
+              <div class="followers">
+                <div class="num">12,438</div>
+                <div class="label">followers · +24 today</div>
+              </div>
+            </div>
+
+            <div class="compose">
+              <div class="ph">Draft tomorrow's pre-market note…</div>
+              <div class="schedule">SCHEDULED · TUE 9:30 AM</div>
+              <div class="post-btn">Post →</div>
+            </div>
+
+            <div class="feed-label">Recent posts</div>
+
+            <div class="feed">
+
+              <!-- Featured post: today's pick (blurred for compliance) -->
+              <div class="post featured">
+                <div class="post-avatar">D</div>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <span class="name">Daniel Hartman</span>
+                    <span class="time">TODAY · 9:30 AM EST</span>
+                    <span class="pill">TODAY'S NOTE</span>
+                  </div>
+                  <div class="post-title">Pre-market scan · TSX-V mining juniors</div>
+                  <div class="post-text">
+                    Setup of the week is <span class="blur sm"></span>. Entry zone <span class="blur sm"></span>. Catalyst window Wed–Fri. Holding size kept small; this is asymmetric not yield. Stop runs below <span class="blur sm"></span> on close. Full thesis posted at the open inside the channel — <span class="blur md"></span> <span class="blur lg"></span>.
+                  </div>
+                  <div class="post-stats">
+                    <span class="stat"><strong>9,820</strong>read</span>
+                    <span class="stat"><strong>+47</strong>followers since post</span>
+                    <span class="stat"><strong>3 min</strong>avg read time</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Yesterday post -->
+              <div class="post">
+                <div class="post-avatar">D</div>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <span class="name">Daniel Hartman</span>
+                    <span class="time">MON · 9:30 AM</span>
+                    <span class="pill queued">PUBLISHED</span>
+                  </div>
+                  <div class="post-title">Week recap · what was wrong, what worked</div>
+                  <div class="post-text">
+                    Three setups posted last week. Two trimmed at first target, one stopped same-day per plan. The thesis on copper-gold juniors held; uranium chop ate one position. Below are the lessons in three lines: <span class="blur md"></span> <span class="blur lg"></span>.
+                  </div>
+                  <div class="post-stats">
+                    <span class="stat"><strong>10,118</strong>read</span>
+                    <span class="stat"><strong>4 min</strong>avg read time</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Past recap: real ticker but historical -->
+              <div class="post">
+                <div class="post-avatar">D</div>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <span class="name">Daniel Hartman</span>
+                    <span class="time">FRI · 9:30 AM</span>
+                    <span class="pill queued">EDU RECAP · PAST</span>
+                  </div>
+                  <div class="post-title">How I covered FIL.V at $2 in 2021 — recap</div>
+                  <div class="post-text">
+                    A look back at the Filo Mining coverage cycle from 2021 entry through the 2024 BHP / Lundin acquisition. Posting this as an educational recap — not a current recommendation, the company no longer trades. Past public price action only. DYOR.
+                  </div>
+                  <div class="post-stats">
+                    <span class="stat"><strong>11,402</strong>read</span>
+                    <span class="stat"><strong>6 min</strong>avg read time</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </section>
+
+          <!-- RIGHT PANEL -->
+          <aside class="right">
+
+            <div>
+              <div class="right-section-h">Next post in</div>
+              <div class="next-card">
+                <div class="label">NEXT NOTE</div>
+                <div class="time">14h 23m</div>
+                <div class="when"><span class="dot"></span>Tue · 9:30 AM EST</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="right-section-h">Subscriber growth · 30d</div>
+              <div class="spark">
+                <div class="h">
+                  <span class="lab">Followers</span>
+                  <span>
+                    <span class="val">12,438</span>
+                    <span class="delta">▲ +812 / mo</span>
+                  </span>
+                </div>
+                <svg viewBox="0 0 280 50" preserveAspectRatio="none">
+                  <!-- area fill -->
+                  <path d="M0,44 L14,42 L28,40 L42,38 L56,40 L70,36 L84,32 L98,34 L112,28 L126,26 L140,24 L154,22 L168,18 L182,20 L196,15 L210,12 L224,14 L238,9 L252,7 L266,5 L280,3 L280,50 L0,50 Z"
+                        fill="rgba(16, 185, 129, 0.08)" />
+                  <!-- line -->
+                  <path d="M0,44 L14,42 L28,40 L42,38 L56,40 L70,36 L84,32 L98,34 L112,28 L126,26 L140,24 L154,22 L168,18 L182,20 L196,15 L210,12 L224,14 L238,9 L252,7 L266,5 L280,3"
+                        fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <!-- end dot -->
+                  <circle cx="280" cy="3" r="3" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+                </svg>
+              </div>
+            </div>
+
+            <div>
+              <div class="right-section-h">Last 90 days</div>
+              <div class="stats">
+                <div class="stat-row"><span class="name">Posts</span><span class="v">22</span></div>
+                <div class="stat-row"><span class="name">Green</span><span class="v">11</span></div>
+                <div class="stat-row"><span class="name">Red</span><span class="v">6</span></div>
+                <div class="stat-row"><span class="name">Flat</span><span class="v">5</span></div>
+                <div class="stat-row"><span class="name">Avg read time</span><span class="v">3:42</span></div>
+              </div>
+            </div>
+
+          </aside>
+
+        </div><!-- /.ui -->
+
+      </div><!-- /.screen -->
+    </div><!-- /.macbook-bezel -->
+  </div><!-- /.macbook-wrap -->
+
+</div><!-- /.stage -->
+
+</body>
+</html>
