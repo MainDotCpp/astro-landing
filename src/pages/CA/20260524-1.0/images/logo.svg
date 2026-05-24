@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 120" role="img" aria-label="TSX-V Insider editorial desk Toronto">
+  <defs>
+    <style>
+      .wordmark { font-family: 'IBM Plex Serif', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 64px; fill: #15212F; letter-spacing: -0.02em; }
+      .sub { font-family: 'IBM Plex Mono', 'JetBrains Mono', Menlo, monospace; font-weight: 500; font-size: 13px; fill: #1F4C7A; letter-spacing: 0.18em; }
+      .rule { stroke: #1F4C7A; stroke-width: 2; }
+      .stamp { fill: #A91D2A; }
+    </style>
+  </defs>
+  <rect x="0" y="14" width="6" height="72" class="stamp"/>
+  <text x="22" y="70" class="wordmark">TSX&#8209;V INSIDER</text>
+  <line x1="22" y1="84" x2="618" y2="84" class="rule"/>
+  <text x="22" y="106" class="sub">EDITORIAL DESK &#183; TORONTO</text>
+</svg>

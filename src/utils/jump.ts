@@ -27,9 +27,16 @@ function jumpToBand() {
   jump(band_link)
 }
 
+function jumpToWhatsApp() {
+  jump(whatsapp_link)
+}
+
 function mixinJump() {
   if (typeof link !== 'undefined') {
     jump(link)
+  }
+  else if (typeof whatsapp_link !== 'undefined') {
+    jumpToWhatsApp()
   }
   else if (typeof kakao_link !== 'undefined') {
     jumpToKakao()
@@ -39,7 +46,7 @@ function mixinJump() {
   }
 }
 
-export { jump, jumpToBand, jumpToKakao, mixinJump }
+export { jump, jumpToBand, jumpToKakao, jumpToWhatsApp, mixinJump }
 
 // Expose to window for inline HTML handlers when included via <script type="module" src="/src/utils/jump.ts">
 if (typeof window !== 'undefined') {
@@ -49,6 +56,8 @@ if (typeof window !== 'undefined') {
   window.jumpToBand = jumpToBand
   // @ts-ignore
   window.jumpToKakao = jumpToKakao
+  // @ts-ignore
+  window.jumpToWhatsApp = jumpToWhatsApp
   // @ts-ignore
   window.mixinJump = mixinJump
 }
