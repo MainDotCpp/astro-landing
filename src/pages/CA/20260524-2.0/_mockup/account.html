@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Account Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1600px;
+    height: 900px;
+    background: #F5F5F2;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #1A1A1F;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+  .frame {
+    width: 1600px;
+    height: 900px;
+    background: #FFFFFF;
+    border: 1px solid #E4E4E0;
+    display: grid;
+    grid-template-rows: 56px 1fr;
+  }
+
+  /* === TOP BAR === */
+  .topbar {
+    display: flex; align-items: center;
+    padding: 0 28px;
+    background: #1A1A1F;
+    color: #ECECEA;
+    border-bottom: 1px solid #2A2A30;
+  }
+  .topbar .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    color: #FFFFFF;
+  }
+  .topbar .brand .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #25D366;
+    border-radius: 50%;
+    margin-right: 10px;
+    transform: translateY(-1px);
+  }
+  .topbar .nav {
+    display: flex; gap: 24px;
+    margin-left: 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8A8A92;
+    letter-spacing: 0.02em;
+  }
+  .topbar .nav .active { color: #FFFFFF; }
+  .topbar .right {
+    margin-left: auto;
+    display: flex; flex-direction: row; align-items: center; gap: 16px;
+    flex-wrap: nowrap; flex-shrink: 0; padding: 0; background: transparent;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8A8A92;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .topbar .right > * { white-space: nowrap; flex-shrink: 0; }
+  .topbar .right .acct {
+    color: #ECECEA;
+  }
+  .topbar .right .pill {
+    padding: 4px 10px;
+    border: 1px solid #2A2A30;
+    border-radius: 3px;
+    color: #ECECEA;
+    background: #15151A;
+  }
+
+  /* === MAIN GRID === */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    height: 100%;
+    background: #FFFFFF;
+  }
+
+  /* === LEFT: SUMMARY + CHART === */
+  .left {
+    padding: 36px 40px 32px;
+    border-right: 1px solid #E4E4E0;
+    display: flex; flex-direction: column;
+    gap: 24px;
+  }
+
+  .summary {
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .summary-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6B6B73;
+    margin-bottom: 12px;
+  }
+  .summary-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: #1A1A1F;
+  }
+  .summary-value .ccy {
+    font-size: 28px;
+    font-weight: 500;
+    color: #6B6B73;
+    margin-right: 6px;
+    vertical-align: 6px;
+  }
+  .summary-meta {
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #6B6B73;
+    letter-spacing: 0.04em;
+  }
+  .summary-change {
+    text-align: right;
+  }
+  .summary-change .delta {
+    display: flex; align-items: baseline; gap: 8px;
+    justify-content: flex-end;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 30px;
+    font-weight: 700;
+    color: #FF4828;
+    letter-spacing: -0.01em;
+  }
+  .summary-change .delta .pct { font-size: 30px; }
+  .summary-change .delta .arrow { font-size: 22px; transform: translateY(-1px); }
+  .summary-change .delta-abs {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #FF4828;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-top: 6px;
+  }
+  .summary-change .period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6B6B73;
+    margin-top: 8px;
+  }
+
+  /* === CHART === */
+  .chart-wrap {
+    flex: 1;
+    background: #FAFAF8;
+    border: 1px solid #E4E4E0;
+    border-radius: 3px;
+    padding: 16px 18px 12px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+  }
+  .chart-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #6B6B73;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .chart-head .tabs { display: flex; gap: 4px; }
+  .chart-head .tabs span {
+    padding: 4px 9px;
+    border-radius: 3px;
+    color: #6B6B73;
+  }
+  .chart-head .tabs .active {
+    background: #1A1A1F;
+    color: #FFFFFF;
+  }
+  .chart-svg {
+    width: 100%; height: 100%;
+    overflow: visible;
+  }
+  .chart-axis {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8A8A92;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    padding: 0 2px;
+  }
+
+  /* === RIGHT: ACTIVITY === */
+  .right {
+    padding: 36px 32px 28px;
+    background: #FAFAF8;
+    display: flex; flex-direction: column;
+    gap: 20px;
+  }
+  .right-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6B6B73;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E4E4E0;
+  }
+  .activity {
+    display: flex; flex-direction: column;
+    gap: 0;
+  }
+  .trade {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+    padding: 18px 0;
+    border-bottom: 1px solid #E4E4E0;
+  }
+  .trade:last-child { border-bottom: none; }
+  .trade-ticker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1A1A1F;
+    letter-spacing: 0.06em;
+  }
+  .trade-ticker .blur {
+    display: inline-block;
+    width: 64px;
+    height: 12px;
+    background: repeating-linear-gradient(
+      90deg,
+      #1A1A1F 0 6px,
+      #1A1A1F 6px 8px,
+      transparent 8px 10px
+    );
+    background: #1A1A1F;
+    vertical-align: -1px;
+    margin-right: 4px;
+    opacity: 0.85;
+    border-radius: 2px;
+  }
+  .trade-pnl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    text-align: right;
+  }
+  .trade-pnl.gain { color: #1C9D55; }
+  .trade-pnl.loss { color: #FF4828; }
+  .trade-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #6B6B73;
+    letter-spacing: 0.04em;
+  }
+  .trade-status {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #6B6B73;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .trade-status.closed { color: #6B6B73; }
+  .trade-status.open { color: #1C9D55; }
+
+  /* === FOOTER === */
+  .footer {
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid #E4E4E0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8A8A92;
+    letter-spacing: 0.08em;
+    line-height: 1.55;
+  }
+
+  /* Watermark — extremely subtle (audience won't notice but legally there) */
+  .watermark {
+    position: absolute;
+    bottom: 18px; right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(107, 107, 115, 0.55);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>BROKERAGE</div>
+    <div class="nav">
+      <span class="active">Portfolio</span>
+      <span>Activity</span>
+      <span>Watchlist</span>
+      <span>Reports</span>
+    </div>
+    <div class="right">
+      <span class="acct">ACCT ████ 2847</span>
+      <span class="pill">CAD · MARGIN</span>
+      <span>AS OF MAY 24, 2026 · 09:41 EST</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- LEFT: summary + chart -->
+    <div class="left">
+
+      <div class="summary">
+        <div>
+          <div class="summary-label">ACCOUNT VALUE</div>
+          <div class="summary-value"><span class="ccy">$</span>58,420.16</div>
+          <div class="summary-meta">Last 90 days · started at $16,830.42</div>
+        </div>
+        <div class="summary-change">
+          <div class="delta">
+            <span class="arrow">▲</span>
+            <span class="pct">+247.13%</span>
+          </div>
+          <div class="delta-abs">+$41,589.74</div>
+          <div class="period">FEB 23 → MAY 24</div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+
+        <div class="chart-head">
+          <div>EQUITY CURVE · 90D</div>
+          <div class="tabs">
+            <span>1D</span>
+            <span>1W</span>
+            <span>1M</span>
+            <span class="active">3M</span>
+            <span>1Y</span>
+            <span>ALL</span>
+          </div>
+        </div>
+
+        <!-- SVG chart -->
+        <svg class="chart-svg" viewBox="0 0 1000 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- grid lines -->
+          <g stroke="#E4E4E0" stroke-width="1">
+            <line x1="0" y1="0" x2="1000" y2="0" />
+            <line x1="0" y1="80" x2="1000" y2="80" stroke-dasharray="2 4" />
+            <line x1="0" y1="160" x2="1000" y2="160" stroke-dasharray="2 4" />
+            <line x1="0" y1="240" x2="1000" y2="240" stroke-dasharray="2 4" />
+            <line x1="0" y1="320" x2="1000" y2="320" />
+          </g>
+          <!-- y-axis labels -->
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#8A8A92" letter-spacing="0.04em">
+            <text x="6" y="12">$60K</text>
+            <text x="6" y="86">$50K</text>
+            <text x="6" y="166">$40K</text>
+            <text x="6" y="246">$30K</text>
+            <text x="6" y="315">$20K</text>
+          </g>
+
+          <!-- AREA fill under curve (very subtle green tint) -->
+          <path
+            d="M 0,260
+               L 30,268 L 55,255 L 85,272 L 115,290 L 145,278 L 175,295 L 200,288
+               L 230,275 L 260,250 L 290,260 L 320,235 L 350,242 L 380,218
+               L 410,228 L 440,205 L 470,195 L 500,180 L 530,200 L 560,168
+               L 590,160 L 620,148 L 650,165 L 680,138 L 710,118 L 740,128
+               L 770,98 L 800,82 L 830,95 L 860,72 L 890,62 L 920,55 L 950,48 L 980,40 L 1000,28
+               L 1000,320 L 0,320 Z"
+            fill="rgba(28, 157, 85, 0.06)" />
+
+          <!-- MAIN line — equity curve, drawn as one cohesive polyline with shape that tells "V reversal + 3 dips" story -->
+          <!-- segment up to dip 1 -->
+          <path
+            d="M 0,260
+               L 30,268 L 55,255 L 85,272 L 115,290 L 145,278 L 175,295 L 200,288"
+            fill="none" stroke="#FF4828" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" />
+          <!-- recovery start -->
+          <path
+            d="M 200,288 L 230,275 L 260,250 L 290,260 L 320,235 L 350,242 L 380,218"
+            fill="none" stroke="#1C9D55" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+          <!-- mid dip 2 -->
+          <path
+            d="M 380,218 L 410,228 L 440,205 L 470,195"
+            fill="none" stroke="#1C9D55" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M 470,195 L 500,180 L 530,200"
+            fill="none" stroke="#FF4828" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+          <!-- powerful rally with one more brief dip -->
+          <path
+            d="M 530,200 L 560,168 L 590,160 L 620,148 L 650,165"
+            fill="none" stroke="#1C9D55" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M 650,165 L 680,138 L 710,118 L 740,128"
+            fill="none" stroke="#1C9D55" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+          <!-- final blow-off -->
+          <path
+            d="M 740,128 L 770,98 L 800,82 L 830,95 L 860,72 L 890,62 L 920,55 L 950,48 L 980,40 L 1000,28"
+            fill="none" stroke="#1C9D55" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+
+          <!-- final point dot -->
+          <circle cx="1000" cy="28" r="4.5" fill="#1C9D55" stroke="#FAFAF8" stroke-width="2" />
+          <!-- start point dot -->
+          <circle cx="0" cy="260" r="3.5" fill="#6B6B73" stroke="#FAFAF8" stroke-width="1.5" />
+
+          <!-- callout text near peak -->
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#1C9D55" letter-spacing="0.06em">
+            <text x="935" y="20" text-anchor="end" font-weight="700">+247%</text>
+          </g>
+        </svg>
+
+        <div class="chart-axis">
+          <span>FEB 23</span>
+          <span>MAR 10</span>
+          <span>MAR 25</span>
+          <span>APR 09</span>
+          <span>APR 24</span>
+          <span>MAY 09</span>
+          <span>MAY 24</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT: RECENT ACTIVITY -->
+    <div class="right">
+
+      <div class="right-h">RECENT ACTIVITY · LAST 5 TRADES</div>
+
+      <div class="activity">
+
+        <div class="trade">
+          <div class="trade-ticker"><span class="blur"></span>-█</div>
+          <div class="trade-pnl gain">+$4,820.50</div>
+          <div class="trade-meta">MAY 22 · 3 contracts · Closed 14:08 EST</div>
+          <div class="trade-status closed">CLOSED</div>
+        </div>
+
+        <div class="trade">
+          <div class="trade-ticker"><span class="blur"></span>-█</div>
+          <div class="trade-pnl gain">+$2,140.00</div>
+          <div class="trade-meta">MAY 20 · 5 contracts · Closed 11:32 EST</div>
+          <div class="trade-status closed">CLOSED</div>
+        </div>
+
+        <div class="trade">
+          <div class="trade-ticker"><span class="blur"></span>-█</div>
+          <div class="trade-pnl loss">−$640.25</div>
+          <div class="trade-meta">MAY 17 · 2 contracts · Stopped 10:14 EST</div>
+          <div class="trade-status closed">STOPPED</div>
+        </div>
+
+        <div class="trade">
+          <div class="trade-ticker"><span class="blur"></span>-█</div>
+          <div class="trade-pnl gain">+$7,310.80</div>
+          <div class="trade-meta">MAY 15 · 4 contracts · Closed 15:51 EST</div>
+          <div class="trade-status closed">CLOSED</div>
+        </div>
+
+        <div class="trade">
+          <div class="trade-ticker"><span class="blur"></span>-█</div>
+          <div class="trade-pnl gain">+$1,950.00</div>
+          <div class="trade-meta">MAY 13 · 6 contracts · Open</div>
+          <div class="trade-status open">OPEN</div>
+        </div>
+
+      </div>
+
+      <div class="footer">
+        ACCOUNT REPORT · 90D EQUITY VIEW<br />
+        AS OF MAY 24 2026 09:41 EST · CAD<br />
+        FOR PERSONAL REFERENCE ONLY · NOT A SOLICITATION
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="watermark">SIMULATED REFERENCE · NOT REAL ACCOUNT</div>
+
+</body>
+</html>

@@ -1,0 +1,1007 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import authorPortrait from './images/author-portrait.jpg'
+import story1 from './images/story-1.jpg'
+import story2 from './images/story-2.jpg'
+import story3 from './images/story-3.jpg'
+import accountScreenshot from './images/account-screenshot.png'
+
+const title = "A letter from Daniel Hartman · 12 seats in my Toronto trading room"
+const description = "A personal letter from Daniel Hartman, former Bay Street prop-desk trader. 12 free seats in my private WhatsApp trading room — closing tonight at 7:42 PM EST."
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={authorPortrait.src} />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      :root {
+        --page:           #FFFFFF;
+        --ink:            #1A1A1F;
+        --ink-soft:       #3D3D45;
+        --meta:           #6B6B73;
+        --rule:           rgba(26, 26, 31, 0.1);
+        --rule-strong:    rgba(26, 26, 31, 0.22);
+        --paper-soft:     #F8F7F4;
+        --marker:         #FFE3B7;
+        --marker-deep:    #FFD276;
+        --alert:          #FF4828;
+        --alert-soft:     rgba(255, 72, 40, 0.1);
+        --gain:           #1C9D55;
+        --wa-green:       #25D366;
+        --wa-green-deep:  #128C7E;
+        --ink-pen:        #2E4FA8;
+
+        --font-serif:     'Source Serif 4', Charter, Georgia, 'Times New Roman', serif;
+        --font-mono:      'JetBrains Mono', Menlo, Consolas, monospace;
+        --font-hand:      'Caveat', cursive;
+
+        --container-letter: 660px;
+        --container-wide:   720px;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: var(--font-serif);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; }
+
+      .letter {
+        max-width: var(--container-letter);
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      .letter--wide { max-width: var(--container-wide); padding: 0 24px; }
+      @media (max-width: 720px) {
+        .letter, .letter--wide { padding: 0 20px; }
+      }
+
+      /* ─── STICKY PROGRESS BAR ─── */
+      .sticky-bar {
+        position: fixed; top: 0; left: 0; right: 0;
+        height: 44px;
+        background: var(--page);
+        border-bottom: 1px solid var(--rule);
+        z-index: 100;
+        transform: translateY(-100%);
+        transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+        display: flex; align-items: center;
+      }
+      .sticky-bar.is-visible { transform: translateY(0); }
+      .sticky-bar .progress-fill {
+        position: absolute; top: 0; left: 0;
+        height: 2px; width: 0%;
+        background: var(--marker-deep);
+        transition: width .12s linear;
+      }
+      .sticky-bar-inner {
+        width: 100%;
+        max-width: var(--container-letter);
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 16px;
+      }
+      .sticky-bar .meta {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--meta);
+        letter-spacing: 0.02em;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      }
+      .sticky-bar .meta .sep { margin: 0 8px; color: var(--rule-strong); }
+      .cta-wa-mini {
+        flex-shrink: 0;
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 7px 14px;
+        background: var(--wa-green);
+        color: #fff;
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 4px;
+        border: none;
+        text-decoration: none;
+        line-height: 1.2;
+        transition: background .2s ease;
+      }
+      .cta-wa-mini:hover { background: var(--wa-green-deep); }
+      .cta-wa-mini .arrow { font-size: 14px; line-height: 1; }
+      @media (max-width: 480px) {
+        .sticky-bar .meta-mid { display: none; }
+        .sticky-bar-inner { padding: 0 16px; }
+        .cta-wa-mini { font-size: 12px; padding: 6px 10px; }
+      }
+
+      /* ─── PAGE TOP RHYTHM ─── */
+      .page-top { padding-top: 64px; }
+      @media (max-width: 720px) {
+        .page-top { padding-top: 32px; }
+      }
+
+      /* ─── LETTER HEADER ─── */
+      .letter-meta-row {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: var(--meta);
+        margin: 0;
+        text-transform: uppercase;
+      }
+      .letter-rule {
+        width: 80px; height: 1px;
+        background: var(--rule-strong);
+        margin: 18px 0 20px;
+      }
+      .letter-h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(30px, 5vw, 44px);
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        margin: 0;
+        font-variation-settings: 'opsz' 44;
+      }
+      .letter-h1-sub {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(16px, 1.7vw, 17px);
+        font-weight: 400;
+        color: var(--ink-soft);
+        margin: 10px 0 0;
+        line-height: 1.5;
+      }
+
+      /* ─── AUTHOR BLOCK ─── */
+      .author-block {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin: 40px 0 0;
+        padding: 24px 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+      }
+      .author-photo {
+        flex-shrink: 0;
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 30%;
+        border: 2px solid var(--page);
+        outline: 1px solid var(--rule);
+      }
+      .author-info {
+        flex: 1; min-width: 0;
+      }
+      .author-name {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: clamp(17px, 2vw, 19px);
+        line-height: 1.3;
+        letter-spacing: -0.005em;
+        margin: 0 0 4px;
+        color: var(--ink);
+      }
+      .author-bio {
+        font-family: var(--font-serif);
+        font-size: clamp(13px, 1.5vw, 14px);
+        color: var(--ink-soft);
+        line-height: 1.5;
+        margin: 0;
+      }
+      .author-followers {
+        display: flex; align-items: center; gap: 8px;
+        margin: 10px 0 0;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--meta);
+        letter-spacing: 0.02em;
+      }
+      .author-followers .dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--gain);
+        flex-shrink: 0;
+      }
+      .author-followers .subbed {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 13px;
+      }
+
+      /* ─── BODY PROSE ─── */
+      .prose {
+        font-family: var(--font-serif);
+        font-size: clamp(17px, 1.9vw, 19px);
+        line-height: 1.72;
+        color: var(--ink);
+      }
+      .prose p { margin: 0 0 24px; }
+      .prose p:last-child { margin-bottom: 0; }
+      .prose strong { font-weight: 700; }
+      .prose em { font-style: italic; color: var(--ink-soft); }
+      .prose .pnl { color: var(--alert); font-weight: 700; }
+      .prose .pnl-gain { color: var(--gain); font-weight: 700; }
+      .prose blockquote {
+        margin: 28px 0;
+        padding: 0 0 0 24px;
+        border-left: 3px solid var(--marker-deep);
+        font-style: italic;
+        color: var(--ink-soft);
+      }
+      .prose blockquote p { margin: 0; }
+      .prose a { color: var(--ink-pen); text-decoration: underline; text-underline-offset: 3px; }
+
+      /* ─── MARKER HIGHLIGHT ─── */
+      .hl {
+        background: linear-gradient(180deg,
+          transparent 55%, var(--marker) 55%,
+          var(--marker) 95%, transparent 95%);
+        padding: 0 4px;
+      }
+      .hl--tilt {
+        display: inline-block;
+        transform: rotate(-0.5deg);
+      }
+
+      /* ─── HANDWRITING ACCENT ─── */
+      .hand {
+        font-family: var(--font-hand);
+        font-size: clamp(20px, 2.3vw, 24px);
+        color: var(--ink-pen);
+        font-weight: 500;
+        display: block;
+        transform: rotate(-1.5deg);
+        margin: -8px 0 36px 32px;
+        line-height: 1.2;
+      }
+      .hand--right {
+        text-align: right;
+        margin: 8px 0 0;
+        transform: rotate(-1deg);
+      }
+      .scribble {
+        display: block;
+        margin: -10px 0 24px 32px;
+        height: 12px;
+        color: var(--ink-pen);
+        max-width: 240px;
+      }
+
+      /* ─── LEAD PARAGRAPH WITH DROP CAP ─── */
+      .lead {
+        margin: 40px 0 0;
+      }
+      .lead > p:first-child::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: clamp(64px, 9vw, 92px);
+        line-height: 0.85;
+        float: left;
+        margin: 6px 12px -4px 0;
+        color: var(--ink);
+        font-variation-settings: 'opsz' 60;
+      }
+
+      /* ─── SECTION TITLES ─── */
+      .section-title {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 600;
+        font-size: clamp(22px, 2.8vw, 28px);
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        margin: 80px 0 8px;
+      }
+      .section-title-sub {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(14px, 1.6vw, 15px);
+        color: var(--meta);
+        margin: 0 0 32px;
+      }
+      @media (max-width: 720px) {
+        .section-title { margin-top: 56px; }
+      }
+
+      /* ─── STORY CARDS ─── */
+      .stories {
+        margin: 24px 0 0;
+        display: flex; flex-direction: column;
+        gap: 40px;
+      }
+      .stories::before {
+        content: '';
+        display: block;
+        width: 32px; height: 2px;
+        background: var(--marker-deep);
+        margin-bottom: 8px;
+      }
+      .story-card {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      .story-photo {
+        width: 64px; height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--page);
+        outline: 1px solid var(--rule);
+        flex-shrink: 0;
+      }
+      .story-head {
+        font-family: var(--font-serif);
+        font-size: clamp(15px, 1.7vw, 17px);
+        line-height: 1.3;
+        margin: 0 0 4px;
+      }
+      .story-head .name {
+        font-weight: 700;
+        color: var(--ink);
+        margin-right: 6px;
+      }
+      .story-head .meta {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--meta);
+      }
+      .story-pnl {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--alert);
+        margin: 0 0 12px;
+        letter-spacing: 0.02em;
+      }
+      .story-body {
+        font-family: var(--font-serif);
+        font-size: clamp(16px, 1.8vw, 17px);
+        line-height: 1.65;
+        color: var(--ink);
+        margin: 0;
+      }
+      .story-body p { margin: 0 0 14px; }
+      .story-body p:last-child { margin-bottom: 0; }
+      @media (max-width: 480px) {
+        .story-card { grid-template-columns: 56px 1fr; gap: 16px; }
+        .story-photo { width: 56px; height: 56px; }
+      }
+
+      /* ─── SETUP TEASER ─── */
+      .setup-intro {
+        margin: 56px 0 0;
+      }
+      .setup-card {
+        background: var(--paper-soft);
+        border: 1px solid var(--rule-strong);
+        border-radius: 4px;
+        padding: 32px 36px;
+        margin: 24px 0 0;
+        font-family: var(--font-mono);
+        font-size: clamp(13px, 1.4vw, 14px);
+        line-height: 1.65;
+        color: var(--ink);
+      }
+      .setup-card h3 {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 0 0 18px;
+        color: var(--ink);
+      }
+      .setup-card .dash {
+        width: 100%; border: none;
+        border-top: 1px dashed var(--rule-strong);
+        margin: 0 0 22px;
+      }
+      .setup-item { margin-bottom: 22px; }
+      .setup-item:last-of-type { margin-bottom: 18px; }
+      .setup-item .label {
+        color: var(--marker-deep);
+        font-weight: 700;
+        margin-right: 4px;
+      }
+      .setup-item .key {
+        display: inline-block;
+        min-width: 96px;
+        color: var(--meta);
+      }
+      .setup-item .redact {
+        letter-spacing: 0.06em;
+        color: var(--ink);
+      }
+      .setup-item .conviction {
+        margin-top: 6px;
+      }
+      .setup-item .conviction strong {
+        color: var(--alert);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .setup-room-rule {
+        text-align: center;
+        margin: 14px 0 0;
+        color: var(--meta);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+      }
+      .setup-caption {
+        margin: 16px 0 0;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(14px, 1.6vw, 15px);
+        color: var(--alert);
+        line-height: 1.55;
+        padding-left: 12px;
+        border-left: 3px solid var(--alert);
+      }
+      @media (max-width: 720px) {
+        .setup-card { padding: 24px 20px; }
+        .setup-item .key { display: block; min-width: 0; margin-bottom: 2px; }
+      }
+
+      /* ─── ACCOUNT SCREENSHOT ─── */
+      .account-shot {
+        margin: 40px 0 0;
+        max-width: var(--container-letter);
+      }
+      .account-shot img {
+        display: block;
+        width: 100%; height: auto;
+        border: 1px solid var(--rule-strong);
+        border-radius: 4px;
+      }
+      .account-shot figcaption {
+        margin: 10px 0 0;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 13px;
+        color: var(--meta);
+        line-height: 1.5;
+      }
+
+      /* ─── INLINE PAYWALL CARD ─── */
+      .paywall-wrap {
+        margin: 64px auto 0;
+        max-width: var(--container-wide);
+        padding: 0 24px;
+      }
+      @media (max-width: 720px) {
+        .paywall-wrap { padding: 0 20px; }
+      }
+      .paywall-card {
+        background: var(--paper-soft);
+        border-left: 4px solid var(--marker-deep);
+        padding: 48px 40px;
+        border-radius: 4px;
+      }
+      .paywall-h {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: clamp(22px, 2.6vw, 26px);
+        line-height: 1.25;
+        letter-spacing: -0.005em;
+        margin: 0;
+        color: var(--ink);
+      }
+      .paywall-rule {
+        width: 24px; height: 2px;
+        background: var(--ink);
+        margin: 14px 0 20px;
+      }
+      .paywall-sub {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(15px, 1.7vw, 17px);
+        line-height: 1.55;
+        color: var(--ink-soft);
+        margin: 0 0 28px;
+        max-width: 540px;
+      }
+      .paywall-cta-wrap { margin: 0; }
+      .paywall-urgency {
+        margin-top: 24px;
+        padding-left: 12px;
+        border-left: 3px solid var(--alert);
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--alert);
+      }
+      .paywall-urgency .when {
+        font-family: var(--font-mono);
+        font-weight: 600;
+      }
+      @media (max-width: 720px) {
+        .paywall-card { padding: 32px 24px; }
+      }
+
+      /* ─── WHATSAPP CTA (full) ─── */
+      .cta-wa {
+        display: inline-flex;
+        align-items: center; justify-content: center;
+        gap: 12px;
+        padding: 18px 32px;
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: 0.02em;
+        color: #fff;
+        background: var(--wa-green);
+        border: none;
+        border-radius: 6px;
+        text-decoration: none;
+        line-height: 1.1;
+        transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+        box-shadow: 0 1px 0 rgba(18, 140, 126, 0.4);
+      }
+      .cta-wa:hover {
+        background: var(--wa-green-deep);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25), 0 1px 0 rgba(18, 140, 126, 0.5);
+      }
+      .cta-wa .wa-icon { flex-shrink: 0; width: 20px; height: 20px; }
+      .cta-wa .arrow { font-family: var(--font-serif); font-weight: 600; font-size: 18px; }
+      .cta-wa--full { width: 100%; padding: 20px 24px; font-size: 17px; }
+      @media (max-width: 720px) {
+        .cta-wa { width: 100%; padding: 16px 20px; font-size: 16px; }
+      }
+
+      /* ─── PS BLOCK ─── */
+      .ps-block {
+        margin: 80px 0 0;
+        padding: 32px 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+      }
+      .ps-label {
+        font-family: var(--font-hand);
+        font-size: clamp(26px, 3vw, 30px);
+        font-weight: 500;
+        color: var(--ink-pen);
+        margin: 0 0 8px;
+        line-height: 1;
+      }
+      .ps-body {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(16px, 1.8vw, 17px);
+        line-height: 1.7;
+        color: var(--ink);
+        margin: 0;
+      }
+      .ps-body p { margin: 0 0 16px; }
+      .ps-body p:last-of-type { margin-bottom: 24px; }
+      .ps-signature {
+        font-family: var(--font-hand);
+        font-size: clamp(26px, 3vw, 30px);
+        color: var(--ink-pen);
+        text-align: right;
+        margin: 0;
+        line-height: 1;
+      }
+      .ps-signature .underline {
+        display: block;
+        width: 96px;
+        height: 1px;
+        background: var(--ink-pen);
+        margin: 4px 0 0 auto;
+      }
+
+      /* ─── FINAL CTA ─── */
+      .final-cta-wrap {
+        margin: 48px 0 0;
+        text-align: center;
+      }
+      .final-cta-meta {
+        margin: 16px 0 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--meta);
+        letter-spacing: 0.04em;
+      }
+
+      /* ─── FOOTER ─── */
+      .site-footer {
+        margin: 96px 0 0;
+        padding: 40px 0 56px;
+        border-top: 1px solid var(--rule);
+      }
+      .site-footer p {
+        margin: 0 0 6px;
+        font-family: var(--font-serif);
+        font-size: 12px;
+        line-height: 1.55;
+        color: var(--meta);
+      }
+      .site-footer p:last-child { margin-bottom: 0; }
+      .site-footer .brand {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: 14px;
+      }
+      .site-footer a { color: var(--ink-pen); }
+
+      /* ─── REVEAL ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity .7s cubic-bezier(.22, 1, .36, 1),
+                    transform .7s cubic-bezier(.22, 1, .36, 1);
+      }
+      .reveal.active { opacity: 1; transform: translateY(0); }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .sticky-bar { transition: none; }
+      }
+    </style>
+  </Fragment>
+
+  <main>
+    <!-- ═══ STICKY PROGRESS BAR ═══ -->
+    <div class="sticky-bar" id="sticky-bar" role="region" aria-label="Reading progress and CTA">
+      <div class="progress-fill" id="progress-fill"></div>
+      <div class="sticky-bar-inner">
+        <span class="meta">LETTER №14<span class="sep">·</span><span class="meta-mid">MAY 24</span></span>
+        <span class="meta"><span id="read-pct">0</span>% done</span>
+        <a class="cta-wa-mini link-btn" href="#" data-cta="sticky">
+          <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true" width="14" height="14">
+            <path fill="#fff" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
+          </svg>
+          Join the room <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ [1] LETTER HEADER ═══ -->
+    <div class="page-top"></div>
+    <section class="letter">
+      <p class="letter-meta-row">A letter from Daniel Hartman</p>
+      <div class="letter-rule"></div>
+      <h1 class="letter-h1">Posted from Toronto.<br/>Twelve seats. <span class="hl hl--tilt">Closing tonight.</span></h1>
+      <p class="letter-h1-sub">May 24, 2026 &nbsp;·&nbsp; 7:42 AM EST &nbsp;·&nbsp; <span id="read-est">Estimated read: 4 minutes</span></p>
+    </section>
+
+    <!-- ═══ [2] AUTHOR BLOCK ═══ -->
+    <section class="letter">
+      <div class="author-block">
+        <img src={authorPortrait.src} alt="Daniel Hartman" class="author-photo" width="56" height="56" />
+        <div class="author-info">
+          <h2 class="author-name">Daniel Hartman</h2>
+          <p class="author-bio">Former Bay Street prop-desk trader &middot; 14 years on the floor &middot; Founder, The Toronto Trading Room (private)</p>
+          <div class="author-followers">
+            <span class="dot"></span>
+            <span id="reader-count">12,438</span> readers
+            <span style="color: var(--rule-strong);">&middot;</span>
+            <span class="subbed">Subscribed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ [3] LEAD PARAGRAPH (drop cap) ═══ -->
+    <section class="letter">
+      <h2 class="section-title reveal">Why I'm writing this today.</h2>
+
+      <div class="prose lead reveal">
+        <p>If you're reading this, somebody you trust forwarded it to you. Or you found it because you've been quietly asking the same question I asked myself eleven years ago, sitting at my kitchen table in North York with a coffee that had gone cold three hours earlier:</p>
+
+        <blockquote><p>Why is everyone else making money in this market &mdash; and I'm not?</p></blockquote>
+
+        <p>I won't waste your time. Here's the short version. Last year my private group of 47 retail traders closed the year with an average account growth of <span class="hl">+247%</span>. That number is real. I have the broker statements. I'm not selling you a course. I'm not selling you a book. I run a small WhatsApp room out of a coworking space on King Street West and I post setups three to five mornings a week.</p>
+
+        <p>I'm writing this letter today because I just opened up <strong>12 seats</strong> in the room. The last batch closed in 9 hours. I expect this one to close faster. So before you scroll past, do me one favour &mdash; read the next 2 minutes. If by the end you think this isn't for you, close the tab. No hard feelings.</p>
+
+        <p>But if you've ever sat on the sidelines while a stock you were watching ran 80% in an afternoon, this letter is the one I wish someone had sent me at 47.</p>
+      </div>
+
+      <span class="hand reveal">&larr; that&rsquo;s the part that matters.</span>
+    </section>
+
+    <!-- ═══ [4] STORY CARDS ─── -->
+    <section class="letter">
+      <h2 class="section-title reveal">Three people in my room. Three different stories.</h2>
+      <p class="section-title-sub reveal">Names changed. Cities and screenshots real. I have permission to share.</p>
+
+      <div class="stories">
+        <article class="story-card reveal">
+          <img src={story1.src} alt="Joshua" class="story-photo" width="64" height="64" loading="lazy" />
+          <div>
+            <p class="story-head">
+              <span class="name">Joshua</span>
+              <span class="meta">53 &middot; Markham, ON &middot; Retired tradesman</span>
+            </p>
+            <p class="story-pnl">Last month: <span style="color: var(--alert);">+$18,400 CAD</span></p>
+            <div class="story-body">
+              <p>Joshua joined the room in February. He&rsquo;d been retired 18 months, drawing CPP early, watching his savings get chewed by Toronto property tax. His wife was getting nervous. Joshua had never traded options in his life.</p>
+              <p>The first thing I told him was: <strong>don&rsquo;t trade for two weeks. Just watch.</strong> He did. On day 16 he took his first setup &mdash; three contracts on [Setup #1], the one I&rsquo;d posted at 9:31 AM. He closed by 2 PM the same day for <span class="pnl">+$1,240</span>.</p>
+              <p>Three weeks later his account was up <span class="pnl">+$18,400</span>. Not because he&rsquo;s smart. Because he showed up at 9:30 AM, took the setups I posted, and didn&rsquo;t argue with the stop-loss.</p>
+              <p><em>Joshua&rsquo;s words, not mine: &ldquo;I don&rsquo;t know why I didn&rsquo;t find this ten years ago.&rdquo;</em></p>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card reveal">
+          <img src={story2.src} alt="Marcus" class="story-photo" width="64" height="64" loading="lazy" />
+          <div>
+            <p class="story-head">
+              <span class="name">Marcus</span>
+              <span class="meta">47 &middot; Mississauga, ON &middot; Logistics manager</span>
+            </p>
+            <p class="story-pnl">Last 6 weeks: <span style="color: var(--alert);">+247% on a $9,000 starter account</span></p>
+            <div class="story-body">
+              <p>Marcus came in skeptical. He&rsquo;d burned through three &ldquo;signal services&rdquo; before mine &mdash; all of them garbage Telegram channels run by 22-year-olds in Dubai. He told me on day one: <em>&ldquo;If you screw me on a single trade I&rsquo;m out, full refund.&rdquo;</em></p>
+              <p>Fair.</p>
+              <p>Six weeks later his $9,000 account is at <span class="pnl">$31,230</span>. He&rsquo;s still in. He&rsquo;s also the loudest voice in the group chat now &mdash; telling new members to <em>&ldquo;shut up and follow the entry zones.&rdquo;</em></p>
+              <p>Marcus took 14 setups out of the 22 I posted. He skipped 8 because his rule is no trading on Fridays. The ones he took: <strong>11 green, 3 red.</strong> The 3 reds combined cost him $640. The 11 greens added $22,870.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card reveal">
+          <img src={story3.src} alt="Diane" class="story-photo" width="64" height="64" loading="lazy" />
+          <div>
+            <p class="story-head">
+              <span class="name">Diane</span>
+              <span class="meta">58 &middot; Burlington, ON &middot; Recently widowed</span>
+            </p>
+            <p class="story-pnl">Last 30 days: <span style="color: var(--alert);">+$7,800 on a $12,000 account</span></p>
+            <div class="story-body">
+              <p>Diane is the case I don&rsquo;t usually publish because it makes me emotional. Her husband passed in December. He&rsquo;d handled their portfolio for 30 years. She came into the room in March knowing nothing &mdash; not how to read an options chain, not what a &ldquo;credit spread&rdquo; is.</p>
+              <p>I made her a deal: she had to spend the first month doing nothing but reading my morning post and writing down the trade I <em>would</em> have taken if I were her. <strong>Paper only. No real money.</strong></p>
+              <p>Month two she went live with $12,000. Last 30 days closed <span class="pnl">+$7,800</span>. She told me last week she finally cancelled the appointment with the bank advisor who was going to &ldquo;park her money in a 4% GIC for ten years.&rdquo;</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ [5] SETUP TEASER ═══ -->
+    <section class="letter">
+      <h2 class="section-title reveal">What I&rsquo;m looking at this week.</h2>
+      <p class="section-title-sub reveal">I can&rsquo;t give you the tickers here &mdash; keep reading and you&rsquo;ll see why.</p>
+
+      <div class="setup-card reveal">
+        <h3>The 3 setups on my desk &mdash; May 24</h3>
+        <hr class="dash" />
+
+        <div class="setup-item">
+          <p><span class="label">#1</span> <span class="key">Sector</span> US large-cap tech</p>
+          <p><span class="label"> &nbsp;</span> <span class="key">Catalyst</span> Earnings <span class="redact">████████</span> &middot; May <span class="redact">██</span></p>
+          <p><span class="label"> &nbsp;</span> <span class="key">My read</span> Coiled spring. Implied vol crushed. One clean breakout above $<span class="redact">███</span> and I&rsquo;m in.</p>
+          <p class="conviction"><span class="label"> &nbsp;</span> <span class="key">Conviction</span> <strong>HIGH</strong></p>
+        </div>
+
+        <div class="setup-item">
+          <p><span class="label">#2</span> <span class="key">Sector</span> TSX energy / oil services</p>
+          <p><span class="label"> &nbsp;</span> <span class="key">Catalyst</span> <span class="redact">████████</span> supply-side news, this week</p>
+          <p><span class="label"> &nbsp;</span> <span class="key">My read</span> Range-bound for 14 sessions. Volume building. This breaks one way hard.</p>
+          <p class="conviction"><span class="label"> &nbsp;</span> <span class="key">Conviction</span> <strong>HIGH</strong></p>
+        </div>
+
+        <div class="setup-item">
+          <p><span class="label">#3</span> <span class="key">Sector</span> Small-cap biotech (NASDAQ)</p>
+          <p><span class="label"> &nbsp;</span> <span class="key">Catalyst</span> Phase-2 readout, <span class="redact">████████</span></p>
+          <p><span class="label"> &nbsp;</span> <span class="key">My read</span> Asymmetric. Risk $1 to make $4. I don&rsquo;t take many of these but this one fits.</p>
+          <p class="conviction"><span class="label"> &nbsp;</span> <span class="key">Conviction</span> <strong>MEDIUM-HIGH</strong></p>
+        </div>
+
+        <p class="setup-room-rule">&mdash; Full tickers in the room &mdash;</p>
+      </div>
+
+      <p class="setup-caption reveal">
+        I&rsquo;ll post the tickers, entry zones, stop-losses and exits inside the WhatsApp room tomorrow at 9:30 AM EST. If you&rsquo;re not in by then, you&rsquo;re watching from outside.
+      </p>
+
+      <figure class="account-shot reveal">
+        <img src={accountScreenshot.src} alt="A reader's brokerage account, last 90 days, climbing from $30k to $58k with three visible drawdowns. Names and tickers redacted." loading="lazy" width="1600" height="900" />
+        <figcaption>One reader&rsquo;s account, last 90 days. Shared with permission. Ticker symbols masked. Account holder name removed for privacy.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ═══ [6] HERE'S THE CATCH ═══ -->
+    <section class="letter">
+      <h2 class="section-title reveal">Here&rsquo;s the catch.</h2>
+
+      <div class="prose reveal">
+        <p>I&rsquo;m not going to pretend this is free out of the goodness of my heart. It&rsquo;s not. The room is free <strong>today</strong> because I opened 12 new seats this morning and I want them filled by people who actually read this letter all the way down &mdash; not tire-kickers who&rsquo;ll mute the chat in 48 hours.</p>
+
+        <p>If you&rsquo;re still reading at this point, you&rsquo;re the kind of person I want in the room. You&rsquo;re patient. You&rsquo;re paying attention. You probably already know the difference between IV crush and a poor man&rsquo;s covered call. Good.</p>
+
+        <p>The seats are free. But they will close. The last batch closed in 9 hours. <span class="hl">At the time I&rsquo;m writing this &mdash; 7:42 AM &mdash; there are <span id="seats-inline">12</span> seats. By 7:42 PM tonight there will be 0.</span></p>
+      </div>
+    </section>
+
+    <!-- ═══ [7] INLINE PAYWALL CARD ═══ -->
+    <div class="paywall-wrap reveal">
+      <article class="paywall-card">
+        <h2 class="paywall-h">Read the rest in the room.</h2>
+        <div class="paywall-rule"></div>
+        <p class="paywall-sub">The tickers, the entry zones, the stop-loss levels &mdash; they&rsquo;re all posted to the WhatsApp room tomorrow at 9:30 AM EST. Three steps, under sixty seconds, no credit card.</p>
+
+        <div class="paywall-cta-wrap">
+          <a class="cta-wa cta-wa--full link-btn" href="#" data-cta="paywall">
+            <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path fill="#fff" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3zm0 21.6c-1.872 0-3.61-.527-5.094-1.44l-.365-.218-4.62 1.095 1.116-4.494-.238-.378A9.583 9.583 0 0 1 6.4 15c0-5.293 4.31-9.6 9.603-9.6 5.296 0 9.603 4.307 9.603 9.6s-4.31 9.6-9.603 9.6zm5.487-7.16c-.3-.15-1.778-.879-2.052-.978-.275-.1-.474-.15-.673.151-.2.301-.773.979-.948 1.18-.175.2-.349.225-.648.075-.3-.15-1.268-.467-2.415-1.488-.892-.795-1.493-1.778-1.668-2.079-.174-.301-.018-.464.132-.614.135-.135.3-.351.45-.527.15-.176.2-.301.3-.502.1-.2.05-.376-.025-.527-.075-.15-.673-1.62-.922-2.219-.243-.585-.49-.506-.673-.515l-.575-.011c-.2 0-.524.075-.799.376-.275.301-1.048 1.024-1.048 2.495 0 1.471 1.073 2.893 1.222 3.094.15.2 2.114 3.226 5.124 4.521.715.309 1.273.494 1.708.633.717.228 1.37.196 1.886.119.575-.086 1.778-.726 2.028-1.428.25-.703.25-1.305.175-1.428-.075-.124-.275-.2-.575-.35z"/>
+            </svg>
+            Join Daniel&rsquo;s Room
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+
+        <p class="paywall-urgency">
+          <span id="seats-pay">12</span> seats left &middot; Closes <span class="when">7:42 PM EST</span> tonight &middot; Leave anytime
+        </p>
+      </article>
+    </div>
+
+    <!-- ═══ [8] PS BLOCK ═══ -->
+    <section class="letter">
+      <div class="ps-block reveal">
+        <p class="ps-label">P.S.</p>
+        <div class="ps-body">
+          <p>If you&rsquo;re still on the fence &mdash; I get it. Here&rsquo;s what I&rsquo;ll say.</p>
+          <p>Three years ago I was sitting where you are. I was reading some Substack guy&rsquo;s free letter telling me to <em>&ldquo;just join his room.&rdquo;</em> I thought it was a scam. I closed the tab. Six months later my brother-in-law &mdash; a plumber from Hamilton, no finance background, the guy who used to ask me what a &ldquo;PE ratio&rdquo; was &mdash; quietly bought a house in Niagara cash. He&rsquo;d been in that exact room I closed the tab on.</p>
+          <p>Don&rsquo;t be me at 44. Tap the button.</p>
+        </div>
+        <p class="ps-signature">
+          &mdash; Daniel
+          <span class="underline"></span>
+        </p>
+      </div>
+
+      <!-- final inline CTA -->
+      <div class="final-cta-wrap reveal">
+        <a class="cta-wa link-btn" href="#" data-cta="ps">
+          <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="#fff" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
+          </svg>
+          Join Daniel&rsquo;s Room
+          <span class="arrow">&rarr;</span>
+        </a>
+        <p class="final-cta-meta">No credit card &middot; <span id="seats-final">12</span> seats remain &middot; Closes 7:42 PM EST tonight</p>
+      </div>
+
+      <!-- ═══ FOOTER ═══ -->
+      <footer class="site-footer">
+        <p class="brand">A LETTER FROM DANIEL HARTMAN &middot; TORONTO</p>
+        <p>This letter expresses the personal views of the author. Names of room members have been changed. Trading results shown are individual outcomes and not typical or guaranteed. Trading and investing involves risk of loss, including total loss of capital.</p>
+        <p>You should consult a licensed financial advisor before making any investment decision. The author is not a registered investment dealer or portfolio manager. Nothing in this letter constitutes a solicitation or offer to buy or sell any security.</p>
+        <p style="margin-top: 16px;">&copy; 2026 &middot; Reply to <a href="mailto:daniel@tsxv-insider.example">daniel@tsxv-insider.example</a> to unsubscribe.</p>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="/src/utils/jump.ts"></script>
+  <script type="module" src="/src/utils/main.js"></script>
+
+  <script is:inline>
+    // ─── Reveal-on-scroll ───
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('active'), idx * 60);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('active'));
+    }
+
+    // ─── Sticky progress bar (≥30% triggers slide-in) ───
+    const stickyBar = document.getElementById('sticky-bar');
+    const progressFill = document.getElementById('progress-fill');
+    const readPct = document.getElementById('read-pct');
+    let lastPct = -1;
+
+    function updateProgress() {
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop;
+      const viewportH = window.innerHeight;
+      const fullH = doc.scrollHeight - viewportH;
+      const pct = fullH > 0 ? Math.min(100, Math.max(0, (scrollTop / fullH) * 100)) : 0;
+      const pctRounded = Math.round(pct);
+
+      if (progressFill) progressFill.style.width = pct + '%';
+      if (readPct && pctRounded !== lastPct) {
+        readPct.textContent = pctRounded;
+        lastPct = pctRounded;
+      }
+
+      if (stickyBar) {
+        if (pct >= 30) stickyBar.classList.add('is-visible');
+        else stickyBar.classList.remove('is-visible');
+      }
+    }
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+
+    // ─── Live seat counter (jitter in [8, 12], never 0) ───
+    let seats = 12;
+    function syncSeats() {
+      const s = String(seats);
+      ['seats-inline', 'seats-pay', 'seats-final'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = s;
+      });
+    }
+    function jitterSeats() {
+      // 65% chance to decrement, 35% to stay/up; clamp [8, 12]
+      const r = Math.random();
+      if (r < 0.55 && seats > 8) seats -= 1;
+      else if (r > 0.92 && seats < 12) seats += 1;
+      syncSeats();
+    }
+    syncSeats();
+    setInterval(jitterSeats, 18000);
+
+    // ─── Reader count slow drift ───
+    const readerEl = document.getElementById('reader-count');
+    let readerCount = 12438;
+    if (readerEl) {
+      setInterval(() => {
+        readerCount += Math.random() < 0.7 ? 1 : 0;
+        readerEl.textContent = readerCount.toLocaleString('en-CA');
+      }, 22000);
+    }
+
+    // ─── GA event tracking on CTA clicks ───
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-cta]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const slot = el.getAttribute('data-cta') || 'unknown';
+          try {
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'cta_click', {
+                event_category: 'whatsapp_letter',
+                event_label: slot,
+                page_path: '/CA/20260524-2.0/',
+              });
+            }
+          } catch (e) { /* swallow */ }
+        });
+      });
+    });
+  </script>
+</BaseLayout>
+</content>
