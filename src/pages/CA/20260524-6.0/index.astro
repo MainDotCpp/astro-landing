@@ -1,0 +1,100 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '5 Well-Known Canadian Companies — Next Big Opportunity'
+const description = 'More Canadians are paying attention to passive income, long-term investing, and potential future stock value from strong consumer brands.'
+
+const companies = [
+  { name: 'GoodLife', icon: '🏋️' },
+  { name: 'Longo’s', icon: '🛒' },
+  { name: 'MEC', icon: '🏔' },
+  { name: 'Harvey’s', icon: '🍔' },
+]
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </Fragment>
+
+  <div
+    class="min-h-screen bg-cover bg-center relative flex items-center justify-center px-6"
+    style="background-image: linear-gradient(rgba(5,15,35,0.78), rgba(5,15,35,0.82)), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=2070&auto=format&fit=crop');"
+  >
+    <div class="max-w-6xl w-full bg-white/10 backdrop-blur-xl border border-white/10 rounded-[40px] p-10 lg:p-14 shadow-2xl text-white">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <!-- Left Content -->
+        <div>
+          <div class="inline-flex items-center gap-2 bg-red-600/20 border border-red-500/30 px-5 py-2 rounded-full text-sm font-medium mb-6">
+            🇨🇦 Canadian Market Opportunity
+          </div>
+
+          <h1 class="text-5xl lg:text-6xl font-black leading-tight uppercase mb-6">
+            5 Well-Known Canadian Companies
+            <span class="text-yellow-400 block mt-2">
+              Could Become The Next Big Opportunity
+            </span>
+          </h1>
+
+          <p class="text-lg text-gray-200 leading-relaxed mb-8 max-w-xl">
+            More Canadians are paying attention to passive income,
+            long-term investing, and potential future stock value from strong
+            consumer brands.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 mb-8 max-w-lg">
+            <div class="bg-white/10 rounded-2xl p-5 border border-white/10">
+              <div class="text-3xl mb-2">💰</div>
+              <div class="font-bold">Passive Income</div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-5 border border-white/10">
+              <div class="text-3xl mb-2">📈</div>
+              <div class="font-bold">Potential Stock Value</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 mb-8">
+            <div class="bg-green-500 w-4 h-4 rounded-full animate-pulse"></div>
+            <div class="text-xl font-semibold">
+              28,000+ Canadians Already Joined
+            </div>
+          </div>
+
+          <a
+            href="https://wa.me/10000000000"
+            class="inline-flex items-center justify-center bg-green-500 hover:bg-green-400 transition-all text-black font-black text-xl px-10 py-5 rounded-2xl shadow-2xl"
+          >
+            📲 Join On WhatsApp
+          </a>
+        </div>
+
+        <!-- Right Company Cards -->
+        <div class="grid grid-cols-2 gap-4">
+          {companies.map(item => (
+            <div class="bg-white text-gray-900 rounded-3xl p-6 text-center shadow-2xl">
+              <div class="text-5xl mb-4">{item.icon}</div>
+              <div class="text-2xl font-black">{item.name}</div>
+            </div>
+          ))}
+
+          <div class="col-span-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 rounded-3xl p-6 text-center shadow-2xl">
+            <div class="text-3xl font-black mb-2">
+              Potential Canadian Investment Opportunities
+            </div>
+            <div class="font-semibold text-lg">
+              Passive Income • Long-Term Growth • Consumer Brands
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-xs text-gray-400 mt-8">
+        This content is for informational purposes only and does not
+        constitute financial advice.
+      </div>
+    </div>
+  </div>
+</BaseLayout>
