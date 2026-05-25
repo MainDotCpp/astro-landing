@@ -1,186 +1,158 @@
 #!/bin/bash
+# 一键部署脚本：构建 + 推送到所有目标服务器 + 输出可访问 URL
+#
+# 用法:
+#   ./deploy_rsync.sh                        # 构建 + 部署到所有目标，输出各域名根 URL
+#   ./deploy_rsync.sh US/20250915-1.0/       # 同上，但 URL 拼接子路径方便直接打开
+#   ./deploy_rsync.sh --no-build [path]      # 跳过构建，直接部署 ./dist/
 
-# 使用 Homebrew 安装的 rsync（macOS 自带版本不支持 --chown）
+set -uo pipefail
+
+usage() {
+  cat <<'EOF'
+一键部署脚本：构建 + 推送到所有目标服务器 + 输出可访问 URL
+
+用法:
+  ./deploy_rsync.sh                        构建 + 部署到所有目标，输出各域名根 URL
+  ./deploy_rsync.sh US/20250915-1.0/       同上，URL 拼接子路径方便直接打开
+  ./deploy_rsync.sh --no-build [path]      跳过构建，直接部署 ./dist/
+  ./deploy_rsync.sh -h | --help            显示此帮助
+EOF
+}
+
+# ====== 参数解析 ======
+RUN_BUILD=true
+URL_PATH=""
+for arg in "$@"; do
+  case "$arg" in
+    --no-build) RUN_BUILD=false ;;
+    -h|--help) usage; exit 0 ;;
+    *) URL_PATH="${arg#/}" ;;
+  esac
+done
+
+# ====== 工具检查 ======
 RSYNC="/opt/homebrew/bin/rsync"
 if [ ! -x "$RSYNC" ]; then
-    echo "错误: 未找到 Homebrew 版 rsync，请运行 'brew install rsync'"
-    exit 1
+  echo "错误: 未找到 Homebrew 版 rsync (macOS 自带版本不支持 --chown)"
+  echo "请运行: brew install rsync"
+  exit 1
+fi
+if ! command -v sshpass &>/dev/null; then
+  echo "错误: sshpass 未安装"
+  echo "请运行: brew install sshpass"
+  exit 1
 fi
 
-# 配置
+# ====== 通用配置 ======
 SSH_PORT=5522
 SOURCE_DIR="./dist/"
-PASSWORD_KR="Haishi@1688"
-PASSWORD_JP="Haishi@1688"
-PASSWORD_THIRD="Leuan_3rd"
 
-# 检查源目录
+EXCLUDE_BASE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=*_/ --exclude=**/*_/ --exclude=YY/ --exclude=**/YY/"
+EXCLUDE_WITH_PRIVATE="$EXCLUDE_BASE --exclude=private"
+
+# ====== 部署目标 ======
+# 字段顺序: label | ip | password | remote_path | base_url | source_dir | exclude_private(true/false)
+TARGETS=(
+  "KR|141.164.43.115|Haishi@1688|/www/wwwroot/coincool.top/|https://coincool.top|$SOURCE_DIR|true"
+  "JP|108.160.138.123|Haishi@1688|/www/wwwroot/richwise.top/|https://richwise.top|$SOURCE_DIR|true"
+  "3rd|108.160.141.193|Leuan_3rd|/www/wwwroot/xn--ces516hyxm.com/|https://xn--ces516hyxm.com|$SOURCE_DIR|false"
+  "zutoml|202.182.125.131|Haishi@1688|/www/wwwroot/zutoml.top/|https://zutoml.top|$SOURCE_DIR|false"
+  "advancedshara-KR|158.247.212.142|Haishi@1688|/www/wwwroot/advancedshara.top/|https://advancedshara.top|./dist/KR/|true"
+  "advancedshara-mjSFqQ|158.247.212.142|Haishi@1688|/www/wwwroot/advancedshara.top/mjSFqQ/|https://advancedshara.top/mjSFqQ|./dist/mjSFqQ/|true"
+)
+
+# ====== 构建 ======
+if $RUN_BUILD; then
+  echo "================================"
+  echo "构建项目 (bun run build)"
+  echo "================================"
+  if ! bun run build; then
+    echo "✗ 构建失败，已中止部署"
+    exit 1
+  fi
+  echo ""
+fi
+
 if [ ! -d "$SOURCE_DIR" ]; then
-    echo "错误: 源目录 $SOURCE_DIR 不存在"
-    echo "提示: 请先运行 'bun run build' 构建项目"
-    exit 1
+  echo "错误: 源目录 $SOURCE_DIR 不存在 (使用 --no-build 时请先手动构建)"
+  exit 1
 fi
 
-# 检查 sshpass 是否安装
-if ! command -v sshpass &> /dev/null; then
-    echo "错误: sshpass 未安装"
-    echo "请使用 'brew install sshpass' 安装"
-    exit 1
-fi
+# ====== 部署函数 ======
+SUCCESS_URLS=()
+FAILED_TARGETS=()
 
-# 忽略文件参数
-EXCLUDE_PARAMS="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=private --exclude=*_/ --exclude=**/*_/ --exclude=YY/ --exclude=**/YY/"
+deploy_one() {
+  local label="$1" ip="$2" pw="$3" remote_path="$4" base_url="$5" src="$6" exclude_private="$7"
+  local excl
 
-echo "================================"
-echo "开始部署到所有服务器..."
-echo "================================"
-echo ""
+  if [ "$exclude_private" = "true" ]; then
+    excl="$EXCLUDE_WITH_PRIVATE"
+  else
+    excl="$EXCLUDE_BASE"
+  fi
 
-# 部署到 KR 服务器
-echo ">>> 正在部署到 KR 服务器 (coincool.top)..."
-sshpass -p "${PASSWORD_KR}" $RSYNC -rlptzv \
+  echo ">>> [$label] $src -> $ip:$remote_path"
+
+  if [ ! -d "$src" ]; then
+    echo "  ⚠ 源目录 $src 不存在，跳过"
+    FAILED_TARGETS+=("$label (源目录缺失: $src)")
+    echo ""
+    return
+  fi
+
+  # shellcheck disable=SC2086
+  sshpass -p "$pw" "$RSYNC" -rlptzv \
     --chown=www:www \
     --chmod=D755,F644 \
     --progress \
-    ${EXCLUDE_PARAMS} \
-    ${SOURCE_DIR} \
-    -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
-    root@141.164.43.115:/www/wwwroot/coincool.top/
+    $excl \
+    "$src" \
+    -e "ssh -p $SSH_PORT -o StrictHostKeyChecking=no" \
+    "root@$ip:$remote_path"
 
-if [ $? -eq 0 ]; then
-    echo "✓ KR 服务器部署成功"
-else
-    echo "✗ KR 服务器部署失败"
-fi
+  if [ $? -eq 0 ]; then
+    echo "✓ [$label] 部署成功"
+    SUCCESS_URLS+=("$base_url/$URL_PATH")
+  else
+    echo "✗ [$label] 部署失败"
+    FAILED_TARGETS+=("$label ($ip)")
+  fi
+  echo ""
+}
 
-echo ""
-echo "---"
-echo ""
-
-# 部署到 JP 服务器
-echo ">>> 正在部署到 JP 服务器 (richwise.top)..."
-sshpass -p "${PASSWORD_JP}" $RSYNC -rlptzv \
-    --chown=www:www \
-    --chmod=D755,F644 \
-    --progress \
-    ${EXCLUDE_PARAMS} \
-    ${SOURCE_DIR} \
-    -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
-    root@108.160.138.123:/www/wwwroot/richwise.top/
-
-if [ $? -eq 0 ]; then
-    echo "✓ JP 服务器部署成功"
-else
-    echo "✗ JP 服务器部署失败"
-fi
-
-echo ""
-echo "---"
-echo ""
-
-# 部署到第三方服务器 (不忽略 private 文件夹)
-echo ">>> 正在部署到第三方服务器 (xn--ces516hyxm.com)..."
-EXCLUDE_PARAMS_NO_PRIVATE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=*_/ --exclude=**/*_/ --exclude=YY/ --exclude=**/YY/"
-sshpass -p "${PASSWORD_THIRD}" $RSYNC -rlptzv \
-    --chown=www:www \
-    --chmod=D755,F644 \
-    --progress \
-    ${EXCLUDE_PARAMS_NO_PRIVATE} \
-    ${SOURCE_DIR} \
-    -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
-    root@108.160.141.193:/www/wwwroot/xn--ces516hyxm.com/
-
-if [ $? -eq 0 ]; then
-    echo "✓ 第三方服务器部署成功"
-else
-    echo "✗ 第三方服务器部署失败"
-fi
-
-echo ""
-echo "---"
-echo ""
-
-# 部署到新服务器 (202.182.125.131)
-echo ">>> 正在部署到新服务器 (202.182.125.131)..."
-sshpass -p "${PASSWORD_JP}" $RSYNC -rlptzv \
-    --chown=www:www \
-    --chmod=D755,F644 \
-    --progress \
-    ${EXCLUDE_PARAMS_NO_PRIVATE} \
-    ${SOURCE_DIR} \
-    -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
-    root@202.182.125.131:/www/wwwroot/zutoml.top
-
-if [ $? -eq 0 ]; then
-    echo "✓ 新服务器部署成功"
-else
-    echo "✗ 新服务器部署失败"
-fi
-
-echo ""
-echo "---"
-echo ""
-
-# 部署到新服务器 (158.247.212.142) - 上传 KR 和 mjSFqQ 目录
-echo ">>> 正在部署到新服务器 (158.247.212.142) - 上传 KR 和 mjSFqQ 目录..."
-
-KR_SOURCE_DIR="./dist/KR/"
-MJ_SOURCE_DIR="./dist/mjSFqQ/"
-DEPLOY_SUCCESS=true
-
-# 上传 KR 目录
-if [ ! -d "$KR_SOURCE_DIR" ]; then
-    echo "警告: KR 目录 $KR_SOURCE_DIR 不存在，跳过"
-else
-    echo "  > 正在上传 KR 目录..."
-    sshpass -p "${PASSWORD_KR}" rsync -rlptzv \
-        --chown=www:www \
-        --chmod=D755,F644 \
-        --progress \
-        ${EXCLUDE_PARAMS} \
-        ${KR_SOURCE_DIR} \
-        -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
-        root@158.247.212.142:/www/wwwroot/advancedshara.top/
-
-    if [ $? -eq 0 ]; then
-        echo "  ✓ KR 目录上传成功"
-    else
-        echo "  ✗ KR 目录上传失败"
-        DEPLOY_SUCCESS=false
-    fi
-fi
-
-# 上传 mjSFqQ 目录
-if [ ! -d "$MJ_SOURCE_DIR" ]; then
-    echo "警告: mjSFqQ 目录 $MJ_SOURCE_DIR 不存在，跳过"
-else
-    echo "  > 正在上传 mjSFqQ 目录..."
-    sshpass -p "${PASSWORD_KR}" rsync -rlptzv \
-        --chown=www:www \
-        --chmod=D755,F644 \
-        --progress \
-        ${EXCLUDE_PARAMS} \
-        ${MJ_SOURCE_DIR} \
-        -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
-        root@158.247.212.142:/www/wwwroot/advancedshara.top/mjSFqQ/
-
-    if [ $? -eq 0 ]; then
-        echo "  ✓ mjSFqQ 目录上传成功"
-    else
-        echo "  ✗ mjSFqQ 目录上传失败"
-        DEPLOY_SUCCESS=false
-    fi
-fi
-
-# 总结部署结果
-if [ "$DEPLOY_SUCCESS" = true ]; then
-    echo "✓ 新服务器 (158.247.212.142) 部署成功"
-else
-    echo "✗ 新服务器 (158.247.212.142) 部署失败"
-fi
-
-echo ""
+# ====== 部署主循环 ======
 echo "================================"
-echo "部署完成！"
+echo "部署到 ${#TARGETS[@]} 个目标"
+[ -n "$URL_PATH" ] && echo "URL 子路径: /$URL_PATH"
 echo "================================"
+echo ""
 
+for entry in "${TARGETS[@]}"; do
+  IFS='|' read -r label ip pw remote_path base_url src exclude_private <<<"$entry"
+  deploy_one "$label" "$ip" "$pw" "$remote_path" "$base_url" "$src" "$exclude_private"
+done
+
+# ====== 汇总输出 ======
+echo "================================"
+echo "部署结果汇总"
+echo "================================"
+echo ""
+echo "成功 (${#SUCCESS_URLS[@]}/${#TARGETS[@]}):"
+if [ ${#SUCCESS_URLS[@]} -eq 0 ]; then
+  echo "  (无)"
+else
+  for url in "${SUCCESS_URLS[@]}"; do
+    echo "  ✓ $url"
+  done
+fi
+
+if [ ${#FAILED_TARGETS[@]} -gt 0 ]; then
+  echo ""
+  echo "失败 (${#FAILED_TARGETS[@]}/${#TARGETS[@]}):"
+  for t in "${FAILED_TARGETS[@]}"; do
+    echo "  ✗ $t"
+  done
+  exit 1
+fi
