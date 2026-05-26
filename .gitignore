@@ -28,3 +28,9 @@ pnpm-debug.log*
 
 # Superpowers brainstorm companion
 .superpowers/
+
+# Playwright MCP page snapshots
+.playwright-mcp/
+
+# Local debug screenshots
+.tmp-shots/

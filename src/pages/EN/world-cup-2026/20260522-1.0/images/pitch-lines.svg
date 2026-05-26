@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.0)"/>
+      <stop offset="40%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.05)"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#fade)" stroke-width="2" fill="none" opacity="0.9">
+    <!-- Perspective pitch outline -->
+    <path d="M -200 950 L 540 380 L 900 380 L 1640 950 Z"/>
+    <!-- Center line -->
+    <line x1="720" y1="380" x2="720" y2="950"/>
+    <!-- Center circle (perspective ellipse) -->
+    <ellipse cx="720" cy="600" rx="160" ry="46"/>
+    <circle cx="720" cy="600" r="5" fill="rgba(255,255,255,0.4)" stroke="none"/>
+    <!-- Penalty arcs left/right -->
+    <path d="M 280 750 L 280 850 L 480 850 L 480 750"/>
+    <path d="M 960 750 L 960 850 L 1160 850 L 1160 750"/>
+    <!-- Goal boxes -->
+    <path d="M 360 800 L 360 850 L 420 850 L 420 800"/>
+    <path d="M 1020 800 L 1020 850 L 1080 850 L 1080 800"/>
+    <!-- Corner arcs (subtle) -->
+    <path d="M -180 940 Q -160 920, -140 940"/>
+    <path d="M 1620 940 Q 1600 920, 1580 940"/>
+  </g>
+  <!-- Tactical chalk arrows -->
+  <g stroke="rgba(255,199,44,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4 6">
+    <path d="M 380 720 Q 600 600, 720 600"/>
+    <path d="M 1060 720 Q 840 600, 720 600"/>
+  </g>
+</svg>

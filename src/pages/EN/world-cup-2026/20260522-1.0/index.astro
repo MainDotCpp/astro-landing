@@ -1,0 +1,2349 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import stadiumBg from './images/atmosphere/stadium-bg.png'
+import badge18 from './images/badge-18plus.svg'
+import badgeGba from './images/badge-gba.svg'
+import heroPosterMobile from './images/hero/variant-d-mobile.png'
+import heroPoster from './images/hero/variant-d.png'
+import logo from './images/logo-placeholder.svg'
+import match1 from './images/matches/m1-bra-arg.png'
+import match2 from './images/matches/m2-fra-esp.png'
+import match3 from './images/matches/m3-eng-ger.png'
+import match4 from './images/matches/m4-por-nor.png'
+import match5 from './images/matches/m5-ned-bel.png'
+import match6 from './images/matches/m6-usa-mex.png'
+import ogImage from './images/og/share.png'
+import appMockup from './images/phone/app-mockup.png'
+import pitchLines from './images/pitch-lines.svg'
+import stepsInfographic from './images/steps/steps-infographic.png'
+import bonusVoucher from './images/voucher/bonus-voucher.png'
+
+const title = 'Download the App · Get $200 for World Cup 2026 — KICKLINE'
+const description = 'Download the #1 World Cup app and claim up to $200 in Bonus Bets on your first qualifying wager. iOS & Android. Live streaming every match. 18+. T&Cs apply.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage.src} />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage.src} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Barlow:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      :root {
+        --night-deep: #03060F;
+        --night: #0A1430;
+        --pitch-deep: #04261A;
+        --pitch: #0E5132;
+        --pitch-bright: #1B7A3E;
+        --gold: #FFC72C;
+        --gold-hot: #FFE082;
+        --gold-deep: #8C5A00;
+        --chalk: #FFFFFF;
+        --mist: rgba(255, 255, 255, 0.7);
+        --whisper: rgba(255, 255, 255, 0.45);
+        --ignite: #FF2D2D;
+        --rule: rgba(255, 255, 255, 0.12);
+        --max-w: 1200px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--night-deep);
+        color: var(--chalk);
+        font-family: 'Barlow', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; }
+
+      .display {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        letter-spacing: 0.005em;
+        line-height: 0.88;
+        text-transform: uppercase;
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      .wc-container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+      }
+
+      /* ─── ATMOSPHERE: NIGHT SKY + PITCH + FLOODLIGHTS ─── */
+      .wc-stage {
+        position: relative;
+        background:
+          radial-gradient(ellipse 1100px 580px at 18% -10%, rgba(255, 220, 130, 0.18), transparent 60%),
+          radial-gradient(ellipse 1100px 580px at 82% -10%, rgba(160, 200, 255, 0.10), transparent 60%),
+          linear-gradient(180deg, var(--night-deep) 0%, var(--night) 35%, var(--pitch-deep) 78%, var(--pitch) 100%);
+        overflow: hidden;
+      }
+
+      .wc-pitch-lines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.55;
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        mix-blend-mode: screen;
+      }
+
+      .wc-grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.08;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        mix-blend-mode: overlay;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active { opacity: 1; transform: translateY(0); }
+
+      /* ─── TOP BAR ─── */
+      .wc-topbar {
+        position: relative;
+        z-index: 4;
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .wc-topbar-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .wc-logo { height: 28px; width: auto; display: block; }
+      .wc-trust-strip {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--whisper);
+      }
+      .wc-trust-strip > * { display: inline-flex; align-items: center; gap: 0.4rem; }
+      .wc-trust-dot {
+        width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+      }
+
+      /* ─── LIVE CHIP ─── */
+      .wc-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        background: var(--ignite);
+        color: #fff;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 800;
+        font-size: 0.95rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        padding: 0.42rem 0.9rem 0.34rem;
+        line-height: 1;
+      }
+      .wc-live-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        animation: wc-pulse-red 1.6s ease-out infinite;
+      }
+      @keyframes wc-pulse-red {
+        0%   { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+        70%  { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      }
+
+      /* ─── HERO ─── */
+      .wc-hero {
+        position: relative;
+        z-index: 3;
+        padding: 4.5rem 0 6rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      .wc-hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 3rem;
+        align-items: center;
+        width: 100%;
+      }
+
+      .wc-hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .wc-eyebrow-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.74rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold-hot);
+      }
+
+      .wc-hero h1.display {
+        font-size: clamp(3.4rem, 8.4vw, 7.2rem);
+        margin: 0 0 1.25rem;
+        color: var(--chalk);
+      }
+      .wc-hero h1 .accent { color: var(--gold); }
+      .wc-hero h1 .stroke {
+        -webkit-text-stroke: 2px var(--gold);
+        color: transparent;
+      }
+
+      .wc-hero-sub {
+        font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+        line-height: 1.55;
+        color: var(--mist);
+        max-width: 540px;
+        margin: 0 0 2.5rem;
+      }
+      .wc-hero-sub strong { color: var(--chalk); font-weight: 700; }
+
+      /* ─── CTA BUTTON ─── */
+      .wc-cta-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.4rem;
+      }
+      .wc-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.85rem;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 1.4rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--night-deep);
+        background: linear-gradient(180deg, #FFE082 0%, #FFC72C 55%, #E6A700 100%);
+        border: none;
+        padding: 1.35rem 2.6rem 1.2rem;
+        cursor: pointer;
+        clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%, 16px 50%);
+        box-shadow:
+          0 0 0 0 rgba(255, 199, 44, 0.7),
+          0 18px 40px -10px rgba(255, 199, 44, 0.45),
+          0 4px 0 0 #8C5A00;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        animation: wc-glow 2.4s ease-in-out infinite;
+      }
+      .wc-btn:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 0 0 0 rgba(255, 199, 44, 0.7),
+          0 22px 48px -10px rgba(255, 199, 44, 0.65),
+          0 6px 0 0 #8C5A00;
+      }
+      .wc-btn:active { transform: translateY(1px); }
+      @keyframes wc-glow {
+        0%, 100% { filter: drop-shadow(0 0 0 rgba(255, 199, 44, 0.5)); }
+        50% { filter: drop-shadow(0 0 28px rgba(255, 199, 44, 0.55)); }
+      }
+      .wc-btn-arrow { font-size: 1.3em; line-height: 0; transform: translateY(-1px); }
+
+      .wc-cta-fineprint {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--whisper);
+      }
+      .wc-cta-fineprint b { color: var(--gold-hot); font-weight: 700; }
+
+      .wc-hero-meta {
+        display: flex;
+        gap: 1.6rem;
+        margin-top: 2.2rem;
+        padding-top: 1.6rem;
+        border-top: 1px solid var(--rule);
+        flex-wrap: wrap;
+      }
+      .wc-hero-meta > div { display: flex; flex-direction: column; gap: 0.2rem; }
+      .wc-meta-k {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--whisper);
+      }
+      .wc-meta-v {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.04em;
+        color: var(--chalk);
+      }
+
+      /* ─── SCOREBOARD: GIANT 200 ─── */
+      .wc-scoreboard {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 540px;
+      }
+      .wc-scoreboard-frame {
+        position: relative;
+        padding: 2rem;
+        width: 100%;
+        max-width: 520px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+        border: 1px solid var(--rule);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+      }
+      .wc-sb-corner {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--gold);
+      }
+      .wc-sb-corner.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+      .wc-sb-corner.tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+      .wc-sb-corner.bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+      .wc-sb-corner.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+      .wc-sb-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--whisper);
+        padding-bottom: 1rem;
+        border-bottom: 1px dashed var(--rule);
+      }
+      .wc-sb-header .live-pip {
+        color: var(--ignite);
+        display: inline-flex; align-items: center; gap: 0.35rem;
+      }
+      .wc-sb-header .live-pip::before {
+        content: '';
+        width: 6px; height: 6px; border-radius: 50%;
+        background: var(--ignite);
+        animation: wc-pulse-red 1.6s ease-out infinite;
+      }
+
+      .wc-sb-amount {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 1.2rem 0 0.6rem;
+        position: relative;
+      }
+      .wc-sb-currency {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 700;
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        color: var(--gold);
+        line-height: 1;
+        margin-top: 0.6rem;
+      }
+      .wc-sb-number {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: clamp(11rem, 22vw, 17rem);
+        line-height: 0.82;
+        color: var(--gold);
+        background: linear-gradient(180deg, #FFF1B8 0%, #FFC72C 45%, #B07200 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 60px rgba(255, 199, 44, 0.35);
+        position: relative;
+      }
+      .wc-sb-units {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mist);
+        text-align: center;
+        padding-top: 0.4rem;
+      }
+      .wc-sb-units span { color: var(--gold-hot); font-weight: 700; }
+      .wc-sb-footer {
+        margin-top: 1.4rem;
+        padding-top: 1rem;
+        border-top: 1px dashed var(--rule);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--whisper);
+      }
+      .wc-sb-footer-cell b {
+        display: block;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: var(--chalk);
+        letter-spacing: 0.04em;
+        margin-top: 0.25rem;
+      }
+      .wc-sb-trophy {
+        position: absolute;
+        right: -8%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38%;
+        max-width: 230px;
+        opacity: 0.18;
+        pointer-events: none;
+        filter: blur(0.2px);
+      }
+
+      /* ─── HERO POSTER (image variant of scoreboard frame) ─── */
+      .wc-poster-frame {
+        padding: 0;
+        background: var(--night-deep);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        overflow: hidden;
+        max-width: 580px;
+      }
+      .wc-hero-poster {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1536 / 1024;
+        object-fit: cover;
+      }
+
+      /* ─── FULL-BLEED HERO (image at natural aspect ratio) ─── */
+      .wc-hero-full {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        display: block;
+        background: var(--night-deep);
+      }
+      .wc-hero-imgwrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1536 / 1024;
+        overflow: hidden;
+      }
+      .wc-hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        z-index: 0;
+      }
+      .wc-hero-sticker {
+        position: absolute !important;
+        top: clamp(40px, 8vw, 120px) !important;
+        right: clamp(20px, 5vw, 80px) !important;
+        z-index: 2;
+      }
+
+      /* ─── CTA STRIP DIRECTLY BELOW HERO IMAGE ─── */
+      .wc-hero-cta-strip {
+        position: relative;
+        z-index: 2;
+        background:
+          linear-gradient(180deg, rgba(3, 6, 15, 1) 0%, rgba(3, 6, 15, 0.92) 50%, rgba(3, 6, 15, 1) 100%);
+        padding: 2.4rem 0 2.8rem;
+        border-bottom: 1px solid var(--rule);
+      }
+      .wc-hero-cta-strip .wc-cta-wrap {
+        margin: 0 0 1.6rem;
+        flex-direction: column;
+        gap: 0.9rem;
+        align-items: center;
+        text-align: center;
+      }
+      .wc-hero-cta-strip .wc-cta-fineprint {
+        color: var(--mist);
+      }
+      .wc-hero-overlay-meta {
+        display: flex;
+        align-items: center;
+        gap: 2.4rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .wc-hero-overlay-meta .wc-countdown {
+        margin: 0;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 0.6rem 0.85rem;
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+      .wc-hero-overlay-meta .wc-countdown::before { display: none; }
+      .wc-hero-overlay-meta .wc-countdown-label { color: var(--mist); }
+      .wc-hero-overlay-meta .wc-live-players { margin: 0; }
+      .visually-hidden {
+        position: absolute !important;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ─── VALUE STRIP (BETTING SLIPS) ─── */
+      .wc-values {
+        position: relative;
+        z-index: 3;
+        background: linear-gradient(180deg, var(--pitch) 0%, var(--pitch-deep) 100%);
+        padding: 5rem 0 4.5rem;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+      }
+      .wc-values-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+      .wc-section-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold-hot);
+        margin-bottom: 0.6rem;
+      }
+      .wc-section-title {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+        line-height: 0.95;
+        text-transform: uppercase;
+        margin: 0;
+        max-width: 720px;
+      }
+      .wc-section-title em { font-style: normal; color: var(--gold); }
+      .wc-values-rule {
+        flex: 1 1 auto;
+        height: 1px;
+        background: var(--rule);
+        min-width: 60px;
+      }
+
+      .wc-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      .wc-card {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+        border: 1px solid var(--rule);
+        padding: 1.8rem 1.6rem 1.6rem;
+        overflow: hidden;
+        transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      }
+      .wc-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 199, 44, 0.55);
+        background:
+          linear-gradient(180deg, rgba(255, 199, 44, 0.08) 0%, rgba(255, 199, 44, 0.01) 100%);
+      }
+      .wc-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--whisper);
+        margin-bottom: 1.6rem;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px dashed var(--rule);
+      }
+      .wc-card-header b { color: var(--gold-hot); font-weight: 700; }
+      .wc-card-stat {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 3.5rem;
+        color: var(--gold);
+        line-height: 0.9;
+        margin-bottom: 0.4rem;
+        letter-spacing: 0;
+      }
+      .wc-card-stat .sml { font-size: 0.55em; color: var(--mist); }
+      .wc-card-title {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 800;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        margin: 0.4rem 0 0.6rem;
+        color: var(--chalk);
+      }
+      .wc-card-desc {
+        font-size: 0.95rem;
+        line-height: 1.55;
+        color: var(--mist);
+        margin: 0;
+      }
+      .wc-card-marker {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 22px; height: 22px;
+        border: 1.5px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.55rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      /* ─── STEPS INFOGRAPHIC IMAGE ─── */
+      .wc-steps-image {
+        display: block;
+        width: 100%;
+        max-width: 1100px;
+        height: auto;
+        margin: 0 auto;
+        border: 1px solid var(--rule);
+        box-shadow:
+          0 20px 50px -10px rgba(0, 0, 0, 0.6),
+          0 0 40px -10px rgba(255, 199, 44, 0.2);
+      }
+
+      /* ─── STEPS (FORMATION) ─── */
+      .wc-steps {
+        position: relative;
+        z-index: 3;
+        background: var(--night);
+        padding: 5rem 0 4.5rem;
+        overflow: hidden;
+      }
+      .wc-steps::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 800px 400px at 50% 100%, rgba(27, 122, 62, 0.25), transparent 60%);
+        pointer-events: none;
+      }
+      .wc-steps-head {
+        text-align: center;
+        margin-bottom: 3.5rem;
+        position: relative;
+      }
+      .wc-steps-track {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        position: relative;
+      }
+      .wc-steps-track::before {
+        content: '';
+        position: absolute;
+        left: 12%;
+        right: 12%;
+        top: 38px;
+        height: 2px;
+        background:
+          repeating-linear-gradient(90deg, var(--gold) 0 8px, transparent 8px 18px);
+        opacity: 0.5;
+        z-index: 0;
+      }
+      .wc-step {
+        position: relative;
+        text-align: center;
+        z-index: 1;
+      }
+      .wc-step-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 76px; height: 76px;
+        border-radius: 50%;
+        background: var(--night);
+        border: 2px solid var(--gold);
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 2.3rem;
+        color: var(--gold);
+        margin-bottom: 1.2rem;
+        position: relative;
+      }
+      .wc-step-num::after {
+        content: '';
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        border: 1px dashed rgba(255, 199, 44, 0.35);
+      }
+      .wc-step-title {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin: 0 0 0.4rem;
+        color: var(--chalk);
+      }
+      .wc-step-desc {
+        font-size: 0.9rem;
+        color: var(--mist);
+        line-height: 1.55;
+        margin: 0 auto;
+        max-width: 240px;
+      }
+      .wc-step-time {
+        margin-top: 0.6rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold-hot);
+      }
+
+      /* ─── FINAL CTA ─── */
+      .wc-final {
+        position: relative;
+        z-index: 3;
+        padding: 6rem 0 5rem;
+        background:
+          radial-gradient(ellipse 800px 320px at 50% 0%, rgba(255, 199, 44, 0.18), transparent 70%),
+          linear-gradient(180deg, var(--pitch-deep) 0%, var(--night-deep) 100%);
+        text-align: center;
+        overflow: hidden;
+      }
+      .wc-final h2.display {
+        font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+        margin: 0 auto 1.2rem;
+        max-width: 900px;
+        color: var(--chalk);
+      }
+      .wc-final h2 .accent { color: var(--gold); }
+      .wc-final p {
+        color: var(--mist);
+        max-width: 600px;
+        margin: 0 auto 2.2rem;
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+      .wc-final .wc-btn { font-size: 1.55rem; padding: 1.55rem 3rem 1.4rem; }
+      .wc-final-after {
+        margin-top: 1.4rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--whisper);
+      }
+
+      /* ─── FOOTER ─── */
+      .wc-footer {
+        background: var(--night-deep);
+        padding: 2.4rem 0 2.6rem;
+        border-top: 1px solid var(--rule);
+      }
+      .wc-footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+      .wc-footer-badges {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .wc-footer-badges img { display: block; height: 36px; width: auto; }
+      .wc-footer-text {
+        font-size: 0.75rem;
+        color: var(--whisper);
+        line-height: 1.7;
+        max-width: 720px;
+      }
+      .wc-footer-text a { color: var(--mist); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+      .wc-footer-divider {
+        height: 1px;
+        background: var(--rule);
+        margin: 1.6rem 0 1.2rem;
+      }
+      .wc-footer-mini {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--whisper);
+        display: flex;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         MAXIMALIST OVERLAY — TICKERS, STICKERS, COINS, NEON, FEED
+         ═══════════════════════════════════════════════════════════ */
+
+      /* ─── ODDS TICKER (TOP MARQUEE) ─── */
+      .wc-ticker {
+        position: relative;
+        z-index: 5;
+        background: linear-gradient(90deg, #170303 0%, #2C0606 50%, #170303 100%);
+        border-bottom: 1px solid rgba(255, 45, 45, 0.4);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        height: 38px;
+      }
+      .wc-ticker-label {
+        flex-shrink: 0;
+        background: var(--ignite);
+        color: #fff;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 0 1rem;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        z-index: 2;
+        clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+        padding-right: 1.8rem;
+        box-shadow: 6px 0 18px -6px rgba(255, 45, 45, 0.7);
+      }
+      .wc-ticker-label::before {
+        content: '';
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+        animation: wc-pulse-white 1.2s ease-out infinite;
+      }
+      @keyframes wc-pulse-white {
+        0%   { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9); }
+        70%  { box-shadow: 0 0 0 9px rgba(255, 255, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      }
+      .wc-ticker-track {
+        flex: 1 1 auto;
+        overflow: hidden;
+        height: 100%;
+        position: relative;
+        mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 80px), transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 80px), transparent 100%);
+      }
+      .wc-ticker-strip {
+        display: inline-flex;
+        align-items: center;
+        height: 100%;
+        gap: 2.4rem;
+        padding-left: 2rem;
+        animation: wc-scroll-left 38s linear infinite;
+        will-change: transform;
+        white-space: nowrap;
+      }
+      @keyframes wc-scroll-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      .wc-ticker-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        color: var(--mist);
+        text-transform: uppercase;
+      }
+      .wc-ticker-item .flag { font-size: 1.1em; line-height: 1; }
+      .wc-ticker-item .team { color: var(--chalk); font-weight: 700; }
+      .wc-ticker-item .odds {
+        color: var(--gold);
+        font-weight: 700;
+        background: rgba(255, 199, 44, 0.1);
+        padding: 0.18rem 0.45rem;
+        border: 1px solid rgba(255, 199, 44, 0.35);
+      }
+      .wc-ticker-item .vs { color: var(--whisper); padding: 0 0.2rem; }
+
+      /* ─── TRUST RIBBON (under topbar) ─── */
+      .wc-trustribbon {
+        position: relative;
+        z-index: 4;
+        background: rgba(255, 199, 44, 0.06);
+        border-bottom: 1px solid rgba(255, 199, 44, 0.18);
+        padding: 0.55rem 0;
+      }
+      .wc-trustribbon-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+      .wc-trustribbon-row b { color: var(--gold-hot); font-weight: 700; }
+      .wc-trustribbon-row .stars { color: var(--gold); letter-spacing: -0.04em; font-size: 0.85rem; }
+
+      /* ─── STICKY FLOATING CTA (always reachable) ─── */
+      .wc-sticky-cta {
+        position: fixed;
+        left: 50%;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+        transform: translate(-50%, 24px);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .wc-sticky-cta.is-visible {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        pointer-events: auto;
+      }
+      .wc-sticky-cta .wc-btn {
+        font-size: 1.1rem;
+        padding: 1rem 1.8rem 0.9rem;
+        animation: wc-glow 2.4s ease-in-out infinite;
+      }
+      .wc-sticky-cta-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(3, 6, 15, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 199, 44, 0.4);
+        padding: 0.55rem 0.85rem 0.5rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold-hot);
+      }
+      .wc-sticky-cta-badge .dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: var(--ignite);
+        animation: wc-pulse-red 1.6s ease-out infinite;
+      }
+      @media (max-width: 768px) {
+        .wc-sticky-cta {
+          left: 12px;
+          right: 12px;
+          bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+          transform: translateY(24px);
+          flex-direction: column-reverse;
+          gap: 0.4rem;
+        }
+        .wc-sticky-cta.is-visible {
+          transform: translateY(0);
+        }
+        .wc-sticky-cta .wc-btn {
+          width: 100%;
+          font-size: 1.05rem;
+          padding: 1rem 1.6rem 0.9rem;
+        }
+        .wc-sticky-cta-badge {
+          font-size: 0.55rem;
+          padding: 0.4rem 0.6rem 0.35rem;
+        }
+      }
+
+      /* Pre-headline ribbon */
+      .wc-preheadline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(90deg, rgba(255, 45, 45, 0.18), rgba(255, 199, 44, 0.18));
+        border: 1px solid rgba(255, 199, 44, 0.4);
+        color: var(--gold-hot);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .wc-preheadline .fire { animation: wc-flame 1.2s ease-in-out infinite; transform-origin: bottom; display: inline-block; }
+      @keyframes wc-flame {
+        0%, 100% { transform: scale(1) rotate(-2deg); }
+        50% { transform: scale(1.12) rotate(3deg); }
+      }
+
+      /* Platform badges (App Store / Play) */
+      .wc-platforms {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+      .wc-platform {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 0.55rem 0.95rem;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 800;
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--chalk);
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+      .wc-platform:hover {
+        border-color: var(--gold);
+        background: linear-gradient(180deg, rgba(255, 199, 44, 0.12) 0%, rgba(255, 199, 44, 0.02) 100%);
+      }
+      .wc-platform svg { flex-shrink: 0; color: var(--gold); }
+
+      /* Hero benefits chips strip */
+      .wc-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0 0 1.6rem;
+      }
+      .wc-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--rule);
+        padding: 0.38rem 0.7rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+      .wc-chip::before {
+        content: '✓';
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      /* Countdown timer */
+      .wc-countdown {
+        margin-top: 1.6rem;
+        padding: 0.9rem 1rem;
+        background: rgba(255, 45, 45, 0.08);
+        border: 1px solid rgba(255, 45, 45, 0.4);
+        position: relative;
+      }
+      .wc-countdown::before {
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--ignite);
+        animation: wc-bar-pulse 1.6s ease-in-out infinite;
+      }
+      @keyframes wc-bar-pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      .wc-countdown-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ignite);
+        font-weight: 700;
+        margin-bottom: 0.45rem;
+      }
+      .wc-countdown-clock {
+        display: flex;
+        align-items: baseline;
+        gap: 0.65rem;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        color: var(--chalk);
+      }
+      .wc-cd-cell {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.2rem;
+      }
+      .wc-cd-num {
+        font-size: 1.95rem;
+        line-height: 1;
+        min-width: 2ch;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.45);
+        padding: 0.12rem 0.4rem 0.05rem;
+        color: var(--gold-hot);
+      }
+      .wc-cd-u {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+      .wc-cd-sep {
+        font-size: 1.6rem;
+        color: var(--whisper);
+        margin: 0 -0.25rem;
+      }
+
+      /* MEGA BONUS sticker on scoreboard */
+      .wc-sticker {
+        position: absolute;
+        top: -28px;
+        right: -28px;
+        width: 130px;
+        height: 130px;
+        background: var(--ignite);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-family: 'Big Shoulders Display', sans-serif;
+        text-align: center;
+        z-index: 3;
+        transform: rotate(14deg);
+        box-shadow:
+          0 0 0 4px rgba(255, 45, 45, 0.15),
+          0 12px 28px -6px rgba(255, 45, 45, 0.6);
+        animation: wc-sticker-wobble 2.6s ease-in-out infinite;
+      }
+      @keyframes wc-sticker-wobble {
+        0%, 100% { transform: rotate(14deg) scale(1); }
+        50% { transform: rotate(11deg) scale(1.06); }
+      }
+      .wc-sticker::before {
+        content: '';
+        position: absolute;
+        inset: 6px;
+        border: 1px dashed rgba(255, 255, 255, 0.55);
+        border-radius: 50%;
+      }
+      .wc-sticker .lbl1 {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 0.2rem;
+      }
+      .wc-sticker .lbl2 {
+        font-size: 1.6rem;
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: 0.9;
+      }
+      .wc-sticker .lbl3 {
+        font-size: 0.55rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-top: 0.15rem;
+        opacity: 0.85;
+      }
+
+      /* Boosted ribbon on scoreboard */
+      .wc-boost-ribbon {
+        position: absolute;
+        top: 38px;
+        left: -16px;
+        background: linear-gradient(90deg, #FFC72C, #FF8A00);
+        color: var(--night-deep);
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.4rem 1.1rem 0.32rem;
+        z-index: 3;
+        clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 50%, 100% 100%, 0 100%);
+        box-shadow: 0 8px 20px -8px rgba(255, 138, 0, 0.7);
+      }
+
+      /* Scoreboard outer neon glow */
+      .wc-scoreboard-frame {
+        box-shadow:
+          0 0 0 1px rgba(255, 199, 44, 0.25),
+          0 0 50px -10px rgba(255, 199, 44, 0.35);
+        animation: wc-frame-strobe 3.4s ease-in-out infinite;
+      }
+      @keyframes wc-frame-strobe {
+        0%, 100% { box-shadow: 0 0 0 1px rgba(255, 199, 44, 0.18), 0 0 30px -10px rgba(255, 199, 44, 0.25); }
+        50% { box-shadow: 0 0 0 1px rgba(255, 199, 44, 0.55), 0 0 80px -8px rgba(255, 199, 44, 0.55); }
+      }
+
+      /* Live players strip */
+      .wc-live-players {
+        margin-top: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+      .wc-live-players .dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: #1FBE5A;
+        box-shadow: 0 0 0 0 rgba(31, 190, 90, 0.7);
+        animation: wc-pulse-green 1.6s ease-out infinite;
+      }
+      .wc-live-players b { color: var(--chalk); font-weight: 700; }
+      @keyframes wc-pulse-green {
+        0%   { box-shadow: 0 0 0 0 rgba(31, 190, 90, 0.7); }
+        70%  { box-shadow: 0 0 0 9px rgba(31, 190, 90, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(31, 190, 90, 0); }
+      }
+
+      /* ─── ATMOSPHERIC STADIUM BG LAYER (shared across 3 sections) ─── */
+      .wc-bg-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      /* Final CTA — lights from top, full kickoff atmosphere */
+      .wc-bg-cta {
+        background-position: center top;
+        opacity: 0.42;
+        mask-image: linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+        -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+      }
+      /* Showcase — flipped for variation, soft blur, low opacity */
+      .wc-bg-showcase {
+        background-position: center center;
+        opacity: 0.24;
+        filter: blur(2px);
+        transform: scaleX(-1);
+      }
+      /* Winners — focus on lit crowd area, top fade */
+      .wc-bg-winners {
+        background-position: center 38%;
+        opacity: 0.32;
+        filter: blur(1px);
+        mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+        -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+      }
+
+      /* ─── SHOWCASE: APP MOCKUP + BONUS VOUCHER ─── */
+      .wc-showcase {
+        position: relative;
+        z-index: 3;
+        background:
+          radial-gradient(ellipse 800px 400px at 50% 0%, rgba(255, 199, 44, 0.10), transparent 70%),
+          linear-gradient(180deg, var(--night-deep) 0%, var(--night) 100%);
+        padding: 5rem 0 4rem;
+        overflow: hidden;
+      }
+      .wc-showcase-head {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .wc-showcase-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 3rem;
+        align-items: center;
+      }
+      .wc-showcase-phone {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        filter:
+          drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7))
+          drop-shadow(0 0 50px rgba(255, 199, 44, 0.25));
+        animation: wc-float 6s ease-in-out infinite;
+      }
+      @keyframes wc-float {
+        0%, 100% { transform: translateY(0) rotate(-2deg); }
+        50% { transform: translateY(-14px) rotate(0deg); }
+      }
+      .wc-showcase-voucher-wrap {
+        position: relative;
+      }
+      .wc-showcase-voucher {
+        width: 100%;
+        height: auto;
+        display: block;
+        filter:
+          drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6))
+          drop-shadow(0 0 40px rgba(255, 199, 44, 0.2));
+      }
+      .wc-showcase-copy {
+        margin-top: 1.6rem;
+        text-align: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+      .wc-showcase-copy b { color: var(--gold-hot); font-weight: 700; }
+
+      /* ─── ODDS BOARD (BIG MATCHES) ─── */
+      .wc-odds-board {
+        position: relative;
+        z-index: 3;
+        background:
+          linear-gradient(180deg, var(--night-deep) 0%, var(--night) 100%);
+        padding: 4rem 0 4.5rem;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        overflow: hidden;
+      }
+      .wc-odds-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .wc-odds-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+      .wc-match-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1536 / 1024;
+        object-fit: cover;
+      }
+      .wc-match-poster {
+        padding: 0 !important;
+        overflow: hidden;
+      }
+      .wc-match-poster:hover .wc-match-img {
+        transform: scale(1.03);
+      }
+      .wc-match-img {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .wc-match {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 100%);
+        border: 1px solid var(--rule);
+        padding: 1.4rem 1.2rem 1rem;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+      .wc-match:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 199, 44, 0.6);
+      }
+      .wc-match-tag {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.55rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold-hot);
+        background: rgba(255, 199, 44, 0.12);
+        border: 1px solid rgba(255, 199, 44, 0.4);
+        padding: 0.18rem 0.4rem;
+      }
+      .wc-match-tag.hot {
+        color: #fff;
+        background: var(--ignite);
+        border-color: var(--ignite);
+      }
+      .wc-match-meta {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--whisper);
+        margin-bottom: 0.9rem;
+      }
+      .wc-match-teams {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 0.5rem;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .wc-match-team {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--chalk);
+      }
+      .wc-match-team.right { justify-content: flex-end; flex-direction: row-reverse; }
+      .wc-match-team .flag { font-size: 1.45rem; }
+      .wc-match-vs {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        color: var(--whisper);
+      }
+      .wc-match-odds {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0.4rem;
+      }
+      .wc-odd-cell {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--rule);
+        padding: 0.55rem 0.4rem;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease;
+      }
+      .wc-odd-cell:hover {
+        background: rgba(255, 199, 44, 0.12);
+        border-color: var(--gold);
+      }
+      .wc-odd-cell .lbl {
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.55rem;
+        letter-spacing: 0.18em;
+        color: var(--whisper);
+        margin-bottom: 0.2rem;
+        text-transform: uppercase;
+      }
+      .wc-odd-cell .val {
+        display: block;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--gold);
+        letter-spacing: 0.02em;
+      }
+
+      /* ─── WINNERS FEED ─── */
+      .wc-winners {
+        position: relative;
+        z-index: 3;
+        background:
+          radial-gradient(ellipse 700px 320px at 50% 0%, rgba(255, 199, 44, 0.12), transparent 70%),
+          linear-gradient(180deg, var(--pitch-deep) 0%, var(--night) 100%);
+        padding: 4.5rem 0 4rem;
+        overflow: hidden;
+      }
+      .wc-winners-head {
+        text-align: center;
+        margin-bottom: 2.2rem;
+      }
+      .wc-winners-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        max-width: 940px;
+        margin: 0 auto;
+      }
+      .wc-winrow {
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        gap: 0.9rem;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--gold);
+        padding: 0.7rem 0.9rem;
+        opacity: 0;
+        transform: translateX(-8px);
+        animation: wc-win-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .wc-winrow.mega {
+        border-left-color: var(--ignite);
+        background: rgba(255, 45, 45, 0.06);
+      }
+      @keyframes wc-win-in {
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .wc-win-avatar {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #FFC72C, #FF8A00);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        color: var(--night-deep);
+        font-size: 0.95rem;
+        letter-spacing: 0;
+        flex-shrink: 0;
+      }
+      .wc-winrow.mega .wc-win-avatar {
+        background: linear-gradient(135deg, #FF6B6B, #FF2D2D);
+        color: #fff;
+      }
+      .wc-win-text {
+        font-family: 'Barlow', sans-serif;
+        font-size: 0.85rem;
+        color: var(--mist);
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .wc-win-text b { color: var(--chalk); font-weight: 700; }
+      .wc-win-text .match { color: var(--whisper); font-size: 0.78rem; }
+      .wc-win-amount {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 1.4rem;
+        color: var(--gold);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+      .wc-winrow.mega .wc-win-amount {
+        color: #FF6B6B;
+      }
+      .wc-win-time {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--whisper);
+        white-space: nowrap;
+      }
+      .wc-win-mega-tag {
+        display: inline-block;
+        background: var(--ignite);
+        color: #fff;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 0.55rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 0.12rem 0.4rem;
+        margin-left: 0.4rem;
+      }
+      .wc-winners-disclaimer {
+        text-align: center;
+        margin-top: 1.6rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--whisper);
+      }
+
+      /* ─── FINAL CTA ENHANCEMENTS ─── */
+      .wc-final {
+        position: relative;
+      }
+      .wc-spotlight {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse 700px 380px at 50% 30%, rgba(255, 199, 44, 0.25), transparent 70%),
+          conic-gradient(from 200deg at 50% 30%, transparent 0deg, rgba(255, 199, 44, 0.06) 30deg, transparent 60deg, rgba(255, 199, 44, 0.06) 90deg, transparent 120deg, rgba(255, 199, 44, 0.06) 150deg, transparent 180deg);
+        opacity: 0.8;
+      }
+      .wc-final-scarcity {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        background: var(--ignite);
+        color: #fff;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 0.9rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.1rem 0.4rem;
+        margin-bottom: 1.4rem;
+        box-shadow: 0 10px 24px -8px rgba(255, 45, 45, 0.7);
+        animation: wc-shake 4s ease-in-out infinite;
+      }
+      .wc-final-scarcity::before {
+        content: '';
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #fff;
+        animation: wc-pulse-white 1.2s ease-out infinite;
+      }
+      @keyframes wc-shake {
+        0%, 100% { transform: translateX(0); }
+        92% { transform: translateX(0); }
+        94% { transform: translateX(-3px); }
+        96% { transform: translateX(3px); }
+        98% { transform: translateX(-2px); }
+      }
+      .wc-cta-ring {
+        position: relative;
+        display: inline-block;
+        padding: 18px;
+      }
+      .wc-cta-ring::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 70% at 50% 50%, rgba(255, 199, 44, 0.55) 0%, rgba(255, 199, 44, 0.18) 35%, transparent 70%);
+        filter: blur(14px);
+        animation: wc-halo-pulse 3.2s ease-in-out infinite;
+        z-index: 0;
+      }
+      .wc-cta-ring > * { position: relative; z-index: 1; }
+      @keyframes wc-halo-pulse {
+        0%, 100% { opacity: 0.55; transform: scale(1); }
+        50%      { opacity: 0.85; transform: scale(1.06); }
+      }
+      .wc-final-stats {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.4rem;
+        margin-top: 1.6rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mist);
+        flex-wrap: wrap;
+      }
+      .wc-final-stats b { color: var(--gold-hot); font-weight: 700; }
+      .wc-final-stats .stars { color: var(--gold); letter-spacing: -0.04em; }
+
+      /* ─── BOTTOM WINS TICKER ─── */
+      .wc-bottom-ticker {
+        background: linear-gradient(90deg, #03110A 0%, #062518 50%, #03110A 100%);
+        border-top: 1px solid rgba(31, 190, 90, 0.3);
+        border-bottom: 1px solid rgba(31, 190, 90, 0.3);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        height: 44px;
+      }
+      .wc-bottom-ticker-label {
+        flex-shrink: 0;
+        background: #1FBE5A;
+        color: #03110A;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 0 1rem 0 1rem;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+        padding-right: 1.8rem;
+      }
+      .wc-bottom-ticker-label::before {
+        content: '';
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #03110A;
+        animation: wc-pulse-dark 1.3s ease-out infinite;
+      }
+      @keyframes wc-pulse-dark {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+      .wc-bottom-strip {
+        flex: 1 1 auto;
+        overflow: hidden;
+        height: 100%;
+        mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 80px), transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 80px), transparent 100%);
+      }
+      .wc-bottom-track {
+        display: inline-flex;
+        align-items: center;
+        height: 100%;
+        gap: 2rem;
+        padding-left: 2rem;
+        animation: wc-scroll-left 48s linear infinite;
+        white-space: nowrap;
+      }
+      .wc-bottom-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--mist);
+      }
+      .wc-bottom-item b { color: var(--chalk); font-weight: 700; }
+      .wc-bottom-item .amt {
+        color: #4DDB87;
+        font-weight: 700;
+        background: rgba(31, 190, 90, 0.12);
+        padding: 0.14rem 0.4rem;
+        border: 1px solid rgba(31, 190, 90, 0.35);
+      }
+
+      /* Section overhead stamp (rotated giant text bg) */
+      .wc-stamp {
+        position: absolute;
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 900;
+        font-size: clamp(8rem, 18vw, 16rem);
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.025);
+        line-height: 0.85;
+        pointer-events: none;
+        z-index: 0;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* Crowd silhouette */
+      .wc-crowd {
+        position: absolute;
+        left: 0; right: 0;
+        bottom: 0;
+        height: 90px;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse 60px 30px at 5% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 70px 35px at 14% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 55px 28px at 24% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 80px 40px at 35% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 60px 30px at 48% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 70px 35px at 60% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 55px 28px at 72% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 85px 42px at 85% 100%, #000 50%, transparent 60%),
+          radial-gradient(ellipse 60px 30px at 95% 100%, #000 50%, transparent 60%);
+        opacity: 0.65;
+        filter: blur(0.5px);
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1024px) {
+        .wc-hero { padding: 3.5rem 0 5rem; min-height: auto; }
+        .wc-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .wc-scoreboard { min-height: 380px; }
+        .wc-sb-trophy { right: 0; opacity: 0.12; }
+        .wc-cards { grid-template-columns: 1fr; }
+        .wc-odds-grid { grid-template-columns: 1fr 1fr; }
+        .wc-winners-list { grid-template-columns: 1fr; }
+        .wc-showcase-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .wc-showcase-phone { max-width: 320px; }
+      }
+      @media (max-width: 768px) {
+        .wc-hero-imgwrap { aspect-ratio: 1024 / 1536; }
+        .wc-hero-cta-strip { padding: 1.8rem 0 2rem; }
+        .wc-hero-cta-strip .wc-cta-wrap { margin-bottom: 1.2rem; }
+        .wc-hero-overlay-meta { gap: 0.9rem; flex-direction: column; }
+        .wc-hero-sticker { top: 24px !important; right: 12px !important; transform: rotate(14deg) scale(0.72); transform-origin: top right; }
+        .wc-odds-grid { grid-template-columns: 1fr; gap: 1rem; }
+        .wc-showcase { padding: 3.5rem 0 3rem; }
+        .wc-showcase-phone { max-width: 280px; }
+      }
+      @media (max-width: 768px) {
+        .wc-container { padding: 0 1.25rem; }
+        .wc-topbar-row { flex-wrap: wrap; gap: 0.75rem; }
+        .wc-trust-strip { font-size: 0.62rem; gap: 0.55rem; }
+        .wc-hero { padding: 2.5rem 0 4rem; }
+        .wc-hero h1.display { font-size: clamp(2.6rem, 11vw, 4rem); }
+        .wc-hero-sub { font-size: 1rem; }
+        .wc-scoreboard-frame { padding: 1.4rem 1.2rem; }
+        .wc-sb-number { font-size: 8.2rem; }
+        .wc-sb-currency { font-size: 2.4rem; margin-top: 0.5rem; }
+        .wc-btn { font-size: 1.15rem; padding: 1.1rem 2rem 1rem; width: 100%; max-width: 100%; }
+        .wc-cta-wrap { flex-direction: column; align-items: stretch; gap: 0.9rem; }
+        .wc-cta-fineprint { text-align: center; }
+        .wc-hero-meta { gap: 1rem 1.6rem; }
+        .wc-steps-track { grid-template-columns: 1fr; gap: 2.5rem; }
+        .wc-steps-track::before { display: none; }
+        .wc-final .wc-btn { font-size: 1.2rem; padding: 1.2rem 2rem 1.1rem; }
+        .wc-sb-trophy { display: none; }
+        .wc-ticker-label, .wc-bottom-ticker-label { font-size: 0.65rem; padding: 0 0.7rem 0 0.7rem; padding-right: 1.4rem; }
+        .wc-ticker, .wc-bottom-ticker { height: 34px; }
+        .wc-ticker-item, .wc-bottom-item { font-size: 0.68rem; gap: 0.4rem; }
+        .wc-trustribbon-row { font-size: 0.6rem; gap: 0.9rem; }
+        .wc-sticker { width: 96px; height: 96px; top: -20px; right: -16px; }
+        .wc-sticker .lbl2 { font-size: 1.15rem; }
+        .wc-sticker .lbl1 { font-size: 0.55rem; }
+        .wc-boost-ribbon { font-size: 0.7rem; left: -10px; top: 30px; }
+        .wc-odds-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+        .wc-cd-num { font-size: 1.55rem; padding: 0.08rem 0.32rem; }
+        .wc-final-stats { gap: 1.2rem; font-size: 0.62rem; }
+        .wc-final-scarcity { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+      }
+      @media (max-width: 480px) {
+        .wc-hero h1.display { font-size: 2.4rem; }
+        .wc-sb-number { font-size: 6.6rem; }
+        .wc-card-stat { font-size: 2.8rem; }
+        .wc-section-title { font-size: 2rem; }
+        .wc-final h2.display { font-size: 2.3rem; }
+        .wc-footer-row { flex-direction: column; align-items: flex-start; }
+        .wc-countdown-clock { gap: 0.3rem; }
+        .wc-cd-num { font-size: 1.3rem; }
+        .wc-cd-u { font-size: 0.55rem; }
+        .wc-winrow { grid-template-columns: auto 1fr auto; }
+        .wc-win-time { grid-column: 2 / 4; padding-left: 3.3rem; margin-top: 0.15rem; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal, .wc-btn, .wc-sticker, .wc-scoreboard-frame, .wc-ticker-strip, .wc-bottom-track, .wc-cta-ring::before, .wc-final-scarcity, .wc-preheadline .fire {
+          animation: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .wc-live-dot, .wc-live-players .dot, .wc-ticker-label::before, .wc-bottom-ticker-label::before { animation: none !important; }
+      }
+    </style>
+  </Fragment>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  STAGE 1 · NIGHT SKY + PITCH + HERO                              -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- ─── TOP ODDS TICKER ─── -->
+  <div class="wc-ticker" role="marquee" aria-label="Live World Cup odds">
+    <span class="wc-ticker-label">Live Odds</span>
+    <div class="wc-ticker-track">
+      <div class="wc-ticker-strip">
+        <span class="wc-ticker-item"><span class="flag">🇧🇷</span><span class="team">Brazil</span><span class="vs">vs</span><span class="team">Argentina</span><span class="odds">2.10</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇫🇷</span><span class="team">France</span><span class="vs">vs</span><span class="team">Spain</span><span class="odds">2.85</span></span>
+        <span class="wc-ticker-item"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="team">England</span><span class="vs">vs</span><span class="team">Germany</span><span class="odds">3.20</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇵🇹</span><span class="team">Portugal</span><span class="vs">vs</span><span class="team">Norway</span><span class="odds">1.95</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇳🇱</span><span class="team">Netherlands</span><span class="vs">vs</span><span class="team">Belgium</span><span class="odds">2.40</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇺🇸</span><span class="team">USA</span><span class="vs">vs</span><span class="team">Mexico</span><span class="odds">2.75</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇯🇵</span><span class="team">Japan</span><span class="vs">vs</span><span class="team">Korea</span><span class="odds">3.50</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇲🇦</span><span class="team">Morocco</span><span class="vs">vs</span><span class="team">Senegal</span><span class="odds">2.20</span></span>
+        <!-- Duplicate for seamless loop -->
+        <span class="wc-ticker-item"><span class="flag">🇧🇷</span><span class="team">Brazil</span><span class="vs">vs</span><span class="team">Argentina</span><span class="odds">2.10</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇫🇷</span><span class="team">France</span><span class="vs">vs</span><span class="team">Spain</span><span class="odds">2.85</span></span>
+        <span class="wc-ticker-item"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="team">England</span><span class="vs">vs</span><span class="team">Germany</span><span class="odds">3.20</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇵🇹</span><span class="team">Portugal</span><span class="vs">vs</span><span class="team">Norway</span><span class="odds">1.95</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇳🇱</span><span class="team">Netherlands</span><span class="vs">vs</span><span class="team">Belgium</span><span class="odds">2.40</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇺🇸</span><span class="team">USA</span><span class="vs">vs</span><span class="team">Mexico</span><span class="odds">2.75</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇯🇵</span><span class="team">Japan</span><span class="vs">vs</span><span class="team">Korea</span><span class="odds">3.50</span></span>
+        <span class="wc-ticker-item"><span class="flag">🇲🇦</span><span class="team">Morocco</span><span class="vs">vs</span><span class="team">Senegal</span><span class="odds">2.20</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wc-stage">
+    <div class="wc-pitch-lines" style={`background-image: url(${pitchLines.src});`}></div>
+    <div class="wc-grain"></div>
+
+    <!-- TOP BAR -->
+    <header class="wc-topbar">
+      <div class="wc-container wc-topbar-row">
+        <img src={logo.src} alt="Kickline" class="wc-logo" width="140" height="32" />
+        <div class="wc-trust-strip">
+          <span><span class="wc-trust-dot"></span>Licensed</span>
+          <span><span class="wc-trust-dot"></span>Secure</span>
+          <span><img src={badge18.src} alt="18 plus" width="20" height="20" style="margin: -3px 0;" /></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- TRUST RIBBON -->
+    <div class="wc-trustribbon">
+      <div class="wc-container wc-trustribbon-row">
+        <span>★ <b>#1 Rated App</b> for the Cup</span>
+        <span>· <b>2.4M+</b> Downloads</span>
+        <span>· <span class="stars">★★★★★</span> <b>4.8</b> App Store</span>
+        <span>· <b>USA · Canada · Mexico</b> · 16 Host Cities</span>
+      </div>
+    </div>
+
+    <!-- HERO: image at natural aspect-ratio + dedicated CTA strip below -->
+    <section class="wc-hero wc-hero-full">
+      <div class="wc-hero-imgwrap">
+        <picture>
+          <source media="(max-width: 768px)" srcset={heroPosterMobile.src} width="1024" height="1536" />
+          <img
+            src={heroPoster.src}
+            alt="Get $200 in Bonus Bets for the World Cup 2026 — Kickline App"
+            class="wc-hero-bg"
+            width="1536"
+            height="1024"
+            fetchpriority="high"
+          />
+        </picture>
+
+        <h1 class="visually-hidden">Get $200 in Bonus Bets for the World Cup 2026 — Download the Kickline App on iOS &amp; Android</h1>
+
+        <div class="wc-hero-sticker wc-sticker" aria-hidden="true">
+          <span class="lbl1">Mega</span>
+          <span class="lbl2">BONUS</span>
+          <span class="lbl3">New Players</span>
+        </div>
+      </div>
+
+      <div class="wc-hero-cta-strip">
+        <div class="wc-container">
+          <div class="wc-cta-wrap reveal">
+            <button class="wc-btn link-btn" type="button" onclick="window.onLinkBtnClick()">
+              Download App · Get $200
+              <span class="wc-btn-arrow" aria-hidden="true">›</span>
+            </button>
+            <span class="wc-cta-fineprint">Quick install · <b>No deposit</b> to claim · <b>iOS &amp; Android</b></span>
+          </div>
+
+          <div class="wc-hero-overlay-meta reveal">
+            <div class="wc-live-players">
+              <span class="dot"></span><b id="wc-live-count">2,847</b> fans installing right now
+            </div>
+            <div class="wc-countdown" aria-live="polite">
+              <div class="wc-countdown-label">⚡ Kickoff in</div>
+              <div class="wc-countdown-clock">
+                <div class="wc-cd-cell"><span class="wc-cd-num" id="cd-d">--</span><span class="wc-cd-u">D</span></div>
+                <span class="wc-cd-sep">:</span>
+                <div class="wc-cd-cell"><span class="wc-cd-num" id="cd-h">--</span><span class="wc-cd-u">H</span></div>
+                <span class="wc-cd-sep">:</span>
+                <div class="wc-cd-cell"><span class="wc-cd-num" id="cd-m">--</span><span class="wc-cd-u">M</span></div>
+                <span class="wc-cd-sep">:</span>
+                <div class="wc-cd-cell"><span class="wc-cd-num" id="cd-s">--</span><span class="wc-cd-u">S</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  SHOWCASE · APP MOCKUP + BONUS VOUCHER                            -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="wc-showcase">
+    <div class="wc-bg-layer wc-bg-showcase" style={`background-image: url(${stadiumBg.src});`} aria-hidden="true"></div>
+    <div class="wc-container">
+      <div class="wc-showcase-head reveal">
+        <div class="wc-section-tag">// What You Get</div>
+        <h2 class="wc-section-title" style="margin-inline: auto; text-align: center;">The app. The <em>$200</em>. Yours.</h2>
+      </div>
+
+      <div class="wc-showcase-grid">
+        <div class="reveal">
+          <img src={appMockup.src} alt="Kickline app on iPhone showing bonus banner and live odds" class="wc-showcase-phone" width="1024" height="1536" loading="lazy" />
+          <div class="wc-showcase-copy">
+            The <b>#1 World Cup app</b> · iOS &amp; Android
+          </div>
+        </div>
+
+        <div class="wc-showcase-voucher-wrap reveal">
+          <img src={bonusVoucher.src} alt="$200 Bonus Bet voucher — valid June 11 to July 19" class="wc-showcase-voucher" width="1536" height="1024" loading="lazy" />
+          <div class="wc-showcase-copy">
+            Your welcome bonus · <b>Credited after 1st qualifying wager</b> · T&amp;Cs apply
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  ODDS BOARD · TRENDING MATCHES                                    -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="wc-odds-board">
+    <div class="wc-container">
+      <span class="wc-stamp" style="top: -32px; right: -40px;">WC26</span>
+      <div class="wc-odds-head reveal">
+        <div>
+          <div class="wc-section-tag">// Trending Markets · Updated Live</div>
+          <h2 class="wc-section-title">Today's <em>biggest</em> matches.</h2>
+        </div>
+        <div class="wc-values-rule"></div>
+      </div>
+
+      <div class="wc-odds-grid">
+        <article class="wc-match wc-match-poster reveal"><img src={match1.src} alt="Brazil vs Argentina · Knockout R16 · 21:00 GMT — odds 2.10 / 3.25 / 3.40" class="wc-match-img" width="1536" height="1024" loading="lazy" /></article>
+        <article class="wc-match wc-match-poster reveal"><img src={match2.src} alt="France vs Spain · Knockout · 19:00 GMT — odds 2.85 / 3.10 / 2.50" class="wc-match-img" width="1536" height="1024" loading="lazy" /></article>
+        <article class="wc-match wc-match-poster reveal"><img src={match3.src} alt="England vs Germany · Knockout R32 · 17:00 GMT — odds 3.20 / 3.40 / 2.20" class="wc-match-img" width="1536" height="1024" loading="lazy" /></article>
+        <article class="wc-match wc-match-poster reveal"><img src={match4.src} alt="Portugal vs Norway · Knockout R16 · 22:30 GMT — odds 1.95 / 3.30 / 4.20" class="wc-match-img" width="1536" height="1024" loading="lazy" /></article>
+        <article class="wc-match wc-match-poster reveal"><img src={match5.src} alt="Netherlands vs Belgium · Knockout · 20:00 GMT — odds 2.40 / 3.10 / 2.90" class="wc-match-img" width="1536" height="1024" loading="lazy" /></article>
+        <article class="wc-match wc-match-poster reveal"><img src={match6.src} alt="USA vs Mexico · Knockout QF · 23:00 GMT — odds 2.75 / 3.20 / 2.45" class="wc-match-img" width="1536" height="1024" loading="lazy" /></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  STAGE 2 · WHY HERE                                              -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="wc-values">
+    <div class="wc-container">
+      <div class="wc-values-head reveal">
+        <div>
+          <div class="wc-section-tag">// Match Day Edge</div>
+          <h2 class="wc-section-title">Built for the<br />biggest <em>tournament</em> of the year.</h2>
+        </div>
+        <div class="wc-values-rule"></div>
+      </div>
+
+      <div class="wc-cards">
+        <article class="wc-card reveal">
+          <div class="wc-card-marker">01</div>
+          <div class="wc-card-header"><span>Welcome</span><b>Instant</b></div>
+          <div class="wc-card-stat">$200<span class="sml">.00</span></div>
+          <h3 class="wc-card-title">In Bonus Bets</h3>
+          <p class="wc-card-desc">Bonus credited the moment your first qualifying wager settles. No code required.</p>
+        </article>
+
+        <article class="wc-card reveal">
+          <div class="wc-card-marker">02</div>
+          <div class="wc-card-header"><span>Odds Boost</span><b>WC26 Only</b></div>
+          <div class="wc-card-stat">+50<span class="sml">%</span></div>
+          <h3 class="wc-card-title">Boosted Odds</h3>
+          <p class="wc-card-desc">Daily boosted markets on selected matches across groups, knockouts and the final. T&amp;Cs apply.</p>
+        </article>
+
+        <article class="wc-card reveal">
+          <div class="wc-card-marker">03</div>
+          <div class="wc-card-header"><span>Live Betting</span><b>48 Teams</b></div>
+          <div class="wc-card-stat">104<span class="sml">/104</span></div>
+          <h3 class="wc-card-title">Matches Live</h3>
+          <p class="wc-card-desc">Stream and bet on every match of the expanded 2026 World Cup — 48 teams, 12 groups, 104 fixtures, in-play, in real time.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  WINNERS FEED · SOCIAL PROOF                                      -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="wc-winners">
+    <div class="wc-bg-layer wc-bg-winners" style={`background-image: url(${stadiumBg.src});`} aria-hidden="true"></div>
+    <div class="wc-container">
+      <div class="wc-winners-head reveal">
+        <div class="wc-section-tag" style="text-align: center;">// Live · Auto-refreshing</div>
+        <h2 class="wc-section-title" style="margin-inline: auto; text-align: center;">Players cashing in <em>right now</em>.</h2>
+      </div>
+
+      <div class="wc-winners-list" id="wc-winners-list">
+        <!-- Rows injected by JS for staggered animation -->
+      </div>
+
+      <p class="wc-winners-disclaimer">Illustrative examples · Outcomes vary · 18+ · T&amp;Cs apply</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  STAGE 3 · 3-STEP FORMATION                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="wc-steps">
+    <div class="wc-container">
+      <div class="wc-steps-head reveal">
+        <div class="wc-section-tag">// Three Steps</div>
+        <h2 class="wc-section-title" style="margin-inline: auto;">From <em>install</em> to $200.</h2>
+      </div>
+
+      <div class="reveal">
+        <img src={stepsInfographic.src} alt="3 steps: Download app, Install and sign up, Get $200 Bonus Bets" class="wc-steps-image" width="1536" height="1024" loading="lazy" />
+      </div>
+    </div>
+    <div class="wc-crowd" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  STAGE 4 · FINAL CTA                                              -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="wc-final">
+    <div class="wc-bg-layer wc-bg-cta" style={`background-image: url(${stadiumBg.src});`} aria-hidden="true"></div>
+    <div class="wc-spotlight" aria-hidden="true"></div>
+    <div class="wc-container">
+      <span class="wc-final-scarcity reveal">Welcome offer ends <b style="color:#fff;">at kickoff</b>&nbsp;— June 11</span>
+      <h2 class="display reveal">
+        Kickoff is closer than<br />you think. <span class="accent">Download now.</span>
+      </h2>
+      <p class="reveal">Join <b style="color:var(--gold-hot);">2.4M+ fans</b> already running the app for the World Cup 2026. The welcome offer auto-expires when registration closes.</p>
+      <div class="reveal wc-cta-ring">
+        <button class="wc-btn link-btn" type="button" onclick="window.onLinkBtnClick()">
+          Download App · Get $200
+          <span class="wc-btn-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+      <div class="wc-final-stats reveal">
+        <span><b>4.8/5</b> · <span class="stars">★★★★★</span> App Store</span>
+        <span>· <b>2.4M+</b> Downloads</span>
+        <span>· <b>iOS &amp; Android</b></span>
+        <span>· <b>24/7</b> In-App Support</span>
+      </div>
+      <div class="wc-final-after reveal">Licensed sportsbook · 18+ · Play responsibly · T&amp;Cs apply</div>
+    </div>
+  </section>
+
+  <!-- ─── BOTTOM WINS TICKER ─── -->
+  <div class="wc-bottom-ticker" role="marquee" aria-label="Recent player wins">
+    <span class="wc-bottom-ticker-label">Live Wins</span>
+    <div class="wc-bottom-strip">
+      <div class="wc-bottom-track">
+        <span class="wc-bottom-item"><b>@MikeJ</b> just won <span class="amt">$215</span> on Brazil x Argentina</span>
+        <span class="wc-bottom-item"><b>@Sara_K</b> just won <span class="amt">$48</span> on France ML</span>
+        <span class="wc-bottom-item"><b>@DavidR</b> just won <span class="amt">$680</span> on England x Germany</span>
+        <span class="wc-bottom-item"><b>@LucaP</b> just won <span class="amt">$92</span> on Portugal x Norway</span>
+        <span class="wc-bottom-item"><b>@YukiT</b> just won <span class="amt">$310</span> on Japan x Korea</span>
+        <span class="wc-bottom-item"><b>@AhmedB</b> just won <span class="amt">$1,840</span> on Morocco acca</span>
+        <span class="wc-bottom-item"><b>@PaulM</b> just won <span class="amt">$165</span> on Netherlands x Belgium</span>
+        <span class="wc-bottom-item"><b>@JorgeS</b> just won <span class="amt">$420</span> on USA x Mexico</span>
+        <!-- duplicate for seamless loop -->
+        <span class="wc-bottom-item"><b>@MikeJ</b> just won <span class="amt">$215</span> on Brazil x Argentina</span>
+        <span class="wc-bottom-item"><b>@Sara_K</b> just won <span class="amt">$48</span> on France ML</span>
+        <span class="wc-bottom-item"><b>@DavidR</b> just won <span class="amt">$680</span> on England x Germany</span>
+        <span class="wc-bottom-item"><b>@LucaP</b> just won <span class="amt">$92</span> on Portugal x Norway</span>
+        <span class="wc-bottom-item"><b>@YukiT</b> just won <span class="amt">$310</span> on Japan x Korea</span>
+        <span class="wc-bottom-item"><b>@AhmedB</b> just won <span class="amt">$1,840</span> on Morocco acca</span>
+        <span class="wc-bottom-item"><b>@PaulM</b> just won <span class="amt">$165</span> on Netherlands x Belgium</span>
+        <span class="wc-bottom-item"><b>@JorgeS</b> just won <span class="amt">$420</span> on USA x Mexico</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  FOOTER · COMPLIANCE                                              -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <footer class="wc-footer">
+    <div class="wc-container">
+      <div class="wc-footer-row">
+        <div class="wc-footer-badges">
+          <img src={badge18.src} alt="18 plus" width="36" height="36" />
+          <img src={badgeGba.src} alt="BeGambleAware" width="140" height="36" />
+        </div>
+        <p class="wc-footer-text">
+          Bonus Bets are credited as non-withdrawable tokens after your first qualifying wager settles. Minimum stake $10 at odds of 1.50 or greater. Bonus expires 30 days from issue. Full terms available at sign-up. Gambling involves financial risk and can be addictive — please play responsibly. Visit <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> for free, confidential help.
+        </p>
+      </div>
+      <div class="wc-footer-divider"></div>
+      <div class="wc-footer-mini">
+        <span>Welcome offer · New customers only</span>
+        <span>18+ only</span>
+        <span>T&amp;Cs apply</span>
+        <span>© 2026 Kickline</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── STICKY FLOATING CTA (appears after hero, persistent) ─── -->
+  <div class="wc-sticky-cta" id="wc-sticky-cta" aria-hidden="true">
+    <span class="wc-sticky-cta-badge"><span class="dot"></span>Limited · $200 Offer</span>
+    <button class="wc-btn link-btn" type="button" onclick="window.onLinkBtnClick()">
+      Download App · Get $200
+      <span class="wc-btn-arrow" aria-hidden="true">›</span>
+    </button>
+  </div>
+
+  <script is:inline>
+// ───── Reveal on scroll (with safety fallback) ─────
+;(function () {
+  const els = document.querySelectorAll('.reveal')
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('active'))
+    return
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active')
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+  )
+  els.forEach(el => observer.observe(el))
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.active)').forEach(el => el.classList.add('active'))
+  }, 2500)
+})()
+
+// ───── Countdown to World Cup 2026 kickoff (June 11, 2026 18:00 UTC) ─────
+;(function () {
+  // Opening match: Mexico vs South Africa, Estadio Azteca, 2026-06-11 19:00 UTC (8pm BST / 13:00 CDT)
+  const target = new Date(Date.UTC(2026, 5, 11, 19, 0, 0)).getTime()
+  const dEl = document.getElementById('cd-d')
+  const hEl = document.getElementById('cd-h')
+  const mEl = document.getElementById('cd-m')
+  const sEl = document.getElementById('cd-s')
+  if (!dEl)
+    return
+  const pad = n => String(n).padStart(2, '0')
+  function tick() {
+    const diff = Math.max(0, target - Date.now())
+    const d = Math.floor(diff / 86400000)
+    const h = Math.floor((diff % 86400000) / 3600000)
+    const m = Math.floor((diff % 3600000) / 60000)
+    const s = Math.floor((diff % 60000) / 1000)
+    dEl.textContent = pad(d)
+    hEl.textContent = pad(h)
+    mEl.textContent = pad(m)
+    sEl.textContent = pad(s)
+  }
+  tick()
+  setInterval(tick, 1000)
+})()
+
+// ───── Live "players claiming" counter — gently jittering ─────
+;(function () {
+  const el = document.getElementById('wc-live-count')
+  if (!el)
+    return
+  let n = 2847
+  setInterval(() => {
+    n += Math.floor(Math.random() * 7) - 2
+    if (n < 2700)
+      n = 2700
+    if (n > 3100)
+      n = 3100
+    el.textContent = n.toLocaleString('en-US')
+  }, 2200)
+})()
+
+// ───── Sticky CTA — show when hero is out of viewport ─────
+;(function () {
+  const sticky = document.getElementById('wc-sticky-cta')
+  const hero = document.querySelector('.wc-hero-full')
+  if (!sticky || !hero || !('IntersectionObserver' in window)) {
+    if (sticky)
+      sticky.classList.add('is-visible')
+    return
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        sticky.classList.remove('is-visible')
+        sticky.setAttribute('aria-hidden', 'true')
+      }
+      else {
+        sticky.classList.add('is-visible')
+        sticky.setAttribute('aria-hidden', 'false')
+      }
+    })
+  }, { threshold: 0, rootMargin: '0px 0px -60% 0px' })
+  io.observe(hero)
+})()
+
+// ───── Winners feed — staggered injection with rotation ─────
+;(function () {
+  const root = document.getElementById('wc-winners-list')
+  if (!root)
+    return
+  const pool = [
+    { handle: 'MikeJ', amt: 215, match: 'Brazil x Argentina · Acca', time: 'Just now', mega: false },
+    { handle: 'Sara_K', amt: 48, match: 'France ML', time: '14s ago', mega: false },
+    { handle: 'DavidR', amt: 2380, match: 'England vs Germany · O 2.5', time: '32s ago', mega: true },
+    { handle: 'LucaP', amt: 92, match: 'Portugal x Norway', time: '48s ago', mega: false },
+    { handle: 'YukiT', amt: 310, match: 'Japan x Korea · BTTS', time: '1m ago', mega: false },
+    { handle: 'AhmedB', amt: 1840, match: 'Morocco DBL chance', time: '1m ago', mega: true },
+    { handle: 'PaulM', amt: 165, match: 'Netherlands x Belgium', time: '2m ago', mega: false },
+    { handle: 'JorgeS', amt: 420, match: 'USA x Mexico · Acca', time: '3m ago', mega: false },
+    { handle: 'KimDH', amt: 4150, match: 'Korea Outright · MEGA', time: '4m ago', mega: true },
+    { handle: 'EmmaF', amt: 73, match: 'Spain Win', time: '5m ago', mega: false },
+  ]
+  function rowHtml(w, i) {
+    const initial = w.handle.slice(0, 1).toUpperCase()
+    return `
+      <div class="wc-winrow${w.mega ? ' mega' : ''}" style="animation-delay:${i * 90}ms;">
+        <div class="wc-win-avatar">${initial}</div>
+        <div class="wc-win-text">
+          <b>@${w.handle}</b> won on <span class="match">${w.match}</span>${w.mega ? '<span class="wc-win-mega-tag">Mega</span>' : ''}
+        </div>
+        <div class="wc-win-amount">+$${w.amt.toLocaleString('en-US')}</div>
+        <div class="wc-win-time">${w.time}</div>
+      </div>`
+  }
+  function render() {
+    root.innerHTML = pool.map(rowHtml).join('')
+  }
+  // Initial render on first scroll into view, otherwise after 1s
+  let rendered = false
+  function show() {
+    if (rendered)
+      return
+    rendered = true
+    render()
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          show()
+          io.disconnect()
+        }
+      })
+    }, { threshold: 0.1 })
+    io.observe(root)
+  }
+  setTimeout(show, 1500)
+})()
+</script>
+</BaseLayout>

@@ -1,0 +1,997 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import logo from './images/logo.png'
+import heroBg from './images/hero-mining.jpg'
+import ogImage from './images/og-share-v2.jpg'
+
+const title = 'NXE.TO +247% Since Arrow · Canadian Mining Intel — Free Weekly Briefing'
+const description = 'TSX-V Insider: weekly briefing on Canadian junior miners — uranium, gold, silver, copper. Real ticker coverage. Free access for Canadian investors.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage.src} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage.src} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ heroBgUrl: `url('${heroBg.src}')` }}>
+      .hero-stage { --hero-bg-url: var(--heroBgUrl); }
+    </style>
+
+    <style is:global>
+      :root {
+        --bg-deep:        #0E0E12;
+        --bg-elevated:    #16161D;
+        --bg-card:        #1C1C25;
+        --text-primary:   #F5F5F7;
+        --text-secondary: #A8AAB3;
+        --text-muted:     #6E707A;
+        --gold-bright:    #FFD700;
+        --gold:           #D4AF37;
+        --gold-deep:      #C8941F;
+        --gold-dim:       #8C6F1F;
+        --maple-red:      #C8102E;
+        --alert-red:      #E11D2A;
+        --gain-green:     #2DD37A;
+        --rule:           rgba(212, 175, 55, 0.14);
+        --rule-strong:    rgba(212, 175, 55, 0.3);
+        --font-display:   'Bebas Neue', 'Impact', sans-serif;
+        --font-body:      'Inter', system-ui, sans-serif;
+        --font-mono:      'JetBrains Mono', ui-monospace, monospace;
+        --container-max:  1200px;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--bg-deep);
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      body { padding-bottom: 80px; }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; }
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      @media (max-width: 768px) {
+        .container { padding: 0 1.25rem; }
+        body { padding-bottom: 96px; }
+      }
+
+      /* ─── BREAKING TOP BAR ─── */
+      .breaking-bar {
+        position: sticky; top: 0; z-index: 90;
+        height: 36px;
+        background: var(--alert-red);
+        color: #fff;
+        display: flex; align-items: center;
+        overflow: hidden;
+        font-family: var(--font-body);
+      }
+      .breaking-bar .badge {
+        flex-shrink: 0;
+        padding: 0 12px 0 16px;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-left: 4px solid #fff;
+        height: 100%;
+        display: flex; align-items: center;
+        background: rgba(0, 0, 0, 0.18);
+      }
+      .breaking-bar .ticker-wrap {
+        flex: 1; overflow: hidden; position: relative; height: 100%;
+      }
+      .breaking-bar .ticker {
+        position: absolute; white-space: nowrap;
+        animation: ticker 28s linear infinite;
+        font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+        top: 50%; transform: translateY(-50%);
+        padding-left: 16px;
+      }
+      @keyframes ticker {
+        from { transform: translate(100%, -50%); }
+        to   { transform: translate(-100%, -50%); }
+      }
+      @media (max-width: 480px) {
+        .breaking-bar { height: 32px; }
+        .breaking-bar .badge { font-size: 11px; padding: 0 8px 0 12px; }
+        .breaking-bar .ticker { font-size: 12px; }
+      }
+
+      /* ─── HERO STAGE ─── */
+      .hero-stage {
+        position: relative;
+        padding: 48px 0 72px;
+        display: flex; align-items: center;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse 900px 500px at 20% 20%, rgba(255, 215, 0, 0.10), transparent 65%),
+          radial-gradient(ellipse 800px 400px at 85% 75%, rgba(200, 16, 46, 0.08), transparent 60%),
+          linear-gradient(180deg, var(--bg-deep) 0%, #050507 100%);
+      }
+      .hero-stage::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: var(--hero-bg-url);
+        background-size: cover; background-position: center;
+        opacity: 0.42;
+        pointer-events: none;
+      }
+      .hero-stage::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(14,14,18,0.15) 0%, rgba(14,14,18,0.55) 60%, rgba(14,14,18,0.85) 100%);
+        pointer-events: none;
+      }
+      .hero-stage > .container { position: relative; z-index: 1; }
+      .hero-header { margin-bottom: 56px; }
+      .hero-header .logo { height: 80px; width: auto; display: block; }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(44px, 7.5vw, 84px);
+        line-height: 0.94;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        margin: 0;
+        color: var(--text-primary);
+        text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+      }
+      .hero-title .ticker-glow {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: 0.78em;
+        letter-spacing: -0.01em;
+        color: var(--gold-bright);
+        text-shadow: 0 0 24px rgba(255, 215, 0, 0.35);
+      }
+      .hero-title .gain {
+        font-family: var(--font-display);
+        color: var(--gain-green);
+        text-shadow: 0 0 24px rgba(45, 211, 122, 0.35);
+      }
+      .hero-subtitle {
+        margin: 28px 0 0;
+        font-size: clamp(18px, 2.1vw, 26px);
+        font-weight: 500;
+        line-height: 1.35;
+        color: var(--text-secondary);
+        letter-spacing: -0.01em;
+        max-width: 720px;
+      }
+      @media (max-width: 768px) {
+        .hero-stage { padding: 32px 0 56px; }
+        .hero-header { margin-bottom: 36px; }
+        .hero-header .logo { height: 56px; }
+        .hero-subtitle { margin-top: 20px; }
+      }
+
+      /* ─── BENEFITS ─── */
+      .benefits {
+        margin: 44px 0 0;
+        max-width: 640px;
+        background: rgba(22, 22, 29, 0.88);
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        padding: 26px 30px;
+        backdrop-filter: blur(10px);
+      }
+      .benefit-item {
+        display: flex; align-items: flex-start;
+        gap: 14px; padding: 10px 0;
+        font-size: 18px; line-height: 1.5;
+        color: var(--text-primary);
+      }
+      .benefit-item + .benefit-item {
+        border-top: 1px solid var(--rule);
+        margin-top: 4px; padding-top: 14px;
+      }
+      .benefit-item strong { color: var(--gold-bright); font-weight: 700; }
+      .benefit-check {
+        flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px;
+      }
+      @media (max-width: 768px) {
+        .benefits { padding: 22px 20px; margin-top: 28px; }
+        .benefit-item { font-size: 16px; gap: 12px; }
+        .benefit-check { width: 20px; height: 20px; }
+      }
+
+      /* ─── COUNTDOWN BLOCK ─── */
+      .countdown-block {
+        margin: 32px 0 0;
+        max-width: 640px;
+        padding: 18px 24px;
+        background: rgba(225, 29, 42, 0.10);
+        border: 1px solid rgba(225, 29, 42, 0.55);
+        border-radius: 14px;
+      }
+      .countdown-label {
+        display: flex; align-items: center; gap: 10px;
+        font-size: 13px; font-weight: 700;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #FF6B6B;
+        margin-bottom: 12px;
+      }
+      .countdown-label::before {
+        content: ''; width: 8px; height: 8px;
+        background: var(--alert-red); border-radius: 50%;
+        animation: pulse-dot 1.4s ease-in-out infinite;
+      }
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(225,29,42,0.6); }
+        50%      { opacity: 0.5; transform: scale(0.9); box-shadow: 0 0 0 8px rgba(225,29,42,0); }
+      }
+      .countdown-digits {
+        display: flex; align-items: center; gap: 8px;
+      }
+      .digit-box {
+        flex: 1;
+        background: var(--bg-deep);
+        border: 1px solid rgba(225, 29, 42, 0.45);
+        border-radius: 8px;
+        padding: 8px 4px 6px;
+        text-align: center;
+      }
+      .digit-box .num {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(36px, 6vw, 52px);
+        line-height: 1;
+        color: #fff;
+        letter-spacing: 0.02em;
+      }
+      .digit-box .unit {
+        display: block;
+        font-size: 10px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+      .digit-sep {
+        font-family: var(--font-display);
+        font-size: clamp(28px, 4.5vw, 40px);
+        color: var(--alert-red);
+        line-height: 1;
+      }
+      .seats-bar {
+        margin-top: 14px;
+        display: flex; align-items: center; gap: 12px;
+        font-size: 13px; font-weight: 600;
+        color: var(--text-secondary);
+      }
+      .seats-bar .bar-wrap {
+        flex: 1; height: 6px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 999px; overflow: hidden;
+      }
+      .seats-bar .bar-fill {
+        height: 100%; width: 87%;
+        background: linear-gradient(90deg, var(--alert-red) 0%, var(--gold-bright) 100%);
+        border-radius: 999px;
+      }
+      @media (max-width: 480px) {
+        .countdown-block { padding: 14px 16px; }
+        .digit-box { padding: 6px 2px 4px; }
+        .digit-box .unit { font-size: 9px; }
+      }
+
+      /* ─── CTA ─── */
+      .cta-row { margin: 28px 0 0; }
+      .cta-primary {
+        display: inline-flex;
+        align-items: center; justify-content: center;
+        gap: 12px;
+        padding: 22px 48px;
+        font-family: var(--font-display);
+        font-size: 24px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #0E0E12;
+        background: linear-gradient(180deg, #FFD700 0%, #C8941F 100%);
+        border: none; border-radius: 12px;
+        box-shadow:
+          0 10px 40px rgba(255, 215, 0, 0.35),
+          0 4px 12px rgba(255, 215, 0, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: transform .25s cubic-bezier(.22, 1, .36, 1);
+        text-decoration: none;
+        animation: cta-breathe 3.6s ease-in-out infinite;
+      }
+      @keyframes cta-breathe {
+        0%, 100% { box-shadow: 0 10px 40px rgba(255, 215, 0, 0.35), 0 4px 12px rgba(255, 215, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+        50%      { box-shadow: 0 14px 56px rgba(255, 215, 0, 0.55), 0 6px 24px rgba(255, 215, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+      }
+      .cta-primary:hover {
+        transform: translateY(-2px) scale(1.015);
+      }
+      .cta-primary .arrow {
+        font-family: var(--font-body);
+        font-weight: 400; font-size: 22px; margin-left: 4px;
+      }
+      .cta-secondary {
+        display: inline-flex; align-items: center; justify-content: center;
+        gap: 10px; padding: 18px 40px;
+        font-family: var(--font-display);
+        font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase;
+        color: var(--gold-bright);
+        background: transparent;
+        border: 2px solid var(--gold);
+        border-radius: 12px;
+        transition: background .2s ease, border-color .2s ease, color .2s ease;
+        text-decoration: none;
+      }
+      .cta-secondary:hover {
+        background: rgba(255, 215, 0, 0.08);
+        border-color: var(--gold-bright);
+        color: #fff;
+      }
+      @media (max-width: 768px) {
+        .cta-row { margin-top: 24px; }
+        .cta-primary { width: 100%; padding: 18px 24px; font-size: 19px; }
+        .cta-secondary { width: 100%; padding: 16px 24px; font-size: 17px; }
+      }
+
+      /* ─── TRACK RECORD ─── */
+      .track-record {
+        padding: 72px 0;
+        background:
+          radial-gradient(ellipse 700px 360px at 50% 0%, rgba(212, 175, 55, 0.06), transparent 70%),
+          var(--bg-deep);
+        border-top: 1px solid var(--rule);
+      }
+      .section-head {
+        text-align: center; margin-bottom: 36px;
+      }
+      .section-eyebrow {
+        display: inline-block;
+        font-size: 12px; font-weight: 700;
+        letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--gold);
+        padding: 6px 14px;
+        border: 1px solid var(--rule-strong);
+        border-radius: 999px;
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(32px, 5vw, 52px);
+        line-height: 1.02; letter-spacing: 0.01em;
+        text-transform: uppercase;
+        margin: 0; color: var(--text-primary);
+      }
+      .section-sub {
+        margin: 14px auto 0;
+        max-width: 640px;
+        font-size: 16px; line-height: 1.5;
+        color: var(--text-secondary);
+      }
+      .track-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: var(--bg-card);
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        overflow: hidden;
+        font-size: 15px;
+      }
+      .track-table thead th {
+        text-align: left;
+        padding: 14px 20px;
+        font-size: 11px; font-weight: 700;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--text-muted);
+        background: rgba(0,0,0,0.25);
+        border-bottom: 1px solid var(--rule);
+      }
+      .track-table tbody td {
+        padding: 16px 20px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.07);
+        color: var(--text-primary);
+      }
+      .track-table tbody tr:last-child td { border-bottom: none; }
+      .track-table .ticker {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        color: var(--gold-bright);
+        letter-spacing: -0.01em;
+      }
+      .track-table .gain { color: var(--gain-green); font-weight: 700; font-family: var(--font-mono); }
+      .track-table .px { font-family: var(--font-mono); color: var(--text-secondary); }
+      .track-table .date { color: var(--text-muted); font-size: 13px; }
+      .track-footnote {
+        margin: 14px 4px 0;
+        font-size: 12px; color: var(--text-muted); line-height: 1.5;
+      }
+      .track-cta-row { margin-top: 36px; text-align: center; }
+      @media (max-width: 768px) {
+        .track-record { padding: 48px 0; }
+        .track-table { font-size: 14px; }
+        .track-table thead th { padding: 10px 12px; font-size: 10px; }
+        .track-table tbody td { padding: 12px; }
+        .track-table .date { display: none; }
+      }
+
+      /* ─── MEDIA STRIP ─── */
+      .media-strip {
+        padding: 36px 0;
+        background: #050507;
+        border-top: 1px solid var(--rule);
+      }
+      .media-strip .label {
+        text-align: center;
+        font-size: 11px; font-weight: 700;
+        letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+      }
+      .media-grid {
+        display: flex; flex-wrap: wrap;
+        justify-content: center; align-items: center;
+        gap: 32px 48px;
+      }
+      .media-name {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        font-style: italic;
+        font-size: clamp(15px, 1.5vw, 19px);
+        font-weight: 600;
+        color: var(--text-secondary);
+        opacity: 0.72;
+        letter-spacing: 0.01em;
+      }
+      @media (max-width: 768px) {
+        .media-grid { gap: 18px 28px; }
+      }
+
+      /* ─── TESTIMONIALS ─── */
+      .testimonials {
+        padding: 72px 0;
+        background: var(--bg-deep);
+        border-top: 1px solid var(--rule);
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        margin-top: 40px;
+      }
+      .testi-card {
+        background: var(--bg-card);
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        padding: 26px 24px;
+        display: flex; flex-direction: column;
+        gap: 16px;
+      }
+      .testi-quote {
+        font-size: 16px; line-height: 1.55;
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+      .testi-quote::before {
+        content: '"'; display: block;
+        font-family: 'Georgia', serif;
+        font-size: 48px; line-height: 0.6;
+        color: var(--gold); margin-bottom: 4px;
+      }
+      .testi-attr {
+        display: flex; align-items: center; gap: 12px;
+        padding-top: 16px;
+        border-top: 1px solid var(--rule);
+      }
+      .testi-avatar {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+        color: #0E0E12;
+        font-family: var(--font-display);
+        font-size: 18px; line-height: 40px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .testi-meta { font-size: 13px; line-height: 1.4; }
+      .testi-meta .name { color: var(--text-primary); font-weight: 600; }
+      .testi-meta .loc { color: var(--text-muted); }
+      .testi-cta-row { margin-top: 40px; text-align: center; }
+      @media (max-width: 768px) {
+        .testimonials { padding: 48px 0; }
+        .testi-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
+      }
+
+      /* ─── TRUST STRIP ─── */
+      .trust-strip {
+        background: var(--bg-deep);
+        padding: 48px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+      .trust-item {
+        display: flex; flex-direction: column;
+        align-items: center; text-align: center;
+        gap: 10px;
+      }
+      .trust-item::before {
+        content: '';
+        display: block;
+        width: 24px; height: 2px;
+        background: var(--gold);
+        margin-bottom: 4px;
+      }
+      .trust-item svg { width: 20px; height: 20px; color: var(--gold); }
+      .trust-item .value {
+        font-size: 16px; font-weight: 600; color: var(--text-primary);
+      }
+      .trust-item .label {
+        font-size: 14px; font-weight: 500;
+        color: var(--text-secondary); letter-spacing: 0.02em;
+      }
+      @media (max-width: 768px) {
+        .trust-strip { padding: 32px 0; }
+        .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      }
+
+      /* ─── FOOTER ─── */
+      .site-footer {
+        padding: 32px 0 40px;
+        background: #050507;
+        border-top: 1px solid var(--rule);
+      }
+      .site-footer p {
+        margin: 4px 0;
+        color: var(--text-muted);
+        font-size: 12px; line-height: 1.6;
+        text-align: center;
+      }
+      @media (max-width: 768px) {
+        .site-footer p { font-size: 11px; }
+      }
+
+      /* ─── STICKY BOTTOM CTA ─── */
+      .sticky-cta-bar {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 95;
+        height: 76px;
+        background: rgba(14, 14, 18, 0.96);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--rule-strong);
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.45);
+        display: flex; align-items: center;
+        transform: translateY(100%);
+        transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+      }
+      .sticky-cta-bar.visible { transform: translateY(0); }
+      .sticky-cta-bar .container {
+        display: flex; align-items: center; gap: 16px;
+        width: 100%;
+      }
+      .sticky-cta-meta {
+        flex: 1; min-width: 0;
+        display: flex; flex-direction: column; gap: 2px;
+      }
+      .sticky-cta-meta .top {
+        font-size: 13px; font-weight: 700;
+        color: var(--alert-red); letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .sticky-cta-meta .bot {
+        font-size: 13px; color: var(--text-secondary);
+        font-family: var(--font-mono); font-weight: 500;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .sticky-cta-btn {
+        flex-shrink: 0;
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 14px 28px;
+        font-family: var(--font-display);
+        font-size: 18px; letter-spacing: 0.05em; text-transform: uppercase;
+        color: #0E0E12;
+        background: linear-gradient(180deg, #FFD700 0%, #C8941F 100%);
+        border-radius: 10px;
+        min-height: 48px;
+        text-decoration: none;
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      }
+      @media (max-width: 768px) {
+        .sticky-cta-bar { height: 92px; }
+        .sticky-cta-meta .top { font-size: 11px; }
+        .sticky-cta-meta .bot { font-size: 11px; }
+        .sticky-cta-btn { padding: 12px 18px; font-size: 15px; min-height: 44px; }
+      }
+      @media (max-width: 380px) {
+        .sticky-cta-meta { display: none; }
+        .sticky-cta-btn { flex: 1; justify-content: center; }
+      }
+
+      /* ─── REVEAL ENTRANCE ─── */
+      .reveal {
+        opacity: 0; transform: translateY(16px);
+        transition: opacity .7s cubic-bezier(.22, 1, .36, 1),
+                    transform .7s cubic-bezier(.22, 1, .36, 1);
+      }
+      .reveal.active { opacity: 1; transform: translateY(0); }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .cta-primary { animation: none; }
+        .countdown-label::before { animation: none; }
+      }
+    </style>
+  </Fragment>
+
+  <main>
+    <div class="breaking-bar" role="region" aria-label="Breaking news">
+      <div class="badge">Breaking</div>
+      <div class="ticker-wrap">
+        <div class="ticker">
+          NXE.TO +247% since Arrow discovery &nbsp;·&nbsp; May 22, 2026 &nbsp;·&nbsp;
+          DML.TO breakout watch &nbsp;·&nbsp; Gold spot above $2,400/oz &nbsp;·&nbsp;
+          Copper supply tightening into Q3
+        </div>
+      </div>
+    </div>
+
+    <section class="hero-stage">
+      <div class="container">
+        <header class="hero-header">
+          <img src={logo.src} alt="TSX-V Insider" class="logo" />
+        </header>
+
+        <h1 class="hero-title reveal">
+          <span class="ticker-glow">NXE.TO</span> <span class="gain">+247%</span><br/>
+          Since Arrow Discovery.<br/>
+          The Next One Is Already Moving.
+        </h1>
+
+        <p class="hero-subtitle reveal">
+          Where will the next triple-digit move come from &mdash;
+          and will you see it before the chart does?
+        </p>
+
+        <div class="benefits reveal">
+          <div class="benefit-item">
+            <svg class="benefit-check" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12.5l4.5 4.5L19 7" stroke="#FFD700" stroke-width="2.5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Junior miners showing <strong>outsized setup signals</strong> &mdash; see which names are flagged this week</span>
+          </div>
+          <div class="benefit-item">
+            <svg class="benefit-check" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12.5l4.5 4.5L19 7" stroke="#FFD700" stroke-width="2.5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Weekly intel: <strong>uranium &middot; gold &middot; copper &middot; silver</strong></span>
+          </div>
+          <div class="benefit-item">
+            <svg class="benefit-check" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12.5l4.5 4.5L19 7" stroke="#FFD700" stroke-width="2.5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span><strong>1,847 Canadian investors</strong> joined this month &mdash; 14,287+ total subscribers</span>
+          </div>
+        </div>
+
+        <div class="countdown-block reveal" id="countdown-block">
+          <div class="countdown-label">Free access closes in</div>
+          <div class="countdown-digits">
+            <div class="digit-box"><span class="num" id="cd-h">00</span><span class="unit">Hours</span></div>
+            <span class="digit-sep">:</span>
+            <div class="digit-box"><span class="num" id="cd-m">00</span><span class="unit">Min</span></div>
+            <span class="digit-sep">:</span>
+            <div class="digit-box"><span class="num" id="cd-s">00</span><span class="unit">Sec</span></div>
+          </div>
+          <div class="seats-bar">
+            <span>Today&rsquo;s free seats</span>
+            <div class="bar-wrap"><div class="bar-fill"></div></div>
+            <span><strong>87 / 100</strong></span>
+          </div>
+        </div>
+
+        <div class="cta-row reveal" id="hero-cta-row">
+          <a class="cta-primary link-btn" href="#" data-cta-id="hero-cta-1">
+            Get This Week&rsquo;s 3 Picks &mdash; Free
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="track-record">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Past coverage &middot; verified tickers</span>
+          <h2 class="section-title">Names We&rsquo;ve Flagged Before They Moved.</h2>
+          <p class="section-sub">
+            Selected coverage from the past 14 months &mdash; flagged prices are the
+            closing day we first surfaced the name in the briefing.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <table class="track-table">
+            <thead>
+              <tr>
+                <th>Date</th><th>Ticker</th><th>Flagged</th><th>Peak</th><th>Gain</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="date">Mar 2024</td>
+                <td class="ticker">DML.TO</td>
+                <td class="px">C$1.95</td>
+                <td class="px">C$3.18</td>
+                <td class="gain">+63%</td>
+              </tr>
+              <tr>
+                <td class="date">May 2024</td>
+                <td class="ticker">NXE.TO</td>
+                <td class="px">C$7.85</td>
+                <td class="px">C$13.22</td>
+                <td class="gain">+68%</td>
+              </tr>
+              <tr>
+                <td class="date">Jul 2024</td>
+                <td class="ticker">FIL.TO&nbsp;*</td>
+                <td class="px">C$24.50</td>
+                <td class="px">C$33.00</td>
+                <td class="gain">+35%</td>
+              </tr>
+              <tr>
+                <td class="date">Jan 2025</td>
+                <td class="ticker">IVN.TO</td>
+                <td class="px">C$15.20</td>
+                <td class="px">C$22.10</td>
+                <td class="gain">+45%</td>
+              </tr>
+              <tr>
+                <td class="date">Mar 2025</td>
+                <td class="ticker">AGI.TO</td>
+                <td class="px">C$24.10</td>
+                <td class="px">C$32.60</td>
+                <td class="gain">+35%</td>
+              </tr>
+              <tr>
+                <td class="date">May 2025</td>
+                <td class="ticker">FNV.TO</td>
+                <td class="px">C$185</td>
+                <td class="px">C$210</td>
+                <td class="gain">+13%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="track-footnote">
+            * FIL.TO acquired by Lundin Mining / BHP consortium, 2024 &mdash; closing price at deal completion.
+            Past coverage shown for illustration. Not investment advice; past performance does not guarantee future results.
+          </p>
+        </div>
+
+        <div class="track-cta-row reveal">
+          <a class="cta-secondary link-btn" href="#" data-cta-id="track-cta-2">
+            Show Me Next Week&rsquo;s Names
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="media-strip">
+      <div class="container">
+        <div class="label">As covered in</div>
+        <div class="media-grid">
+          <span class="media-name">BNN Bloomberg</span>
+          <span class="media-name">Financial Post</span>
+          <span class="media-name">The Globe and Mail</span>
+          <span class="media-name">Stockwatch</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Subscribers</span>
+          <h2 class="section-title">Why 14,287+ Canadians Stay On The List.</h2>
+        </div>
+
+        <div class="testi-grid">
+          <article class="testi-card reveal">
+            <p class="testi-quote">
+              My RRSP was 70% cash and I was scared to touch it. Now I rotate into
+              one TSX-V name a month and I actually have a thesis behind it.
+            </p>
+            <div class="testi-attr">
+              <div class="testi-avatar">D</div>
+              <div class="testi-meta">
+                <div class="name">D.K.</div>
+                <div class="loc">Burnaby, BC &middot; 58</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testi-card reveal">
+            <p class="testi-quote">
+              I&rsquo;ve traded TSX-V names for 20 years. This is the only briefing
+              that names tickers and shows the setup &mdash; not just vague sector talk.
+            </p>
+            <div class="testi-attr">
+              <div class="testi-avatar">M</div>
+              <div class="testi-meta">
+                <div class="name">M.R.</div>
+                <div class="loc">Calgary, AB &middot; 54</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testi-card reveal">
+            <p class="testi-quote">
+              Caught the Filo run before the takeover. One call paid for the next
+              ten years of my subscription. Read it Sunday night with coffee.
+            </p>
+            <div class="testi-attr">
+              <div class="testi-avatar">J</div>
+              <div class="testi-meta">
+                <div class="name">J.B.</div>
+                <div class="loc">Toronto, ON &middot; 61</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="testi-cta-row reveal">
+          <a class="cta-primary link-btn" href="#" data-cta-id="testi-cta-3">
+            Join 14,287+ Canadian Traders
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M3 3v18h18"/>
+              <path d="M7 14l4-4 4 4 6-6"/>
+            </svg>
+            <div class="value">14,287+</div>
+            <div class="label">subscribers</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M12 22s-7-6-7-12a7 7 0 0114 0c0 6-7 12-7 12z"/>
+              <circle cx="12" cy="10" r="2.5"/>
+            </svg>
+            <div class="value">Toronto</div>
+            <div class="label">Canada</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M3 21l6-6"/>
+              <path d="M14 7l3-3 4 4-3 3"/>
+              <path d="M14 7l-9 9 4 4 9-9"/>
+            </svg>
+            <div class="value">TSX &amp; TSX-V</div>
+            <div class="label">coverage</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M3 7l9 6 9-6"/>
+            </svg>
+            <div class="value">Weekly</div>
+            <div class="label">briefing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2026 TSX-V Insider &middot; For informational purposes only.</p>
+        <p>Not investment advice. Past performance does not guarantee future results.</p>
+      </div>
+    </footer>
+  </main>
+
+  <div class="sticky-cta-bar" id="sticky-cta" role="region" aria-label="Sticky call to action">
+    <div class="container">
+      <div class="sticky-cta-meta">
+        <div class="top">Closes Tonight &middot; <span id="sticky-cd">00:00:00</span></div>
+        <div class="bot">87 / 100 free seats remaining today</div>
+      </div>
+      <a class="sticky-cta-btn link-btn" href="#" data-cta-id="sticky-cta-4">
+        Lock In Free Access
+        <span>&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tickCountdown() {
+      const now = new Date();
+      const endOfDay = new Date(now);
+      endOfDay.setHours(23, 59, 59, 999);
+      const diffMs = endOfDay.getTime() - now.getTime();
+
+      let h, m, s;
+      if (diffMs <= 0) { h = m = s = 0; }
+      else {
+        h = Math.floor(diffMs / 3.6e6);
+        m = Math.floor((diffMs % 3.6e6) / 6e4);
+        s = Math.floor((diffMs % 6e4) / 1000);
+      }
+
+      const ch = document.getElementById('cd-h');
+      const cm = document.getElementById('cd-m');
+      const cs = document.getElementById('cd-s');
+      if (ch) ch.textContent = pad(h);
+      if (cm) cm.textContent = pad(m);
+      if (cs) cs.textContent = pad(s);
+
+      const sticky = document.getElementById('sticky-cd');
+      if (sticky) sticky.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+    }
+    tickCountdown();
+    setInterval(tickCountdown, 1000);
+
+    const heroCtaRow = document.getElementById('hero-cta-row');
+    const stickyBar = document.getElementById('sticky-cta');
+    if (heroCtaRow && stickyBar && 'IntersectionObserver' in window) {
+      const showSticky = (show) => stickyBar.classList.toggle('visible', show);
+      const heroIO = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => showSticky(!entry.isIntersecting));
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      heroIO.observe(heroCtaRow);
+    } else if (stickyBar) {
+      stickyBar.classList.add('visible');
+    }
+
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('active'), idx * 70);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('active'));
+    }
+  </script>
+</BaseLayout>

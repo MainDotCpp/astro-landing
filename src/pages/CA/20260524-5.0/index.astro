@@ -1,0 +1,197 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import hero from './images/hero-rare-earth.jpg'
+
+const title = 'Canadian Rare Earth · Breakout Alert'
+const description = 'A Canadian rare-earth play priced under one dollar. Get the ticker on WhatsApp.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={hero.src} />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      :root {
+        --bg:       #05070F;
+        --ink:      #F4F6FB;
+        --ink-dim:  #9AA3BD;
+        --signal:   #FFE94A;
+        --alert:    #FF3D2E;
+        --wa:       #25D366;
+        --wa-deep:  #128C7E;
+        --display:  'Anton', 'Arial Narrow', sans-serif;
+        --body:     'Sora', system-ui, sans-serif;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; }
+
+      .page {
+        max-width: 480px;
+        margin: 0 auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 0 20px 120px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      /* alert ribbon */
+      .ribbon {
+        margin: 0 -20px 18px;
+        background: var(--alert);
+        color: #fff;
+        font-family: var(--display);
+        letter-spacing: 0.18em;
+        font-size: 13px;
+        text-align: center;
+        padding: 10px 16px;
+        text-transform: uppercase;
+        position: relative;
+      }
+      .ribbon::before,
+      .ribbon::after {
+        content: '';
+        display: inline-block;
+        width: 8px; height: 8px;
+        background: var(--signal);
+        border-radius: 50%;
+        vertical-align: middle;
+        margin: 0 10px 2px;
+        animation: blink 1.2s infinite;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+
+      /* hero image (includes the headline + numbers baked in) */
+      .hero {
+        margin: 0 -20px 22px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      /* one paragraph */
+      .pitch {
+        font-size: 17px;
+        line-height: 1.65;
+        color: var(--ink);
+        margin: 0 0 26px;
+        text-align: center;
+        font-weight: 400;
+      }
+      .pitch strong {
+        color: var(--signal);
+        font-weight: 700;
+      }
+
+      /* CTA button */
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        background: var(--wa);
+        color: #062716;
+        font-family: var(--display);
+        font-size: 22px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 20px 24px;
+        border: none;
+        border-bottom: 4px solid var(--wa-deep);
+        box-shadow: 0 16px 40px -14px rgba(37, 211, 102, 0.55);
+        cursor: pointer;
+        transition: transform .12s ease, background .2s ease;
+        margin-bottom: 12px;
+      }
+      .cta:active { transform: translateY(2px); border-bottom-width: 2px; }
+      .cta svg { flex-shrink: 0; }
+
+      .seats {
+        text-align: center;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-dim);
+        margin: 0 0 28px;
+      }
+      .seats span { color: var(--signal); font-weight: 700; }
+
+      .disc {
+        font-size: 10.5px;
+        color: var(--ink-dim);
+        line-height: 1.55;
+        text-align: center;
+        opacity: 0.7;
+        margin: auto 0 0;
+      }
+
+      /* sticky bottom CTA — keeps thumb-zone tap target */
+      .sticky {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: linear-gradient(180deg, rgba(5, 7, 15, 0) 0%, rgba(5, 7, 15, 0.96) 40%);
+        z-index: 50;
+      }
+      .sticky .cta { margin: 0 auto; max-width: 440px; font-size: 18px; padding: 16px 20px; }
+    </style>
+  </Fragment>
+
+  <main class="page">
+    <div class="ribbon">Breaking · Canadian Rare Earth</div>
+
+    <figure class="hero">
+      <img src={hero.src} alt="Canadian rare earth breakout alert" />
+    </figure>
+
+    <p class="pitch">
+      A Canadian <strong>rare-earth miner</strong> just cleared its first drill assay —
+      and Beijing's export curbs on critical metals have flipped the demand curve.
+      One TSX-V ticker, <strong>under $0.50</strong>, move expected inside
+      <strong>90 days</strong>. Tap below to get the symbol.
+    </p>
+
+    <p class="disc">
+      Information only · not investment advice · markets carry risk.
+    </p>
+  </main>
+
+  <div class="sticky">
+    <a class="cta link-btn" href="#" data-cta="sticky">
+      <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M16 3C8.82 3 3 8.82 3 16c0 2.39.66 4.62 1.81 6.55L3 29l6.7-1.75A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3z"/>
+      </svg>
+      <span>Claim the ticker now</span>
+    </a>
+  </div>
+</BaseLayout>

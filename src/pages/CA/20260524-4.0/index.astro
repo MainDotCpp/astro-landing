@@ -1,0 +1,2452 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroBg from './images/hero-bg.jpg'
+import briefDesk from './images/brief-desk.jpg'
+
+const title = "The Canadian Mining Brief — WhatsApp alerts on TSX/TSX-V gold, silver, uranium & copper stocks"
+const description = "Stay ahead in the Canadian mining market. Daily WhatsApp alerts on TSX/TSX-V mining companies, junior miners and key mining stocks — gold, uranium, silver, copper. 9,847 members. Free to join."
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={heroBg.src} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      :root {
+        --navy-900:         #00152A;
+        --navy-800:         #001E3C;
+        --navy-700:         #002855;
+        --navy-600:         #0A3263;
+        --gold-700:         #8C6A1A;
+        --gold-600:         #B08323;
+        --gold-500:         #C9A227;
+        --gold-400:         #DEBE5A;
+        --gold-200:         #EEDDA0;
+        --cream-50:         #FBF7EE;
+        --cream-100:        #F7F1E1;
+        --cream-200:        #F0E8D0;
+        --cream-300:        #E4D9B6;
+        --ink:              #1A2330;
+        --ink-soft:         #45526A;
+        --ink-mute:         #7C8AA0;
+        --rule:             #D9CFB1;
+        --rule-soft:        #E8E0C8;
+        --gain:             #1E7F4E;
+        --loss:             #B3331F;
+        --wa-green:         #25D366;
+        --wa-green-dark:    #128C7E;
+
+        --font-display:     'Cormorant Garamond', 'Garamond', 'Times New Roman', serif;
+        --font-body:        'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+        --font-mono:        'IBM Plex Mono', 'JetBrains Mono', Menlo, monospace;
+
+        --container-max:    1180px;
+        --container-narrow: 840px;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--cream-50);
+        color: var(--ink);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "ss01", "kern", "liga";
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; }
+      ::selection { background: var(--gold-500); color: var(--navy-900); }
+
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 36px;
+      }
+      .container--narrow { max-width: var(--container-narrow); }
+      @media (max-width: 768px) {
+        .container { padding: 0 22px; }
+      }
+
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .eyebrow::before {
+        content: '';
+        width: 28px; height: 1px;
+        background: var(--gold-500);
+      }
+      .eyebrow .roman {
+        color: var(--gold-700);
+        font-weight: 600;
+      }
+
+      .display {
+        font-family: var(--font-display);
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: -0.005em;
+        color: var(--navy-900);
+        margin: 0;
+        font-feature-settings: "ss01", "ss03", "lnum";
+      }
+      .display em { font-style: italic; color: var(--navy-700); font-weight: 500; }
+
+      /* ─── TOP NAV ─── */
+      .top-nav {
+        position: fixed; top: 0; left: 0; right: 0;
+        z-index: 100;
+        height: 64px;
+        background: rgba(0, 21, 42, 0.94);
+        backdrop-filter: saturate(160%) blur(10px);
+        -webkit-backdrop-filter: saturate(160%) blur(10px);
+        border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+      }
+      .top-nav-inner {
+        height: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 36px;
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      .top-nav .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+      .top-nav .brand-name {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 0.01em;
+        color: var(--cream-50);
+      }
+      .top-nav .brand-sub {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.20em;
+        text-transform: uppercase;
+        color: var(--gold-400);
+        margin-top: 2px;
+      }
+      .top-nav .links {
+        display: flex; align-items: center; gap: 32px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--cream-100);
+      }
+      .top-nav .links a:not(.cta-primary) {
+        position: relative;
+        padding-bottom: 2px;
+        transition: color .2s;
+      }
+      .top-nav .links a:not(.cta-primary):hover { color: var(--gold-400); }
+      @media (max-width: 768px) {
+        .top-nav-inner { padding: 0 18px; }
+        .top-nav .links a:not(.cta-primary) { display: none; }
+        .top-nav .brand-sub { display: none; }
+        .top-nav .brand-name { font-size: 17px; }
+      }
+      @media (max-width: 380px) {
+        .top-nav .brand-name { font-size: 15.5px; max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      }
+
+      /* ─── Gold "minted-coin" CTA ─── */
+      .cta-primary {
+        position: relative;
+        display: inline-flex;
+        align-items: center; justify-content: center;
+        gap: 12px;
+        padding: 16px 28px;
+        background:
+          linear-gradient(180deg,
+            #F3D672 0%,
+            #E3BE4B 20%,
+            #C9A227 55%,
+            #A88317 82%,
+            #8C6A1A 100%);
+        color: var(--navy-900);
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.01em;
+        border: 1px solid #6F5314;
+        border-radius: 3px;
+        text-decoration: none;
+        line-height: 1.2;
+        cursor: pointer;
+        isolation: isolate;
+        overflow: hidden;
+        transition:
+          transform .25s cubic-bezier(.2, .8, .2, 1),
+          box-shadow .25s cubic-bezier(.2, .8, .2, 1),
+          filter .25s ease;
+        text-shadow: 0 1px 0 rgba(255, 245, 210, 0.45);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 250, 220, 0.7),
+          inset 0 -1px 0 rgba(70, 45, 0, 0.30),
+          inset 0 0 0 1px rgba(255, 230, 160, 0.08),
+          0 1px 0 rgba(255, 250, 220, 0.25),
+          0 5px 14px rgba(140, 106, 26, 0.22),
+          0 14px 30px -8px rgba(140, 106, 26, 0.30);
+      }
+      .cta-primary::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(105deg,
+          transparent 30%,
+          rgba(255, 250, 220, 0.42) 48%,
+          rgba(255, 250, 220, 0.05) 52%,
+          transparent 70%);
+        transform: translateX(-120%);
+        transition: transform .9s cubic-bezier(.22, 1, .36, 1);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .cta-primary > * { position: relative; z-index: 2; }
+      .cta-primary:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.05);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 250, 220, 0.78),
+          inset 0 -1px 0 rgba(70, 45, 0, 0.30),
+          inset 0 0 0 1px rgba(255, 230, 160, 0.12),
+          0 1px 0 rgba(255, 250, 220, 0.25),
+          0 10px 22px rgba(140, 106, 26, 0.34),
+          0 22px 44px -12px rgba(140, 106, 26, 0.46);
+      }
+      .cta-primary:hover::before { transform: translateX(120%); }
+      .cta-primary:active {
+        transform: translateY(0);
+        box-shadow:
+          inset 0 2px 4px rgba(70, 45, 0, 0.35),
+          inset 0 -1px 0 rgba(255, 240, 200, 0.20),
+          0 2px 6px rgba(140, 106, 26, 0.22);
+      }
+      .cta-primary:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 3px var(--cream-50),
+          0 0 0 5px var(--gold-500),
+          inset 0 1px 0 rgba(255, 250, 220, 0.7),
+          0 12px 28px -8px rgba(140, 106, 26, 0.34);
+      }
+      .cta-primary .wa-icon { width: 18px; height: 18px; flex-shrink: 0; }
+      .cta-primary .arrow { font-weight: 400; font-size: 17px; line-height: 1; transition: transform .25s ease; }
+      .cta-primary:hover .arrow { transform: translateX(3px); }
+      .cta-primary--sm { padding: 9px 16px; font-size: 13px; min-height: 36px; }
+      .cta-primary--lg { padding: 19px 36px; font-size: 16px; min-height: 56px; }
+
+      /* Ghost variant — sits on dark, becomes filled coin on hover */
+      .cta-primary--ghost {
+        background: transparent;
+        color: var(--gold-400);
+        border: 1px solid rgba(201, 162, 39, 0.55);
+        text-shadow: none;
+        box-shadow: inset 0 0 0 0 rgba(201, 162, 39, 0);
+      }
+      .cta-primary--ghost::before { display: none; }
+      .cta-primary--ghost:hover {
+        color: var(--navy-900);
+        background:
+          linear-gradient(180deg, #F3D672 0%, #C9A227 60%, #A88317 100%);
+        border-color: var(--gold-700);
+        text-shadow: 0 1px 0 rgba(255, 245, 210, 0.45);
+        filter: none;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 250, 220, 0.7),
+          0 6px 16px rgba(140, 106, 26, 0.32);
+      }
+      .cta-primary--ghost:active { transform: translateY(0); }
+
+      /* ─── WhatsApp Mint CTA — layered "minted-coin" tactile button ─── */
+      .cta-wa {
+        position: relative;
+        display: inline-flex;
+        align-items: center; justify-content: center;
+        gap: 14px;
+        padding: 18px 30px;
+        min-height: 56px;
+        background:
+          linear-gradient(180deg,
+            #34F079 0%,
+            #2BDF6D 18%,
+            #20C95E 52%,
+            #1AAE54 78%,
+            #0F6E5E 100%);
+        color: #FFFFFF;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.005em;
+        border: 1px solid rgba(15, 110, 94, 0.85);
+        border-radius: 6px;
+        text-decoration: none;
+        line-height: 1.2;
+        cursor: pointer;
+        isolation: isolate;
+        overflow: hidden;
+        transition:
+          transform .25s cubic-bezier(.2, .8, .2, 1),
+          box-shadow .25s cubic-bezier(.2, .8, .2, 1),
+          filter .25s ease;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.55),
+          inset 0 -1px 0 rgba(0, 60, 40, 0.35),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+          0 1px 0 rgba(255, 255, 255, 0.15),
+          0 6px 14px rgba(18, 140, 126, 0.30),
+          0 14px 32px -8px rgba(18, 140, 126, 0.40);
+        text-shadow: 0 1px 0 rgba(0, 60, 40, 0.25);
+      }
+      /* moving sheen — sweeps once on hover */
+      .cta-wa::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(105deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.28) 48%,
+          rgba(255, 255, 255, 0.04) 52%,
+          transparent 70%);
+        transform: translateX(-120%);
+        transition: transform .9s cubic-bezier(.22, 1, .36, 1);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .cta-wa > * { position: relative; z-index: 2; }
+      .cta-wa:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.04) saturate(1.06);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.65),
+          inset 0 -1px 0 rgba(0, 60, 40, 0.35),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+          0 1px 0 rgba(255, 255, 255, 0.15),
+          0 12px 26px rgba(18, 140, 126, 0.42),
+          0 22px 46px -10px rgba(18, 140, 126, 0.55);
+      }
+      .cta-wa:hover::before { transform: translateX(120%); }
+      .cta-wa:active {
+        transform: translateY(0);
+        box-shadow:
+          inset 0 2px 4px rgba(0, 60, 40, 0.35),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+          0 2px 6px rgba(18, 140, 126, 0.30);
+      }
+      .cta-wa:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 3px var(--cream-50),
+          0 0 0 5px var(--gold-500),
+          inset 0 1px 0 rgba(255, 255, 255, 0.55),
+          0 14px 32px -8px rgba(18, 140, 126, 0.40);
+      }
+      .cta-wa .wa-icon { width: 22px; height: 22px; flex-shrink: 0; filter: drop-shadow(0 1px 0 rgba(0, 60, 40, 0.25)); }
+      .cta-wa .arrow { font-weight: 400; font-size: 18px; line-height: 1; }
+      .cta-wa .sub {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        opacity: 0.92;
+        margin-left: 4px;
+        padding-left: 12px;
+        border-left: 1px solid rgba(255, 255, 255, 0.35);
+        line-height: 1.1;
+        white-space: nowrap;
+      }
+
+      .cta-secondary {
+        position: relative;
+        display: inline-flex; align-items: center; gap: 10px;
+        font-family: var(--font-body);
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--cream-100);
+        padding: 6px 0 5px;
+        transition: color .25s ease;
+        line-height: 1.3;
+      }
+      .cta-secondary::after {
+        content: '';
+        position: absolute; left: 0; right: 0; bottom: 0;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(238, 221, 160, 0.55) 0%, rgba(238, 221, 160, 0.55) 60%, transparent 100%);
+        transform-origin: left center;
+        transition: transform .35s cubic-bezier(.22, 1, .36, 1), background .25s ease;
+      }
+      .cta-secondary > .arr {
+        display: inline-block;
+        transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+        font-weight: 500;
+      }
+      .cta-secondary:hover { color: var(--gold-400); }
+      .cta-secondary:hover::after { background: linear-gradient(90deg, var(--gold-400) 0%, var(--gold-400) 100%); }
+      .cta-secondary:hover > .arr { transform: translateX(4px); }
+      .cta-secondary--dark { color: var(--navy-800); }
+      .cta-secondary--dark::after {
+        background: linear-gradient(90deg, rgba(140, 106, 26, 0.5) 0%, rgba(140, 106, 26, 0.5) 60%, transparent 100%);
+      }
+      .cta-secondary--dark:hover { color: var(--gold-700); }
+      .cta-secondary--dark:hover::after { background: var(--gold-700); }
+
+      @media (max-width: 480px) {
+        .cta-primary--lg, .cta-wa { width: 100%; }
+        .cta-wa { padding: 16px 22px; gap: 10px; font-size: 15px; }
+        .cta-wa .sub { font-size: 9px; padding-left: 10px; margin-left: 2px; }
+      }
+      @media (max-width: 360px) {
+        .cta-wa { padding: 15px 18px; font-size: 14px; }
+        .cta-wa .sub { display: none; }
+      }
+
+      /* "Pre-filled message" preview chip */
+      .msg-preview {
+        display: inline-flex; align-items: center; gap: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px dashed rgba(238, 221, 160, 0.35);
+        padding: 8px 14px;
+        margin: 14px 0 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        color: var(--cream-200);
+        border-radius: 2px;
+        max-width: 100%;
+      }
+      @media (max-width: 480px) {
+        .msg-preview { font-size: 11px; padding: 7px 12px; gap: 8px; flex-wrap: wrap; }
+        .msg-preview .lbl { font-size: 8.5px; letter-spacing: 0.18em; }
+      }
+      .msg-preview .lbl {
+        font-size: 9px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold-400);
+        font-weight: 600;
+      }
+      .msg-preview .quote { color: var(--cream-50); font-weight: 500; }
+      .msg-preview .quote::before { content: '\201C'; color: var(--gold-400); }
+      .msg-preview .quote::after { content: '\201D'; color: var(--gold-400); }
+      .msg-preview--light {
+        background: var(--cream-100);
+        border-color: var(--rule);
+        color: var(--ink-soft);
+      }
+      .msg-preview--light .lbl { color: var(--gold-700); }
+      .msg-preview--light .quote { color: var(--navy-900); }
+      .msg-preview--light .quote::before, .msg-preview--light .quote::after { color: var(--gold-700); }
+
+      /* ─── HERO ─── */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        padding: 140px 0 110px;
+        background: var(--navy-900);
+        color: var(--cream-50);
+        overflow: hidden;
+        isolation: isolate;
+        display: flex;
+        align-items: center;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: var(--hero-bg);
+        background-size: cover;
+        background-position: center 60%;
+        opacity: 0.55;
+        z-index: -2;
+        filter: saturate(0.95) contrast(1.05);
+      }
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg,
+            rgba(0, 21, 42, 0.78) 0%,
+            rgba(0, 21, 42, 0.45) 28%,
+            rgba(0, 21, 42, 0.55) 55%,
+            rgba(0, 21, 42, 0.92) 100%),
+          radial-gradient(120% 80% at 25% 30%, transparent 0%, rgba(0, 21, 42, 0.35) 100%);
+        z-index: -1;
+      }
+      .hero-inner { width: 100%; max-width: 980px; }
+      .hero-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--gold-400);
+        display: inline-flex; align-items: center; gap: 14px;
+        margin: 0 0 32px;
+      }
+      .hero-eyebrow::before {
+        content: ''; width: 40px; height: 1px;
+        background: var(--gold-500);
+      }
+      .hero-h1 {
+        font-family: var(--font-display);
+        font-size: clamp(34px, 6.2vw, 86px);
+        font-weight: 500;
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+        color: var(--cream-50);
+        margin: 0;
+        font-feature-settings: "ss01", "ss03", "lnum";
+        text-wrap: balance;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+      .hero-h1 em { font-style: italic; font-weight: 400; color: var(--gold-200); }
+      .hero-h1 .foil {
+        background: linear-gradient(180deg, #E0BE5C 0%, #C9A227 50%, #8C6A1A 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero-pillars {
+        display: flex; flex-wrap: wrap; gap: 0;
+        margin: 36px 0 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--cream-200);
+        letter-spacing: 0.04em;
+      }
+      .hero-pillars .pill {
+        display: inline-flex; align-items: baseline; gap: 6px;
+        padding: 6px 16px 6px 0;
+        margin-right: 16px;
+        border-right: 1px solid rgba(238, 221, 160, 0.25);
+      }
+      .hero-pillars .pill:last-child { border-right: none; margin-right: 0; }
+      .hero-pillars .pill .sym {
+        color: var(--gold-400);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+      }
+      .hero-sub {
+        font-family: var(--font-body);
+        font-size: clamp(16px, 1.45vw, 19px);
+        font-weight: 300;
+        line-height: 1.65;
+        color: var(--cream-100);
+        margin: 28px 0 0;
+        max-width: 660px;
+      }
+      .hero-cta-row {
+        display: flex; align-items: center; gap: 24px;
+        margin: 42px 0 0;
+        flex-wrap: wrap;
+      }
+      .hero-trust {
+        margin: 40px 0 0;
+        padding-top: 28px;
+        border-top: 1px solid rgba(238, 221, 160, 0.20);
+        display: flex; align-items: center; gap: 32px;
+        flex-wrap: wrap;
+        font-family: var(--font-body);
+        font-size: 13px;
+        color: var(--cream-200);
+        max-width: 820px;
+      }
+      .hero-trust .ts { display: flex; align-items: baseline; gap: 8px; }
+      .hero-trust .ts-num {
+        font-family: var(--font-mono);
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--gold-400);
+        letter-spacing: 0.01em;
+      }
+      .hero-trust .ts-label { color: var(--cream-200); font-size: 12px; letter-spacing: 0.04em; }
+      .hero-trust .live-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #25D366;
+        box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.18);
+        display: inline-block;
+      }
+      @media (max-width: 980px) {
+        .hero { padding: 120px 0 80px; min-height: auto; }
+      }
+      @media (max-width: 600px) {
+        .hero { padding: 104px 0 60px; }
+        .hero-h1 { font-size: clamp(34px, 9vw, 42px); line-height: 1.08; }
+        .hero-eyebrow { margin-bottom: 22px; font-size: 10px; letter-spacing: 0.20em; }
+        .hero-eyebrow::before { width: 24px; }
+        .hero-sub { font-size: 15.5px; margin-top: 22px; }
+        .hero-pillars {
+          gap: 6px 0;
+          margin: 26px 0 0;
+        }
+        .hero-pillars .pill {
+          font-size: 10.5px; padding: 4px 12px 4px 0;
+          margin-right: 12px;
+        }
+        .hero-cta-row { gap: 16px; margin-top: 30px; flex-direction: column; align-items: stretch; }
+        .hero-cta-row .cta-secondary { align-self: flex-start; }
+        .hero-trust { gap: 12px 18px; margin-top: 28px; padding-top: 22px; font-size: 12px; }
+        .hero-trust .ts-num { font-size: 14px; }
+        .hero-trust .ts-label { font-size: 11px; }
+      }
+
+      /* ─── LIVE TAPE ─── */
+      .tape {
+        background: var(--navy-900);
+        border-top: 1px solid rgba(201, 162, 39, 0.18);
+        border-bottom: 1px solid rgba(201, 162, 39, 0.18);
+        overflow: hidden;
+        position: relative;
+        height: 52px;
+        display: flex;
+        align-items: center;
+      }
+      .tape::before {
+        content: 'LIVE TAPE \00B7 TSX-V MINING';
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        background: var(--navy-900);
+        color: var(--gold-400);
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        font-weight: 600;
+        padding: 0 22px;
+        display: flex; align-items: center;
+        z-index: 3;
+        border-right: 1px solid rgba(201, 162, 39, 0.25);
+        box-shadow: 12px 0 18px -8px var(--navy-900);
+        white-space: nowrap;
+      }
+      @media (max-width: 640px) {
+        .tape::before { content: 'TAPE'; padding: 0 12px; font-size: 9px; letter-spacing: 0.18em; }
+        .tape-track { padding-left: 70px; gap: 24px; font-size: 12px; animation-duration: 50s; }
+      }
+      .tape::after {
+        content: '';
+        position: absolute; right: 0; top: 0; bottom: 0;
+        width: 80px;
+        background: linear-gradient(90deg, transparent 0%, var(--navy-900) 100%);
+        z-index: 2;
+        pointer-events: none;
+      }
+      .tape-track {
+        display: flex; gap: 36px;
+        padding-left: 220px;
+        animation: tape-scroll 70s linear infinite;
+        white-space: nowrap;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--cream-100);
+        letter-spacing: 0.02em;
+        will-change: transform;
+      }
+      .tape-track .q { display: inline-flex; align-items: baseline; gap: 8px; flex-shrink: 0; }
+      .tape-track .q .sym { color: var(--cream-50); font-weight: 600; }
+      .tape-track .q .px { color: var(--cream-200); font-weight: 400; }
+      .tape-track .q .up { color: #4ADE80; font-weight: 500; }
+      .tape-track .q .down { color: #F87171; font-weight: 500; }
+      .tape-track .q .flat { color: var(--ink-mute); font-weight: 500; }
+      .tape-track .q .arr { font-size: 10px; margin-right: 1px; }
+      @keyframes tape-scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      @media (prefers-reduced-motion: reduce) { .tape-track { animation: none; } }
+
+      /* ─── GOLD RULE ─── */
+      .gold-rule {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 36px;
+      }
+      .gold-rule .line {
+        display: block; height: 1px;
+        background: linear-gradient(90deg, transparent 0%, var(--gold-500) 30%, var(--gold-500) 70%, transparent 100%);
+      }
+
+      /* ─── SECTIONS ─── */
+      .section { padding: 120px 0; position: relative; }
+      .section--cream { background: var(--cream-50); }
+      .section--cream-deep { background: var(--cream-100); }
+      .section--navy {
+        background: var(--navy-900);
+        color: var(--cream-50);
+      }
+      .section--navy .display { color: var(--cream-50); }
+      .section--navy .eyebrow { color: var(--gold-400); }
+      .section--navy .eyebrow::before { background: var(--gold-500); }
+      .section--navy .eyebrow .roman { color: var(--gold-400); }
+      .section--navy .sub { color: var(--cream-200); }
+      @media (max-width: 768px) { .section { padding: 72px 0; } }
+      @media (max-width: 480px) { .section { padding: 56px 0; } }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+        margin-bottom: 60px;
+      }
+      .section-head .display { font-size: clamp(34px, 4.4vw, 56px); }
+      .sub {
+        font-family: var(--font-body);
+        font-size: clamp(16px, 1.5vw, 18px);
+        font-weight: 300;
+        color: var(--ink-soft);
+        margin: 0;
+        line-height: 1.65;
+      }
+      .sub-block { max-width: 460px; }
+      .sub-block .sub { margin-top: 18px; }
+      @media (max-width: 900px) {
+        .section-head { grid-template-columns: 1fr; gap: 28px; align-items: start; margin-bottom: 44px; }
+      }
+
+      /* ─── LEDGER / METRICS ─── */
+      .ledger {
+        margin-top: 0;
+        background: var(--cream-50);
+        border: 1px solid var(--rule);
+        position: relative;
+      }
+      .ledger::before, .ledger::after {
+        content: ''; position: absolute;
+        left: -1px; right: -1px; height: 4px;
+        background: linear-gradient(90deg, var(--gold-500) 0%, var(--gold-700) 50%, var(--gold-500) 100%);
+      }
+      .ledger::before { top: -5px; }
+      .ledger::after { bottom: -5px; }
+      .ledger-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+      .ledger-cell {
+        padding: 44px 30px 38px;
+        border-right: 1px solid var(--rule-soft);
+        display: flex; flex-direction: column; justify-content: space-between;
+        min-height: 240px;
+        position: relative;
+      }
+      .ledger-cell::before {
+        content: attr(data-roman);
+        position: absolute; top: 16px; right: 18px;
+        font-family: var(--font-display); font-style: italic;
+        font-size: 14px;
+        color: var(--gold-600);
+      }
+      .ledger-cell:last-child { border-right: none; }
+      .ledger-num {
+        font-family: var(--font-display);
+        font-size: clamp(46px, 5.2vw, 68px);
+        font-weight: 500;
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+        color: var(--navy-900);
+      }
+      .ledger-num .small {
+        font-family: var(--font-mono);
+        font-weight: 500;
+        font-size: 0.42em;
+        color: var(--gold-700);
+        letter-spacing: 0.04em;
+        vertical-align: top;
+        margin-left: 4px;
+      }
+      .ledger-label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin: 22px 0 6px;
+        line-height: 1.4;
+      }
+      .ledger-fine {
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 300;
+        color: var(--ink-mute);
+        margin: 0;
+        line-height: 1.55;
+        padding-top: 10px;
+        border-top: 1px dotted var(--rule);
+      }
+      @media (max-width: 900px) {
+        .ledger-grid { grid-template-columns: repeat(2, 1fr); }
+        .ledger-cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule-soft); }
+        .ledger-cell:nth-child(2) { border-right: none; }
+      }
+      @media (max-width: 480px) { .ledger-cell { padding: 28px 22px; min-height: 0; } }
+
+      /* ─── PRINCIPLES ─── */
+      .principles {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+        border-top: 1px solid var(--rule);
+      }
+      .principle {
+        padding: 44px 40px 40px;
+        border-bottom: 1px solid var(--rule);
+        border-right: 1px solid var(--rule);
+        background: var(--cream-50);
+        transition: background .25s ease;
+      }
+      .principle:nth-child(2n) { border-right: none; }
+      .principle:nth-last-child(-n+2) { border-bottom: none; }
+      .principle:hover { background: var(--cream-100); }
+      .principle-num {
+        font-family: var(--font-display); font-style: italic;
+        font-weight: 500; font-size: 52px;
+        color: var(--gold-500);
+        line-height: 0.8; margin-bottom: 20px;
+      }
+      .principle h3 {
+        font-family: var(--font-display);
+        font-size: 26px; font-weight: 600;
+        letter-spacing: -0.005em; line-height: 1.18;
+        color: var(--navy-900);
+        margin: 0 0 12px;
+      }
+      .principle p {
+        font-family: var(--font-body);
+        font-size: 15px; font-weight: 300;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        margin: 0 0 20px;
+        max-width: 420px;
+      }
+      .principle .tag {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold-700);
+        border-top: 1px dotted var(--gold-500);
+        padding-top: 12px;
+        display: inline-block;
+      }
+      @media (max-width: 768px) {
+        .principles { grid-template-columns: 1fr; }
+        .principle { border-right: none; padding: 32px 24px; }
+        .principle:nth-last-child(2) { border-bottom: 1px solid var(--rule); }
+      }
+
+      /* ─── COVERAGE MAP ─── */
+      .coverage-grid {
+        display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+        border: 1px solid var(--rule);
+        background: var(--cream-50);
+        position: relative;
+      }
+      .coverage-grid::before, .coverage-grid::after {
+        content: ''; position: absolute;
+        left: -1px; right: -1px; height: 3px;
+        background: linear-gradient(90deg, var(--gold-500) 0%, var(--gold-700) 50%, var(--gold-500) 100%);
+      }
+      .coverage-grid::before { top: -4px; }
+      .coverage-grid::after { bottom: -4px; }
+      .coverage-cell {
+        padding: 28px 22px 26px;
+        border-right: 1px solid var(--rule-soft);
+        display: flex; flex-direction: column;
+        min-height: 320px;
+        transition: background .25s ease;
+      }
+      .coverage-cell:last-child { border-right: none; }
+      .coverage-cell:hover { background: var(--cream-100); }
+      .coverage-cell .num {
+        font-family: var(--font-display); font-style: italic;
+        font-size: 13px; color: var(--gold-600);
+        margin: 0 0 10px;
+      }
+      .coverage-cell h4 {
+        font-family: var(--font-display);
+        font-size: 22px; font-weight: 600;
+        color: var(--navy-900);
+        line-height: 1.18;
+        margin: 0 0 4px;
+      }
+      .coverage-cell .desc {
+        font-family: var(--font-display); font-style: italic;
+        font-size: 13px; color: var(--ink-soft);
+        margin: 0 0 18px;
+      }
+      .coverage-tickers {
+        list-style: none; margin: 0; padding: 0;
+        border-top: 1px dotted var(--rule);
+        padding-top: 12px;
+        font-family: var(--font-mono); font-size: 12px;
+        line-height: 1.95; color: var(--navy-900);
+        flex: 1;
+      }
+      .coverage-tickers li {
+        display: flex; justify-content: space-between; align-items: baseline;
+        gap: 8px; padding: 2px 0;
+        border-bottom: 1px dotted var(--rule-soft);
+      }
+      .coverage-tickers li:last-child { border-bottom: none; }
+      .coverage-tickers .t { font-weight: 600; letter-spacing: 0.01em; }
+      .coverage-tickers .nm {
+        font-family: var(--font-body); font-weight: 300; font-size: 11px;
+        color: var(--ink-mute); text-align: right; flex: 1;
+      }
+      .coverage-foot {
+        margin-top: 28px;
+        font-family: var(--font-body); font-size: 12.5px;
+        color: var(--ink-mute); line-height: 1.65;
+        max-width: 920px;
+      }
+      .coverage-foot strong { color: var(--navy-900); font-weight: 600; }
+      @media (max-width: 1100px) {
+        .coverage-grid { grid-template-columns: repeat(3, 1fr); }
+        .coverage-cell:nth-child(-n+3) { border-bottom: 1px solid var(--rule-soft); }
+        .coverage-cell:nth-child(3) { border-right: none; }
+        .coverage-cell:nth-child(4) { border-right: 1px solid var(--rule-soft); }
+      }
+      @media (max-width: 700px) {
+        .coverage-grid { grid-template-columns: 1fr; }
+        .coverage-cell { border-right: none; border-bottom: 1px solid var(--rule-soft); min-height: 0; padding: 24px 22px; }
+        .coverage-cell:last-child { border-bottom: none; }
+        .coverage-cell h4 { font-size: 20px; }
+        /* compact 2-col tickers grid replacing vertical list */
+        .coverage-tickers {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 14px;
+          row-gap: 2px;
+          padding-top: 10px;
+          font-size: 11.5px;
+          line-height: 1.6;
+        }
+        .coverage-tickers li {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 6px 0;
+          gap: 0;
+          border-bottom: 1px dotted var(--rule-soft);
+        }
+        .coverage-tickers .nm { text-align: left; font-size: 10px; margin-top: 1px; }
+      }
+
+      /* ─── COMMODITIES STRIP ─── */
+      .commodities {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        background: var(--navy-900);
+        color: var(--cream-50);
+      }
+      .commodities .c {
+        padding: 18px 22px;
+        border-right: 1px solid rgba(201, 162, 39, 0.2);
+        display: flex; flex-direction: column; gap: 4px;
+      }
+      .commodities .c:last-child { border-right: none; }
+      .commodities .c .nm {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold-400);
+      }
+      .commodities .c .px {
+        font-family: var(--font-mono);
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--cream-50);
+        letter-spacing: 0.01em;
+      }
+      .commodities .c .ch {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+      }
+      .commodities .c .ch.up { color: #4ADE80; }
+      .commodities .c .ch.down { color: #F87171; }
+      @media (max-width: 900px) {
+        .commodities { grid-template-columns: repeat(2, 1fr); }
+        .commodities .c:nth-child(odd) { border-right: 1px solid rgba(201, 162, 39, 0.2); }
+        .commodities .c:nth-child(2n+0) { border-right: none; }
+        .commodities .c:not(:nth-last-child(-n+2)) { border-bottom: 1px solid rgba(201, 162, 39, 0.18); }
+        .commodities .c:last-child { grid-column: span 2; }
+      }
+
+      /* ─── SAMPLE BRIEF (mock document) ─── */
+      .brief-wrap {
+        display: grid; grid-template-columns: 5fr 7fr;
+        gap: 80px; align-items: center;
+      }
+      @media (max-width: 980px) { .brief-wrap { grid-template-columns: 1fr; gap: 50px; } }
+      .brief-doc {
+        background: #FDFCF6;
+        position: relative;
+        padding: 52px 50px 44px;
+        box-shadow:
+          0 2px 0 var(--cream-300),
+          0 4px 0 #FDFCF6,
+          0 6px 0 var(--cream-300),
+          0 8px 0 #FDFCF6,
+          0 20px 50px rgba(0, 21, 42, 0.18),
+          0 2px 6px rgba(0, 21, 42, 0.06);
+        border: 1px solid var(--rule);
+        font-family: var(--font-body);
+        color: var(--ink);
+        transform: rotate(-1.2deg);
+        transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+      }
+      .brief-doc:hover { transform: rotate(0deg); }
+      .brief-letterhead {
+        text-align: center;
+        padding-bottom: 22px;
+        border-bottom: 2px double var(--gold-500);
+        margin-bottom: 24px;
+      }
+      .brief-letterhead .name {
+        font-family: var(--font-display);
+        font-size: 26px; font-weight: 600;
+        color: var(--navy-900);
+      }
+      .brief-letterhead .sub {
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.28em;
+        text-transform: uppercase; color: var(--gold-700);
+        margin: 8px 0 0;
+      }
+      .brief-meta {
+        display: flex; justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: 11px; letter-spacing: 0.08em;
+        text-transform: uppercase; color: var(--ink-mute);
+        margin: 0 0 26px;
+      }
+      .brief-meta .date strong {
+        color: var(--navy-900); font-weight: 600; margin-right: 6px;
+      }
+      .brief-h {
+        font-family: var(--font-display);
+        font-size: 25px; font-weight: 600;
+        line-height: 1.2; color: var(--navy-900);
+        margin: 0 0 8px;
+      }
+      .brief-tagline {
+        font-family: var(--font-display); font-style: italic;
+        font-size: 15px; color: var(--ink-soft);
+        margin: 0 0 24px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .brief-row {
+        display: flex; align-items: baseline; gap: 14px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--rule-soft);
+        font-size: 14px; line-height: 1.45;
+      }
+      .brief-row:last-of-type { border-bottom: none; }
+      .brief-row .label {
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--ink-mute);
+        min-width: 86px; font-weight: 600;
+      }
+      .brief-row .val { flex: 1; font-weight: 400; color: var(--ink); }
+      .brief-row .val .tk {
+        font-family: var(--font-mono);
+        font-weight: 600; color: var(--navy-900);
+        background: var(--cream-200);
+        padding: 1px 6px; font-size: 12px;
+      }
+      .brief-foot {
+        margin-top: 24px; padding-top: 16px;
+        border-top: 1px solid var(--rule);
+        display: flex; justify-content: space-between;
+        font-family: var(--font-mono); font-size: 10px;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--ink-mute);
+      }
+      .brief-stamp {
+        position: absolute; top: 16px; right: 16px;
+        font-family: var(--font-mono); font-size: 9px;
+        letter-spacing: 0.18em; color: var(--loss);
+        border: 1.5px solid var(--loss);
+        padding: 3px 8px; transform: rotate(8deg);
+        opacity: 0.55; text-transform: uppercase;
+      }
+      @media (max-width: 480px) { .brief-doc { padding: 34px 26px 28px; transform: none; } }
+
+      /* ─── BRIEF DESK PHOTO ─── */
+      .brief-photo {
+        margin-top: 64px; position: relative;
+        display: grid; grid-template-columns: 6fr 5fr;
+        border: 1px solid var(--rule); background: var(--cream-50);
+      }
+      .brief-photo .img {
+        background-image: var(--photo);
+        background-size: cover;
+        background-position: center 35%;
+        min-height: 480px;
+        filter: saturate(0.95) contrast(1.04);
+      }
+      .brief-photo .copy {
+        padding: 48px 52px;
+        display: flex; flex-direction: column; justify-content: center;
+      }
+      .brief-photo .copy .kicker {
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.24em;
+        text-transform: uppercase; color: var(--gold-700);
+        margin: 0 0 14px;
+      }
+      .brief-photo .copy h4 {
+        font-family: var(--font-display);
+        font-size: 30px; font-weight: 600;
+        line-height: 1.18; color: var(--navy-900);
+        margin: 0 0 16px;
+      }
+      .brief-photo .copy h4 em { font-style: italic; color: var(--navy-700); }
+      .brief-photo .copy p {
+        font-family: var(--font-body);
+        font-size: 14.5px; font-weight: 300;
+        line-height: 1.65; color: var(--ink-soft);
+        margin: 0 0 10px;
+      }
+      .brief-photo .copy .signoff {
+        font-family: var(--font-display); font-style: italic;
+        font-size: 14px; color: var(--ink-mute);
+        margin-top: 22px; padding-top: 18px;
+        border-top: 1px dotted var(--rule);
+      }
+      @media (max-width: 900px) {
+        .brief-photo { grid-template-columns: 1fr; margin-top: 48px; }
+        .brief-photo .img { min-height: 320px; background-position: center 30%; }
+        .brief-photo .copy { padding: 32px 26px; }
+        .brief-photo .copy h4 { font-size: 26px; }
+      }
+      @media (max-width: 480px) {
+        .brief-photo .img { min-height: 260px; }
+        .brief-photo .copy { padding: 28px 22px; }
+        .brief-photo .copy h4 { font-size: 22px; }
+        .brief-photo .copy p { font-size: 14px; }
+      }
+
+      /* ─── PAST CALLS ─── */
+      .past-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+        border: 1px solid var(--rule);
+        background: var(--cream-50);
+        position: relative;
+      }
+      .past-grid::before, .past-grid::after {
+        content: ''; position: absolute;
+        left: -1px; right: -1px; height: 3px;
+        background: linear-gradient(90deg, var(--gold-500) 0%, var(--gold-700) 50%, var(--gold-500) 100%);
+      }
+      .past-grid::before { top: -4px; }
+      .past-grid::after { bottom: -4px; }
+      .past-cell {
+        padding: 34px 30px;
+        border-right: 1px solid var(--rule-soft);
+        transition: background .25s ease;
+      }
+      .past-cell:hover { background: var(--cream-100); }
+      .past-cell:last-child { border-right: none; }
+      .past-head {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        margin-bottom: 18px;
+      }
+      .past-tk {
+        font-family: var(--font-mono);
+        font-weight: 600; font-size: 16px;
+        color: var(--navy-900); letter-spacing: 0.02em;
+        border-bottom: 2px solid var(--gold-500);
+        padding-bottom: 4px; line-height: 1;
+      }
+      .past-period {
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--ink-mute);
+        text-align: right; line-height: 1.5;
+      }
+      .past-spark {
+        width: 100%; height: 60px;
+        margin: 6px 0 18px; display: block;
+      }
+      .past-name {
+        font-family: var(--font-display);
+        font-size: 20px; font-weight: 600;
+        color: var(--navy-900); line-height: 1.2;
+        margin: 0 0 4px;
+      }
+      .past-loc {
+        font-family: var(--font-display); font-style: italic;
+        font-size: 14px; color: var(--ink-soft);
+        margin: 0 0 14px;
+      }
+      .past-perf {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 0; margin: 12px 0 18px;
+        border-top: 1px solid var(--rule-soft);
+        border-bottom: 1px solid var(--rule-soft);
+        padding: 12px 0;
+      }
+      .past-perf .cell {
+        display: flex; flex-direction: column;
+        border-right: 1px dotted var(--rule);
+        padding: 0 10px;
+      }
+      .past-perf .cell:first-child { padding-left: 0; }
+      .past-perf .cell:last-child { border-right: none; }
+      .past-perf .lbl {
+        font-family: var(--font-mono); font-size: 9px;
+        letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--ink-mute); margin-bottom: 4px;
+      }
+      .past-perf .val {
+        font-family: var(--font-mono); font-size: 14px;
+        font-weight: 600; color: var(--navy-900);
+      }
+      .past-perf .val.gain { color: var(--gain); }
+      .past-note {
+        font-family: var(--font-body);
+        font-size: 14px; font-weight: 300;
+        line-height: 1.6; color: var(--ink);
+        margin: 0;
+      }
+      .past-note strong { font-weight: 600; color: var(--navy-900); }
+      .past-fine {
+        font-family: var(--font-body); font-size: 10px;
+        line-height: 1.5; color: var(--ink-mute);
+        margin: 20px 0 0; padding-top: 12px;
+        border-top: 1px dotted var(--rule);
+      }
+      @media (max-width: 900px) {
+        .past-grid { grid-template-columns: 1fr; }
+        .past-cell { border-right: none; border-bottom: 1px solid var(--rule-soft); }
+        .past-cell:last-child { border-bottom: none; }
+      }
+
+      /* ─── COMPARE TABLE ─── */
+      .compare {
+        background: var(--cream-50);
+        border: 1px solid var(--rule);
+      }
+      .compare-row {
+        display: grid; grid-template-columns: 4fr 3fr 3fr;
+        padding: 18px 26px;
+        font-family: var(--font-body);
+        font-size: 14.5px; line-height: 1.45;
+        align-items: center;
+        border-bottom: 1px solid var(--rule-soft);
+      }
+      .compare-row:last-child { border-bottom: none; }
+      .compare-row.head { background: var(--navy-900); color: var(--cream-100); }
+      .compare-row.head .col {
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.18em;
+        text-transform: uppercase; font-weight: 500;
+      }
+      .compare-row.head .col.gold { color: var(--gold-400); }
+      .compare-row .label {
+        font-family: var(--font-display);
+        font-size: 17px; font-weight: 500;
+        color: var(--navy-900);
+      }
+      .compare-row .them { color: var(--ink-mute); font-weight: 300; }
+      .compare-row .mine { color: var(--navy-900); font-weight: 600; }
+      .compare-row .mark-x {
+        display: inline-block; width: 14px; height: 14px;
+        margin-right: 8px; position: relative; vertical-align: middle;
+      }
+      .compare-row .mark-x::before, .compare-row .mark-x::after {
+        content: ''; position: absolute; left: 6px; top: 0;
+        width: 1.5px; height: 100%;
+        background: var(--loss);
+      }
+      .compare-row .mark-x::before { transform: rotate(45deg); }
+      .compare-row .mark-x::after { transform: rotate(-45deg); }
+      .compare-row .mark-c {
+        display: inline-block; width: 16px; height: 16px;
+        margin-right: 8px; vertical-align: middle;
+        color: var(--gain);
+      }
+      @media (max-width: 600px) {
+        .compare-row { grid-template-columns: 1.6fr 1fr 1fr; padding: 14px 16px; font-size: 13px; }
+        .compare-row .label { font-size: 14px; }
+      }
+
+      /* ─── TESTIMONIALS ─── */
+      .testi-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+      }
+      .testi-card {
+        padding: 34px 30px 30px;
+        background: var(--cream-50);
+        border: 1px solid var(--rule);
+        position: relative;
+        display: flex; flex-direction: column;
+        min-height: 250px;
+      }
+      .testi-card::before {
+        content: '';
+        position: absolute; top: -1px; left: -1px; right: -1px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold-500) 0%, var(--gold-700) 50%, var(--gold-500) 100%);
+      }
+      .testi-quote {
+        font-family: var(--font-display); font-style: italic;
+        font-size: 17.5px; line-height: 1.55;
+        color: var(--navy-900); font-weight: 500;
+        margin: 0 0 26px; flex: 1;
+      }
+      .testi-quote::before {
+        content: '\201C';
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: 54px; font-weight: 600;
+        line-height: 0; color: var(--gold-500);
+        margin-right: 6px; vertical-align: -16px;
+      }
+      .testi-meta {
+        padding-top: 20px;
+        border-top: 1px solid var(--rule);
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--ink-mute);
+      }
+      .testi-meta .role { color: var(--navy-900); font-weight: 600; margin-right: 6px; }
+      @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
+
+      /* ─── FINAL CTA ─── */
+      .final-cta {
+        background: var(--navy-900);
+        color: var(--cream-50);
+        padding: 130px 0 120px;
+        position: relative; text-align: center;
+        overflow: hidden;
+      }
+      .final-cta::before {
+        content: ''; position: absolute; inset: 0;
+        background:
+          radial-gradient(60% 40% at 50% 25%, rgba(201, 162, 39, 0.18) 0%, transparent 60%),
+          radial-gradient(80% 60% at 50% 100%, rgba(37, 211, 102, 0.06) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      .final-cta .container { position: relative; z-index: 2; }
+      .final-cta .rule-top {
+        width: 80px; height: 1px; background: var(--gold-500);
+        margin: 0 auto 30px;
+      }
+      .final-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 11px; letter-spacing: 0.28em;
+        text-transform: uppercase; color: var(--gold-400);
+        margin: 0 0 22px;
+        display: inline-flex; align-items: center; gap: 12px;
+      }
+      .final-eyebrow .live {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #25D366;
+        box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.18);
+      }
+      .final-h {
+        font-family: var(--font-display);
+        font-size: clamp(36px, 4.8vw, 58px);
+        font-weight: 500; line-height: 1.1;
+        color: var(--cream-50); margin: 0;
+      }
+      .final-h em { font-style: italic; color: var(--gold-200); font-weight: 400; }
+      .final-sub {
+        font-family: var(--font-display); font-style: italic;
+        font-weight: 400; font-size: 19px;
+        color: var(--cream-200);
+        margin: 22px auto 42px;
+        max-width: 580px; line-height: 1.55;
+      }
+      .final-trust {
+        margin-top: 32px;
+        font-family: var(--font-mono);
+        font-size: 11px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--cream-200);
+        line-height: 1.8;
+      }
+      .final-trust .pipe { color: var(--gold-500); margin: 0 14px; }
+      @media (max-width: 768px) {
+        .final-cta { padding: 100px 0 90px; }
+        .final-trust .pipe { display: block; height: 6px; }
+      }
+
+      /* ─── FOOTER ─── */
+      .site-footer {
+        padding: 60px 0 80px;
+        padding-bottom: 110px; /* clear of floating CTA */
+        background: var(--cream-100);
+        border-top: 1px solid var(--rule);
+      }
+      .footer-head {
+        text-align: center;
+        max-width: var(--container-narrow);
+        margin: 0 auto 32px;
+      }
+      .footer-head .brand {
+        font-family: var(--font-display);
+        font-size: 22px; font-weight: 600;
+        color: var(--navy-900);
+      }
+      .footer-head .place {
+        font-family: var(--font-mono);
+        font-size: 11px; letter-spacing: 0.20em;
+        text-transform: uppercase; color: var(--ink-mute);
+        margin-top: 8px;
+      }
+      .footer-rule {
+        max-width: var(--container-narrow);
+        margin: 24px auto 28px;
+        height: 1px; background: var(--rule);
+      }
+      .footer-disc {
+        max-width: var(--container-narrow);
+        margin: 0 auto;
+        font-family: var(--font-body);
+        font-size: 12px; font-weight: 300;
+        line-height: 1.7; color: var(--ink-mute);
+      }
+      .footer-disc .lbl {
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--ink-soft);
+        margin: 0 0 12px; display: block;
+        font-weight: 500;
+      }
+      .footer-disc p { margin: 0 0 14px; }
+      .footer-copy {
+        max-width: var(--container-narrow);
+        margin: 28px auto 0;
+        padding-top: 22px;
+        border-top: 1px dotted var(--rule);
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 10px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--ink-mute);
+      }
+
+      /* ─── FLOATING STICKY CTA — "vault badge" tactile pill ─── */
+      .float-cta {
+        position: fixed;
+        right: 22px; bottom: 22px;
+        z-index: 9999;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 13px 24px 13px 20px;
+        min-height: 60px;
+        min-width: 232px;
+        background:
+          linear-gradient(180deg,
+            #34F079 0%,
+            #2BDF6D 18%,
+            #20C95E 52%,
+            #1AAE54 78%,
+            #0F6E5E 100%);
+        color: #FFFFFF;
+        font-family: var(--font-body);
+        font-size: 14px; font-weight: 600;
+        letter-spacing: 0.01em;
+        border: 1px solid rgba(15, 110, 94, 0.85);
+        border-radius: 999px;
+        text-decoration: none;
+        line-height: 1.2;
+        cursor: pointer;
+        isolation: isolate;
+        /* overflow visible so the notification dot can hang over the edge */
+        text-shadow: 0 1px 0 rgba(0, 60, 40, 0.25);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.55),
+          inset 0 -1px 0 rgba(0, 60, 40, 0.35),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+          0 14px 38px rgba(18, 140, 126, 0.42),
+          0 4px 12px rgba(0, 0, 0, 0.20);
+
+        /* enter animation + idle breath */
+        opacity: 0;
+        transform: translateY(20px) scale(.96);
+        transition:
+          opacity .45s cubic-bezier(.2, .8, .2, 1),
+          transform .45s cubic-bezier(.2, .8, .2, 1),
+          box-shadow .3s ease,
+          filter .3s ease;
+      }
+      .float-cta.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        animation: float-breath 4.6s ease-in-out infinite 1.5s;
+      }
+      @keyframes float-breath {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-3px) scale(1.005); }
+      }
+      .float-cta::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(105deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.28) 48%,
+          rgba(255, 255, 255, 0.04) 52%,
+          transparent 70%);
+        transform: translateX(-130%);
+        transition: transform 1.2s cubic-bezier(.22, 1, .36, 1);
+        pointer-events: none;
+        z-index: 1;
+        border-radius: inherit;
+        clip-path: inset(0 round 999px);
+      }
+      .float-cta > * { position: relative; z-index: 2; }
+      .float-cta:hover {
+        animation-play-state: paused;
+        transform: translateY(-3px) scale(1.02);
+        filter: brightness(1.05) saturate(1.06);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.65),
+          inset 0 -1px 0 rgba(0, 60, 40, 0.35),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+          0 22px 48px rgba(18, 140, 126, 0.50),
+          0 6px 16px rgba(0, 0, 0, 0.22);
+      }
+      .float-cta:hover::before { transform: translateX(130%); }
+      .float-cta:active { transform: translateY(-1px) scale(1); }
+      .float-cta:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 3px var(--cream-50),
+          0 0 0 5px var(--gold-500),
+          0 14px 38px rgba(18, 140, 126, 0.42);
+      }
+
+      .float-cta .wa-icon {
+        width: 32px; height: 32px;
+        flex-shrink: 0;
+        padding: 6px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        box-shadow:
+          inset 0 0 0 1px rgba(0, 0, 0, 0.04),
+          0 2px 6px rgba(0, 0, 0, 0.18);
+        color: #128C7E;
+      }
+      .float-cta .wa-icon path { fill: currentColor; }
+      .float-cta .ttl {
+        display: flex; flex-direction: column;
+        line-height: 1.18;
+        align-items: flex-start;
+      }
+      .float-cta .ttl .main { font-size: 14px; font-weight: 700; letter-spacing: 0.005em; }
+      .float-cta .ttl .sub {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.20em;
+        text-transform: uppercase;
+        opacity: 0.92;
+        font-weight: 500;
+        margin-top: 1px;
+      }
+
+      /* notification dot (top-right of pill, hangs over edge) */
+      .float-cta .dot {
+        position: absolute;
+        top: -2px; right: -2px;
+        width: 16px; height: 16px;
+        background: #FF3B30;
+        border: 2px solid #FFFFFF;
+        border-radius: 50%;
+        z-index: 4;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+      }
+      .float-cta .dot::before {
+        content: '';
+        position: absolute; inset: -2px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.55);
+        animation: float-pulse 2.2s ease-in-out infinite;
+      }
+      @keyframes float-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.45); }
+        50% { box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
+      }
+
+      /* Mobile: smaller pill, drop sub-label */
+      @media (max-width: 480px) {
+        .float-cta {
+          right: 12px; bottom: 12px;
+          padding: 11px 20px 11px 16px;
+          min-height: 54px;
+          min-width: 208px;
+          gap: 12px;
+          font-size: 13.5px;
+        }
+        .float-cta .wa-icon { width: 28px; height: 28px; padding: 5px; }
+        .float-cta .ttl .main { font-size: 13.5px; }
+        .float-cta .ttl .sub { font-size: 8.5px; letter-spacing: 0.16em; }
+        .float-cta .dot { width: 14px; height: 14px; top: -2px; right: -2px; }
+      }
+      @media (max-width: 360px) {
+        .float-cta { min-width: 184px; padding-right: 16px; }
+        .float-cta .ttl .sub { display: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .float-cta { transition: opacity .2s ease; }
+        .float-cta.is-visible { animation: none; }
+        .float-cta .dot::before { animation: none; }
+      }
+
+      /* ─── REVEAL ─── */
+      .reveal {
+        opacity: 0; transform: translateY(16px);
+        transition: opacity .8s cubic-bezier(.22, 1, .36, 1),
+                    transform .8s cubic-bezier(.22, 1, .36, 1);
+      }
+      .reveal.active { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .brief-doc, .brief-doc:hover { transform: none; transition: none; }
+      }
+    </style>
+  </Fragment>
+
+  <main>
+    {/* ═══════════════════════ TOP NAV ═══════════════════════ */}
+    <nav class="top-nav" aria-label="Primary">
+      <div class="top-nav-inner">
+        <div class="brand-text">
+          <span class="brand-name">The Canadian Mining Brief</span>
+          <span class="brand-sub">TSX / TSX-V &middot; gold &middot; silver &middot; uranium &middot; copper</span>
+        </div>
+        <div class="links">
+          <a href="#coverage">Coverage</a>
+          <a href="#brief">The Brief</a>
+          <a href="#record">Record</a>
+          <a class="cta-primary cta-primary--sm cta-primary--ghost link-btn" href="#" data-cta="nav">
+            Get today&rsquo;s pick
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    {/* ═══════════════════════ HERO ═══════════════════════ */}
+    <section class="hero" style={`--hero-bg: url('${heroBg.src}')`}>
+      <div class="container">
+        <div class="hero-inner">
+          <p class="hero-eyebrow">
+            <span class="roman">I.</span>&nbsp;TSX / TSX-V Mining Desk &middot; Vancouver
+          </p>
+          <h1 class="hero-h1 reveal">
+            Want to stay ahead in the<br/>
+            <em>Canadian mining market?</em>
+          </h1>
+
+          <div class="hero-pillars reveal">
+            <span class="pill"><span class="sym">AU</span>Gold</span>
+            <span class="pill"><span class="sym">AG</span>Silver</span>
+            <span class="pill"><span class="sym">U</span>Uranium</span>
+            <span class="pill"><span class="sym">CU</span>Copper</span>
+            <span class="pill"><span class="sym">TSX&middot;V</span>Junior explorers</span>
+          </div>
+
+          <p class="hero-sub reveal">
+            The latest news, drill results, and market moves from Canadian mining companies, junior miners,
+            and the key TSX / TSX-V mining stocks. One short brief per trading morning &mdash; delivered
+            straight to your WhatsApp at 7:30&nbsp;AM Pacific.
+          </p>
+
+          <div class="hero-cta-row reveal">
+            <a class="cta-wa link-btn" href="#" data-cta="hero">
+              <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <path fill="#FFFFFF" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
+              </svg>
+              Send &ldquo;STOCKS&rdquo; on WhatsApp
+              <span class="sub">Free reply</span>
+            </a>
+            <a class="cta-secondary" href="#brief">See today&rsquo;s brief <span class="arr">&rarr;</span></a>
+          </div>
+
+          <p class="msg-preview">
+            <span class="lbl">You&rsquo;ll send</span>
+            <span class="quote">STOCKS &mdash; send me this week&rsquo;s mining pick.</span>
+          </p>
+
+          <div class="hero-trust reveal">
+            <span class="ts">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span class="ts-label">Live broadcast &mdash; next brief 7:30 AM PT</span>
+            </span>
+            <span class="ts"><span class="ts-num">9,847</span><span class="ts-label">members</span></span>
+            <span class="ts"><span class="ts-num">8 yrs</span><span class="ts-label">on the mining desk</span></span>
+            <span class="ts"><span class="ts-num">$2,340</span><span class="ts-label">gold &middot; LBMA AM</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════ LIVE TAPE ═══════════════════════ */}
+    <div class="tape" aria-label="TSX-V mining live tape">
+      <div class="tape-track">
+        <span class="q"><span class="sym">ABX.TO</span><span class="px">28.41</span><span class="up"><span class="arr">&#9650;</span>1.42%</span></span>
+        <span class="q"><span class="sym">AEM.TO</span><span class="px">94.18</span><span class="up"><span class="arr">&#9650;</span>2.07%</span></span>
+        <span class="q"><span class="sym">K.TO</span><span class="px">14.86</span><span class="up"><span class="arr">&#9650;</span>0.81%</span></span>
+        <span class="q"><span class="sym">WPM.TO</span><span class="px">78.20</span><span class="up"><span class="arr">&#9650;</span>1.18%</span></span>
+        <span class="q"><span class="sym">FNV.TO</span><span class="px">182.55</span><span class="up"><span class="arr">&#9650;</span>0.94%</span></span>
+        <span class="q"><span class="sym">PAAS.TO</span><span class="px">29.04</span><span class="up"><span class="arr">&#9650;</span>1.96%</span></span>
+        <span class="q"><span class="sym">FR.TO</span><span class="px">9.81</span><span class="up"><span class="arr">&#9650;</span>3.04%</span></span>
+        <span class="q"><span class="sym">MAG.TO</span><span class="px">17.62</span><span class="up"><span class="arr">&#9650;</span>0.72%</span></span>
+        <span class="q"><span class="sym">CCO.TO</span><span class="px">78.55</span><span class="up"><span class="arr">&#9650;</span>1.74%</span></span>
+        <span class="q"><span class="sym">NXE.TO</span><span class="px">11.62</span><span class="up"><span class="arr">&#9650;</span>2.31%</span></span>
+        <span class="q"><span class="sym">DML.TO</span><span class="px">3.18</span><span class="up"><span class="arr">&#9650;</span>1.27%</span></span>
+        <span class="q"><span class="sym">FM.TO</span><span class="px">18.94</span><span class="down"><span class="arr">&#9660;</span>0.42%</span></span>
+        <span class="q"><span class="sym">HBM.TO</span><span class="px">11.40</span><span class="up"><span class="arr">&#9650;</span>1.08%</span></span>
+        <span class="q"><span class="sym">IVN.TO</span><span class="px">19.27</span><span class="down"><span class="arr">&#9660;</span>0.31%</span></span>
+        <span class="q"><span class="sym">ERO.TO</span><span class="px">27.10</span><span class="up"><span class="arr">&#9650;</span>0.55%</span></span>
+        <span class="q"><span class="sym">FOM.V</span><span class="px">4.72</span><span class="up"><span class="arr">&#9650;</span>4.18%</span></span>
+        <span class="q"><span class="sym">AOT.V</span><span class="px">0.68</span><span class="up"><span class="arr">&#9650;</span>5.96%</span></span>
+        <span class="q"><span class="sym">SKE.TO</span><span class="px">7.22</span><span class="up"><span class="arr">&#9650;</span>2.13%</span></span>
+        <span class="q"><span class="sym">AYA.TO</span><span class="px">11.84</span><span class="up"><span class="arr">&#9650;</span>3.71%</span></span>
+        <span class="q"><span class="sym">PMET.V</span><span class="px">4.06</span><span class="down"><span class="arr">&#9660;</span>1.14%</span></span>
+        {/* Duplicate for seamless scroll */}
+        <span class="q"><span class="sym">ABX.TO</span><span class="px">28.41</span><span class="up"><span class="arr">&#9650;</span>1.42%</span></span>
+        <span class="q"><span class="sym">AEM.TO</span><span class="px">94.18</span><span class="up"><span class="arr">&#9650;</span>2.07%</span></span>
+        <span class="q"><span class="sym">K.TO</span><span class="px">14.86</span><span class="up"><span class="arr">&#9650;</span>0.81%</span></span>
+        <span class="q"><span class="sym">WPM.TO</span><span class="px">78.20</span><span class="up"><span class="arr">&#9650;</span>1.18%</span></span>
+        <span class="q"><span class="sym">FNV.TO</span><span class="px">182.55</span><span class="up"><span class="arr">&#9650;</span>0.94%</span></span>
+        <span class="q"><span class="sym">PAAS.TO</span><span class="px">29.04</span><span class="up"><span class="arr">&#9650;</span>1.96%</span></span>
+        <span class="q"><span class="sym">FR.TO</span><span class="px">9.81</span><span class="up"><span class="arr">&#9650;</span>3.04%</span></span>
+        <span class="q"><span class="sym">MAG.TO</span><span class="px">17.62</span><span class="up"><span class="arr">&#9650;</span>0.72%</span></span>
+        <span class="q"><span class="sym">CCO.TO</span><span class="px">78.55</span><span class="up"><span class="arr">&#9650;</span>1.74%</span></span>
+        <span class="q"><span class="sym">NXE.TO</span><span class="px">11.62</span><span class="up"><span class="arr">&#9650;</span>2.31%</span></span>
+        <span class="q"><span class="sym">DML.TO</span><span class="px">3.18</span><span class="up"><span class="arr">&#9650;</span>1.27%</span></span>
+        <span class="q"><span class="sym">FM.TO</span><span class="px">18.94</span><span class="down"><span class="arr">&#9660;</span>0.42%</span></span>
+        <span class="q"><span class="sym">HBM.TO</span><span class="px">11.40</span><span class="up"><span class="arr">&#9650;</span>1.08%</span></span>
+        <span class="q"><span class="sym">IVN.TO</span><span class="px">19.27</span><span class="down"><span class="arr">&#9660;</span>0.31%</span></span>
+        <span class="q"><span class="sym">ERO.TO</span><span class="px">27.10</span><span class="up"><span class="arr">&#9650;</span>0.55%</span></span>
+        <span class="q"><span class="sym">FOM.V</span><span class="px">4.72</span><span class="up"><span class="arr">&#9650;</span>4.18%</span></span>
+        <span class="q"><span class="sym">AOT.V</span><span class="px">0.68</span><span class="up"><span class="arr">&#9650;</span>5.96%</span></span>
+        <span class="q"><span class="sym">SKE.TO</span><span class="px">7.22</span><span class="up"><span class="arr">&#9650;</span>2.13%</span></span>
+        <span class="q"><span class="sym">AYA.TO</span><span class="px">11.84</span><span class="up"><span class="arr">&#9650;</span>3.71%</span></span>
+        <span class="q"><span class="sym">PMET.V</span><span class="px">4.06</span><span class="down"><span class="arr">&#9660;</span>1.14%</span></span>
+      </div>
+    </div>
+
+    {/* ═══════════════════════ LEDGER ═══════════════════════ */}
+    <section class="section section--cream">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="roman">II.</span>&nbsp;By the ledger</p>
+            <h2 class="display">A small desk.<br/><em>A long ledger.</em></h2>
+          </div>
+          <div class="sub-block">
+            <p class="sub">
+              Eight years of brief notes on Canadian mining producers and junior explorers,
+              archived in-channel and cross-checked against TSX / TSX-V public price history,
+              SEDAR+ filings, and NI&nbsp;43-101 technical reports.
+            </p>
+          </div>
+        </div>
+
+        <div class="ledger reveal">
+          <div class="ledger-grid">
+            <div class="ledger-cell" data-roman="i">
+              <div class="ledger-num">9,847</div>
+              <div>
+                <p class="ledger-label">WhatsApp channel members</p>
+                <p class="ledger-fine">In-channel poll-verified, 2026-Q1.</p>
+              </div>
+            </div>
+            <div class="ledger-cell" data-roman="ii">
+              <div class="ledger-num">16<span class="small">&times;</span></div>
+              <div>
+                <p class="ledger-label">FIL.V coverage<br/>2021 &rarr; 2024 acquisition</p>
+                <p class="ledger-fine">Educational recap. From C$2 to BHP / Lundin take-out at C$33. Past performance does not guarantee future results.</p>
+              </div>
+            </div>
+            <div class="ledger-cell" data-roman="iii">
+              <div class="ledger-num">120<span class="small">+</span></div>
+              <div>
+                <p class="ledger-label">TSX / TSX-V miners<br/>under active coverage</p>
+                <p class="ledger-fine">Gold, silver, uranium, copper, lithium &amp; junior explorers.</p>
+              </div>
+            </div>
+            <div class="ledger-cell" data-roman="iv">
+              <div class="ledger-num">07:30</div>
+              <div>
+                <p class="ledger-label">AM Pacific Time<br/>One brief per session</p>
+                <p class="ledger-fine">Markdown-clean, under 200 words, on WhatsApp.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top: 28px; font-family: var(--font-body); font-size: 13px; color: var(--ink-mute); line-height: 1.65; max-width: 920px;">
+          Recent recap names &mdash; all public TSX / TSX-V history, educational use only:
+          <strong style="color: var(--navy-900); font-weight: 600;">FIL.V</strong> (Filo Mining, acquired by BHP &amp; Lundin Mining at C$33, July 2024) &middot;
+          <strong style="color: var(--navy-900); font-weight: 600;">AYA.TO</strong> (Aya Gold &amp; Silver, Boumadine NI&nbsp;43-101 re-rate) &middot;
+          <strong style="color: var(--navy-900); font-weight: 600;">NXE.TO</strong> (NexGen Energy, Arrow deposit FS) &middot;
+          <strong style="color: var(--navy-900); font-weight: 600;">FOM.V</strong> (Foran Mining, McIlvenna Bay).
+          Not investment advice. DYOR.
+        </p>
+      </div>
+    </section>
+
+    <div class="gold-rule"><span class="line"></span></div>
+
+    {/* ═══════════════════════ PRINCIPLES ═══════════════════════ */}
+    <section class="section section--cream-deep" id="principles">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="roman">III.</span>&nbsp;House principles</p>
+            <h2 class="display">Four rules.<br/><em>Nothing else.</em></h2>
+          </div>
+          <div class="sub-block">
+            <p class="sub">
+              The discipline that holds the channel together &mdash; written once at the founding,
+              re-read every Monday before the TSX bell.
+            </p>
+          </div>
+        </div>
+
+        <div class="principles">
+          <article class="principle reveal">
+            <div class="principle-num">I</div>
+            <h3>One brief per trading day.</h3>
+            <p>Sent at 7:30 AM Pacific. Nothing on weekends. Nothing on Canadian federal holidays. If the brief is late, the market closes for you.</p>
+            <span class="tag">Cadence &middot; non-negotiable</span>
+          </article>
+
+          <article class="principle reveal">
+            <div class="principle-num">II</div>
+            <h3>Only Canadian-listed miners.</h3>
+            <p>TSX, TSX-V and the CSE. Gold, silver, uranium, copper, lithium and high-conviction junior explorers. No U.S. equities. No crypto. No general market noise.</p>
+            <span class="tag">Scope &middot; narrow on purpose</span>
+          </article>
+
+          <article class="principle reveal">
+            <div class="principle-num">III</div>
+            <h3>Thesis. Drill. Trigger. Stop.</h3>
+            <p>Four lines, in that order. Resource-quality citation (g/t Au, % Cu, lbs U<sub>3</sub>O<sub>8</sub>) is mandatory. No 2,000-word teardown. No paid course at the end of the rainbow.</p>
+            <span class="tag">Format &middot; under 200 words</span>
+          </article>
+
+          <article class="principle reveal">
+            <div class="principle-num">IV</div>
+            <h3>Membership is private.</h3>
+            <p>WhatsApp Channel is broadcast-only. Other members cannot see your number, your name, or that you joined. Leave with one tap, anytime.</p>
+            <span class="tag">Privacy &middot; broadcast only</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════ COVERAGE MAP ═══════════════════════ */}
+    <section class="section section--cream" id="coverage">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="roman">IV.</span>&nbsp;The coverage map</p>
+            <h2 class="display">The Canadian mining stack,<br/><em>five floors deep.</em></h2>
+          </div>
+          <div class="sub-block">
+            <p class="sub">
+              Every name actively tracked, organized by sub-sector. Coverage rotates daily &mdash;
+              on any given morning, one of these tickers is the brief. The rest sit on the watch sheet
+              until drill results, an NR, or the tape moves.
+            </p>
+          </div>
+        </div>
+
+        <div class="coverage-grid reveal">
+          <div class="coverage-cell">
+            <p class="num">i.</p>
+            <h4>Gold Majors</h4>
+            <p class="desc">Tier-1 &middot; producing</p>
+            <ul class="coverage-tickers">
+              <li><span class="t">ABX.TO</span><span class="nm">Barrick Gold</span></li>
+              <li><span class="t">AEM.TO</span><span class="nm">Agnico Eagle</span></li>
+              <li><span class="t">K.TO</span><span class="nm">Kinross Gold</span></li>
+              <li><span class="t">AGI.TO</span><span class="nm">Alamos Gold</span></li>
+              <li><span class="t">IAG.TO</span><span class="nm">IAMGOLD</span></li>
+            </ul>
+          </div>
+
+          <div class="coverage-cell">
+            <p class="num">ii.</p>
+            <h4>Silver</h4>
+            <p class="desc">Primary &middot; streamers</p>
+            <ul class="coverage-tickers">
+              <li><span class="t">PAAS.TO</span><span class="nm">Pan American Silver</span></li>
+              <li><span class="t">FR.TO</span><span class="nm">First Majestic</span></li>
+              <li><span class="t">MAG.TO</span><span class="nm">MAG Silver</span></li>
+              <li><span class="t">SVM.TO</span><span class="nm">Silvercorp</span></li>
+              <li><span class="t">AYA.TO</span><span class="nm">Aya Gold &amp; Silver</span></li>
+            </ul>
+          </div>
+
+          <div class="coverage-cell">
+            <p class="num">iii.</p>
+            <h4>Uranium</h4>
+            <p class="desc">Athabasca Basin</p>
+            <ul class="coverage-tickers">
+              <li><span class="t">CCO.TO</span><span class="nm">Cameco</span></li>
+              <li><span class="t">NXE.TO</span><span class="nm">NexGen Energy</span></li>
+              <li><span class="t">DML.TO</span><span class="nm">Denison Mines</span></li>
+              <li><span class="t">FCU.TO</span><span class="nm">Fission Uranium</span></li>
+              <li><span class="t">U.UN</span><span class="nm">Sprott Physical (SPUT)</span></li>
+            </ul>
+          </div>
+
+          <div class="coverage-cell">
+            <p class="num">iv.</p>
+            <h4>Copper</h4>
+            <p class="desc">Tier-1 &amp; mid-cap</p>
+            <ul class="coverage-tickers">
+              <li><span class="t">FM.TO</span><span class="nm">First Quantum</span></li>
+              <li><span class="t">HBM.TO</span><span class="nm">Hudbay Minerals</span></li>
+              <li><span class="t">IVN.TO</span><span class="nm">Ivanhoe Mines</span></li>
+              <li><span class="t">LUN.TO</span><span class="nm">Lundin Mining</span></li>
+              <li><span class="t">ERO.TO</span><span class="nm">Ero Copper</span></li>
+            </ul>
+          </div>
+
+          <div class="coverage-cell">
+            <p class="num">v.</p>
+            <h4>Junior Explorers</h4>
+            <p class="desc">TSX-V &middot; high conviction</p>
+            <ul class="coverage-tickers">
+              <li><span class="t">FOM.V</span><span class="nm">Foran Mining (Cu&middot;Zn)</span></li>
+              <li><span class="t">AOT.V</span><span class="nm">Ascot Resources (Au)</span></li>
+              <li><span class="t">LIO.V</span><span class="nm">Lion One (Au)</span></li>
+              <li><span class="t">SKE.TO</span><span class="nm">Skeena Resources (Au)</span></li>
+              <li><span class="t">PMET.V</span><span class="nm">Patriot Battery (Li)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="commodities reveal" aria-label="Underlying commodity quotes">
+          <div class="c">
+            <span class="nm">Gold &middot; LBMA AM</span>
+            <span class="px">US$ 2,340.40 / oz</span>
+            <span class="ch up">&#9650; +0.94%</span>
+          </div>
+          <div class="c">
+            <span class="nm">Silver &middot; LBMA</span>
+            <span class="px">US$ 28.52 / oz</span>
+            <span class="ch up">&#9650; +1.81%</span>
+          </div>
+          <div class="c">
+            <span class="nm">Copper &middot; LME 3-mo</span>
+            <span class="px">US$ 4.18 / lb</span>
+            <span class="ch down">&#9660; &minus;0.42%</span>
+          </div>
+          <div class="c">
+            <span class="nm">Uranium &middot; SPUT spot</span>
+            <span class="px">US$ 92.10 / lb</span>
+            <span class="ch up">&#9650; +1.27%</span>
+          </div>
+          <div class="c">
+            <span class="nm">USD / CAD</span>
+            <span class="px">1.3608</span>
+            <span class="ch down">&#9660; &minus;0.18%</span>
+          </div>
+        </div>
+
+        <p class="coverage-foot">
+          <strong>Reference ETFs in rotation:</strong> XGD.TO (iShares S&amp;P/TSX Global Gold), HURA.TO (Horizons Global Uranium),
+          COPP.TO (Global X Copper Producers), SIL.TO (Global X Silver Miners). The brief sometimes uses the ETF tape as a sector
+          tell rather than a single name. <strong>AISC</strong> (all-in sustaining cost), <strong>NPV/IRR</strong> at consensus deck,
+          <strong>cut-off grade</strong> and <strong>strip ratio</strong> are the four numbers flagged in every junior brief.
+        </p>
+      </div>
+    </section>
+
+    <div class="gold-rule"><span class="line"></span></div>
+
+    {/* ═══════════════════════ SAMPLE BRIEF ═══════════════════════ */}
+    <section class="section section--cream-deep" id="brief">
+      <div class="container">
+        <div class="brief-wrap">
+          <div>
+            <p class="eyebrow"><span class="roman">V.</span>&nbsp;The brief, in hand</p>
+            <h2 class="display" style="font-size: clamp(34px, 4.4vw, 54px); margin-bottom: 22px;">
+              What lands<br/>at <em>7:30 AM.</em>
+            </h2>
+            <p class="sub" style="max-width: 440px;">
+              A facsimile of a recent morning brief, exactly as sent on WhatsApp. Four lines for the thesis,
+              the drill grade, the trigger, and the stop. One line on what would invalidate the set-up.
+            </p>
+            <p style="margin-top: 26px; font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 440px;">
+              &ldquo;The market doesn&rsquo;t care how long it took you to write the note. Only that it&rsquo;s right by 9:30 AM Eastern.&rdquo;
+            </p>
+            <div style="margin-top: 32px;">
+              <a class="cta-secondary cta-secondary--dark link-btn" href="#" data-cta="brief">
+                Send &ldquo;BRIEF&rdquo; to get tomorrow&rsquo;s <span class="arr">&rarr;</span>
+              </a>
+            </div>
+            <p class="msg-preview msg-preview--light">
+              <span class="lbl">You&rsquo;ll send</span>
+              <span class="quote">BRIEF &mdash; subscribe to tomorrow&rsquo;s mining note.</span>
+            </p>
+          </div>
+
+          <div class="reveal">
+            <article class="brief-doc">
+              <div class="brief-stamp">Sample &middot; archived</div>
+
+              <div class="brief-letterhead">
+                <div class="name">The Canadian Mining Brief</div>
+                <div class="sub">No. 1,847 &middot; pre-market &middot; WhatsApp</div>
+              </div>
+
+              <div class="brief-meta">
+                <span class="date"><strong>Wednesday</strong> 14 May 2026</span>
+                <span>TSX-V &middot; Copper / Zinc</span>
+              </div>
+
+              <h3 class="brief-h">Foran McIlvenna infill prints 5.2% CuEq &mdash; PEA uplift the market is mispricing.</h3>
+              <p class="brief-tagline">LME copper held US$4.18 overnight; Foran moved 4&nbsp;% on volume. Read the drill grade, not the headline.</p>
+
+              <div class="brief-row">
+                <span class="label">Name</span>
+                <span class="val">Foran Mining Corp &middot; <span class="tk">FOM.V</span></span>
+              </div>
+              <div class="brief-row">
+                <span class="label">Drill grade</span>
+                <span class="val">Hole MB-26-118: 4.8 m @ 5.2 % CuEq from 312 m &mdash; matches type-curve infill.</span>
+              </div>
+              <div class="brief-row">
+                <span class="label">Setup</span>
+                <span class="val">McIlvenna Bay PEA NPV at consensus US$3.85/lb Cu deck; permit milestone Q3.</span>
+              </div>
+              <div class="brief-row">
+                <span class="label">Trigger</span>
+                <span class="val">Close above C$4.85 on volume &gt; 1.4&times; 20-day avg.</span>
+              </div>
+              <div class="brief-row">
+                <span class="label">Stop</span>
+                <span class="val">Daily close below C$4.20. Hard stop, no averaging down.</span>
+              </div>
+              <div class="brief-row">
+                <span class="label">Invalidates</span>
+                <span class="val">LME copper sell-off &gt; 5%, or Saskatchewan EIS-process delay before Q3.</span>
+              </div>
+
+              <div class="brief-foot">
+                <span>Vancouver desk &middot; pre-market</span>
+                <span>1 of 1 &middot; 188 words</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="brief-photo reveal" style={`--photo: url('${briefDesk.src}')`}>
+          <div class="img" role="img" aria-label="Morning brief, Globe and Mail Report on Business, drill core sample, brass geologist loupe and espresso on a walnut desk"></div>
+          <div class="copy">
+            <p class="kicker">6:58 AM Pacific &middot; the morning ritual</p>
+            <h4>Two cups in. <em>One brief out.</em></h4>
+            <p>The day starts at six. Gold, silver, copper and uranium settle prints from the prior US session read first &mdash; LBMA AM fix, COMEX prompt-month, LME 3-month copper, SPUT spot uranium, USD/CAD.</p>
+            <p>Then the TSX-V tape: drill results from SEDAR+, infill assays, NR releases, NI&nbsp;43-101 amendments. A 90-minute scan compresses into a 188-word WhatsApp note.</p>
+            <p>By the time the open hits at 9:30 AM Eastern, the brief has been read at over nine thousand kitchen tables, prospector trucks and Bay Street trading desks.</p>
+            <p class="signoff">&ldquo;Grade is king. Everything else is noise.&rdquo; &mdash; the desk&rsquo;s only painted-on rule.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-rule"><span class="line"></span></div>
+
+    {/* ═══════════════════════ RECORD / PAST CALLS ═══════════════════════ */}
+    <section class="section section--cream" id="record">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="roman">VI.</span>&nbsp;On the record</p>
+            <h2 class="display">Three names<br/><em>before the crowd arrived.</em></h2>
+          </div>
+          <div class="sub-block">
+            <p class="sub">
+              Educational recaps of past coverage on the TSX / TSX-V. All ticker action is public price history.
+              Not a current recommendation, not a basis for new positions today. Read for the method, not the ticker.
+            </p>
+          </div>
+        </div>
+
+        <div class="past-grid reveal">
+          <article class="past-cell">
+            <div class="past-head">
+              <span class="past-tk">FIL.V</span>
+              <span class="past-period">2021 &middot; coverage<br/>&rarr; 2024 &middot; BHP take-out</span>
+            </div>
+            <svg class="past-spark" viewBox="0 0 120 50" fill="none" aria-hidden="true" preserveAspectRatio="none">
+              <path d="M2 42 L12 40 L22 42 L32 38 L42 32 L52 28 L62 22 L72 14 L82 10 L92 6 L102 4 L112 3"
+                    stroke="#1E7F4E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="112" cy="3" r="2.2" fill="#1E7F4E"/>
+              <line x1="2" y1="46" x2="118" y2="46" stroke="#D9CFB1" stroke-width="0.4" stroke-dasharray="1.5 2"/>
+            </svg>
+            <h4 class="past-name">Filo Mining</h4>
+            <p class="past-loc"><em>Cu&middot;Au&middot;Ag &middot; Argentina</em></p>
+            <div class="past-perf">
+              <div class="cell"><span class="lbl">Flagged</span><span class="val">C$2.10</span></div>
+              <div class="cell"><span class="lbl">Acquired</span><span class="val">C$33.00</span></div>
+              <div class="cell"><span class="lbl">Spread</span><span class="val gain">+15.7&times;</span></div>
+            </div>
+            <p class="past-note">
+              Coverage opened on the <strong>Filo del Sol</strong> hole 21FSDH035 in 2021 at C$2 territory.
+              <strong>Lundin Mining &amp; BHP</strong> acquired the company at <strong>C$33</strong> cash in July 2024.
+            </p>
+            <p class="past-fine">Public TSX-V price history. Educational recap only. Not investment advice. DYOR.</p>
+          </article>
+
+          <article class="past-cell">
+            <div class="past-head">
+              <span class="past-tk">NXE.TO</span>
+              <span class="past-period">2020 &middot; Cigar Lake<br/>&rarr; 2024 &middot; Arrow FS</span>
+            </div>
+            <svg class="past-spark" viewBox="0 0 120 50" fill="none" aria-hidden="true" preserveAspectRatio="none">
+              <path d="M2 40 L12 38 L22 36 L32 34 L42 28 L52 26 L62 18 L72 16 L82 10 L92 8 L102 6 L112 5"
+                    stroke="#1E7F4E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="112" cy="5" r="2.2" fill="#1E7F4E"/>
+              <line x1="2" y1="46" x2="118" y2="46" stroke="#D9CFB1" stroke-width="0.4" stroke-dasharray="1.5 2"/>
+            </svg>
+            <h4 class="past-name">NexGen Energy</h4>
+            <p class="past-loc"><em>Uranium &middot; Athabasca Basin</em></p>
+            <div class="past-perf">
+              <div class="cell"><span class="lbl">Flagged</span><span class="val">C$1.95</span></div>
+              <div class="cell"><span class="lbl">2024 peak</span><span class="val">C$12.10</span></div>
+              <div class="cell"><span class="lbl">Spread</span><span class="val gain">+6.2&times;</span></div>
+            </div>
+            <p class="past-note">
+              Coverage opened on the <strong>Rook&nbsp;I / Arrow deposit</strong> Feasibility Study work in 2020.
+              Carried through the SPUT physical uranium re-rate of 2021&ndash;2024 and the CNSC permitting cycle.
+            </p>
+            <p class="past-fine">Public TSX price history. Educational recap only. Not a current recommendation. DYOR.</p>
+          </article>
+
+          <article class="past-cell">
+            <div class="past-head">
+              <span class="past-tk">AYA.TO</span>
+              <span class="past-period">2021 &middot; Boumadine NR<br/>&rarr; 2024 &middot; Q4</span>
+            </div>
+            <svg class="past-spark" viewBox="0 0 120 50" fill="none" aria-hidden="true" preserveAspectRatio="none">
+              <path d="M2 44 L12 42 L22 38 L32 36 L42 30 L52 26 L62 20 L72 16 L82 10 L92 7 L102 5 L112 4"
+                    stroke="#1E7F4E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="112" cy="4" r="2.2" fill="#1E7F4E"/>
+              <line x1="2" y1="46" x2="118" y2="46" stroke="#D9CFB1" stroke-width="0.4" stroke-dasharray="1.5 2"/>
+            </svg>
+            <h4 class="past-name">Aya Gold &amp; Silver</h4>
+            <p class="past-loc"><em>Silver-gold &middot; Morocco</em></p>
+            <div class="past-perf">
+              <div class="cell"><span class="lbl">Flagged</span><span class="val">C$1.20</span></div>
+              <div class="cell"><span class="lbl">2024 peak</span><span class="val">C$13.50</span></div>
+              <div class="cell"><span class="lbl">Spread</span><span class="val gain">+11.3&times;</span></div>
+            </div>
+            <p class="past-note">
+              Coverage opened on the <strong>Boumadine</strong> drill program NR in 2021 sub-C$1.50.
+              Re-rated through the 2024 Zgounder expansion ramp and silver-price tailwind.
+            </p>
+            <p class="past-fine">Public TSX price history. Educational recap only. Not investment advice. DYOR.</p>
+          </article>
+        </div>
+
+        <div style="margin-top: 36px; background: var(--cream-100); border: 1px solid var(--rule); padding: 22px 26px; display: flex; align-items: flex-start; gap: 16px; max-width: 920px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8C6A1A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top: 2px;">
+            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <p style="margin: 0; font-family: var(--font-body); font-size: 12.5px; line-height: 1.65; color: var(--ink-soft); font-weight: 300;">
+            <strong style="font-weight: 600; color: var(--navy-900);">Compliance note.</strong> The Canadian Mining Brief is an independent editorial publication.
+            It is not produced by a person or entity registered with the British Columbia Securities Commission (BCSC), the Ontario Securities Commission (OSC),
+            or the Canadian Investment Regulatory Organization (CIRO). Nothing in the WhatsApp Channel or on this page constitutes a solicitation, offer,
+            or recommendation to buy or sell any security. Investing in junior mining equities involves substantial risk of total capital loss.
+            Always consult a registered Canadian investment advisor before making any investment decision.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════ COMPARE TABLE ═══════════════════════ */}
+    <section class="section section--cream-deep">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="roman">VII.</span>&nbsp;What this isn&rsquo;t</p>
+            <h2 class="display">Most mining &ldquo;rooms&rdquo; sell hope.<br/><em>This desk publishes notes.</em></h2>
+          </div>
+          <div class="sub-block">
+            <p class="sub">
+              The distinction matters &mdash; a signal-pump performs, an analyst thinks out loud.
+              You can tell which is which by what they do on a quiet Tuesday afternoon.
+            </p>
+          </div>
+        </div>
+
+        <div class="compare reveal">
+          <div class="compare-row head">
+            <span class="col">&nbsp;</span>
+            <span class="col">Most paid signal rooms</span>
+            <span class="col gold">The Canadian Mining Brief</span>
+          </div>
+          <div class="compare-row">
+            <span class="label">Notes per trading day</span>
+            <span class="them"><span class="mark-x"></span>5&ndash;20 alerts</span>
+            <span class="mine">
+              <svg class="mark-c" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8l3.5 3.5L13 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              One. Under 200 words.
+            </span>
+          </div>
+          <div class="compare-row">
+            <span class="label">Coverage scope</span>
+            <span class="them"><span class="mark-x"></span>Crypto, FX, &ldquo;hot stocks&rdquo;</span>
+            <span class="mine">
+              <svg class="mark-c" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8l3.5 3.5L13 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              TSX/TSX-V mining only.
+            </span>
+          </div>
+          <div class="compare-row">
+            <span class="label">Cites drill grade &amp; NI 43-101</span>
+            <span class="them"><span class="mark-x"></span>Almost never</span>
+            <span class="mine">
+              <svg class="mark-c" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8l3.5 3.5L13 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Every junior brief.
+            </span>
+          </div>
+          <div class="compare-row">
+            <span class="label">Tells you when wrong</span>
+            <span class="them"><span class="mark-x"></span>Quietly, weeks later</span>
+            <span class="mine">
+              <svg class="mark-c" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8l3.5 3.5L13 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Same-morning correction.
+            </span>
+          </div>
+          <div class="compare-row">
+            <span class="label">Upsell course / VIP tier</span>
+            <span class="them"><span class="mark-x"></span>US$497 / month</span>
+            <span class="mine">
+              <svg class="mark-c" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8l3.5 3.5L13 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              None. Free, full stop.
+            </span>
+          </div>
+          <div class="compare-row">
+            <span class="label">Members can see your number</span>
+            <span class="them"><span class="mark-x"></span>Telegram / Discord rooms</span>
+            <span class="mine">
+              <svg class="mark-c" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8l3.5 3.5L13 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              No. Broadcast-only channel.
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════ TESTIMONIALS ═══════════════════════ */}
+    <section class="section section--cream">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="roman">VIII.</span>&nbsp;Members</p>
+            <h2 class="display">From the<br/><em>reading room.</em></h2>
+          </div>
+          <div class="sub-block">
+            <p class="sub">
+              Unsolicited notes from current members. Quoted verbatim, attribution withheld at member request.
+              These are individual experiences, not financial outcomes anyone is guaranteed to replicate.
+            </p>
+          </div>
+        </div>
+
+        <div class="testi-grid">
+          <article class="testi-card reveal">
+            <p class="testi-quote">I read the brief on the SkyTrain into downtown Vancouver. By the time I&rsquo;m off at Burrard I already know which junior I&rsquo;m watching at the open. Three sentences, four numbers, done.</p>
+            <p class="testi-meta"><span class="role">Member</span> &middot; Vancouver, BC &middot; Joined 2023</p>
+          </article>
+
+          <article class="testi-card reveal">
+            <p class="testi-quote">First mining newsletter in fifteen years that actually cites the drill hole and the cut-off grade. Not the headline, not the chart. The grade. That alone is worth the WhatsApp notification.</p>
+            <p class="testi-meta"><span class="role">Member</span> &middot; Toronto, ON &middot; Joined 2024</p>
+          </article>
+
+          <article class="testi-card reveal">
+            <p class="testi-quote">I subscribe to four mining channels. This is the only one I haven&rsquo;t muted on WhatsApp. The Friday recap alone saves me an hour of reading SEDAR+ filings.</p>
+            <p class="testi-meta"><span class="role">Member</span> &middot; Calgary, AB &middot; Joined 2025</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════ FINAL CTA ═══════════════════════ */}
+    <section class="final-cta">
+      <div class="container container--narrow">
+        <div class="rule-top"></div>
+        <p class="final-eyebrow"><span class="live"></span>Currently accepting members</p>
+
+        <h2 class="final-h">
+          Get the latest mining<br/>
+          news and stock updates &mdash;<br/>
+          <em>straight to WhatsApp.</em>
+        </h2>
+
+        <p class="final-sub">
+          Free. No paywall. No course. No upsell.<br/>
+          Just tap below, send &ldquo;STOCKS&rdquo; on WhatsApp,<br/>
+          and tomorrow&rsquo;s brief lands at 7:30&nbsp;AM Pacific.
+        </p>
+
+        <a class="cta-wa link-btn" href="#" data-cta="final" style="font-size: 17px; padding: 20px 36px;">
+          <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="#FFFFFF" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
+          </svg>
+          Send &ldquo;STOCKS&rdquo; on WhatsApp
+          <span class="sub">Reply in minutes</span>
+        </a>
+
+        <p class="final-trust">
+          9,847 members
+          <span class="pipe">/</span>
+          4.9 average from 184 in-channel polls
+          <span class="pipe">/</span>
+          Vancouver, BC
+        </p>
+      </div>
+    </section>
+
+    {/* ═══════════════════════ FOOTER ═══════════════════════ */}
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-head">
+          <div class="brand">The Canadian Mining Brief</div>
+          <div class="place">Vancouver, BC &middot; covering TSX &middot; TSX-V &middot; CSE</div>
+        </div>
+
+        <div class="footer-rule"></div>
+
+        <div class="footer-disc">
+          <span class="lbl">Disclaimers &amp; compliance</span>
+          <p>
+            The Canadian Mining Brief is an independent editorial publication. It is not produced by a person or entity
+            registered with the British Columbia Securities Commission (BCSC), the Ontario Securities Commission (OSC),
+            the Alberta Securities Commission (ASC), the Autorit&eacute; des march&eacute;s financiers (AMF), or the
+            Canadian Investment Regulatory Organization (CIRO). Nothing on this page or in the WhatsApp Channel
+            constitutes a solicitation, offer, recommendation, or invitation to buy or sell any security.
+          </p>
+          <p>
+            All ticker symbols referenced (including ABX.TO, AEM.TO, K.TO, WPM.TO, FNV.TO, PAAS.TO, FR.TO, MAG.TO,
+            CCO.TO, NXE.TO, DML.TO, FCU.TO, FM.TO, HBM.TO, IVN.TO, LUN.TO, ERO.TO, FOM.V, AOT.V, LIO.V, SKE.TO,
+            AYA.TO, FIL.V, PMET.V) reflect publicly available Toronto Stock Exchange and TSX Venture Exchange
+            historical price data and disclosed corporate events as reported on SEDAR+. Past performance does not
+            guarantee, predict, or indicate future results. Trading and investing in junior mining and exploration
+            equities involves substantial risk of loss, including total loss of capital. Always consult a registered
+            Canadian investment advisor before making any investment decision. Always conduct your own due diligence (DYOR).
+          </p>
+        </div>
+
+        <p class="footer-copy">&copy; mmxxvi The Canadian Mining Brief &middot; Vancouver, BC</p>
+      </div>
+    </footer>
+
+    {/* ═══════════════════════ FLOATING STICKY CTA (FB Pixel safe — real size, scroll-aware) ═══════════════════════ */}
+    <a class="float-cta link-btn" href="#" data-cta="float" aria-label="Send STOCKS on WhatsApp for today's Canadian mining pick">
+      <span class="dot" aria-hidden="true"></span>
+      <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="#FFFFFF" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
+      </svg>
+      <span class="ttl">
+        <span class="main">Send &ldquo;STOCKS&rdquo;</span>
+        <span class="sub">WhatsApp &middot; today&rsquo;s pick</span>
+      </span>
+    </a>
+  </main>
+
+  <script type="module" src="/src/utils/jump.ts"></script>
+  <script type="module" src="/src/utils/main.js"></script>
+
+  <script is:inline>
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('active'), idx * 70);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('active'));
+    }
+
+    // Reveal floating CTA only after the user scrolls past the hero — avoids competing with hero CTA
+    const floatCta = document.querySelector('.float-cta');
+    const heroEl = document.querySelector('.hero');
+    if (floatCta && heroEl && 'IntersectionObserver' in window) {
+      const heroIo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.2) {
+            floatCta.classList.remove('is-visible');
+          } else {
+            floatCta.classList.add('is-visible');
+          }
+        });
+      }, { threshold: [0, 0.2, 0.5, 1] });
+      heroIo.observe(heroEl);
+    } else if (floatCta) {
+      floatCta.classList.add('is-visible');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-cta]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const slot = el.getAttribute('data-cta') || 'unknown';
+          try {
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'cta_click', {
+                event_category: 'whatsapp_channel',
+                event_label: slot,
+                page_path: '/CA/20260524-4.0/',
+              });
+            }
+            // FB Pixel custom event for any CTA (incl. floating sticky)
+            if (typeof fbq !== 'undefined') {
+              fbq('trackCustom', 'WhatsAppCTAClick', { slot });
+            }
+          } catch (e) { /* swallow */ }
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (!id || id === '#') return;
+          const target = document.querySelector(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>
