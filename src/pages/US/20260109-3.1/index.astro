@@ -2,8 +2,8 @@
 // Landing page for WhatsApp stock recommendations service
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
-const title = '1 Stock Soared 200%+ - Locked Inside WhatsApp'
-const description = '1 US stock delivered 200%+ this cycle - the ticker is locked inside my WhatsApp. Past calls already on the chat (PLTR, XOM). Join to unlock today\'s 200% name.'
+const title = 'How to Learn Investing for 200%+ Returns in Just Weeks'
+const description = 'How to invest in stocks for 200%+ returns - the ticker is locked inside my WhatsApp. Past calls already on the chat (AMD +129%, MRVL +101% in last 2 months). Join to unlock today\'s 200% returns.'
 ---
 
 <BaseLayout title={title} description={description} lang="en">
@@ -196,13 +196,16 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
 
       /* Stats Counter */
       .stat-number {
-        font-size: 3rem;
+        font-size: clamp(1.6rem, 7vw, 3rem);
         font-weight: 800;
+        line-height: 1.1;
         background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         animation: count-up 1s ease-out;
+        word-break: keep-all;
+        overflow-wrap: normal;
       }
 
       /* Scroll Reveal */
@@ -228,7 +231,7 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="glass-dark rounded-2xl px-6 py-4 flex justify-between items-center shadow-xl">
           <!-- Logo -->
-          <a href="#" class="flex items-center space-x-3 cursor-pointer group">
+          <a class="flex items-center space-x-3 cursor-pointer group">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#F59E0B] to-[#8B5CF6] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -264,15 +267,15 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
             </div>
 
             <!-- Headline -->
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white" style="font-family: 'Poppins', sans-serif;">
-              1 Stock Just Soared 200%+
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white" style="font-family: 'Poppins', sans-serif;">
+              How to Learn Investing
               <br />
-              <span class="text-gradient">Get US Picks on WhatsApp</span>
+              <span class="text-gradient">for 200%+ Returns in Just Weeks</span>
             </h1>
 
             <!-- Subheadline -->
             <p class="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              One US stock just delivered a 200%+ run - the ticker is sitting in my WhatsApp right now. Past calls (PLTR, XOM) are already there to verify. Join to unlock today's name.
+              How to invest in stocks for 200%+ returns — the ticker is sitting in my WhatsApp right now. Past calls (AMD +129%, MRVL +101% in the last 2 months) are already there to verify. Join to unlock today's name.
             </p>
 
             <!-- CTA Buttons -->
@@ -286,15 +289,11 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
                   <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                   </svg>
-                  <span>Join WhatsApp Now</span>
+                  <span>Join WhatsApp</span>
                   <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
-              </button>
-
-              <button class="glass-dark px-8 py-4 rounded-xl font-semibold text-white text-lg hover:bg-white/10 transition-all duration-200 cursor-pointer" style="font-family: 'Poppins', sans-serif;">
-                See the 200% Stock
               </button>
             </div>
 
@@ -330,17 +329,19 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
                   <!-- Stock Cards -->
                   <div class="glass-light rounded-xl p-4 border border-white/10">
                     <div class="flex items-center justify-between mb-2">
-                      <span class="text-slate-300 text-sm">PLTR</span>
-                      <span class="text-[#10B981] font-semibold">+85%</span>
+                      <span class="text-slate-300 text-sm">AMD · Advanced Micro Devices</span>
+                      <span class="text-[#10B981] font-semibold">+129%</span>
                     </div>
+                    <p class="text-[10px] text-slate-500 mb-2">Last 2 months</p>
                     <div class="h-1 bg-gradient-to-r from-[#10B981] to-transparent rounded-full"></div>
                   </div>
 
                   <div class="glass-light rounded-xl p-4 border border-white/10">
                     <div class="flex items-center justify-between mb-2">
-                      <span class="text-slate-300 text-sm">XOM</span>
-                      <span class="text-[#10B981] font-semibold">+18%</span>
+                      <span class="text-slate-300 text-sm">MRVL · Marvell Technology</span>
+                      <span class="text-[#10B981] font-semibold">+101%</span>
                     </div>
+                    <p class="text-[10px] text-slate-500 mb-2">Last 2 months</p>
                     <div class="h-1 bg-gradient-to-r from-[#10B981] to-transparent rounded-full"></div>
                   </div>
 
@@ -400,7 +401,7 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
             Why Choose <span class="text-gradient">StockIntel</span>?
           </h2>
           <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-            One US stock delivered a 200%+ run this cycle. Get the daily picks and the full reasoning behind every call, straight to your WhatsApp.
+            How to invest in stocks for 200%+ returns — get the daily picks and the full reasoning behind every call, straight to your WhatsApp.
           </p>
         </div>
 
@@ -413,9 +414,9 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-3" style="font-family: 'Poppins', sans-serif;">Daily US Picks</h3>
+            <h3 class="text-2xl font-bold text-white mb-3" style="font-family: 'Poppins', sans-serif;">Daily Picks</h3>
             <p class="text-slate-300 leading-relaxed">
-              One carefully-researched US name every day. Verify yesterday's calls on WhatsApp before you trust today's.
+              One carefully-researched name every day. Verify yesterday's calls on WhatsApp before you trust today's.
             </p>
           </div>
 
@@ -428,7 +429,7 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
             </div>
             <h3 class="text-2xl font-bold text-white mb-3" style="font-family: 'Poppins', sans-serif;">Verify Past Calls</h3>
             <p class="text-slate-300 leading-relaxed">
-              Yesterday's calls are on WhatsApp - PLTR and XOM are both there. Open the chat, scroll back, see for yourself.
+              Past calls are on WhatsApp — AMD (+129%) and MRVL (+101%) over the last 2 months are both there. Open the chat, scroll back, see for yourself.
             </p>
           </div>
 
@@ -492,10 +493,10 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
       <div class="container mx-auto max-w-7xl">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-white mb-4" style="font-family: 'Poppins', sans-serif;">
-            Recent <span class="text-gradient">US Picks</span>
+            Recent <span class="text-gradient">Hot Stocks</span>
           </h2>
           <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-            Past calls are public - PLTR and XOM are sitting in the chat. Today's 200%+ name stays locked until you join WhatsApp.
+            Past calls are public — AMD (+129%) and MRVL (+101%) over the last 2 months are sitting in the chat. Today's 200%+ name stays locked until you join WhatsApp.
           </p>
         </div>
 
@@ -504,8 +505,8 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
           <div class="glass-dark rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl cursor-pointer">
             <div class="flex items-center justify-between mb-4">
               <div>
-                <h3 class="text-2xl font-bold text-white" style="font-family: 'Poppins', sans-serif;">PLTR</h3>
-                <p class="text-slate-400 text-sm">Palantir · Called Yesterday on WhatsApp</p>
+                <h3 class="text-2xl font-bold text-white" style="font-family: 'Poppins', sans-serif;">AMD</h3>
+                <p class="text-slate-400 text-sm">Advanced Micro Devices · Last 2 Months</p>
               </div>
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#10B981]/20 to-[#10B981]/10 flex items-center justify-center">
                 <svg class="w-6 h-6 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -515,12 +516,13 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
             </div>
             <div class="space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-slate-300">Recent Run</span>
-                <span class="text-[#10B981] font-semibold">+85%</span>
+                <span class="text-slate-300">2-Month Return</span>
+                <span class="text-[#10B981] font-semibold">+129%</span>
               </div>
               <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-[#10B981] to-emerald-400 rounded-full" style="width: 60%;"></div>
+                <div class="h-full bg-gradient-to-r from-[#10B981] to-emerald-400 rounded-full" style="width: 75%;"></div>
               </div>
+              <p class="text-xs text-slate-500 pt-1">$203.77 → $467.51 (3/26 — 5/22)</p>
             </div>
           </div>
 
@@ -528,8 +530,8 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
           <div class="glass-dark rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl cursor-pointer">
             <div class="flex items-center justify-between mb-4">
               <div>
-                <h3 class="text-2xl font-bold text-white" style="font-family: 'Poppins', sans-serif;">XOM</h3>
-                <p class="text-slate-400 text-sm">Exxon Mobil · Energy Call Yesterday</p>
+                <h3 class="text-2xl font-bold text-white" style="font-family: 'Poppins', sans-serif;">MRVL</h3>
+                <p class="text-slate-400 text-sm">Marvell Technology · Last 2 Months</p>
               </div>
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#10B981]/20 to-[#10B981]/10 flex items-center justify-center">
                 <svg class="w-6 h-6 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -539,12 +541,13 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
             </div>
             <div class="space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-slate-300">Recent Run</span>
-                <span class="text-[#10B981] font-semibold">+18%</span>
+                <span class="text-slate-300">2-Month Return</span>
+                <span class="text-[#10B981] font-semibold">+101%</span>
               </div>
               <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-[#10B981] to-emerald-400 rounded-full" style="width: 35%;"></div>
+                <div class="h-full bg-gradient-to-r from-[#10B981] to-emerald-400 rounded-full" style="width: 60%;"></div>
               </div>
+              <p class="text-xs text-slate-500 pt-1">$97.68 → $196.33 (3/26 — 5/22)</p>
             </div>
           </div>
 
@@ -588,10 +591,10 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
 
           <div class="relative z-10 space-y-8">
             <h2 class="text-4xl md:text-5xl font-bold text-white" style="font-family: 'Poppins', sans-serif;">
-              Ready to See the <span class="text-gradient">200% Stock</span>?
+              Ready to See the <span class="text-gradient">200% Returns</span>?
             </h2>
             <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-              Get my WhatsApp now. Past calls (PLTR & XOM) are already inside to verify. The one stock that just ran 200%+ this cycle? Ticker stays locked until you join.
+              Get my WhatsApp now. Past calls (AMD +129% & MRVL +101% over the last 2 months) are already inside to verify. The next 200%+ name? Ticker stays locked until you join.
             </p>
             <button
               onclick="onLinkBtnClick()"
@@ -603,7 +606,6 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                 </svg>
                 <span class="whitespace-nowrap shrink-0 text-sm sm:text-base">Join WhatsApp</span>
-                <span class="hidden sm:inline shrink-0"> Now - Movement</span>
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform duration-200 shrink-0 ml-0.5 sm:ml-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -630,7 +632,7 @@ const description = '1 US stock delivered 200%+ this cycle - the ticker is locke
             <span class="text-lg font-bold text-white" style="font-family: 'Poppins', sans-serif;">StockIntel</span>
           </div>
           <p class="text-slate-400 text-sm">
-            © 2025 StockIntel. All rights reserved. | Market intelligence for smart traders.
+            © 2026 StockIntel. All rights reserved. | Market intelligence for smart traders.
           </p>
         </div>
       </div>

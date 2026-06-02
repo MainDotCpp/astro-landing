@@ -1,0 +1,493 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroGold from './assets/images/hero-gold.png'
+---
+
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>קהילת השוק האמריקאי בעברית — Nasdaq, S&P 500 ו-AI כל שבוע</title>
+    <meta
+      name="description"
+      content="‏כל מה שחשוב במניות האמריקאיות, ב-AI וב-Nasdaq — מסונן, בעברית, כמה דקות בשבוע. קהילה של אלפי משקיעים ישראלים. בלי ניסיון, בלי אנגלית, בלי תשלום."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ heroImg: `url(${heroGold.src})` }}>
+      :root {
+        --black:      #0A0A0A;
+        --black-2:    #100F0C;
+        --black-3:    #15130E;
+        --gold:       #C9A227;
+        --gold-lt:    #E6CE86;
+        --gold-deep:  #93761C;
+        --cream:      #F3ECD9;
+        --text:       #E7E1D2;
+        --muted:      #9B9384;
+        --muted-2:    #6E685C;
+        --hair:       rgba(201, 162, 39, 0.20);
+        --hair-soft:  rgba(201, 162, 39, 0.10);
+        --serif:      'Frank Ruhl Libre', 'Times New Roman', serif;
+        --sans:       'Assistant', Arial, sans-serif;
+        --maxw:       1060px;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        direction: rtl;
+        text-align: right;
+        font-family: var(--sans);
+        font-weight: 400;
+        background: var(--black);
+        color: var(--text);
+        line-height: 1.7;
+        font-size: 17px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: 78px;
+      }
+      /* subtle warm vignette, no tech glow */
+      body::before {
+        content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        background:
+          radial-gradient(1200px 700px at 78% -8%, rgba(201,162,39,.06), transparent 60%),
+          radial-gradient(900px 900px at 50% 120%, rgba(201,162,39,.03), transparent 60%);
+      }
+
+      bdi { unicode-bidi: isolate; }
+      .num { font-variant-numeric: tabular-nums; }
+
+      .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 26px; }
+      a { color: inherit; text-decoration: none; }
+
+      h1, h2, h3 { font-family: var(--serif); font-weight: 900; line-height: 1.18; }
+      .gold { color: var(--gold); }
+      .cream { color: var(--cream); }
+
+      /* hairline divider */
+      .rule { height: 1px; background: var(--hair); border: 0; }
+      .rule-gold { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border: 0; }
+
+      /* eyebrow: roman-numeral + label, editorial */
+      .kicker {
+        display: flex; align-items: center; gap: 14px;
+        font-family: var(--sans); font-weight: 600;
+        font-size: .74rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gold);
+        margin-bottom: 22px;
+      }
+      .kicker .ix { font-family: var(--serif); font-weight: 700; font-size: .95rem; letter-spacing: 0; color: var(--gold-lt); }
+      .kicker .ln { flex: 1; height: 1px; background: var(--hair); }
+
+      /* ===== buttons ===== */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+        font-family: var(--sans); font-weight: 600; font-size: 1.04rem; letter-spacing: .02em;
+        padding: 16px 34px; cursor: pointer; border-radius: 2px;
+        transition: background .25s ease, color .25s ease, border-color .25s ease;
+        white-space: nowrap; line-height: 1.2;
+      }
+      .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+      .btn-gold { background: var(--gold); color: #1A1503; border: 1px solid var(--gold); font-weight: 700; }
+      .btn-gold:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+      .btn-ghost { background: transparent; color: var(--gold-lt); border: 1px solid var(--gold-deep); }
+      .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+      section { position: relative; }
+      .sec { padding-block: clamp(58px, 9vw, 110px); }
+
+      /* ===== HEADER ===== */
+      .head {
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(10,10,10,.82); backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--hair-soft);
+      }
+      .head .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+      .brand { display: inline-flex; align-items: baseline; gap: 10px; }
+      .brand .nm { font-family: var(--serif); font-weight: 900; font-size: 1.32rem; color: var(--cream); letter-spacing: .01em; }
+      .brand .tag { font-family: var(--sans); font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+      .head-cta { font-size: .86rem; padding: 9px 20px; }
+
+      /* ===== HERO ===== */
+      .hero { position: relative; overflow: hidden; }
+      .hero::before {
+        content: ''; position: absolute; inset: 0; z-index: -2;
+        background-image: var(--heroImg); background-size: cover; background-position: center right;
+        opacity: .5;
+      }
+      .hero::after {
+        content: ''; position: absolute; inset: 0; z-index: -1;
+        background: linear-gradient(270deg, rgba(10,10,10,.4) 0%, rgba(10,10,10,.88) 55%, var(--black) 100%);
+      }
+      .hero-inner { padding-block: clamp(54px, 9vw, 120px); max-width: 760px; }
+      .hero .deck { font-family: var(--sans); font-weight: 600; font-size: .8rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: 26px; display: flex; align-items: center; gap: 14px; }
+      .hero .deck::before { content: ''; width: 46px; height: 1px; background: var(--gold); }
+      .hero h1 { font-size: clamp(2.3rem, 7vw, 4.2rem); font-weight: 900; color: var(--cream); letter-spacing: -.005em; }
+      .hero h1 em { font-style: italic; color: var(--gold-lt); font-weight: 700; }
+      .hero .sub { font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--muted); margin-top: 28px; max-width: 600px; font-weight: 300; }
+      .hero .sub bdi { color: var(--cream); font-weight: 500; }
+      .hero-cta { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px 22px; align-items: center; }
+      .hero-cta .assure { font-size: .82rem; color: var(--muted-2); letter-spacing: .02em; }
+
+      /* loss vs nasdaq — gold/grey hairline chart */
+      .ledger { margin-top: 54px; border-top: 1px solid var(--hair); padding-top: 26px; max-width: 620px; }
+      .ledger .lh { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+      .ledger .lt { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; color: var(--cream); }
+      .ledger .ls { font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-2); }
+      .ledger svg { width: 100%; height: auto; display: block; }
+      .ledger .lg { display: flex; gap: 24px; margin-top: 14px; flex-wrap: wrap; }
+      .ledger .lg span { display: inline-flex; align-items: center; gap: 9px; font-size: .82rem; color: var(--muted); }
+      .ledger .lg i { width: 18px; height: 2px; display: inline-block; }
+
+      /* ===== editorial section headings ===== */
+      .sec-h { font-size: clamp(1.7rem, 4.6vw, 2.7rem); color: var(--cream); max-width: 720px; }
+      .sec-h em { font-style: italic; color: var(--gold-lt); font-weight: 700; }
+
+      /* ===== PAIN — numbered editorial list ===== */
+      .pain { display: grid; gap: 0; margin-top: 40px; }
+      .pain .row { display: grid; grid-template-columns: 64px 1fr; gap: 22px; align-items: start; padding: 26px 0; border-top: 1px solid var(--hair-soft); }
+      .pain .row:last-child { border-bottom: 1px solid var(--hair-soft); }
+      .pain .ix { font-family: var(--serif); font-weight: 500; font-size: 1.7rem; color: var(--gold); line-height: 1; }
+      .pain .row p { font-size: 1.12rem; color: var(--text); font-weight: 300; }
+      .pain .row p bdi { font-weight: 500; color: var(--cream); }
+      .pain-punch { margin-top: 46px; font-family: var(--serif); font-weight: 700; font-size: clamp(1.4rem, 4vw, 2.1rem); color: var(--cream); max-width: 760px; line-height: 1.35; }
+      .pain-punch em { font-style: italic; color: var(--gold-lt); }
+
+      /* ===== VALUE — column list with gold serif markers ===== */
+      .value { margin-top: 40px; display: grid; gap: 0; }
+      .value .item { display: grid; grid-template-columns: 1fr; gap: 6px; padding: 28px 0; border-top: 1px solid var(--hair-soft); }
+      .value .item:last-child { border-bottom: 1px solid var(--hair-soft); }
+      .value .item .vh { display: flex; align-items: center; gap: 14px; }
+      .value .item .mk { font-family: var(--serif); font-style: italic; font-weight: 700; color: var(--gold); font-size: 1.1rem; min-width: 26px; }
+      .value .item h3 { font-family: var(--sans); font-weight: 600; font-size: 1.18rem; color: var(--cream); }
+      .value .item p { color: var(--muted); font-weight: 300; font-size: 1.04rem; padding-inline-start: 40px; }
+      .value .item p bdi { color: var(--text); font-weight: 500; }
+      .value-note { margin-top: 36px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--gold-lt); }
+
+      /* ===== SOCIAL PROOF — giant numeral + serif pull-quotes ===== */
+      .proof-top { display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; margin-top: 30px; }
+      .bignum { font-family: var(--serif); font-weight: 900; font-size: clamp(4rem, 14vw, 8rem); color: var(--gold); line-height: .85; letter-spacing: -.02em; }
+      .bignum small { display: block; font-family: var(--sans); font-weight: 600; font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 14px; line-height: 1.4; }
+      .stars-line { font-size: .92rem; color: var(--muted); }
+      .stars-line .st { color: var(--gold); letter-spacing: 3px; font-size: 1rem; }
+      .quotes { margin-top: 50px; display: grid; gap: 0; }
+      .pq { padding: 34px 0; border-top: 1px solid var(--hair-soft); }
+      .pq:last-child { border-bottom: 1px solid var(--hair-soft); }
+      .pq blockquote { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(1.2rem, 3.2vw, 1.7rem); color: var(--cream); line-height: 1.4; }
+      .pq .by { margin-top: 16px; font-family: var(--sans); font-size: .86rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+
+      /* ===== BRIEFING SAMPLE — gold-framed dossier ===== */
+      .dossier { margin-top: 40px; border: 1px solid var(--hair); background: linear-gradient(180deg, var(--black-3), var(--black)); padding: clamp(28px, 5vw, 50px); }
+      .dossier .dh { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-bottom: 22px; border-bottom: 1px solid var(--hair); margin-bottom: 30px; }
+      .dossier .dh .t { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; color: var(--cream); }
+      .dossier .dh .d { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+      .dossier ol { list-style: none; display: grid; gap: 26px; }
+      .dossier ol li { display: grid; grid-template-columns: 50px 1fr; gap: 20px; align-items: start; }
+      .dossier ol .n { font-family: var(--serif); font-weight: 900; font-size: 2rem; color: var(--gold); line-height: .8; }
+      .dossier ol p { font-size: 1.08rem; color: var(--text); font-weight: 300; }
+      .dossier ol p bdi { color: var(--cream); font-weight: 500; }
+      .dossier .auth { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--hair); font-size: .98rem; color: var(--muted); font-weight: 300; }
+      .dossier .auth b { font-family: var(--serif); font-weight: 700; color: var(--gold-lt); font-style: italic; }
+      .dossier .next { margin-top: 18px; font-family: var(--serif); font-style: italic; font-size: 1.12rem; color: var(--cream); }
+
+      /* ===== FAQ — open ledger Q/A ===== */
+      .faq { margin-top: 40px; }
+      .faq .qa { padding: 26px 0; border-top: 1px solid var(--hair-soft); display: grid; grid-template-columns: 1fr; gap: 8px; }
+      .faq .qa:last-child { border-bottom: 1px solid var(--hair-soft); }
+      .faq .q { font-family: var(--serif); font-weight: 700; font-size: 1.22rem; color: var(--cream); }
+      .faq .a { color: var(--muted); font-weight: 300; font-size: 1.04rem; }
+      .faq .a bdi { color: var(--text); }
+
+      /* ===== FINAL ===== */
+      .final { border: 1px solid var(--hair); background: var(--black-2); padding: clamp(36px, 6vw, 70px); display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(34px, 5vw, 64px); align-items: start; }
+      .final h2 { font-size: clamp(1.9rem, 5vw, 3rem); color: var(--cream); }
+      .final h2 em { font-style: italic; color: var(--gold-lt); }
+      .final .sub { color: var(--muted); font-weight: 300; font-size: 1.08rem; margin-top: 20px; max-width: 440px; }
+      .final-cta { margin-top: 32px; }
+      .final-cta .assure { margin-top: 16px; font-size: .82rem; color: var(--muted-2); }
+
+      /* form */
+      .form { border-inline-start: 1px solid var(--hair); padding-inline-start: clamp(0px, 4vw, 44px); }
+      .form .intro { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--gold-lt); margin-bottom: 26px; }
+      .field { margin-bottom: 22px; }
+      .field label { display: block; font-size: .76rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+      .field label .opt { color: var(--muted-2); letter-spacing: 0; text-transform: none; font-size: .78rem; }
+      .field input, .field select {
+        width: 100%; font-family: var(--sans); font-size: 1rem; color: var(--cream);
+        background: transparent; border: 0; border-bottom: 1px solid var(--hair);
+        padding: 10px 2px; outline: none; transition: border-color .2s; text-align: right;
+      }
+      .field input::placeholder { color: var(--muted-2); }
+      .field input:focus, .field select:focus { border-color: var(--gold); }
+      .field select { color: var(--cream); }
+      .field select option { background: var(--black-2); }
+      .phone-row { display: flex; gap: 12px; align-items: center; }
+      .phone-row .cc { direction: ltr; color: var(--gold); font-weight: 600; font-size: 1rem; border-bottom: 1px solid var(--hair); padding: 10px 2px; }
+      .phone-row input { direction: ltr; text-align: left; }
+      .form .btn { width: 100%; margin-top: 8px; }
+      .form .note { font-size: .76rem; color: var(--muted-2); margin-top: 14px; font-weight: 300; line-height: 1.6; }
+
+      /* disclaimer / footer */
+      .disclaimer { border-top: 1px solid var(--hair-soft); }
+      .disclaimer p { max-width: 860px; margin-inline: auto; text-align: center; color: var(--muted-2); font-size: .82rem; font-weight: 300; line-height: 1.8; }
+      .foot { border-top: 1px solid var(--hair-soft); padding-block: 26px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; font-size: .8rem; color: var(--muted-2); }
+      .foot .bn { font-family: var(--serif); font-weight: 700; color: var(--muted); }
+      .foot-links { display: flex; gap: 22px; }
+      .foot-links a:hover { color: var(--gold); }
+
+      /* sticky mobile CTA */
+      .sticky { position: fixed; bottom: 0; inset-inline: 0; z-index: 60; display: none; padding: 11px 16px calc(11px + env(safe-area-inset-bottom)); background: rgba(10,10,10,.95); backdrop-filter: blur(12px); border-top: 1px solid var(--hair); }
+      .sticky .btn { width: 100%; }
+
+      /* reveal — slow, restrained fade only (no slide/bounce) */
+      .rv { opacity: 0; transition: opacity 1s ease; }
+      .rv.in { opacity: 1; }
+
+      /* responsive */
+      @media (max-width: 880px) {
+        .final { grid-template-columns: 1fr; }
+        .form { border-inline-start: 0; padding-inline-start: 0; border-top: 1px solid var(--hair); padding-top: 30px; }
+        .proof-top { grid-template-columns: 1fr; gap: 18px; }
+      }
+      @media (max-width: 560px) {
+        body { font-size: 16px; }
+        .head-cta { display: none; }
+        .sticky { display: block; }
+        .hero-cta .btn { width: 100%; }
+        .pain .row { grid-template-columns: 44px 1fr; gap: 16px; }
+        .dossier ol li { grid-template-columns: 38px 1fr; gap: 14px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .rv { opacity: 1; transition: none; }
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+  <body id="top">
+    <!-- ===== HEADER ===== -->
+    <header class="head">
+      <div class="wrap">
+        <a class="brand" href="#top">
+          <span class="nm">מבט שוק</span>
+        </a>
+        <a class="btn btn-gold head-cta link-btn" onclick="mixinJump()">הצטרפות</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== I · HERO ===== -->
+      <section class="hero">
+        <div class="wrap hero-inner rv">
+          <p class="deck">קהילת מידע וניתוח · לא ייעוץ השקעות</p>
+          <h1>בזמן שאתה קורא את הכותרות — <em>אחרים כבר פעלו לפי המידע.</em></h1>
+          <p class="sub">
+            כל שבוע אנחנו לוקחים את מה שזז ב-<bdi>Wall Street</bdi> — <bdi>Nasdaq</bdi>, <bdi>S&amp;P 500</bdi> ומניות ה-<bdi>AI</bdi> והטכנולוגיה הגדולות — ומתרגמים אותו לעברית שכל אחד מבין. בלי ז'רגון. בלי אנגלית. בלי לשלם שקל.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-gold link-btn" onclick="mixinJump()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.42 1.32-1.95 1.36-.5.05-.96.24-3.23-.67-2.73-1.08-4.45-3.86-4.59-4.04-.13-.18-1.1-1.46-1.1-2.79 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34l.51.01c.16.01.39-.06.6.46.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.14.45.2.51.31.07.12.07.66-.17 1.34z" /></svg>
+              הצטרף לקבוצה — בחינם
+            </a>
+            <span class="assure">בלי כרטיס אשראי · בלי התחייבות · אפשר לצאת בכל רגע</span>
+          </div>
+
+          <!-- loss vs nasdaq, gold/grey hairline -->
+          <div class="ledger">
+            <div class="lh">
+              <span class="lt">הכסף בעו״ש מול ה-<bdi>Nasdaq</bdi></span>
+              <span class="ls">המחשה · 5 שנים</span>
+            </div>
+            <svg viewBox="0 0 600 160" preserveAspectRatio="none" role="img" aria-label="השוואה">
+              <g stroke="rgba(201,162,39,.10)" stroke-width="1">
+                <line x1="0" y1="40" x2="600" y2="40" /><line x1="0" y1="80" x2="600" y2="80" /><line x1="0" y1="120" x2="600" y2="120" />
+              </g>
+              <!-- nasdaq up (gold) -->
+              <path d="M10 138 L130 120 L250 86 L370 64 L490 34 L590 14" fill="none" stroke="#C9A227" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="590" cy="14" r="4" fill="#E6CE86" />
+              <!-- savings purchasing power down (muted grey) -->
+              <path d="M10 84 L130 92 L250 100 L370 110 L490 118 L590 128" fill="none" stroke="#6E685C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" />
+              <circle cx="590" cy="128" r="3.5" fill="#6E685C" />
+            </svg>
+            <div class="lg">
+              <span><i style="background:#C9A227"></i><bdi>Nasdaq</bdi> — קדימה</span>
+              <span><i style="background:#6E685C"></i>כוח הקנייה של החיסכון — נשחק</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== II · PAIN ===== -->
+      <section class="sec wrap">
+        <div class="rv">
+          <p class="kicker"><span class="ix">II</span><span>נשמע מוכר</span><span class="ln"></span></p>
+          <h2 class="sec-h">ארבעה דברים ש<em>כל משקיע ישראלי</em> מרגיש.</h2>
+        </div>
+        <div class="pain rv">
+          <div class="row"><span class="ix">I</span><p>אתה רוצה להבין מה קורה במניות האמריקאיות, אבל כל המידע הרציני הוא באנגלית ומלא מונחים מסובכים.</p></div>
+          <div class="row"><span class="ix">II</span><p>עד שהחדשות מגיעות אליך בעברית — השוק כבר זז מזמן.</p></div>
+          <div class="row"><span class="ix">III</span><p>הכסף שלך יושב בעו״ש או בפיקדון, והאינפלציה אוכלת אותו בשקט, חודש אחרי חודש.</p></div>
+          <div class="row"><span class="ix">IV</span><p>כולם מדברים על <bdi>AI</bdi> ועל <bdi>Nvidia</bdi>, ואתה מרגיש שאתה האחרון שמבין על מה מדובר.</p></div>
+        </div>
+        <p class="pain-punch rv">אתה לא צריך עוד חדשות. אתה צריך מישהו <em>שיתרגם לך מה באמת חשוב — ומה רק רעש.</em></p>
+      </section>
+
+      <!-- ===== III · VALUE ===== -->
+      <section class="sec wrap">
+        <div class="rv">
+          <p class="kicker"><span class="ix">III</span><span>מה בפנים</span><span class="ln"></span></p>
+          <h2 class="sec-h">מה אתה מקבל בקבוצה?</h2>
+        </div>
+        <div class="value rv">
+          <div class="item"><div class="vh"><span class="mk">i</span><h3>סקירה שבועית קצרה</h3></div><p>מה זז ב-<bdi>Nasdaq</bdi> וב-<bdi>S&amp;P 500</bdi> — והאם זה חשוב בכלל.</p></div>
+          <div class="item"><div class="vh"><span class="mk">ii</span><h3>מבט על מניות ה-AI והטכנולוגיה</h3></div><p>אלה שכולם מדברים עליהן — ומה באמת מסתתר מאחורי הרעש.</p></div>
+          <div class="item"><div class="vh"><span class="mk">iii</span><h3>דיון פתוח עם אנשים אמיתיים</h3></div><p>ששואלים בדיוק את אותן שאלות כמוך.</p></div>
+          <div class="item"><div class="vh"><span class="mk">iv</span><h3>הסברים בעברית פשוטה</h3></div><p>אם אתה יודע לקרוא הודעת <bdi>WhatsApp</bdi>, אתה תבין הכל.</p></div>
+        </div>
+        <p class="value-note rv">הכל במקום אחד · כמה דקות בשבוע · בלי התחייבות</p>
+      </section>
+
+      <!-- ===== IV · SOCIAL PROOF ===== -->
+      <section class="sec wrap">
+        <div class="rv">
+          <p class="kicker"><span class="ix">IV</span><span>הוכחה חברתית</span><span class="ln"></span></p>
+        </div>
+        <div class="proof-top rv">
+          <div class="bignum"><bdi class="num">12,000</bdi><small>ישראלים<br >כבר בפנים</small></div>
+          <div>
+            <h2 class="sec-h">קהילה אמיתית, <em>לא עוד קבוצת טיפים.</em></h2>
+            <p class="stars-line"><span class="st">★★★★★</span>&nbsp; דירוג <bdi class="num">4.8</bdi> מתוך <bdi class="num">5</bdi> · חברים מתל אביב ועד באר שבע</p>
+          </div>
+        </div>
+        <div class="quotes">
+          <div class="pq rv"><blockquote>״חשבתי שאני צריך להיות מומחה כדי להבין את שוק ההון. בקבוצה הזו פתאום הכל הגיוני.״</blockquote><div class="by">דנה — חיפה</div></div>
+          <div class="pq rv"><blockquote>״סוף סוף מידע על מניות אמריקאיות בעברית — בלי שמנסים למכור לי משהו כל חמש דקות.״</blockquote><div class="by">איציק — ראשון לציון</div></div>
+          <div class="pq rv"><blockquote>״אני קורא את הסקירה בדרך לעבודה. חמש דקות, ואני מעודכן יותר מרוב האנשים סביבי.״</blockquote><div class="by">מאור — תל אביב</div></div>
+        </div>
+      </section>
+
+      <!-- ===== V · BRIEFING DOSSIER ===== -->
+      <section class="sec wrap">
+        <div class="rv">
+          <p class="kicker"><span class="ix">V</span><span>תצוגה מקדימה</span><span class="ln"></span></p>
+          <h2 class="sec-h">ככה נראית סקירה אצלנו <em>(דוגמה אמיתית)</em></h2>
+        </div>
+        <div class="dossier rv">
+          <div class="dh">
+            <span class="t">סקירת השבוע</span>
+            <span class="d"><bdi>Nasdaq</bdi> · <bdi>S&amp;P 500</bdi> · <bdi>AI</bdi></span>
+          </div>
+          <ol>
+            <li><span class="n num">1</span><p>ה-<bdi>S&amp;P 500</bdi> סגר שבוע חיובי — מה הניע אותו, ולמה זה לא בהכרח אומר שזה ימשיך.</p></li>
+            <li><span class="n num">2</span><p>מניות ה-<bdi>AI</bdi>: מי הוביל, מי פיגר, ומה הסיפור האמיתי מאחורי הכותרות.</p></li>
+            <li><span class="n num">3</span><p>נתון אחד ששווה לשים לב אליו השבוע — בלי דרמה, רק מה שחשוב.</p></li>
+          </ol>
+          <p class="auth">מאחורי הסקירה: <b>אנליסט עם 11 שנות מעקב</b> אחרי מניות הטכנולוגיה האמריקאיות, רקע בשוק ההון ובטכנולוגיה.</p>
+          <p class="next">רוצה לקבל את הסקירה הבאה? היא יוצאת בעוד כמה ימים.</p>
+        </div>
+      </section>
+
+      <!-- ===== VI · FAQ ===== -->
+      <section class="sec wrap">
+        <div class="rv">
+          <p class="kicker"><span class="ix">VI</span><span>שקיפות מלאה</span><span class="ln"></span></p>
+          <h2 class="sec-h">לפני שאתה מצטרף — <em>כמה דברים שחשוב לדעת.</em></h2>
+        </div>
+        <div class="faq rv">
+          <div class="qa"><div class="q">זה עולה כסף?</div><div class="a">לא. ההצטרפות וההישארות בקבוצה חינמיות לחלוטין, בלי כרטיס אשראי.</div></div>
+          <div class="qa"><div class="q">אני צריך לדעת אנגלית?</div><div class="a">לא. הכל בעברית פשוטה וברורה.</div></div>
+          <div class="qa"><div class="q">צריך ניסיון בשוק ההון?</div><div class="a">ממש לא. הרבה מהחברים התחילו מאפס.</div></div>
+          <div class="qa"><div class="q">זו המלצת השקעה?</div><div class="a">לא. אנחנו קהילת מידע וניתוח — נותנים לך נתונים וזוויות כדי שתבין את השוק לבד. ההחלטות תמיד שלך.</div></div>
+          <div class="qa"><div class="q">אפשר לצאת?</div><div class="a">אפשר לצאת מהקבוצה בכל רגע, בלחיצת כפתור.</div></div>
+        </div>
+      </section>
+
+      <!-- ===== VII · FINAL + FORM ===== -->
+      <section class="sec wrap">
+        <div class="final rv">
+          <div>
+            <p class="kicker"><span class="ix">VII</span><span>ההצטרפות לוקחת 10 שניות</span></p>
+            <h2>השוק זז כל יום. השאלה היחידה — <em>אתה בפנים או בחוץ?</em></h2>
+            <p class="sub">כל שבוע שאתה מחכה הוא עוד שבוע שבו אחרים מבינים את השוק טוב ממך — ואתה צופה מהצד. מי שמצטרף היום מתחיל לקבל עדכונים כבר השבוע.</p>
+            <div class="final-cta">
+              <a class="btn btn-gold link-btn" onclick="mixinJump()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2z" /></svg>
+                הצטרף עכשיו — בחינם
+              </a>
+              <p class="assure">ההצטרפות מאובטחת דרך <bdi>WhatsApp</bdi> · אפשר לצאת בכל רגע</p>
+            </div>
+          </div>
+
+          <form class="form" onsubmit="mixinJump(); return false;">
+            <p class="intro">מעדיף שנחזור אליך? השאר פרטים ונשלח את הסקירה ב-<bdi>WhatsApp</bdi>.</p>
+            <div class="field">
+              <label for="fname">שם פרטי</label>
+              <input id="fname" type="text" placeholder="השם שלך" required />
+            </div>
+            <div class="field">
+              <label for="phone">טלפון נייד</label>
+              <div class="phone-row">
+                <span class="cc">+972</span>
+                <input id="phone" type="tel" inputmode="numeric" placeholder="50-000-0000" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="topic">תחום עניין <span class="opt">(לא חובה)</span></label>
+              <select id="topic">
+                <option value="">בחר/י תחום…</option>
+                <option>מניות AI</option>
+                <option>Nasdaq / S&amp;P 500</option>
+                <option>טכנולוגיה כללית</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-gold link-btn">שלח/י וקבל/י את הסקירה</button>
+            <p class="note">הפרטים משמשים לשליחת סקירת השוק ב-WhatsApp בלבד — לא לייעוץ השקעות אישי. ניתן להסיר בכל עת.</p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===== DISCLAIMER ===== -->
+      <section class="disclaimer sec">
+        <div class="wrap">
+          <p>הקבוצה היא קהילת מידע, ניתוח ולמידה בלבד — איננו יועצי השקעות ואיננו מספקים המלצות או ייעוץ השקעות אישי. אין באמור משום הבטחה לתשואה או תחליף לייעוץ המתחשב בנתוניו האישיים של כל אדם. כל פעולה בשוק ההון כרוכה בסיכון, וההחלטות הן באחריותך בלבד. ההצטרפות חינמית, ניתן לצאת מהקבוצה בכל עת.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="foot">
+        <span class="bn">מבט שוק · קהילת מידע וניתוח © 2026</span>
+        <span class="foot-links">
+          <a href="#privacy">מדיניות פרטיות</a>
+          <a href="#terms">תנאי שימוש</a>
+        </span>
+      </div>
+    </footer>
+
+    <div class="sticky">
+      <a class="btn btn-gold link-btn" onclick="mixinJump()">הצטרף לקבוצה — בחינם</a>
+    </div>
+
+    <script is:inline>
+(function () {
+  let els = Array.prototype.slice.call(document.querySelectorAll('.rv'))
+  if (!('IntersectionObserver' in window)) { els.forEach((e) => { e.classList.add('in') }); return }
+  var io = new IntersectionObserver((ents) => {
+    ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target) } })
+  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' })
+  els.forEach((el) => { io.observe(el) })
+})()
+</script>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroAd from './assets/images/hero-ad.png'
+---
+
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>פחות רגש. יותר ראש. עדכון שבועי לשוק.</title>
+    <meta
+      name="description"
+      content="‏קנית כשכולם קנו ומכרת כשכולם נבהלו? כל שבוע תמונת מצב קצרה וברורה על מה שבאמת קורה בשוק, בלי הרעש. קבוצת WhatsApp חינמית."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+
+      body {
+        direction: rtl;
+        text-align: right;
+        font-family: 'Heebo', Arial, 'Noto Sans Hebrew', sans-serif;
+        background: #0B0F14;
+        color: #fff;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+      }
+      bdi { unicode-bidi: isolate; }
+
+      .card {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 22px 30px;
+      }
+
+      .hero-img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        display: block;
+        margin-bottom: 24px;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      .lead {
+        font-size: 1.12rem;
+        color: #D2DBE6;
+        margin-bottom: 8px;
+      }
+      .lead bdi { color: #fff; font-weight: 700; }
+      .lead .free { color: #25E07A; font-weight: 800; }
+
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        width: 100%;
+        margin-top: 26px;
+        background: #25D366;
+        color: #04220F;
+        font-family: inherit;
+        font-weight: 900;
+        font-size: 1.22rem;
+        padding: 19px 24px;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        box-shadow: 0 16px 36px -10px rgba(37, 211, 102, .55);
+        animation: pulse 2.2s ease-in-out infinite;
+        line-height: 1.2;
+      }
+      .cta svg { width: 26px; height: 26px; flex-shrink: 0; }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50%      { transform: scale(1.025); }
+      }
+
+      .assure {
+        margin-top: 14px;
+        text-align: center;
+        font-size: .92rem;
+        color: #9FB0C2;
+      }
+
+      .legal {
+        margin-top: auto;
+        padding-top: 22px;
+        text-align: center;
+        font-size: .74rem;
+        color: #5E6E7E;
+        line-height: 1.55;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cta { animation: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="card">
+      <h1 class="sr-only">פחות רגש. יותר ראש. כל שבוע תמונת מצב קצרה על מה שבאמת קורה בשוק.</h1>
+      <img class="hero-img" src={heroAd.src} alt="פחות רגש. יותר ראש — עדכון שבועי לשוק" />
+
+      <p class="lead">
+        לא צריך מזל. צריך <span class="free">ראש קר</span>. כל שבוע אתה מקבל תמונת מצב קצרה וברורה על מה שבאמת קורה, בלי הרעש שכולם מנסים למכור לך.
+      </p>
+
+      <a class="cta link-btn" onclick="mixinJump()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.42 1.32-1.95 1.36-.5.05-.96.24-3.23-.67-2.73-1.08-4.45-3.86-4.59-4.04-.13-.18-1.1-1.46-1.1-2.79 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34l.51.01c.16.01.39-.06.6.46.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.14.45.2.51.31.07.12.07.66-.17 1.34z"/></svg>
+        אני רוצה לקבל עדכון ב-<bdi>WhatsApp</bdi>
+      </a>
+
+      <p class="assure">בלי כרטיס אשראי · אפשר לצאת בכל רגע</p>
+
+      <p class="legal">קהילת מידע וניתוח בלבד — לא ייעוץ השקעות. כל פעולה בשוק ההון כרוכה בסיכון.</p>
+    </main>
+  </body>
+</html>

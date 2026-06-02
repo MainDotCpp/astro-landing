@@ -1,0 +1,1958 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b4bd3" />
+    <title>מדריך חינמי למתחילים בשוק ההון | למידה בלבד</title>
+    <meta
+      name="description"
+      content="מדריך חינמי למתחילים: יסודות שוק ההון, ניהול סיכונים, פיזור וטעויות נפוצות. התוכן מיועד ללמידה בלבד ואינו מהווה ייעוץ השקעות."
+    />
+    <meta property="og:title" content="להבין את שוק ההון לפני שמתחילים" />
+    <meta
+      property="og:description"
+      content="קבלו מדריך חינמי למתחילים על סיכון, פיזור ויסודות ההשקעה. למידה בלבד. לא ייעוץ השקעות."
+    />
+    <meta property="og:type" content="website" />
+    <!-- 上线前改成完整绝对 URL（含 https 域名），否则 FB/WhatsApp 抓不到分享缩略图 -->
+    <meta property="og:image" content="assets/guide-risk.png" />
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    <script>
+      const onLinkBtnClick = () => {
+        const link = 'https://www.baidu.com'
+
+        if (typeof fbq === 'function') {
+          fbq('track', 'AddToCart')
+          fbq('track', 'Contact')
+        }
+
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion()
+        }
+
+        setTimeout(() => {
+          window.location.href = link
+        }, 500)
+      }
+    </script>
+
+    <style>
+      :root {
+        --blue-950: #06153e;
+        --blue-900: #081f63;
+        --blue-850: #0a2978;
+        --blue-800: #0d389b;
+        --blue-700: #0b45b7;
+        --blue-600: #0b5cff;
+        --blue-500: #2d7dff;
+        --blue-400: #5e9cff;
+        --blue-100: #eaf3ff;
+        --blue-50: #f5f9ff;
+        --ink: #0c1733;
+        --muted: #5c6880;
+        --line: #dbe7fb;
+        --white: #ffffff;
+        --green: #11a36a;
+        --amber: #f2ad2e;
+        --danger: #d94d4d;
+        --shadow: 0 24px 70px rgba(8, 44, 120, 0.14);
+        --shadow-soft: 0 14px 36px rgba(8, 44, 120, 0.1);
+        --radius: 28px;
+        --radius-sm: 18px;
+        --container: 1140px;
+        --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, 'Noto Sans Hebrew', 'Segoe UI', sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 0%, rgba(45, 125, 255, 0.16), transparent 28%),
+          radial-gradient(circle at 90% 12%, rgba(11, 92, 255, 0.1), transparent 24%),
+          linear-gradient(180deg, #f7fbff 0%, #ffffff 38%, #f4f8ff 100%);
+        direction: rtl;
+        text-align: right;
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+      body::before,
+      body::after {
+        content: '';
+        position: fixed;
+        z-index: -2;
+        width: 42vw;
+        height: 42vw;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.42;
+        pointer-events: none;
+        animation: floatBlob 12s ease-in-out infinite alternate;
+      }
+      body::before {
+        inset-inline-end: -10vw;
+        top: -8vw;
+        background: radial-gradient(circle, rgba(45, 125, 255, 0.22), rgba(45, 125, 255, 0));
+      }
+      body::after {
+        inset-inline-start: -14vw;
+        bottom: -12vw;
+        background: radial-gradient(circle, rgba(11, 92, 255, 0.16), rgba(11, 92, 255, 0));
+        animation-delay: -6s;
+      }
+
+      @keyframes floatBlob {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        100% {
+          transform: translate3d(1vw, -2vw, 0) scale(1.08);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 18px 36px rgba(11, 92, 255, 0.24);
+        }
+        50% {
+          transform: scale(1.02);
+          box-shadow: 0 24px 44px rgba(11, 92, 255, 0.3);
+        }
+      }
+      @keyframes shine {
+        0% {
+          transform: translateX(-120%) skewX(-24deg);
+        }
+        100% {
+          transform: translateX(220%) skewX(-24deg);
+        }
+      }
+      @keyframes ticker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(50%);
+        }
+      }
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      picture {
+        display: block;
+      }
+      .img-fallback {
+        min-height: 160px;
+        width: 100%;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 18px;
+        color: var(--blue-900);
+        font-weight: 800;
+        background: linear-gradient(135deg, rgba(234, 243, 255, 0.96), rgba(255, 255, 255, 0.96));
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      .container {
+        width: min(var(--container), calc(100% - 36px));
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        backdrop-filter: blur(18px);
+        background: rgba(255, 255, 255, 0.78);
+        border-bottom: 1px solid rgba(219, 231, 251, 0.85);
+      }
+      .nav {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        color: var(--blue-900);
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+      .brand-mark {
+        width: 46px;
+        height: 46px;
+        border-radius: 15px;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: linear-gradient(135deg, var(--blue-600), var(--blue-900));
+        box-shadow: 0 12px 30px rgba(11, 92, 255, 0.28);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 15px;
+      }
+      .nav-links a:hover {
+        color: var(--blue-700);
+      }
+      .nav-cta {
+        border: 0;
+        background: linear-gradient(135deg, var(--blue-600), var(--blue-900));
+        color: white;
+        padding: 11px 18px;
+        border-radius: 999px;
+        font-weight: 800;
+        box-shadow: 0 12px 28px rgba(11, 92, 255, 0.22);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .nav-cta::after,
+      .btn-primary::after,
+      .submit-btn::after {
+        content: '';
+        position: absolute;
+        inset: 0 auto 0 -30%;
+        width: 30%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+        animation: shine 3.6s linear infinite;
+        pointer-events: none;
+      }
+
+      .hero {
+        padding: 56px 0 34px;
+        position: relative;
+        overflow: clip;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--blue-800);
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(219, 231, 251, 0.9);
+        border-radius: 999px;
+        padding: 9px 15px;
+        font-weight: 800;
+        margin-bottom: 18px;
+        box-shadow: var(--shadow-soft);
+      }
+      .eyebrow .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 0 5px rgba(17, 163, 106, 0.12);
+      }
+      h1 {
+        margin: 0;
+        color: var(--blue-950);
+        font-size: clamp(42px, 6vw, 78px);
+        line-height: 1.02;
+        letter-spacing: -0.055em;
+        max-width: 760px;
+        text-wrap: balance;
+      }
+      .highlight {
+        color: var(--blue-600);
+        position: relative;
+        display: inline-block;
+      }
+      .highlight::after {
+        content: '';
+        position: absolute;
+        inset-inline: 4px;
+        bottom: 0.05em;
+        height: 0.24em;
+        z-index: -1;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(94, 156, 255, 0.08), rgba(94, 156, 255, 0.35));
+      }
+      .hero-sub {
+        color: var(--muted);
+        font-size: clamp(18px, 2.2vw, 22px);
+        line-height: 1.6;
+        margin: 22px 0 0;
+        max-width: 650px;
+        font-weight: 600;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 999px;
+        min-height: 58px;
+        padding: 0 26px;
+        font-weight: 900;
+        cursor: pointer;
+        transition:
+          transform 0.18s var(--ease),
+          box-shadow 0.18s var(--ease),
+          background 0.18s var(--ease);
+        border: 1px solid transparent;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary {
+        color: white;
+        background: linear-gradient(135deg, var(--blue-600), var(--blue-900));
+        box-shadow: 0 18px 36px rgba(11, 92, 255, 0.26);
+        animation: pulse 3.4s ease-in-out infinite;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 42px rgba(11, 92, 255, 0.32);
+      }
+      .btn-secondary {
+        color: var(--blue-800);
+        background: rgba(255, 255, 255, 0.88);
+        border-color: var(--line);
+        box-shadow: var(--shadow-soft);
+      }
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero-highlights {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 30px;
+        max-width: 730px;
+      }
+      .mini-card {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(219, 231, 251, 0.95);
+        border-radius: 22px;
+        padding: 16px 16px 15px;
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(12px);
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s var(--ease);
+      }
+      .mini-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(8, 44, 120, 0.12);
+      }
+      .mini-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .mini-tag {
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--blue-700);
+        background: var(--blue-100);
+        border-radius: 999px;
+        padding: 6px 10px;
+      }
+      .mini-value {
+        font-size: 24px;
+        font-weight: 900;
+        color: var(--blue-950);
+        line-height: 1;
+      }
+      .mini-card p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 700;
+        line-height: 1.45;
+      }
+
+      .microcopy {
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.72);
+        border-radius: 999px;
+        padding: 10px 14px;
+        border: 1px solid rgba(219, 231, 251, 0.95);
+        box-shadow: var(--shadow-soft);
+      }
+      .hero-media {
+        position: relative;
+        min-height: 650px;
+        display: grid;
+        place-items: center;
+      }
+      .hero-orb {
+        position: absolute;
+        width: 460px;
+        height: 460px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(45, 125, 255, 0.24), rgba(45, 125, 255, 0.05) 55%, transparent 70%);
+        z-index: -1;
+      }
+      .media-stack {
+        position: relative;
+        width: min(540px, 94vw);
+        height: 630px;
+        perspective: 1000px;
+      }
+      .floaty {
+        animation: bob 5s ease-in-out infinite;
+      }
+      .stack-card {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.96);
+        border: 8px solid rgba(255, 255, 255, 0.96);
+        border-radius: 34px;
+        box-shadow: 0 34px 90px rgba(7, 28, 84, 0.22);
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.25s var(--ease);
+        will-change: transform;
+      }
+      .stack-card:hover {
+        box-shadow: 0 40px 100px rgba(7, 28, 84, 0.27);
+      }
+      .stack-main {
+        width: 340px;
+        inset-inline-start: 70px;
+        top: 44px;
+        transform: rotate(-6deg);
+        z-index: 3;
+      }
+      .stack-secondary {
+        width: 295px;
+        inset-inline-end: 10px;
+        top: 188px;
+        transform: rotate(7deg);
+        z-index: 2;
+      }
+      .stack-third {
+        width: 250px;
+        inset-inline-start: 12px;
+        bottom: 46px;
+        transform: rotate(4deg);
+        z-index: 1;
+      }
+      .floating-badge,
+      .floating-note,
+      .floating-stats {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(219, 231, 251, 0.95);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+        z-index: 5;
+      }
+      .floating-badge {
+        top: 14px;
+        inset-inline-end: 36px;
+        padding: 12px 16px;
+        border-radius: 20px;
+        min-width: 170px;
+        animation-delay: -1.5s;
+      }
+      .floating-badge strong,
+      .floating-note strong,
+      .floating-stats strong {
+        display: block;
+        color: var(--blue-950);
+        line-height: 1.2;
+      }
+      .floating-badge span,
+      .floating-note span,
+      .floating-stats span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 4px;
+        font-weight: 700;
+      }
+      .floating-note {
+        inset-inline-end: 0;
+        bottom: 118px;
+        width: 230px;
+        border-radius: 22px;
+        padding: 16px 16px 14px;
+        animation-delay: -0.4s;
+      }
+      .floating-stats {
+        inset-inline-start: 0;
+        bottom: 0;
+        width: 250px;
+        border-radius: 22px;
+        padding: 16px;
+        animation-delay: -2.4s;
+      }
+      .stats-row {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: var(--blue-100);
+        color: var(--blue-900);
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .chip.green {
+        background: rgba(17, 163, 106, 0.12);
+        color: #0d8154;
+      }
+      .chip.amber {
+        background: rgba(242, 173, 46, 0.14);
+        color: #a16800;
+      }
+
+      .ticker-wrap {
+        margin-top: 24px;
+        border-top: 1px solid rgba(219, 231, 251, 0.9);
+        border-bottom: 1px solid rgba(219, 231, 251, 0.9);
+        background: rgba(255, 255, 255, 0.68);
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+      }
+      .ticker {
+        display: flex;
+        width: max-content;
+        gap: 18px;
+        align-items: center;
+        padding: 14px 0;
+        animation: ticker 26s linear infinite;
+        white-space: nowrap;
+      }
+      .ticker span {
+        color: var(--blue-900);
+        font-weight: 900;
+        font-size: 15px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ticker i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--blue-500);
+        display: inline-block;
+      }
+
+      .stats-strip {
+        padding: 22px 0 6px;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .stat-box {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(245, 249, 255, 0.94));
+        border: 1px solid rgba(219, 231, 251, 0.95);
+        border-radius: 24px;
+        padding: 18px 18px 16px;
+        box-shadow: var(--shadow-soft);
+      }
+      .stat-box strong {
+        display: block;
+        font-size: 32px;
+        line-height: 1;
+        color: var(--blue-950);
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+      .stat-box p {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .section {
+        padding: 82px 0;
+        position: relative;
+      }
+      .section-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 32px;
+      }
+      .section-kicker {
+        display: inline-flex;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--blue-100);
+        color: var(--blue-900);
+        font-weight: 850;
+        margin-bottom: 14px;
+      }
+      .section-title {
+        margin: 0 0 14px;
+        color: var(--blue-950);
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+      }
+      .section-lead {
+        color: var(--muted);
+        font-size: 19px;
+        margin: 0;
+        max-width: 760px;
+        font-weight: 600;
+      }
+      .section-side-note {
+        color: var(--blue-800);
+        font-weight: 800;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 14px 16px;
+        box-shadow: var(--shadow-soft);
+        max-width: 280px;
+      }
+
+      .cards-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .info-card {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 26px;
+        box-shadow: var(--shadow-soft);
+        min-height: 250px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s var(--ease),
+          border-color 0.2s var(--ease);
+      }
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 22px 48px rgba(8, 44, 120, 0.12);
+        border-color: rgba(11, 92, 255, 0.22);
+      }
+      .info-card::after {
+        content: '';
+        position: absolute;
+        inset-inline-end: -40px;
+        bottom: -40px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(45, 125, 255, 0.13), rgba(45, 125, 255, 0));
+        pointer-events: none;
+      }
+      .icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 20px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(45, 125, 255, 0.16), rgba(11, 92, 255, 0.08));
+        color: var(--blue-700);
+        margin-bottom: 18px;
+        box-shadow: inset 0 0 0 1px rgba(45, 125, 255, 0.1);
+      }
+      .info-card h3 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        color: var(--blue-950);
+        line-height: 1.2;
+      }
+      .info-card p {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .spotlight {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 30px;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(234, 243, 255, 0.92), rgba(255, 255, 255, 0.97));
+        border: 1px solid var(--line);
+        border-radius: 40px;
+        padding: 30px;
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        overflow: hidden;
+      }
+      .spotlight::before {
+        content: '';
+        position: absolute;
+        inset-inline-end: -100px;
+        top: -120px;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(45, 125, 255, 0.16), rgba(45, 125, 255, 0));
+      }
+      .spotlight-media {
+        position: relative;
+        min-height: 390px;
+        display: grid;
+        place-items: center;
+      }
+      .spotlight-main,
+      .spotlight-small {
+        position: absolute;
+        border-radius: 30px;
+        overflow: hidden;
+        border: 8px solid rgba(255, 255, 255, 0.96);
+        box-shadow: 0 28px 70px rgba(7, 28, 84, 0.18);
+        background: white;
+      }
+      .spotlight-main {
+        width: 320px;
+        inset-inline-end: 44px;
+        top: 8px;
+        transform: rotate(5deg);
+      }
+      .spotlight-small {
+        width: 260px;
+        inset-inline-start: 26px;
+        bottom: 8px;
+        transform: rotate(-7deg);
+      }
+      .spotlight-badge {
+        position: absolute;
+        inset-inline-start: 0;
+        top: 8px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 14px 16px;
+        box-shadow: var(--shadow-soft);
+        max-width: 210px;
+      }
+      .spotlight-badge strong {
+        display: block;
+        color: var(--blue-950);
+      }
+      .spotlight-badge span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 4px;
+        font-weight: 700;
+      }
+      .check-list {
+        list-style: none;
+        padding: 0;
+        margin: 24px 0 0;
+        display: grid;
+        gap: 14px;
+      }
+      .check-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--ink);
+        font-weight: 750;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 14px 16px;
+        box-shadow: var(--shadow-soft);
+      }
+      .check {
+        flex: 0 0 auto;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(17, 163, 106, 0.12);
+        color: var(--green);
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+      }
+
+      .mistakes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: center;
+      }
+      .mistakes-visual-wrap {
+        position: relative;
+        min-height: 520px;
+        display: grid;
+        place-items: center;
+      }
+      .mistakes-visual {
+        border-radius: 34px;
+        overflow: hidden;
+        border: 8px solid rgba(255, 255, 255, 0.96);
+        box-shadow: var(--shadow);
+        max-width: 430px;
+        justify-self: center;
+        position: relative;
+        z-index: 2;
+      }
+      .mistakes-float {
+        position: absolute;
+        inset-inline-start: 10px;
+        bottom: 28px;
+        width: 210px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 16px;
+        box-shadow: var(--shadow-soft);
+        z-index: 3;
+      }
+      .mistakes-float strong {
+        display: block;
+        color: var(--blue-950);
+      }
+      .mistakes-float .progress {
+        height: 10px;
+        background: var(--blue-100);
+        border-radius: 999px;
+        overflow: hidden;
+        margin: 12px 0 8px;
+      }
+      .mistakes-float .progress span {
+        display: block;
+        height: 100%;
+        width: 78%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--amber), var(--blue-600));
+      }
+      .mistakes-float small {
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .mistake-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .mistake-item {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 18px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        box-shadow: var(--shadow-soft);
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s var(--ease);
+      }
+      .mistake-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 46px rgba(8, 44, 120, 0.12);
+      }
+      .number {
+        width: 40px;
+        height: 40px;
+        border-radius: 15px;
+        display: grid;
+        place-items: center;
+        background: rgba(242, 173, 46, 0.16);
+        color: #9b6200;
+        font-weight: 900;
+        flex: 0 0 auto;
+      }
+      .mistake-item strong {
+        color: var(--blue-950);
+        font-size: 18px;
+        display: block;
+      }
+      .mistake-item span {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .audience-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .audience-card {
+        padding: 24px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow-soft);
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        font-weight: 750;
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s var(--ease);
+      }
+      .audience-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 46px rgba(8, 44, 120, 0.12);
+      }
+      .audience-card svg {
+        flex: 0 0 auto;
+        color: var(--blue-600);
+      }
+
+      .form-section {
+        background: linear-gradient(135deg, #06246b, #0b5cff 70%, #2d7dff);
+        color: white;
+        border-radius: 42px;
+        padding: 36px;
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 30px;
+        align-items: stretch;
+        box-shadow: 0 30px 76px rgba(11, 92, 255, 0.24);
+        overflow: hidden;
+        position: relative;
+      }
+      .form-section:before,
+      .form-section:after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.09);
+        filter: blur(2px);
+      }
+      .form-section:before {
+        inset-inline-start: -120px;
+        top: -150px;
+        width: 340px;
+        height: 340px;
+      }
+      .form-section:after {
+        inset-inline-end: -90px;
+        bottom: -120px;
+        width: 280px;
+        height: 280px;
+      }
+      .form-copy {
+        position: relative;
+        z-index: 1;
+      }
+      .form-copy .section-title {
+        color: white;
+      }
+      .form-copy p {
+        color: rgba(255, 255, 255, 0.86);
+        font-weight: 650;
+        font-size: 18px;
+      }
+      .form-image-card {
+        margin-top: 24px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 26px;
+        padding: 16px;
+        backdrop-filter: blur(8px);
+        max-width: 360px;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+      }
+      .form-image-card img {
+        border-radius: 18px;
+        border: 4px solid rgba(255, 255, 255, 0.72);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+      }
+      .mini-disclaimer {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.11);
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 14px;
+        margin-top: 18px;
+      }
+      form {
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 30px;
+        padding: 24px;
+        color: var(--ink);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+        position: relative;
+        z-index: 1;
+      }
+      .field {
+        margin-bottom: 14px;
+      }
+      label {
+        display: block;
+        color: var(--blue-950);
+        font-weight: 850;
+        margin-bottom: 7px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        min-height: 52px;
+        padding: 12px 14px;
+        outline: none;
+        color: var(--ink);
+        background: #fbfdff;
+        direction: rtl;
+        text-align: right;
+        transition:
+          border-color 0.2s var(--ease),
+          box-shadow 0.2s var(--ease),
+          transform 0.2s var(--ease);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--blue-500);
+        box-shadow: 0 0 0 4px rgba(45, 125, 255, 0.13);
+        transform: translateY(-1px);
+      }
+      textarea {
+        min-height: 92px;
+        resize: vertical;
+      }
+      .submit-btn {
+        width: 100%;
+        border: 0;
+        margin-top: 8px;
+        min-height: 58px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--blue-600), var(--blue-900));
+        color: white;
+        font-weight: 950;
+        cursor: pointer;
+        box-shadow: 0 16px 34px rgba(11, 92, 255, 0.26);
+        position: relative;
+        overflow: hidden;
+      }
+      .form-note {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 12px 0 0;
+        line-height: 1.45;
+      }
+
+      .faq {
+        display: grid;
+        gap: 12px;
+      }
+      details {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 18px 20px;
+        box-shadow: var(--shadow-soft);
+        transition:
+          transform 0.18s var(--ease),
+          box-shadow 0.18s var(--ease);
+      }
+      details:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 38px rgba(8, 44, 120, 0.1);
+      }
+      summary {
+        cursor: pointer;
+        color: var(--blue-950);
+        font-size: 18px;
+        font-weight: 900;
+      }
+      details p {
+        color: var(--muted);
+        font-weight: 600;
+        margin: 12px 0 0;
+      }
+
+      footer {
+        padding: 42px 0;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.64);
+        backdrop-filter: blur(8px);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 24px;
+      }
+      .footer-small {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+      .footer-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      .footer-links a {
+        color: var(--blue-700);
+        font-weight: 800;
+      }
+
+      .sticky-mobile-cta {
+        display: none;
+        position: fixed;
+        z-index: 80;
+        inset-inline: 14px;
+        bottom: max(14px, env(safe-area-inset-bottom));
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--blue-600), var(--blue-900));
+        color: white;
+        min-height: 58px;
+        align-items: center;
+        justify-content: center;
+        font-weight: 950;
+        box-shadow: 0 14px 36px rgba(7, 28, 84, 0.3);
+        animation: pulse 3.4s ease-in-out infinite;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px) scale(0.985);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .delay-1 {
+        transition-delay: 0.08s;
+      }
+      .delay-2 {
+        transition-delay: 0.16s;
+      }
+      .delay-3 {
+        transition-delay: 0.24s;
+      }
+
+      @media (max-width: 980px) {
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          padding-top: 34px;
+        }
+        .hero-grid,
+        .spotlight,
+        .mistakes,
+        .form-section,
+        .footer-grid,
+        .section-header {
+          grid-template-columns: 1fr;
+        }
+        .hero-grid {
+          gap: 26px;
+        }
+        .hero-media {
+          min-height: auto;
+        }
+        .media-stack {
+          width: min(520px, 94vw);
+          height: 580px;
+        }
+        .stack-main {
+          width: 320px;
+          inset-inline-start: 40px;
+        }
+        .stack-secondary {
+          width: 270px;
+        }
+        .stack-third {
+          width: 230px;
+        }
+        .stats-grid,
+        .cards-3,
+        .audience-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .spotlight-media,
+        .mistakes-visual-wrap {
+          min-height: 460px;
+        }
+        .section-side-note {
+          max-width: none;
+        }
+        .sticky-mobile-cta {
+          display: flex;
+        }
+        body {
+          padding-bottom: 78px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .container {
+          width: min(100% - 24px, var(--container));
+        }
+        .nav {
+          min-height: 64px;
+        }
+        .brand span {
+          font-size: 15px;
+        }
+        .brand-mark {
+          width: 40px;
+          height: 40px;
+        }
+        h1 {
+          font-size: 42px;
+        }
+        .hero-sub {
+          font-size: 17px;
+        }
+        .hero-actions,
+        .hero-highlights {
+          align-items: stretch;
+          grid-template-columns: 1fr;
+        }
+        .btn {
+          width: 100%;
+          min-height: 54px;
+        }
+        .hero-highlights,
+        .stats-grid,
+        .cards-3,
+        .audience-grid {
+          grid-template-columns: 1fr;
+        }
+        .ticker-wrap,
+        .section-side-note,
+        .floating-note,
+        .floating-stats,
+        .stack-third,
+        .spotlight-small {
+          display: none;
+        }
+        .hero {
+          padding-top: 24px;
+        }
+        .hero-grid {
+          gap: 18px;
+        }
+        .hero-media {
+          order: -1;
+          min-height: auto;
+        }
+        .media-stack {
+          width: min(100%, 360px);
+          height: 360px;
+          margin-inline: auto;
+        }
+        .stack-main {
+          width: 250px;
+          inset-inline-start: 10px;
+          top: 34px;
+          transform: rotate(-4deg);
+        }
+        .stack-secondary {
+          width: 210px;
+          inset-inline-end: 0;
+          top: 138px;
+          transform: rotate(6deg);
+        }
+        .floating-badge {
+          inset-inline-end: 0;
+          top: 0;
+          min-width: 145px;
+          font-size: 13px;
+        }
+        .spotlight-media {
+          min-height: 300px;
+        }
+        .spotlight-main {
+          width: 220px;
+          inset-inline-end: 12px;
+        }
+        .mistakes-visual-wrap {
+          min-height: 380px;
+        }
+        .mistakes-float {
+          width: 160px;
+          inset-inline-start: 4px;
+          bottom: 10px;
+        }
+        .info-card,
+        .spotlight,
+        form,
+        .form-section {
+          padding: 20px;
+        }
+        .section {
+          padding: 50px 0;
+        }
+        .section-title {
+          font-size: 30px;
+        }
+        .section-lead {
+          font-size: 17px;
+        }
+        .mini-card {
+          padding: 14px;
+        }
+        .form-section {
+          border-radius: 28px;
+        }
+        .form-copy p {
+          font-size: 16px;
+        }
+        .form-image-card {
+          max-width: none;
+        }
+        .sticky-mobile-cta {
+          min-height: 54px;
+          font-size: 16px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="דף הבית">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 3l7 3v5c0 4.7-2.8 8.6-7 10-4.2-1.4-7-5.3-7-10V6l7-3z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M8.5 12.2l2.1 2.1 4.9-5"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span>ידע פיננסי למתחילים</span>
+        </a>
+        <nav class="nav-links" aria-label="ניווט">
+          <a href="#guide">מה מקבלים</a>
+          <a href="#mistakes">טעויות נפוצות</a>
+          <a href="#form">קבלת המדריך</a>
+          <a href="#faq">שאלות</a>
+        </nav>
+        <a class="nav-cta" href="#" onclick="onLinkBtnClick(); return false;">לקבלת המדריך ←</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span class="dot"></span> מדריך חינמי ללמידה עצמית</div>
+            <h1>להבין את שוק ההון <span class="highlight">לפני שמתחילים</span></h1>
+            <p class="hero-sub">
+              מדריך קצר וברור שמסביר איך באמת עובד שוק ההון: מה זה סיכון, איך פיזור עוזר, וכמה זמן באמת צריך. בשפה
+              פשוטה, בלי הבטחות תשואה ובלי "מניה חמה" שמישהו מנסה למכור לכם.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#" onclick="onLinkBtnClick(); return false;">לקבלת המדריך החינמי ←</a>
+              <a class="btn btn-secondary" href="#" onclick="onLinkBtnClick(); return false;">מה לומדים?</a>
+            </div>
+            <div class="hero-highlights">
+              <div class="mini-card reveal delay-1">
+                <div class="mini-top"><span class="mini-tag">חינם</span><span class="mini-value">100%</span></div>
+                <p>הגישה למדריך חינמית לגמרי — בלי עלות נסתרת ובלי פרטי אשראי.</p>
+              </div>
+              <div class="mini-card reveal delay-2">
+                <div class="mini-top"><span class="mini-tag">נושאים</span><span class="mini-value">4</span></div>
+                <p>יסודות השוק, ETF ופיזור, ניהול סיכונים וטעויות שעולות כסף.</p>
+              </div>
+              <div class="mini-card reveal delay-3">
+                <div class="mini-top"><span class="mini-tag">זמן</span><span class="mini-value">5′</span></div>
+                <p>חמש דקות קריאה. בלי הרצאות ארוכות ובלי שצריך רקע קודם.</p>
+              </div>
+            </div>
+            <div class="microcopy">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3l7 3v5c0 4.7-2.8 8.6-7 10-4.2-1.4-7-5.3-7-10V6l7-3z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path d="M12 8v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M12 16h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+              </svg>
+              למידה בלבד. לא ייעוץ השקעות. לא המלצת השקעה.
+            </div>
+          </div>
+
+          <div class="hero-media reveal delay-1" aria-label="תמונת שער של המדריך">
+            <div class="hero-orb" aria-hidden="true"></div>
+            <div class="media-stack" id="parallaxStack">
+              <picture class="stack-card stack-main floaty" data-depth="10">
+                <source srcset="assets/guide-risk.webp" type="image/webp" />
+                <img src="assets/guide-risk.png" alt="מדריך חינמי למתחילים על ניהול סיכונים בשוק ההון" />
+              </picture>
+              <picture class="stack-card stack-secondary floaty" data-depth="16">
+                <source srcset="assets/etf-lesson.webp" type="image/webp" />
+                <img src="assets/etf-lesson.png" alt="שיעור בסיסי על ETF למתחילים" />
+              </picture>
+              <picture class="stack-card stack-third floaty" data-depth="20">
+                <source srcset="assets/course-basic.webp" type="image/webp" />
+                <img src="assets/course-basic.png" alt="קורס פתיחה חינמי על יסודות ההשקעה" />
+              </picture>
+              <div class="floating-badge floaty" data-depth="8">
+                <strong>מתאים למתחילים</strong>
+                <span>בלי ידע מוקדם ובלי רקע פיננסי.</span>
+              </div>
+              <div class="floating-note floaty" data-depth="13">
+                <strong>בלי הבטחות ריקות</strong>
+                <span>תוכן לימודי בלבד — בלי "רווח מובטח" ובלי לחץ למכירה.</span>
+              </div>
+              <div class="floating-stats floaty" data-depth="18">
+                <strong>מה תמצאו כאן?</strong>
+                <div class="stats-row">
+                  <span class="chip green">סיכון</span>
+                  <span class="chip">ETF</span>
+                  <span class="chip amber">פיזור</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ticker-wrap reveal delay-2" aria-hidden="true">
+          <div class="ticker">
+            <span><i></i> יסודות שוק ההון</span>
+            <span><i></i> ניהול סיכונים</span>
+            <span><i></i> פיזור השקעות</span>
+            <span><i></i> ETF למתחילים</span>
+            <span><i></i> טעויות נפוצות</span>
+            <span><i></i> למידה בלבד</span>
+            <span><i></i> יסודות שוק ההון</span>
+            <span><i></i> ניהול סיכונים</span>
+            <span><i></i> פיזור השקעות</span>
+            <span><i></i> ETF למתחילים</span>
+            <span><i></i> טעויות נפוצות</span>
+            <span><i></i> למידה בלבד</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-strip">
+        <div class="container stats-grid">
+          <div class="stat-box reveal">
+            <strong class="count" data-target="4">0</strong>
+            <p>נושאי לימוד מרכזיים במדריך.</p>
+          </div>
+          <div class="stat-box reveal delay-1">
+            <strong class="count" data-target="3">0</strong>
+            <p>טעויות נפוצות שמתחילים חייבים להכיר.</p>
+          </div>
+          <div class="stat-box reveal delay-2">
+            <strong class="count" data-target="5">0</strong>
+            <p>דקות קריאה — קצר, ברור ולעניין.</p>
+          </div>
+          <div class="stat-box reveal delay-3">
+            <strong class="count" data-target="0">0</strong>
+            <p>הבטחות תשואה, המלצות מניה או איתותי מסחר.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="guide">
+        <div class="container">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-kicker">מה יש בפנים</div>
+              <h2 class="section-title">מה תקבלו במדריך?</h2>
+              <p class="section-lead">
+                המטרה היא לעזור למתחילים להבין מושגים בסיסיים ולהכיר סיכונים נפוצים — בלי הבטחות תשואה, בלי מניות
+                מומלצות ובלי איתותי מסחר.
+              </p>
+            </div>
+            <div class="section-side-note">
+              כל מה שצריך כדי להבין את הבסיס — בלי ז'רגון, בלי הרצאות ארוכות ובלי שתצטרכו רקע פיננסי קודם.
+            </div>
+          </div>
+          <div class="cards-3">
+            <article class="info-card reveal">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19V5a2 2 0 012-2h12v16H6a2 2 0 00-2 2z" stroke="currentColor" stroke-width="2" />
+                  <path d="M8 7h7M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>מושגי בסיס</h3>
+              <p>מהו שוק ההון, מהי תנודתיות, ומה ההבדל בין למידה כללית לבין קבלת החלטת השקעה אישית.</p>
+            </article>
+            <article class="info-card reveal delay-1">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 3l7 3v5c0 4.7-2.8 8.6-7 10-4.2-1.4-7-5.3-7-10V6l7-3z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M8.5 12l2.3 2.3L16 9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>ניהול סיכונים</h3>
+              <p>איך לחשוב על סיכון, פיזור, טווח זמן ומשמעת לפני שנחשפים לשוק או ניגשים לתוכן שיווקי בתחום.</p>
+            </article>
+            <article class="info-card reveal delay-2">
+              <div class="icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M7 16v-5M12 16V8M17 16V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>טעויות נפוצות</h3>
+              <p>איך לזהות מסרים מסוכנים כמו “רווח מובטח”, לחץ לפעולה מהירה והחלטות מתוך רגש במקום הבנה.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container spotlight reveal">
+          <div>
+            <div class="section-kicker">להבין לפני שמתחילים</div>
+            <h2 class="section-title">להבין את השוק לפני שמשקיעים, לא אחרי שמפסידים.</h2>
+            <p class="section-lead">
+              רוב המתחילים נכנסים לשוק בלי להבין מה זה תנודתיות, איך מפזרים סיכון וכמה זמן צריך. המדריך עובר על הבסיס
+              הזה בכמה דקות, בלי נוסחאות מסובכות.
+            </p>
+            <ul class="check-list">
+              <li>
+                <span class="check">✓</span><span>מה זה ETF, איך פיזור מקטין סיכון, ולמה טווח הזמן כל כך חשוב.</span>
+              </li>
+              <li>
+                <span class="check">✓</span><span>איך מבדילים בין תוכן לימודי לבין "טיפ חם" שמנסים למכור לכם.</span>
+              </li>
+              <li><span class="check">✓</span><span>אילו שאלות לשאול את עצמכם לפני כל החלטה פיננסית.</span></li>
+              <li><span class="check">✓</span><span>דוגמאות פשוטות מהחיים — בלי ז'רגון ובלי גרפים מפחידים.</span></li>
+            </ul>
+          </div>
+          <div class="spotlight-media">
+            <div class="spotlight-badge floaty">
+              <strong>קריאה של 5 דקות</strong>
+              <span>בלי להירשם לקורס יקר ובלי שום התחייבות.</span>
+            </div>
+            <picture class="spotlight-main floaty">
+              <source srcset="assets/etf-lesson.webp" type="image/webp" />
+              <img src="assets/etf-lesson.png" alt="ETF למתחילים - תמונה מרכזית" />
+            </picture>
+            <picture class="spotlight-small floaty">
+              <source srcset="assets/course-basic.webp" type="image/webp" />
+              <img src="assets/course-basic.png" alt="קורס פתיחה חינמי על יסודות ההשקעה" />
+            </picture>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="mistakes">
+        <div class="container mistakes">
+          <div class="reveal">
+            <div class="section-kicker">טעויות נפוצות</div>
+            <h2 class="section-title">3 טעויות של מתחילים שכדאי להכיר</h2>
+            <p class="section-lead">
+              לפני שנכנסים לשוק, כדאי להבין לא רק את ההזדמנויות אלא גם את המקומות שבהם אנשים מקבלים החלטות פזיזות.
+            </p>
+            <div class="mistake-list">
+              <div class="mistake-item reveal">
+                <div class="number">1</div>
+                <div>
+                  <strong>להסתכל רק על הפוטנציאל</strong><span>בלי להבין תנודתיות, סיכון, פיזור וטווח זמן.</span>
+                </div>
+              </div>
+              <div class="mistake-item reveal delay-1">
+                <div class="number">2</div>
+                <div>
+                  <strong>להאמין להבטחות תשואה</strong><span>כל מסר שמבטיח רווח ודאי דורש בדיקה זהירה במיוחד.</span>
+                </div>
+              </div>
+              <div class="mistake-item reveal delay-2">
+                <div class="number">3</div>
+                <div><strong>לפעול מתוך לחץ</strong><span>החלטות פיננסיות דורשות הבנה. לא תחושת דחיפות.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mistakes-visual-wrap reveal delay-1">
+            <picture class="mistakes-visual">
+              <source srcset="assets/mistakes-guide.webp" type="image/webp" />
+              <img src="assets/mistakes-guide.png" alt="מדריך טעויות נפוצות של משקיעים מתחילים" />
+            </picture>
+            <div class="mistakes-float floaty">
+              <strong>מה חשוב לבדוק?</strong>
+              <div class="progress"><span></span></div>
+              <small>האם המסר חינוכי, שקוף וללא הבטחות?</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-kicker">התאמה לקהל</div>
+              <h2 class="section-title">למי זה מתאים?</h2>
+              <p class="section-lead">העמוד מיועד לקהל שמחפש ללמוד את הבסיס לפני שהוא נוגע בהחלטות פיננסיות מעשיות.</p>
+            </div>
+            <div class="section-side-note">
+              לא משנה אם יש לכם 500 ₪ או 50,000 ₪ — הבסיס שחשוב להבין לפני שמתחילים הוא בדיוק אותו בסיס.
+            </div>
+          </div>
+          <div class="audience-grid">
+            <div class="audience-card reveal">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M20 6L9 17l-5-5"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              ><span>מתחילים שרוצים להבין את שוק ההון בשפה פשוטה וברורה.</span>
+            </div>
+            <div class="audience-card reveal delay-1">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M20 6L9 17l-5-5"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              ><span>אנשים שרוצים להכיר סיכונים לפני קבלת החלטות.</span>
+            </div>
+            <div class="audience-card reveal delay-2">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M20 6L9 17l-5-5"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              ><span>מי שמעדיף מדריך קצר במקום תוכן ארוך ומורכב.</span>
+            </div>
+            <div class="audience-card reveal delay-3">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M20 6L9 17l-5-5"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              ><span>מי שרוצה לזהות מסרים שיווקיים מסוכנים בתחום הפיננסי.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="form">
+        <div class="container form-section reveal">
+          <div class="form-copy">
+            <div class="section-kicker" style="background: rgba(255, 255, 255, 0.12); color: #fff">קריאה לפעולה</div>
+            <h2 class="section-title">קבלו את המדריך החינמי</h2>
+            <p>
+              השאירו פרטים בסיסיים בלבד ונשלח לכם את חומר הלמידה. לא נבקש הון עצמי, הכנסה, פרטי אשראי או מידע פיננסי
+              רגיש.
+            </p>
+            <div class="mini-disclaimer">ⓘ למידה בלבד. לא ייעוץ השקעות.</div>
+            <div class="form-image-card reveal delay-1">
+              <picture>
+                <source srcset="assets/guide-risk.webp" type="image/webp" />
+                <img src="assets/guide-risk.png" alt="תצוגת המדריך על גבי טלפון" />
+              </picture>
+            </div>
+          </div>
+
+          <form id="leadForm">
+            <div class="field">
+              <label for="name">שם מלא</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="השם שלך" />
+            </div>
+            <div class="field">
+              <label for="email">אימייל</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="example@email.com"
+                dir="ltr"
+                style="text-align: left"
+              />
+            </div>
+            <div class="field">
+              <label for="phone">WhatsApp</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="מספר WhatsApp"
+                dir="ltr"
+                style="text-align: left"
+              />
+            </div>
+            <div class="field">
+              <label for="topic">מה הכי מעניין אותך ללמוד?</label>
+              <select id="topic" name="topic">
+                <option value="">בחרו נושא</option>
+                <option>יסודות שוק ההון</option>
+                <option>ניהול סיכונים</option>
+                <option>ETF ופיזור</option>
+                <option>טעויות נפוצות של מתחילים</option>
+              </select>
+            </div>
+            <button class="submit-btn" type="submit">שלחו לי את המדריך ←</button>
+            <p class="form-note">
+              בלחיצה על הכפתור אתם מאשרים יצירת קשר לצורך שליחת חומר לימודי בלבד. אין כאן ייעוץ השקעות, המלצת השקעה או
+              הבטחת תשואה.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-kicker">שקיפות מלאה</div>
+              <h2 class="section-title">שאלות נפוצות</h2>
+              <p class="section-lead">
+                רוצים לדעת בדיוק במה מדובר לפני שמשאירים פרטים? ריכזנו כאן את השאלות שהכי שואלים אותנו.
+              </p>
+            </div>
+          </div>
+          <div class="faq">
+            <details class="reveal" open>
+              <summary>האם זה ייעוץ השקעות?</summary>
+              <p>
+                לא. זהו תוכן לימודי כללי בלבד. הוא אינו מותאם אישית ואינו מהווה ייעוץ השקעות, שיווק השקעות, ניהול תיקי
+                השקעות או המלצה לרכישה/מכירה של ניירות ערך.
+              </p>
+            </details>
+            <details class="reveal delay-1">
+              <summary>האם תקבלו המלצות על מניות?</summary>
+              <p>לא. המדריך אינו כולל מניות מומלצות, איתותי מסחר, קבוצת המלצות או הבטחת תשואה.</p>
+            </details>
+            <details class="reveal delay-2">
+              <summary>האם צריך ניסיון קודם?</summary>
+              <p>לא. התוכן נכתב למתחילים שרוצים להבין מושגים בסיסיים לפני שהם נחשפים לעולם ההשקעות.</p>
+            </details>
+            <details class="reveal delay-3">
+              <summary>איזה מידע נאסף בטופס?</summary>
+              <p>
+                שם, אימייל, WhatsApp ונושא לימוד מועדף בלבד. אין צורך למסור הכנסה, הון עצמי, חובות, פרטי אשראי או מידע
+                פיננסי רגיש.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <a class="brand" href="#top"
+            ><span class="brand-mark" aria-hidden="true">✓</span><span>ידע פיננסי למתחילים</span></a
+          >
+          <p class="footer-small">
+            © 2026. יש להחליף כאן את שם העסק/האתר, פרטי יצירת קשר ומדיניות הפרטיות לפני העלאה לאוויר.
+          </p>
+        </div>
+        <div class="footer-small">
+          <strong>גילוי נאות:</strong> התוכן באתר מיועד ללמידה כללית בלבד ואינו מהווה ייעוץ השקעות, שיווק השקעות, ניהול
+          תיקי השקעות, המלצה להשקעה או הצעה לרכישה/מכירה של ניירות ערך. אין הבטחת תשואה. כל פעולה פיננסית צריכה להיעשות
+          לאחר בדיקה עצמאית והתייעצות עם גורם מקצועי מוסמך לפי הצורך.
+          <div class="footer-links" style="margin-top: 14px">
+            <a href="privacy.html">מדיניות פרטיות</a>
+            <a href="#form">יצירת קשר</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a class="sticky-mobile-cta" href="#" onclick="onLinkBtnClick(); return false;">לקבלת המדריך החינמי ←</a>
+
+    <script>
+      // 表单提交：无任何限制，点击即埋点并直接跳转（与其它按钮一致，走 onLinkBtnClick）
+      const form = document.getElementById('leadForm')
+      form.addEventListener('submit', function (event) {
+        event.preventDefault()
+        onLinkBtnClick()
+      })
+
+      // Scroll reveal
+      const revealEls = document.querySelectorAll('.reveal')
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.14 },
+      )
+      revealEls.forEach((el) => observer.observe(el))
+
+      // Count up animation
+      const countEls = document.querySelectorAll('.count')
+      const countObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return
+            const el = entry.target
+            const target = Number(el.dataset.target || 0)
+            const duration = 1200
+            const startTime = performance.now()
+
+            function tick(now) {
+              const progress = Math.min((now - startTime) / duration, 1)
+              const eased = 1 - Math.pow(1 - progress, 3)
+              el.textContent = Math.round(target * eased)
+              if (progress < 1) requestAnimationFrame(tick)
+            }
+            requestAnimationFrame(tick)
+            countObserver.unobserve(el)
+          })
+        },
+        { threshold: 0.5 },
+      )
+      countEls.forEach((el) => countObserver.observe(el))
+
+      // Replace broken images with clean fallback on mobile / slow connections
+      document.querySelectorAll('img').forEach((img) => {
+        img.addEventListener('error', () => {
+          const holder = document.createElement('div')
+          holder.className = 'img-fallback'
+          holder.textContent = 'תצוגה מקדימה'
+          const parent = img.parentElement
+          if (parent) {
+            img.style.display = 'none'
+            if (!parent.querySelector('.img-fallback')) parent.appendChild(holder)
+          }
+        })
+      })
+
+      // Gentle parallax for hero stack
+      const stack = document.getElementById('parallaxStack')
+      if (stack && window.matchMedia('(pointer:fine)').matches) {
+        stack.addEventListener('mousemove', (e) => {
+          const rect = stack.getBoundingClientRect()
+          const relX = (e.clientX - rect.left) / rect.width - 0.5
+          const relY = (e.clientY - rect.top) / rect.height - 0.5
+          stack.querySelectorAll('[data-depth]').forEach((item) => {
+            const depth = Number(item.dataset.depth || 10)
+            // 用独立的 translate 属性，避免覆盖 CSS class 里的 rotate()
+            item.style.translate = `${relX * depth}px ${relY * depth}px`
+          })
+        })
+
+        stack.addEventListener('mouseleave', () => {
+          stack.querySelectorAll('[data-depth]').forEach((item) => {
+            item.style.translate = ''
+          })
+        })
+      }
+    </script>
+  </body>
+</html>
