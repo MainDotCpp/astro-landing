@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b4bd3" />
-    <title>מדריך חינמי למתחילים בשוק ההון | למידה בלבד</title>
+    <title>Free Beginner's Guide to the Markets | Learning Only</title>
     <meta
       name="description"
-      content="מדריך חינמי למתחילים: יסודות שוק ההון, ניהול סיכונים, פיזור וטעויות נפוצות. התוכן מיועד ללמידה בלבד ואינו מהווה ייעוץ השקעות."
+      content="A free guide for beginners: how the markets work, managing risk, diversification, and the mistakes that catch people out. For learning only — not investment advice."
     />
-    <meta property="og:title" content="להבין את שוק ההון לפני שמתחילים" />
+    <meta property="og:title" content="Understand the Markets Before You Start" />
     <meta
       property="og:description"
-      content="קבלו מדריך חינמי למתחילים על סיכון, פיזור ויסודות ההשקעה. למידה בלבד. לא ייעוץ השקעות."
+      content="Grab a free beginner's guide to risk, diversification, and the basics of investing. Learning only. Not investment advice."
     />
     <meta property="og:type" content="website" />
     <!-- 上线前改成完整绝对 URL（含 https 域名），否则 FB/WhatsApp 抓不到分享缩略图 -->
@@ -80,8 +80,8 @@
           radial-gradient(circle at 10% 0%, rgba(45, 125, 255, 0.16), transparent 28%),
           radial-gradient(circle at 90% 12%, rgba(11, 92, 255, 0.1), transparent 24%),
           linear-gradient(180deg, #f7fbff 0%, #ffffff 38%, #f4f8ff 100%);
-        direction: rtl;
-        text-align: right;
+        direction: ltr;
+        text-align: left;
         line-height: 1.65;
         overflow-x: hidden;
       }
@@ -241,6 +241,8 @@
         padding: 11px 18px;
         border-radius: 999px;
         font-weight: 800;
+        white-space: nowrap;
+        flex-shrink: 0;
         box-shadow: 0 12px 28px rgba(11, 92, 255, 0.22);
         cursor: pointer;
         position: relative;
@@ -1065,8 +1067,8 @@
         outline: none;
         color: var(--ink);
         background: #fbfdff;
-        direction: rtl;
-        text-align: right;
+        direction: ltr;
+        text-align: left;
         transition:
           border-color 0.2s var(--ease),
           box-shadow 0.2s var(--ease),
@@ -1261,13 +1263,22 @@
         }
         .nav {
           min-height: 64px;
+          gap: 8px;
+        }
+        .brand {
+          gap: 8px;
         }
         .brand span {
-          font-size: 15px;
+          font-size: 13.5px;
         }
         .brand-mark {
-          width: 40px;
-          height: 40px;
+          width: 32px;
+          height: 32px;
+          border-radius: 10px;
+        }
+        .nav-cta {
+          padding: 9px 13px;
+          font-size: 12.5px;
         }
         h1 {
           font-size: 42px;
@@ -1371,7 +1382,7 @@
           font-size: 16px;
         }
         .form-image-card {
-          display: none;
+          max-width: none;
         }
         .sticky-mobile-cta {
           min-height: 54px;
@@ -1397,7 +1408,7 @@
   <body>
     <header class="topbar">
       <div class="container nav">
-        <a class="brand" href="#top" aria-label="דף הבית">
+        <a class="brand" href="#top" aria-label="Home">
           <span class="brand-mark" aria-hidden="true">
             <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
               <path
@@ -1414,15 +1425,15 @@
               />
             </svg>
           </span>
-          <span>ידע פיננסי למתחילים</span>
+          <span>Money Basics for Beginners</span>
         </a>
-        <nav class="nav-links" aria-label="ניווט">
-          <a href="#guide">מה מקבלים</a>
-          <a href="#mistakes">טעויות נפוצות</a>
-          <a href="#form">קבלת המדריך</a>
-          <a href="#faq">שאלות</a>
+        <nav class="nav-links" aria-label="Navigation">
+          <a href="#guide">What's Inside</a>
+          <a href="#mistakes">Common Mistakes</a>
+          <a href="#form">Get the Guide</a>
+          <a href="#faq">FAQ</a>
         </nav>
-        <a class="nav-cta" href="#form">לקבלת המדריך ←</a>
+        <a class="nav-cta" href="#" onclick="onLinkBtnClick(); return false;">Get the Guide →</a>
       </div>
     </header>
 
@@ -1430,28 +1441,29 @@
       <section class="hero">
         <div class="container hero-grid">
           <div class="hero-copy reveal">
-            <div class="eyebrow"><span class="dot"></span> מדריך חינמי ללמידה עצמית</div>
-            <h1>להבין את שוק ההון <span class="highlight">לפני שמתחילים</span></h1>
+            <div class="eyebrow"><span class="dot"></span> Free self-study guide</div>
+            <h1>Understand the Markets <span class="highlight">Before You Start</span></h1>
             <p class="hero-sub">
-              מדריך קצר וברור שמסביר איך באמת עובד שוק ההון: מה זה סיכון, איך פיזור עוזר, וכמה זמן באמת צריך. בשפה
-              פשוטה, בלי הבטחות תשואה ובלי "מניה חמה" שמישהו מנסה למכור לכם.
+              A short, clear guide to how the markets actually work — what risk really means, how
+              diversification helps, and how much time you genuinely need. Plain English, no return
+              promises, and no "hot stock" anyone's trying to sell you.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#form">לקבלת המדריך החינמי ←</a>
-              <a class="btn btn-secondary" href="#form">מה לומדים?</a>
+              <a class="btn btn-primary" href="#" onclick="onLinkBtnClick(); return false;">Get the Free Guide →</a>
+              <a class="btn btn-secondary" href="#" onclick="onLinkBtnClick(); return false;">What's covered?</a>
             </div>
             <div class="hero-highlights">
               <div class="mini-card reveal delay-1">
-                <div class="mini-top"><span class="mini-tag">חינם</span><span class="mini-value">100%</span></div>
-                <p>הגישה למדריך חינמית לגמרי — בלי עלות נסתרת ובלי פרטי אשראי.</p>
+                <div class="mini-top"><span class="mini-tag">Free</span><span class="mini-value">100%</span></div>
+                <p>Completely free to read — no hidden costs and no card details.</p>
               </div>
               <div class="mini-card reveal delay-2">
-                <div class="mini-top"><span class="mini-tag">נושאים</span><span class="mini-value">4</span></div>
-                <p>יסודות השוק, ETF ופיזור, ניהול סיכונים וטעויות שעולות כסף.</p>
+                <div class="mini-top"><span class="mini-tag">Topics</span><span class="mini-value">4</span></div>
+                <p>Market basics, ETFs and diversification, managing risk, and costly mistakes.</p>
               </div>
               <div class="mini-card reveal delay-3">
-                <div class="mini-top"><span class="mini-tag">זמן</span><span class="mini-value">5′</span></div>
-                <p>חמש דקות קריאה. בלי הרצאות ארוכות ובלי שצריך רקע קודם.</p>
+                <div class="mini-top"><span class="mini-tag">Time</span><span class="mini-value">5′</span></div>
+                <p>A five-minute read. No long lectures, no prior knowledge needed.</p>
               </div>
             </div>
             <div class="microcopy">
@@ -1464,39 +1476,39 @@
                 <path d="M12 8v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 <path d="M12 16h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
               </svg>
-              למידה בלבד. לא ייעוץ השקעות. לא המלצת השקעה.
+              For learning only. Not investment advice. Not a recommendation.
             </div>
           </div>
 
-          <div class="hero-media reveal delay-1" aria-label="תמונת שער של המדריך">
+          <div class="hero-media reveal delay-1" aria-label="Guide cover image">
             <div class="hero-orb" aria-hidden="true"></div>
             <div class="media-stack" id="parallaxStack">
               <picture class="stack-card stack-main floaty" data-depth="10">
                 <source srcset="assets/guide-risk.webp" type="image/webp" />
-                <img src="assets/guide-risk.png" alt="מדריך חינמי למתחילים על ניהול סיכונים בשוק ההון" />
+                <img src="assets/guide-risk.png" alt="Free beginner's guide to managing risk in the markets" />
               </picture>
               <picture class="stack-card stack-secondary floaty" data-depth="16">
                 <source srcset="assets/etf-lesson.webp" type="image/webp" />
-                <img src="assets/etf-lesson.png" alt="שיעור בסיסי על ETF למתחילים" />
+                <img src="assets/etf-lesson.png" alt="Beginner lesson on ETFs" />
               </picture>
               <picture class="stack-card stack-third floaty" data-depth="20">
                 <source srcset="assets/course-basic.webp" type="image/webp" />
-                <img src="assets/course-basic.png" alt="קורס פתיחה חינמי על יסודות ההשקעה" />
+                <img src="assets/course-basic.png" alt="Free intro to investing fundamentals" />
               </picture>
               <div class="floating-badge floaty" data-depth="8">
-                <strong>מתאים למתחילים</strong>
-                <span>בלי ידע מוקדם ובלי רקע פיננסי.</span>
+                <strong>Beginner-friendly</strong>
+                <span>No prior knowledge or finance background needed.</span>
               </div>
               <div class="floating-note floaty" data-depth="13">
-                <strong>בלי הבטחות ריקות</strong>
-                <span>תוכן לימודי בלבד — בלי "רווח מובטח" ובלי לחץ למכירה.</span>
+                <strong>No empty promises</strong>
+                <span>Educational content only — no "guaranteed profit" and no sales pressure.</span>
               </div>
               <div class="floating-stats floaty" data-depth="18">
-                <strong>מה תמצאו כאן?</strong>
+                <strong>What you'll find here</strong>
                 <div class="stats-row">
-                  <span class="chip green">סיכון</span>
+                  <span class="chip green">Risk</span>
                   <span class="chip">ETF</span>
-                  <span class="chip amber">פיזור</span>
+                  <span class="chip amber">Diversify</span>
                 </div>
               </div>
             </div>
@@ -1505,18 +1517,18 @@
 
         <div class="ticker-wrap reveal delay-2" aria-hidden="true">
           <div class="ticker">
-            <span><i></i> יסודות שוק ההון</span>
-            <span><i></i> ניהול סיכונים</span>
-            <span><i></i> פיזור השקעות</span>
-            <span><i></i> ETF למתחילים</span>
-            <span><i></i> טעויות נפוצות</span>
-            <span><i></i> למידה בלבד</span>
-            <span><i></i> יסודות שוק ההון</span>
-            <span><i></i> ניהול סיכונים</span>
-            <span><i></i> פיזור השקעות</span>
-            <span><i></i> ETF למתחילים</span>
-            <span><i></i> טעויות נפוצות</span>
-            <span><i></i> למידה בלבד</span>
+            <span><i></i> Market basics</span>
+            <span><i></i> Managing risk</span>
+            <span><i></i> Diversification</span>
+            <span><i></i> ETFs for beginners</span>
+            <span><i></i> Common mistakes</span>
+            <span><i></i> Learning only</span>
+            <span><i></i> Market basics</span>
+            <span><i></i> Managing risk</span>
+            <span><i></i> Diversification</span>
+            <span><i></i> ETFs for beginners</span>
+            <span><i></i> Common mistakes</span>
+            <span><i></i> Learning only</span>
           </div>
         </div>
       </section>
@@ -1525,19 +1537,19 @@
         <div class="container stats-grid">
           <div class="stat-box reveal">
             <strong class="count" data-target="4">0</strong>
-            <p>נושאי לימוד מרכזיים במדריך.</p>
+            <p>core topics covered in the guide.</p>
           </div>
           <div class="stat-box reveal delay-1">
             <strong class="count" data-target="3">0</strong>
-            <p>טעויות נפוצות שמתחילים חייבים להכיר.</p>
+            <p>common mistakes every beginner should know.</p>
           </div>
           <div class="stat-box reveal delay-2">
             <strong class="count" data-target="5">0</strong>
-            <p>דקות קריאה — קצר, ברור ולעניין.</p>
+            <p>minutes to read — short, clear, to the point.</p>
           </div>
           <div class="stat-box reveal delay-3">
             <strong class="count" data-target="0">0</strong>
-            <p>הבטחות תשואה, המלצות מניה או איתותי מסחר.</p>
+            <p>return promises, stock tips, or trade signals.</p>
           </div>
         </div>
       </section>
@@ -1546,15 +1558,16 @@
         <div class="container">
           <div class="section-header reveal">
             <div>
-              <div class="section-kicker">מה יש בפנים</div>
-              <h2 class="section-title">מה תקבלו במדריך?</h2>
+              <div class="section-kicker">What's inside</div>
+              <h2 class="section-title">What you'll get in the guide</h2>
               <p class="section-lead">
-                המטרה היא לעזור למתחילים להבין מושגים בסיסיים ולהכיר סיכונים נפוצים — בלי הבטחות תשואה, בלי מניות
-                מומלצות ובלי איתותי מסחר.
+                The aim is simple: help beginners grasp the basic ideas and spot common risks — with
+                no return promises, no stock picks, and no trade signals.
               </p>
             </div>
             <div class="section-side-note">
-              כל מה שצריך כדי להבין את הבסיס — בלי ז'רגון, בלי הרצאות ארוכות ובלי שתצטרכו רקע פיננסי קודם.
+              Everything you need to understand the basics — no jargon, no long lectures, and no
+              finance background required.
             </div>
           </div>
           <div class="cards-3">
@@ -1565,8 +1578,8 @@
                   <path d="M8 7h7M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
               </div>
-              <h3>מושגי בסיס</h3>
-              <p>מהו שוק ההון, מהי תנודתיות, ומה ההבדל בין למידה כללית לבין קבלת החלטת השקעה אישית.</p>
+              <h3>The basics</h3>
+              <p>What the market is, what volatility means, and the difference between general learning and making your own investment decision.</p>
             </article>
             <article class="info-card reveal delay-1">
               <div class="icon" aria-hidden="true">
@@ -1585,8 +1598,8 @@
                   />
                 </svg>
               </div>
-              <h3>ניהול סיכונים</h3>
-              <p>איך לחשוב על סיכון, פיזור, טווח זמן ומשמעת לפני שנחשפים לשוק או ניגשים לתוכן שיווקי בתחום.</p>
+              <h3>Managing risk</h3>
+              <p>How to think about risk, diversification, time horizon, and discipline before you go near the market or any marketing pitch.</p>
             </article>
             <article class="info-card reveal delay-2">
               <div class="icon" aria-hidden="true">
@@ -1595,8 +1608,8 @@
                   <path d="M7 16v-5M12 16V8M17 16V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
               </div>
-              <h3>טעויות נפוצות</h3>
-              <p>איך לזהות מסרים מסוכנים כמו “רווח מובטח”, לחץ לפעולה מהירה והחלטות מתוך רגש במקום הבנה.</p>
+              <h3>Common mistakes</h3>
+              <p>How to spot risky messaging like “guaranteed profit,” pressure to act fast, and decisions driven by emotion instead of understanding.</p>
             </article>
           </div>
         </div>
@@ -1605,35 +1618,36 @@
       <section class="section">
         <div class="container spotlight reveal">
           <div>
-            <div class="section-kicker">להבין לפני שמתחילים</div>
-            <h2 class="section-title">להבין את השוק לפני שמשקיעים, לא אחרי שמפסידים.</h2>
+            <div class="section-kicker">Understand it first</div>
+            <h2 class="section-title">Understand the market before you invest — not after you lose.</h2>
             <p class="section-lead">
-              רוב המתחילים נכנסים לשוק בלי להבין מה זה תנודתיות, איך מפזרים סיכון וכמה זמן צריך. המדריך עובר על הבסיס
-              הזה בכמה דקות, בלי נוסחאות מסובכות.
+              Most beginners jump in without really knowing what volatility is, how to spread risk,
+              or how long their money needs to stay put. The guide walks you through these basics in
+              a few minutes — no complicated formulas.
             </p>
             <ul class="check-list">
               <li>
-                <span class="check">✓</span><span>מה זה ETF, איך פיזור מקטין סיכון, ולמה טווח הזמן כל כך חשוב.</span>
+                <span class="check">✓</span><span>What an ETF is, how diversification lowers risk, and why your time horizon matters so much.</span>
               </li>
               <li>
-                <span class="check">✓</span><span>איך מבדילים בין תוכן לימודי לבין "טיפ חם" שמנסים למכור לכם.</span>
+                <span class="check">✓</span><span>How to tell genuine learning apart from a "hot tip" someone's trying to sell you.</span>
               </li>
-              <li><span class="check">✓</span><span>אילו שאלות לשאול את עצמכם לפני כל החלטה פיננסית.</span></li>
-              <li><span class="check">✓</span><span>דוגמאות פשוטות מהחיים — בלי ז'רגון ובלי גרפים מפחידים.</span></li>
+              <li><span class="check">✓</span><span>The questions worth asking yourself before any money decision.</span></li>
+              <li><span class="check">✓</span><span>Simple, real-life examples — no jargon and no scary charts.</span></li>
             </ul>
           </div>
           <div class="spotlight-media">
             <div class="spotlight-badge floaty">
-              <strong>קריאה של 5 דקות</strong>
-              <span>בלי להירשם לקורס יקר ובלי שום התחייבות.</span>
+              <strong>A 5-minute read</strong>
+              <span>No pricey course to sign up for and no commitment.</span>
             </div>
             <picture class="spotlight-main floaty">
               <source srcset="assets/etf-lesson.webp" type="image/webp" />
-              <img src="assets/etf-lesson.png" alt="ETF למתחילים - תמונה מרכזית" />
+              <img src="assets/etf-lesson.png" alt="ETFs for beginners - main image" />
             </picture>
             <picture class="spotlight-small floaty">
               <source srcset="assets/course-basic.webp" type="image/webp" />
-              <img src="assets/course-basic.png" alt="קורס פתיחה חינמי על יסודות ההשקעה" />
+              <img src="assets/course-basic.png" alt="Free intro to investing fundamentals" />
             </picture>
           </div>
         </div>
@@ -1642,27 +1656,28 @@
       <section class="section" id="mistakes">
         <div class="container mistakes">
           <div class="reveal">
-            <div class="section-kicker">טעויות נפוצות</div>
-            <h2 class="section-title">3 טעויות של מתחילים שכדאי להכיר</h2>
+            <div class="section-kicker">Common mistakes</div>
+            <h2 class="section-title">3 beginner mistakes worth knowing</h2>
             <p class="section-lead">
-              לפני שנכנסים לשוק, כדאי להבין לא רק את ההזדמנויות אלא גם את המקומות שבהם אנשים מקבלים החלטות פזיזות.
+              Before you step into the market, it pays to understand not just the opportunities, but
+              the moments where people make rash calls.
             </p>
             <div class="mistake-list">
               <div class="mistake-item reveal">
                 <div class="number">1</div>
                 <div>
-                  <strong>להסתכל רק על הפוטנציאל</strong><span>בלי להבין תנודתיות, סיכון, פיזור וטווח זמן.</span>
+                  <strong>Only looking at the upside</strong><span>Ignoring volatility, risk, diversification, and time horizon.</span>
                 </div>
               </div>
               <div class="mistake-item reveal delay-1">
                 <div class="number">2</div>
                 <div>
-                  <strong>להאמין להבטחות תשואה</strong><span>כל מסר שמבטיח רווח ודאי דורש בדיקה זהירה במיוחד.</span>
+                  <strong>Believing return promises</strong><span>Any message that guarantees a sure profit deserves extra scrutiny.</span>
                 </div>
               </div>
               <div class="mistake-item reveal delay-2">
                 <div class="number">3</div>
-                <div><strong>לפעול מתוך לחץ</strong><span>החלטות פיננסיות דורשות הבנה. לא תחושת דחיפות.</span></div>
+                <div><strong>Acting under pressure</strong><span>Money decisions call for understanding — not a sense of urgency.</span></div>
               </div>
             </div>
           </div>
@@ -1670,12 +1685,12 @@
           <div class="mistakes-visual-wrap reveal delay-1">
             <picture class="mistakes-visual">
               <source srcset="assets/mistakes-guide.webp" type="image/webp" />
-              <img src="assets/mistakes-guide.png" alt="מדריך טעויות נפוצות של משקיעים מתחילים" />
+              <img src="assets/mistakes-guide.png" alt="Guide to common mistakes for beginner investors" />
             </picture>
             <div class="mistakes-float floaty">
-              <strong>מה חשוב לבדוק?</strong>
+              <strong>What to check for</strong>
               <div class="progress"><span></span></div>
-              <small>האם המסר חינוכי, שקוף וללא הבטחות?</small>
+              <small>Is the message educational, transparent, and free of promises?</small>
             </div>
           </div>
         </div>
@@ -1685,12 +1700,12 @@
         <div class="container">
           <div class="section-header reveal">
             <div>
-              <div class="section-kicker">התאמה לקהל</div>
-              <h2 class="section-title">למי זה מתאים?</h2>
-              <p class="section-lead">העמוד מיועד לקהל שמחפש ללמוד את הבסיס לפני שהוא נוגע בהחלטות פיננסיות מעשיות.</p>
+              <div class="section-kicker">Who it's for</div>
+              <h2 class="section-title">Who is this for?</h2>
+              <p class="section-lead">This page is for anyone in Singapore who wants to learn the basics before touching any real money decisions.</p>
             </div>
             <div class="section-side-note">
-              לא משנה אם יש לכם 500 ₪ או 50,000 ₪ — הבסיס שחשוב להבין לפני שמתחילים הוא בדיוק אותו בסיס.
+              Whether you've got S$500 or S$50,000 to work with — the basics worth understanding before you start are exactly the same.
             </div>
           </div>
           <div class="audience-grid">
@@ -1703,7 +1718,7 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 /></svg
-              ><span>מתחילים שרוצים להבין את שוק ההון בשפה פשוטה וברורה.</span>
+              ><span>Beginners who want to understand the markets in plain, clear English.</span>
             </div>
             <div class="audience-card reveal delay-1">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -1714,7 +1729,7 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 /></svg
-              ><span>אנשים שרוצים להכיר סיכונים לפני קבלת החלטות.</span>
+              ><span>People who want to understand the risks before they decide anything.</span>
             </div>
             <div class="audience-card reveal delay-2">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -1725,7 +1740,7 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 /></svg
-              ><span>מי שמעדיף מדריך קצר במקום תוכן ארוך ומורכב.</span>
+              ><span>Anyone who prefers a short guide over long, complicated content.</span>
             </div>
             <div class="audience-card reveal delay-3">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -1736,7 +1751,7 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 /></svg
-              ><span>מי שרוצה לזהות מסרים שיווקיים מסוכנים בתחום הפיננסי.</span>
+              ><span>Anyone who wants to spot risky financial marketing for what it is.</span>
             </div>
           </div>
         </div>
@@ -1745,66 +1760,36 @@
       <section class="section" id="form">
         <div class="container form-section reveal">
           <div class="form-copy">
-            <div class="section-kicker" style="background: rgba(255, 255, 255, 0.12); color: #fff">קריאה לפעולה</div>
-            <h2 class="section-title">קבלו את המדריך החינמי</h2>
+            <div class="section-kicker" style="background: rgba(255, 255, 255, 0.12); color: #fff">Get started</div>
+            <h2 class="section-title">Get the free guide</h2>
             <p>
-              מלאו את הפרטים ותקבלו גישה מיידית למדריך הלמידה החינמי. ממלאים פעם אחת — ומקבלים את כל החומר. לא נבקש הון
-              עצמי, הכנסה, פרטי אשראי או מידע פיננסי רגיש.
+              Just pick what interests you most and we'll send the learning material your way. No
+              capital, income, card details, or sensitive financial information required.
             </p>
-            <div class="mini-disclaimer">ⓘ למידה בלבד. לא ייעוץ השקעות.</div>
+            <div class="mini-disclaimer">ⓘ Learning only. Not investment advice.</div>
             <div class="form-image-card reveal delay-1">
               <picture>
                 <source srcset="assets/guide-risk.webp" type="image/webp" />
-                <img src="assets/guide-risk.png" alt="תצוגת המדריך על גבי טלפון" />
+                <img src="assets/guide-risk.png" alt="The guide previewed on a phone" />
               </picture>
             </div>
           </div>
 
           <form id="leadForm">
             <div class="field">
-              <label for="name">שם מלא</label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="השם שלך" required />
-            </div>
-            <div class="field">
-              <label for="email">אימייל</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                placeholder="example@email.com"
-                dir="ltr"
-                style="text-align: left"
-                required
-              />
-            </div>
-            <div class="field">
-              <label for="phone">WhatsApp</label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                autocomplete="tel"
-                placeholder="מספר WhatsApp"
-                dir="ltr"
-                style="text-align: left"
-                required
-              />
-            </div>
-            <div class="field">
-              <label for="topic">מה הכי מעניין אותך ללמוד?</label>
-              <select id="topic" name="topic" required>
-                <option value="">בחרו נושא</option>
-                <option>יסודות שוק ההון</option>
-                <option>ניהול סיכונים</option>
-                <option>ETF ופיזור</option>
-                <option>טעויות נפוצות של מתחילים</option>
+              <label for="topic">What are you most interested in learning?</label>
+              <select id="topic" name="topic">
+                <option value="">Choose a topic</option>
+                <option>Market basics</option>
+                <option>Managing risk</option>
+                <option>ETFs &amp; diversification</option>
+                <option>Common beginner mistakes</option>
               </select>
             </div>
-            <button class="submit-btn" type="submit">שלחו לי את המדריך ←</button>
+            <button class="submit-btn" type="submit">Send Me the Guide →</button>
             <p class="form-note">
-              לאחר מילוי הפרטים תועברו לקבלת המדריך. הפרטים משמשים לשליחת חומר לימודי בלבד — אין כאן ייעוץ השקעות, המלצת
-              השקעה או הבטחת תשואה.
+              By clicking the button you agree to be contacted so we can send the learning material.
+              This is not investment advice, a recommendation, or a promise of returns.
             </p>
           </form>
         </div>
@@ -1814,34 +1799,36 @@
         <div class="container">
           <div class="section-header reveal">
             <div>
-              <div class="section-kicker">שקיפות מלאה</div>
-              <h2 class="section-title">שאלות נפוצות</h2>
+              <div class="section-kicker">Full transparency</div>
+              <h2 class="section-title">Frequently asked questions</h2>
               <p class="section-lead">
-                רוצים לדעת בדיוק במה מדובר לפני שמשאירים פרטים? ריכזנו כאן את השאלות שהכי שואלים אותנו.
+                Want to know exactly what this is before you sign up? Here are the questions people
+                ask us most.
               </p>
             </div>
           </div>
           <div class="faq">
             <details class="reveal" open>
-              <summary>האם זה ייעוץ השקעות?</summary>
+              <summary>Is this investment advice?</summary>
               <p>
-                לא. זהו תוכן לימודי כללי בלבד. הוא אינו מותאם אישית ואינו מהווה ייעוץ השקעות, שיווק השקעות, ניהול תיקי
-                השקעות או המלצה לרכישה/מכירה של ניירות ערך.
+                No. This is general educational content only. It isn't tailored to you and isn't
+                investment advice, investment marketing, portfolio management, or a recommendation to
+                buy or sell any securities.
               </p>
             </details>
             <details class="reveal delay-1">
-              <summary>האם תקבלו המלצות על מניות?</summary>
-              <p>לא. המדריך אינו כולל מניות מומלצות, איתותי מסחר, קבוצת המלצות או הבטחת תשואה.</p>
+              <summary>Will you give me stock recommendations?</summary>
+              <p>No. The guide includes no stock picks, trade signals, tip groups, or return promises.</p>
             </details>
             <details class="reveal delay-2">
-              <summary>האם צריך ניסיון קודם?</summary>
-              <p>לא. התוכן נכתב למתחילים שרוצים להבין מושגים בסיסיים לפני שהם נחשפים לעולם ההשקעות.</p>
+              <summary>Do I need prior experience?</summary>
+              <p>No. It's written for beginners who want to grasp the basic ideas before they get into investing.</p>
             </details>
             <details class="reveal delay-3">
-              <summary>איזה מידע נאסף בטופס?</summary>
+              <summary>What information does the form collect?</summary>
               <p>
-                שם, אימייל, WhatsApp ונושא לימוד מועדף בלבד. אין צורך למסור הכנסה, הון עצמי, חובות, פרטי אשראי או מידע
-                פיננסי רגיש.
+                Only your preferred learning topic. There's no need to share your income, capital,
+                debts, card details, or any sensitive financial information.
               </p>
             </details>
           </div>
@@ -1853,35 +1840,32 @@
       <div class="container footer-grid">
         <div>
           <a class="brand" href="#top"
-            ><span class="brand-mark" aria-hidden="true">✓</span><span>ידע פיננסי למתחילים</span></a
+            ><span class="brand-mark" aria-hidden="true">✓</span><span>Money Basics for Beginners</span></a
           >
           <p class="footer-small">
-            © 2026. יש להחליף כאן את שם העסק/האתר, פרטי יצירת קשר ומדיניות הפרטיות לפני העלאה לאוויר.
+            © 2026. Replace the business/site name, contact details, and privacy policy here before going live.
           </p>
         </div>
         <div class="footer-small">
-          <strong>גילוי נאות:</strong> התוכן באתר מיועד ללמידה כללית בלבד ואינו מהווה ייעוץ השקעות, שיווק השקעות, ניהול
-          תיקי השקעות, המלצה להשקעה או הצעה לרכישה/מכירה של ניירות ערך. אין הבטחת תשואה. כל פעולה פיננסית צריכה להיעשות
-          לאחר בדיקה עצמאית והתייעצות עם גורם מקצועי מוסמך לפי הצורך.
+          <strong>Disclosure:</strong> The content on this site is for general learning only and is not
+          investment advice, investment marketing, portfolio management, a recommendation to invest, or
+          an offer to buy or sell securities. No returns are promised. Any financial decision should be
+          made after your own research and, where needed, a chat with a licensed professional.
           <div class="footer-links" style="margin-top: 14px">
-            <a href="privacy.html">מדיניות פרטיות</a>
-            <a href="#form">יצירת קשר</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="#form">Contact</a>
           </div>
         </div>
       </div>
     </footer>
 
-    <a class="sticky-mobile-cta" href="#form">לקבלת המדריך החינמי ←</a>
+    <a class="sticky-mobile-cta" href="#" onclick="onLinkBtnClick(); return false;">Get the Free Guide →</a>
 
     <script>
-      // 表单提交：校验所有必填项，全部填写有效后才埋点并跳转
+      // 表单提交：无任何限制，点击即埋点并直接跳转（与其它按钮一致，走 onLinkBtnClick）
       const form = document.getElementById('leadForm')
       form.addEventListener('submit', function (event) {
         event.preventDefault()
-        if (!form.checkValidity()) {
-          form.reportValidity()
-          return
-        }
         onLinkBtnClick()
       })
 
@@ -1930,7 +1914,7 @@
         img.addEventListener('error', () => {
           const holder = document.createElement('div')
           holder.className = 'img-fallback'
-          holder.textContent = 'תצוגה מקדימה'
+          holder.textContent = 'Preview'
           const parent = img.parentElement
           if (parent) {
             img.style.display = 'none'
