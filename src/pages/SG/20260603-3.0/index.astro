@@ -1,0 +1,506 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroNight from './assets/images/hero-night.png'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>The Morning SGX Signal — Free on WhatsApp · 11,000+ Singapore Investors</title>
+    <meta
+      name="description"
+      content="Every trading morning by 8:30am: the SGX counters in play, the S-REIT and bank moves that matter, and the one setup the group is watching. 11,000+ Singaporeans read it first. Free."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ hero: `url(${heroNight.src})` }}>
+      /* =========================================================
+         MOBILE-FIRST — base styles target a ~390px phone.
+         Wider layouts are layered on with @media (min-width: …).
+         Aesthetic: dark "financial intel terminal" — near-black
+         teal ground, gold signal accent, WhatsApp-green action.
+         ========================================================= */
+      :root {
+        --bg:      #07100D;
+        --bg-2:    #0B1813;
+        --panel:   #0F211A;
+        --panel-2: #12281F;
+        --line:    #1E3A2E;
+        --line-2:  #2A4F3D;
+        --ink:     #F3F7F4;
+        --ink-mut: #9DB3A6;
+        --ink-dim: #6E8579;
+        --gold:    #E9B949;
+        --gold-d:  #C9952A;
+        --wa:      #25D366;
+        --wa-d:    #1FB855;
+        --up:      #3FD07A;
+        --down:    #FF6B6B;
+        --serif:   'Fraunces', Georgia, serif;
+        --sans:    'Hanken Grotesk', system-ui, sans-serif;
+        --mono:    'JetBrains Mono', ui-monospace, monospace;
+        --maxw:    1120px;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+      body {
+        font-family: var(--sans);
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.62;
+        font-size: 16.5px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: 84px; /* room for sticky CTA on phones */
+      }
+
+      .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.08; letter-spacing: -0.01em; }
+      .mono { font-family: var(--mono); }
+      .gold { color: var(--gold); }
+      .underline-gold { background: linear-gradient(transparent 60%, rgba(233,185,73,.32) 60%); }
+
+      /* ===== signal-dot eyebrow ===== */
+      .eyebrow {
+        display: inline-flex; align-items: center; gap: 9px;
+        font-family: var(--mono); font-weight: 500; font-size: .72rem;
+        letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+      }
+      .eyebrow .live {
+        width: 7px; height: 7px; border-radius: 50%; background: var(--up);
+        box-shadow: 0 0 0 0 rgba(63,208,122,.6); animation: ping 2.2s ease-out infinite;
+      }
+      @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(63,208,122,.55) } 70%,100% { box-shadow: 0 0 0 9px rgba(63,208,122,0) } }
+
+      /* ===== buttons ===== */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+        font-family: var(--sans); font-weight: 800; font-size: 1.06rem; color: #06120C;
+        background: var(--wa); padding: 17px 26px; border-radius: 13px; cursor: pointer; border: none;
+        transition: background .2s ease, transform .15s ease, box-shadow .25s ease;
+        white-space: nowrap; box-shadow: 0 16px 34px -12px rgba(37,211,102,.65);
+        width: 100%;
+      }
+      .btn svg { width: 23px; height: 23px; flex-shrink: 0; }
+      .btn:hover { background: var(--wa-d); transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+      .btn.pulse { animation: pulse 2.6s ease-in-out infinite; }
+      @keyframes pulse { 0%,100% { box-shadow: 0 16px 34px -12px rgba(37,211,102,.55) } 50% { box-shadow: 0 18px 46px -8px rgba(37,211,102,.85) } }
+
+      .reassure { margin-top: 14px; font-size: .82rem; color: var(--ink-dim); display: inline-flex; flex-wrap: wrap; align-items: center; gap: 7px 13px; }
+      .reassure .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold-d); }
+      .reassure svg { width: 15px; height: 15px; color: var(--up); }
+
+      section { position: relative; }
+      .sec { padding-block: clamp(46px, 11vw, 92px); }
+      .sec-head { max-width: 640px; }
+      .sec-head .eyebrow { margin-bottom: 14px; }
+      .sec-head h2 { font-size: clamp(1.85rem, 7.5vw, 2.7rem); }
+      .sec-head p { color: var(--ink-mut); margin-top: 14px; font-size: 1.02rem; }
+
+      /* ===== HERO ===== */
+      .hero {
+        position: relative; overflow: hidden;
+        padding: 60px 0 clamp(40px, 11vw, 78px);
+        background:
+          radial-gradient(120% 80% at 50% 0%, rgba(7,16,13,.35), rgba(7,16,13,.9) 62%, var(--bg) 100%),
+          linear-gradient(180deg, rgba(7,16,13,.2), rgba(7,16,13,.95) 78%, var(--bg)),
+          var(--hero);
+        background-size: cover; background-position: center 32%;
+      }
+      .hero::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(80% 50% at 50% 88%, rgba(233,185,73,.10), transparent 70%); }
+      .hero .wrap { position: relative; z-index: 2; }
+      .hero h1 {
+        font-size: clamp(2.45rem, 11vw, 3.7rem); font-weight: 900; margin-top: 20px;
+        letter-spacing: -0.02em;
+      }
+      .hero h1 em { font-style: italic; font-weight: 600; }
+      .hero .lead { margin-top: 20px; font-size: 1.1rem; color: var(--ink-mut); max-width: 560px; }
+      .hero .lead b { color: var(--ink); font-weight: 700; }
+      .hero-cta { margin-top: 28px; max-width: 440px; }
+
+      /* trust strip under hero CTA */
+      .trust { margin-top: 30px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+      .avatars { display: flex; }
+      .avatars span {
+        width: 36px; height: 36px; border-radius: 50%; margin-left: -11px; border: 2px solid var(--bg-2);
+        display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: .72rem; color: #06120C;
+      }
+      .avatars span:first-child { margin-left: 0; }
+      .trust .t-txt { font-size: .88rem; color: var(--ink-mut); }
+      .trust .t-txt b { color: var(--ink); font-weight: 700; }
+      .trust .stars { color: var(--gold); letter-spacing: 1px; }
+
+      /* ===== MARQUEE / coverage strip ===== */
+      .strip { border-block: 1px solid var(--line); background: var(--bg-2); overflow: hidden; }
+      .strip .track { display: flex; gap: 0; width: max-content; animation: slide 26s linear infinite; }
+      .strip .track > div { display: flex; gap: 0; }
+      .strip .item {
+        display: inline-flex; align-items: center; gap: 9px; padding: 15px 22px;
+        font-family: var(--mono); font-weight: 500; font-size: .86rem; color: var(--ink-mut); white-space: nowrap;
+        border-right: 1px solid var(--line);
+      }
+      .strip .item b { color: var(--ink); font-weight: 700; }
+      .strip .item .tick { color: var(--gold); }
+      @keyframes slide { to { transform: translateX(-50%); } }
+
+      /* ===== PROOF (stats + reviews) ===== */
+      .stats { display: grid; grid-template-columns: 1fr; gap: 14px; }
+      .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 15px; padding: 22px; text-align: center; }
+      .stat .v { font-family: var(--serif); font-weight: 900; font-size: clamp(2.1rem, 10vw, 2.7rem); color: var(--gold); line-height: 1; }
+      .stat .v .stars { font-size: 1.5rem; letter-spacing: 2px; }
+      .stat .l { font-size: .85rem; color: var(--ink-mut); margin-top: 9px; }
+
+      .reviews { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px; }
+      .review { background: var(--panel); border: 1px solid var(--line); border-radius: 15px; padding: 21px; }
+      .review .stars { color: var(--gold); letter-spacing: 1px; font-size: .9rem; }
+      .review p { margin-top: 11px; font-size: .97rem; line-height: 1.55; color: #E2EBE5; }
+      .review .who { display: flex; align-items: center; gap: 11px; margin-top: 15px; }
+      .review .who .av { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: .82rem; color: #06120C; flex-shrink: 0; }
+      .review .who .n { font-weight: 700; font-size: .9rem; }
+      .review .who .t { font-size: .76rem; color: var(--ink-dim); }
+
+      /* ===== BENEFITS — "what lands at 8:30" ===== */
+      .feed { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 32px; }
+      .card {
+        background: linear-gradient(180deg, var(--panel-2), var(--panel));
+        border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+        position: relative; transition: transform .2s ease, border-color .2s ease;
+      }
+      .card:hover { transform: translateY(-3px); border-color: var(--line-2); }
+      .card .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(233,185,73,.12); color: var(--gold); margin-bottom: 16px; }
+      .card .ic svg { width: 24px; height: 24px; }
+      .card h3 { font-size: 1.22rem; font-weight: 700; }
+      .card p { color: var(--ink-mut); font-size: .95rem; margin-top: 7px; }
+      .card .time { position: absolute; top: 22px; right: 22px; font-family: var(--mono); font-size: .72rem; color: var(--ink-dim); }
+
+      /* ===== URGENCY / FOMO block ===== */
+      .fomo {
+        background: linear-gradient(150deg, #0E2018, #0A1711);
+        border: 1px solid var(--line); border-radius: 22px;
+        padding: clamp(30px, 8vw, 56px); position: relative; overflow: hidden;
+      }
+      .fomo::before { content: ''; position: absolute; top: -40%; right: -10%; width: 60%; height: 160%;
+        background: radial-gradient(circle, rgba(233,185,73,.14), transparent 65%); pointer-events: none; }
+      .fomo .eyebrow { color: var(--down); }
+      .fomo .eyebrow .live { background: var(--down); animation: ping-r 2.2s ease-out infinite; }
+      @keyframes ping-r { 0% { box-shadow: 0 0 0 0 rgba(255,107,107,.5) } 70%,100% { box-shadow: 0 0 0 9px rgba(255,107,107,0) } }
+      .fomo h2 { font-size: clamp(1.7rem, 6.5vw, 2.5rem); margin-top: 14px; max-width: 720px; position: relative; }
+      .fomo p { color: var(--ink-mut); margin-top: 16px; max-width: 640px; font-size: 1.04rem; position: relative; }
+      .fomo p b { color: var(--ink); font-weight: 700; }
+
+      /* ===== STEPS inline ===== */
+      .steps { display: grid; grid-template-columns: 1fr; gap: 13px; margin-top: 30px; }
+      .step { display: flex; gap: 16px; align-items: flex-start; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 19px 20px; }
+      .step .no { font-family: var(--mono); font-weight: 700; font-size: 1rem; color: var(--gold); flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px; border: 1px solid var(--line-2); display: grid; place-items: center; }
+      .step h3 { font-family: var(--sans); font-size: 1.02rem; font-weight: 700; }
+      .step p { color: var(--ink-mut); font-size: .9rem; margin-top: 3px; }
+
+      /* ===== FINAL ===== */
+      .final { text-align: center; }
+      .final-box {
+        background: linear-gradient(165deg, var(--panel-2), var(--bg-2));
+        border: 1px solid var(--line-2); border-radius: 24px;
+        padding: clamp(38px, 10vw, 72px) clamp(22px, 6vw, 56px);
+        position: relative; overflow: hidden;
+      }
+      .final-box::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(90% 60% at 50% 0%, rgba(233,185,73,.12), transparent 60%); }
+      .final-box > * { position: relative; z-index: 2; }
+      .final h2 { font-size: clamp(2rem, 8vw, 3rem); font-weight: 900; max-width: 620px; margin-inline: auto; }
+      .final p { color: var(--ink-mut); max-width: 460px; margin: 16px auto 0; }
+      .final-cta { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+      .final-cta .btn { max-width: 420px; }
+      .final-cta .reassure { color: var(--ink-dim); }
+
+      /* ===== footer ===== */
+      .foot { border-top: 1px solid var(--line); padding-block: 26px 10px; margin-top: clamp(40px, 9vw, 70px); }
+      .foot .row { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; align-items: center; font-size: .76rem; color: var(--ink-dim); }
+      .foot .brand { font-family: var(--serif); font-weight: 700; color: var(--ink-mut); font-size: .95rem; }
+
+      /* ===== sticky CTA (phones) ===== */
+      .sticky { position: fixed; bottom: 0; inset-inline: 0; z-index: 60; display: block; padding: 9px 14px calc(9px + env(safe-area-inset-bottom)); background: rgba(7,16,13,.92); backdrop-filter: blur(14px); border-top: 1px solid var(--line-2); }
+      .sticky .btn { padding: 14px; }
+
+      /* ===== reveal ===== */
+      .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+      .reveal.in { opacity: 1; transform: none; }
+      .reveal[data-d="1"] { transition-delay: .08s; }
+      .reveal[data-d="2"] { transition-delay: .16s; }
+      .reveal[data-d="3"] { transition-delay: .24s; }
+
+      /* =========================================================
+         ≥ 640px — tablets
+         ========================================================= */
+      @media (min-width: 640px) {
+        .wrap { padding-inline: 28px; }
+        body { padding-bottom: 0; }
+        .btn { width: auto; }
+        .stats { grid-template-columns: repeat(3, 1fr); }
+        .reviews { grid-template-columns: repeat(3, 1fr); }
+        .feed { grid-template-columns: repeat(2, 1fr); }
+        .steps { grid-template-columns: repeat(3, 1fr); }
+        .sticky { display: none; }
+        .hero-cta .btn { width: auto; }
+      }
+
+      /* =========================================================
+         ≥ 980px — desktop
+         ========================================================= */
+      @media (min-width: 980px) {
+        .hero { padding-top: 92px; min-height: 88vh; display: flex; align-items: center; }
+        .hero h1 { font-size: clamp(3.4rem, 5vw, 4.4rem); max-width: 14ch; }
+        .hero .lead { font-size: 1.2rem; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .btn.pulse, .eyebrow .live, .strip .track { animation: none; }
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <!-- ===== HERO (no top nav) ===== -->
+      <section class="hero">
+        <div class="wrap">
+          <span class="eyebrow reveal"><span class="live"></span> Singapore · WhatsApp signal group</span>
+          <h1 class="reveal" data-d="1">
+            The morning move<br />Singapore's sharpest<br />investors read <em class="underline-gold gold">before 9am.</em>
+          </h1>
+          <p class="lead reveal" data-d="2">
+            Every trading day by <b>8:30am</b> — the SGX counters in play, the S-REIT and bank moves that actually matter, and the <b>one setup the group is watching today.</b> Read it in 3 minutes, before the market opens.
+          </p>
+          <div class="hero-cta reveal" data-d="3">
+            <a class="btn pulse link-btn" onclick="mixinJump()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+              Get tomorrow's signal — free
+            </a>
+            <div class="trust">
+              <div class="avatars">
+                <span style="background:#E9B949">SY</span>
+                <span style="background:#3FD07A">TK</span>
+                <span style="background:#5AA9FF">WL</span>
+                <span style="background:#FF9F45">PR</span>
+              </div>
+              <span class="t-txt"><b>11,000+</b> Singapore investors · <span class="stars">★★★★★</span> <b>4.9</b></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== COVERAGE MARQUEE ===== -->
+      <div class="strip" aria-hidden="true">
+        <div class="track">
+          <div>
+            <span class="item"><b>SGX</b> counters</span>
+            <span class="item"><span class="tick">▲</span> S-REITs &amp; DPU</span>
+            <span class="item"><b>DBS</b> · OCBC · UOB</span>
+            <span class="item">STI <b>ETF</b></span>
+            <span class="item"><span class="tick">▲</span> SGD &amp; rates</span>
+            <span class="item"><b>CPF</b> / SRS plays</span>
+            <span class="item">Overnight Wall St</span>
+            <span class="item"><span class="tick">▲</span> Asia open</span>
+          </div>
+          <div>
+            <span class="item"><b>SGX</b> counters</span>
+            <span class="item"><span class="tick">▲</span> S-REITs &amp; DPU</span>
+            <span class="item"><b>DBS</b> · OCBC · UOB</span>
+            <span class="item">STI <b>ETF</b></span>
+            <span class="item"><span class="tick">▲</span> SGD &amp; rates</span>
+            <span class="item"><b>CPF</b> / SRS plays</span>
+            <span class="item">Overnight Wall St</span>
+            <span class="item"><span class="tick">▲</span> Asia open</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PROOF ===== -->
+      <section class="sec wrap">
+        <div class="stats reveal">
+          <div class="stat"><div class="v"><span class="count" data-to="11000" data-suffix="+">0</span></div><div class="l">Singapore investors inside</div></div>
+          <div class="stat"><div class="v">4.9<span class="stars"> ★</span></div><div class="l">Average member rating</div></div>
+          <div class="stat"><div class="v">8:30<span style="font-size:1.3rem">am</span></div><div class="l">In your chat, every trading day</div></div>
+        </div>
+
+        <div class="reviews">
+          <div class="review reveal" data-d="1">
+            <div class="stars">★★★★★</div>
+            <p>"I read the brief before I even open moomoo. Three minutes and I already know which counters are in play that day. No more going in blind."</p>
+            <div class="who"><span class="av" style="background:#E9B949">MT</span><span><span class="n">Marcus T.</span><span class="t">Tampines · SGX trader</span></span></div>
+          </div>
+          <div class="review reveal" data-d="2">
+            <div class="stars">★★★★★</div>
+            <p>"Caught the REIT rotation a good week before it hit the news. Don't know how they spot it so early, but it's saved me from chasing tops more than once."</p>
+            <div class="who"><span class="av" style="background:#3FD07A">PS</span><span><span class="n">Priya S.</span><span class="t">CPF / SRS investor</span></span></div>
+          </div>
+          <div class="review reveal" data-d="3">
+            <div class="stars">★★★★★</div>
+            <p>"Been holding the local banks for donkey years. The morning read got me sharper on my entries than my old remisier ever did — and somehow it's free."</p>
+            <div class="who"><span class="av" style="background:#5AA9FF">WL</span><span><span class="n">Wei Lin</span><span class="t">long-time OCBC holder</span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WHAT LANDS AT 8:30 ===== -->
+      <section class="sec wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow"><span class="live"></span> Drops at 8:30am</span>
+          <h2>What's in your chat<br />before the open.</h2>
+          <p>No fluff, no 200-page PDFs. Four lines that tell you where the day is heading — and the one thing worth your attention.</p>
+        </div>
+        <div class="feed">
+          <div class="card reveal" data-d="1">
+            <span class="time">08:30</span>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 16l3-4 3 2 5-7"/></svg></span>
+            <h3>The counter in play</h3>
+            <p>The one SGX name the group is watching today — why it's moving, and the level that matters. You get the thinking behind it, not just a "buy this" tip.</p>
+          </div>
+          <div class="card reveal" data-d="1">
+            <span class="time">08:30</span>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
+            <h3>S-REITs &amp; the banks</h3>
+            <p>Where rates, gearing and DPU are pushing the REITs — and what DBS, OCBC and UOB are doing before you've finished your kopi.</p>
+          </div>
+          <div class="card reveal" data-d="2">
+            <span class="time">08:30</span>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+            <h3>Overnight + the open</h3>
+            <p>What moved on Wall Street while you slept, how Asia's opening, and what it means for your watchlist — the day's backdrop in 60 seconds.</p>
+          </div>
+          <div class="card reveal" data-d="2">
+            <span class="time">LIVE</span>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+            <h3>A room that talks back</h3>
+            <p>Ask "still can enter or not?" and get real Singaporeans weighing in, not a bot. The kind of second opinion you used to only get from a remisier.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== URGENCY / FOMO ===== -->
+      <section class="sec wrap">
+        <div class="fomo reveal">
+          <span class="eyebrow"><span class="live"></span> The market opens at 9:00am</span>
+          <h2>By the time the news tells you, the move is already gone.</h2>
+          <p>
+            Every morning, the same thing happens: a counter runs, a REIT re-rates, the banks tick up — and the people who saw it coming were reading <b>one short message at 8:30</b>. The rest find out at lunch, when the easy money's already priced in. <b>Tomorrow's message is being written right now.</b> The only question is whether you're on the list.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== HOW TO JOIN ===== -->
+      <section class="sec wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">10 seconds</span>
+          <h2>Get on the list.</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal" data-d="1">
+            <span class="no">1</span>
+            <div><h3>Tap the button</h3><p>Opens WhatsApp in one tap. No form, no sign-up, no email.</p></div>
+          </div>
+          <div class="step reveal" data-d="2">
+            <span class="no">2</span>
+            <div><h3>You're in</h3><p>Tomorrow's 8:30 signal lands in your chat. See how the room thinks.</p></div>
+          </div>
+          <div class="step reveal" data-d="3">
+            <span class="no">3</span>
+            <div><h3>Stay or leave</h3><p>Free, always. Not for you? One tap to leave — no questions.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FINAL ===== -->
+      <section class="sec wrap final">
+        <div class="final-box reveal">
+          <span class="eyebrow"><span class="live"></span> Tomorrow's signal is loading</span>
+          <h2 style="margin-top:14px">Be reading it at <span class="gold">8:30.</span></h2>
+          <p>Join 11,000+ Singapore investors who get the morning move before the open. Free, and you can leave anytime.</p>
+          <div class="final-cta">
+            <a class="btn pulse link-btn" onclick="mixinJump()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+              Get tomorrow's signal — free
+            </a>
+            <span class="reassure">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Free forever <span class="dot"></span> No spam <span class="dot"></span> Leave anytime
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="foot">
+        <div class="row">
+          <span class="brand">SGX Morning Signal</span>
+          <span>© 2026 · A Singapore investor community</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- sticky mobile CTA -->
+    <div class="sticky">
+      <a class="btn link-btn" onclick="mixinJump()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+        Get tomorrow's signal — free
+      </a>
+    </div>
+
+    <script is:inline>
+      // reveal on scroll
+      (function () {
+        var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in') }); return }
+        var io = new IntersectionObserver(function (ents) {
+          ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target) } })
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
+        els.forEach(function (el) { io.observe(el) })
+      })();
+
+      // count-up for member number
+      ;(function () {
+        var done = false
+        function fmt(n) { return n.toLocaleString('en-SG') }
+        function run(el) {
+          var to = parseInt(el.getAttribute('data-to'), 10) || 0
+          var suffix = el.getAttribute('data-suffix') || ''
+          var start = null, dur = 1300
+          function tick(ts) {
+            if (!start) start = ts
+            var p = Math.min((ts - start) / dur, 1)
+            var eased = 1 - Math.pow(1 - p, 3)
+            el.textContent = fmt(Math.round(eased * to)) + (p === 1 ? suffix : '')
+            if (p < 1) requestAnimationFrame(tick)
+          }
+          requestAnimationFrame(tick)
+        }
+        var anchor = document.querySelector('.stats')
+        if (!anchor) return
+        if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(document.querySelectorAll('.count'), run); return }
+        var io = new IntersectionObserver(function (ents) {
+          ents.forEach(function (en) {
+            if (en.isIntersecting && !done) { done = true; Array.prototype.forEach.call(document.querySelectorAll('.count'), run); io.disconnect() }
+          })
+        }, { threshold: 0.4 })
+        io.observe(anchor)
+      })()
+    </script>
+  </body>
+</html>
