@@ -1,0 +1,442 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroSkyline from './assets/images/hero-skyline.png'
+import briefDesk from './assets/images/brief-desk.png'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singapore Market Notes — A free WhatsApp learning community for investors</title>
+    <meta
+      name="description"
+      content="A free WhatsApp community for Singaporeans learning to invest sensibly — SGX, S-REITs, ETFs, CPF & SRS and the macro that moves them. Daily briefings, weekly recaps, risk-first thinking. No hot tips, no sure-win."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ skyline: `url(${heroSkyline.src})`, desk: `url(${briefDesk.src})` }}>
+      /* =========================================================
+         MOBILE-FIRST: base styles target ~390px phones.
+         Larger layouts are added progressively with min-width.
+         ========================================================= */
+      :root {
+        --paper:    #F7F4ED;
+        --paper-2:  #FCFAF5;
+        --ink:      #1A1A17;
+        --ink-mut:  #5C5C52;
+        --forest:   #0E3B2E;
+        --forest-2: #16513D;
+        --brass:    #9C7320;
+        --brass-2:  #B6862C;
+        --rule:     rgba(26, 26, 23, 0.16);
+        --rule-2:   rgba(26, 26, 23, 0.09);
+        --up:       #1F7A4D;
+        --down:     #B23B3B;
+        --display:  'Fraunces', Georgia, 'Times New Roman', serif;
+        --sans:     'Hanken Grotesk', system-ui, sans-serif;
+        --mono:     'IBM Plex Mono', ui-monospace, monospace;
+        --maxw:     1120px;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+      body {
+        font-family: var(--sans);
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.65;
+        font-size: 16.5px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: 80px; /* room for sticky CTA on phones */
+      }
+
+      .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+      a { color: inherit; text-decoration: none; }
+
+      .serif { font-family: var(--display); }
+      .mono { font-family: var(--mono); }
+
+      h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.1; letter-spacing: -0.015em; }
+
+      /* ===== eyebrow / kicker ===== */
+      .eyebrow {
+        font-family: var(--mono); font-size: .7rem; font-weight: 500;
+        letter-spacing: .16em; text-transform: uppercase; color: var(--brass);
+        display: flex; align-items: center; gap: 10px;
+      }
+      .eyebrow .no { color: var(--forest); }
+      .eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--brass); flex-shrink: 0; }
+
+      /* ===== dateline (replaces any top header — pure text, no nav) ===== */
+      .dateline {
+        font-family: var(--mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--ink-mut); padding-top: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--rule);
+        display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline;
+      }
+      .dateline .name { color: var(--forest); font-weight: 600; font-family: var(--display); font-size: 1rem; letter-spacing: -0.01em; text-transform: none; }
+
+      /* ===== buttons ===== */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+        font-family: var(--sans); font-weight: 700; font-size: 1.02rem; color: #fff;
+        background: var(--forest); padding: 16px 26px; border-radius: 4px; cursor: pointer; border: none;
+        transition: background .2s ease, transform .16s ease, box-shadow .25s ease;
+        white-space: nowrap; box-shadow: 0 12px 26px -14px rgba(14, 59, 46, .8);
+        width: 100%; /* full-width on phones */
+      }
+      .btn svg { width: 21px; height: 21px; flex-shrink: 0; }
+      .btn:hover { background: var(--forest-2); transform: translateY(-1px); }
+      .btn.pulse { animation: pulse 2.8s ease-in-out infinite; }
+      @keyframes pulse { 0%,100% { box-shadow: 0 12px 26px -14px rgba(14,59,46,.8) } 50% { box-shadow: 0 14px 34px -10px rgba(14,59,46,.9) } }
+
+      .trust { font-family: var(--mono); font-size: .74rem; color: var(--ink-mut); margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 7px 12px; }
+      .trust .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--brass); }
+
+      section { position: relative; }
+      .sec { padding-block: clamp(48px, 11vw, 96px); }
+      .rule-top { border-top: 1px solid var(--rule); }
+
+      /* ===== HERO (base: single column, phone) ===== */
+      .hero { padding-block: 30px clamp(34px, 8vw, 56px); }
+      .hero-grid { display: grid; grid-template-columns: 1fr; gap: 34px; align-items: center; }
+      .hero h1 { font-size: clamp(2.55rem, 12vw, 3rem); font-weight: 600; margin-top: 20px; }
+      .hero h1 em { font-style: italic; font-weight: 500; color: var(--forest); }
+      .hero .lead { font-size: 1.08rem; color: var(--ink-mut); margin-top: 20px; max-width: 540px; line-height: 1.62; }
+      .hero .lead b { color: var(--ink); font-weight: 600; }
+      .hero-cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+      /* hero visual anchor — real editorial photo (no sample data) */
+      .hero-shot {
+        aspect-ratio: 5 / 4; background-image: var(--desk); background-size: cover; background-position: center;
+        border-radius: 8px; border: 1px solid var(--rule);
+        box-shadow: 0 40px 70px -45px rgba(26, 26, 23, .55);
+      }
+
+      /* ===== skyline band ===== */
+      .band .img { aspect-ratio: 16 / 11; background-image: var(--skyline); background-size: cover; background-position: center 40%; border-block: 1.5px solid var(--ink); }
+      .band .cap { font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mut); padding-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: space-between; }
+
+      /* ===== section heading ===== */
+      .sec-head { max-width: 640px; }
+      .sec-head h2 { font-size: clamp(1.7rem, 7vw, 2.7rem); margin-top: 14px; }
+      .sec-head h2 em { font-style: italic; color: var(--forest); }
+      .sec-head .sub { color: var(--ink-mut); margin-top: 14px; font-size: 1.02rem; }
+
+      /* ===== 01 · GET (base: single column) ===== */
+      .get { display: grid; grid-template-columns: 1fr; margin-top: 34px; border-top: 1px solid var(--rule); }
+      .get .item { padding: 24px 0; border-bottom: 1px solid var(--rule); }
+      .get .item .h { display: flex; align-items: baseline; gap: 12px; }
+      .get .item .n { font-family: var(--mono); font-size: .76rem; color: var(--brass); font-weight: 500; }
+      .get .item h3 { font-size: 1.28rem; font-weight: 600; }
+      .get .item p { color: var(--ink-mut); font-size: .96rem; margin-top: 8px; }
+
+      /* ===== 02 · RHYTHM (base: single column) ===== */
+      .rhythm { display: grid; grid-template-columns: 1fr; gap: 22px; margin-top: 34px; }
+      .beat { border-top: 2px solid var(--forest); padding-top: 15px; }
+      .beat .when { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--forest); font-weight: 600; }
+      .beat h3 { font-size: 1.16rem; margin-top: 9px; font-weight: 600; }
+      .beat p { color: var(--ink-mut); font-size: .92rem; margin-top: 7px; }
+      .rhythm-note { margin-top: 26px; font-family: var(--mono); font-size: .8rem; color: var(--ink-mut); line-height: 1.6; }
+
+      /* ===== 03 · SIGNAL (base: single column, image first) ===== */
+      .signal-wrap { display: block; }
+      .sig-list { margin-top: 28px; }
+      .sig { display: flex; gap: 15px; padding: 17px 0; border-bottom: 1px solid var(--rule); }
+      .sig:last-child { border-bottom: none; }
+      .sig .ic { width: 24px; height: 24px; flex-shrink: 0; color: var(--forest); margin-top: 2px; }
+      .sig .ic svg { width: 24px; height: 24px; }
+      .sig h3 { font-size: 1.1rem; font-weight: 600; }
+      .sig p { color: var(--ink-mut); font-size: .94rem; margin-top: 4px; }
+
+      /* ===== STRAIGHT (honesty) ===== */
+      .straight { background: var(--forest); color: #EDEFE9; border-radius: 10px; padding: clamp(28px, 7vw, 58px); position: relative; overflow: hidden; }
+      .straight::after { content: '“'; position: absolute; font-family: var(--display); font-size: 12rem; line-height: 1; color: rgba(255,255,255,.06); top: -1.5rem; inset-inline-end: .8rem; }
+      .straight .eyebrow { color: var(--brass-2); }
+      .straight .eyebrow::before { background: var(--brass-2); }
+      .straight .eyebrow .no { color: #EDEFE9; }
+      .straight h2 { color: #fff; font-size: clamp(1.55rem, 6vw, 2.5rem); margin-top: 16px; max-width: 760px; }
+      .straight h2 em { font-style: italic; color: var(--brass-2); }
+      .straight p { color: #C9D4CC; margin-top: 18px; max-width: 680px; font-size: 1.02rem; }
+      .straight p b { color: #fff; font-weight: 600; }
+
+      /* ===== FINAL ===== */
+      .final { text-align: center; }
+      .final .eyebrow { justify-content: center; }
+      .final h2 { font-size: clamp(1.9rem, 8vw, 3.1rem); max-width: 720px; margin-inline: auto; }
+      .final h2 em { font-style: italic; color: var(--forest); }
+      .final p { color: var(--ink-mut); max-width: 520px; margin: 16px auto 0; }
+      .final-cta { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 13px; }
+      .final-cta .btn { max-width: 420px; }
+      .final-cta .micro { font-family: var(--mono); font-size: .74rem; color: var(--ink-mut); }
+
+      /* ===== footer ===== */
+      .foot { border-top: 1.5px solid var(--ink); padding-block: 26px 10px; }
+      .foot .disc { color: var(--ink-mut); font-size: .8rem; line-height: 1.7; max-width: 880px; }
+      .foot .row { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: space-between; align-items: center; margin-top: 18px; font-family: var(--mono); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-mut); }
+
+      /* ===== sticky CTA (base: visible on phones) ===== */
+      .sticky { position: fixed; bottom: 0; inset-inline: 0; z-index: 60; display: block; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(247, 244, 237, .94); backdrop-filter: blur(12px); border-top: 1.5px solid var(--ink); }
+      .sticky .btn { padding: 15px; }
+
+      /* ===== reveal ===== */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+      .reveal.in { opacity: 1; transform: none; }
+      .reveal[data-d="1"] { transition-delay: .08s; }
+      .reveal[data-d="2"] { transition-delay: .16s; }
+      .reveal[data-d="3"] { transition-delay: .24s; }
+
+      /* =========================================================
+         ≥ 600px — tablets: two-up rhythm, inline buttons, drop sticky
+         ========================================================= */
+      @media (min-width: 600px) {
+        .wrap { padding-inline: 24px; }
+        body { padding-bottom: 0; }
+        .btn { width: auto; }
+        .hero-cta .btn { width: auto; }
+        .rhythm { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .band .img { aspect-ratio: 21 / 9; }
+        .sticky { display: none; }
+      }
+
+      /* =========================================================
+         ≥ 960px — desktop: hero & signal go two-column, editorial grid
+         ========================================================= */
+      @media (min-width: 960px) {
+        .hero { padding-block: clamp(40px, 5vw, 70px) clamp(34px, 5vw, 56px); }
+        .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: clamp(40px, 5vw, 64px); }
+        .hero h1 { font-size: clamp(3rem, 4.6vw, 4.15rem); margin-top: 22px; }
+        .hero .lead { font-size: 1.2rem; margin-top: 22px; }
+        .hero-cta { margin-top: 28px; }
+        .hero h1 .u { background: linear-gradient(transparent 62%, rgba(182, 134, 44, .32) 62%); }
+
+        .band .img { aspect-ratio: 24 / 9; }
+
+        .get { grid-template-columns: repeat(2, 1fr); margin-top: 44px; }
+        .get .item { padding: 26px 0; }
+        .get .item:nth-child(odd) { border-inline-end: 1px solid var(--rule); padding-inline-end: 30px; }
+        .get .item:nth-child(even) { padding-inline-start: 30px; }
+
+        .rhythm { grid-template-columns: repeat(4, 1fr); margin-top: 44px; }
+
+        .sig-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 44px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .btn.pulse { animation: none; }
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <!-- ===== HERO (no top header / nav — editorial dateline is plain text) ===== -->
+      <section class="hero wrap">
+        <p class="dateline">
+          <span class="name">Singapore Market Notes</span>
+          <span>A free WhatsApp learning community</span>
+        </p>
+
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow reveal">For investors who'd rather understand than guess</span>
+            <h1 class="reveal" data-d="1">
+              Read the market <em>like you live here.</em>
+            </h1>
+            <p class="lead reveal" data-d="2">
+              A free WhatsApp community for Singaporeans learning to invest sensibly — <b>SGX, S-REITs, ETFs, CPF &amp; SRS</b>, and the rates and macro that move them. Daily briefings, weekend recaps, and a <b>risk-first</b> way of thinking. No hot tips. No sure-win. Just clarity you can check.
+            </p>
+            <div class="hero-cta reveal" data-d="3">
+              <a class="btn pulse link-btn" onclick="mixinJump()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+                Join the WhatsApp community
+              </a>
+            </div>
+            <p class="trust reveal" data-d="3">
+              Free to join <span class="dot"></span> Read first, talk later <span class="dot"></span> Leave anytime
+            </p>
+          </div>
+
+          <div class="hero-visual reveal" data-d="2">
+            <div class="hero-shot"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SKYLINE BAND ===== -->
+      <section class="band reveal">
+        <div class="img"></div>
+        <div class="wrap cap">
+          <span>Built around the market you actually invest in</span>
+          <span>Marina Bay · SGX</span>
+        </div>
+      </section>
+
+      <!-- ===== 01 · WHAT YOU GET ===== -->
+      <section class="sec wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow"><span class="no">№ 01</span> What you actually get</span>
+          <h2>A clearer way in — <em>not another tip channel.</em></h2>
+          <p class="sub">If you've been meaning to invest but the information feels endless and scattered, this is the part that helps most.</p>
+        </div>
+        <div class="get">
+          <div class="item reveal" data-d="1">
+            <div class="h"><span class="n">01</span><h3>A direction to learn in</h3></div>
+            <p>A structured path through stocks, ETFs, REITs and macro — so you're not piecing it together from random videos and threads.</p>
+          </div>
+          <div class="item reveal" data-d="1">
+            <div class="h"><span class="n">02</span><h3>Local context that fits</h3></div>
+            <p>SGX, S-REITs, the local banks, CPF &amp; SRS, SGD and rates — the things a Singapore portfolio actually holds, not generic US content.</p>
+          </div>
+          <div class="item reveal" data-d="2">
+            <div class="h"><span class="n">03</span><h3>Less time filtering</h3></div>
+            <p>Curated reads and market notes instead of scrolling ten chats to figure out what mattered today.</p>
+          </div>
+          <div class="item reveal" data-d="2">
+            <div class="h"><span class="n">04</span><h3>People who show their thinking</h3></div>
+            <p>See how others reason through a decision — the questions, not just the buy and sell.</p>
+          </div>
+          <div class="item reveal" data-d="3">
+            <div class="h"><span class="n">05</span><h3>Risk before reward</h3></div>
+            <p>Position sizing, diversification and the long view — the habits that keep beginners out of the usual traps.</p>
+          </div>
+          <div class="item reveal" data-d="3">
+            <div class="h"><span class="n">06</span><h3>Low commitment</h3></div>
+            <p>Join free, read for a few days, stay if it's useful. If it isn't for you, leave — no fuss.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 02 · RHYTHM ===== -->
+      <section class="sec wrap rule-top">
+        <div class="sec-head reveal">
+          <span class="eyebrow"><span class="no">№ 02</span> The rhythm</span>
+          <h2>You won't miss what matters — <em>and we won't spam.</em></h2>
+        </div>
+        <div class="rhythm">
+          <div class="beat reveal" data-d="1">
+            <span class="when">Every trading morning</span>
+            <h3>The overnight scan</h3>
+            <p>Wall St, the Asia open, rates and FX — the day's backdrop in a couple of minutes.</p>
+          </div>
+          <div class="beat reveal" data-d="2">
+            <span class="when">When it matters, intraday</span>
+            <h3>Only if it moves things</h3>
+            <p>S-REITs, local banks, ETFs, a rate or policy shift, a key result — flagged and discussed.</p>
+          </div>
+          <div class="beat reveal" data-d="3">
+            <span class="when">Every weekend</span>
+            <h3>The week in review</h3>
+            <p>Main indices, sectors in focus, where money flowed, and what's on next week's calendar.</p>
+          </div>
+          <div class="beat reveal" data-d="3">
+            <span class="when">Once a month</span>
+            <h3>A proper deep-dive</h3>
+            <p>One theme done well — REITs 101, ETF allocation, diversification, CPF/SRS, managing risk.</p>
+          </div>
+        </div>
+        <p class="rhythm-note reveal">Busy week? Read the morning scan and the weekend review — that alone keeps you on top of the big picture.</p>
+      </section>
+
+      <!-- ===== 03 · SIGNAL ===== -->
+      <section class="sec wrap rule-top">
+        <div class="signal-wrap">
+            <div class="sec-head reveal">
+              <span class="eyebrow"><span class="no">№ 03</span> Signal, not noise</span>
+              <h2>Worth reading — <em>and worth checking.</em></h2>
+              <p class="sub">We'll be honest: the value isn't in chasing the next hot counter. It's content you can learn from, trace back, and reason about.</p>
+            </div>
+            <div class="sig-list">
+              <div class="sig reveal" data-d="1">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M4 14l4-4 4 3 7-7"/></svg></span>
+                <div><h3>Sourced, not whispered</h3><p>Exchange filings, results, central-bank and rate data — not rumours from a forum.</p></div>
+              </div>
+              <div class="sig reveal" data-d="1">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <div><h3>Explained, not asserted</h3><p>When a REIT drops, we talk rates, gearing, occupancy and DPU — the why, not just buy or sell.</p></div>
+              </div>
+              <div class="sig reveal" data-d="2">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg></span>
+                <div><h3>Local-first</h3><p>Built around what a Singapore investor really holds — SGX, S-REITs, banks, CPF/SRS, the SGD.</p></div>
+              </div>
+              <div class="sig reveal" data-d="2">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                <div><h3>Honest about risk</h3><p>No guarantees, no "insider" anything. Markets move; we say so, and we size for it.</p></div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- ===== STRAIGHT TALK ===== -->
+      <section class="sec wrap">
+        <div class="straight reveal">
+          <span class="eyebrow"><span class="no">No small print</span> Straight talk</span>
+          <h2>It's a learning community — <em>not advice, not a tip line.</em></h2>
+          <p>
+            We don't promise returns, we don't manage your money, and we don't hand out hot tips to chase. <b>The goal is simple: help you understand enough to make your own calls.</b> Join free, read for a few days, and if it isn't for you, leave. That's the whole deal.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== FINAL ===== -->
+      <section class="sec wrap final">
+        <div class="reveal">
+          <span class="eyebrow">Start where you live</span>
+          <h2 style="margin-top:18px">Make sense of the market <em>with people who actually live here.</em></h2>
+          <p>Free to join. Read first. Stay only if it earns its place in your week.</p>
+          <div class="final-cta">
+            <a class="btn pulse link-btn" onclick="mixinJump()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+              Join the WhatsApp community
+            </a>
+            <span class="micro">Free · No spam · Leave anytime</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="foot">
+        <p class="disc">
+          Singapore Market Notes is an educational community. Nothing shared here is financial advice, a recommendation, or an offer to buy or sell any security. Investing carries risk, including loss of capital, and past performance is not indicative of future results. Always consider your own circumstances and, where needed, consult a licensed financial adviser. Every decision remains your own.
+        </p>
+        <div class="row">
+          <span>© 2026 · Singapore Market Notes</span>
+          <span>Learning community · Not financial advice</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- sticky mobile CTA -->
+    <div class="sticky">
+      <a class="btn link-btn" onclick="mixinJump()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+        Join the WhatsApp community — free
+      </a>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in') }); return }
+        var io = new IntersectionObserver(function (ents) {
+          ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target) } })
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
+        els.forEach(function (el) { io.observe(el) })
+      })()
+    </script>
+  </body>
+</html>

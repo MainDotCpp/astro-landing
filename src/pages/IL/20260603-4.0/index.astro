@@ -1,0 +1,205 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import companiesBanner from './assets/images/companies-banner.jpg'
+---
+
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>קהילת משקיעים</title>
+
+    <RedirectCode />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ banner: `url(${companiesBanner.src})` }}>
+      * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Heebo', sans-serif; }
+
+      body { background: #071529; color: white; overflow-x: hidden; }
+
+      .hero {
+        background:
+          linear-gradient(rgba(7, 21, 41, .82), rgba(7, 21, 41, .82)),
+          url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1800');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      .container { max-width: 1100px; margin: auto; }
+
+      h1 { font-size: 54px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+
+      .hero p { font-size: 22px; max-width: 700px; margin: auto; line-height: 1.8; color: #d7e0f0; }
+
+      /* companies banner image (replaces the old .stock-card) */
+      .banner-shot {
+        display: block;
+        width: 100%;
+        max-width: 900px;
+        margin: 40px auto;
+        border-radius: 24px;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, .45);
+        border: 1px solid rgba(255, 255, 255, .08);
+      }
+
+      .whatsapp {
+        display: inline-block;
+        margin-top: 30px;
+        background: #25D366;
+        color: white;
+        text-decoration: none;
+        padding: 18px 40px;
+        border-radius: 12px;
+        font-size: 22px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .ai-section {
+        background:
+          linear-gradient(rgba(9, 20, 38, .88), rgba(9, 20, 38, .88)),
+          url('https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=1800');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+      }
+
+      .section-title { text-align: center; font-size: 42px; margin-bottom: 50px; }
+
+      .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+      .feature {
+        background: rgba(255, 255, 255, .08);
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .feature span { font-size: 40px; display: block; margin-bottom: 10px; }
+
+      .community { background: #f5f7fb; color: #111; padding: 80px 20px; }
+
+      .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+
+      .community img { width: 100%; border-radius: 24px; }
+
+      .community h2 { font-size: 48px; margin-bottom: 20px; color: #102A56; }
+
+      .community ul { list-style: none; }
+
+      .community li { font-size: 22px; margin-bottom: 15px; }
+
+      .cta {
+        background:
+          linear-gradient(rgba(7, 21, 41, .9), rgba(7, 21, 41, .9)),
+          url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1800');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      .cta h2 { font-size: 54px; margin-bottom: 20px; }
+
+      .cta p { font-size: 22px; max-width: 700px; margin: auto; line-height: 1.8; }
+
+      .footer { padding: 25px; text-align: center; color: #a0aec0; background: #050d1d; }
+
+      @media (max-width: 768px) {
+        h1 { font-size: 38px; }
+        .features { grid-template-columns: 1fr 1fr; }
+        .community-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="hero">
+      <div class="container">
+        <h1>
+          האם יש עוד חברות עם פוטנציאל דומה?
+        </h1>
+
+        <p>
+          משקיעים רבים עוקבים אחרי NVIDIA ו-Elbit Systems.
+          אבל השאלה האמיתית היא:
+          מה כדאי להתחיל לעקוב אחריו עכשיו?
+        </p>
+
+        <img class="banner-shot" src={companiesBanner.src} alt="חברות מובילות וביצועים" />
+
+        <a class="whatsapp link-btn" onclick="mixinJump()">
+          📲 WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section class="ai-section">
+      <div class="container">
+        <h2 class="section-title">
+          למה חברות מסוימות מושכות תשומת לב?
+        </h2>
+
+        <div class="features">
+          <div class="feature">
+            <span>📈</span>
+            מגמות שוק
+          </div>
+
+          <div class="feature">
+            <span>💡</span>
+            חדשנות
+          </div>
+
+          <div class="feature">
+            <span>🌍</span>
+            שוק גלובלי
+          </div>
+
+          <div class="feature">
+            <span>🛡️</span>
+            יתרון תחרותי
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="community">
+      <div class="container">
+        <div class="community-grid">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200" alt="" />
+
+          <div>
+            <h2>
+              פער המידע הוא המפתח
+            </h2>
+
+            <ul>
+              <li>✅ עדכוני שוק</li>
+              <li>✅ מגמות טכנולוגיה</li>
+              <li>✅ חברות מעניינות למעקב</li>
+              <li>✅ רעיונות ותובנות</li>
+              <li>✅ קהילה פעילה ב-WhatsApp</li>
+            </ul>
+
+            <a class="whatsapp link-btn" onclick="mixinJump()">
+              📲 הצטרפו עכשיו
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © Investor Community
+    </div>
+  </body>
+</html>

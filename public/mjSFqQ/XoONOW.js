@@ -9,6 +9,14 @@ function navigateOnce(link) {
   window.location.href = link
 }
 
+function getPurchaseValue() {
+  return (typeof window.__fbPurchaseValue === 'number') ? window.__fbPurchaseValue : FB_DEFAULT_VALUE
+}
+
+function getPurchaseCurrency() {
+  return (typeof window.__fbPurchaseCurrency === 'string') ? window.__fbPurchaseCurrency : FB_DEFAULT_CURRENCY
+}
+
 function fireGoogle(onCallback) {
   var hasGtag = typeof gtag === 'function'
   var hasConv = typeof gtag_report_conversion === 'function'
@@ -38,15 +46,28 @@ function fireGoogle(onCallback) {
 
 function fireFacebook(link) {
   if (typeof window.fbq !== 'function') return false
-  var value = (typeof window.__fbPurchaseValue === 'number')
-    ? window.__fbPurchaseValue
-    : FB_DEFAULT_VALUE
-  var currency = (typeof window.__fbPurchaseCurrency === 'string')
-    ? window.__fbPurchaseCurrency
-    : FB_DEFAULT_CURRENCY
+  var value = getPurchaseValue()
+  var currency = getPurchaseCurrency()
   try { window.fbq('track', 'AddToCart') } catch (e) {}
   try {
     window.fbq('track', 'Purchase', {
+      value: value,
+      currency: currency,
+      content_name: link,
+    })
+  }
+  catch (e) {}
+  return true
+}
+
+function fireTiktok(link) {
+  if (typeof window.ttq === 'undefined' || typeof window.ttq.track !== 'function') return false
+  var value = getPurchaseValue()
+  var currency = getPurchaseCurrency()
+  try { window.ttq.track('ClickButton', { content_name: link }) } catch (e) {}
+  try { window.ttq.track('AddToCart', { content_name: link }) } catch (e) {}
+  try {
+    window.ttq.track('CompletePayment', {
       value: value,
       currency: currency,
       content_name: link,
@@ -63,6 +84,7 @@ function jump(link) {
   try {
     if (fireGoogle(function () { navigateOnce(link) })) trackerFired = true
     if (fireFacebook(link)) trackerFired = true
+    if (fireTiktok(link)) trackerFired = true
   }
   catch (e) {
     console.error(e)

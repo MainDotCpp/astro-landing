@@ -1,0 +1,397 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroStudy from './assets/images/hero-study.png'
+---
+
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>投資學習交流社群 — 少走冤枉路，看懂市場再出手</title>
+    <meta
+      name="description"
+      content="一個重視投資認知、資訊整理與風險控制的學習交流社群。我們每天幫你整理財經重點、拆解投資邏輯，也會定期複盤實際案例。不喊單、不保證收益、不鼓勵你壓身家——台股、ETF、基金、資產配置，慢慢養出自己的判斷力。"
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ heroImg: `url(${heroStudy.src})` }}>
+      :root {
+        --ink:        #142033;
+        --navy:       #0E2A47;
+        --navy-2:     #103a66;
+        --blue:       #1E6FD9;
+        --blue-soft:  #E8F0FB;
+        --line:       #E2E8F2;
+        --bg:         #F6F8FC;
+        --white:      #FFFFFF;
+        --muted:      #5B6B82;
+        --muted-2:    #8A98AD;
+        --line-grn:   #06C755;
+        --line-grn-d: #05a648;
+        --warn:       #C8553D;
+        --font:       'Noto Sans TC', system-ui, sans-serif;
+        --maxw:       1080px;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: var(--font);
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.75;
+        font-size: 16.5px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: 76px;
+      }
+
+      .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 22px; }
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3 { line-height: 1.3; font-weight: 900; letter-spacing: 0.01em; }
+      h2 { font-size: clamp(1.5rem, 4.4vw, 2.15rem); }
+
+      /* ===== buttons ===== */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        font-family: var(--font); font-weight: 700; font-size: 1.06rem;
+        padding: 16px 30px; border-radius: 12px; cursor: pointer; border: none;
+        transition: transform .16s ease, box-shadow .25s ease, filter .2s ease;
+        white-space: nowrap; line-height: 1.4;
+      }
+      .btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+      .btn-line {
+        background: var(--line-grn); color: #fff;
+        box-shadow: 0 14px 30px -10px rgba(6, 199, 85, .5);
+      }
+      .btn-line:hover { transform: translateY(-2px); background: var(--line-grn-d); }
+      .btn-ghost { background: #fff; color: var(--navy); border: 1.5px solid var(--line); }
+      .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+      .pulse { animation: pulse 2.4s ease-in-out infinite; }
+      @keyframes pulse { 0%,100%{ box-shadow: 0 14px 30px -10px rgba(6,199,85,.5) } 50%{ box-shadow: 0 14px 40px -6px rgba(6,199,85,.6) } }
+
+      .kicker {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--blue);
+        background: var(--blue-soft); padding: 6px 14px; border-radius: 999px;
+      }
+      .kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+
+      section { position: relative; }
+      .sec { padding-block: clamp(46px, 7vw, 80px); }
+      .sec-head { max-width: 640px; margin-bottom: 36px; }
+      .sec-head h2 { margin-top: 14px; color: var(--navy); }
+      .sec-head p { margin-top: 12px; color: var(--muted); }
+
+      /* ===== HERO ===== */
+      .hero { padding-block: clamp(30px, 5vw, 56px); }
+      .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 56px); align-items: center; }
+      .hero h1 { font-size: clamp(1.95rem, 5.6vw, 3.05rem); color: var(--navy); margin: 18px 0 0; }
+      .hero h1 .hl { color: var(--blue); }
+      .hero .lead { font-size: clamp(1.02rem, 2.5vw, 1.18rem); color: var(--muted); margin-top: 18px; max-width: 520px; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 12px 14px; margin-top: 28px; align-items: center; }
+      .hero .assure { font-size: .84rem; color: var(--muted-2); margin-top: 16px; display: flex; align-items: center; gap: 8px; }
+      .hero .assure svg { width: 16px; height: 16px; color: var(--line-grn); flex-shrink: 0; }
+      .hero-visual { position: relative; }
+      .hero-visual .frame {
+        border-radius: 20px; overflow: hidden; border: 1px solid var(--line);
+        background-image: var(--heroImg); background-size: cover; background-position: center;
+        aspect-ratio: 3 / 2;
+        box-shadow: 0 30px 60px -28px rgba(14, 42, 71, .4);
+      }
+      .float-chip {
+        position: absolute; inset-inline-start: -14px; bottom: 18px;
+        background: #fff; border: 1px solid var(--line); border-radius: 14px;
+        padding: 12px 16px; box-shadow: 0 18px 40px -16px rgba(14,42,71,.3);
+        display: flex; align-items: center; gap: 11px; max-width: 240px;
+      }
+      .float-chip .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); flex-shrink: 0; }
+      .float-chip .ic svg { width: 19px; height: 19px; }
+      .float-chip b { font-size: .9rem; color: var(--navy); }
+      .float-chip span { font-size: .76rem; color: var(--muted); display: block; }
+
+      /* ===== PAIN ===== */
+      .pain { background: var(--navy); color: #fff; }
+      .pain .sec-head h2 { color: #fff; }
+      .pain .sec-head p { color: #B9C6DA; }
+      .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+      .pain-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 22px; }
+      .pain-card .ic { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: rgba(200,85,61,.18); color: #F0A893; margin-bottom: 14px; }
+      .pain-card .ic svg { width: 22px; height: 22px; }
+      .pain-card h3 { font-size: 1.08rem; margin-bottom: 6px; }
+      .pain-card p { color: #B9C6DA; font-size: .95rem; }
+      .pain-punch { margin-top: 30px; font-size: clamp(1.15rem, 3vw, 1.5rem); font-weight: 700; max-width: 760px; }
+      .pain-punch .hl { color: #5EA9FF; }
+
+      /* ===== VALUE ===== */
+      .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; }
+      .value-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; transition: transform .25s ease, box-shadow .25s ease; }
+      .value-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -28px rgba(14,42,71,.3); }
+      .value-card .num { font-size: .8rem; font-weight: 700; color: var(--blue); letter-spacing: .1em; }
+      .value-card .ic { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); margin: 12px 0 16px; }
+      .value-card .ic svg { width: 26px; height: 26px; }
+      .value-card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
+      .value-card p { color: var(--muted); font-size: .96rem; }
+
+      /* ===== QUOTE BAND ===== */
+      .quote-band { background: linear-gradient(135deg, var(--navy), var(--navy-2)); border-radius: 24px; padding: clamp(30px, 5vw, 52px); text-align: center; color: #fff; }
+      .quote-band p { font-size: clamp(1.2rem, 3.2vw, 1.7rem); font-weight: 700; line-height: 1.5; max-width: 760px; margin-inline: auto; }
+      .quote-band .hl { color: #5EA9FF; }
+      .quote-band .sub { font-size: .98rem; font-weight: 400; color: #B9C6DA; margin-top: 16px; }
+
+      /* ===== AUDIENCE ===== */
+      .aud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+      .aud-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; gap: 15px; align-items: flex-start; }
+      .aud-card .ic { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); flex-shrink: 0; }
+      .aud-card .ic svg { width: 21px; height: 21px; }
+      .aud-card h3 { font-size: 1.08rem; color: var(--navy); margin-bottom: 5px; }
+      .aud-card p { color: var(--muted); font-size: .94rem; }
+
+      /* ===== HONESTY ===== */
+      .honesty { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: clamp(26px, 4vw, 40px); display: flex; gap: 20px; align-items: flex-start; }
+      .honesty .ic { width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center; background: rgba(200,85,61,.1); color: var(--warn); flex-shrink: 0; }
+      .honesty .ic svg { width: 25px; height: 25px; }
+      .honesty h3 { font-size: 1.22rem; color: var(--navy); margin-bottom: 8px; }
+      .honesty p { color: var(--muted); font-size: .98rem; }
+      .honesty b { color: var(--ink); }
+
+      /* ===== FINAL CTA ===== */
+      .final { background: linear-gradient(135deg, var(--navy), var(--navy-2)); border-radius: 26px; padding: clamp(34px, 5vw, 60px); text-align: center; color: #fff; }
+      .final h2 { color: #fff; }
+      .final p { color: #C3D0E2; max-width: 540px; margin: 14px auto 0; }
+      .final-cta { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+      .final-cta .micro { font-size: .82rem; color: #93A6C4; }
+
+      /* ===== footer ===== */
+      .disclaimer { border-top: 1px solid var(--line); }
+      .disclaimer p { max-width: 880px; margin-inline: auto; text-align: center; color: var(--muted-2); font-size: .82rem; line-height: 1.7; }
+      .foot { border-top: 1px solid var(--line); padding-block: 24px; display: flex; flex-wrap: wrap; gap: 12px 22px; justify-content: space-between; align-items: center; font-size: .82rem; color: var(--muted-2); }
+      .foot-links { display: flex; gap: 18px; }
+      .foot-links a:hover { color: var(--blue); }
+
+      /* ===== sticky mobile CTA ===== */
+      .sticky { position: fixed; bottom: 0; inset-inline: 0; z-index: 60; display: none; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.95); backdrop-filter: blur(12px); border-top: 1px solid var(--line); }
+      .sticky .btn { width: 100%; padding: 15px; }
+
+      /* ===== reveal ===== */
+      .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      @media (max-width: 920px) {
+        .hero-grid { grid-template-columns: 1fr; }
+        .hero-visual { max-width: 460px; }
+        .pain-grid, .value-grid, .aud-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 560px) {
+        .sticky { display: block; }
+        .hero-cta .btn { width: 100%; }
+        .honesty { flex-direction: column; gap: 14px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .pulse { animation: none; }
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+  <body id="top">
+    <main>
+      <!-- ===== 1 · HERO ===== -->
+      <section class="hero wrap">
+        <div class="hero-grid">
+          <div class="reveal">
+            <span class="kicker"><span class="dot"></span>投資學習與交流社群 · 不喊單</span>
+            <h1>少走冤枉路，<span class="hl">看懂市場再出手</span></h1>
+            <p class="lead">
+              這不是「保證收益、帶你暴富」的群，而是一個幫你建立投資認知、整理資訊、守住風險的學習圈。每天看重點、把邏輯弄懂，慢慢養成自己的判斷力。
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-line pulse link-btn" onclick="mixinJump()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.94 2 10.8c0 2.78 1.46 5.26 3.76 6.92-.16.6-.6 2.18-.69 2.52-.11.42.16.42.33.3.13-.09 2.1-1.43 2.96-2.02.85.12 1.73.18 2.64.18 5.52 0 10-3.94 10-8.8C23 5.94 18.52 2 12 2z"/></svg>
+                免費加入 LINE 社群
+              </a>
+              <a class="btn btn-ghost" href="#value">先看看有什麼內容</a>
+            </div>
+            <p class="assure">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              免費體驗 · 不喊單 · 不保證收益 · 隨時都能退出
+            </p>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="frame"></div>
+            <div class="float-chip">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 9l-5 5-3-3-4 4"/></svg></span>
+              <span><b>每天重點整理</b><span>財經新聞 · 政策 · 產業動態</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2 · PAIN ===== -->
+      <section class="pain sec">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <span class="kicker" style="background:rgba(255,255,255,.1);color:#fff"><span class="dot" style="background:#F0A893"></span>很多人不是不努力，而是踩了同樣的雷</span>
+            <h2>散戶會賠，很多時候不是運氣差</h2>
+            <p>而是資訊太雜、情緒一來就上頭、又愛聽小道消息。這三件事，幾乎每個人都中過。</p>
+          </div>
+          <div class="pain-grid">
+            <div class="pain-card reveal">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5"/><path d="M3 21h18"/></svg></span>
+              <h3>追高殺低</h3>
+              <p>漲了才追、跌了就砍，被情緒牽著走，賺一點就跑、賠了卻死抱。</p>
+            </div>
+            <div class="pain-card reveal">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></span>
+              <h3>聽明牌、被消息帶</h3>
+              <p>群組裡一句「這檔會噴」就重押進場，被題材和消息面牽著走。</p>
+            </div>
+            <div class="pain-card reveal">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v16"/></svg></span>
+              <h3>資訊太多，不知從哪篩起</h3>
+              <p>財經新聞、產業消息、各種觀點每天一大堆，根本不知道哪些跟自己有關。</p>
+            </div>
+          </div>
+          <p class="pain-punch reveal">你需要的不是更多消息，<span class="hl">而是有人幫你看懂：哪些機會能看，哪些風險要避。</span></p>
+        </div>
+      </section>
+
+      <!-- ===== 3 · VALUE ===== -->
+      <section class="sec wrap" id="value">
+        <div class="sec-head reveal">
+          <span class="kicker"><span class="dot"></span>社群提供什麼</span>
+          <h2>三件事，幫你把投資這條路走穩</h2>
+        </div>
+        <div class="value-grid">
+          <div class="value-card reveal">
+            <div class="num">01</div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a1 1 0 0 1 1-1h11l4 4v15a1 1 0 0 1-1 1z"/><path d="M16 3v4h4M8 11h8M8 15h8"/></svg></div>
+            <h3>市場資訊整理</h3>
+            <p>每天把重要的財經新聞、政策變化、產業動態整理成懶人包，幫你省下篩資訊的時間。</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="num">02</div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+            <h3>投資邏輯拆解</h3>
+            <p>不只是告訴你「買什麼」，更會帶你看懂某些產業、資產、公司為什麼值得關注，慢慢建立你自己的判斷框架。</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="num">03</div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>社群交流與複盤</h3>
+            <p>定期主題討論：台股、基金、ETF、總經、資產配置，也會複盤真實案例，幫大家避開常見錯誤。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4 · QUOTE BAND ===== -->
+      <section class="sec wrap">
+        <div class="quote-band reveal">
+          <p>你加入社群，買的不是一個「暴富機會」，<span class="hl">而是一套資訊篩選、投資認知與風險控制的方法。</span></p>
+          <p class="sub">真正能長期賺到錢的人，靠的不是內幕或明牌，而是比別人多懂一點、看得清楚一點，還有把風險守住。</p>
+        </div>
+      </section>
+
+      <!-- ===== 5 · AUDIENCE ===== -->
+      <section class="sec wrap">
+        <div class="sec-head reveal">
+          <span class="kicker"><span class="dot"></span>適合誰</span>
+          <h2>如果你是這樣的人，這個社群會很適合你</h2>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-card reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></span>
+            <div><h3>已經在投資的人</h3><p>有在買台股、基金、ETF，但想更有系統地看市場、少被情緒帶著走。</p></div>
+          </div>
+          <div class="aud-card reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20l9-5-9-5-9 5 9 5z"/><path d="M12 12V4"/></svg></span>
+            <div><h3>想開始、但不知從何學起</h3><p>知道該理財，卻被一堆名詞和資訊勸退，需要有人帶你把基礎打穩。</p></div>
+          </div>
+          <div class="aud-card reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><h3>沒時間天天盯盤的人</h3><p>工作很忙，沒空每天刷財經消息，想要有人把重點整理好。</p></div>
+          </div>
+          <div class="aud-card reveal">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></span>
+            <div><h3>想學會自己判斷的人</h3><p>不想永遠依賴別人喊單，希望以後能靠自己的邏輯做決定。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 6 · HONESTY ===== -->
+      <section class="sec wrap">
+        <div class="honesty reveal">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div>
+            <h3>先把話講清楚</h3>
+            <p>
+              <b>投資一定有風險，我們不承諾收益，也不做保本保證，更不會誘導你重倉或盲目跟單。</b>
+              這個社群的核心價值是提升你的投資認知和決策品質，而不是「穩賺不賠」。你可以先免費體驗一段時間，看看內容與交流氛圍適不適合你，再決定要不要長期參與——合適再留，不合適也沒有損失。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 7 · FINAL CTA ===== -->
+      <section class="sec wrap">
+        <div class="final reveal">
+          <span class="kicker" style="background:rgba(255,255,255,.12);color:#fff"><span class="dot" style="background:#5EA9FF"></span>加入只要 10 秒</span>
+          <h2 style="margin-top:14px">與其一個人亂猜，不如先進來看看</h2>
+          <p>每天的重點整理、邏輯拆解、案例複盤，先免費體驗，再決定適不適合你。</p>
+          <div class="final-cta">
+            <a class="btn btn-line pulse link-btn" onclick="mixinJump()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.94 2 10.8c0 2.78 1.46 5.26 3.76 6.92-.16.6-.6 2.18-.69 2.52-.11.42.16.42.33.3.13-.09 2.1-1.43 2.96-2.02.85.12 1.73.18 2.64.18 5.52 0 10-3.94 10-8.8C23 5.94 18.52 2 12 2z"/></svg>
+              免費加入 LINE 社群
+            </a>
+            <p class="micro">免費體驗 · 不喊單 · 隨時都能退出</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== DISCLAIMER ===== -->
+      <section class="disclaimer sec">
+        <div class="wrap">
+          <p>本社群提供之內容僅供投資教育與市場資訊交流之用，不構成任何投資建議、買賣推薦或收益保證。投資涉及風險，過往績效不代表未來表現，所有投資決策應由您自行判斷並自負盈虧。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="foot">
+        <span>© 2026 市場觀點 · 投資學習與交流社群</span>
+        <span class="foot-links">
+          <a href="#privacy">隱私權政策</a>
+          <a href="#terms">使用條款</a>
+        </span>
+      </div>
+    </footer>
+
+    <!-- sticky mobile CTA -->
+    <div class="sticky">
+      <a class="btn btn-line link-btn" onclick="mixinJump()">免費加入 LINE 社群</a>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in') }); return }
+        var io = new IntersectionObserver(function (ents) {
+          ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target) } })
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
+        els.forEach(function (el) { io.observe(el) })
+      })()
+    </script>
+  </body>
+</html>
