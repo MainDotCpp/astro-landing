@@ -1,0 +1,213 @@
+---
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig } from '@/utils/kr_config'
+
+import visualImg from './static/images/11.png'
+
+export function getStaticPaths() {
+  return generateKrConfig('朴斗焕_0')
+}
+---
+
+<KRBaseLayout title="BAND 커뮤니티 공유형 컨설팅 분석" description="핵심 분석 인사이트를 BAND 커뮤니티에서 빠르게 공유하세요">
+  <style is:global slot="head">
+    :root {
+      --bg-deep: #0a0c10;
+      --bg-mid: #12151c;
+      --card: rgba(22, 26, 34, 0.72);
+      --card-edge: rgba(212, 175, 120, 0.22);
+      --text-main: #f2f4f8;
+      --text-sub: #9aa3b5;
+      --accent: #d4af78;
+      --accent-soft: rgba(212, 175, 120, 0.14);
+      --accent-hover: #e4c48f;
+      --border: rgba(255, 255, 255, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(212, 175, 120, 0.08), transparent 55%),
+        radial-gradient(ellipse 90% 60% at 100% 50%, rgba(58, 82, 120, 0.12), transparent 50%),
+        linear-gradient(165deg, var(--bg-deep) 0%, var(--bg-mid) 45%, #0d0f14 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 980px;
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow:
+        0 0 0 1px rgba(212, 175, 120, 0.06),
+        0 32px 64px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      overflow: hidden;
+    }
+
+    .visual {
+      background:
+        radial-gradient(circle at 40% 35%, rgba(212, 175, 120, 0.12) 0%, transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(90, 110, 150, 0.15) 0%, transparent 45%),
+        linear-gradient(160deg, #141820 0%, #0e1118 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    .circle-image {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--card-edge);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 24px 48px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(212, 175, 120, 0.08);
+    }
+
+    .content {
+      padding: 46px 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+    }
+
+    .tag {
+      width: fit-content;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid rgba(212, 175, 120, 0.28);
+      border-radius: 999px;
+      padding: 7px 16px;
+    }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+    }
+
+    .desc {
+      font-size: 17px;
+      color: var(--text-sub);
+      line-height: 1.85;
+      max-width: 520px;
+    }
+
+    .action-area {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cta {
+      width: fit-content;
+      font-size: 19px;
+      letter-spacing: 0.06em;
+      color: #0a0c10;
+      background: linear-gradient(135deg, #e8cf9a 0%, var(--accent) 45%, #c9a66b 100%);
+      border: none;
+      border-radius: 14px;
+      padding: 18px 44px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .cta:hover {
+      filter: brightness(1.06);
+      transform: translateY(-2px);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 12px 32px rgba(0, 0, 0, 0.4),
+        0 0 28px rgba(212, 175, 120, 0.2);
+    }
+
+    .risk {
+      font-size: 12px;
+      color: #6d7588;
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    @media (max-width: 860px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .visual {
+        padding: 22px 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .circle-image {
+        width: 220px;
+        height: 220px;
+      }
+
+      .content {
+        padding: 30px 22px 26px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+
+  <main class="container">
+    <section class="visual">
+      <img class="circle-image" src={visualImg.src} alt="컨설팅 분석 서비스 이미지" />
+    </section>
+
+    <section class="content">
+      <p class="tag">BAND 커뮤니티 공유</p>
+      <h1>핵심 분석 인사이트를 BAND 커뮤니티에서 빠르게 공유하세요</h1>
+      <p class="desc">
+        개인과 기업을 위한 컨설팅 분석 콘텐츠를 체계적으로 정리하고,
+        BAND 커뮤니티에 이해하기 쉬운 형태로 공유해 구성원 간 정보 소통과 의사결정 효율을 높입니다.
+      </p>
+
+      <div class="action-area">
+        <button id="cta-band" class="cta link-btn" type="button">BAND 공유용 콘텐츠 받기</button>
+        <p class="risk">
+          유의사항: 본 페이지의 내용은 BAND 커뮤니티 내 정보 공유를 위한 일반 안내이며,
+          특정 성과 보장 또는 개별 실행 지침을 의미하지 않습니다. 실제 판단은 상황에 맞게 신중히 진행해 주세요.
+        </p>
+      </div>
+    </section>
+  </main>
+</KRBaseLayout>

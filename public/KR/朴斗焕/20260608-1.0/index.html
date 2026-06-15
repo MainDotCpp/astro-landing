@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+    <script>
+      const onLinkBtnClick = () => {
+        const link = 'https://www.baidu.com'; // ← 改成实际目标
+        if (typeof fbq === 'function') {
+          fbq('track', 'AddToCart');
+          fbq('track', 'Contact');
+        }
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
+        setTimeout(() => { window.location.href = link; }, 500);
+      };
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박두환</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f1424 0%, #181f34 45%, #2b3550 100%);
+            font-family: 'Inter', 'Noto Sans KR', Arial, sans-serif;
+            color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .page-card {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 32px;
+            box-shadow: 0 32px 90px rgba(0, 0, 0, 0.24), 0 8px 32px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            overflow: hidden;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .image-container {
+            width: 118px;
+            height: 118px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #f7d18f;
+            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(247, 209, 143, 0.2);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-container {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 0 12px;
+        }
+
+        .text-container h1 {
+            font-size: 2.2rem;
+            margin: 0 0 14px;
+            color: #111;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #111 0%, #3c3c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-container p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: #3c3c3c;
+            text-align: justify;
+            white-space: pre-wrap;
+            letter-spacing: 0.3px;
+        }
+
+        .banner {
+            display: block;
+            width: 100%;
+            margin: 28px 0;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 26px 52px rgba(0, 0, 0, 0.26);
+        }
+
+        .banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .text-container .button {
+            margin-top: 26px;
+        }
+
+        .button, .second-button {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 22px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            box-shadow: 0 18px 36px rgba(39, 51, 79, 0.18);
+        }
+
+        .button {
+            background: linear-gradient(91deg, #f8e29e 0%, #d6a14c 42%, #8d6838 100%);
+            color: #1f1f1f;
+        }
+
+        .button:hover,
+        .button:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 28px 56px rgba(39, 51, 79, 0.32);
+            opacity: 1;
+        }
+
+        .second-button {
+            background: linear-gradient(135deg, #14151e 0%, #1a1b2e 100%);
+            color: #fff;
+            gap: 12px;
+            padding: 16px 20px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 680px;
+            z-index: 1000;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .second-button:hover,
+        .second-button:focus {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+        }
+
+        .second-image-container {
+            margin: 0 auto 26px;
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 22px 46px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .second-image-container:hover {
+            box-shadow: 0 28px 56px rgba(0, 0, 0, 0.24), 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .second-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .second-image-container:hover img {
+            transform: scale(1.02);
+        }
+
+        .second-text-overlay {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(16, 16, 16, 0.92) 100%);
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.6;
+            letter-spacing: -0.02em;
+        }
+
+        .second-button img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .second-button img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 16px;
+                padding-bottom: 120px;
+            }
+
+            .page-card {
+                padding: 24px;
+                border-radius: 28px;
+            }
+
+            .image-container {
+                width: 104px;
+                height: 104px;
+                margin-bottom: 20px;
+            }
+
+            .text-container h1 {
+                font-size: 1.9rem;
+            }
+
+            .text-container p {
+                font-size: 0.98rem;
+                line-height: 1.8;
+            }
+
+            .button {
+                font-size: 16px;
+                padding: 14px 18px;
+            }
+
+            .second-button {
+                font-size: 14px;
+                padding: 12px 16px;
+                bottom: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: calc(100% - 32px);
+            }
+
+            .second-button img {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        @media (min-width: 701px) {
+            body {
+                padding-bottom: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-card">
+        <div class="image-container">
+            <img src="img/5122.jpg" alt="박두환 프로필 이미지">
+        </div>
+
+        <div class="text-container">
+            <h1>박두환</h1>
+            <p>저는 무료로 주식 동호인 교류 그룹을 만들었습니다. 1주일 만에 1,000만 원에서 수억 원을 번 신규 회원도 있었고, 5월 말까지 절반 이상의 회원이 목표인 주간 수익률 300%를 달성했다. 전체 회원의 평균 주간 복리 수익률은 무려 168%에 달했다.</p>
+
+            <a class="banner" onclick="onLinkBtnClick()">
+                <img src="img/banner1.jpg" alt="1500명 이상의 투자자가 함께하는 무료 주식 투자 커뮤니티">
+            </a>
+
+            <p>평소에도 자산의 일부를 쪼개어 주식에 투자하고 있는데, 작년 한 해만 해도 주식 투자 수익률이 330%나 되었기 때문에 내 투자 전략으로 수익을 낼 수 있다고 믿는다.</p>
+
+            <a class="banner" onclick="onLinkBtnClick()">
+                <img src="img/banner2.jpg" alt="BAND 무료 참여 — 지금 바로 참여하기">
+            </a>
+
+            <p>투자를 시작하기로 결정한 분이나 투자를 하고 있는 분들에게 도움이 되고자 무료 투자 소통방을 개설했는데, 그 대화방에서 저의 투자전략을 매니저를 통해 안정적으로 수익을 낼 수 있으니 도움이 되었으면 좋겠습니다. 저의 투자전략을 배우고 싶은 분은 저의 대화방에 가입하여 투자전략과 최신 급등 종목에 대한 정보를 무료로 공유할 수 있도록 숫자 '7'을 매니저에게 보내주세요. 버튼을 클릭하여 지금 바로 무료로 가입하세요!</p>
+
+            <button class="button" onclick="onLinkBtnClick()">특별한 투자 정보를 전해드립니다!</button>
+        </div>
+    </div>
+
+    <button class="second-button" onclick="onLinkBtnClick()">
+        <img src="img/band.png" alt="BAND 아이콘">
+        BAND를 무료로 추가하고 최신 주가 급등 정보를 받아보세요.
+    </button>
+</body>
+</html>

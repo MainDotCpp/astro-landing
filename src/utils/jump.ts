@@ -1,7 +1,7 @@
 // @ts-nocheck
 const NAV_TIMEOUT_MS = 300
-const FB_DEFAULT_VALUE = 0
-const FB_DEFAULT_CURRENCY = 'CAD'
+const FB_DEFAULT_VALUE = 50
+const FB_DEFAULT_CURRENCY = 'USD'
 
 let __navigated = false
 function navigateOnce(link) {
@@ -11,11 +11,20 @@ function navigateOnce(link) {
 }
 
 function getPurchaseValue() {
-  return (typeof window.__fbPurchaseValue === 'number') ? window.__fbPurchaseValue : FB_DEFAULT_VALUE
+  // 必须是干净的数字（不能带货币符号/字母/逗号），否则 TikTok 报 "value is invalid"
+  const v = Number(window.__fbPurchaseValue)
+  return (Number.isFinite(v) && v > 0) ? v : FB_DEFAULT_VALUE
 }
 
 function getPurchaseCurrency() {
-  return (typeof window.__fbPurchaseCurrency === 'string') ? window.__fbPurchaseCurrency : FB_DEFAULT_CURRENCY
+  return (typeof window.__fbPurchaseCurrency === 'string' && window.__fbPurchaseCurrency.trim()) ? window.__fbPurchaseCurrency : FB_DEFAULT_CURRENCY
+}
+
+// TikTok 电商事件要求非空的 content_id；可用 window.__ttContentId 覆盖，否则回退到页面路径
+function getContentId() {
+  if (typeof window.__ttContentId === 'string' && window.__ttContentId.trim()) return window.__ttContentId
+  try { return (window.location.pathname || 'lp_default').replace(/^\/+|\/+$/g, '') || 'lp_default' }
+  catch (e) { return 'lp_default' }
 }
 
 function fireGoogle(onCallback) {
@@ -65,13 +74,18 @@ function fireTiktok(link) {
   if (typeof window.ttq === 'undefined' || typeof window.ttq.track !== 'function') return false
   const value = getPurchaseValue()
   const currency = getPurchaseCurrency()
-  try { window.ttq.track('ClickButton', { content_name: link }) } catch (e) {}
-  try { window.ttq.track('AddToCart', { content_name: link }) } catch (e) {}
+  const contentId = getContentId()
+  const contents = [{ content_id: contentId, content_type: 'product', content_name: link }]
+  try { window.ttq.track('ClickButton', { content_id: contentId, content_type: 'product', content_name: link }) } catch (e) {}
+  try { window.ttq.track('AddToCart', { content_id: contentId, content_type: 'product', content_name: link, contents }) } catch (e) {}
   try {
     window.ttq.track('CompletePayment', {
       value,
       currency,
+      content_id: contentId,
+      content_type: 'product',
       content_name: link,
+      contents: [{ content_id: contentId, content_type: 'product', content_name: link, quantity: 1, price: value }],
     })
   }
   catch (e) {}
