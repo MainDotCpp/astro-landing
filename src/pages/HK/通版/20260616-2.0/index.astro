@@ -1,0 +1,335 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroImage from './hero.png'
+
+const title = '入場前檢查清單 · 避免高追'
+const description = '入市前先睇位置、成交同止蝕位，加 WhatsApp 取得今日入場前檢查清單'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-image">
+        <img src={heroImage.src} alt="香港投資入場前檢查清單" />
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">高追前，先停 30 秒</p>
+        <h1>點解你一追，<br />就成日追喺高位？</h1>
+        <p class="lead">
+          唔係你唔努力睇市，好多時只係入場前冇先睇清楚位置、成交同止蝕位。
+        </p>
+        <a href="javascript:void(0)" class="cta link-btn">睇今日入場前檢查清單</a>
+      </div>
+    </section>
+
+    <section class="symptoms">
+      <p class="section-kicker">最常見三個位</p>
+      <h2>輸唔係輸喺方向，係輸喺心急。</h2>
+      <div class="symptom-list">
+        <div>見到升就追，唔知自己買緊突破定尾段。</div>
+        <div>朋友食糊就心急，完全冇諗入市位。</div>
+        <div>入場前冇止蝕位，跌落嚟先問點算。</div>
+      </div>
+    </section>
+
+    <section class="compare">
+      <div class="compare-card danger">
+        <span>衝動追貨</span>
+        <h2>見紅綠燈就衝</h2>
+        <p>只睇升幅、只睇群組熱度、入場後先補理由。</p>
+      </div>
+      <div class="compare-card safe">
+        <span>先做檢查</span>
+        <h2>有位先考慮</h2>
+        <p>先睇位置、成交、風險位，再決定係等、試，定放棄。</p>
+      </div>
+    </section>
+
+    <section class="framework">
+      <p class="section-kicker">入場前簡單三步</p>
+      <h2>唔需要估神仙位，先要有規矩。</h2>
+      <ol>
+        <li>
+          <strong>等位置</strong>
+          <p>接近支持、突破後回踩、成交配合，先有討論價值。</p>
+        </li>
+        <li>
+          <strong>試小注</strong>
+          <p>唔一鋪瞓身，先用細倉睇市場有冇跟你方向走。</p>
+        </li>
+        <li>
+          <strong>守止蝕</strong>
+          <p>入場前已經知道錯咗要喺邊度走，唔臨場同自己講數。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="closing">
+      <h2>今日檢查清單已整理好。</h2>
+      <p>入群即睇港美股 watchlist，先過一遍規則，再諗入唔入場。</p>
+      <a href="javascript:void(0)" class="cta link-btn">加 WhatsApp，拎今日清單</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    margin: 0;
+    overflow-x: hidden;
+    background: #f5f1e8;
+    color: #17222d;
+    font-family: 'Noto Sans HK', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .page {
+    min-height: 100vh;
+    background:
+      linear-gradient(90deg, rgba(23, 34, 45, 0.055) 1px, transparent 1px),
+      linear-gradient(rgba(23, 34, 45, 0.045) 1px, transparent 1px),
+      #f5f1e8;
+    background-size: 24px 24px;
+  }
+
+  .hero {
+    display: grid;
+    gap: 24px;
+    padding: 18px 18px 56px;
+  }
+
+  .hero-image {
+    min-height: 42svh;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(23, 34, 45, 0.14);
+    background: #d8d2c4;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 42svh;
+    object-fit: cover;
+    object-position: 52% center;
+    display: block;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+  }
+
+  .eyebrow,
+  .section-kicker {
+    margin: 0 0 12px;
+    color: #1d6b4f;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    margin-bottom: 18px;
+    color: #101a24;
+    font-size: clamp(2.5rem, 12vw, 5.4rem);
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .lead {
+    margin-bottom: 24px;
+    color: #3f4a54;
+    font-size: 1.06rem;
+    line-height: 1.75;
+  }
+
+  .cta {
+    display: flex;
+    width: min(100%, 350px);
+    min-height: 56px;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    border-radius: 8px;
+    background: #122337;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .symptoms,
+  .compare,
+  .framework,
+  .closing {
+    padding: 54px 18px;
+  }
+
+  .symptoms h2,
+  .framework h2,
+  .closing h2 {
+    margin-bottom: 22px;
+    font-size: clamp(2rem, 9vw, 4rem);
+    line-height: 1.08;
+    font-weight: 900;
+  }
+
+  .symptom-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .symptom-list div {
+    border-left: 5px solid #b84a45;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.76);
+    padding: 16px;
+    color: #303b44;
+    font-weight: 700;
+    line-height: 1.55;
+  }
+
+  .compare {
+    display: grid;
+    gap: 14px;
+    background: #17222d;
+    color: #ffffff;
+  }
+
+  .compare-card {
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .compare-card span {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .compare-card h2 {
+    margin-bottom: 10px;
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    line-height: 1.08;
+  }
+
+  .compare-card p {
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.65;
+  }
+
+  .danger {
+    background: #6c2c2f;
+  }
+
+  .safe {
+    background: #145c49;
+  }
+
+  .framework ol {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: rules;
+  }
+
+  .framework li {
+    position: relative;
+    border: 1px solid rgba(23, 34, 45, 0.14);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.82);
+    padding: 22px 20px 22px 70px;
+    counter-increment: rules;
+  }
+
+  .framework li::before {
+    position: absolute;
+    top: 22px;
+    left: 20px;
+    content: counter(rules, decimal-leading-zero);
+    color: #b38942;
+    font-weight: 900;
+  }
+
+  .framework strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.18rem;
+  }
+
+  .framework p,
+  .closing p {
+    margin-bottom: 0;
+    color: #3f4a54;
+    line-height: 1.7;
+  }
+
+  .closing {
+    display: grid;
+    gap: 18px;
+    background: #ffffff;
+  }
+
+  .closing p {
+    margin-bottom: 4px;
+  }
+
+  @media (min-width: 760px) {
+    .hero {
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+      align-items: center;
+      min-height: 100svh;
+      padding: 42px 64px;
+    }
+
+    .hero-image,
+    .hero-image img {
+      min-height: 72svh;
+    }
+
+    .cta {
+      margin-inline: 0;
+    }
+
+    .symptoms,
+    .compare,
+    .framework,
+    .closing {
+      padding: 82px 64px;
+    }
+
+    .symptom-list,
+    .framework ol {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .compare {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .closing {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+</style>

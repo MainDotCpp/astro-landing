@@ -36,6 +36,9 @@ export function getStaticPaths() {
 const { t = '棒群' } = Astro.params
 const { img_prefix, name } = Astro.props
 const headImg = import(`../images/${img_prefix}head.jpg`);
+const buildDate = new Date()
+const previousMonthDate = new Date(buildDate.getFullYear(), buildDate.getMonth() - 1, 1)
+const previousMonthLabel = `${previousMonthDate.getFullYear()}年${previousMonthDate.getMonth() + 1}月`
 ---
 
 <!doctype html>
@@ -1584,7 +1587,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1592,7 +1595,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매도가</th>
@@ -1621,7 +1624,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1629,7 +1632,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매도가</th>
@@ -1658,7 +1661,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1666,7 +1669,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매도가</th>
@@ -1695,7 +1698,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                     <tbody>
                       <tr>
                         <th>추천일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매수가</th>
@@ -1703,7 +1706,7 @@ const headImg = import(`../images/${img_prefix}head.jpg`);
                       </tr>
                       <tr>
                         <th>매도일</th>
-                        <td>2025年11月</td>
+                        <td>{previousMonthLabel}</td>
                       </tr>
                       <tr>
                         <th>매도가</th>

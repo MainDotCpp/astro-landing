@@ -93,6 +93,30 @@ deploy_one() {
     return
   fi
 
+  # When deploying a full Astro build, publish hashed assets before HTML.
+  # Otherwise a CDN can request new /mjSFqQ/* files while rsync is still running,
+  # cache the temporary 404, and leave the freshly deployed page without styles.
+  if [ "$src" = "$SOURCE_DIR" ] && [ -d "${SOURCE_DIR}mjSFqQ" ]; then
+    echo "  先同步静态资源: ${SOURCE_DIR}mjSFqQ/ -> $ip:${remote_path%/}/mjSFqQ/"
+
+    # shellcheck disable=SC2086
+    sshpass -p "$pw" "$RSYNC" -rlptzv \
+      --chown=www:www \
+      --chmod=D755,F644 \
+      --progress \
+      $excl \
+      "${SOURCE_DIR}mjSFqQ/" \
+      -e "ssh -p $SSH_PORT -o StrictHostKeyChecking=no" \
+      "root@$ip:${remote_path%/}/mjSFqQ/"
+
+    if [ $? -ne 0 ]; then
+      echo "✗ [$label] 静态资源预同步失败"
+      FAILED_TARGETS+=("$label assets ($ip)")
+      echo ""
+      return
+    fi
+  fi
+
   # shellcheck disable=SC2086
   sshpass -p "$pw" "$RSYNC" -rlptzv \
     --chown=www:www \

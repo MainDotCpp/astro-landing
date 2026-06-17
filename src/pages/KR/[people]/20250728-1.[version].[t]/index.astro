@@ -2,7 +2,7 @@
 import BaseHead from '@/components/BaseHead.astro'
 import RedirectCode from '@/components/KRRedirectCode.astro'
 import { Filters, generateKrConfig } from '@/utils/kr_config'
-import Body from './body.jsx'
+import Body from './_body.jsx'
 
 export function getStaticPaths() {
  return generateKrConfig(Filters.byPerson('金永益'))

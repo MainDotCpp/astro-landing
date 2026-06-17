@@ -1,0 +1,308 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroImage from './hero.png'
+
+const title = '港美股盤前重點 · 今日 Watchlist'
+const description = '每日盤前整理港股、美股、ETF 同強勢股 watchlist，加 WhatsApp 入群即睇今日重點'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-media">
+        <img src={heroImage.src} alt="香港金融區盤前市場重點" />
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">08:45 盤前已更新</p>
+        <h1>又係升完先知？<br />港股機會唔等人。</h1>
+        <p class="lead">
+          每日盤前整理港股、美股、ETF 同強勢股 watchlist。開市前先睇方向，唔好又慢半拍。
+        </p>
+        <a href="javascript:void(0)" class="cta link-btn">加入 WhatsApp，拎今日盤前重點</a>
+      </div>
+    </section>
+
+    <section class="pain">
+      <p class="section-kicker">你有冇試過</p>
+      <h2>市場郁咗，你先收到風。</h2>
+      <div class="pain-list">
+        <article>
+          <span>01</span>
+          <h3>升完先見到</h3>
+          <p>新聞推送嚟到，股價已經抽高，追又驚接火棒。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>想入又怕高位</h3>
+          <p>見到朋友群講到好熱，但自己唔知值唔值得追。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>收市先覆盤</h3>
+          <p>到夜晚先知邊個板塊輪動，第二日又要重新估。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="feed">
+      <div class="feed-head">
+        <p class="section-kicker">入群每日收到</p>
+        <h2>盤前先睇重點，開市唔使盲估。</h2>
+      </div>
+      <div class="feed-grid">
+        <div class="feed-item">
+          <strong>盤前部署</strong>
+          <p>今日要望邊幾個板塊、邊類 ETF、邊啲強勢股。</p>
+        </div>
+        <div class="feed-item">
+          <strong>資金流方向</strong>
+          <p>熱門板塊係真有資金推，定只係短暫炒作。</p>
+        </div>
+        <div class="feed-item">
+          <strong>盤中異動</strong>
+          <p>有量、有位、有節奏先提醒，唔用垃圾訊息洗版。</p>
+        </div>
+        <div class="feed-item">
+          <strong>風險提示</strong>
+          <p>高追位、止蝕位、唔適合入場嘅情況會直接講清楚。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div>
+        <p class="section-kicker">今日名單已更新</p>
+        <h2>唔想又等收市先知，開市前先睇一次。</h2>
+      </div>
+      <a href="javascript:void(0)" class="cta cta-light link-btn">入群即睇今日 Watchlist</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    margin: 0;
+    overflow-x: hidden;
+    background: #06131e;
+    color: #f4fbff;
+    font-family: 'Noto Sans HK', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .page {
+    min-height: 100vh;
+    background:
+      linear-gradient(180deg, rgba(6, 19, 30, 0.08), #06131e 44%),
+      radial-gradient(circle at 12% 6%, rgba(52, 211, 211, 0.24), transparent 34%),
+      radial-gradient(circle at 92% 42%, rgba(230, 180, 81, 0.12), transparent 32%),
+      #06131e;
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    min-height: 100svh;
+    align-items: end;
+    padding: 18px 18px 34px;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-media::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background:
+      linear-gradient(180deg, rgba(2, 10, 18, 0.18), rgba(2, 10, 18, 0.78) 60%, #06131e 100%),
+      linear-gradient(90deg, rgba(2, 10, 18, 0.86), rgba(2, 10, 18, 0.34));
+  }
+
+  .hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 55% center;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    padding-top: 34svh;
+  }
+
+  .eyebrow,
+  .section-kicker {
+    margin: 0 0 12px;
+    color: #6df3e9;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    margin-bottom: 18px;
+    max-width: 10em;
+    font-size: clamp(2.65rem, 13vw, 5.6rem);
+    line-height: 0.98;
+    font-weight: 900;
+  }
+
+  .lead {
+    max-width: 640px;
+    margin-bottom: 26px;
+    color: rgba(244, 251, 255, 0.86);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .cta {
+    display: flex;
+    width: min(100%, 360px);
+    min-height: 56px;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    border-radius: 8px;
+    background: #27f0ce;
+    box-shadow: 0 18px 46px rgba(39, 240, 206, 0.24);
+    color: #03110f;
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .pain,
+  .feed,
+  .closing {
+    padding: 58px 18px;
+  }
+
+  .pain h2,
+  .feed h2,
+  .closing h2 {
+    margin-bottom: 22px;
+    font-size: clamp(2rem, 9vw, 4.2rem);
+    line-height: 1.08;
+    font-weight: 900;
+  }
+
+  .pain-list,
+  .feed-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .pain-list article,
+  .feed-item {
+    border: 1px solid rgba(109, 243, 233, 0.18);
+    border-radius: 8px;
+    background: rgba(8, 31, 48, 0.72);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 20px;
+  }
+
+  .pain-list span {
+    display: block;
+    margin-bottom: 18px;
+    color: rgba(230, 180, 81, 0.86);
+    font-weight: 900;
+  }
+
+  .pain-list h3,
+  .feed-item strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-size: 1.18rem;
+    font-weight: 900;
+  }
+
+  .pain-list p,
+  .feed-item p {
+    margin-bottom: 0;
+    color: rgba(244, 251, 255, 0.72);
+    line-height: 1.65;
+  }
+
+  .feed {
+    background:
+      linear-gradient(rgba(109, 243, 233, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(109, 243, 233, 0.06) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+
+  .closing {
+    display: grid;
+    gap: 22px;
+    background: #effefe;
+    color: #06131e;
+  }
+
+  .closing .section-kicker {
+    color: #0c8f83;
+  }
+
+  .cta-light {
+    background: #06131e;
+    color: #ffffff;
+    box-shadow: none;
+  }
+
+  @media (min-width: 760px) {
+    .hero {
+      align-items: center;
+      padding: 64px;
+    }
+
+    .hero-copy {
+      padding-top: 0;
+    }
+
+    .cta {
+      margin-inline: 0;
+    }
+
+    .pain,
+    .feed,
+    .closing {
+      padding: 88px 64px;
+    }
+
+    .pain-list,
+    .feed-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .feed-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .closing {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-type PluginName
+type BuiltInPluginName
   = | 'aos'
     | 'gsap'
     | 'animate'
@@ -8,6 +8,9 @@ type PluginName
     | 'rellax'
     | 'jquery'
     | 'google-fonts-kr'
+    | 'google-fonts'
+
+type PluginName = BuiltInPluginName | (string & {})
 
 export interface PluginConfig {
   css?: string
@@ -24,7 +27,7 @@ const { plugins = { } } = Astro.props
 
 // 预定义插件的默认配置
 const defaultPluginConfig: Record<
-  PluginName,
+  BuiltInPluginName,
   { css?: string, js?: string, loadStrategy?: 'defer' | 'async' | 'blocking' }
 > = {
   'aos': {
@@ -60,13 +63,16 @@ const defaultPluginConfig: Record<
     css: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Black+Han+Sans&family=Jua&family=Sunflower:wght@300;500;700&display=swap',
     loadStrategy: 'blocking', // 字体需要尽早加载，避免FOUT（Flash of Unstyled Text）
   },
+  'google-fonts': {
+    loadStrategy: 'blocking',
+  },
 }
 
 // 处理插件配置，合并默认配置和用户配置
 const processedPlugins = Object.entries(plugins).map(
   ([pluginName, userConfig]) => {
     // 如果是预定义插件，合并默认配置
-    const defaultConfig = defaultPluginConfig[pluginName as PluginName] || {}
+    const defaultConfig = defaultPluginConfig[pluginName as BuiltInPluginName] || {}
     const finalConfig = { ...defaultConfig, ...userConfig }
 
     return {

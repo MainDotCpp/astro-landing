@@ -1,0 +1,354 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroImage from './hero.png'
+
+const title = '今日短線 Watchlist · 港美股強勢名單'
+const description = '港股、美股、ETF、強勢股每日盤前篩選，加 WhatsApp 入群拎今日短線名單'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  </Fragment>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-bg">
+        <img src={heroImage.src} alt="香港短線動量投資研究室" />
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">今日短線名單已更新</p>
+        <h1>一星期內目標 +30% 至 +80%</h1>
+        <p class="lead">
+          港股、美股、ETF、強勢股，每日盤前先幫你篩一次。入群即睇今日邊幾隻有機會郁。
+        </p>
+        <div class="hero-points" aria-label="今日短線名單內容">
+          <span>3 隻重點股</span>
+          <span>入市參考位</span>
+          <span>止蝕 / 止賺位</span>
+        </div>
+        <a href="javascript:void(0)" class="cta link-btn">入群拎今日短線名單</a>
+        <p class="hero-note">盤前名單限今日使用，開市前先睇會清楚好多。</p>
+      </div>
+    </section>
+
+    <section class="list">
+      <div class="list-head">
+        <p class="section-kicker">今日名單包括</p>
+        <h2>唔係叫你亂追，係先畀你睇清楚值唔值得出手。</h2>
+      </div>
+      <div class="list-grid">
+        <article>
+          <span>01</span>
+          <strong>3 隻短線重點股</strong>
+          <p>盤前篩走雜訊，只留今日最值得望住嘅名單。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>目標升幅區間</strong>
+          <p>直接睇高彈性空間，唔使自己由幾十隻慢慢搵。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>入市參考位</strong>
+          <p>邊個位先考慮，邊個位已經唔靚，會講清楚。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <strong>止蝕 / 止賺位</strong>
+          <p>想食糊就要有規則，唔係升跌都靠感覺。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="signal">
+      <p class="section-kicker">開市前先睇</p>
+      <h2>唔想又等收市先見到邊隻升，就早一拍拎名單。</h2>
+      <div class="signal-row">
+        <div>
+          <b>盤前</b>
+          <span>篩選強勢股</span>
+        </div>
+        <div>
+          <b>盤中</b>
+          <span>提醒異動</span>
+        </div>
+        <div>
+          <b>收市後</b>
+          <span>覆盤下一步</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div>
+        <p class="section-kicker">免費加入 WhatsApp</p>
+        <h2>今日 watchlist 已更新，入群即睇。</h2>
+      </div>
+      <a href="javascript:void(0)" class="cta link-btn">立即拎短線名單</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    margin: 0;
+    overflow-x: hidden;
+    background: #080805;
+    color: #fff8e4;
+    font-family: 'Noto Sans HK', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .page {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 70% 8%, rgba(255, 207, 93, 0.18), transparent 30%),
+      linear-gradient(180deg, #080805 0%, #121006 52%, #080805 100%);
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    min-height: 94svh;
+    align-items: center;
+    padding: 22px 18px 30px;
+    isolation: isolate;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .hero-bg::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background:
+      linear-gradient(180deg, rgba(8, 8, 5, 0.08), rgba(8, 8, 5, 0.82) 66%, #080805),
+      linear-gradient(90deg, rgba(8, 8, 5, 0.82), rgba(8, 8, 5, 0.22));
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 58% center;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+    padding-top: 18svh;
+  }
+
+  .eyebrow,
+  .section-kicker {
+    margin: 0 0 12px;
+    color: #f0c456;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    margin-bottom: 18px;
+    max-width: 10.5em;
+    color: #fff7d6;
+    font-size: clamp(2.55rem, 12vw, 5.8rem);
+    line-height: 0.98;
+    font-weight: 900;
+  }
+
+  .lead {
+    max-width: 650px;
+    margin-bottom: 16px;
+    color: rgba(255, 248, 228, 0.82);
+    font-size: 1.06rem;
+    line-height: 1.75;
+  }
+
+  .hero-points {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: min(100%, 430px);
+    margin: 0 auto 18px;
+  }
+
+  .hero-points span {
+    min-height: 46px;
+    border: 1px solid rgba(240, 196, 86, 0.26);
+    border-radius: 8px;
+    background: rgba(8, 8, 5, 0.58);
+    color: #fff0bd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    font-size: 0.82rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .cta {
+    display: flex;
+    width: min(100%, 330px);
+    min-height: 56px;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ffdb72, #c78a22);
+    box-shadow: 0 18px 50px rgba(240, 196, 86, 0.28);
+    color: #151006;
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .hero-note {
+    max-width: 330px;
+    margin: 12px auto 0;
+    color: rgba(255, 248, 228, 0.68);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .list,
+  .signal,
+  .closing {
+    padding: 58px 18px;
+  }
+
+  .list h2,
+  .signal h2,
+  .closing h2 {
+    margin-bottom: 22px;
+    font-size: clamp(2rem, 9vw, 4.15rem);
+    line-height: 1.08;
+    font-weight: 900;
+  }
+
+  .list-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .list-grid article {
+    border: 1px solid rgba(240, 196, 86, 0.22);
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(255, 248, 228, 0.08), rgba(255, 248, 228, 0.025));
+    padding: 20px;
+  }
+
+  .list-grid span {
+    display: block;
+    margin-bottom: 22px;
+    color: rgba(74, 255, 157, 0.82);
+    font-weight: 900;
+  }
+
+  .list-grid strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff7d6;
+    font-size: 1.16rem;
+  }
+
+  .list-grid p {
+    margin-bottom: 0;
+    color: rgba(255, 248, 228, 0.72);
+    line-height: 1.65;
+  }
+
+  .signal {
+    background:
+      linear-gradient(90deg, rgba(240, 196, 86, 0.12) 1px, transparent 1px),
+      #0e0d08;
+    background-size: 38px 100%;
+  }
+
+  .signal-row {
+    display: grid;
+    gap: 10px;
+  }
+
+  .signal-row div {
+    border-radius: 8px;
+    background: #fff8e4;
+    padding: 18px;
+    color: #151006;
+  }
+
+  .signal-row b {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.3rem;
+  }
+
+  .signal-row span {
+    color: #5d5035;
+    font-weight: 700;
+  }
+
+  .closing {
+    display: grid;
+    gap: 22px;
+    background: #171208;
+  }
+
+  @media (min-width: 760px) {
+    .hero {
+      align-items: center;
+      padding: 64px;
+      min-height: 100svh;
+    }
+
+    .hero-copy {
+      padding-top: 0;
+    }
+
+    .hero-points,
+    .cta,
+    .hero-note {
+      margin-inline: 0;
+    }
+
+    .list,
+    .signal,
+    .closing {
+      padding: 88px 64px;
+    }
+
+    .list-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .signal-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .closing {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+</style>

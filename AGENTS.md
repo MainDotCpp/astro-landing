@@ -100,3 +100,28 @@ Pages specify plugins via props: `plugins={['aos', 'jquery', 'googleFontsKR']}`
 - `.link-btn` class elements automatically get `mixinJump` click handler via `src/utils/main.js`
 - Responsive breakpoints: 768px (mobile), 480px (small mobile), 1024px (tablet)
 - Root `index.astro` auto-discovers all pages using `import.meta.glob()`
+
+## Skill Usage
+
+- When a task involves CSS styling, UI visual design, page layout, or component appearance, use the `frontend-design` skill before implementing code.
+
+## Copywriting Quality — All Languages
+
+These rules apply to marketing and landing-page copy in any language. The goal is to avoid translationese and generic AI-sounding copy.
+
+1. **Prefer transcreation over translation**: establish the intended emotion and conversion goal first, then write from the target language's native speaker perspective. Do not translate sentence-by-sentence, and do not preserve source-language slogans, CTA phrasing, or sentence structure.
+2. **Clean up dependent claims**: when weakening or removing a claim, market, feature, or benefit, also remove copy that only made sense because of that original claim.
+3. **Avoid AI copy patterns**: avoid "not X but Y" structures, mechanical three-part parallelism, list items that are just bold labels plus colons, overused dashes, hollow prestige words, and overly formal connectors. Vary sentence length and use concrete, believable details.
+4. **Read-aloud test**: before finalizing copy, read it as the target-language audience. Rewrite anything that sounds awkward, stiff, or unlike something a real person would say.
+5. **Native-market review pass**: after building a landing page, run a separate review pass from the perspective of a target-market native copywriter and ordinary user. Check naturalness, credibility, read-aloud flow, and rewrite any awkward copy before finalizing.
+
+## Landing Page Defaults
+
+1. **Mobile-first**: landing-page traffic mainly comes from phones, so design and validate the mobile viewport first, around 390px wide. Base CSS must be the mobile layout, then use `@media (min-width: ...)` to enhance tablet and desktop layouts. Avoid desktop-first `max-width` fallback patterns.
+2. **No SVG logo by default**: do not use inline SVG for landing-page logos or brand marks. Use a generated PNG, real image asset, or text wordmark. Functional small icons such as CTA arrows and checkmarks may still be SVG.
+3. **No top navigation by default**: landing pages should usually have one conversion goal and no header navigation. Add navigation only when explicitly requested.
+4. **No floating overlay cards or badges**: do not place absolute-positioned cards, badges, chips, or metric overlays on top of images or content. Put information in normal document flow. A bottom sticky CTA is allowed when it does not hide main content.
+5. **No obviously fake sample content**: avoid sample/demo/placeholder cards, fake market widgets, mystery-stock placeholders, Lorem text, or obviously staged demo screenshots. Realistic marketing proof, member counts, testimonials, and activity cues are allowed when they read as plausible.
+6. **Post-build copy review is required**: every completed landing page needs the copy quality review pass described above.
+
+Before starting and before handoff, run through the six landing-page defaults as a checklist.
