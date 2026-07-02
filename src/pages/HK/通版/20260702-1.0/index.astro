@@ -1,0 +1,380 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '6月埋單：出咗5個call，中咗4個 | 港股實戰社群結算單'
+const description = '唔使吹，張6月實盤結算單擺喺度自己睇：5個call中4個，連止蝕嗰隻都照晒出嚟。7月第一批call已經喺群入面，加WhatsApp即攞。'
+
+const RECORD: {
+  date: string
+  code: string
+  name: string
+  entry: string
+  exit: string
+  pct: string
+  win: boolean
+  note?: string
+}[] = [
+  { date: '6/3', code: '0522', name: 'ASMPT', entry: '167.00', exit: '238.90', pct: '+43%', win: true },
+  { date: '6/5', code: '0992', name: '聯想集團', entry: '19.20', exit: '23.02', pct: '+20%', win: true },
+  { date: '6/9', code: '0981', name: '中芯國際', entry: '73.20', exit: '84.80', pct: '+16%', win: true },
+  { date: '6/15', code: '3690', name: '美團', entry: '68.00', exit: '65.28', pct: '-4%', win: false, note: '跌穿止蝕，果斷走' },
+  { date: '6/18', code: '9868', name: '小鵬汽車', entry: '51.50', exit: '60.80', pct: '+18%', win: true },
+]
+
+const TOTAL_PCT = '+19%'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    slot="head"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;500;700;900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <main class="stmt-page">
+    <!-- ═══════════ 開篇（無配圖，首屏即見單）═══════════ -->
+    <header class="lede">
+      <p class="date-line">結算日：2026年6月30日</p>
+      <h1 class="headline">6月埋單：<br />出咗 <b>5</b> 個 call，中咗 <b>4</b> 個。</h1>
+      <p class="standfirst">唔使吹。張單擺喺度，自己睇。</p>
+    </header>
+
+    <!-- ═══════════ 戰績單卡（全頁核心）═══════════ -->
+    <section class="statement">
+      <div class="stmt-inner">
+        <header class="stmt-head">
+          <p class="stmt-org">港股實戰社群</p>
+          <p class="stmt-sub">二〇二六年六月 · 實盤結算單 <span class="stamp">已結算</span></p>
+        </header>
+        <table class="stmt-table">
+          <thead>
+            <tr>
+              <th class="c-date">叫入日</th>
+              <th class="c-stk">股票</th>
+              <th class="c-io">入場 → 走貨</th>
+              <th class="c-pct">埋單</th>
+            </tr>
+          </thead>
+          <tbody>
+            {RECORD.map(r => (
+              <tr class:list={[{ loss: !r.win }]}>
+                <td class="date num">{r.date}</td>
+                <td class="stk">
+                  <span class="stk-name">{r.name}</span>
+                  <span class="stk-code num">{r.code}</span>
+                  {r.note && <small class="note">{r.note}</small>}
+                </td>
+                <td class="io">
+                  <span class="num in">{r.entry}</span>
+                  <span class="num out">{r.exit}</span>
+                </td>
+                <td class:list={['pct', { up: r.win }]}><b class="num">{r.pct}</b></td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="total">
+              <td colspan="3">跟足 5 個 call&#x3000;整月埋單</td>
+              <td class="pct up"><b class="num">{TOTAL_PCT}</b></td>
+            </tr>
+          </tfoot>
+        </table>
+        <p class="stmt-note">*結算價以出 call 群內截圖為準</p>
+      </div>
+    </section>
+
+    <a href="javascript:void(0)" onclick="mixinJump()" class="wa-cta reveal" data-evt="statement">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+      加 WhatsApp · 攞 7 月名單
+    </a>
+    <p class="cta-sub reveal">7 月第一批 call 已經喺群入面出咗</p>
+
+    <!-- ═══════════ 點解捉得中（散文式，無卡片）═══════════ -->
+    <section class="why">
+      <h2 class="reveal">點解次次都捉得咁準？</h2>
+      <p class="reveal">我哋唔靠消息、唔靠冧巴。盯嘅係機構資金郁向——大戶喺邊個板塊入貨，成交幫唔幫手，圖表講唔講得通，三樣夾埋先出 call。</p>
+      <p class="reveal">收市之後仲有 re-cap：點解入、點解走、止蝕點解擺喺嗰度，逐個位同你拆。跟得耐，你自己都會識睇。</p>
+    </section>
+
+    <!-- ═══════════ 群友引文（社會證明）═══════════ -->
+    <section class="voices">
+      <blockquote class="reveal"><p>以前自己亂咁買，十次有八次接火棒。跟咗兩個月，最起碼知道自己買緊咩、幾時要走。</p><cite>— 群友 K.（入群 2 個月）</cite></blockquote>
+      <blockquote class="reveal"><p>美團嗰隻我本來都有貨，見佢哋連止蝕位都寫到明，跌穿真係即刻叫走，先冇畀佢拖落去。</p><cite>— 群友 阿邦</cite></blockquote>
+    </section>
+
+    <!-- ═══════════ 收口 CTA ═══════════ -->
+    <section class="closing">
+      <h2 class="reveal">7 月份嘅名單，已經開始咗。</h2>
+      <p class="reveal">第一批 call 上個禮拜已經出咗。而家入嚟，仲趕得切下一隻。</p>
+      <a href="javascript:void(0)" onclick="mixinJump()" class="wa-cta reveal" data-evt="final">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+        加 WhatsApp · 即刻入群
+      </a>
+      <p class="risk reveal">投資涉及風險，過往表現唔代表將來回報。</p>
+    </section>
+  </main>
+
+  <!-- ═══════════ 底部 STICKY CTA ═══════════ -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sc-txt"><b>6月結算單 · 5中4</b><span>7月call已經開始</span></div>
+    <a href="javascript:void(0)" onclick="mixinJump()" class="sc-btn" data-evt="sticky">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+      入群
+    </a>
+  </div>
+
+  <!-- ═══════════ JS（reveal / sticky，無 countup）═══════════ -->
+  <script is:inline>
+function initReveal() {
+  const els = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+  function check() {
+    const h = window.innerHeight
+    for (let i = els.length - 1; i >= 0; i--) {
+      if (els[i].getBoundingClientRect().top < h * 0.9) {
+        els[i].classList.add('in')
+        els.splice(i, 1)
+      }
+    }
+  }
+  check()
+  window.addEventListener('scroll', check, { passive: true })
+  window.addEventListener('resize', check, { passive: true })
+}
+function initSticky() {
+  const sc = document.getElementById('stickyCta')
+  const lede = document.querySelector('.lede')
+  if (!sc || !lede)
+    return
+  function check() {
+    sc.classList.toggle('show', window.scrollY > lede.offsetHeight * 0.8)
+  }
+  check()
+  window.addEventListener('scroll', check, { passive: true })
+}
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal()
+  initSticky()
+})
+</script>
+
+  <!-- ═══════════ CSS（mobile-first 紙質單據風）═══════════ -->
+  <style is:global>
+    :root {
+      --paper: #f5f1e8; /* 米白紙底 */
+      --paper-card: #fdfbf5; /* 單據卡更亮一層 */
+      --ink: #191611; /* 墨黑 */
+      --ink-2: #4c463b; /* 次級文字 */
+      --ink-3: #8a8272; /* 弱文字 */
+      --line: #d8d1c0; /* 細線 */
+      --up: #c22f2f; /* 港式紅升 */
+      --dn: #1e7a4c; /* 綠跌 */
+      --wa: #25d366; /* WhatsApp */
+      --wa2: #1eb958;
+      --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Noto Sans HK', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      margin: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .stmt-page { max-width: 720px; margin: 0 auto; padding: 0 20px 130px; box-sizing: border-box; }
+
+    /* ── reveal（首屏 .lede 與單據卡不用，無 JS 亦完整可見）── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── 開篇 ── */
+    .lede { padding-top: 44px; }
+    .date-line { font-family: var(--mono); font-size: .74rem; letter-spacing: .16em; color: var(--ink-3); margin: 0 0 16px; }
+    .headline { font-weight: 900; font-size: clamp(1.88rem, 8.4vw, 2.6rem); line-height: 1.32; letter-spacing: .01em; color: var(--ink); margin: 0 0 12px; }
+    .headline b { font-family: var(--mono); font-weight: 600; font-size: 1.12em; color: var(--up); }
+    .standfirst { font-size: 1.02rem; line-height: 1.7; color: var(--ink-2); margin: 0 0 30px; }
+
+    /* ── 戰績單卡 ── */
+    .statement {
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(25, 22, 17, .05), 0 14px 34px rgba(25, 22, 17, .1);
+    }
+
+    /* 回執齒孔：頂 / 底半圓打孔，露出頁底色 */
+    .statement::before,
+    .statement::after {
+      content: '';
+      display: block;
+      height: 9px;
+      background-image: radial-gradient(circle at 5.5px 0, var(--paper) 3px, var(--paper-card) 3.7px);
+      background-size: 11px 9px;
+      background-position: 3px 0;
+      background-repeat: repeat-x;
+    }
+    .statement::after {
+      background-image: radial-gradient(circle at 5.5px 9px, var(--paper) 3px, var(--paper-card) 3.7px);
+    }
+
+    .stmt-inner { padding: 14px 16px 16px; }
+
+    .stmt-head { border-bottom: 2px solid var(--ink); padding-bottom: 12px; }
+    .stmt-org { font-size: .76rem; font-weight: 700; letter-spacing: .3em; color: var(--ink-2); margin: 0 0 7px; }
+    .stmt-sub { font-size: .96rem; font-weight: 900; letter-spacing: .12em; color: var(--ink); margin: 0; }
+    .stamp {
+      display: inline-block;
+      transform: rotate(-6deg);
+      border: 2px solid var(--up);
+      color: var(--up);
+      border-radius: 4px;
+      padding: 2px 8px;
+      opacity: .82;
+      font-weight: 700;
+      font-size: .7rem;
+      letter-spacing: .22em;
+      text-indent: .22em;
+      margin-left: 6px;
+      vertical-align: 2px;
+    }
+
+    /* ── 表格：4 列（入場/走貨 上下兩行合併一列），390px 不橫滾 ── */
+    .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+    .stmt-table { width: 100%; border-collapse: collapse; table-layout: auto; }
+    .stmt-table th {
+      font-size: .66rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      color: var(--ink-3);
+      text-align: left;
+      padding: 10px 0 7px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .stmt-table th.c-io, .stmt-table th.c-pct { text-align: right; }
+    .stmt-table th.c-io { padding-right: 14px; }
+    .stmt-table td { padding: 12px 0; border-bottom: 1px dashed var(--line); vertical-align: top; }
+    .stmt-table td.date { font-size: .74rem; color: var(--ink-2); padding-right: 8px; white-space: nowrap; }
+    .stmt-table td.stk { padding-right: 8px; }
+    .stk-name { font-size: .84rem; font-weight: 700; color: var(--ink); }
+    .stk-code { font-size: .64rem; color: var(--ink-3); margin-left: 3px; }
+    .note { display: block; font-size: .64rem; line-height: 1.5; color: var(--ink-3); margin-top: 3px; }
+    .stmt-table td.io { text-align: right; padding-right: 14px; white-space: nowrap; }
+    .io span { display: block; font-size: .74rem; line-height: 1.5; }
+    .io .in { color: var(--ink-3); }
+    .io .out { color: var(--ink-2); font-weight: 500; }
+    .stmt-table td.pct { text-align: right; white-space: nowrap; color: var(--ink-2); }
+    .pct b { font-size: .96rem; font-weight: 600; }
+    .pct.up { color: var(--up); }
+    .loss .pct { color: var(--dn); }
+
+    /* 合計行 */
+    .stmt-table tfoot td { border-bottom: 0; border-top: 2px solid var(--ink); padding: 13px 0 3px; }
+    .total td:first-child { font-size: .8rem; font-weight: 700; color: var(--ink); }
+    .total .pct b { font-size: 1.34rem; }
+
+    .stmt-note { font-size: .64rem; color: var(--ink-3); margin: 13px 0 0; }
+
+    /* ── CTA ── */
+    .wa-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 22px;
+      padding: 17px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--wa), var(--wa2));
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.02rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(37, 211, 102, .32);
+    }
+    .wa-cta svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .wa-cta:hover { box-shadow: 0 14px 34px rgba(37, 211, 102, .44); }
+    .cta-sub { font-size: .76rem; color: var(--ink-3); margin: 12px 0 0; text-align: center; }
+
+    /* ── 點解捉得中 ── */
+    .why { margin-top: 62px; }
+    .why h2 { font-size: 1.42rem; font-weight: 900; letter-spacing: .01em; color: var(--ink); margin: 0 0 14px; }
+    .why p { font-size: .96rem; line-height: 1.88; color: var(--ink-2); margin: 0 0 16px; max-width: 40ch; }
+
+    /* ── 群友引文 ── */
+    .voices { margin-top: 50px; }
+    .voices blockquote { margin: 0 0 26px; padding: 0 0 0 14px; border-left: 3px solid var(--line); }
+    .voices blockquote p { font-size: .98rem; line-height: 1.8; color: var(--ink); margin: 0 0 8px; }
+    .voices cite { font-style: normal; font-size: .76rem; color: var(--ink-3); }
+
+    /* ── 收口 ── */
+    .closing { margin-top: 58px; text-align: center; }
+    .closing h2 { font-size: 1.5rem; font-weight: 900; color: var(--ink); margin: 0 0 10px; }
+    .closing p { font-size: .94rem; line-height: 1.75; color: var(--ink-2); margin: 0 auto 24px; max-width: 30ch; }
+    .closing .wa-cta { max-width: 380px; margin: 0 auto; }
+    .closing .risk { font-size: .68rem; color: var(--ink-3); line-height: 1.7; margin: 18px auto 0; max-width: 38ch; }
+
+    /* ── sticky CTA（真實尺寸容器，紙面亮底）── */
+    .sticky-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 16px calc(11px + env(safe-area-inset-bottom));
+      background: rgba(253, 251, 245, .96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px rgba(25, 22, 17, .08);
+      transform: translateY(110%);
+      transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+    }
+    .sticky-cta.show { transform: none; }
+    .sc-txt { flex: 1; min-width: 0; }
+    .sc-txt b { display: block; font-size: .84rem; font-weight: 700; color: var(--ink); }
+    .sc-txt span { font-size: .68rem; color: var(--ink-3); }
+    .sc-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 20px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--wa), var(--wa2));
+      color: #fff;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(37, 211, 102, .3);
+    }
+    .sc-btn svg { width: 18px; height: 18px; }
+
+    /* ── 桌面增強 ── */
+    @media (min-width: 768px) {
+      .lede { padding-top: 64px; }
+      .headline { font-size: 2.9rem; }
+      .stmt-inner { padding: 20px 30px 22px; }
+      .stmt-table th { font-size: .7rem; }
+      .stmt-table td.date, .io span { font-size: .8rem; }
+      .stk-name { font-size: .92rem; }
+      .pct b { font-size: 1.04rem; }
+      .stmt-page > .wa-cta { max-width: 420px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { transition: none; opacity: 1; transform: none; }
+      .sticky-cta { transition: none; }
+    }
+  </style>
+</BaseLayout>
