@@ -29,6 +29,10 @@ function excludeThirdPartyCss() {
 export default defineConfig({
   integrations: [react()],
   compressHTML: false,
+  server: {
+    // 让 dev/preview 绑定到注入的 PORT 环境变量（preview autoPort），未设置时回退默认 4321
+    port: Number(process.env.PORT) || 4321,
+  },
   vite: {
     plugins: [excludeThirdPartyCss(), tailwindcss()],
     resolve: {

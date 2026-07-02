@@ -1,0 +1,112 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '加入社群 · 港股科技股實戰社群'
+const description = '確認加入港股科技股實戰社群，免費入群，助理即時回覆。'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <main class="fb">
+    <!-- Facebook 字標 -->
+    <div class="fb-word">facebook</div>
+
+    <div class="fb-card">
+      <!-- Facebook f LOGO -->
+      <span class="fb-fmark" aria-label="Facebook">
+        <svg viewBox="0 0 36 36" role="img" aria-hidden="true">
+          <path fill="#1877F2" d="M36 18C36 8.06 27.94 0 18 0S0 8.06 0 18c0 8.98 6.58 16.43 15.19 17.78V23.2h-4.57V18h4.57v-3.96c0-4.51 2.69-7 6.8-7 1.97 0 4.03.35 4.03.35v4.43h-2.27c-2.24 0-2.94 1.39-2.94 2.81V18h5l-.8 5.2h-4.2v12.58C29.42 34.43 36 26.98 36 18z" />
+          <path fill="#fff" d="M25.01 23.2l.8-5.2h-5v-3.37c0-1.42.7-2.81 2.94-2.81h2.27V7.39s-2.06-.35-4.03-.35c-4.11 0-6.8 2.49-6.8 7V18h-4.57v5.2h4.57v12.58a18.2 18.2 0 0 0 5.62 0V23.2h4.2z" />
+        </svg>
+      </span>
+
+      <p class="fb-pre">你即將加入社群</p>
+      <h1 class="fb-name">港股科技股實戰社群</h1>
+
+      <a href="javascript:void(0)" onclick="mixinJump()" class="fb-btn" data-evt="confirm">確認加入</a>
+
+      <p class="fb-note">免費加入 · 助理即時回覆</p>
+    </div>
+  </main>
+
+  <style is:global>
+    :root {
+      --fb: #1877f2;
+      --fb-dk: #166fe5;
+      --fb-bg: #f0f2f5;
+      --fb-tx: #1c1e21;
+      --fb-tx2: #606770;
+      --fb-line: #dadde1;
+    }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--fb-bg);
+      color: var(--fb-tx);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, 'PingFang HK', 'Noto Sans HK', 'Microsoft JhengHei', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .fb {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px calc(40px + env(safe-area-inset-bottom));
+      box-sizing: border-box;
+    }
+
+    /* Facebook 字標 */
+    .fb-word {
+      color: var(--fb);
+      font-size: 3.25rem;
+      font-weight: 700;
+      letter-spacing: -.05em;
+      line-height: 1;
+      margin-bottom: 22px;
+      user-select: none;
+    }
+
+    /* 白卡（仿 FB 對話框）*/
+    .fb-card {
+      width: 100%;
+      max-width: 396px;
+      box-sizing: border-box;
+      background: #fff;
+      border-radius: 10px;
+      padding: 28px 22px 24px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    }
+
+    .fb-fmark { display: inline-flex; }
+    .fb-fmark svg { width: 56px; height: 56px; display: block; }
+
+    .fb-pre { font-size: .95rem; color: var(--fb-tx2); margin: 16px 0 4px; }
+    .fb-name { font-size: 1.5rem; font-weight: 700; color: var(--fb-tx); margin: 0 0 22px; line-height: 1.3; letter-spacing: -.01em; }
+
+    .fb-btn {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 13px;
+      border-radius: 6px;
+      background: var(--fb);
+      color: #fff;
+      font-size: 1.18rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .fb-btn:hover { background: var(--fb-dk); }
+
+    .fb-note { font-size: .82rem; color: var(--fb-tx2); margin: 16px 0 0; }
+
+    .fb-risk { font-size: .7rem; color: #8a8d91; margin: 26px 0 0; text-align: center; line-height: 1.6; max-width: 360px; }
+
+    @media (min-width: 768px) {
+      .fb-word { font-size: 3.6rem; }
+    }
+  </style>
+</BaseLayout>

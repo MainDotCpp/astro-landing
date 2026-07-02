@@ -1,0 +1,391 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroEditorial from './assets/images/hero-editorial.webp'
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>长线投资思维 · 免费社群 · 每日大盘解读</title>
+    <meta name="description" content="加入免费长线投资研究社群，每日大盘长期趋势解读，退休理财思维，适合关注401k/IRA的在美华人投资者。" />
+
+    <RedirectCode />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: '#0A2540',
+              inkMid: '#1E3A5F',
+              inkSoft: '#4A6580',
+              cream: '#F8F5EE',
+              creamDark: '#EDE8DC',
+              gold: '#B8860B',
+              goldLight: '#D4A017',
+              divider: '#D5C9B0',
+            },
+            fontFamily: {
+              serif: ['"Noto Serif SC"', 'Georgia', 'serif'],
+              sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+            },
+            letterSpacing: {
+              eyebrow: '0.18em',
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: 'Noto Sans SC', system-ui, sans-serif;
+        background: #F8F5EE;
+        color: #0A2540;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 衬线大标题 */
+      .font-serif { font-family: 'Noto Serif SC', Georgia, serif; }
+
+      /* hero 渐变背景（无图片时的 fallback） */
+      .hero-bg {
+        background: linear-gradient(160deg, #0A2540 0%, #1E3A5F 55%, #0A2540 100%);
+      }
+
+      /* 晨光装饰 */
+      .hero-glow {
+        background: radial-gradient(ellipse 70% 50% at 70% 50%, rgba(184,134,11,0.18) 0%, transparent 70%);
+      }
+
+      /* 细分隔线 */
+      .rule {
+        display: block;
+        width: 48px;
+        height: 1px;
+        background: #B8860B;
+        margin: 0 auto;
+      }
+
+      /* 引用块 */
+      .blockquote {
+        border-left: 3px solid #B8860B;
+        padding-left: 18px;
+        color: #1E3A5F;
+        font-style: italic;
+        font-family: 'Noto Serif SC', Georgia, serif;
+      }
+
+      /* 功能卡片 */
+      .feature-card {
+        background: #FFFFFF;
+        border: 1px solid #D5C9B0;
+        border-radius: 4px;
+      }
+
+      /* 评价卡 */
+      .review-card {
+        background: #FFFFFF;
+        border: 1px solid #D5C9B0;
+        border-radius: 4px;
+        border-left: 3px solid #B8860B;
+      }
+
+      /* 底部 sticky CTA */
+      .sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: #0A2540;
+        border-top: 1px solid rgba(184,134,11,0.4);
+        padding: 14px 20px 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: #B8860B;
+        color: #FFFFFF;
+        font-family: 'Noto Sans SC', system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 0.04em;
+        padding: 14px 32px;
+        border-radius: 2px;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        max-width: 420px;
+        transition: background 0.2s;
+        text-decoration: none;
+      }
+      .cta-btn:hover { background: #D4A017; }
+
+      @keyframes subtleRise {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-2px); }
+      }
+      .cta-btn { animation: subtleRise 2.4s ease-in-out infinite; }
+
+      /* 页面底部留出 sticky CTA 的空间 */
+      .page-bottom-pad { padding-bottom: 100px; }
+
+      /* eyebrow 标签 */
+      .eyebrow {
+        font-family: 'Noto Sans SC', system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #B8860B;
+      }
+
+      /* 内容容器：手机满宽，桌面居中 */
+      .content-wrap {
+        width: 100%;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      @media (min-width: 640px) {
+        .content-wrap {
+          padding-left: 32px;
+          padding-right: 32px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-bottom-pad">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero-bg relative overflow-hidden" style={`background-image: linear-gradient(160deg, rgba(10,37,64,0.90) 0%, rgba(12,33,56,0.80) 52%, rgba(10,37,64,0.92) 100%), url(${heroEditorial.src}); background-size: cover; background-position: center;`}>
+      <!-- 暖光氛围叠层 -->
+      <div class="hero-glow absolute inset-0 pointer-events-none"></div>
+
+      <div class="content-wrap relative py-14">
+        <!-- eyebrow -->
+        <p class="eyebrow mb-5 text-center" style="color:#D4A017;">
+          免费长线投资研究社群
+        </p>
+
+        <!-- 大标题 -->
+        <h1 class="font-serif text-center leading-tight mb-6" style="color:#F8F5EE; font-size: clamp(1.75rem, 6vw, 2.6rem); font-weight:900; letter-spacing:-0.01em;">
+          市场短期是投票机<br />
+          <span style="color:#D4A017;">长期是称重机</span>
+        </h1>
+
+        <!-- 副标题 -->
+        <p class="text-center leading-relaxed mb-8" style="color: rgba(248,245,238,0.78); font-size:15px; line-height:1.8;">
+          很多人的 401k 放着，几年没认真看过一眼。不是不想管，是真不知道该怎么看。与其跟着新闻追涨杀跌，不如搞清楚大盘的长期逻辑——这是我们在社群里每天做的一件事。
+        </p>
+
+        <!-- 首屏 CTA -->
+        <div class="flex flex-col items-center gap-3">
+          <a onclick="mixinJump()" class="link-btn cta-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            免费进群，每天看懂大盘长期走向
+          </a>
+          <p style="color: rgba(248,245,238,0.5); font-size: 11px; letter-spacing: 0.06em;">完全免费 · 随时退出 · 无需注册</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 痛点共鸣 ═══ -->
+    <section style="background: #F8F5EE; padding: 52px 0 48px;">
+      <div class="content-wrap">
+        <p class="eyebrow text-center mb-3">你是否也有同感</p>
+        <span class="rule mb-8" style="margin-bottom: 32px;"></span>
+
+        <div class="blockquote mb-6" style="margin-top: 32px;">
+          "401k 每年帮我选了基金组合，但我根本不知道为什么要这样配——市场一跌，我就不知道该不该动。"
+        </div>
+
+        <div class="blockquote mb-6">
+          "看财经新闻，说的都是'短线机会'。可我离退休还有十几年，这些对我有什么用？"
+        </div>
+
+        <p class="leading-relaxed" style="color:#4A6580; font-size:15px; line-height:1.85; margin-top:28px;">
+          短线噪音和退休账户的长期增长，本来就是两回事。真正值得花时间的，是搞清楚现在市场处于什么周期、通胀在蚕食你的购买力、以及你手里这笔钱十年后能长到哪里。
+        </p>
+      </div>
+    </section>
+
+    <!-- 分隔线 -->
+    <div style="height: 1px; background: #D5C9B0; margin: 0 24px;"></div>
+
+    <!-- ═══ 我们提供什么 ═══ -->
+    <section style="background: #F8F5EE; padding: 52px 0 48px;">
+      <div class="content-wrap">
+        <p class="eyebrow text-center mb-3">进群之后，你每天能拿到什么</p>
+        <span class="rule" style="display:block; width:48px; height:1px; background:#B8860B; margin: 0 auto 32px;"></span>
+
+        <!-- 功能卡 1 -->
+        <div class="feature-card p-5 mb-4">
+          <div style="display:flex; align-items:flex-start; gap:14px;">
+            <div style="flex-shrink:0; width:36px; height:36px; background:#EDE8DC; border-radius:2px; display:flex; align-items:center; justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </div>
+            <div>
+              <p class="font-serif" style="font-size:15px; font-weight:700; color:#0A2540; margin:0 0 6px;">大盘长期趋势早读</p>
+              <p style="font-size:13px; color:#4A6580; line-height:1.75; margin:0;">每个交易日早上，研究团队用中文说清楚一件事：现在大盘在长周期里处于什么位置。不是荐股，是帮你建立判断框架。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 功能卡 2 -->
+        <div class="feature-card p-5 mb-4">
+          <div style="display:flex; align-items:flex-start; gap:14px;">
+            <div style="flex-shrink:0; width:36px; height:36px; background:#EDE8DC; border-radius:2px; display:flex; align-items:center; justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            </div>
+            <div>
+              <p class="font-serif" style="font-size:15px; font-weight:700; color:#0A2540; margin:0 0 6px;">退休理财思维分享</p>
+              <p style="font-size:13px; color:#4A6580; line-height:1.75; margin:0;">401k / IRA 怎么搭？通胀在悄悄吃掉你多少退休金？每周深度内容，用在美华人熟悉的语境讲透。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 功能卡 3 -->
+        <div class="feature-card p-5 mb-4">
+          <div style="display:flex; align-items:flex-start; gap:14px;">
+            <div style="flex-shrink:0; width:36px; height:36px; background:#EDE8DC; border-radius:2px; display:flex; align-items:center; justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div>
+              <p class="font-serif" style="font-size:15px; font-weight:700; color:#0A2540; margin:0 0 6px;">华人投资者社群答疑</p>
+              <p style="font-size:13px; color:#4A6580; line-height:1.75; margin:0;">提问、讨论，和同样关注长期资产的在美华人一起交流。不卖课、不推产品，就是互相分享信息和看法。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 分隔线 -->
+    <div style="height: 1px; background: #D5C9B0; margin: 0 24px;"></div>
+
+    <!-- ═══ 社会证明 ═══ -->
+    <section style="background: #EDE8DC; padding: 52px 0 48px;">
+      <div class="content-wrap">
+        <p class="eyebrow text-center mb-3">已有这些人加入</p>
+        <span class="rule" style="display:block; width:48px; height:1px; background:#B8860B; margin: 0 auto 32px;"></span>
+
+        <!-- 数字 -->
+        <div style="text-align:center; margin-bottom:36px;">
+          <p class="font-serif" style="font-size:2.8rem; font-weight:900; color:#0A2540; line-height:1; margin:0 0 6px;">8,400+</p>
+          <p style="font-size:12px; color:#4A6580; letter-spacing:0.1em; text-transform:uppercase; margin:0;">在美华人投资者已加入</p>
+        </div>
+
+        <!-- 评价 1 -->
+        <div class="review-card p-5 mb-4">
+          <p style="font-size:13px; color:#1E3A5F; line-height:1.8; margin:0 0 10px;">
+            "加入之前，我连标普500为什么长期向上的逻辑都没想清楚。群里每天早上的解读看多了，开始有了大盘周期的感觉，现在市场一波动也没那么慌了。"
+          </p>
+          <p style="font-size:11px; color:#4A6580; margin:0; letter-spacing:0.04em;">— 旧金山湾区，IT 从业 · 加入 7 个月</p>
+        </div>
+
+        <!-- 评价 2 -->
+        <div class="review-card p-5">
+          <p style="font-size:13px; color:#1E3A5F; line-height:1.8; margin:0 0 10px;">
+            "终于有人用中文认真讲退休账户的配置逻辑，不是那种'十倍股教程'。我老公也加进来了，我们现在周末会一起讨论大盘走势。"
+          </p>
+          <p style="font-size:11px; color:#4A6580; margin:0; letter-spacing:0.04em;">— 洛杉矶，教育行业 · 加入 4 个月</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 分隔线 -->
+    <div style="height: 1px; background: #D5C9B0; margin: 0 24px;"></div>
+
+    <!-- ═══ 适合谁 ═══ -->
+    <section style="background: #F8F5EE; padding: 52px 0 48px;">
+      <div class="content-wrap">
+        <p class="eyebrow text-center mb-3">这个社群适合你吗</p>
+        <span class="rule" style="display:block; width:48px; height:1px; background:#B8860B; margin: 0 auto 32px;"></span>
+
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <!-- 条目 -->
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="flex-shrink:0; width:20px; height:20px; background:#B8860B; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-top:2px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <p style="font-size:14px; color:#1E3A5F; line-height:1.7; margin:0;">有 401k 或 IRA，但从没认真了解过长期资产配置逻辑</p>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="flex-shrink:0; width:20px; height:20px; background:#B8860B; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-top:2px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <p style="font-size:14px; color:#1E3A5F; line-height:1.7; margin:0;">看不懂英文财经分析，想要有人用中文讲清楚大盘走势</p>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="flex-shrink:0; width:20px; height:20px; background:#B8860B; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-top:2px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <p style="font-size:14px; color:#1E3A5F; line-height:1.7; margin:0;">不想追短线热点，更关心 10 年后退休时账户里到底有多少</p>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="flex-shrink:0; width:20px; height:20px; background:#B8860B; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-top:2px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <p style="font-size:14px; color:#1E3A5F; line-height:1.7; margin:0;">刚来美国或刚接触美股，想先搞清楚大盘是怎么回事再说</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 底部 CTA section ═══ -->
+    <section style="background: #0A2540; padding: 52px 0 48px;">
+      <div class="content-wrap text-center">
+        <p class="eyebrow mb-4" style="color:#D4A017;">现在加入，完全免费</p>
+        <h2 class="font-serif leading-tight mb-4" style="color:#F8F5EE; font-size: clamp(1.4rem, 5vw, 2rem); font-weight:900;">
+          每天5分钟，<br />看懂大盘在哪里、你的钱该怎么放
+        </h2>
+        <p style="color: rgba(248,245,238,0.65); font-size:14px; line-height:1.8; margin-bottom:32px;">
+          已有 8,400+ 位在美华人加入。不卖课、不荐股，每天早上一篇，帮你看清楚市场的长期脉络。
+        </p>
+        <a onclick="mixinJump()" class="link-btn cta-btn" style="margin:0 auto; max-width:360px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          免费加入研究社群
+        </a>
+        <p style="color: rgba(248,245,238,0.4); font-size:11px; margin-top:14px; letter-spacing:0.04em;">随时退出 · 无任何费用 · 不推销任何产品</p>
+      </div>
+    </section>
+
+    <!-- ═══ 页脚 ═══ -->
+    <footer style="background: #060F1A; padding: 24px 20px; text-align:center;">
+      <p style="font-size:11px; color: rgba(248,245,238,0.35); line-height:1.8; max-width:560px; margin:0 auto;">
+        本内容仅供参考，不构成任何投资建议。投资有风险，请结合自身情况独立判断。过往市场表现不代表未来结果。
+      </p>
+      <p style="font-size:10px; color: rgba(248,245,238,0.2); margin-top:10px;">© 2026 长线投资研究社群</p>
+    </footer>
+
+    <!-- ═══ 底部 sticky CTA ═══ -->
+    <div class="sticky-cta">
+      <a onclick="mixinJump()" class="link-btn cta-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        免费进群，每天看懂大盘长期走向
+      </a>
+      <p style="font-size:10px; color: rgba(248,245,238,0.4); letter-spacing:0.04em; margin:0;">完全免费 · 随时退出 · 不推销任何产品</p>
+    </div>
+
+  </body>
+</html>

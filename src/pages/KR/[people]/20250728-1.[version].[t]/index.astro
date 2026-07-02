@@ -5,7 +5,7 @@ import { Filters, generateKrConfig } from '@/utils/kr_config'
 import Body from './_body.jsx'
 
 export function getStaticPaths() {
- return generateKrConfig(Filters.byPerson('金永益'))
+ return generateKrConfig(Filters.byPerson('金永益'), undefined, { withKaqun: false })
 }
 
 ---

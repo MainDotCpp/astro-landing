@@ -1,0 +1,1274 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Free Stock Research Report · SGX · US · HK</title>
+    <meta
+      name="description"
+      content="Get a free weekly stock research report covering high-potential ideas our analysts are watching across SGX, US and HK markets. Educational research — not investment advice."
+    />
+    <RedirectCode />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #070c1a;
+        --bg-2: #0b1430;
+        --panel: #101c3c;
+        --gold: #e8c25a;
+        --gold-bright: #f7da8a;
+        --up: #ff4b5c;
+        --down: #1fc093;
+        --text: #eef2fb;
+        --muted: #94a2c4;
+        --line: rgb(255 255 255 / 9%);
+        --line-gold: rgb(232 194 90 / 35%);
+        --shadow: 0 24px 60px -20px rgb(0 0 0 / 70%);
+        --r: 18px;
+        --maxw: 1120px;
+        --sans: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --display: 'Sora', var(--sans);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        line-height: 1.6;
+        overflow-x: hidden;
+        padding-bottom: 84px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .num,
+      h1,
+      h2,
+      h3,
+      .logo,
+      .btn-primary,
+      .eyebrow,
+      .sec-kicker,
+      .stat b {
+        font-family: var(--display);
+      }
+
+      .wrap {
+        width: min(100% - 40px, var(--maxw));
+        margin: 0 auto;
+      }
+
+      .bg-fx {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .bg-fx .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.5;
+      }
+
+      .bg-fx .g1 {
+        width: 420px;
+        height: 420px;
+        background: radial-gradient(circle, rgb(232 194 90 / 22%), transparent 70%);
+        top: -150px;
+        right: -180px;
+      }
+
+      .bg-fx .g2 {
+        width: 430px;
+        height: 430px;
+        background: radial-gradient(circle, rgb(43 90 200 / 30%), transparent 70%);
+        bottom: -190px;
+        left: -190px;
+      }
+
+      .grid-lines {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 42px 42px;
+        opacity: 0.22;
+        mask-image: radial-gradient(ellipse 90% 62% at 50% 0%, #000, transparent 76%);
+      }
+
+      header {
+        position: relative;
+        z-index: 5;
+        padding: calc(env(safe-area-inset-top) + 14px) 0 12px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+      }
+
+      .logo .mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 9px;
+        background: linear-gradient(145deg, var(--gold-bright), var(--gold));
+        box-shadow: 0 6px 18px -6px rgb(232 194 90 / 60%);
+        color: #1a1405;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .logo .name b {
+        color: var(--gold-bright);
+      }
+
+      .badge-sg {
+        display: none;
+      }
+
+      .badge-sg .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--up);
+        box-shadow: 0 0 10px var(--up);
+      }
+
+      .hero {
+        position: relative;
+        z-index: 2;
+        padding: 26px 0 46px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 34px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 20px;
+        padding: 8px 14px;
+        border: 1px solid var(--line-gold);
+        border-radius: 999px;
+        background: rgb(232 194 90 / 8%);
+        color: var(--gold-bright);
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      h1 {
+        margin-bottom: 18px;
+        font-size: clamp(33px, 12vw, 52px);
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+      }
+
+      h1 .hl,
+      .final-card h2 .hl {
+        color: var(--gold-bright);
+      }
+
+      .lede {
+        max-width: 520px;
+        margin-bottom: 16px;
+        color: var(--muted);
+        font-size: 16.5px;
+      }
+
+      .lede b {
+        color: var(--text);
+        font-weight: 800;
+      }
+
+      .note-line {
+        margin-bottom: 24px;
+        color: var(--muted);
+        font-size: 13px;
+        opacity: 0.86;
+      }
+
+      .ticks {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .tick {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .tick .ic {
+        width: 24px;
+        height: 24px;
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        border-radius: 50%;
+        background: rgb(31 192 147 / 14%);
+      }
+
+      .tick .ic svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: var(--down);
+        stroke-width: 2.4;
+      }
+
+      .btn-primary {
+        min-height: 58px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: none;
+        border-radius: 13px;
+        background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+        box-shadow: 0 14px 32px -10px rgb(232 194 90 / 55%);
+        color: #1a1405;
+        cursor: pointer;
+        font-size: 16.5px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        padding: 16px 26px;
+        transition: transform 0.15s, box-shadow 0.2s;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 42px -10px rgb(232 194 90 / 72%);
+      }
+
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      .btn-primary svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .hero-cta {
+        display: grid;
+        gap: 13px;
+      }
+
+      .hero-cta .btn-primary {
+        width: 100%;
+      }
+
+      .hero-cta .sub-cta {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .hero-cta .sub-cta svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--down);
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+
+      .report-card {
+        position: relative;
+        border: 1px solid var(--line-gold);
+        border-radius: 22px;
+        background: linear-gradient(165deg, #13224a, #0a1430);
+        box-shadow: var(--shadow);
+        padding: 20px;
+      }
+
+      .sample-flag {
+        display: inline-block;
+        margin-bottom: 14px;
+        padding: 4px 9px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: rgb(255 255 255 / 6%);
+        color: var(--muted);
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .rc-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .rc-stock {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .rc-stock .tk {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        border-radius: 12px;
+        background: rgb(232 194 90 / 14%);
+        color: var(--gold-bright);
+        font-family: var(--display);
+        font-weight: 900;
+      }
+
+      .rc-stock .meta b {
+        display: block;
+        font-size: 14.5px;
+        font-weight: 800;
+        line-height: 1.25;
+      }
+
+      .rc-stock .meta span {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.25;
+      }
+
+      .rc-price {
+        flex: 0 0 auto;
+        text-align: right;
+      }
+
+      .rc-price b {
+        display: block;
+        font-family: var(--display);
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .rc-price .chg {
+        color: var(--up);
+        font-size: 12.5px;
+        font-weight: 800;
+      }
+
+      .score-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 14px;
+        padding: 15px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgb(255 255 255 / 3%);
+      }
+
+      .gauge {
+        position: relative;
+        width: 78px;
+        height: 78px;
+        flex: 0 0 auto;
+      }
+
+      .gauge svg {
+        transform: rotate(-90deg);
+      }
+
+      .gauge .val {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--display);
+        font-weight: 800;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .gauge .val b {
+        color: var(--gold-bright);
+        font-size: 24px;
+        line-height: 1;
+      }
+
+      .gauge .val span {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .score-text b {
+        color: var(--gold-bright);
+        font-size: 14.5px;
+        font-weight: 800;
+      }
+
+      .score-text p {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+
+      .chart-box {
+        margin-bottom: 14px;
+        padding: 13px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgb(255 255 255 / 2%);
+      }
+
+      .chart-box .clab {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .ind-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .ind {
+        padding: 10px 8px;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: rgb(255 255 255 / 3%);
+        text-align: center;
+      }
+
+      .ind span {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .ind b {
+        font-size: 13.5px;
+        font-weight: 800;
+      }
+
+      .ind .pos {
+        color: var(--up);
+      }
+
+      .ind .neu {
+        color: var(--gold-bright);
+      }
+
+      .illus {
+        margin-top: 13px;
+        color: var(--muted);
+        font-size: 11px;
+        text-align: center;
+        opacity: 0.82;
+      }
+
+      section.block {
+        position: relative;
+        z-index: 2;
+        padding: 46px 0;
+      }
+
+      .sec-head {
+        max-width: 660px;
+        margin: 0 auto 34px;
+        text-align: center;
+      }
+
+      .sec-kicker {
+        margin-bottom: 14px;
+        color: var(--gold-bright);
+        font-size: 12.5px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .sec-head h2 {
+        font-size: clamp(26px, 9vw, 36px);
+        font-weight: 900;
+        line-height: 1.16;
+        letter-spacing: -0.025em;
+      }
+
+      .sec-head p {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .cards,
+      .steps {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .card,
+      .step {
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        background: linear-gradient(170deg, var(--panel), var(--bg-2));
+        padding: 24px 20px;
+      }
+
+      .card {
+        transition: transform 0.25s, border-color 0.25s;
+      }
+
+      .card:hover {
+        border-color: var(--line-gold);
+        transform: translateY(-6px);
+      }
+
+      .card .ic-box {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        border: 1px solid var(--line-gold);
+        border-radius: 14px;
+        background: rgb(232 194 90 / 12%);
+      }
+
+      .card .ic-box svg {
+        width: 26px;
+        height: 26px;
+        fill: none;
+        stroke: var(--gold-bright);
+        stroke-width: 1.8;
+      }
+
+      .card h3,
+      .step h3 {
+        margin-bottom: 9px;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .card p,
+      .step p {
+        color: var(--muted);
+        font-size: 14.5px;
+      }
+
+      .steps {
+        counter-reset: s;
+      }
+
+      .step .n {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        border-radius: 11px;
+        background: linear-gradient(145deg, var(--gold-bright), var(--gold));
+        color: #1a1405;
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 900;
+        counter-increment: s;
+      }
+
+      .step .n::before {
+        content: '0' counter(s);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+        padding: 28px 18px;
+        border: 1px solid var(--line-gold);
+        border-radius: 22px;
+        background: linear-gradient(170deg, var(--panel), var(--bg-2));
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat b {
+        display: block;
+        color: var(--gold-bright);
+        font-size: clamp(23px, 7vw, 32px);
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .faq {
+        max-width: 740px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 0 auto;
+      }
+
+      .qa {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--panel);
+      }
+
+      .qa summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 19px 18px;
+        cursor: pointer;
+        font-size: 15.5px;
+        font-weight: 800;
+        list-style: none;
+      }
+
+      .qa summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .qa summary .pl {
+        position: relative;
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        transition: transform 0.25s;
+      }
+
+      .qa summary .pl::before,
+      .qa summary .pl::after {
+        content: '';
+        position: absolute;
+        border-radius: 2px;
+        background: var(--gold-bright);
+      }
+
+      .qa summary .pl::before {
+        top: 10px;
+        right: 3px;
+        left: 3px;
+        height: 2px;
+      }
+
+      .qa summary .pl::after {
+        top: 3px;
+        bottom: 3px;
+        left: 10px;
+        width: 2px;
+        transition: opacity 0.25s;
+      }
+
+      .qa[open] summary .pl {
+        transform: rotate(180deg);
+      }
+
+      .qa[open] summary .pl::after {
+        opacity: 0;
+      }
+
+      .qa .ans {
+        padding: 0 18px 20px;
+        color: var(--muted);
+        font-size: 14.5px;
+      }
+
+      .final {
+        position: relative;
+        z-index: 2;
+        padding: 52px 0 62px;
+      }
+
+      .final-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line-gold);
+        border-radius: 28px;
+        background: linear-gradient(135deg, #1a2c5e, #0c1736);
+        box-shadow: var(--shadow);
+        padding: 40px 22px;
+        text-align: center;
+      }
+
+      .final-card::after {
+        content: '';
+        position: absolute;
+        top: -120px;
+        right: -110px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgb(232 194 90 / 25%), transparent 70%);
+        filter: blur(40px);
+      }
+
+      .final-card h2 {
+        position: relative;
+        margin-bottom: 16px;
+        font-size: clamp(26px, 9vw, 38px);
+        font-weight: 900;
+        line-height: 1.16;
+      }
+
+      .final-card p {
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto 30px;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .final-card .btn-primary {
+        position: relative;
+        width: 100%;
+      }
+
+      footer {
+        position: relative;
+        z-index: 2;
+        border-top: 1px solid var(--line);
+        margin-top: 10px;
+        padding: 34px 0 46px;
+      }
+
+      .disclaimer {
+        margin-bottom: 26px;
+        padding: 18px 18px;
+        border: 1px solid rgb(255 75 92 / 22%);
+        border-radius: 14px;
+        background: rgb(255 75 92 / 5%);
+      }
+
+      .disclaimer b {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        color: var(--up);
+        font-size: 13.5px;
+        font-weight: 900;
+      }
+
+      .disclaimer b svg {
+        width: 15px;
+        height: 15px;
+        fill: none;
+        stroke: var(--up);
+      }
+
+      .disclaimer p {
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.7;
+      }
+
+      .foot-bot {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+
+      .foot-bot .logo {
+        font-size: 16px;
+      }
+
+      .foot-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .foot-links a:hover {
+        color: var(--gold-bright);
+      }
+
+      .mobile-cta {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 30;
+        display: block;
+        padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+        background: linear-gradient(0deg, var(--bg) 60%, transparent);
+      }
+
+      .mobile-cta .btn-primary {
+        width: 100%;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      @media (min-width: 520px) {
+        .ind-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .final-card .btn-primary,
+        .hero-cta .btn-primary {
+          width: auto;
+        }
+
+        .hero-cta {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 18px;
+        }
+      }
+
+      @media (min-width: 760px) {
+        body {
+          padding-bottom: 0;
+        }
+
+        .wrap {
+          width: min(100% - 56px, var(--maxw));
+        }
+
+        .badge-sg {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          background: rgb(255 255 255 / 3%);
+          color: var(--muted);
+          font-size: 12.5px;
+          padding: 7px 12px;
+        }
+
+        .hero {
+          padding: 34px 0 56px;
+        }
+
+        section.block {
+          padding: 60px 0;
+        }
+
+        .cards,
+        .steps {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+
+        .card,
+        .step {
+          padding: 28px 24px;
+        }
+
+        .stats {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 18px;
+          padding: 34px 24px;
+        }
+
+        .final {
+          padding: 70px 0;
+        }
+
+        .final-card {
+          padding: 54px 40px;
+        }
+
+        .foot-bot {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .mobile-cta {
+          display: none;
+        }
+      }
+
+      @media (min-width: 920px) {
+        .hero-grid {
+          grid-template-columns: 1.02fr 0.98fr;
+          gap: 48px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-fx" aria-hidden="true">
+      <div class="grid-lines"></div>
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+    </div>
+
+    <header>
+      <div class="wrap topbar">
+        <div class="logo"><span class="mark">S</span><span class="name">Smart<b>Stock</b></span></div>
+        <span class="badge-sg"><span class="dot"></span>SGX · US · HK Markets</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="reveal">
+            <span class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"></path><path d="M21 7v5h-5"></path></svg>
+              Weekly Research · Free
+            </span>
+            <h1>Claim Your Free <span class="hl">Stock Research Report</span></h1>
+            <p class="lede">Every week, our analysts share the <b>high-potential stocks they're watching</b> across SGX, US and HK markets — with the data, charts and reasoning behind each idea.</p>
+            <p class="note-line">Educational research for your own analysis — not a recommendation or a promise of returns.</p>
+            <div class="ticks">
+              <div class="tick"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>Weekly watchlist of researched stock ideas</div>
+              <div class="tick"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>Clear charts, scores and the reasoning behind each</div>
+              <div class="tick"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>100% free — no payment, no obligation</div>
+            </div>
+            <div class="hero-cta">
+              <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="hero">
+                Get My Free Report
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </a>
+              <span class="sub-cta"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>No sign-up form required</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="report-card">
+              <span class="sample-flag">Sample report</span>
+              <div class="rc-top">
+                <div class="rc-stock">
+                  <div class="tk">XX</div>
+                  <div class="meta"><b>Sample Ticker · XXXX</b><span>SGX Mainboard · illustration</span></div>
+                </div>
+                <div class="rc-price"><b class="num">$1.86</b><span class="chg num">▲ +4.21%</span></div>
+              </div>
+              <div class="score-row">
+                <div class="gauge">
+                  <svg width="78" height="78" viewBox="0 0 78 78" aria-hidden="true">
+                    <circle cx="39" cy="39" r="33" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"></circle>
+                    <circle id="gaugeArc" cx="39" cy="39" r="33" fill="none" stroke="var(--gold)" stroke-width="8" stroke-linecap="round" stroke-dasharray="207" stroke-dashoffset="207"></circle>
+                  </svg>
+                  <div class="val"><b id="scoreNum">0</b><span>/100</span></div>
+                </div>
+                <div class="score-text">
+                  <b>Research score</b>
+                  <p>Sample summary of trend, fund flow and valuation — shown for illustration only.</p>
+                </div>
+              </div>
+              <div class="chart-box">
+                <div class="clab"><span>20-day trend (sample)</span><span class="num" style="color:var(--up)">+12.8%</span></div>
+                <svg id="kline" width="100%" height="92" viewBox="0 0 340 92" preserveAspectRatio="none" aria-hidden="true"></svg>
+              </div>
+              <div class="ind-grid">
+                <div class="ind"><span>Trend</span><b class="pos">Strong ↑</b></div>
+                <div class="ind"><span>Fund flow</span><b class="pos">Inflow</b></div>
+                <div class="ind"><span>Valuation</span><b class="neu">Fair</b></div>
+              </div>
+              <p class="illus">Illustrative sample only. Not a recommendation to buy or sell.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <div class="sec-kicker">What's inside</div>
+            <h2>Research you can actually read</h2>
+            <p>Every report is built to help you do your own analysis — not to tell you what to do.</p>
+          </div>
+          <div class="cards">
+            <div class="card reveal">
+              <div class="ic-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg></div>
+              <h3>Researched stock ideas</h3>
+              <p>A weekly watchlist of stocks our analysts are following across SGX, US and HK — with the rationale behind each one.</p>
+            </div>
+            <div class="card reveal">
+              <div class="ic-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3a8 8 0 108 8h-8z"></path><path d="M11 3v8h8"></path></svg></div>
+              <h3>Clear data & charts</h3>
+              <p>Trend, fund flow and valuation laid out simply, so you can quickly understand what's behind each idea.</p>
+            </div>
+            <div class="card reveal">
+              <div class="ic-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h4l3 8 4-16 3 8h4"></path></svg></div>
+              <h3>Weekly market updates</h3>
+              <p>Stay on top of sector rotation and major market moves with a concise summary you can read in minutes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <div class="sec-kicker">How it works</div>
+            <h2>Three taps to your free report</h2>
+          </div>
+          <div class="steps">
+            <div class="step reveal"><div class="n"></div><h3>Tap the button</h3><p>Click "Get My Free Report" — no form to fill in, no account to create.</p></div>
+            <div class="step reveal"><div class="n"></div><h3>Connect with us</h3><p>You'll be taken straight to our channel to receive this week's report.</p></div>
+            <div class="step reveal"><div class="n"></div><h3>Read the research</h3><p>Get the watchlist and analysis, and use it to support your own decisions.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="stats reveal">
+            <div class="stat"><b>3</b><span>Markets — SGX · US · HK</span></div>
+            <div class="stat"><b>Weekly</b><span>New report every week</span></div>
+            <div class="stat"><b>$0</b><span>Always free</span></div>
+            <div class="stat"><b>2 min</b><span>Quick to read</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <div class="sec-kicker">FAQ</div>
+            <h2>Good to know</h2>
+          </div>
+          <div class="faq reveal">
+            <details class="qa"><summary>Is the report really free?<span class="pl"></span></summary><div class="ans">Yes. The weekly research report is completely free, with no payment and no obligation.</div></details>
+            <details class="qa"><summary>Is this investment advice?<span class="pl"></span></summary><div class="ans">No. Our reports are for educational and informational purposes only. They are not financial, investment or trading advice, and not a recommendation to buy or sell any security.</div></details>
+            <details class="qa"><summary>Which markets do you cover?<span class="pl"></span></summary><div class="ans">Mainly the Singapore Exchange (SGX), along with US and Hong Kong listed stocks.</div></details>
+            <details class="qa"><summary>How do I receive it?<span class="pl"></span></summary><div class="ans">Tap the button and you'll be taken to our channel to receive the latest report directly.</div></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="final">
+        <div class="wrap">
+          <div class="final-card reveal">
+            <h2>Get this week's <span class="hl">free report</span></h2>
+            <p>A fresh watchlist of researched stock ideas, ready for you to read. No form, no cost.</p>
+            <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="final">
+              Get My Free Report
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="disclaimer">
+          <b><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"></path></svg>Risk warning</b>
+          <p>Trading and investing in stocks carries risk, including the possible loss of your capital. All reports, watchlists and information on this page are provided for educational and informational purposes only and do not constitute financial, investment or trading advice, or a recommendation, offer or solicitation to buy or sell any security. Past performance is not indicative of future results. Any decision you make is your own responsibility.</p>
+        </div>
+        <div class="foot-bot">
+          <div class="logo"><span class="mark">S</span><span class="name">Smart<b>Stock</b></span></div>
+          <div class="foot-links">
+            <a href="javascript:void(0)">About Us</a>
+            <a href="javascript:void(0)">Contact</a>
+            <a href="javascript:void(0)">Privacy Policy</a>
+            <a href="javascript:void(0)">Terms</a>
+            <a href="javascript:void(0)">Disclaimer</a>
+          </div>
+          <div>© 2026 SmartStock · All rights reserved</div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="mobile-cta">
+      <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="sticky">Get My Free Report</a>
+    </div>
+
+    <script type="module" src="/src/utils/jump.ts"></script>
+    <script is:inline>
+      document.querySelectorAll('.link-btn').forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          event.preventDefault()
+          if (typeof window.mixinJump === 'function') window.mixinJump()
+          else if (typeof link !== 'undefined') window.location.href = link
+        })
+      })
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('in')
+          revealObserver.unobserve(entry.target)
+        })
+      }, { threshold: 0.14 })
+      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
+
+      let scored = false
+      function animateScore() {
+        if (scored) return
+        scored = true
+        const target = 82
+        const arc = document.getElementById('gaugeArc')
+        const numEl = document.getElementById('scoreNum')
+        const circumference = 207
+        let start = null
+        function step(timestamp) {
+          if (!start) start = timestamp
+          const progress = Math.min((timestamp - start) / 1100, 1)
+          const eased = 1 - Math.pow(1 - progress, 3)
+          const value = Math.round(target * eased)
+          if (numEl) numEl.textContent = String(value)
+          if (arc) arc.style.strokeDashoffset = String(circumference - (circumference * (value / 100)))
+          if (progress < 1) requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step)
+      }
+
+      const gaugeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) animateScore()
+        })
+      }, { threshold: 0.5 })
+      const gauge = document.querySelector('.gauge')
+      if (gauge) gaugeObserver.observe(gauge)
+
+      ;(() => {
+        const svg = document.getElementById('kline')
+        if (!svg) return
+        const width = 340
+        const height = 92
+        const count = 20
+        const gap = width / count
+        const bodyWidth = gap * 0.5
+        let price = 10
+        const points = []
+        let seed = 7
+        function rnd() {
+          seed = (seed * 9301 + 49297) % 233280
+          return seed / 233280
+        }
+        for (let i = 0; i < count; i += 1) {
+          const open = price
+          const drift = (i / count) * 0.9
+          const close = open + (rnd() - 0.42 + drift * 0.18) * 0.9
+          const high = Math.max(open, close) + rnd() * 0.5
+          const low = Math.min(open, close) - rnd() * 0.5
+          points.push({ open, close, high, low })
+          price = close
+        }
+        const all = points.flatMap((point) => [point.high, point.low])
+        const max = Math.max(...all)
+        const min = Math.min(...all)
+        const pad = 6
+        const y = (value) => height - pad - ((value - min) / (max - min)) * (height - pad * 2)
+        let markup = ''
+        points.forEach((point, index) => {
+          const x = index * gap + gap / 2
+          const up = point.close >= point.open
+          const color = up ? '#ff4b5c' : '#1fc093'
+          markup += `<line x1="${x}" y1="${y(point.high)}" x2="${x}" y2="${y(point.low)}" stroke="${color}" stroke-width="1.3"/>`
+          const openY = y(point.open)
+          const closeY = y(point.close)
+          const top = Math.min(openY, closeY)
+          const candleHeight = Math.max(Math.abs(openY - closeY), 1.5)
+          markup += `<rect x="${x - bodyWidth / 2}" y="${top}" width="${bodyWidth}" height="${candleHeight}" fill="${color}" rx="1"/>`
+        })
+        svg.innerHTML = markup
+      })()
+    </script>
+  </body>
+</html>

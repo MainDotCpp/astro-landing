@@ -1,0 +1,130 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '免費入 WhatsApp 群 · 港股科技股實戰社群'
+const description = '長期複利嘅威力，有客由 500萬 滾到近 2,000萬。圈內近 3,000 人每日一齊死揸科技股、睇市部署。免費入 WhatsApp 群，助理即時回覆。'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <main class="wrap">
+    <div class="inner">
+      <h1 class="hook">
+        一日賺五、六萬，<br />先至明咩叫<span class="gold">含金量</span>
+      </h1>
+
+      <p class="lead">
+        長期複利嘅威力 —— 有客由 <b>500萬</b> 滾到近 <b>2,000萬</b>。圈內近 <b>3,000</b> 人，每日一齊死揸科技股、睇市部署。
+      </p>
+
+      <a href="javascript:void(0)" onclick="mixinJump()" class="cta" data-evt="lean">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+        免費入 WhatsApp 群
+      </a>
+      <p class="ease">免費加入 · 即時回覆 · 唔啱隨時走</p>
+    </div>
+  </main>
+
+  <style is:global>
+    :root {
+      --bg: #0a0a0c;
+      --gold: #f5d77a;
+      --wa: #25d366;
+      --wa2: #1fb457;
+      --tx: #f4f1ea;
+      --tx2: #a39e94;
+      --tx3: #6b665d;
+    }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--tx); font-family: 'Noto Sans HK', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+
+    .wrap {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 26px calc(40px + env(safe-area-inset-bottom));
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    /* 極克制的一抹暖光，無其他裝飾 */
+    .wrap::before {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120vw;
+      max-width: 640px;
+      height: 50vh;
+      background: radial-gradient(ellipse at center, rgba(212, 175, 55, .12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .inner {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      animation: rise .7s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .hook {
+      font-size: clamp(1.9rem, 8.4vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -.01em;
+      margin: 0 0 22px;
+      color: #fff;
+    }
+    .gold {
+      background: linear-gradient(100deg, #b8860b, #f5d77a 45%, #fff7e0 60%, #d4af37);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lead {
+      font-size: clamp(.92rem, 3.8vw, 1rem);
+      line-height: 1.8;
+      color: var(--tx2);
+      margin: 0 0 34px;
+    }
+    .lead b { color: var(--gold); font-weight: 700; }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 18px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--wa), var(--wa2));
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.04rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 14px 36px rgba(37, 211, 102, .4);
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+    .cta svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .cta:hover { box-shadow: 0 18px 46px rgba(37, 211, 102, .55); }
+
+    .ease { font-size: .76rem; color: var(--tx3); margin: 14px 0 0; }
+    .risk { font-size: .66rem; color: var(--tx3); opacity: .8; margin: 30px 0 0; line-height: 1.6; }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.018); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .inner, .cta { animation: none !important; }
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,510 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = '今日 3 隻高息股名單｜入群即拎・港股收息精選'
+const description = '唔使自己逐隻揀，每日盤前幫你篩出 3 隻股息穩定、夠抵收嘅高息港股。加入 WhatsApp 群即拎今日名單，附入場參考位同減派風險提示。內容僅供一般市場資訊參考，不構成投資建議。'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071426" />
+    <meta property="og:title" content="今日 3 隻高息股名單｜入群即拎" />
+    <meta property="og:description" content="定存息得返咁少，唔通就咁擺？每日盤前 3 隻精選高息港股，入群即睇，附入場參考位。" />
+  </Fragment>
+
+  <header class="topbar">
+    <div class="wrap nav">
+      <a href="javascript:void(0)" class="brand" aria-label="高息股精選">
+        <span class="brand-badge">息</span>
+        <span>高息股精選</span>
+      </a>
+      <a class="nav-cta link-btn" href="javascript:void(0)">免費入群拎名單</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> 今日名單已更新｜港股高息精選</div>
+          <h1>唔使自己揀，<br />今日 <span class="gold">3 隻高息股</span><br />入群即拎</h1>
+          <p class="lead">
+            定存息口越嚟越低，啲錢擺喺銀行，購買力其實日日縮緊水。港股入面唔少股票股息穩定、收息遠勝定存，問題係——邊隻先信得過？每日盤前，我哋幫你篩走會減派、除息蝕價嗰啲，淨低 3 隻值得睇嘅，入群即睇。
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary link-btn" href="javascript:void(0)">加入 WhatsApp，免費拎今日 3 隻高息股 →</a>
+            <a class="btn btn-secondary link-btn" href="javascript:void(0)">入群睇埋入場位</a>
+          </div>
+          <p class="risk-note">
+            投資涉及風險。本頁內容僅供一般市場資訊及風險教育參考，所提及股票均不構成任何買賣建議或收益承諾。
+          </p>
+          <div class="trust-row">
+            <div class="trust"><strong>3 隻</strong><span>每日精選高息港股</span></div>
+            <div class="trust"><strong>每日</strong><span>盤前更新名單</span></div>
+            <div class="trust"><strong>有位</strong><span>入場參考 + 減派提示</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="今日高息名單預覽">
+          <div class="screen-top">
+            <div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+            <span>今日高息名單</span>
+          </div>
+          <div class="ai-panel">
+            <span class="mini-title">今日精選</span>
+            <div class="screen-h3">股息穩｜夠抵收｜避開減派</div>
+            <div class="scan-line"><span></span></div>
+            <div class="risk-score">
+              <div class="ring"><strong>3</strong></div>
+              <div>
+                <div class="mini-title">今日精選高息股</div>
+                <div class="screen-h3">已篩好</div>
+                <p style="margin:0;color:#b9c7d8;line-height:1.55">篩走會減派、除息蝕價嗰啲，淨低值得睇嘅。</p>
+              </div>
+            </div>
+          </div>
+          <div class="metric-list">
+            <div class="metric"><b>高息股 ①</b><span>股息穩定</span></div>
+            <div class="metric"><b>高息股 ②</b><span>年年有息</span></div>
+            <div class="metric"><b>高息股 ③</b><span>入群即睇</span></div>
+          </div>
+          <div class="chart" aria-hidden="true">
+            <svg viewBox="0 0 500 160" preserveAspectRatio="none">
+              <path d="M8,112 C55,88 82,95 113,76 C146,56 174,88 207,62 C248,30 270,70 306,52 C350,30 379,44 420,26 C455,12 475,24 492,18" fill="none" stroke="rgba(111,240,183,.85)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M8,118 C60,132 100,122 130,137 C176,157 205,122 244,137 C282,151 315,116 350,132 C395,150 440,112 492,128" fill="none" stroke="rgba(112,183,255,.55)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M8,100 C68,94 114,104 156,92 C210,77 246,91 298,78 C356,62 408,75 492,57" fill="none" stroke="rgba(244,201,107,.8)" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 10"/>
+            </svg>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="pain">
+      <div class="wrap pain-grid">
+        <div class="section-head">
+          <div class="section-kicker">收息族嘅真實煩惱</div>
+          <h2>想穩穩陣陣收息，但揀邊隻先信得過，永遠係最頭痛嗰關。</h2>
+          <p>
+            過咗 30 歲，好多人玩夠咗刺激，淨係想要啲穩穩定定、月月有息收嘅錢。但定存息得返一兩厘，自己揀高息股又怕中伏——呢個落差，先係最磨人。
+          </p>
+        </div>
+        <ul class="pain-list">
+          <li><span class="check">✓</span><span>定存息越嚟越低，擺成幾十萬落去，一年利息得返嗰皮嘢，連加餐都唔夠。</span></li>
+          <li><span class="check">✓</span><span>見到隻股息口高，睇落好吸引，但唔知會唔會下年就減派、停派。</span></li>
+          <li><span class="check">✓</span><span>跟新聞買高息股，買完先發現接咗火棒，收返嗰啲息都填唔返個價。</span></li>
+          <li><span class="check">✓</span><span>除完息股價跌咗一截又唔填權，賺息蝕價，得不償失。</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">入群即享</div>
+          <h2>唔淨係掟張名單畀你，仲教埋你睇邊個價位先好入手。</h2>
+          <p>以下係加入 WhatsApp 群之後，每日會收到嘅嘢。全部屬一般市場資訊整理，幫你揀得更有譜。</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">★</div>
+            <h3>今日 3 隻高息股名單</h3>
+            <p>每日盤前篩好，股息穩定、夠抵收，唔使自己由幾百隻慢慢揀。</p>
+          </article>
+          <article class="card">
+            <div class="icon">◆</div>
+            <h3>股息重點 + 入場位</h3>
+            <p>唔單止講隻股畀你聽，仲話埋你大概幾多錢先值得考慮，唔使盲追。</p>
+          </article>
+          <article class="card">
+            <div class="icon">⚠</div>
+            <h3>減派風險提示</h3>
+            <p>邊隻股息開始唔穩、有減派跡象，會提你一聲，避開陷阱。</p>
+          </article>
+          <article class="card">
+            <div class="icon">◷</div>
+            <h3>除息填權提醒</h3>
+            <p>邊隻除完息容易填返個權、邊隻會賺息蝕價，幫你睇定先。</p>
+          </article>
+          <article class="card">
+            <div class="icon">↻</div>
+            <h3>每個交易日更新</h3>
+            <p>市況日日變，名單每個交易日盤前更新，唔係畀張舊單你。</p>
+          </article>
+          <article class="card">
+            <div class="icon">✓</div>
+            <h3>即時問答</h3>
+            <p>對邊隻有疑問，群入面可以即時問，唔使自己一個人估。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap pain-grid">
+        <div class="demo-box">
+          <div class="mini-title">今日名單長咩樣</div>
+          <h2 style="font-size:32px;margin-top:6px">一眼睇清楚：邊隻股息穩定、邊隻夠抵收。</h2>
+          <p style="color:#c7d3e4;line-height:1.75;margin-top:0">
+            入群之後，每隻高息股都會咁樣標清楚——股息穩唔穩、抵唔抵收、股價要唔要留意，畀你快速篩走唔靠得住嗰啲。
+          </p>
+          <div class="scenario">
+            <div class="scenario-row"><span>股息穩定度</span><div class="bar"><span class="bar-good"></span></div><span>連續派</span></div>
+            <div class="scenario-row"><span>基本面</span><div class="bar"><span class="bar-mid"></span></div><span>穩健</span></div>
+            <div class="scenario-row"><span>股價波動</span><div class="bar"><span class="bar-bad"></span></div><span>要留意</span></div>
+          </div>
+        </div>
+        <div class="section-head">
+          <div class="section-kicker">點解係我哋</div>
+          <h2>高息唔係亂追嘅，重點係篩走會減派嗰啲伏。</h2>
+          <p>
+            市面好多人淨係同你講邊隻息高，但表面息高好多時係股價跌出嚟嘅假象。我哋每日做嘅，係幫你睇埋股息穩唔穩、撐唔撐得住，先決定值唔值得收。
+          </p>
+          <div class="legal-box">
+            本服務只提供一般市場資訊及高息股研究整理，不提供個別股票買賣建議、不保證任何股息或收益、不提供保證回報。所有資訊僅供參考，投資前請自行判斷。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <div class="wrap">
+        <div class="section-head" style="max-width:680px">
+          <div class="section-kicker">今日名單已準備好</div>
+          <h2>入群即拎今日 3 隻高息股，仲有入場參考位。</h2>
+          <p>
+            免費加入 WhatsApp 群，唔使填表、唔使等。一入到去就睇到今日精選同點樣睇入場位，名單每個交易日盤前更新。
+          </p>
+        </div>
+        <a href="javascript:void(0)" class="btn btn-primary link-btn" style="max-width:560px;width:100%;margin-top:6px">加入 WhatsApp，免費拎今日 3 隻高息股 →</a>
+        <p class="privacy" style="max-width:560px">
+          入群屬免費資訊分享。請自行評估風險，本群不提供個別買賣建議或收益保證。
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">常見問題</div>
+          <h2>入群之前，呢幾樣你想知嘅。</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>個 WhatsApp 群係咩嚟？</summary>
+            <p>係一個每日分享港股高息股資訊嘅群。每個交易日盤前會出今日 3 隻精選高息股，連埋股息重點同入場參考位，方便你睇定先決定。</p>
+          </details>
+          <details>
+            <summary>入群要唔要錢？</summary>
+            <p>唔使。入群同每日名單都係免費資訊分享，我哋唔會喺群入面收會費。</p>
+          </details>
+          <details>
+            <summary>啲名單係點揀出嚟？</summary>
+            <p>主要睇股息紀錄、股息穩定度、基本面同股價風險，篩走容易減派、停派或者除息蝕價嘅股票，淨低相對穩陣嗰啲先放入名單。</p>
+          </details>
+          <details>
+            <summary>會唔會保證隻隻都唔減派、有錢賺？</summary>
+            <p>唔會。任何投資都有風險，冇人可以保證股息或回報。我哋只係幫你整理資訊、提你留意風險，最終決定同風險要自己承擔。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky">
+    <a href="javascript:void(0)" class="btn btn-primary link-btn">免費入群拎今日 3 隻高息股</a>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>風險提示及聲明</strong><br />
+      投資涉及風險，價格可升可跌，過往表現並不代表未來回報。本網站內容僅供一般市場資訊、風險教育及高息股研究整理參考，並不構成任何證券、期貨、基金、虛擬資產或其他金融產品之投資建議、招攬、推薦、要約或交易指示。本網站不提供保證收益、保證股息、精準買賣點、每日信號、帶單或內幕消息。使用者應根據自身情況獨立判斷，並在需要時諮詢持牌專業人士。
+      <br /><br />
+      公司名稱：恒富財經資訊有限公司（Hangfu Financial Information Ltd.）｜註冊地址：香港中環｜電郵：info@hangfu-finance.com｜電話：+852 2876 3842
+      <br /><br />
+      公司註冊編號：28473926｜商業登記證：BR-2847-39-26｜© 2026 恒富財經資訊有限公司. 版權所有.
+    </div>
+  </footer>
+</BaseLayout>
+
+<style is:global>
+  :root{
+    --bg:#071426;
+    --bg2:#0b1d34;
+    --card:#0f2743;
+    --card2:#112b49;
+    --line:rgba(255,255,255,.12);
+    --text:#f5f7fb;
+    --muted:#b7c3d6;
+    --gold:#f4c96b;
+    --gold2:#f0a93a;
+    --red:#ff7070;
+    --green:#6ff0b7;
+    --blue:#70b7ff;
+    --shadow:0 22px 60px rgba(0,0,0,.35);
+    --radius:22px;
+    --max:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang HK","PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,201,107,.16), transparent 34%),
+      radial-gradient(circle at 85% 12%, rgba(112,183,255,.14), transparent 34%),
+      linear-gradient(180deg,#061225 0%, #071426 42%, #050b16 100%);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter:blur(16px);
+    background:rgba(7,20,38,.78);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    min-height:64px;gap:14px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.03em;
+  }
+  .brand-badge{
+    width:34px;height:34px;border-radius:12px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#08172a;display:grid;place-items:center;font-weight:1000;
+    box-shadow:0 8px 24px rgba(244,201,107,.25);
+  }
+  .nav-cta{
+    display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid rgba(244,201,107,.45);
+    background:linear-gradient(135deg,rgba(244,201,107,.17),rgba(240,169,58,.12));
+    color:#ffe7a4;border-radius:999px;padding:10px 15px;font-weight:800;font-size:14px;
+    white-space:nowrap;cursor:pointer;
+  }
+  .hero{
+    position:relative;
+    padding:48px 0 32px;
+    overflow:hidden;
+  }
+  .hero:before{
+    content:"";position:absolute;inset:-60px -120px auto auto;width:520px;height:520px;
+    background:radial-gradient(circle, rgba(244,201,107,.12), transparent 62%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:#ffe8a9;background:rgba(244,201,107,.11);
+    border:1px solid rgba(244,201,107,.28);
+    border-radius:999px;padding:8px 12px;font-weight:850;font-size:14px;
+    margin-bottom:18px;
+  }
+  .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 0 7px rgba(111,240,183,.12);
+  }
+  h1{
+    font-size:clamp(34px,5vw,64px);
+    line-height:1.03;margin:0 0 18px;font-weight:1000;letter-spacing:-.04em;
+  }
+  .gold{color:var(--gold)}
+  .lead{
+    color:#d8e2f1;font-size:clamp(17px,2vw,22px);line-height:1.65;margin:0 0 26px;
+    max-width:690px;font-weight:650;
+  }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0 16px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    border:none;cursor:pointer;border-radius:999px;padding:16px 22px;
+    font-weight:950;font-size:17px;letter-spacing:.01em;transition:.2s ease;
+    min-height:54px;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#08172a;box-shadow:0 16px 36px rgba(244,201,107,.23);
+  }
+  .btn-primary:hover{transform:translateY(-1px);filter:brightness(1.04)}
+  .btn-secondary{
+    border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;
+  }
+  .risk-note{
+    color:#96a7bf;font-size:13px;line-height:1.55;max-width:680px;
+  }
+  .hero-card{
+    position:relative;
+    border:1px solid rgba(255,255,255,.12);
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03)),
+      radial-gradient(circle at 50% 0%, rgba(244,201,107,.12), transparent 46%),
+      #0b1f38;
+    border-radius:32px;padding:22px;box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .screen-top{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+    color:#b9c8dc;font-size:13px;font-weight:800;
+  }
+  .dots{display:flex;gap:6px}
+  .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+  .ai-panel{
+    background:rgba(2,10,20,.38);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:24px;padding:18px;margin-bottom:14px;
+  }
+  .scan-line{
+    height:10px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden;margin:12px 0;
+  }
+  .scan-line span{
+    display:block;height:100%;width:72%;
+    background:linear-gradient(90deg,var(--blue),var(--gold),var(--green));
+    border-radius:99px;animation:flow 2.6s ease-in-out infinite alternate;
+  }
+  @keyframes flow{from{width:42%}to{width:88%}}
+  .risk-score{
+    display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;
+  }
+  .ring{
+    width:132px;height:132px;border-radius:50%;
+    background:conic-gradient(var(--green) 0 78%, rgba(255,255,255,.1) 78% 100%);
+    display:grid;place-items:center;position:relative;
+  }
+  .ring:before{
+    content:"";position:absolute;inset:12px;border-radius:50%;background:#0b1f38;
+  }
+  .ring strong{position:relative;font-size:38px;color:var(--green)}
+  .mini-title{font-size:13px;color:#9eb0c8;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .screen-h3{font-size:22px;margin:6px 0 8px;font-weight:1000}
+  .metric-list{display:grid;gap:10px;margin-top:14px}
+  .metric{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    padding:12px 13px;border-radius:16px;background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .metric b{font-size:14px}
+  .metric span{font-weight:950;color:#ffe0a0}
+  .chart{
+    height:158px;border-radius:22px;padding:18px;margin-top:14px;
+    background:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size:42px 42px;
+    border:1px solid rgba(255,255,255,.08);
+    position:relative;overflow:hidden;
+  }
+  .chart svg{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px)}
+  .trust-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px;
+  }
+  .trust{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.045);
+    border-radius:18px;padding:14px;
+  }
+  .trust strong{display:block;font-size:20px;color:#fff;margin-bottom:5px}
+  .trust span{color:#aebbd0;font-size:13px;line-height:1.45}
+  section{padding:42px 0}
+  .section-head{max-width:760px;margin-bottom:22px}
+  .section-kicker{color:var(--gold);font-weight:950;margin-bottom:10px}
+  h2{font-size:clamp(28px,3.6vw,46px);line-height:1.13;margin:0 0 12px;font-weight:1000;letter-spacing:-.03em}
+  .section-head p{color:#c5d0df;font-size:17px;line-height:1.75;margin:0}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{
+    background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:var(--radius);padding:22px;box-shadow:0 15px 42px rgba(0,0,0,.18);
+  }
+  .icon{
+    width:46px;height:46px;border-radius:16px;display:grid;place-items:center;
+    background:rgba(244,201,107,.12);color:var(--gold);font-size:23px;margin-bottom:14px;
+    border:1px solid rgba(244,201,107,.24);
+  }
+  .card h3{font-size:20px;margin:0 0 8px;font-weight:950}
+  .card p{margin:0;color:#bac7d8;line-height:1.7}
+  .pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .pain-list{
+    display:grid;gap:12px;margin:0;padding:0;list-style:none;
+  }
+  .pain-list li{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:15px;border-radius:18px;background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.09);color:#dbe4ef;line-height:1.55;
+  }
+  .check{
+    flex:0 0 24px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(244,201,107,.16);color:var(--gold);font-weight:1000;
+  }
+  .demo-box{
+    border-radius:28px;border:1px solid rgba(244,201,107,.23);
+    background:
+      radial-gradient(circle at 0 0, rgba(244,201,107,.17), transparent 30%),
+      rgba(255,255,255,.05);
+    padding:24px;box-shadow:var(--shadow);
+  }
+  .scenario{display:grid;gap:12px}
+  .scenario-row{
+    display:grid;grid-template-columns:95px 1fr 70px;gap:12px;align-items:center;
+    color:#dce6f3;font-weight:800;
+  }
+  .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden}
+  .bar span{display:block;height:100%;border-radius:999px}
+  .bar-good{background:linear-gradient(90deg,var(--green),#d7ffe8);width:82%}
+  .bar-mid{background:linear-gradient(90deg,var(--gold),#fff0b7);width:62%}
+  .bar-bad{background:linear-gradient(90deg,var(--red),#ffc3c3);width:46%}
+  .form-section{
+    padding:46px 0 72px;
+  }
+  .form-card{
+    background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:30px;padding:24px;box-shadow:var(--shadow);
+  }
+  .privacy{font-size:12px;line-height:1.55;color:#99a9be;margin:12px 0 0}
+  .faq{display:grid;gap:12px}
+  details{
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.045);
+    border-radius:18px;padding:16px 18px;
+  }
+  summary{cursor:pointer;font-weight:950}
+  details p{color:#b8c6d8;line-height:1.7;margin:12px 0 0}
+  .footer{
+    border-top:1px solid var(--line);
+    padding:28px 0 96px;
+    color:#91a0b4;font-size:13px;line-height:1.75;
+    background:rgba(0,0,0,.12);
+  }
+  .sticky{
+    position:fixed;left:0;right:0;bottom:0;z-index:55;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg,rgba(7,20,38,.1),rgba(7,20,38,.96) 28%);
+    display:none;
+  }
+  .sticky .btn{width:100%;box-shadow:0 10px 26px rgba(244,201,107,.22)}
+  .legal-box{
+    margin-top:18px;border:1px solid rgba(255,255,255,.1);border-radius:18px;
+    padding:14px;background:rgba(255,255,255,.04);color:#aebbd0;font-size:13px;line-height:1.7;
+  }
+  @media (max-width:860px){
+    .hero{padding-top:28px}
+    .hero-grid,.pain-grid{grid-template-columns:1fr}
+    .hero-card{order:-1}
+    .cards{grid-template-columns:1fr}
+    .trust-row{grid-template-columns:1fr}
+    .nav{min-height:58px}
+    .brand span:last-child{font-size:14px}
+    .nav-cta{font-size:13px;padding:9px 12px}
+    .risk-score{grid-template-columns:106px 1fr}
+    .ring{width:106px;height:106px}
+    .ring strong{font-size:32px}
+    .cta-row .btn{width:100%}
+    .sticky{display:block}
+    section{padding:34px 0}
+    .scenario-row{grid-template-columns:80px 1fr 54px;font-size:13px}
+  }
+</style>

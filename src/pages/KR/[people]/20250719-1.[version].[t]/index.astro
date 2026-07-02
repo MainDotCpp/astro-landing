@@ -12,6 +12,7 @@ import { generateKrConfig } from '@/utils/kr_config'
 import './static/css/premium-clean.css'
 
 export function getStaticPaths() {
+  // 「卡群」路由由 generateKrConfig 默认自动追加（见 kr_config.ts withKaqun）
   return generateKrConfig(undefined, undefined, { requireImages: ['head', 'header', 'img1'] })
 }
 

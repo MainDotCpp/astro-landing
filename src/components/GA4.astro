@@ -1,7 +1,17 @@
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S2JNSHWVZN"></script>
-<script is:inline>
-  window.dataLayer = window.dataLayer || []
-  function gtag(){dataLayer.push(arguments)}
-  gtag('js', new Date())
-  gtag('config', 'G-S2JNSHWVZN')
-</script>
+---
+// 只在生产构建 (astro build) 注入 GA4；
+// 开发服务器 (bun dev / astro dev) 下 import.meta.env.PROD 为 false，
+// 不注入 gtag，page_view 与点击事件都不会上报，避免污染生产环境数据。
+const enableGA = import.meta.env.PROD
+---
+{enableGA && (
+  <Fragment>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2JNSHWVZN"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || []
+      function gtag(){dataLayer.push(arguments)}
+      gtag('js', new Date())
+      gtag('config', 'G-S2JNSHWVZN')
+    </script>
+  </Fragment>
+)}

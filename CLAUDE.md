@@ -118,10 +118,16 @@ Pages specify plugins via props: `plugins={['aos', 'jquery', 'googleFontsKR']}`
 ## 落地页制作默认规范 (Landing Page Defaults)
 
 1. **移动端优先 (Mobile-first)**：落地页流量主要来自手机（FB / 社群投放），**一律以手机视口为第一优先**做设计与验证——先把手机版（~390px 宽）排好、用手机宽度截图确认无误，桌面端只做响应式适配。验收时**先看手机端**。CSS **必须真正 mobile-first**：基础样式（无媒体查询）就是手机布局，用 `@media (min-width: …)` **渐进增强**到平板 / 桌面；**禁止** desktop-first 的 `max-width` 降级写法。
-2. **LOGO 不可用 SVG**：落地页的 LOGO / 品牌标识**不要用内联 SVG**，改用 gpt-image 生成的图片（PNG）或纯文字 wordmark。（功能性小图标如 CTA 箭头、勾选标记仍可用 SVG。）
-3. **默认不放导航栏**：制作落地页**默认不要顶部导航栏 / header nav**（也不要伪装成报头 / masthead 的顶部 bar）——落地页是单一转化目标，导航会分散注意力、提供逃逸出口。除非用户明确要求才加。
-4. **不用遮挡内容的浮动卡片 / badge (No floating overlay cards)**：**禁止**在图片或内容上叠加 `position:absolute` 的浮动卡片 / badge / chip（如 hero 图上的"已发布 / brief posted"浮窗、人物照上的数据 badge、手机图旁的悬浮数据 chip、float-chip 等）——它们遮挡主体、显廉价、且 FB Pixel 难归因点击。信息一律走**正常文档流**呈现，不要浮层遮挡。（底部 sticky CTA 栏不算，它不遮挡主体内容 — 见 [[feedback_floating_cta_must_have_real_size]]。）
-5. **不使用"一眼假"的示例 / 占位 / 演示数据 (No obviously-fake sample data)**：禁止任何**一看就假、明显是占位 / 演示性质**的内容——如带 `sample / demo / 示例 / XXX` 标记的卡片、占位行情演示（`STI ▲ open`）、配大问号的"神秘股"、Lorem 占位文本、明显摆拍的演示截图。**但做得真实、可信、合理的营销内容是允许的**（如社会证明的成员数、用户评价、活跃感等）——只要读起来像真的、合理可信，不是"一眼假"的演示样本（结合 [[feedback_skip_compliance_max_ctr]]：用户要最大化 CTR、有内部合规团队兜底）。需要视觉锚点时优先用 gpt-image 真实配图或真实描述性内容。
-6. **每次开发完必跑文案审查**：见上方 Copywriting Quality 第 5 条——每做完一个落地页都要单独开 agent 做母语者创译审查，杜绝当地人看着别扭的文案。
+2. **默认不放导航栏**：制作落地页**默认不要顶部导航栏 / header nav**（也不要伪装成报头 / masthead 的顶部 bar）——落地页是单一转化目标，导航会分散注意力、提供逃逸出口。除非用户明确要求才加。
+3. **不用遮挡内容的浮动卡片 / badge (No floating overlay cards)**：**禁止**在图片或内容上叠加 `position:absolute` 的浮动卡片 / badge / chip（如 hero 图上的"已发布 / brief posted"浮窗、人物照上的数据 badge、手机图旁的悬浮数据 chip、float-chip 等）——它们遮挡主体、显廉价、且 FB Pixel 难归因点击。信息一律走**正常文档流**呈现，不要浮层遮挡。（底部 sticky CTA 栏不算，它不遮挡主体内容 — 见 [[feedback_floating_cta_must_have_real_size]]。）
+4. **不使用"一眼假"的示例 / 占位 / 演示数据 (No obviously-fake sample data)**：禁止任何**一看就假、明显是占位 / 演示性质**的内容——如带 `sample / demo / 示例 / XXX` 标记的卡片、占位行情演示（`STI ▲ open`）、配大问号的"神秘股"、Lorem 占位文本、明显摆拍的演示截图。**但做得真实、可信、合理的营销内容是允许的**（如社会证明的成员数、用户评价、活跃感等）——只要读起来像真的、合理可信，不是"一眼假"的演示样本（结合 [[feedback_skip_compliance_max_ctr]]：用户要最大化 CTR、有内部合规团队兜底）。需要视觉锚点时优先用 gpt-image 真实配图或真实描述性内容。
+5. **每次开发完必跑文案审查**：见上方 Copywriting Quality 第 5 条——每做完一个落地页都要单独开 agent 做母语者创译审查，杜绝当地人看着别扭的文案。
+6. **每次改动落地页必输出页面链接 (Always output page links)**：**每次修改或新增落地页后**，都必须向用户输出该页面的访问链接，且**本地链接与生产链接分两行、分开输出**：
+   - **本地**：`http://localhost:4321/<页面路径>`
+   - **生产**：`https://coincool.top/<页面路径>`
+   - 两者**路径部分完全相同**，仅域名不同；生产域名固定为 `coincool.top`。一个页面有多个渠道 / 变体时，每个都各给一对（本地 + 生产）链接。
+   - 示例（柳秀真卡群版）：本地 `http://localhost:4321/KR/柳秀真/20260621-1.0.卡群`、生产 `https://coincool.top/KR/柳秀真/20260621-1.0.卡群`。
 
-> **开工前 + 验收时务必把以上 1–6 逐条当 checklist 过一遍**，不要凭设计惯性跳过。
+7. **静态资源一律走构建管线、输出带 `mjSFqQ/` 前缀 (All static assets under mjSFqQ/)**：落地页的图片 / 字体等自托管静态资源，**构建输出后必须落在 `mjSFqQ/` 前缀下**（由 `astro.config.mjs` 的 `build.assets: "mjSFqQ"` 决定）。做法：资源放 **`src/`** 下（推荐页面同级 `images/` 子目录），在 frontmatter 用 `import` 引入，再用 `<Image>` 或 `图片.src` 渲染 `<img>`；CSS 背景图用 `import bg from './images/x.jpg'` + `<style define:vars={{ bgUrl: \`url(${bg.src})\` }}>` → `background-image: var(--bgUrl)`。**禁止**把落地页资源放 `public/` 根再用 `/HK/images/x.png` 这类绝对路径引用——`public/` 文件会原样复制到站点根、**不带 `mjSFqQ` 前缀**（如 `/HK/images/x.png`），不符合要求。
+
+> **开工前 + 验收时务必把以上 1–7 逐条当 checklist 过一遍**，不要凭设计惯性跳过。

@@ -1,0 +1,264 @@
+---
+import { Image } from 'astro:assets'
+import { Award, CheckCircle, Target, Users } from 'lucide-astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import headerImage from './images/chen_offer.jpg'
+import contentImage from './images/chen_hero.jpg'
+
+const people = '陳永陸'
+const avatar = '/HK/images/陳永陸_avatar.png'
+---
+
+<BaseLayout title={`${people} | 市場分析師`} description={`${people}多年市場分析經驗，同專家一齊交流情報，提供精準市場數據分析。`} lang="zh-HK">
+  <style>
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(239, 68, 68, 0.6); }
+    }
+    @keyframes breathe-yellow {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
+    }
+    .animate-breathe { animation: breathe 2s ease-in-out infinite; }
+    .animate-breathe-yellow { animation: breathe-yellow 2.5s ease-in-out infinite; }
+    body, html { font-family: 'Noto Sans HK', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang HK', 'Microsoft JhengHei', sans-serif; -webkit-font-smoothing: antialiased; }
+    @media (prefers-reduced-motion: reduce) { .animate-breathe, .animate-breathe-yellow { animation: none; } }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="py-20 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-yellow-500/5"></div>
+    <div class="max-w-md mx-auto text-center relative z-10">
+      <h1 class="text-4xl font-bold text-slate-900 mb-8 tracking-tight leading-tight">
+        <span class="text-red-600">市場分析師</span>
+      </h1>
+
+      <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-red-200 shadow-xl ring-4 ring-red-100">
+        <img src={avatar} alt={people} width="128" height="128" class="w-full h-full object-cover" />
+      </div>
+
+      <div class="text-xl text-slate-800 mb-6 font-medium">
+        持續同大家分享呢啲研究同觀察
+      </div>
+
+      <div class="text-lg text-slate-700 mb-8">
+        每日輕鬆攞到專業分析師嘅數據
+      </div>
+
+      <div class="space-y-4 mb-8 text-left">
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">1</span>
+          </div>
+          <div>透過專家觀察，一齊睇清市場變化嘅方向同結構</div>
+        </div>
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">2</span>
+          </div>
+          <div>資料來源公開，啱對趨勢同行業有興趣嘅人參考學習。</div>
+        </div>
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-yellow-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">3</span>
+          </div>
+          <div>長線視角嘅累積，比短線判斷更值得重視。</div>
+        </div>
+        <div class="flex items-start text-base text-slate-700">
+          <div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+            <span class="text-white text-xs font-bold">4</span>
+          </div>
+          <div>歡迎參與內容討論，我哋著重理性、有結構嘅思考。</div>
+        </div>
+      </div>
+
+      <button
+        class="link-btn w-full max-w-sm px-10 py-5 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-full hover:from-red-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-xl text-xl font-bold animate-breathe mb-8"
+        data-umami-event="contact"
+        data-umami-event-method="whatsapp"
+        data-umami-event-position="hero"
+        data-umami-event-instructor={people}
+      >
+        <div class="flex items-center justify-center">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="mr-3" style="width:24px;height:24px"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+          <span>加 WhatsApp 攞精準數據</span>
+        </div>
+      </button>
+
+      <p class="text-sm text-slate-600 mb-4">
+        憑多年市場分析經驗，每日持續整理重要數據，供學習同參考。
+      </p>
+    </div>
+  </section>
+
+  <!-- Channel Section -->
+  <section class="py-12 px-4 bg-white">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">
+          同專家一齊交流情報嘅渠道
+        </h2>
+        <div class="flex items-center justify-center mb-4">
+          <Users size={24} class="mr-2 text-red-600" />
+          <span class="text-lg text-slate-700 font-medium">每日派送數據</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">
+          每日整理趨勢數據，方便學習同觀察。
+        </p>
+        <div class="mb-6">
+          <Image src={headerImage} alt="陳永陸 · 聽日有機會升嘅股票" class="mx-auto rounded-lg shadow-md w-full max-w-full" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-12 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
+    <div class="max-w-md mx-auto">
+      <div class="mb-6 text-center">
+        <Image src={contentImage} alt="香港股市著名評論人 陳永陸" class="mx-auto rounded-lg shadow-md w-full max-w-full" />
+      </div>
+      <div class="space-y-6 mb-8">
+        <div class="text-center p-6 bg-white rounded-2xl border-2 border-red-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Users size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">一對一學習</h3>
+          <p class="text-slate-700 leading-relaxed">同專家一對一交流，學習知識。</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl border-2 border-orange-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-orange-600 to-yellow-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Target size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">度身訂造</h3>
+          <p class="text-slate-700 leading-relaxed">學識知識之後，專家會為你制定個人化嘅方法。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expert Introduction -->
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">
+          <span class="text-red-600">{people}</span>分析專家
+        </h2>
+      </div>
+
+      <div class="space-y-6 mb-8">
+        <div class="text-center p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border-2 border-red-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Award size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">多年分析經驗</h3>
+          <p class="text-slate-700 leading-relaxed">喺本地累積咗豐富嘅市場分析經驗。</p>
+        </div>
+
+        <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border-2 border-orange-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-orange-600 to-yellow-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Users size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">管理超過 5,000 名會員</h3>
+          <p class="text-slate-700 leading-relaxed">對唔同學習傾向嘅會員，提供度身訂造嘅服務。</p>
+        </div>
+
+        <div class="text-center p-6 bg-gradient-to-br from-yellow-50 to-red-50 rounded-2xl border-2 border-yellow-200 shadow-lg">
+          <div class="w-16 h-16 bg-gradient-to-br from-yellow-600 to-red-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <CheckCircle size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">85% 準確率</h3>
+          <p class="text-slate-700 leading-relaxed">靠正確嘅技術同市場分析，提升準確率。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Results -->
+  <section class="py-12 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">多年市場學習</h2>
+        <p class="text-lg text-red-600 font-semibold mb-6">學習成果</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex items-start p-5 bg-white rounded-2xl border-2 border-red-200 shadow-md">
+          <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-0.5">
+            <span class="text-white text-sm font-bold">1</span>
+          </div>
+          <div><p class="text-slate-800 font-medium leading-relaxed">持續學習市場知識，提升專業能力。</p></div>
+        </div>
+
+        <div class="flex items-start p-5 bg-white rounded-2xl border-2 border-orange-200 shadow-md">
+          <div class="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-0.5">
+            <span class="text-white text-sm font-bold">2</span>
+          </div>
+          <div><p class="text-slate-800 font-medium leading-relaxed">結合科學方法，合理分析市場機會。</p></div>
+        </div>
+
+        <div class="flex items-start p-5 bg-white rounded-2xl border-2 border-yellow-200 shadow-md">
+          <div class="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-0.5">
+            <span class="text-white text-sm font-bold">3</span>
+          </div>
+          <div><p class="text-slate-800 font-medium leading-relaxed">透過實踐累積經驗，實現穩定成長。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-16 px-4 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+    <div class="max-w-md mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6">
+        即刻攞精準市場數據分析
+      </h2>
+
+      <button
+        class="link-btn w-full max-w-sm px-10 py-5 bg-yellow-400 text-red-600 rounded-full hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl font-black animate-breathe-yellow mb-6"
+        data-umami-event="contact"
+        data-umami-event-method="whatsapp"
+        data-umami-event-position="final-cta"
+        data-umami-event-instructor={people}
+      >
+        <div class="flex items-center justify-center">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="mr-3" style="width:24px;height:24px"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+          <span>加 WhatsApp 好友</span>
+        </div>
+      </button>
+
+      <p class="text-yellow-100 text-lg mb-4">
+        加咗 WhatsApp 之後，就可以攞到學習交流。
+      </p>
+    </div>
+  </section>
+
+  <!-- Financial Education -->
+  <section class="py-12 px-4 bg-white">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">
+          香港金融教育機構
+        </h2>
+        <p class="text-lg text-red-600 font-semibold">重視真材實料</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border-2 border-red-200 shadow-md text-center">
+          <p class="text-slate-800 font-medium">
+            同可信賴嘅金融教育機構合作，<br />
+            提供實戰、真材實料嘅市場分析。
+          </p>
+        </div>
+
+        <div class="p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border-2 border-orange-200 shadow-md text-center">
+          <p class="text-slate-800 font-medium">
+            建基於多年實績同信任，<br />
+            係可靠嘅金融教育服務。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

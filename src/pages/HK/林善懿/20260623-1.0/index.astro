@@ -1,0 +1,71 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroBg from './images/hero-bg.jpg'
+import iconBank from './images/icon-bank.png'
+import iconHouse from './images/icon-house.png'
+import iconShield from './images/icon-shield.png'
+import iconCoin from './images/icon-coin.png'
+import lsyAvatar from './images/lsy_avatar.jpg'
+import futuLogo from './images/futu_logo.svg?url'
+---
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>林善懿｜高股息投資交流社群</title>
+<RedirectCode />
+<style is:global>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{background:#071321;color:#fff;overflow-x:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(rgba(7,19,33,.55),rgba(7,19,33,.92)),var(--hero-bg);background-size:cover;background-position:center}
+.persona-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;background:rgba(7,19,33,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(245,193,93,.25)}
+.persona-info{display:flex;align-items:center;gap:12px}
+.persona-ava{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #F5C15D;box-shadow:0 4px 14px rgba(0,0,0,.45);flex-shrink:0}
+.persona-meta b{display:block;color:#fff;font-size:18px;font-weight:800;line-height:1.2}
+.persona-meta span{display:block;margin-top:3px;color:#F5C15D;font-size:12px;font-weight:600}
+.futu-logo{display:flex;align-items:center;flex-shrink:0}
+.futu-logo img{height:30px;width:auto;display:block}
+.hero-content{flex:1;display:flex;flex-direction:column;justify-content:center;padding:35px}
+.hero-highlight{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:22px;padding:10px 18px;border-radius:999px;background:rgba(245,193,93,.14);border:1px solid rgba(245,193,93,.4);color:#F5C15D;font-size:14.5px;font-weight:800}
+.hero h1{font-size:42px;line-height:1.35;font-weight:700}.gold{color:#F5C15D}
+.hero p{margin-top:25px;font-size:18px;line-height:1.8;color:#ddd}
+.cta,.bottom-btn{background:#25D366;color:#fff;text-decoration:none;border-radius:999px;font-weight:700;box-shadow:0 12px 35px rgba(37,211,102,.35)}
+.cta{display:inline-block;margin-top:40px;padding:18px 30px;font-size:19px}
+.section{padding:70px 22px}.title{text-align:center;font-size:32px;font-weight:700;line-height:1.5}.desc{text-align:center;margin-top:20px;color:#bbb;line-height:1.8;font-size:17px}
+.cards{margin-top:40px;display:flex;flex-direction:column;gap:20px}.card{background:#101f32;border-radius:26px;padding:25px;display:flex;align-items:center;gap:20px;box-shadow:0 15px 35px rgba(0,0,0,.3)}
+.card img{width:70px;height:70px}.card h3{font-size:23px;margin-bottom:8px}.card p{color:#ccc;line-height:1.7;font-size:16px}
+.community{padding:70px 25px;text-align:center;background:linear-gradient(180deg,#0d1d31,#071321)}
+.community h2{font-size:34px;margin-bottom:30px}.list{max-width:360px;margin:auto;text-align:left}.list li{list-style:none;font-size:18px;line-height:1.9;margin-bottom:18px}
+.community p{margin-top:35px;color:#cfcfcf;font-size:17px;line-height:1.8}.footer{margin-top:35px;color:#888;font-size:14px}
+.bottom-btn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:16px 28px;font-size:18px;z-index:999}
+</style>
+</head>
+<body>
+<section class="hero" style={`--hero-bg:url(${heroBg.src})`}>
+<div class="persona-bar">
+<div class="persona-info">
+<img class="persona-ava" src={lsyAvatar.src} alt="林善懿" width="54" height="54">
+<div class="persona-meta"><b>林善懿</b><span>高股息投資分享</span></div>
+</div>
+<div class="futu-logo"><img src={futuLogo} alt="富途牛牛"></div>
+</div>
+<div class="hero-content">
+<h1>仲將啲錢<br>擺喺<span class="gold">銀行？</span></h1>
+<p>定期一年得幾厘，扣埋通脹，其實冇乜剩。買樓門檻越嚟越高，保險可能要等十幾二十年先見到效果。越來越多投資者開始關注——<b class="gold">高股息企業</b>。</p>
+<div class="hero-highlight">📈 高股息企業 · 追求穩定高回報</div>
+<a class="cta link-btn" href="javascript:void(0)">📲 免費加入 WhatsApp 社群</a>
+</div>
+</section>
+<section class="section">
+<div class="title">點解越來越多人開始研究 <span class="gold">高股息股票？</span></div>
+<div class="desc">唔係追熱門股，唔需要日日睇盤，而係尋找能夠長期創造現金流嘅企業。</div>
+<div class="cards">
+<div class="card"><img src={iconBank.src} alt="銀行存款" width="70" height="70"><div><h3>🏦 銀行存款</h3><p>利率有限，扣埋通脹之後，購買力可能逐漸下降。</p></div></div>
+<div class="card"><img src={iconHouse.src} alt="房地產" width="70" height="70"><div><h3>🏠 房地產</h3><p>入場門檻較高，流動性相對較低。</p></div></div>
+<div class="card"><img src={iconShield.src} alt="保險" width="70" height="70"><div><h3>🛡 保險</h3><p>偏重保障，回報周期較長。</p></div></div>
+<div class="card"><img src={iconCoin.src} alt="高股息企業" width="70" height="70"><div><h3 style="color:#F5C15D">💰 高股息企業</h3><p>關注企業盈利能力、派息能力，追求長期穩定現金流。</p></div></div>
+</div></section>
+<section class="community" id="join"><h2>加入社群，你可以獲得咩？</h2><ul class="list"><li>📈 市場觀察及分析</li><li>💰 高股息企業研究</li><li>📰 定期分享投資資訊</li><li>👥 與志同道合朋友交流</li></ul><p>唔係投資建議，而係分享資訊、交流觀點嘅社群。</p><div class="footer">免費加入｜交流學習｜定期分享</div></section>
+<a class="bottom-btn link-btn" href="javascript:void(0)">📲 免費加入 WhatsApp 社群</a>
+</body></html>

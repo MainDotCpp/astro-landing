@@ -2,11 +2,12 @@
 import BandCtaButton from './button/BandCtaButton.astro'
 import KakaoCopyButton from './button/KaKaoCopyButton.tsx'
 import KakaoCtaButton from './button/KakaoCtaButton.astro'
+import KakaoGroupCtaButton from './button/KakaoGroupCtaButton.astro'
 import KakaoFormButton from './button/KaKaoFormButton.tsx'
 import MixedCtaButton from './button/MixedCtaButton.astro'
 
 type Props = {
-    social?: '卡扣' | '棒群' | '混合' | '引导弹窗' | '提高质量_'
+    social?: '卡扣' | '卡群' | '棒群' | '混合' | '引导弹窗' | '提高质量_'
     size?: 'sm' | 'md' | 'lg'
     animate?: boolean
     class?: string
@@ -37,6 +38,18 @@ const {
     >
         <slot name="content" slot="content" />
     </KakaoCtaButton>
+)}
+
+{social === '卡群' && (
+    <KakaoGroupCtaButton
+      size={size}
+      animate={animate}
+      class={className}
+      redirect={redirect}
+      unstyled={unstyled}
+    >
+        <slot name="content" slot="content" />
+    </KakaoGroupCtaButton>
 )}
 
 {social === '棒群' && (

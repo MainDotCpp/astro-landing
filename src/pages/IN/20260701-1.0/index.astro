@@ -1,0 +1,480 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroBg from './images/hero-bg.jpg'
+import ogImage from './images/og-share.png'
+
+const title = 'Dalal Street Insider · Indian Multibagger Intel — Free Weekly Briefing'
+const description = 'Get the insider list of breakout Indian small-cap multibaggers. Weekly briefing on defence, railways, PSU & green-energy stocks. Free access for Indian investors.'
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage.src} />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage.src} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ heroBgUrl: `url('${heroBg.src}')` }}>
+      .hero-stage { --hero-bg-url: var(--heroBgUrl); }
+    </style>
+
+    <style is:global>
+      :root {
+        --bg-deep:        #0E0E12;
+        --bg-elevated:    #16161D;
+        --text-primary:   #F5F5F7;
+        --text-secondary: #A8AAB3;
+        --text-muted:     #6E707A;
+        --gold-bright:    #FFD700;
+        --gold:           #D4AF37;
+        --gold-deep:      #C8941F;
+        --gold-dim:       #8C6F1F;
+        --maple-red:      #C8102E;
+        --alert-red:      #E11D2A;
+        --rule:           rgba(212, 175, 55, 0.14);
+        --rule-strong:    rgba(212, 175, 55, 0.3);
+        --font-display:   'Bebas Neue', 'Impact', sans-serif;
+        --font-body:      'Inter', system-ui, sans-serif;
+        --container-max:  1200px;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--bg-deep);
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; }
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      @media (max-width: 768px) {
+        .container { padding: 0 1.25rem; }
+      }
+
+      /* ─── BREAKING TOP BAR ─── */
+      .breaking-bar {
+        position: sticky; top: 0; z-index: 100;
+        height: 36px;
+        background: var(--alert-red);
+        color: #fff;
+        display: flex; align-items: center;
+        overflow: hidden;
+        font-family: var(--font-body);
+      }
+      .breaking-bar .badge {
+        flex-shrink: 0;
+        padding: 0 12px 0 16px;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-left: 4px solid #fff;
+        height: 100%;
+        display: flex; align-items: center;
+        background: rgba(0, 0, 0, 0.18);
+      }
+      .breaking-bar .ticker-wrap {
+        flex: 1; overflow: hidden; position: relative; height: 100%;
+      }
+      .breaking-bar .ticker {
+        position: absolute; white-space: nowrap;
+        animation: ticker 22s linear infinite;
+        font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+        top: 50%; transform: translateY(-50%);
+        padding-left: 16px;
+      }
+      @keyframes ticker {
+        from { transform: translate(100%, -50%); }
+        to   { transform: translate(-100%, -50%); }
+      }
+      @media (max-width: 480px) {
+        .breaking-bar { height: 32px; }
+        .breaking-bar .badge { font-size: 11px; padding: 0 8px 0 12px; }
+        .breaking-bar .ticker { font-size: 12px; }
+      }
+
+      /* ─── HERO STAGE ─── */
+      .hero-stage {
+        position: relative;
+        min-height: calc(100vh - 36px);
+        padding: 48px 0 64px;
+        display: flex; align-items: center;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse 900px 500px at 20% 20%, rgba(255, 215, 0, 0.12), transparent 65%),
+          radial-gradient(ellipse 800px 400px at 85% 75%, rgba(255, 153, 51, 0.10), transparent 60%),
+          linear-gradient(180deg, var(--bg-deep) 0%, #050507 100%);
+      }
+      .hero-stage::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: var(--hero-bg-url);
+        background-size: cover; background-position: center;
+        opacity: 0.18; mix-blend-mode: luminosity;
+        pointer-events: none;
+      }
+      .hero-stage > .container { position: relative; z-index: 1; }
+      .hero-header { margin-bottom: 64px; }
+      .hero-header .logo { display: inline-block; font-family: var(--font-display); font-size: clamp(30px, 5.5vw, 48px); line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; background: linear-gradient(135deg, #FFD700 0%, #FFEC8B 50%, #C8941F 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(48px, 8vw, 88px);
+        line-height: 0.92;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        margin: 0;
+        color: var(--text-primary);
+      }
+      .hero-title .gold {
+        background: linear-gradient(135deg, #FFD700 0%, #FFEC8B 50%, #C8941F 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: var(--gold);
+      }
+      .hero-subtitle {
+        margin: 32px 0 0;
+        font-size: clamp(18px, 2.2vw, 28px);
+        font-weight: 500;
+        line-height: 1.35;
+        color: var(--text-secondary);
+        letter-spacing: -0.01em;
+        max-width: 720px;
+      }
+      @media (max-width: 768px) {
+        .hero-stage { padding: 32px 0 48px; min-height: auto; }
+        .hero-header { margin-bottom: 40px; }
+        .hero-header .logo { font-size: 30px; }
+        .hero-subtitle { margin-top: 20px; }
+      }
+
+      /* ─── BENEFITS ─── */
+      .benefits {
+        margin: 48px 0 0;
+        max-width: 640px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        padding: 28px 32px;
+        backdrop-filter: blur(8px);
+      }
+      .benefit-item {
+        display: flex; align-items: flex-start;
+        gap: 14px; padding: 10px 0;
+        font-size: 18px; line-height: 1.5;
+        color: var(--text-primary);
+      }
+      .benefit-item + .benefit-item {
+        border-top: 1px solid var(--rule);
+        margin-top: 4px; padding-top: 14px;
+      }
+      .benefit-item strong { color: var(--gold-bright); font-weight: 700; }
+      .benefit-check {
+        flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px;
+      }
+      @media (max-width: 768px) {
+        .benefits { padding: 22px 20px; margin-top: 32px; }
+        .benefit-item { font-size: 16px; gap: 12px; }
+        .benefit-check { width: 20px; height: 20px; }
+      }
+
+      /* ─── CTA ─── */
+      .cta-row { margin: 40px 0 0; }
+      .cta-primary {
+        display: inline-flex;
+        align-items: center; justify-content: center;
+        gap: 12px;
+        padding: 22px 48px;
+        font-family: var(--font-display);
+        font-size: 24px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #0E0E12;
+        background: linear-gradient(180deg, #FFD700 0%, #C8941F 100%);
+        border: none; border-radius: 12px;
+        box-shadow:
+          0 10px 40px rgba(255, 215, 0, 0.35),
+          0 4px 12px rgba(255, 215, 0, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: all .25s cubic-bezier(.22, 1, .36, 1);
+        text-decoration: none;
+      }
+      .cta-primary:hover {
+        transform: translateY(-2px) scale(1.015);
+        box-shadow:
+          0 14px 56px rgba(255, 215, 0, 0.55),
+          0 6px 20px rgba(255, 215, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+      .cta-primary .arrow {
+        font-family: var(--font-body);
+        font-weight: 400; font-size: 22px; margin-left: 4px;
+      }
+      @media (max-width: 768px) {
+        .cta-row { margin-top: 32px; }
+        .cta-primary { width: 100%; padding: 18px 24px; font-size: 20px; }
+      }
+
+      /* ─── URGENCY ─── */
+      .urgency {
+        margin: 20px 0 0;
+        display: inline-block;
+        padding: 6px 0 6px 12px;
+        border-left: 3px solid var(--alert-red);
+        color: var(--alert-red);
+        font-size: 14px; font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      @media (max-width: 768px) {
+        .urgency { font-size: 13px; }
+      }
+
+      /* ─── TRUST STRIP ─── */
+      .trust-strip {
+        background: var(--bg-deep);
+        padding: 48px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+      .trust-item {
+        display: flex; flex-direction: column;
+        align-items: center; text-align: center;
+        gap: 10px;
+      }
+      .trust-item::before {
+        content: '';
+        display: block;
+        width: 24px; height: 2px;
+        background: var(--gold);
+        margin-bottom: 4px;
+      }
+      .trust-item svg { width: 20px; height: 20px; color: var(--gold); }
+      .trust-item .value {
+        font-size: 16px; font-weight: 600; color: var(--text-primary);
+      }
+      .trust-item .label {
+        font-size: 14px; font-weight: 500;
+        color: var(--text-secondary); letter-spacing: 0.02em;
+      }
+      @media (max-width: 768px) {
+        .trust-strip { padding: 32px 0; }
+        .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      }
+
+      /* ─── FOOTER ─── */
+      .site-footer {
+        padding: 32px 0 40px;
+        background: #050507;
+        border-top: 1px solid var(--rule);
+      }
+      .site-footer p {
+        margin: 4px 0;
+        color: var(--text-muted);
+        font-size: 12px; line-height: 1.6;
+        text-align: center;
+      }
+      @media (max-width: 768px) {
+        .site-footer p { font-size: 11px; }
+      }
+
+      /* ─── REVEAL ENTRANCE ANIMATION ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity .8s cubic-bezier(.22, 1, .36, 1),
+                    transform .8s cubic-bezier(.22, 1, .36, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+  </Fragment>
+
+  <main>
+    <div class="breaking-bar" role="region" aria-label="Breaking news">
+      <div class="badge">Breaking</div>
+      <div class="ticker-wrap">
+        <div class="ticker">
+          Nifty Smallcap 250 +52% YTD &nbsp;·&nbsp; July 1, 2026 &nbsp;·&nbsp;
+          Defence &amp; railway multibaggers hitting new highs this week &nbsp;·&nbsp;
+          Sensex above 82,000 &nbsp;·&nbsp; Small-cap breakouts accelerating
+        </div>
+      </div>
+    </div>
+
+    <section class="hero-stage">
+      <div class="container">
+        <header class="hero-header">
+          <span class="logo">Dalal Street Insider</span>
+        </header>
+
+        <h1 class="hero-title reveal">
+          The Next Indian Multibagger<br/>
+          <span class="gold">Run Is Already Underway.</span>
+        </h1>
+
+        <p class="hero-subtitle reveal">
+          Are you on the inside &mdash; or watching from outside?
+        </p>
+
+        <div class="benefits reveal">
+          <div class="benefit-item">
+            <svg class="benefit-check" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12.5l4.5 4.5L19 7" stroke="#FFD700" stroke-width="2.5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Small-caps delivering <strong>10X moves</strong> this cycle &mdash; see who's next</span>
+          </div>
+          <div class="benefit-item">
+            <svg class="benefit-check" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12.5l4.5 4.5L19 7" stroke="#FFD700" stroke-width="2.5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Weekly intel: <strong>defence &middot; railways &middot; PSU &middot; green energy</strong></span>
+          </div>
+          <div class="benefit-item">
+            <svg class="benefit-check" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12.5l4.5 4.5L19 7" stroke="#FFD700" stroke-width="2.5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Joined by <strong>18,400+ Indian investors</strong> this month alone</span>
+          </div>
+        </div>
+
+        <div class="cta-row reveal">
+          <a class="cta-primary link-btn" href="#">
+            Yes &mdash; Send Me The Multibagger List
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+
+        <p class="urgency" id="urgency">
+          Free access closes tonight at midnight IST
+        </p>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M3 3v18h18"/>
+              <path d="M7 14l4-4 4 4 6-6"/>
+            </svg>
+            <div class="value">26,000+</div>
+            <div class="label">subscribers</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M12 22s-7-6-7-12a7 7 0 0114 0c0 6-7 12-7 12z"/>
+              <circle cx="12" cy="10" r="2.5"/>
+            </svg>
+            <div class="value">Mumbai</div>
+            <div class="label">India</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M3 21l6-6"/>
+              <path d="M14 7l3-3 4 4-3 3"/>
+              <path d="M14 7l-9 9 4 4 9-9"/>
+            </svg>
+            <div class="value">NSE &amp; BSE</div>
+            <div class="label">coverage</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M3 7l9 6 9-6"/>
+            </svg>
+            <div class="value">Weekly</div>
+            <div class="label">briefing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2026 Dalal Street Insider &middot; For informational purposes only.</p>
+        <p>Not investment advice. Past performance does not guarantee future results.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    function updateUrgency() {
+      const el = document.getElementById('urgency');
+      if (!el) return;
+
+      const now = new Date();
+      const endOfDay = new Date(now);
+      endOfDay.setHours(23, 59, 59, 999);
+      const diffMs = endOfDay.getTime() - now.getTime();
+
+      if (diffMs <= 0) {
+        el.textContent = 'Free access closes today';
+        return;
+      }
+
+      const h = Math.floor(diffMs / 3.6e6);
+      const m = Math.floor((diffMs % 3.6e6) / 6e4);
+      const s = Math.floor((diffMs % 6e4) / 1000);
+      const pad = (n) => String(n).padStart(2, '0');
+
+      el.textContent = `Free access closes in ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+    }
+    updateUrgency();
+    setInterval(updateUrgency, 1000);
+
+    // Reveal entrance animation via IntersectionObserver
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('active'), idx * 80);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('active'));
+    }
+  </script>
+</BaseLayout>

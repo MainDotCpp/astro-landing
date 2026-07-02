@@ -58,6 +58,7 @@ function fireFacebook(link) {
   if (typeof window.fbq !== 'function') return false
   const value = getPurchaseValue()
   const currency = getPurchaseCurrency()
+  try { window.fbq('track', 'Contact') } catch (e) {}
   try { window.fbq('track', 'AddToCart') } catch (e) {}
   try {
     window.fbq('track', 'Purchase', {

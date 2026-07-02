@@ -1,0 +1,529 @@
+---
+import { getImage } from 'astro:assets'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroSrc from './images/hero.png'
+
+const title = 'AI 每朝精選港股 · 買賣訊號直送 WhatsApp | 港股智能選股'
+const description = 'AI 每朝開市前掃描全港 2000+ 隻股，精選最有潛力嗰幾隻，連入場價、止蝕位、目標價一齊送到你 WhatsApp。唔使自己盯市，跟住做就得。'
+
+const heroImg = await getImage({ src: heroSrc, format: 'webp', width: 880, quality: 76 })
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    slot="head"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ═══════════ 背景層 ═══════════ -->
+  <canvas id="particles-bg" class="bg-particles"></canvas>
+  <div class="bg-aurora" aria-hidden="true">
+    <span class="aurora a1"></span>
+    <span class="aurora a2"></span>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div class="page">
+    <!-- ═══════════ 屏 1 · HERO ═══════════ -->
+    <section class="hero">
+      <div class="hero-visual reveal" id="heroVisual">
+        <img src={heroImg.src} alt="AI 智能分析港股走勢" loading="eager" fetchpriority="high" />
+      </div>
+
+      <div class="hero-body">
+        <div class="eyebrow reveal">
+          <span class="dot"></span>
+          <span>AI 港股精選 · 每朝開市前更新</span>
+        </div>
+
+        <h1 class="title reveal">
+          每朝開市前<br />
+          <span class="grad">AI 幫你揀定今日潛力股</span>
+        </h1>
+        <p class="subtitle reveal">
+          唔使自己成日盯住個市揀股。AI 掃描全港 <b>2,000+</b> 隻股，每朝精選最有機會嗰幾隻，連入場價、止蝕位一齊 send 俾你。
+        </p>
+
+        <a href="javascript:void(0)" onclick="mixinJump()" class="wa-cta reveal" data-evt="hero">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+          加 WhatsApp 免費攞今日精選
+        </a>
+        <p class="cta-sub reveal">免費 · 每朝自動 send · 唔想收隨時取消</p>
+
+        <div class="hero-stats reveal">
+          <div class="hs"><div class="hs-n" id="userCount">12,400</div><div class="hs-l">已加入人數</div></div>
+          <span class="hs-sep"></span>
+          <div class="hs"><div class="hs-n">9:00</div><div class="hs-l">每朝更新</div></div>
+          <span class="hs-sep"></span>
+          <div class="hs"><div class="hs-n">2,000<span class="hs-u">+</span></div><div class="hs-l">掃描股數</div></div>
+        </div>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <span>AI 點幫你</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+      </div>
+    </section>
+
+    <!-- ═══════════ 屏 2 · AI 點幫你 ═══════════ -->
+    <section class="features">
+      <div class="sec-head reveal">
+        <p class="eyebrow-txt">How it works</p>
+        <h2 class="sec-title">你瞓緊覺嗰陣，<br />AI 已經幫你揀好今日嘅股</h2>
+      </div>
+
+      <div class="feat-list">
+        <div class="feat reveal">
+          <div class="feat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-3.5-3.5"></path><path d="M11 8v6M8 11h6"></path></svg>
+          </div>
+          <div class="feat-txt">
+            <h3>全港股掃描，唔放過機會</h3>
+            <p>AI 每日掃描 2,000+ 隻港股，由技術走勢、資金流向到大市氣氛三重分析，揀出最有潛力嗰幾隻。</p>
+          </div>
+        </div>
+
+        <div class="feat reveal">
+          <div class="feat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l5-5 4 4 8-8"></path><path d="M16 8h5v5"></path></svg>
+          </div>
+          <div class="feat-txt">
+            <h3>唔止揀股，仲俾你訊號</h3>
+            <p>每隻精選股都寫明入場區間、止蝕位同目標價。唔使自己估，跟住做就得。</p>
+          </div>
+        </div>
+
+        <div class="feat reveal">
+          <div class="feat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 8v4l3 2"></path><circle cx="12" cy="12" r="9"></circle></svg>
+          </div>
+          <div class="feat-txt">
+            <h3>盤前直接 send 到 WhatsApp</h3>
+            <p>每朝開市前自動 send 到你手機，返工等車嗰陣睇一眼就得，唔使成日盯住個市。</p>
+          </div>
+        </div>
+
+        <div class="feat reveal">
+          <div class="feat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 4.5-3.5 7.5-8 9-4.5-1.5-8-4.5-8-9V7z"></path><path d="M9 12l2 2 4-4"></path></svg>
+          </div>
+          <div class="feat-txt">
+            <h3>數據講嘢，唔靠感覺</h3>
+            <p>全部由 AI 模型同實時數據驅動，唔係街邊嗰啲跟風嗌單嘅貼士。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 今日精選預覽（真實感，鎖定完整） -->
+      <div class="preview reveal">
+        <div class="pv-head">
+          <div class="pv-live"><span class="pv-dot"></span>今日 AI 精選</div>
+          <div class="pv-date" id="pvDate"></div>
+        </div>
+        <div class="pv-rows">
+          <div class="pv-row">
+            <div class="pv-stock"><b>騰訊控股</b><span>00700</span></div>
+            <div class="pv-tag up">短線偏強 ▲</div>
+            <div class="pv-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>入場/止蝕</div>
+          </div>
+          <div class="pv-row">
+            <div class="pv-stock"><b>比亞迪股份</b><span>01211</span></div>
+            <div class="pv-tag up">資金流入 ▲</div>
+            <div class="pv-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>入場/止蝕</div>
+          </div>
+          <div class="pv-row blur">
+            <div class="pv-stock"><b>●●●●</b><span>0●●●●</span></div>
+            <div class="pv-tag up">●●●● ▲</div>
+            <div class="pv-lock">●●●●</div>
+          </div>
+        </div>
+        <div class="pv-foot">仲有 <b id="pvMore">3</b> 隻今日精選股，加 WhatsApp 即刻睇晒</div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 屏 3 · 社會證明 + CTA ═══════════ -->
+    <section class="proof">
+      <div class="sec-head reveal">
+        <p class="eyebrow-txt">Real users</p>
+        <h2 class="sec-title">超過 <span class="grad">12,000</span> 位港股股民<br />每朝跟住 AI 揀股</h2>
+      </div>
+
+      <div class="reviews">
+        <div class="review reveal">
+          <div class="rv-stars">★★★★★</div>
+          <p>「以前自己睇圖睇到頭都大，而家每朝 WhatsApp 收到精選同訊號，慳返好多時間，入場止蝕都唔使自己估。」</p>
+          <div class="rv-by"><span class="rv-av">陳</span><div><b>陳生</b><i>跟咗 3 個月</i></div></div>
+        </div>
+        <div class="review reveal">
+          <div class="rv-stars">★★★★★</div>
+          <p>「最啱我哋打工仔，唔使成日睇住個市。盤前收到，跟住入場目標位做，清清楚楚。」</p>
+          <div class="rv-by"><span class="rv-av">M</span><div><b>Mandy</b><i>跟咗 1 個月</i></div></div>
+        </div>
+        <div class="review reveal">
+          <div class="rv-stars">★★★★★</div>
+          <p>「訊號夠清晰，入場、目標、止蝕都寫到明，唔似坊間啲貼士群淨係嗌你買。」</p>
+          <div class="rv-by"><span class="rv-av">黃</span><div><b>黃小姐</b><i>跟咗 5 個月</i></div></div>
+        </div>
+      </div>
+
+      <div class="steps reveal">
+        <div class="step"><span class="step-n">1</span><div><b>加 WhatsApp</b><p>㩒下面個掣，一秒加入</p></div></div>
+        <div class="step"><span class="step-n">2</span><div><b>每朝收 AI 精選</b><p>開市前自動推送潛力股 + 訊號</p></div></div>
+        <div class="step"><span class="step-n">3</span><div><b>跟住部署</b><p>照入場 / 止蝕位做，唔使自己估</p></div></div>
+      </div>
+
+      <div class="final-cta reveal">
+        <h2>今朝嘅精選股，仲嚟得切</h2>
+        <p>免費加入，即刻收到今日 AI 精選港股 + 完整買賣訊號</p>
+        <a href="javascript:void(0)" onclick="mixinJump()" class="wa-cta" data-evt="final">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+          免費攞今日 AI 精選
+        </a>
+        <p class="risk">投資涉及風險，AI 分析僅供參考，買賣決定請自行判斷。</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════ 底部 STICKY CTA ═══════════ -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sc-txt"><b>今日 AI 精選港股</b><span>免費送到 WhatsApp</span></div>
+    <a href="javascript:void(0)" onclick="mixinJump()" class="sc-btn" data-evt="sticky">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+      免費攞
+    </a>
+  </div>
+
+  <!-- ═══════════ JS ═══════════ -->
+  <script is:inline>
+// ── 粒子背景（手寫 canvas，主線程，可靠可見）──
+function initParticles() {
+  const canvas = document.getElementById('particles-bg')
+  if (!canvas)
+    return
+  const ctx = canvas.getContext('2d')
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const mouse = { x: -999, y: -999 }
+  const LINK = 140
+  let W = 0
+  let H = 0
+  let dpr = 1
+  let pts = []
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2)
+    W = window.innerWidth
+    H = window.innerHeight
+    canvas.width = W * dpr
+    canvas.height = H * dpr
+    canvas.style.width = `${W}px`
+    canvas.style.height = `${H}px`
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+  }
+  function build() {
+    const count = Math.max(30, Math.min(64, Math.round(W * H / 17000)))
+    pts = []
+    for (let i = 0; i < count; i++) {
+      pts.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * (reduce ? 0.12 : 0.45),
+        vy: (Math.random() - 0.5) * (reduce ? 0.12 : 0.45),
+        r: Math.random() * 1.5 + 0.8,
+      })
+    }
+  }
+  function froze(p, q) {
+    const d = Math.hypot(p.x - q.x, p.y - q.y)
+    if (d < LINK) {
+      ctx.globalAlpha = (1 - d / LINK) * 0.42
+      ctx.strokeStyle = '#34d8ee'
+      ctx.lineWidth = 1
+      ctx.beginPath()
+      ctx.moveTo(p.x, p.y)
+      ctx.lineTo(q.x, q.y)
+      ctx.stroke()
+    }
+  }
+  function frame() {
+    ctx.clearRect(0, 0, W, H)
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i]
+      p.x += p.vx
+      p.y += p.vy
+      if (p.x < 0 || p.x > W)
+        p.vx *= -1
+      if (p.y < 0 || p.y > H)
+        p.vy *= -1
+      for (let j = i + 1; j < pts.length; j++) froze(p, pts[j])
+      const md = Math.hypot(p.x - mouse.x, p.y - mouse.y)
+      if (md < 170) {
+        ctx.globalAlpha = (1 - md / 170) * 0.7
+        ctx.strokeStyle = '#7fe9ff'
+        ctx.lineWidth = 1.1
+        ctx.beginPath()
+        ctx.moveTo(p.x, p.y)
+        ctx.lineTo(mouse.x, mouse.y)
+        ctx.stroke()
+      }
+    }
+    for (const p of pts) {
+      ctx.globalAlpha = 0.15
+      ctx.fillStyle = '#34d8ee'
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.globalAlpha = 0.92
+      ctx.fillStyle = '#bdf1ff'
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+      ctx.fill()
+    }
+    ctx.globalAlpha = 1
+    if (!reduce)
+      requestAnimationFrame(frame)
+  }
+
+  resize()
+  build()
+  frame()
+  window.addEventListener('resize', () => {
+    resize()
+    build()
+  })
+  window.addEventListener('pointermove', (e) => {
+    mouse.x = e.clientX
+    mouse.y = e.clientY
+  })
+  window.addEventListener('pointerleave', () => {
+    mouse.x = -999
+    mouse.y = -999
+  })
+}
+
+// ── 滾動入場 ──
+function initReveal() {
+  const els = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+  function check() {
+    const h = window.innerHeight
+    for (let i = els.length - 1; i >= 0; i--) {
+      if (els[i].getBoundingClientRect().top < h * 0.88) {
+        els[i].classList.add('in')
+        els.splice(i, 1)
+      }
+    }
+  }
+  check()
+  window.addEventListener('scroll', check, { passive: true })
+  window.addEventListener('resize', check, { passive: true })
+}
+
+// ── 統計數字 ──
+function runStats() {
+  const el = document.getElementById('userCount')
+  if (!el)
+    return
+  let n = 12400
+  setInterval(() => {
+    n += Math.floor(Math.random() * 3) + 1
+    el.textContent = n.toLocaleString('en-US')
+  }, 2800)
+}
+
+// ── 日期 ──
+function setDate() {
+  const el = document.getElementById('pvDate')
+  if (!el)
+    return
+  const d = new Date()
+  const w = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()]
+  el.textContent = `${d.getMonth() + 1}月${d.getDate()}日 · 星期${w}`
+}
+
+// ── 底部 sticky CTA：滾動超過 hero 先顯示 ──
+function initSticky() {
+  const sc = document.getElementById('stickyCta')
+  const hero = document.querySelector('.hero')
+  if (!sc || !hero)
+    return
+  function check() {
+    sc.classList.toggle('show', window.scrollY > hero.offsetHeight - 120)
+  }
+  check()
+  window.addEventListener('scroll', check, { passive: true })
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initParticles()
+  initReveal()
+  runStats()
+  setDate()
+  initSticky()
+})
+</script>
+
+  <!-- ═══════════ CSS ═══════════ -->
+  <style is:global>
+    :root {
+      --bg: #070b18;
+      --cyan: #22d3ee;
+      --sky: #38bdf8;
+      --teal: #2dd4bf;
+      --up: #ff5a6a;
+      --gold: #fbbf24;
+      --wa: #25d366;
+      --wa2: #1fb457;
+      --tx: #f1f5f9;
+      --tx2: #9fb0c4;
+      --tx3: #5a6b80;
+      --line: rgba(34, 211, 238, .14);
+    }
+
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--tx);
+      font-family: 'Noto Sans HK', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hs-n, .eyebrow span, .eyebrow-txt, .step-n, .pv-stock span { font-family: 'Space Grotesk', 'Noto Sans HK', sans-serif; }
+
+    /* ── 背景 ── */
+    .bg-particles { position: fixed; inset: 0; z-index: 0; }
+    .bg-aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .aurora { position: absolute; border-radius: 50%; filter: blur(70px); }
+    .aurora.a1 { top: -15%; left: -12%; width: 70vw; height: 70vw; max-width: 480px; max-height: 480px; background: radial-gradient(circle, rgba(34, 211, 238, .15), transparent 68%); animation: aur1 17s ease-in-out infinite; }
+    .aurora.a2 { bottom: 8%; right: -14%; width: 65vw; height: 65vw; max-width: 440px; max-height: 440px; background: radial-gradient(circle, rgba(45, 212, 191, .12), transparent 68%); animation: aur2 21s ease-in-out infinite; }
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(34, 211, 238, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 211, 238, .04) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(ellipse 75% 55% at 50% 30%, #000 30%, transparent 78%);
+      -webkit-mask-image: radial-gradient(ellipse 75% 55% at 50% 30%, #000 30%, transparent 78%);
+    }
+
+    .page { position: relative; z-index: 1; }
+
+    /* ── reveal ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── HERO ── */
+    .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 30px 22px 40px; box-sizing: border-box; }
+    .hero-visual { position: relative; width: 100%; max-width: 440px; margin: 0 auto 26px; aspect-ratio: 16 / 10; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(120% 120% at 70% 30%, rgba(34, 211, 238, .16), rgba(7, 11, 24, .2) 55%), linear-gradient(160deg, #0a1228, #060a16); box-shadow: 0 24px 60px rgba(0, 0, 0, .5), inset 0 0 60px rgba(34, 211, 238, .05); }
+    .hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-body { width: 100%; max-width: 440px; margin: 0 auto; text-align: center; }
+
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(34, 211, 238, .05); margin-bottom: 20px; }
+    .eyebrow span { font-size: .66rem; letter-spacing: .1em; color: var(--cyan); font-weight: 600; }
+    .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); animation: pulse 2s infinite; }
+
+    .title { font-size: clamp(2rem, 8.4vw, 2.6rem); font-weight: 900; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 16px; color: #fff; }
+    .title .grad { background: linear-gradient(100deg, var(--cyan), var(--sky) 55%, var(--teal)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: clamp(.9rem, 3.6vw, 1rem); color: var(--tx2); line-height: 1.7; margin: 0 0 26px; }
+    .subtitle b { color: var(--cyan); font-weight: 700; }
+
+    .wa-cta { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; box-sizing: border-box; padding: 16px; border-radius: 15px; background: linear-gradient(135deg, var(--wa), var(--wa2)); color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; box-shadow: 0 12px 32px rgba(37, 211, 102, .34); animation: waPulse 2.6s ease-in-out infinite; }
+    .wa-cta svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .wa-cta:hover { box-shadow: 0 16px 42px rgba(37, 211, 102, .5); }
+    .cta-sub { font-size: .72rem; color: var(--tx3); margin: 11px 0 0; }
+
+    .hero-stats { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 30px; }
+    .hs { text-align: center; }
+    .hs-n { font-size: 1.4rem; font-weight: 700; color: #fff; line-height: 1; font-variant-numeric: tabular-nums; }
+    .hs-u { font-size: .85rem; }
+    .hs-l { font-size: .6rem; color: var(--tx3); letter-spacing: .04em; margin-top: 6px; }
+    .hs-sep { width: 1px; height: 30px; background: rgba(255, 255, 255, .08); }
+
+    .scroll-hint { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 34px auto 0; color: var(--tx3); font-size: .68rem; letter-spacing: .08em; }
+    .scroll-hint svg { width: 18px; height: 18px; animation: bob 1.8s ease-in-out infinite; }
+
+    /* ── 通用 section ── */
+    .features, .proof { padding: 64px 22px; max-width: 480px; margin: 0 auto; }
+    .sec-head { text-align: center; margin-bottom: 36px; }
+    .eyebrow-txt { font-size: .66rem; letter-spacing: .26em; text-transform: uppercase; color: var(--cyan); font-weight: 600; margin: 0 0 12px; }
+    .sec-title { font-size: clamp(1.45rem, 5.6vw, 1.8rem); font-weight: 800; line-height: 1.35; color: #fff; margin: 0; letter-spacing: -.01em; }
+    .sec-title .grad { background: linear-gradient(100deg, var(--cyan), var(--teal)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+    /* ── features ── */
+    .feat-list { display: flex; flex-direction: column; gap: 14px; }
+    .feat { display: flex; gap: 15px; padding: 18px; border-radius: 16px; background: rgba(255, 255, 255, .025); border: 1px solid rgba(255, 255, 255, .06); }
+    .feat-ico { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: rgba(34, 211, 238, .08); border: 1px solid rgba(34, 211, 238, .16); display: flex; align-items: center; justify-content: center; }
+    .feat-ico svg { width: 22px; height: 22px; color: var(--cyan); }
+    .feat-txt h3 { font-size: .98rem; font-weight: 700; color: #fff; margin: 2px 0 7px; }
+    .feat-txt p { font-size: .82rem; color: var(--tx2); line-height: 1.65; margin: 0; }
+
+    /* ── 今日精選預覽 ── */
+    .preview { margin-top: 22px; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(165deg, rgba(34, 211, 238, .05), rgba(7, 11, 24, .4)); padding: 18px; box-shadow: 0 20px 50px rgba(0, 0, 0, .4); }
+    .pv-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .pv-live { display: inline-flex; align-items: center; gap: 7px; font-size: .8rem; font-weight: 700; color: var(--cyan); }
+    .pv-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); animation: pulse 2s infinite; }
+    .pv-date { font-size: .68rem; color: var(--tx3); }
+    .pv-rows { display: flex; flex-direction: column; gap: 9px; }
+    .pv-row { display: flex; align-items: center; gap: 10px; padding: 11px 13px; border-radius: 12px; background: rgba(255, 255, 255, .03); border: 1px solid rgba(255, 255, 255, .05); }
+    .pv-row.blur { filter: blur(4px); opacity: .55; user-select: none; }
+    .pv-stock { flex: 1; min-width: 0; }
+    .pv-stock b { display: block; font-size: .88rem; color: #fff; }
+    .pv-stock span { font-size: .68rem; color: var(--tx3); }
+    .pv-tag { font-size: .72rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+    .pv-tag.up { color: var(--up); background: rgba(255, 90, 106, .1); }
+    .pv-lock { display: inline-flex; align-items: center; gap: 4px; font-size: .64rem; color: var(--tx3); white-space: nowrap; }
+    .pv-lock svg { width: 11px; height: 11px; }
+    .pv-foot { text-align: center; margin-top: 14px; font-size: .8rem; color: var(--tx2); }
+    .pv-foot b { color: var(--cyan); }
+
+    /* ── reviews ── */
+    .reviews { display: flex; flex-direction: column; gap: 13px; }
+    .review { padding: 18px; border-radius: 16px; background: rgba(255, 255, 255, .025); border: 1px solid rgba(255, 255, 255, .06); }
+    .rv-stars { color: var(--gold); font-size: .76rem; letter-spacing: .1em; margin-bottom: 9px; }
+    .review p { font-size: .85rem; color: var(--tx); line-height: 1.7; margin: 0 0 14px; }
+    .rv-by { display: flex; align-items: center; gap: 10px; }
+    .rv-av { width: 34px; height: 34px; border-radius: 50%; background: rgba(34, 211, 238, .12); border: 1px solid rgba(34, 211, 238, .25); display: flex; align-items: center; justify-content: center; color: var(--cyan); font-weight: 700; font-size: .8rem; }
+    .rv-by b { font-size: .8rem; color: #fff; display: block; }
+    .rv-by i { font-size: .68rem; color: var(--tx3); font-style: normal; }
+
+    /* ── steps ── */
+    .steps { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+    .step { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; background: rgba(255, 255, 255, .02); border: 1px solid rgba(255, 255, 255, .05); }
+    .step-n { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--sky)); color: #04121b; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .9rem; }
+    .step b { font-size: .9rem; color: #fff; }
+    .step p { font-size: .76rem; color: var(--tx2); margin: 3px 0 0; }
+
+    /* ── final CTA ── */
+    .final-cta { margin-top: 36px; text-align: center; padding: 30px 22px; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(165deg, rgba(34, 211, 238, .06), rgba(45, 212, 191, .03) 50%, transparent); box-shadow: 0 0 70px rgba(34, 211, 238, .06); }
+    .final-cta h2 { font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0 0 8px; }
+    .final-cta > p { font-size: .85rem; color: var(--tx2); margin: 0 0 22px; line-height: 1.6; }
+    .final-cta .risk { font-size: .66rem; color: var(--tx3); margin: 14px 0 0; line-height: 1.6; }
+
+    /* ── sticky CTA ── */
+    .sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 200; display: flex; align-items: center; gap: 12px; padding: 11px 16px calc(11px + env(safe-area-inset-bottom)); background: rgba(8, 14, 28, .92); backdrop-filter: blur(14px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+    .sticky-cta.show { transform: none; }
+    .sc-txt { flex: 1; min-width: 0; }
+    .sc-txt b { display: block; font-size: .84rem; color: #fff; }
+    .sc-txt span { font-size: .68rem; color: var(--tx3); }
+    .sc-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; padding: 12px 20px; border-radius: 12px; background: linear-gradient(135deg, var(--wa), var(--wa2)); color: #fff; font-weight: 700; font-size: .9rem; text-decoration: none; box-shadow: 0 6px 18px rgba(37, 211, 102, .35); }
+    .sc-btn svg { width: 18px; height: 18px; }
+
+    /* ── keyframes ── */
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+    @keyframes waPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015); } }
+    @keyframes aur1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(6%, 5%) scale(1.1); } }
+    @keyframes aur2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-7%, -4%) scale(1.08); } }
+
+    /* ── 桌面增強 ── */
+    @media (min-width: 768px) {
+      .hero-body, .hero-visual { max-width: 480px; }
+      .title { font-size: 2.8rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .aurora, .wa-cta, .eyebrow .dot, .pv-dot, .scroll-hint svg { animation: none !important; }
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import { getImage } from 'astro:assets'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import posterSrc from './images/poster.png'
+
+const title = '一日賺五、六萬先至明咩叫含金量 · 港股科技股實戰社群'
+const description = '由 500萬 滾到近 2,000萬，一路死揸科技股，跟到嘅都飛天。想跟住我哋一齊玩？加 WhatsApp 搵助理即時回覆。'
+
+const poster = await getImage({ src: posterSrc, format: 'webp', width: 1024, quality: 84 })
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <main class="single">
+    <img
+      src={poster.src}
+      alt="一日賺五、六萬，先至明咩叫含金量。真係 Gold Standard。由 500萬 滾到近 2,000萬，死揸科技股，跟到嘅都飛天。想跟住我哋一齊玩？搵助理即時回覆。"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </main>
+
+  <!-- 底部悬浮按钮 -->
+  <a href="javascript:void(0)" onclick="mixinJump()" class="float-cta" data-evt="float">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+    即刻加 WhatsApp · 搵助理一齊玩
+  </a>
+
+  <style is:global>
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: #0a0a0c;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 只展示一張圖：垂直居中，底部留出悬浮按钮空間 */
+    .single {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 14px calc(104px + env(safe-area-inset-bottom));
+      box-sizing: border-box;
+    }
+    .single img {
+      display: block;
+      width: 100%;
+      max-width: 460px;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .6);
+    }
+
+    /* 底部悬浮按钮（真实尺寸，常驻）*/
+    .float-cta {
+      position: fixed;
+      left: 50%;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 460px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 17px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #25d366, #1fb457);
+      color: #fff;
+      font-family: 'Noto Sans HK', system-ui, -apple-system, sans-serif;
+      font-weight: 800;
+      font-size: 1.04rem;
+      text-decoration: none;
+      box-shadow: 0 14px 36px rgba(37, 211, 102, .42);
+      animation: waPulse 2.6s ease-in-out infinite;
+      z-index: 200;
+    }
+    .float-cta svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .float-cta:hover { box-shadow: 0 18px 46px rgba(37, 211, 102, .55); }
+
+    @keyframes waPulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.015); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .float-cta { animation: none !important; }
+    }
+  </style>
+</BaseLayout>

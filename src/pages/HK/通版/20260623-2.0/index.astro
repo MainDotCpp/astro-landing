@@ -1,0 +1,847 @@
+---
+import { getImage } from 'astro:assets'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroImgSrc from './images/hero-harbour.jpg'
+
+// 走构建管线转 webp 压缩，降低首屏 LCP（输出落 mjSFqQ/ 前缀）
+const heroImg = await getImage({ src: heroImgSrc, format: 'webp', width: 1600, quality: 74 })
+
+const title = '港股早報 · 每個交易日幫你執好今日市場資訊（免費 WhatsApp 群）'
+const description = '財經 app、新聞、討論區成日彈消息，你一個人根本睇唔切。每個交易日，我哋幫你執好今日港股要留意嘅嘢，擺晒喺一個免費 WhatsApp 群。'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,500&family=Noto+Sans+HK:wght@400;500;700;900&family=Noto+Serif+HK:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f1ecdf" />
+  </Fragment>
+
+  <div class="paper">
+    <!-- 报头 -->
+    <header class="masthead">
+      <div class="col">
+        <div class="mast-top">
+          <span class="mast-edition">第 HK 版 · 港股資訊</span>
+          <span class="mast-edition mast-r">逢交易日更新</span>
+        </div>
+        <h1 class="mast-name">港股早報<span class="mast-en">HK MARKET BRIEF</span></h1>
+        <p class="mast-strap">免費 WhatsApp 資訊社群 · 只整理公開市場消息</p>
+      </div>
+    </header>
+
+    <!-- 头版导言 -->
+    <section class="lede">
+      <div class="col">
+        <p class="kick">今日焦點</p>
+        <h2 class="head">市場消息太多，<br />你一個人，根本睇唔切。</h2>
+        <div class="standfirst">
+          <p>
+            財經 app、即時新聞、Telegram、討論區，成日都喺度彈。等你逐樣碌完，恒指都收埋市。最弊唔係消息少，係太多、太散、太亂——你分唔到邊條要緊、邊條當花生。
+          </p>
+          <p>
+            所以我哋做一件好簡單嘅事：每個交易日，幫你執好今日港股要留意嘅嘢，大市、重點板塊、資金去向、同埋啲唔等得嘅消息，全部擺晒落一個免費 WhatsApp 群。你返工途中碌一碌，今日大概要望邊度，心裏有數。
+          </p>
+        </div>
+
+        <figure class="frontphoto">
+          <img src={heroImg.src} width="1536" height="1024" alt="香港中環金融區" loading="eager" fetchpriority="high" decoding="async" />
+          <figcaption>圖：香港中環金融區。本社群只整理公開市場資訊，不提供任何投資建議。</figcaption>
+        </figure>
+
+        <a href="javascript:void(0)" class="btn-solid link-btn">免費入群，睇今日港股資訊 <span class="arr">→</span></a>
+        <p class="proof">已經有 <b>8,300+</b> 位香港股民喺群入面。</p>
+      </div>
+    </section>
+
+    <!-- 市況速览 数字条 -->
+    <section class="figures">
+      <div class="col">
+        <ul class="fig-row">
+          <li><span class="fig-n">8,300<sup>+</sup></span><span class="fig-l">位群組成員</span></li>
+          <li><span class="fig-n">逐日</span><span class="fig-l">逢交易日更新</span></li>
+          <li><span class="fig-n">即時</span><span class="fig-l">重要消息有就提</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 你會收到（行文 + ruled 列表，非卡片） -->
+    <section class="story">
+      <div class="col">
+        <p class="kick kick-red">入群之後</p>
+        <h3 class="sub">每個交易日，群入面大概有啲咩。</h3>
+        <dl class="ruled">
+          <div>
+            <dt>今日大市概況</dt>
+            <dd>恒指、成交、市場氣氛，三両句講你知今日個市冷定熱，唔使自己揭。</dd>
+          </div>
+          <div>
+            <dt>重點板塊同資金流向</dt>
+            <dd>邊類板塊有錢入、邊類有錢走，盡量同你理清楚，唔淨係得個結論。</dd>
+          </div>
+          <div>
+            <dt>唔等得嘅消息，即刻提</dt>
+            <dd>政策、業績、突發，一有就喺群出，唔使你成日 refresh 新聞都驚走漏。</dd>
+          </div>
+          <div>
+            <dt>新手都跟得明</dt>
+            <dd>啲術語會用人話解返，唔識嘅問一句都有人答。由零開始一樣跟到。</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 社论式引文（合规） -->
+    <aside class="pullquote">
+      <div class="col">
+        <blockquote>講明先——我哋只係幫你整理消息。<br />買唔買、幾時買、買幾多，全部你自己話事。</blockquote>
+      </div>
+    </aside>
+
+    <!-- 读者来信 -->
+    <section class="letters">
+      <div class="col">
+        <p class="kick kick-red">讀者反饋</p>
+        <div class="letter-wrap">
+          <figure class="letter">
+            <blockquote>以前返工前要碌三四個 app 先安心，而家喺地鐵度睇一睇個群就大概知今日聚焦邊度。對我呢啲冇時間成日盯住個市嘅人，慳返唔少。</blockquote>
+            <figcaption>—— 陳先生，做開地產，中環返工</figcaption>
+          </figure>
+          <figure class="letter">
+            <blockquote>我啱啱先開始買港股，好多名詞本身都唔識。好彩群入面唔會堆一大堆專業嘢落嚟，問都有人答。</blockquote>
+            <figcaption>—— Ms. Lau，觀塘</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 入群办法 -->
+    <section class="howto">
+      <div class="col">
+        <p class="kick kick-red">入群辦法</p>
+        <h3 class="sub">三步，今日就睇到。</h3>
+        <ol class="steps">
+          <li><b>撳下面個掣。</b>唔使填表、唔使留電話。</li>
+          <li><b>自動跳轉 WhatsApp<svg class="wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>。</b>撳一下就入到個群。</li>
+          <li><b>入到即睇今日資訊。</b>之後每個交易日都有更新。</li>
+        </ol>
+        <a href="javascript:void(0)" class="text-cta link-btn">▸ 即刻免費入群</a>
+      </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="qa">
+      <div class="col">
+        <p class="kick kick-red">入群之前</p>
+        <h3 class="sub">幾個你大概想問嘅問題。</h3>
+        <dl class="qalist">
+          <dt>問：使唔使錢？</dt>
+          <dd>答：完全免費，亦都唔會問你收任何費用。</dd>
+          <dt>問：要唔要留個人資料？</dt>
+          <dd>答：唔使。撳掣跳轉 WhatsApp 就入到，唔使填表、唔使留電話。</dd>
+          <dt>問：你哋會唔會薦股、代客買賣？</dt>
+          <dd>答：唔會。我哋淨係整理同分享公開市場資訊，並不構成任何投資建議，亦不會幫任何人代客買賣。買唔買、點買，全部你自己決定。</dd>
+          <dt>問：想退出點算？</dt>
+          <dd>答：隨時喺 WhatsApp 自己退群就得，冇任何手續，亦唔會有人煩你。</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 报尾 CTA -->
+    <section class="kicker-end">
+      <div class="col">
+        <p class="kick kick-cream">市場唔等人</p>
+        <h2 class="end-head">免費入群，<br />由今日起唔使再執輸。</h2>
+        <p class="end-lead">每個交易日更新，完全免費。今日嘅市場資訊，而家入群就睇到。</p>
+        <a href="javascript:void(0)" class="btn-solid btn-cream link-btn">免費入群睇資訊 <span class="arr">→</span></a>
+      </div>
+    </section>
+
+    <!-- 报脚 -->
+    <footer class="colophon">
+      <div class="col">
+        <span class="colo-name">港股早報 · HK MARKET BRIEF</span>
+        <p class="disclaimer">
+          本群及本頁內容僅供一般市場資訊及學習交流參考，並不構成任何投資建議或要約，亦不涉及任何代客買賣。投資涉及風險，股價可升可跌，過往表現不代表將來。是否加入及任何投資決定，請自行判斷並自負風險。
+        </p>
+        <p class="copy">© 2026 港股早報 · 市場資訊交流社群</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 手机常驻 CTA -->
+  <div class="sticky">
+    <a href="javascript:void(0)" class="btn-solid link-btn">免費入群睇今日資訊 <span class="arr">→</span></a>
+  </div>
+</BaseLayout>
+
+<style define:vars={{ heroUrl: `url(${heroImg.src})` }}>
+  :global(:root) {
+    --paper: #f1ecdf;
+    --paper-2: #e9e2d0;
+    --ink: #201d16;
+    --ink-2: #57513f;
+    --navy: #15273f;
+    --red: #a3301c;
+    --red-700: #84260f;
+    --rule: #cdc4ab;
+    --rule-dk: #201d16;
+  }
+
+  :global(body) {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans HK', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 纸张颗粒 */
+  :global(body)::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .paper {
+    position: relative;
+    z-index: 0;
+    padding-bottom: 80px;
+  }
+
+  .col {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  h1, h2, h3, p, dl, dd, dt, ol, ul, blockquote, figure {
+    margin: 0;
+  }
+
+  /* ---------- 报头 ---------- */
+  .masthead {
+    padding: 16px 0 14px;
+    border-bottom: 4px double var(--rule-dk);
+  }
+
+  .mast-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    color: var(--ink-2);
+    font-family: 'Fraunces', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .mast-name {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 900;
+    font-size: clamp(2.3rem, 11vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  .mast-en {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.34em;
+    color: var(--red);
+    text-transform: uppercase;
+  }
+
+  .mast-strap {
+    margin-top: 8px;
+    color: var(--ink-2);
+    font-size: 0.84rem;
+  }
+
+  /* ---------- 通用 kicker / 小标题 ---------- */
+  .kick {
+    margin-bottom: 12px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .kick-red {
+    color: var(--red);
+  }
+
+  .kick::before {
+    content: '— ';
+  }
+
+  .sub {
+    margin-bottom: 22px;
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.32;
+    color: var(--ink);
+  }
+
+  /* ---------- 头版导言 ---------- */
+  .lede {
+    padding: 30px 0 36px;
+  }
+
+  .head {
+    margin-bottom: 22px;
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 9.6vw, 3.4rem);
+    line-height: 1.18;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+
+  .standfirst p {
+    margin-bottom: 16px;
+    font-size: 1.06rem;
+    line-height: 1.85;
+    color: #2c281d;
+  }
+
+  .standfirst p:first-child::first-letter {
+    float: left;
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 900;
+    font-size: 3.4em;
+    line-height: 0.8;
+    padding: 6px 10px 0 0;
+    color: var(--red);
+  }
+
+  .frontphoto {
+    margin: 26px 0 12px;
+    border-top: 1px solid var(--rule-dk);
+    border-bottom: 1px solid var(--rule-dk);
+    padding: 14px 0;
+  }
+
+  .frontphoto img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%) contrast(1.05) brightness(1.02);
+  }
+
+  .photo-wrap {
+    position: relative;
+  }
+
+  .frontphoto figcaption {
+    margin-top: 8px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--ink-2);
+  }
+
+  /* ---------- 按钮 ---------- */
+  .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 16px 26px;
+    background: var(--red);
+    color: #fdf6e9;
+    font-family: 'Noto Sans HK', sans-serif;
+    font-size: 1.04rem;
+    font-weight: 800;
+    text-decoration: none;
+    border: none;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  }
+
+  .btn-solid:hover {
+    background: var(--red-700);
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .btn-solid:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+
+  .btn-solid .arr {
+    font-family: 'Fraunces', serif;
+  }
+
+  .proof {
+    margin-top: 16px;
+    font-size: 0.92rem;
+    color: var(--ink-2);
+  }
+
+  .proof b {
+    font-family: 'Fraunces', serif;
+    color: var(--ink);
+  }
+
+  /* ---------- 数字条 ---------- */
+  .figures {
+    border-top: 1px solid var(--rule-dk);
+    border-bottom: 1px solid var(--rule-dk);
+    background: var(--paper-2);
+  }
+
+  .fig-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    padding: 18px 22px;
+    margin: 0 auto;
+    max-width: 760px;
+  }
+
+  .fig-row li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: center;
+    padding: 0 6px;
+  }
+
+  .fig-row li + li {
+    border-left: 1px solid var(--rule);
+  }
+
+  .fig-n {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 6vw, 1.9rem);
+    line-height: 1.05;
+    color: var(--ink);
+  }
+
+  .fig-n sup {
+    color: var(--red);
+    font-size: 0.6em;
+  }
+
+  .fig-l {
+    font-size: 0.74rem;
+    color: var(--ink-2);
+  }
+
+  /* ---------- 行文 + ruled 列表 ---------- */
+  .story {
+    padding: 44px 0 40px;
+  }
+
+  .ruled > div {
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ruled > div:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ruled dt {
+    margin-bottom: 6px;
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 700;
+    font-size: 1.18rem;
+    color: var(--ink);
+  }
+
+  .ruled dt::before {
+    content: '▍';
+    color: var(--red);
+    margin-right: 7px;
+  }
+
+  .ruled dd {
+    margin: 0;
+    color: #3b3528;
+    font-size: 1rem;
+    line-height: 1.74;
+  }
+
+  /* ---------- 引文 ---------- */
+  .pullquote {
+    padding: 8px 0 4px;
+  }
+
+  .pullquote blockquote {
+    padding: 30px 0;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 6.2vw, 2.1rem);
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ---------- 读者来信 ---------- */
+  .letters {
+    padding: 40px 0;
+  }
+
+  .letter-wrap {
+    display: grid;
+    gap: 26px;
+  }
+
+  .letter blockquote {
+    font-family: 'Noto Serif HK', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.8;
+    color: #2c281d;
+    text-indent: 1.6em;
+  }
+
+  .letter blockquote::before {
+    content: '「';
+    margin-left: -1.4em;
+    color: var(--red);
+  }
+
+  .letter blockquote::after {
+    content: '」';
+  }
+
+  .letter figcaption {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: var(--ink-2);
+  }
+
+  /* ---------- 入群办法 ---------- */
+  .howto {
+    padding: 8px 0 44px;
+  }
+
+  .steps {
+    counter-reset: s;
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .steps li {
+    counter-increment: s;
+    position: relative;
+    padding: 16px 0 16px 46px;
+    border-top: 1px solid var(--rule);
+    color: #3b3528;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .steps li:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .steps li::before {
+    content: counter(s, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 15px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--red);
+  }
+
+  .steps b {
+    color: var(--ink);
+  }
+
+  .wa {
+    width: 16px;
+    height: 16px;
+    vertical-align: -2px;
+    margin-left: 3px;
+    fill: #1faa52;
+  }
+
+  .text-cta {
+    display: inline-block;
+    margin-top: 22px;
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 700;
+    font-size: 1.16rem;
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 2px;
+  }
+
+  .text-cta:hover {
+    color: var(--red-700);
+  }
+
+  /* ---------- 问答 ---------- */
+  .qa {
+    padding: 8px 0 46px;
+  }
+
+  .qalist dt {
+    padding-top: 18px;
+    margin-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 700;
+    font-size: 1.06rem;
+    color: var(--ink);
+  }
+
+  .qalist dt:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .qalist dd {
+    margin: 8px 0 0;
+    color: #3b3528;
+    font-size: 0.99rem;
+    line-height: 1.74;
+  }
+
+  /* ---------- 报尾 CTA ---------- */
+  .kicker-end {
+    position: relative;
+    margin-top: 12px;
+    padding: 56px 0;
+    background: var(--navy) var(--heroUrl) center / cover no-repeat;
+  }
+
+  .kicker-end::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(21, 39, 63, 0.86), rgba(13, 24, 40, 0.95));
+  }
+
+  .kicker-end .col {
+    position: relative;
+  }
+
+  .kick-cream {
+    color: #e7b65a;
+  }
+
+  .end-head {
+    margin-bottom: 16px;
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 900;
+    font-size: clamp(1.9rem, 8.4vw, 2.9rem);
+    line-height: 1.24;
+    color: #fdf6e9;
+  }
+
+  .end-lead {
+    max-width: 30em;
+    margin-bottom: 6px;
+    color: rgba(247, 240, 225, 0.82);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  .btn-cream {
+    background: #e7b65a;
+    color: #2a1c06;
+    box-shadow: 4px 4px 0 #fdf6e9;
+  }
+
+  .btn-cream:hover {
+    background: #f0c46e;
+    box-shadow: 6px 6px 0 #fdf6e9;
+  }
+
+  /* ---------- 报脚 ---------- */
+  .colophon {
+    padding: 34px 0 30px;
+    border-top: 4px double var(--rule-dk);
+  }
+
+  .colo-name {
+    font-family: 'Noto Serif HK', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .disclaimer {
+    margin: 14px 0 12px;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+
+  .copy {
+    font-family: 'Fraunces', serif;
+    font-size: 0.76rem;
+    color: var(--ink-2);
+  }
+
+  /* ---------- 手机常驻 ---------- */
+  .sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    padding: 9px 14px calc(9px + env(safe-area-inset-bottom));
+    background: var(--paper);
+    border-top: 2px solid var(--ink);
+  }
+
+  .sticky .btn-solid {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0;
+    box-shadow: none;
+    padding: 14px 20px;
+  }
+
+  .sticky .btn-solid:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* ---------- 入场（克制） ---------- */
+  .head,
+  .mast-name {
+    animation: fade 0.7s ease both;
+  }
+
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .head, .mast-name { animation: none; }
+    .btn-solid { transition: none; }
+  }
+
+  /* ---------- 桌面渐进增强 ---------- */
+  @media (min-width: 820px) {
+    .paper {
+      padding-bottom: 0;
+    }
+
+    .col {
+      max-width: 940px;
+      padding: 0 40px;
+    }
+
+    .masthead {
+      padding: 22px 0 16px;
+    }
+
+    .mast-name {
+      font-size: 4.4rem;
+    }
+
+    .lede {
+      padding: 48px 0 52px;
+    }
+
+    /* 头版：导言两栏 + 大标题 */
+    .head {
+      font-size: 4rem;
+    }
+
+    .standfirst {
+      column-count: 2;
+      column-gap: 40px;
+    }
+
+    .standfirst p:first-child {
+      margin-top: 0;
+    }
+
+    .frontphoto {
+      break-inside: avoid;
+    }
+
+    .story,
+    .letters,
+    .qa,
+    .howto {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .ruled {
+      column-count: 2;
+      column-gap: 48px;
+    }
+
+    .ruled > div {
+      break-inside: avoid;
+    }
+
+    .ruled > div:nth-child(2) {
+      border-top: 1px solid var(--rule);
+    }
+
+    .letter-wrap {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .qalist {
+      column-count: 2;
+      column-gap: 48px;
+    }
+
+    .qalist dt {
+      break-after: avoid;
+    }
+
+    .qalist dd {
+      break-inside: avoid;
+      margin-bottom: 4px;
+    }
+
+    .kicker-end {
+      padding: 88px 0;
+    }
+
+    .sticky {
+      display: none;
+    }
+  }
+</style>

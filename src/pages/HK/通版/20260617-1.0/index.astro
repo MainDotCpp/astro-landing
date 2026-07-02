@@ -1,0 +1,642 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const title = 'AI 買前風險診斷｜股票投資前先睇清風險'
+const description = '股票買入前，先用 AI + 大數據情景模擬，了解可能回撤、持有時間、盈虧情景與風險壓力。內容僅供一般市場資訊參考，不構成投資建議。'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071426" />
+    <meta property="og:title" content="AI 買前風險診斷｜股票投資前先睇清風險" />
+    <meta property="og:description" content="買股票前，唔好淨係諗會升幾多。先睇清最壞可能跌幾多、要坐幾耐、幾時最容易做錯決定。" />
+  </Fragment>
+
+  <!--
+    使用前请修改：
+    1) 跳转目标走项目标准：cloak 部署时注入的全局 link + XoONOW.js 的 mixinJump，无需在本页改链接。
+    2) 页脚公司名称、地址、隐私政策链接。
+    3) 若你接入真实 AI/API，请把「示例/模拟」说明改成你的真实服务说明，并确保符合法规。
+  -->
+
+  <header class="topbar">
+    <div class="wrap nav">
+      <a href="#" class="brand" aria-label="AI 買前風險診斷">
+        <span class="brand-badge">AI</span>
+        <span>買前風險診斷</span>
+      </a>
+      <a class="nav-cta" href="#diagnosis">即刻做診斷</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> 香港投資者｜AI + 大數據情景模擬</div>
+          <h1>買股票前，<br />唔好淨係諗<br /><span class="gold">會升幾多</span></h1>
+          <p class="lead">
+            先用 AI 風險診斷模擬吓：最壞可能跌幾多、可能要坐幾耐、咩情況最容易做錯決定。
+            30歲後投資，最怕唔係冇機會，而係一次買錯影響幾年積蓄。
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#diagnosis">即刻做買前風險診斷 →</a>
+            <a class="btn btn-secondary" href="#how">睇分析邏輯</a>
+          </div>
+          <p class="risk-note">
+            投資涉及風險。本頁內容僅供一般市場資訊及風險教育參考，並不構成任何證券買賣建議、投資建議或收益承諾。
+          </p>
+          <div class="trust-row">
+            <div class="trust"><strong>4項</strong><span>買前風險維度</span></div>
+            <div class="trust"><strong>3種</strong><span>盈虧情景推演</span></div>
+            <div class="trust"><strong>30秒</strong><span>生成初步風險摘要</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="AI 風險診斷示意圖">
+          <div class="screen-top">
+            <div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+            <span>AI Risk Scan v2.6</span>
+          </div>
+          <div class="ai-panel">
+            <span class="mini-title">正在分析</span>
+            <div class="screen-h3">歷史波動｜回撤壓力｜情緒風險</div>
+            <div class="scan-line"><span></span></div>
+            <div class="risk-score">
+              <div class="ring"><strong>67</strong></div>
+              <div>
+                <div class="mini-title">風險壓力指數</div>
+                <div class="screen-h3">中高波動</div>
+                <p style="margin:0;color:#b9c7d8;line-height:1.55">示例：買入前建議先睇清最大回撤同持有時間壓力。</p>
+              </div>
+            </div>
+          </div>
+          <div class="metric-list">
+            <div class="metric"><b>最大可能回撤</b><span>-12% 至 -22%</span></div>
+            <div class="metric"><b>可能持有周期</b><span>2-6 個月</span></div>
+            <div class="metric"><b>情緒錯判位置</b><span>追高 / 恐慌</span></div>
+          </div>
+          <div class="chart" aria-hidden="true">
+            <svg viewBox="0 0 500 160" preserveAspectRatio="none">
+              <path d="M8,112 C55,88 82,95 113,76 C146,56 174,88 207,62 C248,30 270,70 306,52 C350,30 379,44 420,26 C455,12 475,24 492,18" fill="none" stroke="rgba(111,240,183,.85)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M8,118 C60,132 100,122 130,137 C176,157 205,122 244,137 C282,151 315,116 350,132 C395,150 440,112 492,128" fill="none" stroke="rgba(255,112,112,.7)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M8,100 C68,94 114,104 156,92 C210,77 246,91 298,78 C356,62 408,75 492,57" fill="none" stroke="rgba(244,201,107,.8)" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 10"/>
+            </svg>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="pain">
+      <div class="wrap pain-grid">
+        <div class="section-head">
+          <div class="section-kicker">投資者真正嘅痛點</div>
+          <h2>你最怕嘅，可能唔係錯過升幅，而係買錯之後唔知點算。</h2>
+          <p>
+            好多 30 歲以上投資者已經有家庭、儲蓄、供樓或退休壓力。買入之前，先做一次風險推演，比買入之後日日焦慮更重要。
+          </p>
+        </div>
+        <ul class="pain-list">
+          <li><span class="check">✓</span><span>一跌就想止蝕，一升又驚追高，決策成日受情緒影響。</span></li>
+          <li><span class="check">✓</span><span>睇到新聞同朋友推薦就心郁，但唔知風險到底有幾大。</span></li>
+          <li><span class="check">✓</span><span>買入前只諗「會唔會升」，冇先諗「跌咗承唔承受得起」。</span></li>
+          <li><span class="check">✓</span><span>已經持有股票，但唔清楚自己係應該繼續觀察，定係重新評估風險。</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">AI 會睇咩？</div>
+          <h2>4 個維度，先睇清風險，再決定要唔要行動。</h2>
+          <p>以下係一般市場資訊及教育性風險框架，目的係幫你買入前建立更清晰嘅判斷順序。</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">↘</div>
+            <h3>最大可能回撤</h3>
+            <p>以歷史波動同壓力情景，推演如果市場轉差，可能面對幾大下跌壓力。</p>
+          </article>
+          <article class="card">
+            <div class="icon">⏳</div>
+            <h3>持有時間推演</h3>
+            <p>模擬如果買入後橫行或震盪，可能要承受幾耐先見到明顯變化。</p>
+          </article>
+          <article class="card">
+            <div class="icon">◷</div>
+            <h3>盈虧情景模擬</h3>
+            <p>用樂觀、中性、壓力三種情景，先睇清唔同結果下你可能會點反應。</p>
+          </article>
+          <article class="card">
+            <div class="icon">⚠</div>
+            <h3>情緒風險提醒</h3>
+            <p>標示最容易追高、恐慌、補倉太急或太早離場嘅位置。</p>
+          </article>
+          <article class="card">
+            <div class="icon">◎</div>
+            <h3>資金壓力評估</h3>
+            <p>提醒呢筆投資會唔會影響生活現金流、家庭支出或短期資金安排。</p>
+          </article>
+          <article class="card">
+            <div class="icon">✓</div>
+            <h3>買前決策清單</h3>
+            <p>產出一份買入前要確認嘅風險清單，避免淨係靠消息做決定。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap pain-grid">
+        <div class="demo-box">
+          <div class="mini-title">示例報告｜僅作展示</div>
+          <h2 style="font-size:32px;margin-top:6px">三種情景先睇清</h2>
+          <p style="color:#c7d3e4;line-height:1.75;margin-top:0">
+            AI 風險診斷會用情景方式展示可能路徑，重點唔係話你「一定會賺」，而係令你買入前先知道風險壓力。
+          </p>
+          <div class="scenario">
+            <div class="scenario-row"><span>樂觀情景</span><div class="bar"><span class="bar-good"></span></div><span>較順</span></div>
+            <div class="scenario-row"><span>中性情景</span><div class="bar"><span class="bar-mid"></span></div><span>震盪</span></div>
+            <div class="scenario-row"><span>壓力情景</span><div class="bar"><span class="bar-bad"></span></div><span>回撤</span></div>
+          </div>
+        </div>
+        <div class="section-head">
+          <div class="section-kicker">核心賣點</div>
+          <h2>唔係預測一定升，而係買之前先睇清可能點樣輸。</h2>
+          <p>
+            呢個定位更容易建立信任：唔講保證收益，唔講內幕消息，唔講精準買賣點。
+            只聚焦一件事：買股票之前，先用數據推演風險。
+          </p>
+          <div class="legal-box">
+            本服務不提供個別股票買賣建議、不保證任何收益、不提供每日信號或帶單服務。如內容涉及特定市場或股票方向，僅作一般資訊及風險教育用途。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagnosis" class="form-section">
+      <div class="wrap form-grid">
+        <div class="section-head">
+          <div class="section-kicker">立即生成初步摘要</div>
+          <h2>填 5 個問題，先做一次買前風險診斷。</h2>
+          <p>
+            填完後會生成一段初步風險摘要，並可一鍵帶到 WhatsApp 查詢一般市場資訊。
+            建議你用真實情況填寫，後續溝通會更準確。
+          </p>
+          <div class="legal-box">
+            注意：本頁前端診斷為示範版，實際分析需視乎你接入嘅數據源、模型及服務流程。任何輸出均不應被理解為買入、賣出或持有建議。
+          </div>
+        </div>
+
+        <form class="form-card" id="leadForm">
+          <div class="field">
+            <label for="name">點稱呼你？</label>
+            <input id="name" name="name" placeholder="例如：陳生 / May" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="market">你主要關注邊個市場？</label>
+            <select id="market" name="market" required>
+              <option value="">請選擇</option>
+              <option>港股</option>
+              <option>美股</option>
+              <option>ETF / 指數</option>
+              <option>AI 概念 / 科技股</option>
+              <option>銀行 / 收息股</option>
+              <option>其他</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="stage">你而家係咩階段？</label>
+            <select id="stage" name="stage" required>
+              <option value="">請選擇</option>
+              <option>準備買入，想先睇風險</option>
+              <option>已經持有，想重新評估</option>
+              <option>之前虧損過，想避免再犯錯</option>
+              <option>想了解一般市場風險框架</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="worry">你最擔心咩？</label>
+            <select id="worry" name="worry" required>
+              <option value="">請選擇</option>
+              <option>買入後即刻跌</option>
+              <option>追高之後被套</option>
+              <option>唔知幾時應該止蝕</option>
+              <option>唔知要坐幾耐</option>
+              <option>影響家庭 / 現金流</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="note">你想分析嘅方向 / 股票類型</label>
+            <textarea id="note" name="note" placeholder="例如：港股科技股、美股 AI 概念、指數 ETF、已持有但唔確定風險"></textarea>
+          </div>
+
+          <button class="btn btn-primary wa-btn" type="submit">生成摘要並 WhatsApp 查詢 →</button>
+          <p class="privacy">
+            提交即代表你同意我哋透過 WhatsApp 回覆你嘅一般市場資訊查詢。請勿在表單提交敏感個人資料、完整持倉或帳戶資料。
+          </p>
+
+          <div class="report" id="reportBox">
+            <h4>初步風險摘要已生成</h4>
+            <p id="reportText"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">常見問題</div>
+          <h2>投資前，你應該先搞清楚呢幾點。</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>呢個 AI 診斷係咪會話我應唔應該買？</summary>
+            <p>唔會。本頁定位係一般市場資訊同風險教育，重點係幫你買入前了解可能回撤、持有時間同情景風險，並不構成買入、賣出或持有建議。</p>
+          </details>
+          <details>
+            <summary>會唔會保證避開虧損？</summary>
+            <p>唔會。任何投資都涉及風險，AI 或數據分析都不能保證結果。真正價值係令你買入前更清楚自己可能承受嘅風險。</p>
+          </details>
+          <details>
+            <summary>可唔可以分析港股、美股或者 ETF？</summary>
+            <p>可以按市場方向做一般性風險框架分析，例如波動、回撤、持有時間壓力同情緒風險。但不提供個別證券買賣建議。</p>
+          </details>
+          <details>
+            <summary>WhatsApp 之後會收到咩？</summary>
+            <p>你會收到一般市場資訊及風險分析邏輯說明。請勿將任何回覆理解為保證收益、內幕消息或交易信號。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky">
+    <a href="#diagnosis" class="btn btn-primary">即刻做 AI 買前風險診斷</a>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>風險提示及聲明</strong><br />
+      投資涉及風險，價格可升可跌，過往表現並不代表未來回報。本網站內容僅供一般市場資訊、風險教育及情景模擬參考，並不構成任何證券、期貨、基金、虛擬資產或其他金融產品之投資建議、招攬、推薦、要約或交易指示。本網站不提供保證收益、精準買賣點、每日信號、帶單或內幕消息。使用者應根據自身情況獨立判斷，並在需要時諮詢持牌專業人士。
+      <br /><br />
+      公司名稱：恒富財經資訊有限公司（Hangfu Financial Information Ltd.）｜註冊地址：香港中環｜電郵：info@hangfu-finance.com｜電話：+852 2876 3842
+      <br /><br />
+      公司註冊編號：28473926｜商業登記證：BR-2847-39-26｜© 2026 恒富財經資訊有限公司. 版權所有.
+    </div>
+  </footer>
+</BaseLayout>
+
+<style is:global>
+  :root{
+    --bg:#071426;
+    --bg2:#0b1d34;
+    --card:#0f2743;
+    --card2:#112b49;
+    --line:rgba(255,255,255,.12);
+    --text:#f5f7fb;
+    --muted:#b7c3d6;
+    --gold:#f4c96b;
+    --gold2:#f0a93a;
+    --red:#ff7070;
+    --green:#6ff0b7;
+    --blue:#70b7ff;
+    --shadow:0 22px 60px rgba(0,0,0,.35);
+    --radius:22px;
+    --max:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang HK","PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,201,107,.16), transparent 34%),
+      radial-gradient(circle at 85% 12%, rgba(112,183,255,.14), transparent 34%),
+      linear-gradient(180deg,#061225 0%, #071426 42%, #050b16 100%);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter:blur(16px);
+    background:rgba(7,20,38,.78);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    min-height:64px;gap:14px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.03em;
+  }
+  .brand-badge{
+    width:34px;height:34px;border-radius:12px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#08172a;display:grid;place-items:center;font-weight:1000;
+    box-shadow:0 8px 24px rgba(244,201,107,.25);
+  }
+  .nav-cta{
+    display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid rgba(244,201,107,.45);
+    background:linear-gradient(135deg,rgba(244,201,107,.17),rgba(240,169,58,.12));
+    color:#ffe7a4;border-radius:999px;padding:10px 15px;font-weight:800;font-size:14px;
+    white-space:nowrap;
+  }
+  .hero{
+    position:relative;
+    padding:48px 0 32px;
+    overflow:hidden;
+  }
+  .hero:before{
+    content:"";position:absolute;inset:-60px -120px auto auto;width:520px;height:520px;
+    background:radial-gradient(circle, rgba(244,201,107,.12), transparent 62%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:#ffe8a9;background:rgba(244,201,107,.11);
+    border:1px solid rgba(244,201,107,.28);
+    border-radius:999px;padding:8px 12px;font-weight:850;font-size:14px;
+    margin-bottom:18px;
+  }
+  .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 0 7px rgba(111,240,183,.12);
+  }
+  h1{
+    font-size:clamp(34px,5vw,64px);
+    line-height:1.03;margin:0 0 18px;font-weight:1000;letter-spacing:-.04em;
+  }
+  .gold{color:var(--gold)}
+  .lead{
+    color:#d8e2f1;font-size:clamp(17px,2vw,22px);line-height:1.65;margin:0 0 26px;
+    max-width:690px;font-weight:650;
+  }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0 16px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    border:none;cursor:pointer;border-radius:999px;padding:16px 22px;
+    font-weight:950;font-size:17px;letter-spacing:.01em;transition:.2s ease;
+    min-height:54px;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#08172a;box-shadow:0 16px 36px rgba(244,201,107,.23);
+  }
+  .btn-primary:hover{transform:translateY(-1px);filter:brightness(1.04)}
+  .btn-secondary{
+    border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;
+  }
+  .risk-note{
+    color:#96a7bf;font-size:13px;line-height:1.55;max-width:680px;
+  }
+  .hero-card{
+    position:relative;
+    border:1px solid rgba(255,255,255,.12);
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03)),
+      radial-gradient(circle at 50% 0%, rgba(244,201,107,.12), transparent 46%),
+      #0b1f38;
+    border-radius:32px;padding:22px;box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .screen-top{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+    color:#b9c8dc;font-size:13px;font-weight:800;
+  }
+  .dots{display:flex;gap:6px}
+  .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+  .ai-panel{
+    background:rgba(2,10,20,.38);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:24px;padding:18px;margin-bottom:14px;
+  }
+  .scan-line{
+    height:10px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden;margin:12px 0;
+  }
+  .scan-line span{
+    display:block;height:100%;width:72%;
+    background:linear-gradient(90deg,var(--blue),var(--gold),var(--green));
+    border-radius:99px;animation:flow 2.6s ease-in-out infinite alternate;
+  }
+  @keyframes flow{from{width:42%}to{width:88%}}
+  .risk-score{
+    display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;
+  }
+  .ring{
+    width:132px;height:132px;border-radius:50%;
+    background:conic-gradient(var(--gold) 0 67%, rgba(255,255,255,.1) 67% 100%);
+    display:grid;place-items:center;position:relative;
+  }
+  .ring:before{
+    content:"";position:absolute;inset:12px;border-radius:50%;background:#0b1f38;
+  }
+  .ring strong{position:relative;font-size:28px;color:var(--gold)}
+  .mini-title{font-size:13px;color:#9eb0c8;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .screen-h3{font-size:22px;margin:6px 0 8px;font-weight:1000}
+  .metric-list{display:grid;gap:10px;margin-top:14px}
+  .metric{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    padding:12px 13px;border-radius:16px;background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .metric b{font-size:14px}
+  .metric span{font-weight:950;color:#ffe0a0}
+  .chart{
+    height:158px;border-radius:22px;padding:18px;margin-top:14px;
+    background:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size:42px 42px;
+    border:1px solid rgba(255,255,255,.08);
+    position:relative;overflow:hidden;
+  }
+  .chart svg{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px)}
+  .trust-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px;
+  }
+  .trust{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.045);
+    border-radius:18px;padding:14px;
+  }
+  .trust strong{display:block;font-size:20px;color:#fff;margin-bottom:5px}
+  .trust span{color:#aebbd0;font-size:13px;line-height:1.45}
+  section{padding:42px 0}
+  .section-head{max-width:760px;margin-bottom:22px}
+  .section-kicker{color:var(--gold);font-weight:950;margin-bottom:10px}
+  h2{font-size:clamp(28px,3.6vw,46px);line-height:1.13;margin:0 0 12px;font-weight:1000;letter-spacing:-.03em}
+  .section-head p{color:#c5d0df;font-size:17px;line-height:1.75;margin:0}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{
+    background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:var(--radius);padding:22px;box-shadow:0 15px 42px rgba(0,0,0,.18);
+  }
+  .icon{
+    width:46px;height:46px;border-radius:16px;display:grid;place-items:center;
+    background:rgba(244,201,107,.12);color:var(--gold);font-size:23px;margin-bottom:14px;
+    border:1px solid rgba(244,201,107,.24);
+  }
+  .card h3{font-size:20px;margin:0 0 8px;font-weight:950}
+  .card p{margin:0;color:#bac7d8;line-height:1.7}
+  .pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .pain-list{
+    display:grid;gap:12px;margin:0;padding:0;list-style:none;
+  }
+  .pain-list li{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:15px;border-radius:18px;background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.09);color:#dbe4ef;line-height:1.55;
+  }
+  .check{
+    flex:0 0 24px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(244,201,107,.16);color:var(--gold);font-weight:1000;
+  }
+  .demo-box{
+    border-radius:28px;border:1px solid rgba(244,201,107,.23);
+    background:
+      radial-gradient(circle at 0 0, rgba(244,201,107,.17), transparent 30%),
+      rgba(255,255,255,.05);
+    padding:24px;box-shadow:var(--shadow);
+  }
+  .scenario{display:grid;gap:12px}
+  .scenario-row{
+    display:grid;grid-template-columns:95px 1fr 70px;gap:12px;align-items:center;
+    color:#dce6f3;font-weight:800;
+  }
+  .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden}
+  .bar span{display:block;height:100%;border-radius:999px}
+  .bar-good{background:linear-gradient(90deg,var(--green),#d7ffe8);width:68%}
+  .bar-mid{background:linear-gradient(90deg,var(--gold),#fff0b7);width:48%}
+  .bar-bad{background:linear-gradient(90deg,var(--red),#ffc3c3);width:74%}
+  .form-section{
+    padding:46px 0 72px;
+  }
+  .form-grid{
+    display:grid;grid-template-columns:.92fr 1.08fr;gap:24px;align-items:start;
+  }
+  .form-card{
+    background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:30px;padding:24px;box-shadow:var(--shadow);
+  }
+  .field{margin-bottom:14px}
+  label{display:block;font-weight:900;margin:0 0 8px;color:#eff4fb}
+  input,select,textarea{
+    width:100%;border:1px solid rgba(255,255,255,.14);
+    background:rgba(4,12,24,.58);color:#fff;
+    padding:14px 14px;border-radius:16px;
+    font:inherit;outline:none;
+  }
+  textarea{min-height:88px;resize:vertical}
+  input:focus,select:focus,textarea:focus{border-color:rgba(244,201,107,.65);box-shadow:0 0 0 4px rgba(244,201,107,.1)}
+  .privacy{font-size:12px;line-height:1.55;color:#99a9be;margin:12px 0 0}
+  .wa-btn{width:100%;margin-top:10px}
+  .report{
+    margin-top:14px;padding:16px;border-radius:20px;
+    background:rgba(4,12,24,.46);
+    border:1px solid rgba(255,255,255,.1);
+    display:none;
+  }
+  .report.show{display:block}
+  .report h4{margin:0 0 8px;font-size:18px;color:#ffe1a4}
+  .report p{margin:0;color:#c3d0e1;line-height:1.7}
+  .faq{display:grid;gap:12px}
+  details{
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.045);
+    border-radius:18px;padding:16px 18px;
+  }
+  summary{cursor:pointer;font-weight:950}
+  details p{color:#b8c6d8;line-height:1.7;margin:12px 0 0}
+  .footer{
+    border-top:1px solid var(--line);
+    padding:28px 0 96px;
+    color:#91a0b4;font-size:13px;line-height:1.75;
+    background:rgba(0,0,0,.12);
+  }
+  .sticky{
+    position:fixed;left:0;right:0;bottom:0;z-index:55;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg,rgba(7,20,38,.1),rgba(7,20,38,.96) 28%);
+    display:none;
+  }
+  .sticky .btn{width:100%;box-shadow:0 10px 26px rgba(244,201,107,.22)}
+  .legal-box{
+    margin-top:18px;border:1px solid rgba(255,255,255,.1);border-radius:18px;
+    padding:14px;background:rgba(255,255,255,.04);color:#aebbd0;font-size:13px;line-height:1.7;
+  }
+  @media (max-width:860px){
+    .hero{padding-top:28px}
+    .hero-grid,.pain-grid,.form-grid{grid-template-columns:1fr}
+    .hero-card{order:-1}
+    .cards{grid-template-columns:1fr}
+    .trust-row{grid-template-columns:1fr}
+    .nav{min-height:58px}
+    .brand span:last-child{font-size:14px}
+    .nav-cta{font-size:13px;padding:9px 12px}
+    .risk-score{grid-template-columns:106px 1fr}
+    .ring{width:106px;height:106px}
+    .ring strong{font-size:23px}
+    .cta-row .btn{width:100%}
+    .sticky{display:block}
+    section{padding:34px 0}
+    .scenario-row{grid-template-columns:80px 1fr 54px;font-size:13px}
+  }
+</style>
+
+<script is:inline>
+  const form = document.getElementById("leadForm");
+  const reportBox = document.getElementById("reportBox");
+  const reportText = document.getElementById("reportText");
+
+  function riskLevel(market, worry, stage){
+    let score = 50;
+    if(market.includes("AI") || market.includes("科技")) score += 14;
+    if(market.includes("美股")) score += 6;
+    if(worry.includes("追高") || worry.includes("即刻跌")) score += 12;
+    if(worry.includes("現金流")) score += 10;
+    if(stage.includes("虧損")) score += 8;
+    if(stage.includes("持有")) score += 5;
+    if(score >= 76) return ["偏高", "建議先重點檢查最大回撤、資金壓力同情緒錯判位置。"];
+    if(score >= 61) return ["中高", "建議先睇清壓力情景同可能持有周期，再決定下一步。"];
+    return ["中等", "建議用三種情景推演可能路徑，避免只靠消息做決定。"];
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = data.get("name") || "未填";
+    const market = data.get("market");
+    const stage = data.get("stage");
+    const worry = data.get("worry");
+    const note = data.get("note") || "未填";
+
+    if(!market || !stage || !worry){
+      alert("請先完成必填選項。");
+      return;
+    }
+
+    const [level, suggestion] = riskLevel(market, worry, stage);
+    const summary = `根據你填寫嘅資料，初步風險壓力屬於「${level}」。${suggestion} 本摘要只作一般市場資訊及風險教育參考，並不構成任何投資建議。`;
+
+    reportText.textContent = summary;
+    reportBox.classList.add("show");
+
+    // 跳轉與轉化跟蹤統一交畀項目標準機制（XoONOW.js 注入嘅 mixinJump）：
+    // 走 cloak 注入嘅全局 link，並觸發 GA / FB(Contact·AddToCart·Purchase) / TikTok 事件。
+    setTimeout(() => {
+      if (typeof window.mixinJump === "function") window.mixinJump();
+    }, 450);
+  });
+</script>

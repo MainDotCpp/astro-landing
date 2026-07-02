@@ -1,0 +1,391 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroClassroom from './assets/images/hero-warm-classroom.webp'
+import heroPlant from './assets/images/hero-growth-plant.webp'
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>不懂股票也能学——华人财商学习社群，每天3分钟，免费加入</title>
+    <meta name="description" content="不懂股票没关系，从最基础的理财思维一起学起。已有数万在美华人加入这个免费财商学习社群，每天3分钟，轻松建立投资认知。纯免费，不卖课，不推销。" />
+
+    <RedirectCode />
+
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cream:     '#FFF8F0',
+              creamDeep: '#FFF0E0',
+              orange:    '#FF8A4C',
+              orangeDark:'#E5722C',
+              green:     '#34C759',
+              greenDark: '#28A347',
+              ink:       '#2D2013',
+              inkSoft:   '#7A6553',
+              cardBg:    '#FFFFFF',
+            },
+            fontFamily: {
+              sans: ['"Noto Sans SC"', '"PingFang SC"', 'system-ui', 'sans-serif'],
+              num:  ['"Baloo 2"', '"Noto Sans SC"', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+        background: #FFF8F0;
+        color: #2D2013;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── 暖色渐变背景（替代 hero 配图，做满视觉） ── */
+      .hero-gradient {
+        background:
+          radial-gradient(120% 80% at 80% -10%, rgba(255,138,76,0.22) 0%, transparent 55%),
+          radial-gradient(110% 70% at 10% 0%, rgba(52,199,89,0.16) 0%, transparent 50%),
+          linear-gradient(180deg, #FFF3E6 0%, #FFF8F0 100%);
+      }
+      .plant-gradient {
+        background:
+          radial-gradient(90% 90% at 50% 110%, rgba(52,199,89,0.20) 0%, transparent 60%),
+          linear-gradient(180deg, #FFFCF8 0%, #FFF4E8 100%);
+      }
+
+      /* ── 卡片柔和阴影 ── */
+      .card-shadow    { box-shadow: 0 4px 24px rgba(255,138,76,0.10); }
+      .card-shadow-sm { box-shadow: 0 2px 12px rgba(45,32,19,0.07); }
+
+      /* ── CTA 脉冲 ── */
+      @keyframes ctaPulse {
+        0%, 100% { transform: scale(1);     box-shadow: 0 8px 28px rgba(255,138,76,0.32); }
+        50%       { transform: scale(1.022); box-shadow: 0 12px 38px rgba(255,138,76,0.48); }
+      }
+      .cta-pulse { animation: ctaPulse 2.2s ease-in-out infinite; }
+
+      /* ── 入场动画 ── */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up { animation: fadeUp 0.65s ease-out both; }
+      .delay-1 { animation-delay: 0.10s; }
+      .delay-2 { animation-delay: 0.22s; }
+      .delay-3 { animation-delay: 0.34s; }
+
+      /* ── 小苗/气泡轻摆 ── */
+      @keyframes sway {
+        0%, 100% { transform: rotate(-2deg); }
+        50%       { transform: rotate(2deg); }
+      }
+      .sway { transform-origin: bottom center; animation: sway 3.5s ease-in-out infinite; }
+
+      /* ── 活跃绿点 ── */
+      @keyframes liveDot {
+        0%, 100% { opacity: 1; }
+        50%       { opacity: 0.35; }
+      }
+      .live-dot { animation: liveDot 1.5s ease-in-out infinite; }
+
+      .sticky-spacer { height: 76px; }
+    </style>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <main class="flex-1 flex flex-col w-full max-w-[640px] mx-auto">
+
+      <!-- ═══════════════════ HERO ═══════════════════ -->
+      <section class="hero-gradient rounded-b-[2rem] px-5 pt-8 pb-7">
+
+        <!-- Eyebrow -->
+        <div class="fade-up text-center">
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-orangeDark tracking-wide">
+            <span class="live-dot inline-block w-2 h-2 rounded-full bg-green"></span>
+            免费财商学习社群 · 每日更新
+          </span>
+        </div>
+
+        <!-- 主标题 -->
+        <div class="fade-up delay-1 pt-4 text-center">
+          <h1 class="text-[2rem] font-black leading-[1.2] text-ink mb-3">
+            不懂股票没关系<br />
+            <span class="text-orange">不懂也能学</span>，每天就花3分钟
+          </h1>
+          <p class="text-[0.95rem] text-inkSoft leading-relaxed">
+            为在美华人理财小白做的学习社群——讲人话，不催进度，有问题随时有人搭把手。
+          </p>
+        </div>
+
+        <!-- Hero 配图：几位华人朋友围坐学习理财 -->
+        <div class="fade-up delay-2 pt-6 pb-2">
+          <img src={heroClassroom.src} alt="几位在美华人朋友围坐在一起轻松学习理财" class="w-full rounded-2xl" width="1536" height="1024" loading="eager" decoding="async" />
+        </div>
+
+        <!-- 首屏 CTA -->
+        <div class="fade-up delay-3 flex flex-col items-center gap-2.5">
+          <a
+            onclick="mixinJump()"
+            class="link-btn cta-pulse inline-flex items-center justify-center gap-2.5 bg-orange hover:bg-orangeDark text-white font-bold text-[1.05rem] w-full rounded-2xl py-[17px] cursor-pointer transition-colors"
+          >
+            <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+              <circle cx="9" cy="7" r="3.5" stroke="white" stroke-width="1.8"/>
+              <path d="M2.5 20c0-3.314 2.91-6 6.5-6s6.5 2.686 6.5 6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="17" cy="8" r="2.5" stroke="white" stroke-width="1.6"/>
+              <path d="M21.5 20c0-2.485-2.015-4.5-4.5-4.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>免费加入财商学习社群</span>
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <p class="text-xs text-inkSoft text-center">永久免费 · 没有任何付费项目 · 随时可退</p>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ 痛点共鸣 ═══════════════════ -->
+      <section class="px-5 pt-11 pb-4">
+        <h2 class="text-[1.3rem] font-bold text-ink mb-5 text-center">
+          这些感受，你有过吗？
+        </h2>
+        <div class="flex flex-col gap-3">
+          {[
+            {
+              text: '看到股票新闻完全听不懂，想学但不知从哪开始',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M9.2 9.5a2.8 2.8 0 015.4 1c0 1.8-2.6 2.2-2.6 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17.2" r="1.05" fill="currentColor"/></svg>`,
+            },
+            {
+              text: '身边朋友都在聊投资，只有自己一脸茫然',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="16" cy="9" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c0-2.8 2.2-5 5-5s5 2.2 5 5M14 14.2c2.4.4 4 2.4 4 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+            },
+            {
+              text: '怕被人割韭菜，不敢随便入市',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            },
+            {
+              text: '工作已经够忙，没时间花几小时去研究',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            },
+          ].map(({ text, icon }) => (
+            <div class="card-shadow-sm bg-cardBg rounded-2xl px-4 py-3.5 flex items-center gap-3.5">
+              <div class="w-7 h-7 text-orange shrink-0" set:html={icon} />
+              <p class="text-sm text-ink leading-snug">{text}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-center text-sm text-inkSoft mt-5 leading-relaxed">
+          有这些顾虑很正常。很多人刚进社群时，连K线图是什么都不知道——没关系，所以才有了这个社群。
+        </p>
+      </section>
+
+      <!-- ═══════════════════ 我们怎么帮你 ═══════════════════ -->
+      <section class="px-5 pt-11 pb-4">
+        <h2 class="text-[1.3rem] font-bold text-ink mb-6 text-center">
+          我们从最基础的开始学
+        </h2>
+
+        <div class="grid grid-cols-1 gap-4">
+          {[
+            {
+              bg: 'bg-orange/10', iconColor: 'text-orange',
+              title: '每天3分钟，一个小知识点',
+              desc: '通勤路上刷一下就看完了。没有废话，就那一个概念，够用就好。',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            },
+            {
+              bg: 'bg-green/10', iconColor: 'text-green',
+              title: '从财商思维讲起',
+              desc: '不上来就谈股票技巧，先帮你建立正确的理财观，搞懂钱是怎么流动、怎么增值的。',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><path d="M12 3a4 4 0 014 4c0 1.5-.8 2.4-1.6 3.2C13.4 11.4 13 12 13 13.5M12 17.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.4" opacity="0.4"/></svg>`,
+            },
+            {
+              bg: 'bg-orange/10', iconColor: 'text-orange',
+              title: '社群有人随时答疑',
+              desc: '遇到不懂的随时问，有同样走过来的群友和资深成员一起聊，不管问多基础都没人嘲笑你。',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><path d="M21 14a2 2 0 01-2 2H8l-4 4V6a2 2 0 012-2h13a2 2 0 012 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="13" cy="10" r="1" fill="currentColor"/><circle cx="17" cy="10" r="1" fill="currentColor"/></svg>`,
+            },
+            {
+              bg: 'bg-green/10', iconColor: 'text-green',
+              title: '节奏轻松，不催不逼',
+              desc: '学到哪算哪，没有考试没有打卡压力。完全跟着自己的节奏，没人催你。',
+              icon: `<svg class="w-full h-full" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 4.5L19.5 7l-3 4 .8 5L12 13.8 6.7 16l.8-5-3-4 5-.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`,
+            },
+          ].map(({ bg, iconColor, title, desc, icon }) => (
+            <div class={`${bg} rounded-2xl px-4 py-4 flex gap-4 items-start`}>
+              <div class={`${iconColor} w-6 h-6 mt-0.5 shrink-0`} set:html={icon} />
+              <div>
+                <p class="font-bold text-ink text-sm mb-1">{title}</p>
+                <p class="text-xs text-inkSoft leading-relaxed">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ═══════════════════ 成长隐喻配图 ═══════════════════ -->
+      <div class="px-5 pt-9">
+        <div class="plant-gradient rounded-3xl card-shadow px-6 py-8 flex flex-col items-center">
+          <img src={heroPlant.src} alt="储蓄罐里长出的绿色小苗，象征财商让财富稳健成长" class="w-full max-w-[300px] rounded-2xl" width="1536" height="1024" loading="lazy" decoding="async" />
+          <p class="text-center text-sm text-inkSoft mt-2 leading-relaxed max-w-[280px]">
+            搞懂财商，比买中任何一支股票都值
+          </p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ 群友评价 ═══════════════════ -->
+      <section class="px-5 pt-11 pb-4">
+        <h2 class="text-[1.3rem] font-bold text-ink mb-1 text-center">
+          群友们都怎么说
+        </h2>
+        <p class="text-center text-xs text-inkSoft mb-5">（社群成员自发分享）</p>
+
+        <div class="flex flex-col gap-3">
+          {[
+            {
+              avatar: 'L', color: 'bg-orange', name: 'Lisa·旧金山', tag: '加入3个月',
+              quote: '以前看财经新闻，感觉每个字都认识，连在一起完全不知道在说啥。现在至少知道"美联储加息"跟我的钱包有什么关系了，踏实多了。',
+            },
+            {
+              avatar: 'K', color: 'bg-green', name: 'Kevin·西雅图', tag: '加入5周',
+              quote: '完全零基础进来的，以为会跟不上。没想到每天就分享一个小概念，完全不费脑，大家讨论起来还挺热闹的。',
+            },
+            {
+              avatar: '程', color: 'bg-orange', name: '程女士·洛杉矶', tag: '加入2个月',
+              quote: '两个娃、全职工作，根本没时间。但每天早上刷一下群里分享的内容，慢慢地觉得理财没那么神秘了。',
+            },
+          ].map(({ avatar, color, name, tag, quote }) => (
+            <div class="card-shadow-sm bg-cardBg rounded-2xl p-4 flex gap-3">
+              <div class={`${color} w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-white font-bold text-sm`}>
+                {avatar}
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                  <span class="text-sm font-bold text-ink">{name}</span>
+                  <span class="text-[10px] text-white bg-green rounded-full px-2 py-0.5">{tag}</span>
+                </div>
+                <div class="flex gap-0.5 mb-2">
+                  {[1,2,3,4,5].map(() => (
+                    <svg class="w-3 h-3 text-orange" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M8 1l1.796 5.528H15.6l-4.592 3.336 1.756 5.4L8 12.059l-4.764 3.205 1.756-5.4L.4 6.528H6.204z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p class="text-xs text-inkSoft leading-relaxed">&ldquo;{quote}&rdquo;</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- 社会证明数字 -->
+        <div class="mt-6 bg-creamDeep rounded-2xl px-4 py-4 flex items-center justify-around text-center">
+          <div>
+            <p class="font-num font-extrabold text-[1.6rem] text-orange leading-none">3万+</p>
+            <p class="text-[11px] text-inkSoft mt-1">社群成员</p>
+          </div>
+          <div class="w-px h-10 bg-orange/20"></div>
+          <div>
+            <p class="font-num font-extrabold text-[1.6rem] text-orange leading-none">每日</p>
+            <p class="text-[11px] text-inkSoft mt-1">更新学习内容</p>
+          </div>
+          <div class="w-px h-10 bg-orange/20"></div>
+          <div>
+            <p class="font-num font-extrabold text-[1.6rem] text-orange leading-none">完全</p>
+            <p class="text-[11px] text-inkSoft mt-1">免费加入</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ 适合你吗自测 ═══════════════════ -->
+      <section class="px-5 pt-11 pb-4">
+        <h2 class="text-[1.3rem] font-bold text-ink mb-2 text-center">
+          适合现在的你吗？
+        </h2>
+        <p class="text-xs text-inkSoft text-center mb-5">勾上 2 条以上，你就找对地方了</p>
+
+        <div class="flex flex-col gap-2.5">
+          {[
+            '在美生活，想让存款不再只是"躺着贬值"',
+            '听不懂股票，怕入市被割',
+            '没时间系统学，希望碎片时间也能进步',
+            '想建立财商基础，而不是追热点',
+            '希望有华人同路人一起学、互相鼓励',
+          ].map((item) => (
+            <div class="flex items-start gap-3 bg-white rounded-xl px-3.5 py-3 card-shadow-sm">
+              <svg class="w-5 h-5 text-green shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="9" fill="#34C759" fill-opacity="0.15"/>
+                <path d="M6 10.5l2.8 2.8 5.2-5.6" stroke="#34C759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p class="text-sm text-ink leading-snug">{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ═══════════════════ 页中 CTA ═══════════════════ -->
+      <div class="px-5 pt-9 pb-4 flex flex-col items-center gap-2.5">
+        <a
+          onclick="mixinJump()"
+          class="link-btn inline-flex items-center justify-center gap-2.5 bg-orange hover:bg-orangeDark text-white font-bold text-base w-full rounded-2xl py-[16px] cursor-pointer transition-colors card-shadow"
+        >
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+            <circle cx="9" cy="7" r="3.5" stroke="white" stroke-width="1.8"/>
+            <path d="M2.5 20c0-3.314 2.91-6 6.5-6s6.5 2.686 6.5 6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="17" cy="8" r="2.5" stroke="white" stroke-width="1.6"/>
+            <path d="M21.5 20c0-2.485-2.015-4.5-4.5-4.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>零基础加入，每天3分钟一起学</span>
+        </a>
+        <p class="text-xs text-inkSoft">资深财商研究团队 · 华人社群 · 没有任何收费项目</p>
+      </div>
+
+      <div class="sticky-spacer"></div>
+    </main>
+
+    <!-- ═══════════════════ 底部 Sticky CTA ═══════════════════ -->
+    <div
+      class="fixed bottom-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-t border-orange/20 px-4 py-3"
+      style="box-shadow: 0 -4px 20px rgba(255,138,76,0.12);"
+    >
+      <div class="max-w-[640px] mx-auto">
+        <a
+          onclick="mixinJump()"
+          class="link-btn cta-pulse flex items-center justify-center gap-2 bg-orange hover:bg-orangeDark text-white font-bold text-[1rem] w-full rounded-xl py-3.5 cursor-pointer transition-colors"
+        >
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+            <circle cx="9" cy="7" r="3.5" stroke="white" stroke-width="1.8"/>
+            <path d="M2.5 20c0-3.314 2.91-6 6.5-6s6.5 2.686 6.5 6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="17" cy="8" r="2.5" stroke="white" stroke-width="1.6"/>
+            <path d="M21.5 20c0-2.485-2.015-4.5-4.5-4.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>免费进群——进来看看就好</span>
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ 页脚 ═══════════════════ -->
+    <footer class="bg-creamDeep border-t border-orange/15 px-5 py-7 text-center text-[11px] text-inkSoft leading-relaxed max-w-[640px] mx-auto w-full">
+      <p class="mb-2 font-medium text-inkSoft/90">
+        © 2026 财商学习社群 · 仅供教育与资讯参考，不构成任何投资建议。<br />
+        投资有风险，入市需谨慎。
+      </p>
+      <p>本社群内容为财商教育性质，社群成员及研究团队的分享均基于公开市场信息与一般教育目的，不代表任何证券、基金或理财产品的推荐或推广。本社群不包含任何收费项目，不推销任何课程或产品。</p>
+    </footer>
+
+  </body>
+</html>

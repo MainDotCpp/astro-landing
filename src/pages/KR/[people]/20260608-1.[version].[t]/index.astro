@@ -3,16 +3,65 @@ import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
 import { generateKrConfig } from '@/utils/kr_config'
 
 import headImg from './static/images/5122.jpg'
+import headImgXdr from '../images/xdr_head.jpg'
+import bannerXdr1 from '../images/xdr_banner1.jpg'
+import bannerXdr2 from '../images/xdr_banner2.jpg'
+import headImgMxy from '../images/mxy_head.jpg'
+import bannerMxy1 from '../images/mxy_banner1.jpg'
+import bannerMxy2 from '../images/mxy_banner2.jpg'
+import headImgLch from '../images/lch_head.jpg'
+import bannerLch1 from '../images/lch_banner1.jpg'
+import bannerLch2 from '../images/lch_banner2.jpg'
 import bandIcon from './static/images/band.png'
+import kakaoIcon from '@/assets/kakao-icon.png'
 import banner1 from './static/images/banner1.jpg'
 import banner2 from './static/images/banner2.jpg'
 import banner3 from './static/images/banner3.jpg'
 
 export function getStaticPaths() {
-  return generateKrConfig('朴斗焕_0')
+  const xdrBase = generateKrConfig('宣大仁_0').filter(p => p.params.t === '卡扣' || p.params.t === '棒群')
+  const xdrKaqun = xdrBase
+    .filter(p => p.params.t === '卡扣')
+    .map(p => ({ ...p, params: { ...p.params, t: '卡群' } }))
+  const mxyBase = generateKrConfig('闵秀雅_0').filter(p => p.params.t === '卡扣' || p.params.t === '棒群')
+  const mxyKaqun = mxyBase
+    .filter(p => p.params.t === '卡扣')
+    .map(p => ({ ...p, params: { ...p.params, t: '卡群' } }))
+  const lchBase = generateKrConfig('廉承煥_0').filter(p => p.params.t === '卡扣' || p.params.t === '棒群')
+  const lchKaqun = lchBase
+    .filter(p => p.params.t === '卡扣')
+    .map(p => ({ ...p, params: { ...p.params, t: '卡群' } }))
+  return [
+    ...generateKrConfig('朴斗焕_0'),
+    ...xdrBase,
+    ...xdrKaqun,
+    ...mxyBase,
+    ...mxyKaqun,
+    ...lchBase,
+    ...lchKaqun,
+  ]
 }
 
-const { name } = Astro.props
+const { name, img_prefix } = Astro.props
+const { t } = Astro.params
+const isXdr = img_prefix === 'xdr_'
+const isMxy = img_prefix === 'mxy_'
+const isLch = img_prefix === 'lch_'
+const hasCustomBanner = isXdr || isMxy || isLch
+const profileImg = isLch ? headImgLch : isMxy ? headImgMxy : isXdr ? headImgXdr : headImg
+const bannerA = isLch ? bannerLch1 : isMxy ? bannerMxy1 : isXdr ? bannerXdr1 : banner1
+const bannerB = isLch ? bannerLch2 : isMxy ? bannerMxy2 : isXdr ? bannerXdr2 : banner2
+
+// 底部悬浮按钮按路由渠道适配平台（卡扣/卡群=카카오톡, 棒群=BAND）
+const isBand = t === '棒群'
+const isKakaoGroup = t === '卡群'
+const secondIcon = isBand ? bandIcon : kakaoIcon
+const secondIconAlt = isBand ? 'BAND 아이콘' : '카카오톡 아이콘'
+const secondLabel = isBand
+  ? 'BAND를 무료로 추가하고 최신 주가 급등 정보를 받아보세요.'
+  : isKakaoGroup
+    ? '카카오톡 오픈채팅에 무료로 입장하고 최신 주가 급등 정보를 받아보세요.'
+    : '카카오톡을 무료로 추가하고 최신 주가 급등 정보를 받아보세요.'
 ---
 
 <KRBaseLayout title={name} description="무료 주식 투자 커뮤니티">
@@ -244,7 +293,7 @@ const { name } = Astro.props
 
   <div class="page-card">
     <div class="image-container">
-      <img src={headImg.src} alt={`${name} 프로필 이미지`} />
+      <img src={profileImg.src} alt={`${name} 프로필 이미지`} />
     </div>
 
     <div class="text-container">
@@ -252,27 +301,29 @@ const { name } = Astro.props
       <p>저는 무료로 주식 동호인 교류 그룹을 만들었습니다. 1주일 만에 1,000만 원에서 수억 원을 번 신규 회원도 있었고, 5월 말까지 절반 이상의 회원이 목표인 주간 수익률 300%를 달성했다. 전체 회원의 평균 주간 복리 수익률은 무려 168%에 달했다.</p>
 
       <a class="banner link-btn">
-        <img src={banner1.src} alt="VIP 투자 인사이트 — 수익을 만드는 투자 기준, 무료 BAND 입장" />
+        <img src={bannerA.src} alt={hasCustomBanner ? `${name} 투자 인사이트 — 무료 입장` : 'VIP 투자 인사이트 — 수익을 만드는 투자 기준, 무료 BAND 입장'} />
       </a>
 
       <p>평소에도 자산의 일부를 쪼개어 주식에 투자하고 있는데, 작년 한 해만 해도 주식 투자 수익률이 330%나 되었기 때문에 내 투자 전략으로 수익을 낼 수 있다고 믿는다.</p>
 
       <a class="banner link-btn">
-        <img src={banner2.src} alt="지난해 투자 수익률 330% — 최신 투자 정보 무료 제공, 무료 BAND 입장" />
+        <img src={bannerB.src} alt={hasCustomBanner ? `${name} 최신 투자 정보 — 무료 입장` : '지난해 투자 수익률 330% — 최신 투자 정보 무료 제공, 무료 BAND 입장'} />
       </a>
 
       <p>투자를 시작하기로 결정한 분이나 투자를 하고 있는 분들에게 도움이 되고자 무료 투자 소통방을 개설했는데, 그 대화방에서 저의 투자전략을 매니저를 통해 안정적으로 수익을 낼 수 있으니 도움이 되었으면 좋겠습니다. 저의 투자전략을 배우고 싶은 분은 저의 대화방에 가입하여 투자전략과 최신 급등 종목에 대한 정보를 무료로 공유할 수 있도록 숫자 '7'을 매니저에게 보내주세요. 버튼을 클릭하여 지금 바로 무료로 가입하세요!</p>
 
-      <a class="banner link-btn">
-        <img src={banner3.src} alt="성공한 투자자들이 조용히 모이는 곳 — VIP 투자 인사이트, 무료 입장" />
-      </a>
+      {!hasCustomBanner && (
+        <a class="banner link-btn">
+          <img src={banner3.src} alt="성공한 투자자들이 조용히 모이는 곳 — VIP 투자 인사이트, 무료 입장" />
+        </a>
+      )}
 
       <button class="button link-btn">특별한 투자 정보를 전해드립니다!</button>
     </div>
   </div>
 
   <button class="second-button link-btn">
-    <img src={bandIcon.src} alt="BAND 아이콘" />
-    BAND를 무료로 추가하고 최신 주가 급등 정보를 받아보세요.
+    <img src={secondIcon.src} alt={secondIconAlt} />
+    {secondLabel}
   </button>
 </KRBaseLayout>

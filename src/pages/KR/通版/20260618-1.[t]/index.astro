@@ -1,0 +1,886 @@
+---
+import bandIcon from '@/assets/band-icon.png'
+import kakaoIcon from '@/assets/kakao-icon.png'
+import KRRedirectCode from '@/components/KRRedirectCode.astro'
+import grid1 from './assets/images/grid1.jpg'
+import grid2 from './assets/images/grid2.jpg'
+import hero from './assets/images/hero.jpg'
+
+export function getStaticPaths() {
+  return [
+    { params: { t: '卡扣' } },
+    { params: { t: '卡群' } },
+    { params: { t: '棒群' } },
+  ]
+}
+
+const { t = '卡扣' } = Astro.params
+const isBand = t === '棒群'
+const needNumber = t === '卡扣'
+const channel = isBand ? '네이버 밴드' : '카카오톡'
+const channelShort = isBand ? '밴드' : '카카오톡'
+const jumpFn = isBand ? 'jumpToBand()' : 'jumpToKakao()'
+const bodyClass = isBand ? 'ch-band' : 'ch-kakao'
+const ctaIcon = isBand ? bandIcon : kakaoIcon
+const joinWord = isBand ? '밴드 가입하기' : (needNumber ? '카카오톡 입장하기' : '카카오톡 그룹 바로 입장')
+
+const title = '돈 공부, 무료로 시작하는 경제·재테크 학습방'
+const description = '어려운 용어도, 사전 지식도 필요 없어요. 경제의 흐름과 재테크의 기초 원리를 처음부터 차근차근 함께 공부하는 무료 학습 커뮤니티.'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0d0d0d" />
+
+    <KRRedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --bg-2: #161616;
+        --line: #2c2c2c;
+        --white: #f4f1ea;
+        --dim: #9a948a;
+        --accent: #e3ff43;
+        --accent-ink: #0d0d0d;
+      }
+
+      .ch-band {
+        --accent: #28e07a;
+        --accent-ink: #04210f;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding-bottom: 96px;
+        overflow-x: hidden;
+        background: var(--bg);
+        color: var(--white);
+        font-family: 'Noto Sans KR', sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .display {
+        font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .shell {
+        max-width: 720px;
+        margin: 0 auto;
+        border-right: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      /* ---- hero ---- */
+      .hero {
+        position: relative;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero-media {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: contrast(1.05) saturate(1.08);
+      }
+
+      .hero-media::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(13, 13, 13, 0.1) 0%, rgba(13, 13, 13, 0.85) 100%);
+        content: '';
+      }
+
+      .tag {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 12px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .tag .live {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent-ink);
+        animation: blink 1.4s steps(2) infinite;
+      }
+
+      .hero-head {
+        position: absolute;
+        right: 16px;
+        bottom: 18px;
+        left: 16px;
+        z-index: 2;
+      }
+
+      .hero-head h1 {
+        font-size: clamp(40px, 14vw, 78px);
+        color: var(--white);
+      }
+
+      .hero-head h1 .mark {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 2px 10px 4px;
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+
+      .hero-body {
+        padding: 22px 18px 24px;
+      }
+
+      .hero-body p {
+        max-width: 38ch;
+        color: var(--dim);
+        font-size: 14.5px;
+      }
+
+      .kv {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 22px;
+        border: 1px solid var(--line);
+      }
+
+      .kv div {
+        padding: 14px 12px;
+        border-right: 1px solid var(--line);
+      }
+
+      .kv div:last-child {
+        border-right: 0;
+      }
+
+      .kv strong {
+        display: block;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 26px;
+        line-height: 1;
+        color: var(--accent);
+      }
+
+      .kv span {
+        display: block;
+        margin-top: 6px;
+        color: var(--dim);
+        font-size: 11.5px;
+      }
+
+      /* ---- section frame ---- */
+      .sec {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sec-label {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-2);
+      }
+
+      .sec-label span {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+
+      .sec-label b {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 13px;
+        color: var(--accent);
+      }
+
+      .sec-title {
+        padding: 22px 18px;
+        font-size: clamp(24px, 7.4vw, 38px);
+        font-weight: 900;
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+      }
+
+      .sec-title em {
+        font-style: normal;
+        color: var(--accent);
+      }
+
+      /* ---- learn grid ---- */
+      .learn {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cell {
+        position: relative;
+        min-height: 160px;
+        padding: 18px 16px;
+        border-top: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+      }
+
+      .cell:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .cell .n {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 13px;
+        color: var(--accent);
+      }
+
+      .cell h3 {
+        margin-top: 32px;
+        font-size: 17px;
+        font-weight: 900;
+        line-height: 1.3;
+      }
+
+      .cell p {
+        margin-top: 8px;
+        color: var(--dim);
+        font-size: 12.5px;
+        line-height: 1.65;
+      }
+
+      .cell.img {
+        min-height: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .cell.img img {
+        width: 100%;
+        height: 100%;
+        min-height: 160px;
+        object-fit: cover;
+        filter: contrast(1.05) saturate(1.06);
+      }
+
+      .cell.big {
+        grid-column: 1 / -1;
+        border-right: 0;
+      }
+
+      /* ---- works strip ---- */
+      .works {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .works figure {
+        position: relative;
+        margin: 0;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        border-top: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+      }
+
+      .works figure:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .works img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: contrast(1.06) saturate(1.1);
+      }
+
+      .works figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 7px 10px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+      }
+
+      /* ---- steps ---- */
+      .steps {
+        padding: 6px 0 4px;
+      }
+
+      .step {
+        display: flex;
+        gap: 16px;
+        padding: 18px;
+        border-top: 1px solid var(--line);
+      }
+
+      .step:first-child {
+        border-top: 0;
+      }
+
+      .step .sn {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 30px;
+        line-height: 1;
+        color: var(--accent);
+      }
+
+      .step b {
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .step p {
+        margin-top: 3px;
+        color: var(--dim);
+        font-size: 13px;
+      }
+
+      /* ---- big CTA band ---- */
+      .ctaband {
+        padding: 32px 18px 36px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        text-align: center;
+      }
+
+      .ctaband h2 {
+        font-size: clamp(26px, 8vw, 42px);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .ctaband p {
+        margin: 12px auto 0;
+        max-width: 34ch;
+        font-size: 13.5px;
+        font-weight: 500;
+        opacity: 0.82;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        padding: 16px 26px;
+        background: var(--accent-ink);
+        color: var(--accent);
+        font-size: 16px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .btn img {
+        width: 22px;
+        height: 22px;
+      }
+
+      .btn .num {
+        display: inline-grid;
+        place-items: center;
+        min-width: 24px;
+        height: 22px;
+        padding: 0 6px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-size: 13px;
+      }
+
+      .hint {
+        margin: 14px auto 0;
+        max-width: 32ch;
+        font-size: 12px;
+        font-weight: 700;
+        opacity: 0.78;
+      }
+
+      /* ---- faq ---- */
+      .faq details {
+        border-top: 1px solid var(--line);
+      }
+
+      .faq details:first-of-type {
+        border-top: 0;
+      }
+
+      .faq summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 18px;
+        font-size: 14.5px;
+        font-weight: 700;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq summary::after {
+        content: '+';
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 18px;
+        color: var(--accent);
+      }
+
+      .faq details[open] summary::after {
+        content: '–';
+      }
+
+      .faq p {
+        padding: 0 18px 16px;
+        color: var(--dim);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .notice {
+        padding: 22px 18px;
+        color: #6f6a62;
+        font-size: 11.5px;
+        line-height: 1.85;
+        border-bottom: 1px solid var(--line);
+      }
+
+      /* ---- footer ---- */
+      .footer {
+        padding: 26px 18px 34px;
+      }
+
+      .footer-title {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+      }
+
+      .footer p {
+        margin-top: 8px;
+        color: var(--dim);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        margin-top: 18px;
+      }
+
+      .footer-links a {
+        color: var(--white);
+        font-size: 12px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+
+      /* ---- sticky ---- */
+      .sticky {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 80;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        border-top: 1px solid var(--accent-ink);
+      }
+
+      .sticky a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 720px;
+        padding: 17px 18px calc(17px + env(safe-area-inset-bottom));
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-size: 16px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .sticky img {
+        width: 23px;
+        height: 23px;
+      }
+
+      .sticky .num {
+        display: inline-grid;
+        place-items: center;
+        min-width: 24px;
+        height: 22px;
+        padding: 0 6px;
+        background: var(--accent-ink);
+        color: var(--accent);
+        font-size: 13px;
+        font-family: 'Archivo Black', sans-serif;
+      }
+
+      /* ---- modal ---- */
+      .ov {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.74);
+      }
+
+      .ov.show {
+        display: flex;
+      }
+
+      .mbox {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 28px 22px 24px;
+        border: 1px solid var(--line);
+        background: var(--bg-2);
+      }
+
+      .mclose {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        border: 0;
+        background: none;
+        color: var(--dim);
+        cursor: pointer;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .mbox h3 {
+        font-size: 17px;
+        font-weight: 900;
+        padding-right: 24px;
+      }
+
+      .mbody {
+        margin-top: 14px;
+        color: var(--dim);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .mbody h4 {
+        margin: 14px 0 4px;
+        color: var(--white);
+        font-size: 13.5px;
+        font-weight: 700;
+      }
+
+      .mbody ul {
+        margin: 6px 0 6px 18px;
+      }
+
+      @keyframes blink {
+        50% { opacity: 0.25; }
+      }
+
+      @media (min-width: 760px) {
+        .hero-media { aspect-ratio: 16 / 9; }
+        .cell { min-height: 190px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; }
+      }
+    </style>
+  </head>
+
+  <body class={bodyClass}>
+    <div class="shell">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-media">
+          <span class="tag"><span class="live"></span>무료 학습방 모집 중</span>
+          <img src={hero.src} width="1536" height="1024" alt="경제·재테크 공부" />
+          <div class="hero-head">
+            <h1 class="display">알아야<br /><span class="mark">돈</span>이 보인다</h1>
+          </div>
+        </div>
+        <div class="hero-body">
+          <p>
+            어려운 용어도, 사전 지식도 필요 없어요. 경제의 흐름과 재테크의 기초 원리를
+            처음부터 차근차근 함께 공부하는 <strong style="color:var(--white)">무료 학습 커뮤니티</strong>입니다.
+          </p>
+          <div class="kv">
+            <div><strong>0원</strong><span>입장·수업 전부 무료</span></div>
+            <div><strong>3,400+</strong><span>지금 함께 공부 중</span></div>
+            <div><strong>주 3회</strong><span>학습 자료 업데이트</span></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- LEARN -->
+      <section class="sec">
+        <div class="sec-label"><span>What you learn</span><b>01 / 배우는 것</b></div>
+        <h2 class="sec-title">용어부터 차근차근<br /><em>돈의 흐름</em> 읽기</h2>
+        <div class="learn">
+          <div class="cell">
+            <span class="n">A1</span>
+            <h3>경제 기사 읽는 법</h3>
+            <p>금리·물가·환율… 뉴스에 나오는 핵심 용어부터 쉽게 풀어드려요.</p>
+          </div>
+          <div class="cell img"><img src={grid1.src} width="1536" height="1024" alt="경제 공부 노트" /></div>
+          <div class="cell">
+            <span class="n">A2</span>
+            <h3>돈 관리 습관</h3>
+            <p>버는 것보다 새는 걸 막는 게 먼저. 가계부와 예산의 기본기를 잡아요.</p>
+          </div>
+          <div class="cell">
+            <span class="n">A3</span>
+            <h3>복리 · 금리의 원리</h3>
+            <p>시간이 돈을 불리는 구조를 이해하면, 선택의 기준이 달라져요.</p>
+          </div>
+          <div class="cell big">
+            <span class="n">A4</span>
+            <h3>자산 배분의 기초</h3>
+            <p>한곳에 몰지 않는 법. 위험을 나누고 길게 보는 사고방식을 함께 배워요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORKS -->
+      <section class="sec">
+        <div class="sec-label"><span>Study notes</span><b>02 / 공부 자료</b></div>
+        <div class="works">
+          <figure>
+            <img src={grid2.src} width="1536" height="1024" alt="티끌 모아 태산" />
+            <figcaption>티끌 모아 태산</figcaption>
+          </figure>
+          <figure>
+            <img src={grid1.src} width="1536" height="1024" alt="경제 공부 노트" />
+            <figcaption>매주 학습 노트</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- STEPS -->
+      <section class="sec">
+        <div class="sec-label"><span>How to join</span><b>03 / 입장 방법</b></div>
+        <div class="steps">
+          {needNumber ? (
+            <>
+              <div class="step"><span class="sn">1</span><div><b>{channelShort} 친구 추가</b><p>아래 버튼을 누르면 자동으로 연결돼요.</p></div></div>
+              <div class="step"><span class="sn">2</span><div><b>숫자 '7' 보내기</b><p>채팅창에 숫자 7만 입력해서 보내주세요.</p></div></div>
+              <div class="step"><span class="sn">3</span><div><b>학습방 입장</b><p>참여 방법과 첫 미션을 바로 받아보세요.</p></div></div>
+            </>
+          ) : (
+            <>
+              <div class="step"><span class="sn">1</span><div><b>아래 버튼 누르기</b><p>{channel} 그룹으로 바로 연결돼요.</p></div></div>
+              <div class="step"><span class="sn">2</span><div><b>그룹 입장</b><p>복잡한 가입도, 결제도 없어요.</p></div></div>
+              <div class="step"><span class="sn">3</span><div><b>첫 자료 받기</b><p>입장하면 오늘의 학습 자료가 바로 떠 있어요.</p></div></div>
+            </>
+          )}
+        </div>
+      </section>
+
+      <!-- CTA BAND -->
+      <section class="ctaband">
+        <h2 class="display">돈 공부,<br />오늘 시작해요</h2>
+        <p>사전 지식도 밑천도 필요 없어요. 궁금한 마음만 있으면 오늘 바로 시작이에요.</p>
+        <a class="btn link-btn" href="javascript:void(0)" onclick={jumpFn}>
+          <img src={ctaIcon.src} alt="" />
+          <span>{joinWord}</span>
+          {needNumber && <span class="num">7</span>}
+        </a>
+        {needNumber
+          ? <p class="hint">친구 추가 → 숫자 7 전송 → 입장 안내</p>
+          : <p class="hint">버튼 한 번이면 {channelShort} 그룹으로 바로 입장</p>}
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec faq">
+        <div class="sec-label"><span>FAQ</span><b>04 / 자주 묻는 질문</b></div>
+        <details>
+          <summary>정말 무료인가요?</summary>
+          <p>네. 입장과 학습 콘텐츠 모두 무료입니다. 방 안에서 별도의 회비를 받지 않습니다.</p>
+        </details>
+        <details>
+          <summary>경제를 하나도 모르는데 괜찮나요?</summary>
+          <p>괜찮아요. 가장 기본적인 용어부터 손잡고 알려드려요. 완전 초보자 기준으로 진행합니다.</p>
+        </details>
+        <details>
+          <summary>특정 상품을 추천하거나 권유하나요?</summary>
+          <p>아니요. 저희는 경제·재테크의 기초 원리를 함께 공부하는 학습 모임입니다. 특정 상품 추천이나 권유는 하지 않아요.</p>
+        </details>
+        <details>
+          <summary>입장하면 무엇을 받나요?</summary>
+          <p>주 3회 학습 자료와 단계별 공부 가이드, 그리고 멤버 Q&amp;A 채널을 이용할 수 있어요.</p>
+        </details>
+      </section>
+
+      <p class="notice">
+        ※ 본 커뮤니티의 모든 콘텐츠는 교육 및 정보 공유 목적으로 제공됩니다. 특정 상품·서비스를 권유하지 않으며, 이용자는 본인의 판단과 책임 하에 참여합니다.
+      </p>
+
+      <footer class="footer">
+        <p class="footer-title">운영 안내</p>
+        <p>
+          상호: 머니스쿨 커뮤니티 &nbsp;|&nbsp; 사업자 등록번호: 285-19-00713<br />
+          주소: 서울특별시 영등포구 여의대로 108, 9층 &nbsp;|&nbsp; 연락처: hello@moneyschool.kr
+        </p>
+        <div class="footer-links">
+          <a data-modal="privacy">개인정보 처리방침</a>
+          <a data-modal="terms">이용약관</a>
+          <a data-modal="disclaimer">면책 조항</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- STICKY -->
+    <div class="sticky">
+      <a class="link-btn" href="javascript:void(0)" onclick={jumpFn}>
+        <img src={ctaIcon.src} alt="" />
+        <span>{joinWord}</span>
+        {needNumber && <span class="num">7</span>}
+      </a>
+    </div>
+
+    <!-- MODAL -->
+    <div class="ov" id="modal">
+      <div class="mbox" role="dialog" aria-modal="true">
+        <button class="mclose" type="button" aria-label="닫기">×</button>
+        <h3 id="mt"></h3>
+        <div class="mbody" id="mb"></div>
+      </div>
+    </div>
+
+    <script>
+      const modalContent = {
+        privacy: {
+          title: '개인정보 처리방침',
+          body: `
+            <p>본 커뮤니티(이하 "운영자")는 「개인정보 보호법」 등 관련 법령을 준수하며, 이용자의 개인정보를 안전하게 관리합니다.</p>
+            <h4>1. 수집 항목</h4><p>가입 시 닉네임, 연락 가능한 메신저 아이디 등 최소한의 정보만 수집합니다.</p>
+            <h4>2. 이용 목적</h4><ul><li>커뮤니티 가입 및 멤버 관리</li><li>학습 자료 및 공지 전달</li><li>실습 미션 운영</li></ul>
+            <h4>3. 보유 및 이용 기간</h4><p>이용 목적 달성 후 지체 없이 파기하며, 관련 법령에서 정한 기간 동안만 보관합니다.</p>
+            <h4>4. 제3자 제공</h4><p>이용자의 사전 동의 없이 개인정보를 외부에 제공하지 않습니다. 단, 법령에 따른 요청이 있는 경우는 예외로 합니다.</p>
+            <h4>5. 이용자의 권리</h4><p>이용자는 언제든지 본인의 개인정보 열람·정정·삭제·처리정지를 요청할 수 있습니다.</p>
+            <h4>6. 문의처</h4><p>hello@moneyschool.kr</p>
+          `,
+        },
+        terms: {
+          title: '이용약관',
+          body: `
+            <p>본 약관은 커뮤니티 이용과 관련하여 운영자와 이용자 간의 권리·의무 및 책임 사항을 규정합니다.</p>
+            <h4>제1조 (목적)</h4><p>본 커뮤니티는 경제·재테크 기초 지식에 관한 교육 및 정보 공유를 목적으로 하는 무료 학습 모임입니다. 특정 금융상품의 매매를 권유하거나 중개하지 않습니다.</p>
+            <h4>제2조 (이용자의 의무)</h4><ul><li>다른 멤버를 존중하고 예의를 지킵니다.</li><li>허위 정보, 광고, 비방 등 운영을 방해하는 행위를 하지 않습니다.</li><li>학습 자료를 무단으로 외부에 배포하지 않습니다.</li></ul>
+            <h4>제3조 (콘텐츠의 성격)</h4><p>제공되는 모든 콘텐츠는 교육 및 정보 공유 목적이며, 특정 행위를 권유하거나 결과를 보장하지 않습니다.</p>
+            <h4>제4조 (서비스 변경 및 중단)</h4><p>운영자는 사정에 따라 커뮤니티 운영 내용을 변경하거나 중단할 수 있습니다.</p>
+            <h4>제5조 (책임의 한계)</h4><p>이용자는 본인의 판단과 책임 하에 콘텐츠를 이용하며, 그 결과에 대한 책임은 이용자 본인에게 있습니다.</p>
+          `,
+        },
+        disclaimer: {
+          title: '면책 조항',
+          body: `
+            <p>본 사이트와 커뮤니티에서 제공하는 모든 콘텐츠는 <b style="color:#f4f1ea">교육 및 정보 공유 목적</b>으로 제공됩니다.</p>
+            <h4>1. 정보의 성격</h4><p>제공되는 자료는 일반적인 학습 자료이며, 특정 행위를 권유하거나 어떠한 결과도 보장하지 않습니다.</p>
+            <h4>2. 투자 유의</h4><p>본 콘텐츠는 일반적인 교육 자료일 뿐, 특정 금융상품의 매수·매도를 권유하지 않으며 어떠한 수익도 보장하지 않습니다. 모든 투자 판단과 그 결과에 대한 책임은 전적으로 이용자 본인에게 있습니다.</p>
+            <h4>3. 책임의 한계</h4><p>이용자가 본 콘텐츠를 참고하여 내린 모든 판단과 그 결과에 대한 책임은 전적으로 이용자 본인에게 있습니다.</p>
+            <p style="margin-top:14px;">※ 이용자는 본인의 판단과 책임 하에 본 서비스를 이용해야 합니다.</p>
+          `,
+        },
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const ov = document.getElementById('modal')
+        const mt = document.getElementById('mt')
+        const mb = document.getElementById('mb')
+        const open = (k) => {
+          const d = modalContent[k]
+          if (!d || !ov || !mt || !mb) return
+          mt.textContent = d.title
+          mb.innerHTML = d.body
+          ov.classList.add('show')
+          document.body.style.overflow = 'hidden'
+        }
+        const close = () => {
+          if (!ov) return
+          ov.classList.remove('show')
+          document.body.style.overflow = ''
+        }
+        document.querySelectorAll('[data-modal]').forEach((el) => {
+          el.addEventListener('click', (e) => { e.preventDefault(); open(el.getAttribute('data-modal')) })
+        })
+        ov?.querySelector('.mclose')?.addEventListener('click', close)
+        ov?.addEventListener('click', (e) => { if (e.target === ov) close() })
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close() })
+      })
+    </script>
+  </body>
+</html>

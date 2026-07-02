@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import header from './images/chen_hero.jpg'
+import content from './images/chen_offer.jpg'
+
+const people = '陳永陸'
+const mainText = `免費加入${people} WhatsApp，就知聽日有機會升嘅股。近期實戰，9,311 位跟到嘅人平均食足 235% 回報，命中率高達 87%。今期部署更狠，已經睇中一隻一星期有得搏 586 萬嘅股。呢浸暴利，淨係留俾早一步收到風嘅人。`
+const ctaText = '即刻加入，攞今期限定最新部署！'
+const lineText = '加咗 WhatsApp，免費收最新升股情報！'
+---
+
+<BaseLayout title={people} description={`${people} · 港股實戰部署`} lang="zh-HK">
+  <main class="flex flex-col gap-8 items-center justify-center max-w-2xl mx-auto">
+    <Image src={header} alt={people} class="w-full h-auto rounded-lg" />
+
+    <div class="text-xl px-4">
+      {mainText}
+    </div>
+
+    <h3 class="text-xl font-bold text-center px-4">
+      {ctaText}
+    </h3>
+
+    <a href="javascript:void(0)" class="cta link-btn animate-breathe" data-evt="hero">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+      加陳永陸 WhatsApp 好友
+    </a>
+
+    <h3 class="text-xl font-bold text-center px-4">
+      {lineText}
+    </h3>
+
+    <Image src={content} alt="內容" class="w-full h-auto rounded-lg" />
+
+    <a href="javascript:void(0)" class="cta link-btn animate-breathe" data-evt="bottom">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
+      加陳永陸 WhatsApp 好友
+    </a>
+
+    <h3 class="text-sm text-slate-400 text-center mb-10 px-4">
+      私隱政策
+    </h3>
+  </main>
+
+  <style>
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: .92; }
+    }
+    .animate-breathe { animation: breathe 1.6s ease-in-out infinite; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: calc(100% - 2rem);
+      max-width: 420px;
+      box-sizing: border-box;
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #25d366, #1fb457);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 12px 32px rgba(37, 211, 102, .34);
+    }
+    .cta svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+    body, html {
+      font-family: 'Noto Sans HK', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang HK', 'Microsoft JhengHei', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .text-xl { line-height: 1.85; letter-spacing: .01em; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-breathe { animation: none; }
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,376 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import heroImg from './assets/images/hero.jpg'
+import klineImg from './assets/images/kline.jpg'
+import wealthImg from './assets/images/wealth.jpg'
+
+const title = '2026短炒狙擊實戰學堂 · 免費黑馬短股清單'
+const description = '真·免學費、零門檻，一毫子都唔收。每星期開市前送 1-3 隻短線爆發黑馬，獨家技術分析嚴選，入場位食糊位一眼睇穿。㩒 link 即刻攞今個星期最強黑馬清單。'
+---
+
+<BaseLayout title={title} description={description} lang="zh-HK">
+  <Fragment slot="head">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
+    <meta name="theme-color" content="#060a12" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;500;700;900&family=Inter:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </Fragment>
+
+  <div class="scan" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <span class="orb orb-c" aria-hidden="true"></span>
+  <span class="orb orb-v" aria-hidden="true"></span>
+
+  <main class="wrap">
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <span class="eyebrow">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg>
+        2026 短炒狙擊實戰學堂 · 正式開波
+      </span>
+
+      <h1 class="hero-title">
+        炒股炒到輸怕咗？<br />
+        <span class="neon-cyan">翻身機會</span> 真係到喇
+      </h1>
+
+      <p class="hero-tags">
+        <span class="tag">真 · 免學費</span>
+        <span class="tag">零門檻</span>
+        <span class="tag hot">一毫子都唔收</span>
+      </p>
+
+      <div class="hero-visual">
+        <img src={heroImg.src} width="1536" height="1024" alt="霓虹港股短線爆發走勢" loading="eager" />
+        <div class="visual-stat">
+          <b>1–3 隻</b><span>每週短線爆發黑馬</span>
+        </div>
+      </div>
+
+      <p class="hero-lead">
+        每星期一開市前，準時送上 <b>1-3 隻短線爆發黑馬</b>，獨家技術分析嚴選——波幅夠晒肥，走勢仲靚過放煙花。
+      </p>
+
+      <a href="javascript:void(0)" class="cta link-btn" aria-label="即刻攞黑馬清單">
+        <svg class="cta-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.73 18.27 12 22l-9.73-3.73"/><path d="M12 2 2.27 5.73 12 9.46l9.73-3.73L12 2z"/><path d="m2.27 12 9.73 3.73L21.73 12"/></svg>
+        <span>即刻攞今個星期最強黑馬清單</span>
+        <svg class="cta-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <p class="cta-sub">㩒 link 留低聯絡 · 純人氣分享 · 零套路</p>
+    </header>
+
+    <!-- ============ 每週黑马卖点 ============ -->
+    <section class="sec">
+      <div class="sec-kicker"><span>每週實戰</span></div>
+      <h2 class="sec-title">入場位、食糊位<br /><span class="neon-cyan">睇到一清二楚</span></h2>
+
+      <div class="feature-img">
+        <img src={klineImg.src} width="1536" height="1024" alt="霓虹暴升 K 線走勢" loading="lazy" />
+      </div>
+
+      <ul class="feat-list">
+        <li>
+          <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
+          <div><b>每週 1-3 隻爆發黑馬</b><p>開市前準時送上，獨家技術分析嚴選，上落夠晒大。</p></div>
+        </li>
+        <li>
+          <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div><b>入場位 · 食糊位講到明</b><p>幾時入、幾時走一眼睇穿，唔使再憑感覺去博。</p></div>
+        </li>
+        <li>
+          <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+          <div><b>慳返𥄫市嘅精神</b><p>唔使成個禮拜死跟住個市，專心數銀紙就得。</p></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ 翻盘故事 ============ -->
+    <section class="sec story">
+      <div class="sec-kicker"><span>真人實戰</span></div>
+      <h2 class="sec-title">由月光族<br /><span class="neon-gold">徹底翻盤</span></h2>
+
+      <div class="story-card">
+        <p>我就係靠呢套打法，由月光族徹底翻盤。</p>
+        <p>唔使日日困喺螢幕前，<b>每星期幾次精準短打，快入快出</b>，食盡肥美波段，成功搣甩打工枷鎖，一步步行向財務自由。</p>
+        <div class="story-glow"></div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric"><b>每週</b><span>幾次精準短打</span></div>
+        <div class="metric"><b>快入快出</b><span>食盡肥美波段</span></div>
+        <div class="metric"><b>0 學費</b><span>全部免費教你</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 收益钩子 + 入群 ============ -->
+    <section class="sec offer">
+      <div class="offer-img">
+        <img src={wealthImg.src} width="1536" height="1024" alt="賽博暴富能量" loading="lazy" />
+      </div>
+      <h2 class="sec-title">想學精準短炒，<br /><span class="neon-cyan">即刻有銀紙落袋？</span></h2>
+      <p class="offer-lead">
+        留言「<b>我要學</b>」或者直接 WS 我，獨門絕技免費過畀你，用有計劃嘅短線部署，提早同份牛工講拜拜。
+      </p>
+      <div class="promise">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <p>唔敢包你大富大貴，但 <b>每週帶你穩袋幾千至過萬利潤</b>，絕對落足心機帶你。</p>
+      </div>
+
+      <a href="javascript:void(0)" class="cta link-btn" aria-label="入群攞清單">
+        <svg class="cta-i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.94L2 22l5.23-1.37A10 10 0 1 0 12 2zm0 0"/><path fill="#060a12" d="M8.5 9.2c.16-.43.33-.44.48-.45h.4c.13 0 .3-.02.47.36.16.39.56 1.36.61 1.46.05.1.08.21.02.34-.07.13-.1.21-.2.32-.1.12-.21.26-.3.34-.1.1-.2.2-.09.4.12.18.52.86 1.12 1.39.77.69 1.42.9 1.62 1 .2.1.32.08.43-.05.12-.13.5-.58.63-.78.13-.2.26-.16.43-.1.18.07 1.13.54 1.32.64.2.1.32.14.37.22.05.08.05.48-.11.94z"/></svg>
+        <span>WS 我 · 免費入群攞清單</span>
+        <svg class="cta-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <p class="cta-sub">即送今個星期最強黑馬短股清單，親身帶你實盤拆招，睇清買賣點。</p>
+    </section>
+
+    <!-- ============ 零压力信任 ============ -->
+    <section class="sec trust">
+      <div class="trust-card">
+        <p>鍾意就 keep，唔啱心水隨時剷走，<b>完全冇壓力</b>，當拎個免費 reference。</p>
+        <p class="trust-big">純人氣分享 · 零套路 · <span class="neon-cyan">一蚊都唔收</span></p>
+        <p>一齊傾偈交流，用短線建立持續獲利模式，得閒享受沙灘同自由。</p>
+      </div>
+    </section>
+
+    <p class="notice">
+      ※ 本內容只屬一般資訊及交流分享，並非投資建議或買賣邀約。所列例子及收益不代表所有人都會有相同結果。股票投資涉及風險，可能損失本金，過往表現不代表將來。閣下須自行判斷並承擔一切投資決定及後果。
+    </p>
+
+    <footer class="foot">
+      <p class="foot-name">短炒狙擊實戰學堂</p>
+      <p>真人交流社群 · 免費分享 · 唔收任何費用</p>
+    </footer>
+  </main>
+
+  <!-- ============ sticky CTA ============ -->
+  <div class="sticky">
+    <a href="javascript:void(0)" class="cta link-btn" aria-label="免費入群">
+      <svg class="cta-i" style="width:26px;height:26px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8"/><path d="M16.5 8a2.5 2.5 0 0 0 0-5C13 3 12 8 12 8"/></svg>
+      <span>免費攞黑馬清單 · 即刻入群</span>
+      <svg class="cta-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <style is:global slot="head">
+    :root {
+      --bg: #060a12;
+      --bg-2: #0a1422;
+      --panel: rgba(12, 24, 38, 0.72);
+      --line: rgba(39, 240, 206, 0.22);
+      --cyan: #27f0ce;
+      --cyan-soft: #6df3e9;
+      --violet: #a06bff;
+      --gold: #ffd98a;
+      --red: #ff4d6a;
+      --ink: #eaf6ff;
+      --ink-soft: #9fc0cf;
+      --ink-dim: #6c8493;
+      --maxw: 440px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      padding-bottom: 100px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(680px 420px at 12% -4%, rgba(39, 240, 206, 0.16), transparent 55%),
+        radial-gradient(620px 460px at 96% 14%, rgba(160, 107, 255, 0.16), transparent 52%),
+        radial-gradient(700px 500px at 50% 108%, rgba(255, 217, 138, 0.08), transparent 60%),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 60%, #04070d 100%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Noto Sans HK', -apple-system, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    b { color: var(--cyan-soft); font-weight: 700; }
+
+    /* 背景：网格 + 扫描线 + 光球 */
+    .grid-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(39, 240, 206, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(39, 240, 206, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask: radial-gradient(circle at 50% 18%, #000 0%, transparent 75%);
+      -webkit-mask: radial-gradient(circle at 50% 18%, #000 0%, transparent 75%);
+    }
+    .scan {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.5;
+      background: repeating-linear-gradient(0deg, rgba(39, 240, 206, 0.04) 0 1px, transparent 1px 4px);
+      animation: scanmove 12s linear infinite;
+    }
+    .orb { position: fixed; z-index: 0; border-radius: 50%; filter: blur(80px); opacity: 0.42; pointer-events: none; }
+    .orb-c { top: -90px; left: -70px; width: 300px; height: 300px; background: var(--cyan); animation: drift 19s ease-in-out infinite; }
+    .orb-v { bottom: 10%; right: -90px; width: 300px; height: 300px; background: var(--violet); animation: drift 24s ease-in-out infinite reverse; }
+
+    .wrap { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 18px; }
+
+    .neon-cyan { color: var(--cyan); text-shadow: 0 0 6px rgba(39,240,206,0.6), 0 0 18px rgba(39,240,206,0.35); }
+    .neon-gold { color: var(--gold); text-shadow: 0 0 6px rgba(255,217,138,0.55), 0 0 18px rgba(255,217,138,0.3); }
+
+    /* ---------- HERO ---------- */
+    .hero { padding: 30px 0 6px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 15px; margin-bottom: 18px;
+      border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(39, 240, 206, 0.07);
+      color: var(--cyan-soft); font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .eyebrow .i { width: 15px; height: 15px; color: var(--cyan); }
+
+    .hero-title {
+      font-size: clamp(28px, 8.6vw, 40px); font-weight: 900; line-height: 1.28; letter-spacing: -0.01em;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+    .tag {
+      padding: 6px 13px; border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(12, 24, 38, 0.6); color: var(--ink-soft); font-size: 12.5px; font-weight: 700;
+    }
+    .tag.hot { border-color: rgba(255, 77, 106, 0.5); color: #ff9aae; background: rgba(255, 77, 106, 0.1); }
+
+    .hero-visual {
+      position: relative; margin: 22px 0 0; overflow: hidden;
+      border: 1px solid var(--line); border-radius: 20px;
+      box-shadow: 0 0 0 1px rgba(39,240,206,0.08), 0 22px 60px -22px rgba(39,240,206,0.4), 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .hero-visual > img { width: 100%; height: auto; }
+    .hero-visual::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, transparent 55%, rgba(6,10,18,0.82) 100%);
+    }
+    .visual-stat {
+      position: absolute; left: 14px; bottom: 12px; z-index: 1; text-align: left;
+      padding: 8px 14px; border-radius: 12px;
+      background: rgba(6, 10, 18, 0.6); border: 1px solid var(--line); backdrop-filter: blur(6px);
+    }
+    .visual-stat b { display: block; font-family: 'Inter', sans-serif; font-size: 22px; color: var(--cyan); line-height: 1; text-shadow: 0 0 12px rgba(39,240,206,0.6); }
+    .visual-stat span { font-size: 11px; color: var(--ink-soft); }
+
+    .hero-lead { margin: 20px auto 0; max-width: 32ch; color: var(--ink-soft); font-size: 14.5px; }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%; max-width: 380px; margin: 22px auto 0; padding: 16px 18px;
+      border-radius: 14px; border: 1px solid rgba(39,240,206,0.6);
+      background: linear-gradient(135deg, #27f0ce 0%, #18c7e6 55%, #6d8bff 130%);
+      color: #03161a; font-size: 16px; font-weight: 900; text-decoration: none; cursor: pointer;
+      box-shadow: 0 0 22px rgba(39,240,206,0.4), 0 16px 38px -12px rgba(39,240,206,0.55);
+      animation: breathe 2.4s ease-in-out infinite;
+    }
+    .cta::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+      transform: translateX(-160%) skewX(-20deg); animation: shine 3.4s ease-in-out infinite;
+    }
+    .cta .cta-i { width: 22px; height: 22px; flex: 0 0 auto; position: relative; z-index: 1; }
+    .cta span { position: relative; z-index: 1; }
+    .cta .cta-arr { width: 18px; height: 18px; flex: 0 0 auto; position: relative; z-index: 1; animation: nudge 1.5s ease-in-out infinite; }
+    .cta:active { transform: scale(0.985); }
+    .cta-sub { margin: 11px auto 0; max-width: 30ch; color: var(--ink-dim); font-size: 12px; }
+
+    /* ---------- sections ---------- */
+    .sec { padding: 44px 0 4px; }
+    .sec-kicker { text-align: center; margin-bottom: 12px; }
+    .sec-kicker span {
+      display: inline-block; padding: 4px 14px; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(39,240,206,0.06);
+      color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 0.2em;
+    }
+    .sec-title { text-align: center; font-size: clamp(23px, 7vw, 31px); font-weight: 900; line-height: 1.3; }
+
+    .feature-img, .offer-img {
+      margin: 20px 0; overflow: hidden; border: 1px solid var(--line); border-radius: 18px;
+      box-shadow: 0 18px 46px -20px rgba(39,240,206,0.4);
+    }
+    .feature-img img, .offer-img img { width: 100%; height: auto; }
+
+    .feat-list { display: grid; gap: 12px; margin-top: 6px; list-style: none; }
+    .feat-list li {
+      display: flex; gap: 14px; align-items: flex-start; padding: 16px 16px;
+      border: 1px solid var(--line); border-radius: 16px; background: var(--panel);
+      backdrop-filter: blur(6px);
+    }
+    .fi {
+      display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px;
+      border-radius: 12px; border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(39,240,206,0.18), rgba(160,107,255,0.14));
+      color: var(--cyan); box-shadow: inset 0 0 12px rgba(39,240,206,0.15);
+    }
+    .fi svg { width: 22px; height: 22px; }
+    .feat-list b { font-size: 15px; font-weight: 800; color: var(--ink); }
+    .feat-list p { margin-top: 3px; color: var(--ink-soft); font-size: 13px; }
+
+    /* story */
+    .story-card {
+      position: relative; margin-top: 20px; padding: 24px 20px;
+      border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+      background: linear-gradient(160deg, rgba(255,217,138,0.08), rgba(12,24,38,0.8));
+    }
+    .story-card p { color: var(--ink); font-size: 15px; }
+    .story-card p + p { margin-top: 12px; }
+    .story-glow { position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; background: var(--gold); filter: blur(70px); opacity: 0.18; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+    .metric { padding: 16px 8px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); text-align: center; }
+    .metric b { display: block; font-family: 'Inter', 'Noto Sans HK', sans-serif; font-size: 19px; font-weight: 900; color: var(--gold); text-shadow: 0 0 12px rgba(255,217,138,0.4); line-height: 1.1; }
+    .metric span { display: block; margin-top: 5px; font-size: 11px; color: var(--ink-soft); }
+
+    /* offer */
+    .offer-lead { margin: 14px auto 0; max-width: 32ch; text-align: center; color: var(--ink-soft); font-size: 14.5px; }
+    .promise {
+      display: flex; gap: 11px; align-items: center; margin: 18px 0 0; padding: 15px 16px;
+      border: 1px solid rgba(255,77,106,0.4); border-radius: 14px; background: rgba(255,77,106,0.08);
+    }
+    .promise .i { flex: 0 0 24px; width: 24px; height: 24px; color: var(--red); }
+    .promise p { color: var(--ink); font-size: 13.5px; }
+    .promise b { color: #ff9aae; }
+
+    /* trust */
+    .trust-card {
+      margin-top: 20px; padding: 26px 20px; text-align: center;
+      border: 1px dashed var(--line); border-radius: 18px; background: rgba(12,24,38,0.5);
+    }
+    .trust-card p { color: var(--ink-soft); font-size: 14px; }
+    .trust-card p + p { margin-top: 12px; }
+    .trust-big { font-size: 18px !important; font-weight: 900; color: var(--ink) !important; }
+
+    .notice { margin: 34px 0 0; color: var(--ink-dim); font-size: 11px; line-height: 1.85; text-align: center; }
+
+    .foot { margin-top: 22px; padding: 22px 0 8px; border-top: 1px solid var(--line); text-align: center; }
+    .foot-name { color: var(--cyan-soft); font-size: 13px; font-weight: 800; }
+    .foot p + p { margin-top: 5px; }
+    .foot p:last-child { color: var(--ink-dim); font-size: 11.5px; }
+
+    /* sticky */
+    .sticky {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+      display: flex; justify-content: center;
+      padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, rgba(4,7,13,0) 0%, rgba(4,7,13,0.96) 38%);
+      backdrop-filter: blur(5px);
+    }
+    .sticky .cta { margin: 0; max-width: var(--maxw); }
+
+    @keyframes scanmove { to { background-position: 0 400px; } }
+    @keyframes drift { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(24px, 28px) scale(1.12); } }
+    @keyframes breathe { 0%,100% { box-shadow: 0 0 22px rgba(39,240,206,0.4), 0 16px 38px -12px rgba(39,240,206,0.55); } 50% { box-shadow: 0 0 34px rgba(39,240,206,0.65), 0 16px 46px -8px rgba(39,240,206,0.7); } }
+    @keyframes shine { 0% { transform: translateX(-160%) skewX(-20deg); } 55%,100% { transform: translateX(320%) skewX(-20deg); } }
+    @keyframes nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+
+    @media (min-width: 480px) { :root { --maxw: 460px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+  </style>
+</BaseLayout>

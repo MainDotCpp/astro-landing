@@ -46,11 +46,7 @@ EXCLUDE_WITH_PRIVATE="$EXCLUDE_BASE --exclude=private"
 # 字段顺序: label | ip | password | remote_path | source_dir | exclude_private(true/false)
 TARGETS=(
   "KR|141.164.43.115|Haishi@1688|/www/wwwroot/coincool.top/|$SOURCE_DIR|true"
-  "JP|108.160.138.123|Haishi@1688|/www/wwwroot/richwise.top/|$SOURCE_DIR|true"
   "3rd|108.160.141.193|Leuan_3rd|/www/wwwroot/xn--ces516hyxm.com/|$SOURCE_DIR|false"
-  "zutoml|202.182.125.131|Haishi@1688|/www/wwwroot/zutoml.top/|$SOURCE_DIR|false"
-  "advancedshara-KR|158.247.212.142|Haishi@1688|/www/wwwroot/advancedshara.top/|./dist/KR/|true"
-  "advancedshara-mjSFqQ|158.247.212.142|Haishi@1688|/www/wwwroot/advancedshara.top/mjSFqQ/|./dist/mjSFqQ/|true"
 )
 
 # ====== 构建 ======

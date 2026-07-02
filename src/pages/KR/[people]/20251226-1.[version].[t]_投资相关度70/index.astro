@@ -26,7 +26,7 @@ try {
   aboutImg = null
 }
 
-const socialOptions = ['卡扣', '棒群', '混合', '引导弹窗'] as const
+const socialOptions = ['卡扣', '卡群', '棒群', '混合', '引导弹窗'] as const
 type Social = typeof socialOptions[number]
 const social: Social | undefined = socialOptions.includes(t as Social) ? (t as Social) : undefined
 

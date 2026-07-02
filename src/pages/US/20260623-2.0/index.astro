@@ -1,0 +1,724 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>每日大盘技术面解读 + 期权学习 — 免费技术投研社群</title>
+    <meta name="description" content="不靠感觉下单，看懂盘面结构再决策。每天5分钟，跟资深投研团队读一次大盘技术面、学期权基础逻辑。免费加入华人技术投研社群。" />
+
+    <RedirectCode />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              base: '#0a0e12',
+              baseSoft: '#111820',
+              baseCard: '#131c24',
+              neonGreen: '#16ff7a',
+              neonGreenDim: '#0ecf5e',
+              neonCyan: '#00d4ff',
+              neonCyanDim: '#00a8cc',
+              textPrimary: '#e8f0fe',
+              textSecondary: '#7a9ab8',
+              textMuted: '#445566',
+              border: '#1e3040',
+            },
+            fontFamily: {
+              mono: ['"JetBrains Mono"', '"Roboto Mono"', 'Consolas', 'monospace'],
+              sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: 'Noto Sans SC', system-ui, sans-serif;
+        background: #0a0e12;
+        color: #e8f0fe;
+        overflow-x: hidden;
+      }
+
+      /* ── canvas 背景 ── */
+      #grid-canvas {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.35;
+      }
+
+      /* ── 内容层 ── */
+      .content-layer {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── 霓虹文字发光 ── */
+      .glow-green {
+        color: #16ff7a;
+        text-shadow: 0 0 16px rgba(22, 255, 122, 0.6), 0 0 40px rgba(22, 255, 122, 0.2);
+      }
+      .glow-cyan {
+        color: #00d4ff;
+        text-shadow: 0 0 12px rgba(0, 212, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.2);
+      }
+
+      /* ── 终端卡片 ── */
+      .terminal-card {
+        background: #131c24;
+        border: 1px solid #1e3040;
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+      }
+      .terminal-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #16ff7a40, transparent);
+      }
+
+      /* ── 等宽数字 ── */
+      .mono {
+        font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+      }
+
+      /* ── 终端 eyebrow 闪烁光标 ── */
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .cursor-blink {
+        display: inline-block;
+        width: 8px; height: 1.1em;
+        background: #16ff7a;
+        vertical-align: text-bottom;
+        animation: blink 1.1s step-end infinite;
+        margin-left: 2px;
+      }
+
+      /* ── CTA 按钮发光 ── */
+      @keyframes ctaPulse {
+        0%, 100% { box-shadow: 0 0 20px rgba(22, 255, 122, 0.4), 0 4px 32px rgba(22, 255, 122, 0.15); }
+        50%       { box-shadow: 0 0 32px rgba(22, 255, 122, 0.65), 0 4px 48px rgba(22, 255, 122, 0.25); }
+      }
+      .cta-glow { animation: ctaPulse 2.2s ease-in-out infinite; }
+
+      /* ── 在线活跃点 ── */
+      @keyframes activeDot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.5; transform: scale(0.7); }
+      }
+      .active-dot {
+        display: inline-block;
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: #16ff7a;
+        animation: activeDot 1.8s ease-in-out infinite;
+        box-shadow: 0 0 6px #16ff7a;
+      }
+
+      /* ── 数据条动画 ── */
+      @keyframes barFill {
+        from { width: 0; }
+        to   { width: var(--bar-w); }
+      }
+      .bar-fill { animation: barFill 1.2s cubic-bezier(.4,0,.2,1) forwards; }
+
+      /* ── hero canvas 区域 ── */
+      .hero-canvas-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        background: #050810;
+      }
+      @media (min-width: 600px) {
+        .hero-canvas-wrap { aspect-ratio: 21/9; }
+      }
+      #hero-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .hero-canvas-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(10,14,18,0.1) 0%, rgba(10,14,18,0.85) 100%);
+        pointer-events: none;
+      }
+
+      /* ── sticky CTA bar ── */
+      .sticky-cta {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 100;
+        background: linear-gradient(to top, #0a0e12 80%, transparent);
+        padding: 12px 16px 20px;
+      }
+
+      /* ── FAQ 折叠 ── */
+      details summary { cursor: pointer; list-style: none; }
+      details summary::-webkit-details-marker { display: none; }
+      details[open] .faq-arrow { transform: rotate(90deg); }
+      .faq-arrow { transition: transform 0.2s; }
+
+      /* ── 扫描线氛围 ── */
+      .scan-line {
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(22, 255, 122, 0.03) 50%,
+          transparent 100%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+      }
+
+      /* ── CTA 按钮颜色（覆盖 Tailwind 自定义色失效问题）── */
+      .btn-neon {
+        background: #16ff7a;
+        color: #000;
+        font-weight: 800;
+        border: none;
+        transition: background 0.15s;
+      }
+      .btn-neon:hover, .btn-neon:active { background: #0ecf5e; }
+
+      /* ── stats grid 强制3列 ── */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      /* ── 活跃度进度条 ── */
+      .bar-track {
+        flex: 1;
+        background: #1e3040;
+        border-radius: 999px;
+        height: 6px;
+        overflow: hidden;
+      }
+      .bar-green  { background: #16ff7a; height: 100%; border-radius: 999px; animation: barFill 1.2s cubic-bezier(.4,0,.2,1) forwards; }
+      .bar-cyan   { background: #00d4ff; height: 100%; border-radius: 999px; animation: barFill 1.2s cubic-bezier(.4,0,.2,1) forwards; }
+      .bar-muted  { background: #445566; height: 100%; border-radius: 999px; animation: barFill 1.2s cubic-bezier(.4,0,.2,1) forwards; }
+    </style>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <!-- 数据网格 canvas 背景 -->
+    <canvas id="grid-canvas"></canvas>
+
+    <main class="content-layer flex-1 flex flex-col pb-[80px]">
+
+      <!-- ── HERO canvas ── -->
+      <div class="hero-canvas-wrap">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-canvas-overlay"></div>
+      </div>
+
+      <!-- ── 主内容区 ── -->
+      <div class="w-full max-w-[600px] mx-auto px-4 md:px-6">
+
+        <!-- ── EYEBROW 终端状态行 ── -->
+        <div class="mono text-[11px] text-textSecondary tracking-widest uppercase flex items-center gap-2 mt-[-8px] mb-4">
+          <span class="active-dot"></span>
+          <span>SIGNAL_FEED &gt; US_MARKET &gt; TECH_ANALYSIS</span>
+          <span class="cursor-blink"></span>
+        </div>
+
+        <!-- ── 主标题 ── -->
+        <h1 class="font-black leading-[1.1] text-[2rem] md:text-[2.5rem] mb-4">
+          凭感觉下单，<br class="md:hidden" />
+          <span class="glow-green">是散户最贵的习惯</span>
+        </h1>
+
+        <p class="text-textSecondary text-base leading-relaxed mb-6">
+          大盘涨跌不是玄学。每天5分钟，跟投研团队<span class="text-textPrimary font-semibold">过一遍技术面</span>、搞懂期权背后的逻辑——用着用着你就发现了：结构看明白，决策自然稳。
+        </p>
+
+        <!-- ── 首屏 CTA ── -->
+        <a
+         
+          onclick="mixinJump()"
+          class="link-btn cta-glow btn-neon w-full flex items-center justify-center gap-3 text-base py-4 rounded-lg cursor-pointer mb-3"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>免费加入技术投研社群</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </a>
+        <p class="text-center text-textMuted text-xs mb-10">
+          <span class="active-dot" style="width:5px;height:5px;"></span>
+          &nbsp;免费加入 · 随时退出 · 不卖课不推销
+        </p>
+
+        <!-- ── 痛点 section ── -->
+        <section class="mb-10">
+          <h2 class="mono text-[10px] tracking-[0.25em] text-textMuted uppercase mb-4">// PROBLEM_STATE</h2>
+          <div class="space-y-3">
+            <div class="terminal-card px-4 py-3 flex items-start gap-3">
+              <span class="mono glow-cyan text-sm shrink-0 mt-0.5">01</span>
+              <p class="text-sm text-textSecondary leading-snug">
+                消息满天飞，哪条是噪音哪条是信号，<span class="text-textPrimary">自己也说不清</span>
+              </p>
+            </div>
+            <div class="terminal-card px-4 py-3 flex items-start gap-3">
+              <span class="mono glow-cyan text-sm shrink-0 mt-0.5">02</span>
+              <p class="text-sm text-textSecondary leading-snug">
+                听说期权能对冲风险，<span class="text-textPrimary">但看到Greeks就头大</span>，根本不敢碰
+              </p>
+            </div>
+            <div class="terminal-card px-4 py-3 flex items-start gap-3">
+              <span class="mono glow-cyan text-sm shrink-0 mt-0.5">03</span>
+              <p class="text-sm text-textSecondary leading-snug">
+                大盘一跌心就慌，明知道要做功课，<span class="text-textPrimary">就是不知道从哪下手</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── 我们提供什么 section ── -->
+        <section class="mb-10">
+          <h2 class="mono text-[10px] tracking-[0.25em] text-textMuted uppercase mb-4">// WHAT_WE_PROVIDE</h2>
+
+          <!-- 卡片 1 -->
+          <div class="terminal-card px-5 py-5 mb-3">
+            <div class="flex items-center gap-2 mb-2">
+              <svg class="shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16ff7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+              <span class="font-semibold text-sm text-textPrimary">每天开盘前，先看一遍结构</span>
+            </div>
+            <p class="text-sm text-textSecondary leading-relaxed">
+              每个交易日开盘前，团队发一条技术分析：支撑位、压力位、当日结构在哪里。读完不一定知道今天涨不涨，但你会有<span class="text-textPrimary">一个框架</span>——知道自己在看什么。
+            </p>
+          </div>
+
+          <!-- 卡片 2 -->
+          <div class="terminal-card px-5 py-5 mb-3">
+            <div class="flex items-center gap-2 mb-2">
+              <svg class="shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+              </svg>
+              <span class="font-semibold text-sm text-textPrimary">期权到底怎么回事，从头说清楚</span>
+            </div>
+            <p class="text-sm text-textSecondary leading-relaxed">
+              Call/Put是什么、隐波率凭直觉怎么判断、常见策略的底层逻辑——都用白话讲，不要求背公式。<span class="text-textPrimary">能看懂一张期权链，就算入门了</span>。
+            </p>
+          </div>
+
+          <!-- 卡片 3 -->
+          <div class="terminal-card px-5 py-5">
+            <div class="flex items-center gap-2 mb-2">
+              <svg class="shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16ff7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span class="font-semibold text-sm text-textPrimary">看不懂就直接问，不用等</span>
+            </div>
+            <p class="text-sm text-textSecondary leading-relaxed">
+              群里有人同步讨论——看到不懂的K线或期权链直接发进去问。我们承诺：<span class="text-textPrimary">问题不过夜</span>。
+            </p>
+          </div>
+        </section>
+
+        <!-- ── 社会证明 / 活跃感数据 ── -->
+        <section class="mb-10">
+          <h2 class="mono text-[10px] tracking-[0.25em] text-textMuted uppercase mb-4">// COMMUNITY_STATS</h2>
+          <div class="terminal-card px-5 py-5">
+            <div class="stats-grid">
+              <div style="text-align:center;">
+                <div class="mono text-2xl font-bold" style="color:#16ff7a;text-shadow:0 0 16px rgba(22,255,122,0.6);">8,200+</div>
+                <div class="text-xs mt-1" style="color:#445566;">社群成员</div>
+              </div>
+              <div style="text-align:center;border-left:1px solid #1e3040;border-right:1px solid #1e3040;">
+                <div class="mono text-2xl font-bold" style="color:#00d4ff;text-shadow:0 0 12px rgba(0,212,255,0.5);">365</div>
+                <div class="text-xs mt-1" style="color:#445566;">天不断更</div>
+              </div>
+              <div style="text-align:center;">
+                <div class="mono text-2xl font-bold" style="color:#e8f0fe;">5 min</div>
+                <div class="text-xs mt-1" style="color:#445566;">每天只要这么久</div>
+              </div>
+            </div>
+            <!-- 群里每天在聊什么 -->
+            <div style="font-size:11px;color:#445566;margin-bottom:8px;">群里每天在聊什么：</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="background:#1e3040;color:#16ff7a;border:1px solid #16ff7a33;border-radius:4px;padding:4px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;">大盘技术面解读</span>
+              <span style="background:#1e3040;color:#00d4ff;border:1px solid #00d4ff33;border-radius:4px;padding:4px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;">期权策略讨论</span>
+              <span style="background:#1e3040;color:#7a9ab8;border:1px solid #1e3040;border-radius:4px;padding:4px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;">个股点评</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── 谁适合加入 section ── -->
+        <section class="mb-10">
+          <h2 class="mono text-[10px] tracking-[0.25em] text-textMuted uppercase mb-4">// WHO_IS_THIS_FOR</h2>
+          <div class="space-y-2">
+            {[
+              '在美持仓美股/ETF，想真正看懂K线结构',
+              '对期权感兴趣但从没系统学过',
+              '平时工作忙，需要浓缩的每日盘面摘要',
+              '想加入真正在认真做功课的华人圈子',
+            ].map((item) => (
+              <div class="flex items-start gap-3 text-sm text-textSecondary">
+                <span class="glow-green font-bold mt-0.5 shrink-0">✓</span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ── FAQ ── -->
+        <section class="mb-10">
+          <h2 class="mono text-[10px] tracking-[0.25em] text-textMuted uppercase mb-4">// FAQ</h2>
+          <div class="space-y-2">
+
+            <details class="terminal-card px-4 py-3">
+              <summary class="flex items-center justify-between text-sm text-textPrimary font-medium">
+                <span>真的免费？有没有后续收费？</span>
+                <svg class="faq-arrow shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a9ab8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </summary>
+              <p class="text-sm text-textSecondary mt-3 leading-relaxed">
+                永久免费，没有任何附加费用。没有课程、没有会员、没有「进阶班」——群就是群，就是一起看盘讨论，仅此而已。以后也不会变。
+              </p>
+            </details>
+
+            <details class="terminal-card px-4 py-3">
+              <summary class="flex items-center justify-between text-sm text-textPrimary font-medium">
+                <span>完全零基础可以吗？</span>
+                <svg class="faq-arrow shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a9ab8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </summary>
+              <p class="text-sm text-textSecondary mt-3 leading-relaxed">
+                可以。每日解读会标注难度，期权模块从最基础的概念开始。不懂就问，群里不嫌烦。
+              </p>
+            </details>
+
+            <details class="terminal-card px-4 py-3">
+              <summary class="flex items-center justify-between text-sm text-textPrimary font-medium">
+                <span>每日内容会告诉我买什么吗？</span>
+                <svg class="faq-arrow shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a9ab8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </summary>
+              <p class="text-sm text-textSecondary mt-3 leading-relaxed">
+                不会。我们教方法论——盘面结构怎么读、期权链怎么看。具体买不买、买多少，是你自己的判断，也是你的账户。
+              </p>
+            </details>
+
+          </div>
+        </section>
+
+        <!-- ── 底部 CTA section ── -->
+        <section class="mb-6 text-center">
+          <p class="text-textSecondary text-sm mb-4">
+            8,200 人已经在群里了，<br/>今天还不晚。
+          </p>
+          <a
+           
+            onclick="mixinJump()"
+            class="link-btn cta-glow btn-neon inline-flex items-center justify-center gap-3 text-base w-full py-4 rounded-lg cursor-pointer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span>免费进群 · 每日大盘 + 期权学习</span>
+          </a>
+        </section>
+
+      </div><!-- /max-w container -->
+
+      <!-- ── 免责声明 ── -->
+      <footer class="content-layer border-t border-border mt-4 py-6 px-6 text-center text-textMuted text-[11px] leading-relaxed">
+        仅供教育与资讯参考，不构成任何投资建议。投资有风险，入市需谨慎。<br/>
+        历史分析不代表未来表现。© 2026 技术投研社群
+      </footer>
+
+    </main>
+
+    <!-- ── Sticky 底部 CTA ── -->
+    <div class="sticky-cta">
+      <a
+       
+        onclick="mixinJump()"
+        class="link-btn cta-glow btn-neon flex items-center justify-center gap-2 text-sm w-full max-w-[600px] mx-auto py-3.5 rounded-lg cursor-pointer"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>免费加入技术投研社群</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- ── 手写 canvas 数据网格背景 ── -->
+    <script is:inline>
+      (function () {
+        const canvas = document.getElementById('grid-canvas')
+        if (!canvas) return
+        const ctx = canvas.getContext('2d')
+
+        const COLS = 40
+        const CHARS = '0123456789ABCDEF><+-=%$'
+        const NEON_GREEN = 'rgba(22,255,122,'
+        const NEON_CYAN  = 'rgba(0,212,255,'
+
+        let W, H, cellW, cellH, drops = []
+
+        function resize() {
+          W = canvas.width  = window.innerWidth
+          H = canvas.height = window.innerHeight
+          cellW = Math.floor(W / COLS)
+          cellH = 18
+          drops = Array.from({ length: COLS }, () => Math.random() * -50 | 0)
+        }
+
+        function draw() {
+          // 半透明刷黑,形成拖尾
+          ctx.fillStyle = 'rgba(10,14,18,0.18)'
+          ctx.fillRect(0, 0, W, H)
+
+          ctx.font = `500 12px "JetBrains Mono", monospace`
+
+          for (let i = 0; i < COLS; i++) {
+            const char = CHARS[Math.random() * CHARS.length | 0]
+            const y    = drops[i] * cellH
+            const isCyan = i % 5 === 0
+
+            // 头部字符更亮
+            const alpha = 0.9
+            ctx.fillStyle = isCyan
+              ? NEON_CYAN  + alpha + ')'
+              : NEON_GREEN + alpha + ')'
+            ctx.fillText(char, i * cellW + 2, y)
+
+            // 拖尾暗色
+            if (drops[i] > 2) {
+              const tailChar = CHARS[Math.random() * CHARS.length | 0]
+              ctx.fillStyle = isCyan
+                ? NEON_CYAN  + '0.25)'
+                : NEON_GREEN + '0.2)'
+              ctx.fillText(tailChar, i * cellW + 2, y - cellH)
+            }
+
+            if (y > H && Math.random() > 0.975) {
+              drops[i] = 0
+            }
+            drops[i] += 0.4
+          }
+
+          // 横向网格线(极淡)
+          ctx.strokeStyle = 'rgba(22,255,122,0.04)'
+          ctx.lineWidth = 1
+          for (let row = 0; row * cellH < H; row++) {
+            ctx.beginPath()
+            ctx.moveTo(0, row * cellH)
+            ctx.lineTo(W, row * cellH)
+            ctx.stroke()
+          }
+        }
+
+        resize()
+        window.addEventListener('resize', resize)
+        let gridTimer = setInterval(draw, 55)
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) {
+            clearInterval(gridTimer)
+          } else {
+            gridTimer = setInterval(draw, 55)
+          }
+        })
+      })()
+    </script>
+
+    <!-- ── Hero K线图 canvas ── -->
+    <script is:inline>
+      (function () {
+        const canvas = document.getElementById('hero-canvas')
+        if (!canvas) return
+        const ctx = canvas.getContext('2d')
+
+        let W, H
+
+        function resize() {
+          const wrap = canvas.parentElement
+          W = canvas.width  = wrap.clientWidth
+          H = canvas.height = wrap.clientHeight
+        }
+
+        // 生成随机 K 线数据
+        function makeCandles(n) {
+          const candles = []
+          let price = 180 + Math.random() * 40
+          for (let i = 0; i < n; i++) {
+            const open  = price
+            const move  = (Math.random() - 0.46) * 8
+            const close = open + move
+            const hi    = Math.max(open, close) + Math.random() * 4
+            const lo    = Math.min(open, close) - Math.random() * 4
+            candles.push({ open, close, hi, lo })
+            price = close
+          }
+          return candles
+        }
+
+        let candles = makeCandles(80)
+        let tick = 0
+
+        function draw() {
+          ctx.clearRect(0, 0, W, H)
+
+          // 网格线
+          ctx.strokeStyle = 'rgba(22,255,122,0.06)'
+          ctx.lineWidth = 1
+          for (let i = 1; i < 6; i++) {
+            ctx.beginPath()
+            ctx.moveTo(0, H * i / 6)
+            ctx.lineTo(W, H * i / 6)
+            ctx.stroke()
+          }
+          for (let i = 1; i < 10; i++) {
+            ctx.beginPath()
+            ctx.moveTo(W * i / 10, 0)
+            ctx.lineTo(W * i / 10, H)
+            ctx.stroke()
+          }
+
+          // K 线
+          const n = candles.length
+          const candleW = Math.floor(W / n)
+          const pad = 10
+
+          const prices = candles.flatMap(c => [c.hi, c.lo])
+          const minP = Math.min(...prices)
+          const maxP = Math.max(...prices)
+          const range = maxP - minP || 1
+
+          const toY = p => pad + (1 - (p - minP) / range) * (H - pad * 2)
+
+          // 移动平均线（青色）
+          const ma = 10
+          ctx.beginPath()
+          ctx.strokeStyle = 'rgba(0,212,255,0.55)'
+          ctx.lineWidth = 1.5
+          for (let i = ma; i < n; i++) {
+            const avg = candles.slice(i - ma, i).reduce((s, c) => s + (c.open + c.close) / 2, 0) / ma
+            const x = i * candleW + candleW / 2
+            if (i === ma) ctx.moveTo(x, toY(avg))
+            else ctx.lineTo(x, toY(avg))
+          }
+          ctx.stroke()
+
+          // 绘制 K 线主体
+          for (let i = 0; i < n; i++) {
+            const c = candles[i]
+            const x = i * candleW
+            const bullish = c.close >= c.open
+            const color = bullish ? 'rgba(22,255,122,' : 'rgba(255,80,80,'
+            const bodyTop    = toY(Math.max(c.open, c.close))
+            const bodyBottom = toY(Math.min(c.open, c.close))
+            const bodyH = Math.max(bodyBottom - bodyTop, 1)
+
+            // 影线
+            ctx.strokeStyle = color + '0.7)'
+            ctx.lineWidth = 1
+            ctx.beginPath()
+            ctx.moveTo(x + candleW / 2, toY(c.hi))
+            ctx.lineTo(x + candleW / 2, toY(c.lo))
+            ctx.stroke()
+
+            // 实体
+            ctx.fillStyle = color + (bullish ? '0.75)' : '0.6)')
+            ctx.fillRect(x + 1, bodyTop, candleW - 2, bodyH)
+
+            // 发光描边
+            if (bullish) {
+              ctx.strokeStyle = 'rgba(22,255,122,0.9)'
+              ctx.lineWidth = 0.5
+              ctx.strokeRect(x + 1, bodyTop, candleW - 2, bodyH)
+            }
+          }
+
+          // 最新价格线（霓虹绿虚线）
+          const last = candles[n - 1]
+          const lastY = toY(last.close)
+          ctx.setLineDash([4, 4])
+          ctx.strokeStyle = 'rgba(22,255,122,0.6)'
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(0, lastY)
+          ctx.lineTo(W, lastY)
+          ctx.stroke()
+          ctx.setLineDash([])
+
+          tick++
+        }
+
+        resize()
+        window.addEventListener('resize', () => { resize(); candles = makeCandles(80) })
+
+        // 每隔2秒新增一根 K 线，形成实时感
+        let candleTimer = setInterval(() => {
+          const last = candles[candles.length - 1]
+          const move = (Math.random() - 0.46) * 6
+          const open  = last.close
+          const close = open + move
+          candles.push({
+            open, close,
+            hi: Math.max(open, close) + Math.random() * 3,
+            lo: Math.min(open, close) - Math.random() * 3,
+          })
+          if (candles.length > 80) candles.shift()
+        }, 2000)
+
+        let drawTimer = setInterval(draw, 50)
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) {
+            clearInterval(candleTimer)
+            clearInterval(drawTimer)
+          } else {
+            candleTimer = setInterval(() => {
+              const last = candles[candles.length - 1]
+              const move = (Math.random() - 0.46) * 6
+              const open  = last.close
+              const close = open + move
+              candles.push({
+                open, close,
+                hi: Math.max(open, close) + Math.random() * 3,
+                lo: Math.min(open, close) - Math.random() * 3,
+              })
+              if (candles.length > 80) candles.shift()
+            }, 2000)
+            drawTimer = setInterval(draw, 50)
+          }
+        })
+      })()
+    </script>
+  </body>
+</html>

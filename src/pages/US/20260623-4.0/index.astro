@@ -1,0 +1,195 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroImg from './assets/images/hero-concept.webp'
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>投资老是亏，不是因为你不够努力 — 免费投资学习社群</title>
+    <meta name="description" content="很多在美华人工作勤勤恳恳，投资却总感觉哪里不对。不是不努力，是没人带着看懂大盘逻辑。加入免费华人投资社群，每天有人把 Fed 动向和板块资金流向用白话讲明白。" />
+
+    <RedirectCode />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: '#0A2540',
+              inkMid: '#2C4A6B',
+              inkSoft: '#5B7A9A',
+              gold: '#C4942A',
+              goldLight: '#E8B84B',
+              cream: '#FAF8F4',
+              ctaBg: '#1A5276',
+              ctaHover: '#154360',
+            },
+            fontFamily: {
+              display: ['"Noto Serif SC"', 'Georgia', 'serif'],
+              body: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+            },
+            letterSpacing: {
+              widest2: '0.25em',
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: 'Noto Sans SC', system-ui, sans-serif;
+        background: #FAF8F4;
+        color: #0A2540;
+      }
+
+      /* ── 英雄图背景：图片加载失败时的 fallback 渐变 ── */
+      .hero-visual {
+        background: linear-gradient(
+          160deg,
+          #071929 0%,
+          #0A2540 30%,
+          #0D3055 55%,
+          #1a4a72 75%,
+          #2c6b9a 88%,
+          #c4942a 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      @keyframes ctaPulse {
+        0%, 100% { box-shadow: 0 6px 30px rgba(26, 82, 118, 0.4); }
+        50%       { box-shadow: 0 8px 40px rgba(26, 82, 118, 0.65); }
+      }
+      .cta-pulse { animation: ctaPulse 2.2s ease-in-out infinite; }
+
+      /* 长文案排版 */
+      .body-copy {
+        font-family: 'Noto Sans SC', sans-serif;
+        font-size: 1rem;
+        line-height: 1.9;
+        color: #2C4A6B;
+      }
+      .body-copy strong {
+        color: #0A2540;
+        font-weight: 700;
+      }
+
+      /* sticky CTA 背景渐变 */
+      .sticky-bar {
+        background: rgba(250, 248, 244, 0.96);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(196, 148, 42, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <main class="flex-1 flex flex-col w-full max-w-[620px] mx-auto pb-24">
+
+      <!-- ── HERO IMAGE ── -->
+      <div class="hero-visual w-full" style={`aspect-ratio: 3/2; min-height: 220px; max-height: 380px; background-image: url(${heroImg.src}); background-size: cover; background-position: center;`}>
+      </div>
+
+      <!-- ── COPY BLOCK ── -->
+      <section class="w-full px-6 pt-10 pb-8">
+
+        <!-- eyebrow -->
+        <p class="text-[11px] uppercase tracking-widest2 text-gold font-bold mb-5 font-body">
+          每天和华人一起看行情、聊思路 · 完全免费
+        </p>
+
+        <!-- headline -->
+        <h1 class="font-display font-black text-ink text-[1.85rem] leading-[1.2] mb-7" style="letter-spacing: -0.01em;">
+          投资老是亏，<br />
+          <span style="color:#C4942A;">不是因为你不够努力</span>
+        </h1>
+
+        <!-- long-form copy -->
+        <div class="body-copy space-y-5 mb-9">
+          <p>
+            很多在美华人，平时工作勤勤恳恳，英文过得去，收入也还行。
+            但一碰到投资，总感觉哪里不对——<strong>买的涨不起来，卖的又涨了</strong>，
+            反复几轮，开始怀疑自己是不是天生没那根弦。
+          </p>
+          <p>
+            其实不是你的问题。是因为没人带，没有那个套路。
+          </p>
+          <p>
+            Fed 在想什么，哪些板块大资金悄悄在进，大盘涨跌背后的逻辑——
+            这些东西网上都查得到，但没人帮你<strong>串起来</strong>，
+            光看数据根本不知道该怎么用。
+            靠自己瞎猜摸索，交的学费太贵。
+          </p>
+          <p>
+            我们建了一个免费社群，专门给在美华人投资者。
+            每天都有人把 Fed 动向、板块资金流向，用白话讲明白——
+            不是给你选股，<strong>是帮你自己看懂大盘在发生什么</strong>。
+            零基础可以进来，已经在投资的也能多个视角对照。
+          </p>
+          <p>
+            免费，随时可以退出，没有任何推销。
+            进来看看，要留要走，你说了算。
+          </p>
+        </div>
+
+        <!-- CTA button -->
+        <div class="flex flex-col items-center gap-3">
+          <a
+            onclick="mixinJump()"
+            class="link-btn cta-pulse inline-flex items-center justify-center gap-2.5 bg-ctaBg hover:bg-ctaHover text-white font-bold text-[1.05rem] px-8 py-[17px] rounded-xl cursor-pointer transition-colors w-full text-center font-body"
+            style="letter-spacing: 0.02em;"
+          >
+            <!-- 群组图标 SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m6-4a4 4 0 11-8 0 4 4 0 018 0zm6 0a3 3 0 11-6 0 3 3 0 016 0zM3 12a3 3 0 116 0 3 3 0 01-6 0z" />
+            </svg>
+            <span>免费加入华人投资社群</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <p class="text-[12px] text-inkSoft font-body text-center" style="letter-spacing: 0.02em;">
+            纯免费 · 不卖课 · 零基础也能进 · 随时可退出
+          </p>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- ── STICKY BOTTOM CTA ── -->
+    <div class="sticky-bar fixed bottom-0 left-0 right-0 z-50 px-5 py-3.5">
+      <div class="max-w-[620px] mx-auto">
+        <a
+          onclick="mixinJump()"
+          class="link-btn inline-flex items-center justify-center gap-2 bg-ctaBg hover:bg-ctaHover text-white font-bold text-[0.95rem] px-6 py-3.5 rounded-xl cursor-pointer transition-colors w-full text-center font-body"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m6-4a4 4 0 11-8 0 4 4 0 018 0zm6 0a3 3 0 11-6 0 3 3 0 01-6 0zM3 12a3 3 0 116 0 3 3 0 01-6 0z" />
+          </svg>
+          <span>免费进群看看 →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer class="pb-28 pt-6 text-center text-inkSoft text-[11px] px-5 font-body leading-relaxed">
+      仅供教育与资讯参考，不构成任何投资建议。投资有风险，入市需谨慎。<br />
+      © 2026 · Investing Education Community
+    </footer>
+
+  </body>
+</html>

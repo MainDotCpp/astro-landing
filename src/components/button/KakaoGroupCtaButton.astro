@@ -1,0 +1,28 @@
+---
+import kakao from '@/assets/kakao-icon.png'
+import BaseCtaButton from './BaseCtaButton.astro'
+
+// 카카오톡 그룹(오픈채팅) 입장용 버튼.
+// 외관/이동은 卡扣(Kakao)와 동일(link-btn → jumpToKakao)하지만,
+// 문구를 "무료 커뮤니티 참여하기"로 노출해 그룹 입장 투放 변형에 사용.
+type Props = {
+    size?: 'sm' | 'md' | 'lg'
+    animate?: boolean
+    class?: string
+    redirect?: boolean
+    unstyled?: boolean
+}
+
+const {
+    ...restProps
+} = Astro.props as Props
+---
+
+<BaseCtaButton
+    variant="kakao"
+    text="무료 커뮤니티 참여하기"
+    icon={{ src: kakao, alt: 'Kakao' }}
+    {...restProps}
+>
+    <slot name="content" />
+</BaseCtaButton>

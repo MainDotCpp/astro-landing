@@ -19,7 +19,7 @@ const img1 = (await import(`./static/images/${people}_1.png`)).default
 const img2 = (await import(`./static/images/${people}_2.png`)).default
 const img3 = (await import(`./static/images/${people}_3.png`)).default
 
-const socialOptions = ['卡扣', '棒群', '混合', '引导弹窗'] as const
+const socialOptions = ['卡扣', '卡群', '棒群', '混合', '引导弹窗'] as const
 type Social = typeof socialOptions[number]
 const social: Social | undefined = socialOptions.includes(t as Social) ? (t as Social) : undefined
 ---

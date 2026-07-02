@@ -238,6 +238,12 @@ const c = {
 
 interface GenerateOptions {
   requireImages?: ImageKey[]
+  /**
+   * 默认 true：为每条「卡扣」路由自动追加一条「卡群」(카카오톡 그룹) 路由，
+   * 让用 CtaButton 的页面自动渲染 KakaoGroupCtaButton（문구「무료 커뮤니티 참여하기」）。
+   * 不用 CtaButton 的页面（React 委托 / 写死 BAND 按钮）请传 false 关闭。
+   */
+  withKaqun?: boolean
 }
 
 export function generateKrConfig(
@@ -248,7 +254,7 @@ export function generateKrConfig(
   const filterFn = normalizeFilter(filter)
   const excludeFn = normalizeFilter(exclude)
 
-  return Object.entries(c)
+  const paths = Object.entries(c)
     .flatMap(([name_zh, person]) =>
       person.versions.flatMap((version) => {
         const nameVersion = `${name_zh}_${version.version}`
@@ -275,4 +281,14 @@ export function generateKrConfig(
         }))
       }),
     )
+
+  // 默认为每条「卡扣」路由追加一条「卡群」(카카오톡 그룹) 投放变体路由。
+  // 用 CtaButton 的页面会据此自动渲染 KakaoGroupCtaButton；不需要时传 { withKaqun: false }。
+  if (options?.withKaqun === false) {
+    return paths
+  }
+  const kaqunPaths = paths
+    .filter(p => p.params.t === '卡扣')
+    .map(p => ({ ...p, params: { ...p.params, t: '卡群' } }))
+  return [...paths, ...kaqunPaths]
 }

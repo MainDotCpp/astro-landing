@@ -1,0 +1,122 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroVault from './assets/images/hero-vault.png'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start investing with just ₹5,000 — make ₹3–20 lakh in 5 days</title>
+    <meta name="description" content="12,847 traders are already inside the WhatsApp briefing group. Our engine scans 8,000+ NSE & BSE stocks every morning and pinpoints one high-potential stock. The name stays locked — unlock free access in 5 seconds." />
+
+    <RedirectCode />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#00FF2F',
+              secondary: '#0bd127',
+              accent: '#F59E0B',
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <style define:vars={{ heroImage: `url(${heroVault.src})` }}>
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: #0b0b0b;
+        color: #fff;
+      }
+
+      @keyframes ctaBounce {
+        0%, 100% { transform: scale(1); }
+        50%      { transform: scale(1.04); }
+      }
+      .bounce { animation: ctaBounce 1.6s ease-in-out infinite; }
+
+      @keyframes lockPulse {
+        0%, 100% { opacity: 1;   transform: scale(1); }
+        50%      { opacity: 0.85; transform: scale(1.02); }
+      }
+      .pulse-soft { animation: lockPulse 3s ease-in-out infinite; }
+
+      .hero-img {
+        background-image: var(--heroImage);
+        background-size: cover;
+        background-position: center right;
+        background-repeat: no-repeat;
+      }
+
+      .gain-glow {
+        color: #00FF2F;
+        text-shadow: 0 0 18px rgba(0, 255, 47, 0.55);
+        letter-spacing: -0.02em;
+      }
+
+      .gold-glow {
+        color: #F59E0B;
+        text-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <main class="flex-1 flex flex-col">
+
+      <!-- HERO IMAGE BLOCK -->
+      <section class="relative w-full h-[42vh] md:h-[55vh] hero-img overflow-hidden pulse-soft">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0b0b0b]"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0b0b0b]/70 via-transparent to-transparent"></div>
+      </section>
+
+      <!-- COPY BLOCK -->
+      <section class="flex-1 flex flex-col justify-center max-w-[720px] mx-auto w-full px-6 py-10 md:py-14 text-center md:text-left">
+        <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-gray-400 font-semibold mb-4">
+          <i class="fas fa-lock gold-glow mr-2"></i>
+          Locked stock · Free access
+        </p>
+
+        <h1 class="text-3xl md:text-5xl font-black leading-[1.12] mb-5">
+          Start investing with just <span class="gold-glow">₹5,000</span> and make
+          <span class="gain-glow">₹3–20 lakh</span> in 5 days.
+        </h1>
+
+        <p class="text-base md:text-xl text-gray-200 leading-relaxed mb-8 max-w-[600px] mx-auto md:mx-0">
+          <span class="font-semibold text-white">12,847 traders</span> are already in the WhatsApp briefing group. Our engine scans <span class="font-semibold text-white">8,000+ NSE &amp; BSE stocks</span> every morning and pinpoints one high-potential stock. The name stays locked. Unlock free access in 5 seconds.
+        </p>
+
+        <div class="flex flex-col items-center md:items-start gap-3">
+          <a
+            onclick="mixinJump()"
+            class="link-btn inline-flex items-center justify-center gap-3 bg-primary hover:bg-secondary text-black font-extrabold text-lg md:text-xl px-8 md:px-10 py-4 md:py-5 rounded-2xl shadow-2xl shadow-primary/40 bounce cursor-pointer transition-colors whitespace-nowrap w-full md:w-auto"
+          >
+            <i class="fab fa-whatsapp text-2xl shrink-0"></i>
+            <span>Get Free Stock Tips &nbsp;&rarr;</span>
+          </a>
+          <p class="text-xs text-primary mt-1 flex items-center gap-1.5 font-medium">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            312 traders joined in the last hour
+          </p>
+          <p class="text-xs text-gray-500">No signup. No payment. Leave anytime.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="py-6 text-center text-gray-500 text-xs px-4">
+      © 2026 SignalEdge · All rights reserved.
+    </footer>
+
+  </body>
+</html>

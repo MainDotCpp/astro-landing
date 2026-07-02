@@ -1,0 +1,314 @@
+---
+import KRRedirectCode from '@/components/KRRedirectCode.astro'
+import bandIcon from '@/assets/band-icon.png'
+import kakaoIcon from '@/assets/kakao-icon.png'
+
+export function getStaticPaths() {
+  return [
+    { params: { t: '卡扣' } },
+    { params: { t: '棒群' } },
+  ]
+}
+
+const { t = '卡扣' } = Astro.params
+const isBand = t === '棒群'
+const channel = isBand ? '네이버 밴드' : '카카오톡 오픈채팅'
+const channelShort = isBand ? '밴드' : '카카오톡'
+const jumpFn = isBand ? 'jumpToBand()' : 'jumpToKakao()'
+const bodyClass = isBand ? 'ch-band' : 'ch-kakao'
+const ctaIcon = isBand ? bandIcon : kakaoIcon
+
+const title = '오늘의 엄선 종목 리스트 · 무료 정보방'
+const description = '장 시작 전, 매일 엄선한 핵심 종목 정보를 정리해 드립니다. 지금 무료로 입장하고 오늘의 리스트를 확인하세요. 본 정보는 일반 참고용이며 투자 권유가 아닙니다.'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f1d33" />
+
+    <KRRedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class={bodyClass}>
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <p class="eyebrow"><span class="pulse"></span> 오늘 리스트, 방금 올라왔어요</p>
+          <h1>오늘 뭘 봐야 할지,<br />입장하면 <span class="hl">바로 보입니다</span></h1>
+          <p class="lead">
+            장 시작 전, 오늘 주목할 종목을 매일 정리해 드려요. 뉴스 챙겨보랴, 차트 뒤지랴 할 거 없이
+            {channel}에서 무료로 받아보세요.
+          </p>
+          <a href="javascript:void(0)" class="cta" onclick={jumpFn}><img src={ctaIcon.src} alt="" class="cta-ic" /><span>{channelShort} 무료 입장하고 오늘의 리스트 받기</span></a>
+          <p class="micro">입장은 무료입니다. 제공되는 정보는 일반 참고용이며, 투자 판단과 책임은 본인에게 있습니다.</p>
+          <div class="stats">
+            <div class="stat"><strong>매일</strong><span>장 시작 전 업데이트</span></div>
+            <div class="stat"><strong>2,800+</strong><span>이미 참여 중</span></div>
+            <div class="stat"><strong>100%</strong><span>입장·정보 모두 무료</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pain">
+        <div class="wrap">
+          <p class="kicker">이런 적 없으세요?</p>
+          <h2>정보가 없어서가 아니에요. 그 많은 정보 중에 뭘 봐야 할지를 모르는 게 진짜 문제죠.</h2>
+          <ul class="pain-list">
+            <li><span class="x">!</span>지수는 오르는데, 내가 가진 종목만 빠진다.</li>
+            <li><span class="x">!</span>유튜브, 단톡방, 뉴스… 봐도 봐도 결론이 안 난다.</li>
+            <li><span class="x">!</span>좋아 보여서 들어가면 꼭 고점에 물린다.</li>
+            <li><span class="x">!</span>타이밍을 놓치고, 늘 한발 늦게 따라간다.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="benefits">
+        <div class="wrap">
+          <p class="kicker">입장하면 받는 것</p>
+          <h2>종목만 툭 던지지 않습니다. 어느 가격대에서 볼지까지 같이 정리합니다.</h2>
+          <div class="grid">
+            <article class="card">
+              <div class="ic">★</div>
+              <h3>오늘의 엄선 종목 리스트</h3>
+              <p>2,000개 넘는 상장 종목 중에서 오늘 볼 만한 것만 추려 장 열기 전에 드려요.</p>
+            </article>
+            <article class="card">
+              <div class="ic">◎</div>
+              <h3>진입 참고가 + 손절 기준</h3>
+              <p>매수 참고가와 손절 기준선까지 같이 짚어드려요. "얼마에 보고, 어디서 끊을지"가 종목 이름보다 중요하니까요.</p>
+            </article>
+            <article class="card">
+              <div class="ic">⚠</div>
+              <h3>주요 이슈 · 리스크 알림</h3>
+              <p>흐름이 바뀌거나 주의가 필요한 종목은 미리 한 번 짚어드립니다.</p>
+            </article>
+            <article class="card">
+              <div class="ic">↻</div>
+              <h3>매 거래일 업데이트</h3>
+              <p>시장은 매일 달라집니다. 지난 리스트가 아니라, 오늘의 리스트를 드립니다.</p>
+            </article>
+            <article class="card">
+              <div class="ic">✓</div>
+              <h3>실시간 Q&amp;A</h3>
+              <p>궁금한 종목 있으면 채팅방에 바로 물어보세요. 혼자 끙끙댈 필요 없어요.</p>
+            </article>
+            <article class="card">
+              <div class="ic">◆</div>
+              <h3>초보도 따라가기 쉽게</h3>
+              <p>어려운 용어 없이, 오늘 무엇을 볼지 핵심만 짚어 드립니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews">
+        <div class="wrap">
+          <p class="kicker">참여자 후기</p>
+          <h2>먼저 들어와 있는 분들 후기예요.</h2>
+          <div class="grid">
+            <article class="review">
+              <div class="rv-top"><span class="av">김</span><div><b>김도현</b><span class="star">★★★★★</span></div></div>
+              <p>남의 종목만 오르는 걸 보며 답답했는데, 매일 정리된 리스트를 보니 적어도 무엇을 볼지는 명확해졌습니다.</p>
+            </article>
+            <article class="review">
+              <div class="rv-top"><span class="av">이</span><div><b>이서연</b><span class="star">★★★★★</span></div></div>
+              <p>초보라 늘 막막했는데, 진입 참고가까지 같이 짚어주니 따라가기가 한결 수월해요.</p>
+            </article>
+            <article class="review">
+              <div class="rv-top"><span class="av">박</span><div><b>박준영</b><span class="star">★★★★★</span></div></div>
+              <p>매일 업데이트라 묵은 정보가 아니라는 점이 좋아요. 궁금한 건 바로 물어볼 수 있어 든든합니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="wrap">
+          <h2>오늘의 리스트, 지금 바로 받아보세요.</h2>
+          <p>가입 절차도, 결제도 없어요. {channel}에 들어오면 오늘 볼 종목이 바로 떠 있습니다.</p>
+          <a href="javascript:void(0)" class="cta" onclick={jumpFn}><img src={ctaIcon.src} alt="" class="cta-ic" /><span>{channelShort} 무료로 입장하기</span></a>
+        </div>
+      </section>
+
+      <section class="faq">
+        <div class="wrap">
+          <p class="kicker">자주 묻는 질문</p>
+          <h2>입장 전, 이것만 확인하세요.</h2>
+          <div class="faq-list">
+            <details>
+              <summary>정말 무료인가요?</summary>
+              <p>네. 입장과 매일 제공되는 종목 정보 모두 무료입니다. 방 안에서 별도의 회비를 받지 않습니다.</p>
+            </details>
+            <details>
+              <summary>어떤 종목을 알려주나요?</summary>
+              <p>매일 시장을 살펴 주목할 만한 종목 정보를 정리해 공유합니다. 이는 일반적인 정보 공유이며, 특정 종목의 매수·매도 권유가 아닙니다.</p>
+            </details>
+            <details>
+              <summary>입장하면 무엇을 받나요?</summary>
+              <p>오늘의 엄선 종목 리스트와 진입 참고가, 주요 이슈 정리를 받아보실 수 있습니다. 궁금한 점은 실시간으로 질문할 수 있습니다.</p>
+            </details>
+            <details>
+              <summary>수익을 보장하나요?</summary>
+              <p>아니요. 모든 투자에는 위험이 따르며, 어떤 정보도 수익을 보장할 수 없습니다. 최종 판단과 책임은 본인에게 있습니다.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <strong>투자 유의사항 및 고지</strong><br />
+        투자에는 원금 손실의 위험이 있으며, 과거의 수익이 미래의 수익을 보장하지 않습니다. 본 페이지의 모든 내용은 일반적인 시장 정보 및 학습 참고용이며, 특정 종목·금융상품의 매수·매도 권유, 투자 자문, 수익 보장을 의미하지 않습니다. 최종 투자 판단과 그에 따른 책임은 이용자 본인에게 있습니다.
+        <br /><br />
+        Hangfu Financial Information Ltd.　|　문의: info@hangfu-finance.com　|　© 2026 Hangfu Financial Information Ltd.
+      </div>
+    </footer>
+
+    <div class="sticky">
+      <a href="javascript:void(0)" class="cta" onclick={jumpFn}><img src={ctaIcon.src} alt="" class="cta-ic" /><span>{channelShort} 무료 입장 · 오늘의 리스트 받기</span></a>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #eef1f6;
+    --ink: #121a2a;
+    --ink-soft: #5a6577;
+    --line: #e0e5ee;
+    --navy: #0f1d33;
+    --navy-2: #1c365c;
+    --card: #ffffff;
+    --max: 600px;
+  }
+  .ch-kakao {
+    --accent: #fee500;
+    --accent-ink: #3c1e1e;
+    --accent-soft: rgba(254, 229, 0, 0.16);
+  }
+  .ch-band {
+    --accent: #03c75a;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(3, 199, 90, 0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Nanum Gothic', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: 84px;
+  }
+  .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  a { text-decoration: none; color: inherit; }
+
+  /* CTA */
+  .cta {
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    width: 100%; min-height: 60px; padding: 14px 22px; gap: 10px;
+    border-radius: 16px; cursor: pointer;
+    background: var(--accent); color: var(--accent-ink);
+    font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em;
+    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.35);
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .cta:hover { transform: translateY(-2px); filter: brightness(1.03); }
+  .cta:active { transform: translateY(0) scale(0.99); }
+  .cta-ic { width: 27px; height: 27px; flex-shrink: 0; }
+  .ch-kakao .cta-ic { border-radius: 50%; }
+  .ch-band .cta-ic { border-radius: 24%; }
+
+  /* Hero */
+  .hero {
+    background: radial-gradient(circle at 80% 0%, rgba(255,255,255,.08), transparent 40%), linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff; padding: 40px 0 44px;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-soft); color: #fff;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px; padding: 7px 13px; font-size: .82rem; font-weight: 700; margin-bottom: 18px;
+  }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+  .hero h1 { font-size: clamp(2rem, 8.5vw, 2.7rem); line-height: 1.18; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .hl { color: var(--accent); }
+  .ch-kakao .hl { color: #ffe600; }
+  .lead { color: #cdd8ea; font-size: 1.02rem; line-height: 1.7; margin-bottom: 22px; }
+  .micro { color: #8294ad; font-size: .78rem; line-height: 1.55; margin-top: 12px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 26px; }
+  .stat { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 14px 8px; text-align: center; }
+  .stat strong { display: block; font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .stat span { display: block; font-size: .72rem; color: #9fb0c8; margin-top: 4px; line-height: 1.4; }
+
+  /* Sections */
+  section { padding: 48px 0; }
+  .kicker { color: var(--ink-soft); font-weight: 800; font-size: .82rem; margin-bottom: 10px; letter-spacing: .02em; }
+  h2 { font-size: clamp(1.5rem, 6vw, 1.95rem); line-height: 1.32; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; }
+
+  .pain { background: var(--bg); }
+  .pain-list { display: grid; gap: 11px; list-style: none; }
+  .pain-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 15px 16px; font-weight: 600; color: #2b3547; line-height: 1.55;
+  }
+  .x { flex: 0 0 24px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #ffe8e8; color: #e0483c; font-weight: 900; }
+
+  .benefits { background: #fff; }
+  .grid { display: grid; gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: 0 10px 26px -18px rgba(18,26,42,.3); }
+  .ic { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-ink); font-size: 1.3rem; margin-bottom: 13px; }
+  .ch-band .ic { color: #03a049; }
+  .card h3 { font-size: 1.12rem; font-weight: 800; margin-bottom: 7px; letter-spacing: -0.01em; }
+  .card p { color: var(--ink-soft); font-size: .95rem; line-height: 1.65; }
+
+  .reviews { background: var(--bg); }
+  .review { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+  .rv-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .av { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; font-weight: 800; flex-shrink: 0; }
+  .rv-top b { display: block; font-size: 1rem; font-weight: 800; }
+  .star { color: #f5b301; font-size: .82rem; letter-spacing: 1px; }
+  .review p { color: #2b3547; font-size: .96rem; line-height: 1.7; }
+
+  .cta-band { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; text-align: center; }
+  .cta-band h2 { color: #fff; }
+  .cta-band p { color: #cdd8ea; font-size: 1rem; line-height: 1.7; margin-bottom: 22px; }
+
+  .faq { background: #fff; }
+  .faq-list { display: grid; gap: 11px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  summary { cursor: pointer; font-weight: 800; font-size: 1rem; letter-spacing: -0.01em; }
+  details p { color: var(--ink-soft); line-height: 1.7; margin-top: 11px; font-size: .94rem; }
+
+  .footer { background: #0c1726; color: #8294ad; padding: 28px 0 40px; font-size: .8rem; line-height: 1.75; }
+  .footer strong { color: #c3d0e1; }
+
+  .sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(238,241,246,0), rgba(238,241,246,.96) 30%);
+  }
+  .sticky .cta { box-shadow: 0 -2px 18px rgba(0,0,0,.12), 0 14px 30px -10px rgba(0,0,0,.35); }
+
+  @media (min-width: 620px) {
+    .hero { padding: 60px 0 64px; }
+    section { padding: 64px 0; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
