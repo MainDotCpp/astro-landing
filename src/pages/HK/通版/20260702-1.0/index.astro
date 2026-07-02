@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
-const title = '6月埋單：出咗5個call，中咗4個 | 港股實戰社群結算單'
-const description = '唔使吹，張6月實盤結算單擺喺度自己睇：5個call中4個，連止蝕嗰隻都照晒出嚟。7月第一批call已經喺群入面，加WhatsApp即攞。'
+const title = '6月埋單：出咗5個call，中咗4個 | 港股實戰群組結算單'
+const description = '唔使吹，張6月真倉結算單擺喺度自己睇：5個call中4個，連止蝕嗰隻都冇收埋。7月頭一批call啱啱出咗，加WhatsApp即攞。'
 
 const RECORD: {
   date: string
@@ -17,7 +17,7 @@ const RECORD: {
   { date: '6/3', code: '0522', name: 'ASMPT', entry: '167.00', exit: '238.90', pct: '+43%', win: true },
   { date: '6/5', code: '0992', name: '聯想集團', entry: '19.20', exit: '23.02', pct: '+20%', win: true },
   { date: '6/9', code: '0981', name: '中芯國際', entry: '73.20', exit: '84.80', pct: '+16%', win: true },
-  { date: '6/15', code: '3690', name: '美團', entry: '68.00', exit: '65.28', pct: '-4%', win: false, note: '跌穿止蝕，果斷走' },
+  { date: '6/15', code: '3690', name: '美團', entry: '68.00', exit: '65.28', pct: '-4%', win: false, note: '跌穿止蝕，即刻走' },
   { date: '6/18', code: '9868', name: '小鵬汽車', entry: '51.50', exit: '60.80', pct: '+18%', win: true },
 ]
 
@@ -45,16 +45,16 @@ const TOTAL_PCT = '+19%'
     <section class="statement">
       <div class="stmt-inner">
         <header class="stmt-head">
-          <p class="stmt-org">港股實戰社群</p>
-          <p class="stmt-sub">二〇二六年六月 · 實盤結算單 <span class="stamp">已結算</span></p>
+          <p class="stmt-org">港股實戰群</p>
+          <p class="stmt-sub">二〇二六年六月 · 真倉結算單 <span class="stamp">已結算</span></p>
         </header>
         <table class="stmt-table">
           <thead>
             <tr>
-              <th class="c-date">叫入日</th>
+              <th class="c-date">出Call日</th>
               <th class="c-stk">股票</th>
-              <th class="c-io">入場 → 走貨</th>
-              <th class="c-pct">埋單</th>
+              <th class="c-io">入貨 → 走貨</th>
+              <th class="c-pct">賺蝕</th>
             </tr>
           </thead>
           <tbody>
@@ -81,44 +81,44 @@ const TOTAL_PCT = '+19%'
             </tr>
           </tfoot>
         </table>
-        <p class="stmt-note">*結算價以出 call 群內截圖為準</p>
+        <p class="stmt-note">*價位以群內出 call、走貨嗰刻嘅截圖為準</p>
       </div>
     </section>
 
     <a href="javascript:void(0)" onclick="mixinJump()" class="wa-cta reveal" data-evt="statement">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
-      加 WhatsApp · 攞 7 月名單
+      加 WhatsApp · 攞 7 月 call 名單
     </a>
-    <p class="cta-sub reveal">7 月第一批 call 已經喺群入面出咗</p>
+    <p class="cta-sub reveal">7 月頭一批 call 啱啱喺群入面出咗</p>
 
     <!-- ═══════════ 點解捉得中（散文式，無卡片）═══════════ -->
     <section class="why">
-      <h2 class="reveal">點解次次都捉得咁準？</h2>
-      <p class="reveal">我哋唔靠消息、唔靠冧巴。盯嘅係機構資金郁向——大戶喺邊個板塊入貨，成交幫唔幫手，圖表講唔講得通，三樣夾埋先出 call。</p>
-      <p class="reveal">收市之後仲有 re-cap：點解入、點解走、止蝕點解擺喺嗰度，逐個位同你拆。跟得耐，你自己都會識睇。</p>
+      <h2 class="reveal">點解捉路捉得咁準？</h2>
+      <p class="reveal">我哋唔靠消息、唔靠人報冧巴。睇實嘅係大戶資金流向——邊個板塊有大戶入緊貨，成交配唔配合，幅圖企唔企得住，三樣夾埋先出 call。</p>
+      <p class="reveal">收市之後仲有 recap：點解入、點解走、止蝕點解擺喺嗰度，逐個位同你拆。跟得耐，你自己都會識睇。</p>
     </section>
 
     <!-- ═══════════ 群友引文（社會證明）═══════════ -->
     <section class="voices">
       <blockquote class="reveal"><p>以前自己亂咁買，十次有八次接火棒。跟咗兩個月，最起碼知道自己買緊咩、幾時要走。</p><cite>— 群友 K.（入群 2 個月）</cite></blockquote>
-      <blockquote class="reveal"><p>美團嗰隻我本來都有貨，見佢哋連止蝕位都寫到明，跌穿真係即刻叫走，先冇畀佢拖落去。</p><cite>— 群友 阿邦</cite></blockquote>
+      <blockquote class="reveal"><p>美團嗰隻我本來都有貨，見佢哋連止蝕位都寫到明，跌穿真係即刻叫走，先至冇坐艇坐到而家。</p><cite>— 群友 阿邦</cite></blockquote>
     </section>
 
     <!-- ═══════════ 收口 CTA ═══════════ -->
     <section class="closing">
-      <h2 class="reveal">7 月份嘅名單，已經開始咗。</h2>
-      <p class="reveal">第一批 call 上個禮拜已經出咗。而家入嚟，仲趕得切下一隻。</p>
+      <h2 class="reveal">7 月嘅 call，已經出緊。</h2>
+      <p class="reveal">頭一批 call 啱啱出咗。而家入嚟，仲趕得切下一隻。</p>
       <a href="javascript:void(0)" onclick="mixinJump()" class="wa-cta reveal" data-evt="final">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
         加 WhatsApp · 即刻入群
       </a>
-      <p class="risk reveal">投資涉及風險，過往表現唔代表將來回報。</p>
+      <p class="risk reveal">投資涉及風險，過往表現並不代表將來回報。</p>
     </section>
   </main>
 
   <!-- ═══════════ 底部 STICKY CTA ═══════════ -->
   <div class="sticky-cta" id="stickyCta">
-    <div class="sc-txt"><b>6月結算單 · 5中4</b><span>7月call已經開始</span></div>
+    <div class="sc-txt"><b>6月結算單 · 5中4</b><span>7 月 call 出緊</span></div>
     <a href="javascript:void(0)" onclick="mixinJump()" class="sc-btn" data-evt="sticky">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.43 1.32-1.97 1.4-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.66-.61-2.93-1.27-4.84-4.22-4.99-4.41-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.59.83 2.02.9 2.17.07.15.12.32.02.51-.09.2-.14.32-.27.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.12.07.69-.18 1.38Z"></path></svg>
       入群
