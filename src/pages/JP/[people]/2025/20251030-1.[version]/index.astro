@@ -1,0 +1,2103 @@
+---
+import { Image } from 'astro:assets'
+// Import Lucide icons (keeping for hero features)
+import { BarChart3, DollarSign, Lightbulb, Target, TrendingUp } from 'lucide-astro'
+import LineButton from '@/components/button/LineButton.tsx'
+import ButtonAction from '@/components/ButtonAction.astro'
+import RedirectCode from '@/components/RedirectCode.astro'
+// Import images
+import imgMerit1 from './static/picture/img_merit1.jpg'
+import imgMerit2 from './static/picture/img_merit2.jpg'
+import imgVoice1 from './static/picture/img_voice1.jpg'
+import imgVoice2 from './static/picture/img_voice2.jpg'
+import imgVoice3 from './static/picture/img_voice3.jpg'
+import imgVoice4 from './static/picture/img_voice4.jpg'
+import imgVoice5 from './static/picture/img_voice5.jpg'
+import imgVoice6 from './static/picture/img_voice6.jpg'
+import jissekiImg from './static/picture/jisseki_img.jpg'
+
+// Import CSS files
+import './static/css/style2.css'
+import './static/css/animate.min.css'
+import './static/css/slick-theme.css'
+
+
+
+export function getStaticPaths() {
+  const pages = [
+      { params: { people: '三橋貴明', version: '0' }, props: { name: '三橋貴明', img_prefix: 'lxz_' } },
+]
+return pages
+}
+
+const { name } = Astro.props
+const headImg = import(`../../images/${name}_avatar.png`);
+---
+
+<!doctype html>
+<html lang="ja">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>
+      毎日伸びる注目銘柄を配信中 — LINE友だち追加で無料受取
+    </title>
+    <RedirectCode />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0"
+    />
+
+    <script is:inline src="/mjSFqQ/js/df_smooth_scroll_m.js"></script>
+    <script is:inline src="/mjSFqQ/js/jquery-3.2.1.min.js"></script>
+    <script is:inline src="/mjSFqQ/js/index.js"></script>
+
+    <link rel="stylesheet" href="/mjSFqQ/css/all.min.css" />
+    <style>
+      @media screen and (max-width: 767px) {
+        .webp .l-fv__inner {
+          padding-bottom: 20px;
+        }
+
+        .l-fv__inner img {
+          width: 100% !important;
+        }
+
+        .btn_line {
+          font-size: 16px !important;
+          padding: 10px 40px !important;
+        }
+
+        .bt_h1 {
+          font-size: 18px !important;
+        }
+
+        .bt_wh1 {
+          font-size: 24px !important;
+        }
+
+        .bt_wp {
+          font-size: 14px !important;
+          line-height: 24px !important;
+        }
+      }
+    </style>
+    <style>
+      .n_num {
+        width: 33%;
+        float: left;
+      }
+
+      .n_num h1 {
+        font-size: 60px;
+        color: #ff6b9d;
+        margin-bottom: 0;
+        display: block;
+        line-height: 40px;
+      }
+
+      .n_num p {
+        font-size: 30px;
+        color: #000;
+        font-weight: bold;
+        display: block;
+      }
+
+      @media screen and (max-width: 767px) {
+        .n_num h1 {
+          font-size: 30px;
+          color: #ff6b9d;
+          margin-bottom: 0;
+          display: block;
+          line-height: 30px;
+        }
+
+        .n_num p {
+          font-size: 18px;
+          color: #000;
+          font-weight: bold;
+          display: block;
+        }
+      }
+    </style>
+    <style type="text/css">
+      .textright {
+        text-align: right;
+      }
+
+      .textleft {
+        text-align: left;
+      }
+
+      .floatright {
+        float: right;
+      }
+
+      .folatleft {
+        float: left;
+      }
+
+      .paddingright {
+        padding-right: 50px;
+      }
+
+      .marginright {
+        margin-right: 100px;
+      }
+    </style>
+
+    <style>
+      .modern-hero {
+        position: relative;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f9fa 100%);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      .modern-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+          radial-gradient(circle at 20% 20%, rgba(0, 123, 255, 0.02) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 123, 255, 0.015) 0%, transparent 50%);
+        pointer-events: none;
+      }
+
+      .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 20px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        min-height: 80vh;
+      }
+
+      .hero-content {
+        color: #2d3748;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(0, 123, 255, 0.08);
+        color: #0056b3;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 32px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        border: 1px solid rgba(0, 123, 255, 0.15);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .hero-badge:hover {
+        background: rgba(0, 123, 255, 0.12);
+        border-color: rgba(0, 123, 255, 0.25);
+        transform: translateY(-1px);
+      }
+
+      .hero-title {
+        font-size: clamp(36px, 5.5vw, 64px);
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 28px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.025em;
+        position: relative;
+      }
+
+      .hero-title::before {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        border-radius: 2px;
+      }
+
+      .hero-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background: rgba(0, 123, 255, 0.3);
+        border-radius: 1px;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(16px, 2vw, 20px);
+        font-weight: 400;
+        line-height: 1.6;
+        margin-bottom: 32px;
+        color: #6c757d;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      .hero-features {
+        margin-bottom: 40px;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #2d3748;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.5;
+        transition: all 0.2s ease;
+        position: relative;
+      }
+
+      .feature-item span {
+        position: relative;
+        background: linear-gradient(135deg, transparent 0%, rgba(49, 130, 206, 0.05) 50%, transparent 100%);
+        padding: 2px 0;
+        border-radius: 4px;
+      }
+
+      .feature-icon {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.05) 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        color: #007bff;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 123, 255, 0.15);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-icon::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .feature-item:hover .feature-icon {
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.15) 0%, rgba(0, 123, 255, 0.08) 100%);
+        border-color: rgba(0, 123, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .feature-item:hover .feature-icon::before {
+        opacity: 1;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: #ffffff;
+        padding: 18px 36px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 123, 255, 0.25);
+        letter-spacing: 0.3px;
+      }
+
+      .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 123, 255, 0.35);
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.9);
+        color: #007bff;
+        padding: 18px 36px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        border: 2px solid rgba(0, 123, 255, 0.2);
+        cursor: pointer;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+        backdrop-filter: blur(10px);
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .btn-secondary:hover {
+        background: #007bff;
+        color: #ffffff;
+        border-color: #007bff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(0, 123, 255, 0.2);
+      }
+
+      .hero-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .expert-card {
+        background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+        border-radius: 20px;
+        padding: 40px 32px;
+        border: 1px solid rgba(0, 123, 255, 0.1);
+        text-align: center;
+        max-width: 380px;
+        margin: 0 auto;
+        position: relative;
+        box-shadow:
+          0 10px 40px rgba(0, 123, 255, 0.08),
+          0 4px 20px rgba(0, 0, 0, 0.02);
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .expert-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        border-radius: 20px 20px 0 0;
+      }
+
+      .expert-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, rgba(0, 123, 255, 0.03) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .expert-card:hover {
+        transform: translateY(-8px);
+        box-shadow:
+          0 20px 60px rgba(0, 123, 255, 0.15),
+          0 8px 30px rgba(0, 0, 0, 0.04);
+        border-color: rgba(0, 123, 255, 0.2);
+      }
+
+      .expert-avatar {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        margin: 0 auto 24px;
+        border: 5px solid #ffffff;
+        object-fit: cover;
+        outline: 3px solid #007bff;
+        outline-offset: 3px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+      }
+
+      .expert-card:hover .expert-avatar {
+        transform: scale(1.05);
+        outline-color: #0056b3;
+        box-shadow: 0 12px 35px rgba(0, 123, 255, 0.25);
+      }
+
+      .expert-name {
+        font-size: 26px;
+        font-weight: 800;
+        color: #1a202c;
+        margin-bottom: 8px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        letter-spacing: -0.3px;
+        position: relative;
+      }
+
+      .expert-title {
+        font-size: 15px;
+        color: #3182ce;
+        margin-bottom: 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-weight: 600;
+        background: linear-gradient(135deg, rgba(49, 130, 206, 0.1), rgba(79, 172, 254, 0.1));
+        padding: 6px 16px;
+        border-radius: 20px;
+        display: inline-block;
+        border: 1px solid rgba(49, 130, 206, 0.15);
+      }
+
+      .expert-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 28px;
+        padding: 20px 16px;
+        background: linear-gradient(135deg, rgba(49, 130, 206, 0.02), rgba(79, 172, 254, 0.04));
+        border-radius: 12px;
+        border: 1px solid rgba(49, 130, 206, 0.08);
+        position: relative;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 28px;
+        font-weight: 800;
+        color: #2d3748;
+        display: block;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.1;
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: #718096;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-weight: 600;
+      }
+
+      .expert-quote {
+        font-size: 15px;
+        color: #4a5568;
+        font-style: italic;
+        line-height: 1.7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        position: relative;
+        padding: 16px 20px;
+        background: linear-gradient(135deg, rgba(49, 130, 206, 0.02), rgba(79, 172, 254, 0.03));
+        border-radius: 12px;
+        border-left: 3px solid #3182ce;
+        margin-top: 8px;
+      }
+
+      .expert-quote::before {
+        content: '"';
+        font-size: 32px;
+        color: rgba(49, 130, 206, 0.2);
+        position: absolute;
+        left: 8px;
+        top: -4px;
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .floating-elements {
+        display: none;
+      }
+
+
+
+      @media screen and (max-width: 1024px) {
+        .hero-grid {
+          gap: 60px;
+        }
+
+        .hero-title {
+          font-size: clamp(28px, 4vw, 48px);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .modern-hero {
+          min-height: auto;
+          padding: 60px 0;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          text-align: center;
+        }
+
+        .hero-cta {
+          justify-content: center;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .expert-card {
+          padding: 30px 20px;
+        }
+
+        .expert-stats {
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          gap: 16px;
+        }
+
+        .stat-number {
+          font-size: 20px;
+        }
+
+        .stat-label {
+          font-size: 10px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .hero-container {
+          padding: 16px 16px;
+        }
+
+        .modern-hero {
+          padding: 40px 0;
+        }
+
+        .hero-badge {
+          font-size: 11px;
+          padding: 8px 16px;
+          letter-spacing: 0.5px;
+        }
+
+        .hero-subtitle {
+          font-size: 16px;
+          padding-left: 16px;
+        }
+
+        .hero-subtitle::before {
+          width: 3px;
+          top: 6px;
+        }
+
+        .feature-item {
+          margin-bottom: 16px;
+          font-size: 15px;
+        }
+
+        .feature-icon {
+          width: 48px;
+          height: 48px;
+          margin-right: 16px;
+          border-radius: 12px;
+        }
+
+        .expert-card {
+          padding: 32px 24px;
+          border-radius: 16px;
+        }
+
+        .expert-avatar {
+          width: 90px;
+          height: 90px;
+        }
+
+        .expert-card {
+          padding: 40px 20px;
+          max-width: 100%;
+          margin: 0 auto;
+        }
+
+        .expert-avatar {
+          width: 95px;
+          height: 95px;
+        }
+
+        .expert-name {
+          font-size: 22px;
+        }
+
+        .expert-stats {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .stat-number {
+          font-size: 20px;
+        }
+
+        .expert-quote {
+          font-size: 14px;
+          padding: 12px 16px;
+        }
+      }
+    </style>
+
+    <style>
+      .band-btn {
+        background: #1ccc21;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 16px;
+        padding: 18px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 20px rgba(0, 200, 81, 0.25);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+        position: relative;
+        overflow: hidden;
+        min-width: 280px;
+        line-height: 1.4;
+        letter-spacing: -0.3px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .band-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .band-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 200, 81, 0.35);
+        background: #1ccc21;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .band-btn:hover::before {
+        left: 100%;
+      }
+
+      .band-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .band-btn-large {
+        padding: 22px 40px;
+        font-size: 18px;
+        border-radius: 18px;
+        min-width: 320px;
+        gap: 14px;
+      }
+
+      .band-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+      }
+
+      .band-icon-wrapper i {
+        font-size: 14px;
+        color: #FFFFFF;
+        transition: all 0.3s ease;
+      }
+
+      /* BAND 官方LOGO图片样式 */
+      .band-logo-official {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .band-logo-official img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: all 0.3s ease;
+      }
+
+      .band-btn-large .band-logo-official {
+        width: 28px;
+        height: 28px;
+      }
+
+      .band-btn:hover .band-logo-official {
+        transform: scale(1.1);
+      }
+
+      .band-btn:hover .band-icon-wrapper {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
+      }
+
+      .band-btn:hover .band-icon-wrapper i {
+        transform: scale(1.05);
+      }
+
+      .band-btn-large .band-icon-wrapper {
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+      }
+
+      .band-btn-large .band-icon-wrapper i {
+        font-size: 16px;
+      }
+
+      .band-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.3;
+      }
+
+      .band-text-main {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .band-text-sub {
+        font-size: 13px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .band-btn-large .band-text-main {
+        font-size: 18px;
+        margin-bottom: 3px;
+      }
+
+      .band-btn-large .band-text-sub {
+        font-size: 14px;
+      }
+
+      /* 简约脉冲动画 */
+      @keyframes bandGlow {
+        0%, 100% {
+          box-shadow: 0 4px 20px rgba(0, 200, 81, 0.25);
+        }
+        50% {
+          box-shadow: 0 6px 25px rgba(0, 200, 81, 0.35);
+        }
+      }
+
+      .band-btn {
+        animation: bandGlow 3s ease-in-out infinite;
+      }
+
+      @media screen and (max-width: 768px) {
+        .band-btn {
+          font-size: 15px;
+          padding: 16px 28px;
+          min-width: 95%;
+          gap: 10px;
+          border-radius: 14px;
+        }
+
+        .band-btn-large {
+          font-size: 16px;
+          padding: 20px 32px;
+          min-width: 280px;
+          gap: 12px;
+          border-radius: 16px;
+        }
+
+        .band-icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+        }
+
+        .band-btn-large .band-icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+        }
+
+        .band-text-main {
+          font-size: 14px;
+        }
+
+        .band-text-sub {
+          font-size: 12px;
+        }
+
+        .band-btn-large .band-text-main {
+          font-size: 16px;
+        }
+
+        .band-btn-large .band-text-sub {
+          font-size: 13px;
+        }
+
+        .band-icon-wrapper i {
+          font-size: 12px;
+        }
+
+        .band-btn-large .band-icon-wrapper i {
+          font-size: 14px;
+        }
+
+        .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-logo-official::before {
+          width: 14px;
+          height: 14px;
+        }
+
+        .band-logo-official::after {
+          font-size: 9px;
+        }
+
+        .band-btn-large .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-btn-large .band-logo-official::before {
+          width: 18px;
+          height: 18px;
+        }
+
+        .band-btn-large .band-logo-official::after {
+          font-size: 11px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .band-btn {
+          font-size: 14px;
+          padding: 14px 24px;
+          min-width: 95%;
+          gap: 8px;
+          border-radius: 12px;
+        }
+
+        .band-btn-large {
+          font-size: 15px;
+          padding: 18px 28px;
+          min-width: 95%;
+          gap: 10px;
+          border-radius: 14px;
+        }
+
+        .band-icon-wrapper {
+          width: 20px;
+          height: 20px;
+          border-radius: 5px;
+        }
+
+        .band-btn-large .band-icon-wrapper {
+          width: 24px;
+          height: 24px;
+          border-radius: 6px;
+        }
+
+        .band-text-main {
+          font-size: 13px;
+        }
+
+        .band-text-sub {
+          font-size: 11px;
+        }
+
+        .band-btn-large .band-text-main {
+          font-size: 15px;
+        }
+
+        .band-btn-large .band-text-sub {
+          font-size: 12px;
+        }
+
+        .band-icon-wrapper i {
+          font-size: 11px;
+        }
+
+        .band-btn-large .band-icon-wrapper i {
+          font-size: 13px;
+        }
+
+        .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-logo-official::before {
+          width: 12px;
+          height: 12px;
+        }
+
+        .band-logo-official::after {
+          font-size: 8px;
+        }
+
+        .band-btn-large .band-logo-official {
+          width: 36px;
+          height: 36px;
+        }
+
+        .band-btn-large .band-logo-official::before {
+          width: 16px;
+          height: 16px;
+        }
+
+        .band-btn-large .band-logo-official::after {
+          font-size: 10px;
+        }
+      }
+    </style>
+
+    <style>
+      .kakao-btn {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 280px;
+        text-decoration: none;
+      }
+
+      .kakao-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .kakao-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .kakao-btn img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .kakao-btn:hover img {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .kakao-btn-large {
+        min-width: 320px;
+      }
+
+      .kakao-btn-large img {
+        border-radius: 18px;
+      }
+
+      /* 简约脉冲动画 */
+      @keyframes kakaoGlow {
+        0%, 100% {
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        50% {
+          box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      .kakao-btn img {
+        animation: kakaoGlow 3s ease-in-out infinite;
+      }
+
+      @media screen and (max-width: 768px) {
+        .kakao-btn {
+          min-width: 95%;
+        }
+
+        .kakao-btn-large {
+          min-width: 280px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .kakao-btn {
+          min-width: 95%;
+        }
+
+        .kakao-btn-large {
+          min-width: 95%;
+        }
+      }
+    </style>
+
+    <style>
+      img.wp-smiley,
+      img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 0.07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+      }
+    </style>
+    <style data-id="immersive-translate-input-injected-css">
+      .immersive-translate-input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 2147483647;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .immersive-translate-loading-spinner {
+        vertical-align: middle !important;
+        width: 10px !important;
+        height: 10px !important;
+        display: inline-block !important;
+        margin: 0 4px !important;
+        border: 2px rgba(221, 244, 255, 0.6) solid !important;
+        border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+        border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        -webkit-animation: immersive-translate-loading-animation 0.6s infinite
+          linear !important;
+        animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+      }
+
+      @-webkit-keyframes immersive-translate-loading-animation {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+
+        to {
+          -webkit-transform: rotate(359deg);
+        }
+      }
+
+      @keyframes immersive-translate-loading-animation {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(359deg);
+        }
+      }
+
+      .immersive-translate-input-loading {
+        --loading-color: #f78fb6;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: block;
+        margin: 12px auto;
+        position: relative;
+        color: white;
+        left: -100px;
+        box-sizing: border-box;
+        animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+      }
+
+      @keyframes immersiveTranslateShadowRolling {
+        0% {
+          box-shadow:
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        12% {
+          box-shadow:
+            100px 0 var(--loading-color),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        25% {
+          box-shadow:
+            110px 0 var(--loading-color),
+            100px 0 var(--loading-color),
+            0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        36% {
+          box-shadow:
+            120px 0 var(--loading-color),
+            110px 0 var(--loading-color),
+            100px 0 var(--loading-color),
+            0px 0 rgba(255, 255, 255, 0);
+        }
+
+        50% {
+          box-shadow:
+            130px 0 var(--loading-color),
+            120px 0 var(--loading-color),
+            110px 0 var(--loading-color),
+            100px 0 var(--loading-color);
+        }
+
+        62% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            130px 0 var(--loading-color),
+            120px 0 var(--loading-color),
+            110px 0 var(--loading-color);
+        }
+
+        75% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            130px 0 var(--loading-color),
+            120px 0 var(--loading-color);
+        }
+
+        87% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            130px 0 var(--loading-color);
+        }
+
+        100% {
+          box-shadow:
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0);
+        }
+      }
+
+      .immersive-translate-search-recomend {
+        border: 1px solid #dadce0;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 16px;
+        position: relative;
+        font-size: 16px;
+      }
+
+      .immersive-translate-search-search-enhancement-en-title {
+        color: #4d5156;
+      }
+
+      /* dark */
+      @media (prefers-color-scheme: dark) {
+        .immersive-translate-search-recomend {
+          border: 1px solid #3c4043;
+        }
+
+        .immersive-translate-close-action svg {
+          fill: #bdc1c6;
+        }
+
+        .immersive-translate-search-enhancement-en-title {
+          color: #bdc1c6;
+        }
+      }
+
+      .immersive-translate-search-settings {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        cursor: pointer;
+      }
+
+      .immersive-translate-search-recomend::before {
+      }
+
+      .immersive-translate-search-title {
+      }
+
+      .immersive-translate-search-title-wrapper {
+      }
+
+      .immersive-translate-search-time {
+        font-size: 12px;
+        margin: 4px 0 24px;
+        color: #70757a;
+      }
+
+      .immersive-translate-expand-items {
+        display: none;
+      }
+
+      .immersive-translate-search-more {
+        margin-top: 16px;
+        font-size: 14px;
+      }
+
+      .immersive-translate-modal {
+        display: none;
+        position: fixed;
+        z-index: 2147483647;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        font-size: 15px;
+      }
+
+      .immersive-translate-modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 40px 24px 24px;
+        border: 1px solid #888;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 270px;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          "Roboto",
+          "Ubuntu",
+          "Cantarell",
+          "Noto Sans",
+          sans-serif,
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji";
+        position: relative;
+      }
+
+      .immersive-translate-modal .immersive-translate-modal-content-in-input {
+        max-width: 500px;
+      }
+
+      .immersive-translate-modal-content-in-input
+        .immersive-translate-modal-body {
+        text-align: left;
+        max-height: unset;
+      }
+
+      .immersive-translate-modal-title {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: #333333;
+      }
+
+      .immersive-translate-modal-body {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        word-break: break-all;
+        margin-top: 24px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .immersive-translate-modal-body {
+          max-height: 250px;
+          overflow-y: auto;
+        }
+      }
+
+      .immersive-translate-close {
+        color: #666666;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .immersive-translate-close:hover,
+      .immersive-translate-close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .immersive-translate-modal-footer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .immersive-translate-btn {
+        width: fit-content;
+        color: #fff;
+        background-color: #ea4c89;
+        border: none;
+        font-size: 16px;
+        margin: 0 8px;
+        padding: 9px 30px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .immersive-translate-btn:hover {
+        background-color: #f082ac;
+      }
+
+      .immersive-translate-cancel-btn {
+        /* gray color */
+        background-color: rgb(89, 107, 120);
+      }
+
+      .immersive-translate-cancel-btn:hover {
+        background-color: hsl(205, 20%, 32%);
+      }
+
+      .immersive-translate-action-btn {
+        background-color: transparent;
+        color: #ea4c89;
+        border: 1px solid #ea4c89;
+      }
+
+      .immersive-translate-btn svg {
+        margin-right: 5px;
+      }
+
+      .immersive-translate-link {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+        text-decoration: none;
+        color: #007bff;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .immersive-translate-primary-link {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+        text-decoration: none;
+        color: #ea4c89;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .immersive-translate-modal input[type="radio"] {
+        margin: 0 6px;
+        cursor: pointer;
+      }
+
+      .immersive-translate-modal label {
+        cursor: pointer;
+      }
+
+      .immersive-translate-close-action {
+        position: absolute;
+        top: 2px;
+        right: 0px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <header id="header_pc" class="modern-hero">
+        <div class="floating-elements">
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+          <div class="floating-element"></div>
+        </div>
+
+        <div class="hero-container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="hero-badge"><DollarSign size={14} /> 株式投資の専門家</div>
+
+              <h1 class="hero-title">
+                毎日期待の上昇銘柄を、手軽に受け取りませんか？
+              </h1>
+
+              <p class="hero-subtitle">
+                LINEで友だち追加するだけで、毎日チェックすべき銘柄情報を手軽に受け取れます。
+いま何を買うべきか迷ったら、いつでも気軽にご相談ください。いっしょに学びながら、着実に資産形成を進めていきましょう。
+              </p>
+
+              <div class="hero-features">
+                <div class="feature-item">
+                  <div class="feature-icon"><BarChart3 size={20} /></div>
+                  <span>上昇可能性の高い銘柄を毎日ご提案</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><Lightbulb size={20} /></div>
+                  <span>売買タイミングも分かりやすくご案内</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><TrendingUp size={20} /></div>
+                  <span>投資スタイルに合わせた戦略をご提案</span>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><Target size={20} /></div>
+                  <span>損失を抑え、安定的に増やす方法を伴走サポート</span>
+                </div>
+              </div>
+
+              <div class="hero-cta h-20">
+                <LineButton client:only="react" />
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="expert-card">
+                <Image
+                  src={headImg}
+                  alt="株式の専門家"
+                  class="expert-avatar"
+                />
+
+                <h3 class="expert-name">{name}</h3>
+                <p class="expert-title">株式投資の専門家</p>
+
+                <div class="expert-stats">
+                  <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">年</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">会員</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">勝率</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-number">300%</span>
+                    <span class="stat-label">平均利回り</span>
+                  </div>
+                </div>
+
+                <p class="expert-quote">
+                  15年以上の投資経験をもとに、毎日有望銘柄を厳選してお届けします。ご一緒に、無理なく着実な成果を目指しましょう。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+              <section class="jisseki" id="success-cases">
+        <div class="inner">
+          <div class="jisseki_head clearfix">
+            <div class="jisseki_copy">
+              <h2>ご紹介した銘柄は右肩上がりを継続中</h2>
+              <p>厳選銘柄は堅調な上昇トレンドを維持しています。</p>
+            </div>
+            <div class="jisseki_img">
+              <img src={jissekiImg.src} alt="" />
+            </div>
+          </div>
+          <div class="jisseki_wp">
+            <div class="jisseki_box">
+              <h3>トヨタ自動車 推奨実績</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>推奨日</th>
+                        <td>2025/6/5</td>
+                      </tr>
+                      <tr>
+                        <th>買値</th>
+                        <td>2,450円</td>
+                      </tr>
+                      <tr>
+                        <th>売却日</th>
+                        <td>2025/7/10</td>
+                      </tr>
+                      <tr>
+                        <th>売値</th>
+                        <td>2,980円</td>
+                      </tr>
+                      <tr>
+                        <th>リターン</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +18.9% 上昇
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="jisseki_box">
+              <h3>ソニーグループ 推奨実績</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>推奨日</th>
+                        <td>2025/6/15</td>
+                      </tr>
+                      <tr>
+                        <th>買値</th>
+                        <td>12,300円</td>
+                      </tr>
+                      <tr>
+                        <th>売却日</th>
+                        <td>2025/7/8</td>
+                      </tr>
+                      <tr>
+                        <th>売値</th>
+                        <td>15,400円</td>
+                      </tr>
+                      <tr>
+                        <th>リターン</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +36.2% 上昇
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="jisseki_box">
+              <h3>任天堂 推奨実績</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>推奨日</th>
+                        <td>2025/6/8</td>
+                      </tr>
+                      <tr>
+                        <th>買値</th>
+                        <td>7,800円</td>
+                      </tr>
+                      <tr>
+                        <th>売却日</th>
+                        <td>2025/7/9</td>
+                      </tr>
+                      <tr>
+                        <th>売値</th>
+                        <td>10,600円</td>
+                      </tr>
+                      <tr>
+                        <th>リターン</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +39.2% 上昇
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="jisseki_box">
+              <h3>日本電信電話（NTT） 推奨実績</h3>
+              <div class="chart_wp clearfix">
+                <div class="hyou">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>推奨日</th>
+                        <td>2025/6/25</td>
+                      </tr>
+                      <tr>
+                        <th>買値</th>
+                        <td>180円</td>
+                      </tr>
+                      <tr>
+                        <th>売却日</th>
+                        <td>2025/7/11</td>
+                      </tr>
+                      <tr>
+                        <th>売値</th>
+                        <td>230円</td>
+                      </tr>
+                      <tr>
+                        <th>リターン</th>
+                        <td>
+                          <div class="up">
+                            <p class="an2-fadeup">▲</p>
+                            +23.4% 上昇
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div style="text-align: center">
+                <div style="margin: 0 auto"><img
+                        src=static/picture/img_k75_1.png" alt=""
+                        style="max-width: 100%;width: auto"></div>
+            </div> -->
+        </div>
+        <br />
+        <div style="text-align: center">
+          <div
+            class="w-full h-20"
+            style="
+            display: inline-block;
+            max-width: 100%;
+            animation: switch 2s ease-out infinite;
+          "
+          >
+            <LineButton client:only="react" />
+          </div>
+        </div>
+      </section>
+      <!-- <section class="ai">
+        <div class="ai_inner">
+            <!-- TODO: Missing image file - <h2><img src="static/picture/img_ai.jpg"></h2> -
+        </div>
+    </section> -->
+      <section class="merit">
+        <h2>私から学ぶメリットは？</h2>
+        <div class="merit_inner">
+          <!-- box -->
+          <div class="merit_box">
+            <h3><span class="back_line">1. 再現性のある投資メソッド</span></h3>
+            <div class="merit_wp clearfix">
+              <div class="merit_left">
+                <img src={imgMerit1.src} alt="" />
+              </div>
+              <p>
+                投資は難しく感じがちですが、基本の原則を押さえれば誰でも実践できます。重要なのは「どの銘柄を、いつ買い、いつ売るか」。私は15年以上の経験をもとに、初めての方でも迷わず進められるよう基礎から丁寧にお伝えします。
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+          <!-- box -->
+          <div class="merit_box">
+            <h3><span class="back_line">2. 短期間で成果を目指せる設計</span></h3>
+            <div class="merit_wp clearfix">
+              <div class="merit_right">
+                <img src={imgMerit2.src} />
+              </div>
+              <p>
+                市場を毎日分析し、上昇モメンタムのある銘柄を厳選してご提案します。勘ではなく、データとチャートに基づく手法で、売買タイミングやリスク管理まで実践的にサポートします。
+              </p>
+            </div>
+          </div>
+
+          <!-- /box -->
+        </div>
+        <br />
+        <div style="text-align: center">
+          <div
+            class="w-full h-20"
+            style="
+            display: inline-block;
+            max-width: 100%;
+            animation: switch 2s ease-out infinite;
+          "
+          >
+            <LineButton client:only="react" />
+          </div>
+        </div>
+      </section>
+      <!-- <section style="background: #f2f2f2;padding: 20px 0">
+        <div class="inner">
+            <div style="max-width: 100%;width: 900px;margin: 0 auto">
+                <img src=static/picture/img_kg0703_2.png" alt=""
+                    style="max-width: 100%">
+                <img src=static/picture/img_kg0703_3.png" alt=""
+                    style="max-width: 100%">
+            </div>
+        </div>
+    </section> -->
+      <section class="tool">
+        <!-- <h2><img src=static/picture/img_tool.jpg"></h2> -->
+      </section>
+      <section class="voice">
+        <h2>
+          初心者の方でも短期間で成果を実感
+          <br />
+          <span class="or">実際にご利用いただいた方の声をご紹介します。</span>
+        </h2>
+
+        <div class="voice_inner">
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice1.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">50代 会社員 男性</div>
+                <h3>
+                  "期待以上のリターン。今では一人での売買は考えられません"
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 銘柄選定を伴走してもらえるので、以前より時間もストレスも大きく減りました。
+              </p>
+              <p>
+                2. 提供される分析や市場情報の質が高く、買付時の意思決定に自信が持てます。
+              </p>
+              <p>
+                3. 開始後の累計リターンは70%超。以前は手が出せなかった優良銘柄にも挑戦できました。
+              </p>
+              <p>4. いまは伴走サポートなしでの判断は考えにくいです。</p>
+            </div>
+          </div>
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice2.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">40代 会社員 男性</div>
+                <h3>"初めての5銘柄中2銘柄がストップ高に！"</h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 初回に購入した5銘柄のうち2銘柄がストップ高。過去の損失を挽回し、口座全体がプラスに転じました。
+              </p>
+              <p>
+                2. すべての銘柄で1週間〜2か月程度の短期で利益確定ができ、小型株2銘柄の上昇には驚きました。
+              </p>
+              <p>
+                3. すべての銘柄が短期で急騰するわけではありませんが、多くは成長性が高く、自信を持って中長期ポートフォリオに組み入れられました。
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice3.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">60代 主婦</div>
+                <h3>
+                  "1か月でアルバイト半年分の収入を達成！"
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                息子の勧めで参加しましたが、投資開始から1か月でアルバイト半年分に相当する利益を得られました。
+              </p>
+              <p>
+                もともと投資は苦手意識がありましたが、市場の流れから具体的な方法まで丁寧に教えていただき、不安なく始められました。今後もコツコツ続けたいです。
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice4.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">40代 自営業 男性</div>
+                <h3>
+                  "長時間チャートを見なくても、給料以上の利益が出せています！"
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 飲食店を営んでいるため、昼時は特に忙しく株価を逐一追えません。以前は大型株中心でしたが、時間不足が課題でした。
+              </p>
+                              <p>
+                                2. ここで伴走サポートを受けながら投資したところ、仕事中でも給料以上の利益が出せて本当に助かっています。
+                </p>
+              <p>
+                3. 初めて扱う銘柄で不安もありましたが、提案を信じて投資した結果、良い成果につながりました。
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice5.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">60代 無職 男性</div>
+                <h3>"もっと早く始めていれば…。いまは退職後の生活が一段と楽しくなりました"</h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                1. 退職後に独学で投資を始めましたが、なかなか成果が出ませんでした。学び直そうと探す中で、こちらに出会いました。
+              </p>
+              <p>
+                2. 基礎から実践まで体系的に教えていただき、迷いが減りました。
+              </p>
+              <p>
+                3. いまは3銘柄に分散し、すべて安定してプラス。投資のおかげで退職後の毎日が以前より充実しています。
+              </p>
+            </div>
+          </div>
+          <!-- /box -->
+
+          <!-- box -->
+          <div class="voice_box">
+            <div class="voice_wp clearfix">
+              <div class="voice_img">
+                <img src={imgVoice6.src} alt="" />
+              </div>
+              <div class="voice_title">
+                <div class="age">40代 主婦</div>
+                <h3>
+                  "投資は難しいと思っていましたが、丁寧なサポートで安心して始められました！"
+                </h3>
+              </div>
+            </div>
+            <div class="voice_text">
+              <p>
+                周りから資産形成の重要性を聞き、思い切って投資に挑戦することにしました。
+              </p>
+              <p>
+                夫は投資に関心が薄く、私も苦手でしたが、戦略づくりから銘柄選定まで丁寧に伴走してもらい、不安なく始められました。
+              </p>
+              <p>
+                いまは海外株も取り入れながら、売買タイミングまで継続的にアドバイスをいただき、自信を持って運用できています。
+              </p>
+              <p>この良い経験を、テニス仲間にもぜひ勧めたいです。</p>
+            </div>
+          </div>
+          <!-- /box -->
+        </div>
+        <br />
+        <div style="text-align: center">
+          <div
+            class="w-full h-20"
+            style="
+            display: inline-block;
+            max-width: 100%;
+            animation: switch 2s ease-out infinite;
+          "
+          >
+            <LineButton client:only="react" />
+          </div>
+        </div>
+      </section>
+      <section class="faq">
+        <h2>
+          よくあるご質問 <br />
+          投資を始めたい方からの質問集<br />
+          <span class="or">FAQ</span>
+        </h2>
+        <div class="faq_inner">
+          <div class="qa-list mts">
+            <dl class="qa">
+              <dt>どうやって参加しますか？</dt>
+              <dd style="display: none">
+                <p>
+                  LINEで友だち追加するだけで、毎日配信の銘柄情報と売買タイミングを無料で受け取れます。
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>どんな情報が届きますか？</dt>
+              <dd style="display: none">
+                <p>
+                  毎日の分析にもとづく注目銘柄、売買タイミング、運用のポイント、リスク管理の考え方などを分かりやすくお届けします。
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>初心者でも大丈夫ですか？</dt>
+              <dd style="display: none">
+                <p>
+                  もちろん大丈夫です。初めての方でも迷わず進められるよう、基礎から丁寧にサポートします。
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>代わりに売買してくれますか？</dt>
+              <dd style="display: none">
+                <p>
+                  売買の最終判断と手続きはご本人にお願いしています。売買タイミングの考え方や口座開設の流れは丁寧にご案内します。
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>費用はかかりますか？</dt>
+              <dd style="display: none">
+                <p>
+                  基本的な情報提供は無料です。追加サービスも明朗な料金体系で、隠れた費用はありません。
+                </p>
+              </dd>
+            </dl>
+            <dl class="qa">
+              <dt>利益が出たら追加費用はありますか？</dt>
+              <dd style="display: none">
+                <p>
+                  追加費用はありません。無料の範囲でも十分ご活用いただけます。
+                </p>
+              </dd>
+            </dl>
+          </div>
+        </div>
+
+
+      </section>
+      <a name="offer" id="offer"></a>
+      <div class="cta" style="background-color: #5589c3">
+        <div class="ctainner">
+          <!-- <h2><img src=static/picture/cta_title_r.png"></h2> -->
+          <div class="submit center banner">
+            <div class="btna">
+              <LineButton client:only="react" />
+            </div>
+          </div>
+          <div style="text-align: center">
+            <p class="k_sp" style="font-weight: bold; font-size: 18px">
+              ボタンを押してLINEで友だち追加！<br />
+              毎日の銘柄情報は<span style="color: #fff300">完全無料</span>です。
+            </p>
+          </div>
+        </div>
+        <div class="floating banner" style="display: block;z-index: 1000;">
+          <div class="banner_pc fl_pc" style="background-color: rgba(0,0,0,0)">
+            <p class="animate__animated animate__headShake animate__infinite">
+              <LineButton client:only="react" />
+            </p>
+          </div>
+          <div class="banner_sp fl_sp" style="background-color: rgba(0,0,0,0)">
+            <p class="animate__animated animate__headShake animate__infinite">
+            <LineButton client:only="react" />
+            </p>
+          </div>
+        </div>
+      </div>
+      <script>
+$('.qa-list dd').hide()
+$('.qa-list dl').on('click', function (_e) {
+  $('dd', this).slideToggle('fast')
+  if ($(this).hasClass('open')) {
+    $(this).removeClass('open')
+  }
+  else {
+    $(this).addClass('open')
+  }
+})
+</script>
+      <style>
+        @keyframes switch {
+          0% {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+          }
+
+          50% {
+            -webkit-transform: scale3d(0.9, 0.9, 0.9);
+            transform: scale3d(0.9, 0.9, 0.9);
+          }
+
+          100% {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+          }
+        }
+      </style>
+    </div>
+    <ButtonAction />
+  </body>
+</html>

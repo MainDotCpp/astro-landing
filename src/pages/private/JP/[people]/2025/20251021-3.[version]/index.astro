@@ -1,0 +1,303 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import btn from './static/btn.png'
+
+export const getStaticPaths = (() => {
+  const pages = [
+    { params: { people: '神田昌典', version: '0' }, props: { name: '神田昌典', img_prefix: 'gqd_' } },
+    { params: { people: 'エミン', version: '0' }, props: { name: 'エミン・ユルマズ', img_prefix: 'エミン_' } },
+  ]
+  return pages
+}) satisfies GetStaticPaths
+
+const { people, version } = Astro.params
+const name = Astro.props.name
+
+const avatar = (await import(`../../images/${people}_avatar.jpg`)).default
+const img1 = (await import(`../../images/${people}_${version}_1.jpg`)).default
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> {name} の無料投資講座 - 累計400万部超のベストセラー著者が伝授</title>
+
+    <RedirectCode />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      }
+
+      body {
+        background-color: #f8f8f8;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .container {
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-bottom: 20px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #222;
+      }
+
+      h1 {
+        font-size: 28px;
+        line-height: 1.4;
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        font-size: 22px;
+        margin-top: 30px;
+      }
+
+      p {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .highlight {
+        background-color: #fffacd;
+        font-weight: bold;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+
+      .testimonial {
+        font-style: italic;
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-left: 4px solid #ddd;
+        margin: 20px 0;
+      }
+
+      .cta-button {
+        display: block;
+        width: 80%;
+        max-width: 400px;
+        margin: 30px auto;
+        padding: 15px 20px;
+        background-color: #06c755;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #05a848;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .warning {
+        color: #d32f2f;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        margin-top: 30px;
+      }
+
+      .benefits {
+        list-style-type: none;
+        padding: 0;
+        margin: 20px 0;
+      }
+
+      .benefits li {
+        background-color: #f0f8ff;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .author-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+      }
+
+      .author-text {
+        margin-left: 15px;
+      }
+
+      .author-name {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .author-title {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .limited {
+        background-color: #ffebee;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        margin: 20px 0;
+        font-weight: bold;
+      }
+
+      .tail-gif {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        text-align: center;
+        width: 100%;
+      }
+
+      .tail-gif-img {
+        display: block;
+        margin: 0 auto;
+        max-width: 28%;
+        border-radius: 115px;
+        animation: scaleAnimation 0.5s infinite alternate;
+      }
+
+      .tail-gif {
+        width: 100%;
+      }
+
+      .tail-gif img {
+        max-width: 100%;
+      }
+
+      @keyframes scaleAnimation {
+        0% {
+          transform: scale(0.9);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>
+        累計販売数<span class="highlight">400万部超</span>のベストセラー著者<br />{name}が明かす<br /><span
+          class="highlight"
+                                                                                 >無料投資講座</span
+        >
+      </h1>
+
+      <div class="author-info">
+        <div class="author-text" style="text-align: center">
+          <center>
+
+            <Image src={avatar} class="w-1/2 mx-auto" alt={name} />
+          </center>
+          <div class="author-name">{name}</div>
+          <div class="author-title">
+            累計販売数400万部超のビジネス書著者<br />日本のトップマーケッター（GQ JAPAN誌）
+          </div>
+        </div>
+      </div>
+
+      <p>あなたも<span class="highlight">次の大化け銘柄</span>を見つけたいと思いませんか？</p>
+
+      <h2>今だけ<span class="highlight">完全無料</span>で公開中！</h2>
+
+      <p>
+        {name}が<span class="highlight">10年以上</span>かけて研究・実践してきた<br /><span class="highlight">「株価が急騰する銘柄」</span
+        >を見極める独自の手法を<br />特別に公開します！
+      </p>
+
+      <div class="limited">
+        <p>※ 先着500名様限定！ ※</p>
+      </div>
+
+      <h2>この無料講座で学べること</h2>
+
+      <ul class="benefits">
+        <li><span class="highlight">「次の急騰銘柄」</span>を見つける7つのシグナル</li>
+        <li>初心者でも実践できる<span class="highlight">シンプルな分析手法</span></li>
+        <li>市場の<span class="highlight">プロだけが知る</span>情報収集テクニック</li>
+        <li><span class="highlight">暴騰する直前</span>の銘柄を見分けるポイント</li>
+        <li>{name}が実際に<span class="highlight">注目している銘柄</span>（一部公開）</li>
+      </ul>
+
+      <h2>受講者の声</h2>
+
+      <div class="testimonial">
+        <p>
+          "神田先生の手法を学んで3ヶ月、<span class="highlight">最初の1ヶ月で30%の利益</span>を達成できました！"
+          (40代・会社員)
+        </p>
+      </div>
+
+      <div class="testimonial">
+        <p>
+          "今まで何をやってもダメだったのに、<span class="highlight">神田式なら本当にわかる</span>ようになりました"
+          (50代・自営業)
+        </p>
+      </div>
+
+      <div class="testimonial">
+        <p>
+          "<span class="highlight">たった1つのシグナル</span>に気づけただけで、私の投資人生が変わりました" (30代・主婦)
+        </p>
+      </div>
+      <Image src={img1} class="w-full" alt={name} />
+      <h2>いますぐ無料で学び、<span class="highlight">次の大化け銘柄</span>を発見しよう！</h2>
+
+      <p>この機会を逃すと、<span class="highlight">一生後悔するかも</span>しれません...</p>
+
+      <p>今すぐLINEで友達追加して、<br /><span class="highlight">無料講座</span>を受け取りましょう！</p>
+
+      <a class="cta-button link-btn">LINEで無料登録はこちら</a>
+
+      <p class="warning">※ 募集人数に達し次第、締め切らせていただきます</p>
+      <p class="warning">※ 市場環境により急騰銘柄の情報提供は予告なく終了することがあります</p>
+
+      <div class="footer">
+        <p>特定の金融商品の推奨等を行うものではありません。投資にはリスクが伴います。自己責任でご判断ください。</p>
+        <p>© 2025 {name}公式 - 無料投資学習ページ</p>
+      </div>
+    </div>
+
+    <div class="tail-gif" style="max-width: 840px">
+      <a class="link-btn">
+        <Image src={btn} alt="" class="tail-gif-img w-full" />
+      </a>
+    </div>
+  </body>
+</html>

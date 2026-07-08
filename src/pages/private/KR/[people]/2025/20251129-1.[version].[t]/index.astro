@@ -1,0 +1,591 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig } from '@/utils/kr_config'
+// 使用 @fontsource 自托管 Google Fonts
+import '@fontsource/noto-serif-kr/400.css'
+import '@fontsource/noto-serif-kr/500.css'
+import '@fontsource/noto-serif-kr/600.css'
+import '@fontsource/noto-serif-kr/700.css'
+import '@fontsource/noto-serif-kr/900.css'
+import '@fontsource/east-sea-dokdo/400.css'
+
+export function getStaticPaths() {
+    return generateKrConfig(undefined, undefined, { requireImages: ['head', 'header', 'img1'] })
+}
+
+const { t = '棒群' } = Astro.params
+const { img_prefix, name } = Astro.props as { img_prefix: string, name: string }
+// 动态加载图片
+const headImg = (await import(`../../../../../KR/[people]/images/${img_prefix}head.jpg`)).default
+const headerImg = (await import(`../../../../../KR/[people]/images/${img_prefix}header.jpg`)).default
+const img1Img = (await import(`../../../../../KR/[people]/images/${img_prefix}img1.jpg`)).default
+
+// 定义支持的按钮类型
+type Social = '卡扣' | '棒群' | '混合' | '引导弹窗' | '提高质量_'
+const social = t as Social
+
+---
+
+<KRBaseLayout title="나의 주식 애호가 교류 그룹" description="나의 주식 애호가 교류 그룹">
+    <Fragment slot="head">
+        <!-- 预加载 Hero 图片，避免布局跳动 -->
+        <link
+          rel="preload"
+          as="image"
+          href={headerImg.src}
+        />
+    </Fragment>
+    <body class="relative bg-linear-to-br from-gray-50 via-white to-gray-100">
+        <!-- Hero Section - Full Width -->
+        <section class="hero-section">
+            <div class="hero-image-wrapper">
+                <Image
+                  src={headerImg}
+                  alt={`${name} - Hero`}
+                  class="hero-image"
+                  loading="eager"
+                  decoding="async"
+                />
+                <!-- Decorative gradient overlay -->
+                <div class="hero-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Countdown Section -->
+        <section class="relative py-10 sm:py-14 md:py-20 bg-linear-to-br from-white via-red-50/80 to-orange-50/80 overflow-hidden">
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-0 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-orange-500 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="relative container mx-auto px-4 sm:px-6 max-w-6xl">
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-10 md:p-14 text-center border-2 border-red-200/50 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-linear-to-br from-red-500/10 to-transparent rounded-br-full"></div>
+                    <div class="absolute bottom-0 right-0 w-32 h-32 bg-linear-to-tl from-orange-500/10 to-transparent rounded-tl-full"></div>
+
+                    <div class="relative z-10">
+                        <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold bg-linear-to-r from-red-600 via-red-500 to-orange-600 bg-clip-text text-transparent mb-6 sm:mb-8 md:mb-10 leading-tight px-2 animate-pulse">
+                            무료 시간이 많지 않습니다!
+                        </h2>
+
+                        <div class="flex justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-5 xl:gap-7 flex-nowrap">
+                            <div class="bg-linear-to-br from-gray-800 via-gray-900 to-black text-gray-100 rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8 shrink-0 w-[55px] sm:w-[65px] md:w-[80px] lg:w-[95px] xl:w-[110px] shadow-xl md:shadow-2xl transition-transform duration-300 border border-gray-700/50">
+                                <p id="countdown-days" class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black mb-0.5 sm:mb-1 md:mb-2 bg-linear-to-b from-white to-gray-300 bg-clip-text text-transparent leading-none">00</p>
+                                <p class="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base opacity-90 font-medium leading-tight">Day</p>
+                            </div>
+                            <div class="text-red-500 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black animate-pulse shrink-0 px-0.5">:</div>
+                            <div class="bg-linear-to-br from-gray-800 via-gray-900 to-black text-gray-100 rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8 shrink-0 w-[55px] sm:w-[65px] md:w-[80px] lg:w-[95px] xl:w-[110px] shadow-xl md:shadow-2xl transition-transform duration-300 border border-gray-700/50">
+                                <p id="countdown-hours" class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black mb-0.5 sm:mb-1 md:mb-2 bg-linear-to-b from-white to-gray-300 bg-clip-text text-transparent leading-none">00</p>
+                                <p class="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base opacity-90 font-medium leading-tight">Hour</p>
+                            </div>
+                            <div class="text-red-500 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black animate-pulse shrink-0 px-0.5">:</div>
+                            <div class="bg-linear-to-br from-gray-800 via-gray-900 to-black text-gray-100 rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8 shrink-0 w-[55px] sm:w-[65px] md:w-[80px] lg:w-[95px] xl:w-[110px] shadow-xl md:shadow-2xl transition-transform duration-300 border border-gray-700/50">
+                                <p id="countdown-minutes" class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black mb-0.5 sm:mb-1 md:mb-2 bg-linear-to-b from-white to-gray-300 bg-clip-text text-transparent leading-none">30</p>
+                                <p class="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base opacity-90 font-medium leading-tight">Min</p>
+                            </div>
+                            <div class="text-red-500 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black animate-pulse shrink-0 px-0.5">:</div>
+                            <div class="bg-linear-to-br from-gray-800 via-gray-900 to-black text-gray-100 rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8 shrink-0 w-[55px] sm:w-[65px] md:w-[80px] lg:w-[95px] xl:w-[110px] shadow-xl md:shadow-2xl transition-transform duration-300 border border-gray-700/50">
+                                <p id="countdown-seconds" class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black mb-0.5 sm:mb-1 md:mb-2 bg-linear-to-b from-white to-gray-300 bg-clip-text text-transparent leading-none second_show">00</p>
+                                <p class="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base opacity-90 font-medium leading-tight">Sec</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warning Alert Section -->
+        <section class="relative py-10 sm:py-14 md:py-20 bg-linear-to-r from-yellow-50 via-orange-50 to-red-50 overflow-hidden">
+            <!-- Animated background -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-10 left-10 w-72 h-72 bg-yellow-400 rounded-full blur-3xl animate-float"></div>
+                <div class="absolute bottom-10 right-10 w-72 h-72 bg-orange-400 rounded-full blur-3xl animate-float-delayed"></div>
+            </div>
+
+            <div class="relative container mx-auto px-4 sm:px-6 max-w-5xl">
+                <div class="bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-xl p-6 sm:p-10 md:p-12 border-l-4 sm:border-l-8 border-yellow-500 relative overflow-hidden">
+                    <!-- Decorative shine effect -->
+                    <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shine"></div>
+
+                    <div class="relative z-10">
+                        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center leading-tight px-2">
+                            <span class="inline-block text-2xl sm:text-3xl mr-2">⚠️</span>
+                            <span class="bg-linear-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">특별 안내: 유료 그룹 가입을 요구하는 모든 것은 사기입니다.</span>
+                        </h2>
+                        <div class="text-center">
+                            <CtaButton
+                              social={social}
+                              size="sm"
+                              class="w-full text-sm sm:text-base"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="relative py-10 sm:py-14 md:py-20 bg-white overflow-hidden">
+            <!-- Subtle background pattern -->
+            <div class="absolute inset-0 opacity-[0.02]">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 40px 40px;"></div>
+            </div>
+
+            <div class="relative container mx-auto px-4 sm:px-6 max-w-4xl">
+                <div class="space-y-5 sm:space-y-6 text-gray-800 leading-relaxed text-base sm:text-lg md:text-xl">
+                    <div class="bg-linear-to-r from-red-50 to-orange-50 rounded-xl sm:rounded-2xl p-5 sm:p-6 border-l-4 border-red-500 shadow-md">
+                        <p class="text-base sm:text-lg md:text-xl font-bold text-red-600 leading-tight">🔥 저는 무료로 주식 애호가 교류 그룹을 만들었습니다.</p>
+                    </div>
+                    <div class="bg-linear-to-r from-red-50 to-orange-50 rounded-xl sm:rounded-2xl p-5 sm:p-6 border-l-4 border-red-500 shadow-md">
+                        <p class="text-base sm:text-lg md:text-xl font-bold text-red-600 leading-tight">🔥내가 예측한 모든 추세는 30%의 수익률을 유지하고 있습니다.</p>
+                    </div>
+                    <div class="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg border border-gray-100">
+                        <p class="leading-relaxed text-gray-700">지난주에 제가 추천한 주식이 45% 올랐는데 돈을 줍는 것과 다를 바 없습니다.만약  주식을 통해 조기 은퇴를 할 수 있다고 말한다면, 믿을 수 있습니까?많은 사람들이 믿지 않을 거라고 생각하지만, 그게 사실이고 제 재산도 그렇게 축적됩니다.</p>
+                    </div>
+                    <div class="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg border border-gray-100">
+                        <p class="leading-relaxed text-gray-700">한국의 금융시장 경제를 끌어올리는 동시에 한국 시민 개개인이 주식투자를 통해 얻을 수 있는 이윤을 창출해 국민의 삶의 행복감을 높이고 싶습니다.승률 99%의 주식 투자 방법을 알려드릴 테니 '자세히 알아보기'를 저희에 가입하시려면 클릭하세요. 손해 볼 것이 없습니다다면, 그것은 당신의 진정한 손실입니다.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 sm:mt-10 text-center">
+                    <CtaButton
+                      social={social}
+                      size="sm"
+                      class="w-full text-sm sm:text-base"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- Image with CTA Section - Full Width -->
+        <section class="relative w-full overflow-hidden m-0 p-0">
+            <div class="relative w-full">
+                <Image
+                  src={img1Img}
+                  alt={`${name} - CTA Image`}
+                  class="w-full h-auto block object-cover object-center"
+                  decoding="async"
+                />
+                <div class="absolute inset-0 flex items-center justify-center sm:justify-end px-4 sm:pr-8 md:pr-16">
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Image Section - Full Width -->
+        <section class="relative w-full overflow-hidden m-0 p-8">
+            <div class="relative w-full">
+                <img
+                  class="w-full h-auto block object-cover object-center"
+                  alt="Additional Image"
+                  srcset="https://img-va.myshopline.com/image/store/1715856761845/b99d3bfa-c40e-439d-8a57-d30fa532aab2_375x.png?w=800&h=632 375w, https://img-va.myshopline.com/image/store/1715856761845/b99d3bfa-c40e-439d-8a57-d30fa532aab2_540x.png?w=800&h=632 540w, https://img-va.myshopline.com/image/store/1715856761845/b99d3bfa-c40e-439d-8a57-d30fa532aab2_720x.png?w=800&h=632 720w, https://img-va.myshopline.com/image/store/1715856761845/b99d3bfa-c40e-439d-8a57-d30fa532aab2_800x.png?w=800&h=632 800w"
+                  decoding="async"
+                  sizes="100vw"
+                  src="https://img-va.myshopline.com/image/store/1715856761845/b99d3bfa-c40e-439d-8a57-d30fa532aab2_375x.png?w=800&h=632"
+                />
+            </div>
+        </section>
+
+        <!-- Long Image Section - Full Width -->
+        <section class="relative w-full overflow-hidden m-0 p-0">
+            <div class="relative w-full">
+                <img
+                  class="w-full h-auto block object-cover object-center"
+                  alt="Long Image"
+                  srcset="https://img-va.myshopline.com/image/store/1715856761845/210929-kdb-03_375x.jpeg?w=894&h=4316 375w, https://img-va.myshopline.com/image/store/1715856761845/210929-kdb-03_540x.jpeg?w=894&h=4316 540w, https://img-va.myshopline.com/image/store/1715856761845/210929-kdb-03_720x.jpeg?w=894&h=4316 720w, https://img-va.myshopline.com/image/store/1715856761845/210929-kdb-03_894x.jpeg?w=894&h=4316 894w"
+                  decoding="async"
+                  sizes="100vw"
+                  src="https://img-va.myshopline.com/image/store/1715856761845/210929-kdb-03_375x.jpeg?w=894&h=4316"
+                />
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="relative py-14 sm:py-20 md:py-28 bg-linear-to-br from-red-600 via-red-700 to-red-800 overflow-hidden">
+            <!-- Animated background -->
+            <div class="absolute inset-0 opacity-30">
+                <img
+                  class="w-full h-full object-cover object-center hidden md:block"
+                  alt="Background"
+                  src="https://d2n979dmt31clo.cloudfront.net/image/store/4200042328/1620465167502/dd1c9c6ea2c34457842d40cc3e8829eb.png"
+                />
+                <img
+                  class="w-full h-full object-cover object-center md:hidden"
+                  alt="Background Mobile"
+                  src="https://d2n979dmt31clo.cloudfront.net/image/store/4200042328/1620465167502/586ddd45d8304fad998a986f355438db.png"
+                />
+            </div>
+
+            <!-- Decorative elements -->
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-20 left-10 w-64 h-64 bg-white rounded-full blur-3xl animate-float"></div>
+                <div class="absolute bottom-20 right-10 w-64 h-64 bg-red-300 rounded-full blur-3xl animate-float-delayed"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 container mx-auto px-4 sm:px-6 max-w-5xl text-center">
+                <div class="mb-8 sm:mb-10">
+                    <div class="inline-block p-2 sm:p-3 bg-white/20 backdrop-blur-sm rounded-full shadow-2xl">
+                        <Image
+                          src={headImg}
+                          alt={`${name} Profile`}
+                          class="mx-auto w-36 sm:w-44 md:w-56 h-auto rounded-xl sm:rounded-2xl shadow-2xl border-4 border-white/50"
+                        />
+                    </div>
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 sm:mb-6 px-2 drop-shadow-lg">
+                    {name}
+                </h2>
+
+                <p class="text-lg sm:text-xl md:text-2xl text-red-50 mb-10 sm:mb-12 max-w-3xl mx-auto px-2 leading-relaxed font-medium drop-shadow-md">
+                    카카오톡 친구추가 후 '7' 전송으로 "{name}" 선생님의 분석을 무료로 받을 수 있습니다.
+                </p>
+
+                <div class="max-w-lg mx-auto">
+                    <CtaButton
+                      social={social}
+                      size="sm"
+                      class="w-full text-sm sm:text-base"
+                    />
+                </div>
+            </div>
+        </section>
+    </body>
+</KRBaseLayout>
+
+<style>
+    /* Font settings for this page only */
+    body {
+        font-family: 'Noto Serif KR', serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'East Sea Dokdo', cursive;
+    }
+
+    /* Mobile-first optimizations */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Custom animations */
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    @keyframes float-delayed {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-25px);
+        }
+    }
+
+    @keyframes shine {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+        animation: float-delayed 8s ease-in-out infinite;
+        animation-delay: 1s;
+    }
+
+    .animate-shine {
+        animation: shine 3s ease-in-out infinite;
+    }
+
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    /* Touch optimization */
+    .touch-manipulation {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Image optimization for mobile */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+        padding: 0;
+        vertical-align: bottom;
+    }
+
+    /* Remove default spacing from sections */
+    section {
+        margin: 0;
+    }
+
+    /* Ensure images fill containers without gaps */
+    section img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Button active states for mobile */
+    a[href*="showline"] {
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    a[href*="showline"]:active {
+        transform: scale(0.95);
+    }
+
+    /* Ensure text is readable on mobile */
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Prevent horizontal scroll on mobile */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* Optimize container for mobile */
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Enhanced shadows and depth */
+    .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .shadow-3xl {
+        box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Hero Section - 图片自适应高度 */
+    .hero-section {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Hero 图片包装器 */
+    .hero-image-wrapper {
+        position: relative;
+        width: 100%;
+        display: block;
+    }
+
+    /* Hero 图片 - 自适应高度 */
+    .hero-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* 缩放动画 */
+        animation: heroZoomIn 2s ease-out forwards;
+        transform-origin: center center;
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    /* Hero 遮罩层 */
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* 缩放动画 */
+    @keyframes heroZoomIn {
+        from {
+            transform: scale(1.15);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+</style>
+
+<script>
+// 倒计时功能
+function initCountdown() {
+  const daysEl = document.getElementById('countdown-days')
+  const hoursEl = document.getElementById('countdown-hours')
+  const minutesEl = document.getElementById('countdown-minutes')
+  const secondsEl = document.getElementById('countdown-seconds')
+
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+    return
+  }
+
+  // 设置目标时间：倒计时到第二天的晚上 23:59:59
+  function updateCountdown() {
+    // 重新获取元素以确保它们仍然存在
+    const days = document.getElementById('countdown-days')
+    const hours = document.getElementById('countdown-hours')
+    const minutes = document.getElementById('countdown-minutes')
+    const seconds = document.getElementById('countdown-seconds')
+
+    if (!days || !hours || !minutes || !seconds) {
+      return
+    }
+
+    const now = new Date()
+    const endDate = new Date()
+    // 设置为第二天的晚上 23:59:59
+    endDate.setDate(now.getDate() + 1)
+    endDate.setHours(23, 59, 59, 0)
+
+    const diffTime = endDate.getTime() - now.getTime()
+
+    if (diffTime <= 0) {
+      // 倒计时结束，重置为第二天
+      days.textContent = '00'
+      hours.textContent = '00'
+      minutes.textContent = '00'
+      seconds.textContent = '00'
+      return
+    }
+
+    const daysValue = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+    const hoursValue = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutesValue = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60))
+    const secondsValue = Math.floor((diffTime % (1000 * 60)) / 1000)
+
+    // 更新显示，添加数字变化动画效果
+    if (days.textContent !== daysValue.toString().padStart(2, '0')) {
+      days.style.transform = 'scale(1.1)'
+      setTimeout(() => {
+        const el = document.getElementById('countdown-days')
+        if (el)
+          el.style.transform = 'scale(1)'
+      }, 200)
+    }
+    if (hours.textContent !== hoursValue.toString().padStart(2, '0')) {
+      hours.style.transform = 'scale(1.1)'
+      setTimeout(() => {
+        const el = document.getElementById('countdown-hours')
+        if (el)
+          el.style.transform = 'scale(1)'
+      }, 200)
+    }
+    if (minutes.textContent !== minutesValue.toString().padStart(2, '0')) {
+      minutes.style.transform = 'scale(1.1)'
+      setTimeout(() => {
+        const el = document.getElementById('countdown-minutes')
+        if (el)
+          el.style.transform = 'scale(1)'
+      }, 200)
+    }
+    if (seconds.textContent !== secondsValue.toString().padStart(2, '0')) {
+      seconds.style.transform = 'scale(1.1)'
+      setTimeout(() => {
+        const el = document.getElementById('countdown-seconds')
+        if (el)
+          el.style.transform = 'scale(1)'
+      }, 200)
+    }
+
+    days.textContent = daysValue.toString().padStart(2, '0')
+    hours.textContent = hoursValue.toString().padStart(2, '0')
+    minutes.textContent = minutesValue.toString().padStart(2, '0')
+    seconds.textContent = secondsValue.toString().padStart(2, '0')
+  }
+
+  // 立即更新一次
+  updateCountdown()
+  // 每秒更新一次
+  setInterval(updateCountdown, 1000)
+}
+
+// 页面加载完成后初始化倒计时
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    // 确保页面滚动到顶部，防止自动滚动到倒计时元素
+    window.scrollTo(0, 0)
+    // 如果 URL 中有 hash，清除它
+    if (window.location.hash) {
+      history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+    }
+    initCountdown()
+  })
+}
+else {
+  // 立即滚动到顶部
+  window.scrollTo(0, 0)
+  // 清除 URL hash
+  if (window.location.hash) {
+    history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+  }
+  initCountdown()
+}
+
+// 防止倒计时元素的 ID 导致自动聚焦/滚动
+document.addEventListener('DOMContentLoaded', () => {
+  // 移除倒计时元素的 tabindex，防止自动聚焦
+  const countdownElements = ['countdown-days', 'countdown-hours', 'countdown-minutes', 'countdown-seconds']
+  countdownElements.forEach((id) => {
+    const el = document.getElementById(id)
+    if (el) {
+      el.setAttribute('tabindex', '-1')
+    }
+  })
+
+  // 确保页面在顶部
+  window.scrollTo(0, 0)
+
+  // 如果 URL 中有 hash 且指向倒计时元素，清除它
+  if (window.location.hash && countdownElements.some(id => window.location.hash === `#${id}`)) {
+    history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+    window.scrollTo(0, 0)
+  }
+})
+</script>
+

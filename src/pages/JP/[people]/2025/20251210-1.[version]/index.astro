@@ -1,0 +1,421 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import JPComplianceFooter from '../../../common/JPComplianceFooter.astro'
+
+// Import CSS files
+import './static/index_files/style.css'
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: { people: '森东子', version: '0' },
+      props: {
+        name: '森东子',
+        nameKana: 'みゆ',
+        fullName: '田中みゆ',
+        avatarPath: '@/assets/avatar/馬渕磨理子_avatar.png', // 暂时使用磨理子的头像，后续可以替换
+        title: 'みゆのマネー基礎ノート | お金のモヤモヤをスッキリさせる',
+        heroTitle: 'お金のモヤモヤを<br />スッキリさせる<br /><span class="highlight">みゆと一緒に</span>',
+        heroSubtitle: '貯金が続かない？ お金の話が苦手？<br />大丈夫、簡単から始めよう',
+        stats: [
+          { number: '20万人+', label: 'YouTube登録者' },
+          { number: '3年で達成', label: '貯金ゼロから余裕へ' },
+          { number: '月1回', label: 'オンライン勉強会' },
+        ],
+        messageText: 'お金は難しくない。<br />一緒に、ゆるっと、楽しく、<br />未来をちょっと明るくしよう。',
+        messageAuthor: '—— 田中みゆ',
+        messageSubtitle: '「みゆのマネー基礎ノート」主宰',
+        footerBrand: 'みゆのマネー基礎ノート',
+        testimonials: [
+          {
+            text: '「ノートのおかげで、初めて家計簿が1ヶ月続いた！今では貯金が楽しみになってます。」',
+            author: 'あやか（27歳・会社員）',
+          },
+          {
+            text: '「勉強会で『固定費』の話が目からウロコ。スマホ代を見直したら月3000円も節約できました！」',
+            author: 'りな（24歳・フリーランス）',
+          },
+          {
+            text: '「お金のニュースが、ちょっとわかるようになった！みゆさんの説明が優しくて分かりやすいです。」',
+            author: 'さくら（30歳・主婦）',
+          },
+        ],
+        featureNote: 'みゆ監修のPDF教材をプレゼント。今日から使える家計管理のコツが詰まっています。',
+        featureMeeting: 'みゆとオンラインで直接おしゃべり。質問もできるリラックスした学びの時間です。',
+        featureShare: 'メンバー同士で「今日の学び」や「節約のコツ」を気軽にシェアできます。',
+      },
+    },
+    {
+      params: { people: '馬渕磨理子', version: '0' },
+      props: {
+        name: '馬渕磨理子',
+        nameKana: '磨理子',
+        fullName: '馬渕磨理子',
+        avatarPath: '@/assets/avatar/馬渕磨理子_avatar.png',
+        title: '磨理子のマネー基礎ノート | お金のモヤモヤをスッキリさせる',
+        heroTitle: 'お金のモヤモヤを<br />スッキリさせる<br /><span class="highlight">磨理子と一緒に</span>',
+        heroSubtitle: '貯金が続かない？ お金の話が苦手？<br />大丈夫、簡単から始めよう',
+        stats: [
+          { number: '15万人+', label: 'YouTube登録者' },
+          { number: '5年で達成', label: '貯金ゼロから余裕へ' },
+          { number: '月1回', label: 'オンライン勉強会' },
+        ],
+        messageText: 'お金は難しくない。<br />一緒に、ゆるっと、楽しく、<br />未来をちょっと明るくしよう。',
+        messageAuthor: '—— 馬渕磨理子',
+        messageSubtitle: '「磨理子のマネー基礎ノート」主宰',
+        footerBrand: '磨理子のマネー基礎ノート',
+        testimonials: [
+          {
+            text: '「ノートのおかげで、初めて家計簿が1ヶ月続いた！今では貯金が楽しみになってます。」',
+            author: 'あやか（27歳・会社員）',
+          },
+          {
+            text: '「勉強会で『固定費』の話が目からウロコ。スマホ代を見直したら月3000円も節約できました！」',
+            author: 'りな（24歳・フリーランス）',
+          },
+          {
+            text: '「お金のニュースが、ちょっとわかるようになった！磨理子さんの説明が優しくて分かりやすいです。」',
+            author: 'さくら（30歳・主婦）',
+          },
+        ],
+        featureNote: '磨理子監修のPDF教材をプレゼント。今日から使える家計管理のコツが詰まっています。',
+        featureMeeting: '磨理子とオンラインで直接おしゃべり。質問もできるリラックスした学びの時間です。',
+        featureShare: 'メンバー同士で「今日の学び」や「節約のコツ」を気軽にシェアできます。',
+      },
+    },
+  ]
+}) satisfies GetStaticPaths
+
+const {
+  name,
+  nameKana,
+  fullName,
+  avatarPath,
+  title,
+  heroTitle,
+  heroSubtitle,
+  stats,
+  messageText,
+  messageAuthor,
+  messageSubtitle,
+  footerBrand,
+  testimonials,
+  featureNote,
+  featureMeeting,
+  featureShare,
+} = Astro.props
+
+// Dynamically import avatar image based on name
+let heroImage
+if (name === '森东子') {
+  // 暂时使用磨理子的头像，后续可以替换为森东子的头像
+  const avatarModule = await import('./static/index_files/01.png')
+  heroImage = avatarModule.default
+}
+else if (name === '馬渕磨理子') {
+  const avatarModule = await import('../../../../../assets/avatar/馬渕磨理子_avatar.png')
+  heroImage = avatarModule.default
+}
+
+// Dynamically import features image based on name
+const featuresImageModule = await import(`./static/${name}_img.png`)
+const featuresImage = featuresImageModule.default
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;600;700&display=swap" />
+
+    <!-- Font Awesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+ <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+    <script is:inline>
+      function onLinkBtnClick() {
+        const link = 'https://www.baidu.com'
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion()
+        }
+        setTimeout(() => {
+          window.location.href = link
+        }, 100)
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-image">
+            <Image src={heroImage} alt={fullName} />
+          </div>
+          <div class="hero-text">
+            <h1 set:html={heroTitle} />
+            <p class="hero-subtitle" set:html={heroSubtitle} />
+            <div class="hero-stats">
+              {stats.map(stat => (
+                <div class="stat-item">
+                  <div class="stat-number">{stat.number}</div>
+                  <div class="stat-label">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: What You Can Do -->
+    <section
+      class="features"
+      style="
+        opacity: 1;
+        transform: translateY(0px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      "
+    >
+      <div class="container">
+        <h2 class="section-title">この勉強グループでできること</h2>
+        <div class="features-image-center">
+          <Image src={featuresImage} alt="ノートとペンとコーヒー" />
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-gift"></i>
+            </div>
+            <h3>お金の基本ノート</h3>
+            <p>{featureNote}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-calendar"></i>
+            </div>
+            <h3>月1回の勉強会</h3>
+            <p>{featureMeeting}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-comment"></i>
+            </div>
+            <h3>学びのシェア</h3>
+            <p>{featureShare}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3>基礎から学べる</h3>
+            <p>家計簿の付け方、固定費の見直し、貯金の習慣づくりなど、基本から丁寧に。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>安心のコミュニティ</h3>
+            <p>同じ目標を持つ仲間と一緒だから、楽しく続けられる環境です。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <h3>ゆるく続けられる</h3>
+            <p>無理なく、自分のペースで。毎日頑張らなくても大丈夫な学び方です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Member Comments -->
+    <section
+      class="testimonials"
+      style="
+        opacity: 1;
+        transform: translateY(0px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      "
+    >
+      <div class="container">
+        <h2 class="section-title">メンバーの声</h2>
+        <div class="testimonials-grid">
+          {testimonials.map((testimonial, index) => (
+            <div
+              class="testimonial-card"
+              style={`
+                opacity: 1;
+                transform: translateY(0px);
+                transition:
+                  opacity 0.6s ${index * 0.1}s,
+                  transform 0.6s ${index * 0.1}s;
+              `}
+            >
+              <div class="testimonial-content">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">「{testimonial.text}」</p>
+                <p class="testimonial-author">{testimonial.author}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Message -->
+    <section
+      class="message"
+      style="
+        opacity: 1;
+        transform: translateY(0px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      "
+    >
+      <div class="container">
+        <div class="message-card">
+          <div class="quote-icon">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <p class="message-text" set:html={messageText} />
+          <p class="message-author">{messageAuthor}</p>
+          <p class="message-subtitle">{messageSubtitle}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: How to Join -->
+    <section class="how-to-join">
+      <div class="container">
+        <h2 class="section-title">参加の流れ</h2>
+        <div class="steps-container">
+          <div class="step-card">
+            <div class="step-number">STEP 1</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-hand-pointer"></i>
+            </div>
+            <h3>参加ボタンをクリック</h3>
+            <p>下のボタンから簡単に参加できます</p>
+          </div>
+          <div class="step-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="step-card">
+            <div class="step-number">STEP 2</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-download"></i>
+            </div>
+            <h3>教材をダウンロード</h3>
+            <p>すぐに「お金の基本ノート」が届きます</p>
+          </div>
+          <div class="step-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="step-card">
+            <div class="step-number">STEP 3</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h3>今日から学び始める</h3>
+            <p>自分のペースでゆるく楽しく学習</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fixed Bottom Button -->
+    <div class="fixed-button">
+      <button class="cta-button" onclick="onLinkBtnClick()">勉強グループに参加する</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <h3>{footerBrand}</h3>
+            <div class="company-info">
+              <p class="company-name">運営会社：株式会社マネーラボ</p>
+              <p class="company-address">
+                <i class="fa-solid fa-location-dot"></i>
+                〒150-0002<br />
+                東京都渋谷区渋谷2-12-15<br />
+                渋谷日章ビル 5F
+              </p>
+              <p class="company-tel">
+                <i class="fa-solid fa-phone"></i>
+                TEL: 03-5468-7890
+              </p>
+              <p class="company-hours">
+                <i class="fa-solid fa-clock"></i>
+                受付時間: 平日 10:00〜18:00
+              </p>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>リンク</h4>
+              <ul>
+                <li><a href="https://sparkling-dieffenbachia-3f046e.netlify.app/#about">グループについて</a></li>
+                <li><a href="https://sparkling-dieffenbachia-3f046e.netlify.app/#features">できること</a></li>
+                <li><a href="https://sparkling-dieffenbachia-3f046e.netlify.app/#testimonials">メンバーの声</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4>法律情報</h4>
+              <ul>
+                <li><a href="https://sparkling-dieffenbachia-3f046e.netlify.app/#privacy">プライバシーポリシー</a></li>
+                <li><a href="https://sparkling-dieffenbachia-3f046e.netlify.app/#terms">利用規約</a></li>
+                <li>
+                  <a href="https://sparkling-dieffenbachia-3f046e.netlify.app/#legal">特定商取引法に基づく表記</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4>お問い合わせ</h4>
+              <ul>
+                <li><a href="https://sparkling-dieffenbachia-3f046e.netlify.app/#contact">お問い合わせフォーム</a></li>
+                <li><a href="tel:03-5468-7890">03-5468-7890</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <p class="disclaimer">※教育目的の勉強グループです。投資助言ではありません。</p>
+          <p class="copyright">© 2025 {footerBrand} All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script -->
+    <!-- Note: script.js.下载 and saved_resource.html may not exist, commented out for now -->
+    <!-- <script is:inline src="./static/index_files/script.js.下载"></script> -->
+    <!-- <iframe
+      height="0"
+      width="0"
+      style="display: none; visibility: hidden"
+      src="./static/index_files/saved_resource.html"
+    ></iframe> -->
+
+    <JPComplianceFooter />
+</body>
+</html>
