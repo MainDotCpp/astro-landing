@@ -1,0 +1,1179 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import emblem from './assets/images/emblem.jpg'
+import feature1 from './assets/images/feature1.jpg'
+import feature2 from './assets/images/feature2.jpg'
+import feature3 from './assets/images/feature3.jpg'
+import hero from './assets/images/hero.jpg'
+import kakaoIcon from './assets/images/kakao-icon.png'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>염승환의 데이터 인사이트 커뮤니티 · 무료 공익 학습 모임</title>
+    <meta
+      name="description"
+      content="염승환과 데이터로 트렌드를 읽는 무료 공익 학습 커뮤니티. 지금 가입하면 2026년 7월 트렌드 예측 가이드를 드립니다."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --fog: #8fa0a7;
+        --fog-dk: #6e8088;
+        --sand: #c7b299;
+        --sand-dk: #b49c7c;
+        --cream: #efe9e0;
+        --cream-2: #f6f2ea;
+        --ink: #3a4147;
+        --ink-soft: #6b747a;
+        --white: #fcfaf6;
+        --shadow: 0 18px 48px -20px rgba(58, 65, 71, 0.32);
+        --shadow-sm: 0 8px 24px -14px rgba(58, 65, 71, 0.28);
+        --radius: 22px;
+        --maxw: 560px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding-bottom: 120px;
+        overflow-x: hidden;
+        background:
+          radial-gradient(1200px 640px at 80% -8%, rgba(199, 178, 153, 0.3), transparent 60%),
+          radial-gradient(1000px 600px at -10% 12%, rgba(143, 160, 167, 0.28), transparent 55%),
+          linear-gradient(180deg, var(--cream-2) 0%, var(--cream) 100%);
+        background-attachment: fixed;
+        color: var(--ink);
+        font-family: 'Nanum Gothic', sans-serif;
+        line-height: 1.7;
+        word-break: keep-all;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      b {
+        color: var(--fog-dk);
+        font-weight: 800;
+      }
+
+      .fog-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .fog-bg::before {
+        position: absolute;
+        top: -30%;
+        left: 50%;
+        width: 90%;
+        height: 80%;
+        background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.55), rgba(199, 178, 153, 0.18) 40%, transparent 70%);
+        content: '';
+        transform: translateX(-50%);
+        animation: beam 9s ease-in-out infinite;
+      }
+
+      .fog {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.5;
+      }
+
+      .fog-1 {
+        top: -120px;
+        right: -80px;
+        width: 420px;
+        height: 420px;
+        background: var(--fog);
+        animation: drift 18s ease-in-out infinite;
+      }
+
+      .fog-2 {
+        bottom: 18%;
+        left: -120px;
+        width: 360px;
+        height: 360px;
+        background: var(--sand);
+        animation: drift 22s ease-in-out infinite reverse;
+      }
+
+      .fog-3 {
+        top: 45%;
+        right: -90px;
+        width: 300px;
+        height: 300px;
+        background: #d8cbb6;
+        animation: drift 26s ease-in-out infinite;
+      }
+
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 54px 22px 40px;
+      }
+
+      .card {
+        border: 1px solid rgba(199, 178, 153, 0.42);
+        border-radius: var(--radius);
+        background: rgba(252, 250, 246, 0.82);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: var(--sand-dk);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.42em;
+        text-indent: 0.42em;
+      }
+
+      .hero-title {
+        margin: 0;
+        color: var(--ink);
+        font-family: 'Nanum Myeongjo', Georgia, serif;
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        line-height: 1.28;
+      }
+
+      .hero-sub {
+        margin: 14px 0 0;
+        color: var(--ink-soft);
+        font-size: 15px;
+      }
+
+      .emblem {
+        position: relative;
+        display: grid;
+        width: 128px;
+        height: 128px;
+        margin: 34px auto 28px;
+        place-items: center;
+        border: 1px solid rgba(199, 178, 153, 0.55);
+        border-radius: 50%;
+        background: var(--white);
+        box-shadow: var(--shadow-sm), inset 0 0 0 6px rgba(239, 233, 224, 0.7);
+        animation: emblem-glow 4s ease-in-out infinite;
+      }
+
+      .emblem::before {
+        position: absolute;
+        inset: -14px;
+        z-index: -1;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, transparent 0deg, rgba(143, 160, 167, 0.55) 90deg, transparent 200deg, rgba(199, 178, 153, 0.55) 300deg, transparent 360deg);
+        content: '';
+        filter: blur(9px);
+        opacity: 0.7;
+        animation: spin 7s linear infinite;
+      }
+
+      .emblem img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+
+      .pill-cta,
+      .showcase-cta,
+      .fixed-cta {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        border: 0;
+        border-radius: 999px;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .pill-cta {
+        max-width: 100%;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, var(--fog) 0%, var(--fog-dk) 100%);
+        box-shadow: 0 14px 28px -12px rgba(110, 128, 136, 0.7);
+        font-size: 14.5px;
+        font-weight: 700;
+        line-height: 1.35;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .pill-cta:hover {
+        box-shadow: 0 20px 34px -12px rgba(110, 128, 136, 0.8);
+        transform: translateY(-2px);
+      }
+
+      .pill-cta:active {
+        transform: translateY(0);
+      }
+
+      .btn-icon {
+        position: relative;
+        z-index: 1;
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        object-fit: contain;
+      }
+
+      .pill-cta span,
+      .showcase-cta span,
+      .fixed-cta span,
+      .showcase-cta .arr {
+        position: relative;
+        z-index: 1;
+      }
+
+      .pill-cta::before,
+      .fixed-cta::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        content: '';
+        pointer-events: none;
+        transform: translateX(-160%) skewX(-20deg);
+        animation: shine 3.5s ease-in-out infinite;
+      }
+
+      .hero-desc {
+        margin: 26px 0 0;
+        color: var(--ink-soft);
+        font-size: 14px;
+        line-height: 1.85;
+        text-align: left;
+      }
+
+      .gift {
+        position: relative;
+        margin-top: 40px;
+        padding: 30px 26px 28px;
+        background: linear-gradient(160deg, rgba(199, 178, 153, 0.2), rgba(252, 250, 246, 0.92));
+      }
+
+      .gift-badge {
+        position: absolute;
+        top: -13px;
+        left: 26px;
+        overflow: hidden;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--sand-dk);
+        box-shadow: var(--shadow-sm);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+      }
+
+      .gift-badge::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+        content: '';
+        transform: translateX(-160%) skewX(-20deg);
+        animation: shine 3s ease-in-out infinite 1s;
+      }
+
+      .gift-title {
+        margin: 0 0 16px;
+        color: var(--ink);
+        font-size: 19px;
+        font-weight: 800;
+      }
+
+      .gift-list,
+      .env-list {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .gift-list {
+        gap: 12px;
+      }
+
+      .gift-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border: 1px solid rgba(199, 178, 153, 0.35);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.6);
+        color: var(--ink);
+        font-size: 14px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+
+      .gift-list li:hover {
+        border-color: rgba(199, 178, 153, 0.7);
+        box-shadow: var(--shadow-sm);
+        transform: translateX(4px);
+      }
+
+      .ico {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+        place-items: center;
+        border: 1px solid rgba(143, 160, 167, 0.3);
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(143, 160, 167, 0.22), rgba(199, 178, 153, 0.22));
+        color: var(--fog-dk);
+      }
+
+      .ico svg {
+        width: 21px;
+        height: 21px;
+      }
+
+      .features {
+        display: grid;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 20px;
+      }
+
+      .feature-ico {
+        display: grid;
+        width: 56px;
+        height: 56px;
+        flex: 0 0 56px;
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid rgba(199, 178, 153, 0.45);
+        border-radius: 16px;
+        background: var(--cream);
+      }
+
+      .feature-ico img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .feature-tx h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .feature-tx p {
+        margin: 4px 0 0;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .showcase {
+        margin-top: 36px;
+      }
+
+      .showcase-img {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(199, 178, 153, 0.4);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .showcase-img > img {
+        width: 100%;
+        height: auto;
+      }
+
+      .showcase-img::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.4) 50%, transparent 62%);
+        content: '';
+        pointer-events: none;
+        transform: translateX(-100%);
+        animation: sweep 5.5s ease-in-out infinite;
+      }
+
+      .showcase-cta {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        width: calc(100% - 32px);
+        max-width: 380px;
+        padding: 15px 22px;
+        background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dk) 100%);
+        box-shadow: 0 14px 30px -10px rgba(120, 98, 70, 0.75);
+        font-size: 15px;
+        line-height: 1.25;
+        transform: translateX(-50%);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .showcase-cta:hover {
+        box-shadow: 0 20px 38px -10px rgba(120, 98, 70, 0.85);
+        transform: translateX(-50%) translateY(-2px);
+      }
+
+      .arr {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        animation: nudge 1.6s ease-in-out infinite;
+      }
+
+      .env {
+        margin-top: 36px;
+        padding: 30px 26px;
+      }
+
+      .env-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        margin: 0 0 20px;
+        color: var(--ink);
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .spark {
+        width: 21px;
+        height: 21px;
+        color: var(--sand-dk);
+        animation: twinkle 2.6s ease-in-out infinite;
+      }
+
+      .env-list {
+        gap: 14px;
+      }
+
+      .env-list li {
+        position: relative;
+        padding-left: 32px;
+        color: var(--ink);
+        font-size: 14.5px;
+      }
+
+      .env-list li::before {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--fog);
+        content: '';
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/15px no-repeat;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/15px no-repeat;
+      }
+
+      .notice {
+        margin: 34px 0 0;
+        color: var(--ink-soft);
+        font-size: 12px;
+        line-height: 1.9;
+        text-align: center;
+      }
+
+      .footer {
+        margin-top: 46px;
+        border-top: 4px solid var(--sand);
+        background: linear-gradient(180deg, var(--fog-dk) 0%, #4f5a60 100%);
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .footer-inner {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 42px 26px 40px;
+        text-align: center;
+      }
+
+      .footer-title {
+        margin: 0 0 16px;
+        color: var(--sand);
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+      }
+
+      .footer-inner p {
+        margin: 5px 0;
+        font-size: 13px;
+      }
+
+      .footer-policy {
+        margin-top: 24px !important;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12px;
+        line-height: 1.9;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .footer-links a {
+        border: 0;
+        border-bottom: 1px dotted rgba(255, 255, 255, 0.4);
+        background: transparent;
+        color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        font-size: 13px;
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        color: var(--sand);
+      }
+
+      .footer-links a {
+        transition: color 0.2s;
+      }
+
+      .sep {
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .fixed-bar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 90;
+        display: flex;
+        justify-content: center;
+        padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+        background: linear-gradient(180deg, rgba(239, 233, 224, 0) 0%, rgba(239, 233, 224, 0.92) 38%);
+        pointer-events: none;
+        backdrop-filter: blur(4px);
+      }
+
+      .fixed-cta {
+        width: 100%;
+        max-width: var(--maxw);
+        padding: 16px 24px;
+        background: linear-gradient(135deg, var(--fog) 0%, var(--fog-dk) 50%, var(--sand-dk) 130%);
+        background-size: 180% 100%;
+        box-shadow: 0 16px 36px -10px rgba(58, 65, 71, 0.6);
+        font-size: 16.5px;
+        pointer-events: auto;
+        animation: pulse 2.4s ease-in-out infinite, hue-shift 6s ease-in-out infinite;
+      }
+
+      .fixed-cta .btn-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 22px;
+        background: rgba(58, 65, 71, 0.55);
+        backdrop-filter: blur(3px);
+      }
+
+      .modal-overlay.show {
+        display: flex;
+      }
+
+      .modal-box {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 30px 26px 28px;
+        border: 1px solid rgba(199, 178, 153, 0.5);
+        border-radius: 20px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+        animation: pop 0.25s ease;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        border: 0;
+        background: none;
+        color: var(--ink-soft);
+        cursor: pointer;
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .modal-title {
+        margin: 0 0 16px;
+        padding-right: 24px;
+        color: var(--ink);
+        font-family: 'Nanum Myeongjo', Georgia, serif;
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      .modal-body {
+        color: var(--ink);
+        font-size: 13.5px;
+        line-height: 1.85;
+      }
+
+      .modal-body h4 {
+        margin: 16px 0 6px;
+        color: var(--fog-dk);
+        font-size: 14.5px;
+        font-weight: 800;
+      }
+
+      .modal-body p {
+        margin: 0 0 8px;
+      }
+
+      .modal-body ul {
+        margin: 6px 0 6px 18px;
+        padding: 0;
+      }
+
+      .modal-body li {
+        margin-bottom: 5px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @keyframes beam {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: translateX(-50%) scale(1);
+        }
+
+        50% {
+          opacity: 0.85;
+          transform: translateX(-50%) scale(1.08);
+        }
+      }
+
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+
+        50% {
+          transform: translate(-24px, 30px) scale(1.12);
+        }
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes emblem-glow {
+        0%,
+        100% {
+          box-shadow: var(--shadow-sm), inset 0 0 0 6px rgba(239, 233, 224, 0.7), 0 0 0 0 rgba(143, 160, 167, 0);
+        }
+
+        50% {
+          box-shadow: 0 14px 40px -10px rgba(143, 160, 167, 0.55), inset 0 0 0 6px rgba(239, 233, 224, 0.7), 0 0 22px 2px rgba(199, 178, 153, 0.35);
+        }
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translateX(-160%) skewX(-20deg);
+        }
+
+        55%,
+        100% {
+          transform: translateX(320%) skewX(-20deg);
+        }
+      }
+
+      @keyframes sweep {
+        0% {
+          transform: translateX(-100%);
+        }
+
+        55%,
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes nudge {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+
+        50% {
+          transform: translateX(5px);
+        }
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.55;
+          transform: scale(0.88) rotate(0deg);
+        }
+
+        50% {
+          opacity: 1;
+          transform: scale(1.08) rotate(12deg);
+        }
+      }
+
+      @keyframes hue-shift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 16px 36px -10px rgba(58, 65, 71, 0.6);
+        }
+
+        50% {
+          box-shadow: 0 16px 46px -6px rgba(143, 160, 167, 0.9);
+        }
+      }
+
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: translateY(14px) scale(0.98);
+        }
+
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @media (min-width: 768px) {
+        :root {
+          --maxw: 600px;
+        }
+
+        .wrap {
+          padding-top: 70px;
+        }
+
+        .hero-title {
+          font-size: 46px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .wrap {
+          padding-right: 18px;
+          padding-left: 18px;
+        }
+
+        .hero-title {
+          font-size: 34px;
+        }
+
+        .pill-cta,
+        .showcase-cta {
+          padding-right: 16px;
+          padding-left: 16px;
+          font-size: 13px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fog-bg" aria-hidden="true">
+      <span class="fog fog-1"></span>
+      <span class="fog fog-2"></span>
+      <span class="fog fog-3"></span>
+    </div>
+
+    <main class="wrap">
+      <header class="hero reveal in">
+        <p class="eyebrow">DATA · INSIGHT · COMMUNITY</p>
+        <h1 class="hero-title">염승환의<br />데이터 인사이트 커뮤니티</h1>
+        <p class="hero-sub">염승환과 데이터로 트렌드를 읽는 <b>무료 공익 학습 모임</b></p>
+
+        <div class="emblem">
+          <img src={emblem.src} width="600" height="756" alt="염승환" loading="lazy" />
+        </div>
+
+        <a class="pill-cta link-btn" href="javascript:void(0)" onclick="mixinJump()">
+          <img class="btn-icon" src={kakaoIcon.src} width="512" height="512" alt="" />
+          <span>카카오톡으로 커뮤니티 들어가기</span>
+        </a>
+
+        <p class="hero-desc">
+          초보자도 경험자도 모두 환영합니다. 단계별 커리큘럼으로
+          <b>데이터 해석법과 트렌드를 읽는 사고 기술</b>을 함께 익혀요.
+          염승환이 팬 여러분께 보답하기 위해 운영하는 <b>비영리 공익 커뮤니티</b>입니다.
+        </p>
+      </header>
+
+      <section class="gift card reveal in">
+        <span class="gift-badge">FREE</span>
+        <h2 class="gift-title">지금 가입하면 무료로 드려요</h2>
+        <ul class="gift-list">
+          <li>
+            <i class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                <path d="M12 8v13"></path>
+                <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                <path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8"></path>
+                <path d="M16.5 8a2.5 2.5 0 0 0 0-5C13 3 12 8 12 8"></path>
+              </svg>
+            </i>
+            <span><b>「2026년 7월 트렌드 예측 가이드」</b> 무료 제공</span>
+          </li>
+          <li>
+            <i class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                <path d="M3 10h18"></path>
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+              </svg>
+            </i>
+            <span>매주 진행되는 <b>멤버 그룹 학습 세션</b> 초대</span>
+          </li>
+          <li>
+            <i class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+              </svg>
+            </i>
+            <span>최신 트렌드 소식 <b>커뮤니티 우선 공유</b></span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="features">
+        <article class="feature card reveal in">
+          <div class="feature-ico">
+            <img src={feature1.src} width="1024" height="1024" alt="" loading="lazy" />
+          </div>
+          <div class="feature-tx">
+            <h3>체계적인 학습 시스템</h3>
+            <p>단계별 커리큘럼으로 차근차근 (입문 → 중급 → 심화)</p>
+          </div>
+        </article>
+        <article class="feature card reveal in">
+          <div class="feature-ico">
+            <img src={feature2.src} width="1024" height="1024" alt="" loading="lazy" />
+          </div>
+          <div class="feature-tx">
+            <h3>데이터 기반 분석</h3>
+            <p>실전 데이터 해석법과 트렌드를 읽는 인사이트 기술</p>
+          </div>
+        </article>
+        <article class="feature card reveal in">
+          <div class="feature-ico">
+            <img src={feature3.src} width="1408" height="768" alt="" loading="lazy" />
+          </div>
+          <div class="feature-tx">
+            <h3>전략적 사고 훈련</h3>
+            <p>실전 케이스 스터디를 통한 의사결정 능력 강화</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="showcase reveal in">
+        <div class="showcase-img">
+          <img src={hero.src} width="1600" height="1067" alt="함께 공부하는 학습 데스크" loading="lazy" />
+          <a class="showcase-cta link-btn" href="javascript:void(0)" onclick="mixinJump()">
+            <img class="btn-icon" src={kakaoIcon.src} width="512" height="512" alt="" />
+            <span>카카오톡으로 지금 시작하기</span>
+            <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="env card reveal in">
+        <h2 class="env-title">
+          <svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"></path>
+          </svg>
+          커뮤니티 학습 환경
+        </h2>
+        <ul class="env-list">
+          <li>최신 트렌드 인사이트 우선 공유</li>
+          <li>글로벌 데이터 구조와 해석 방법 학습</li>
+          <li>논리적 사고력과 의사결정 능력 강화</li>
+          <li>오랜 노하우를 집약한 분석 방법 습득</li>
+          <li>다른 멤버들과의 자유로운 네트워킹</li>
+          <li>시뮬레이션 실습을 통한 실전 경험 축적</li>
+          <li>개인별 학습 조언과 로드맵 제공</li>
+        </ul>
+      </section>
+
+      <p class="notice">
+        ※ 본 사이트 콘텐츠는 교육 및 정보 공유 목적으로만 제공되며, 특정 행위를 권유할 목적으로 하지 않습니다.<br />
+        사용자는 본인의 판단과 책임 하에 이용해야 합니다.
+      </p>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <h3 class="footer-title">운영 안내</h3>
+        <p>사업자 등록번호: 217-86-45291</p>
+        <p>주소: 서울특별시 강남구 테헤란로 152, 14층</p>
+        <p>연락처: support@insignity.com / +82-2-6949-2830</p>
+
+        <p class="footer-policy">
+          당사는 사용자 개인정보를 안전하게 관리하며, 관련 법령을 준수합니다.<br />
+          자세한 내용은 아래 페이지에서 확인하실 수 있습니다.
+        </p>
+
+        <nav class="footer-links" aria-label="운영 정책">
+          <a href="#privacy" data-modal="privacy">개인정보 처리방침</a>
+          <span class="sep">|</span>
+          <a href="#terms" data-modal="terms">이용약관</a>
+          <span class="sep">|</span>
+          <a href="#disclaimer" data-modal="disclaimer">면책 조항</a>
+        </nav>
+      </div>
+    </footer>
+
+    <div class="fixed-bar">
+      <a class="fixed-cta link-btn" href="javascript:void(0)" onclick="mixinJump()">
+        <img class="btn-icon" src={kakaoIcon.src} width="512" height="512" alt="" />
+        <span>카카오톡으로 무료 참여하기</span>
+      </a>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" type="button" aria-label="닫기">×</button>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <script>
+      const modalContent = {
+        privacy: {
+          title: '개인정보 처리방침',
+          body: `
+            <p>본 커뮤니티(이하 "운영자")는 「개인정보 보호법」 등 관련 법령을 준수하며, 이용자의 개인정보를 안전하게 관리합니다.</p>
+            <h4>1. 수집 항목</h4>
+            <p>커뮤니티 가입 시 닉네임, 연락 가능한 메신저 아이디 등 최소한의 정보만을 수집합니다.</p>
+            <h4>2. 이용 목적</h4>
+            <ul>
+              <li>커뮤니티 가입 및 멤버 관리</li>
+              <li>학습 자료 및 공지 전달</li>
+              <li>그룹 학습 세션 운영</li>
+            </ul>
+            <h4>3. 보유 및 이용 기간</h4>
+            <p>수집된 정보는 이용 목적 달성 후 지체 없이 파기하며, 관련 법령에서 정한 기간 동안만 보관합니다.</p>
+            <h4>4. 제3자 제공</h4>
+            <p>이용자의 사전 동의 없이 개인정보를 외부에 제공하지 않습니다. 단, 법령에 따른 요청이 있는 경우는 예외로 합니다.</p>
+            <h4>5. 이용자의 권리</h4>
+            <p>이용자는 언제든지 본인의 개인정보 열람·정정·삭제·처리정지를 요청할 수 있습니다.</p>
+            <h4>6. 문의처</h4>
+            <p>support@insight-community.com</p>
+          `,
+        },
+        terms: {
+          title: '이용약관',
+          body: `
+            <p>본 약관은 커뮤니티 이용과 관련하여 운영자와 이용자 간의 권리·의무 및 책임 사항을 규정합니다.</p>
+            <h4>제1조 (목적)</h4>
+            <p>본 커뮤니티는 데이터 해석과 트렌드 인사이트에 관한 교육 및 정보 공유를 목적으로 하는 무료 학습 모임입니다.</p>
+            <h4>제2조 (이용자의 의무)</h4>
+            <ul>
+              <li>커뮤니티 내 다른 멤버를 존중하고 예의를 지킵니다.</li>
+              <li>허위 정보, 광고, 비방 등 운영을 방해하는 행위를 하지 않습니다.</li>
+              <li>학습 자료를 무단으로 외부에 배포하지 않습니다.</li>
+            </ul>
+            <h4>제3조 (콘텐츠의 성격)</h4>
+            <p>제공되는 모든 콘텐츠는 교육 및 정보 공유 목적이며, 특정 행위를 권유하거나 결과를 보장하지 않습니다.</p>
+            <h4>제4조 (서비스 변경 및 중단)</h4>
+            <p>운영자는 사정에 따라 커뮤니티 운영 내용을 변경하거나 중단할 수 있습니다.</p>
+            <h4>제5조 (책임의 한계)</h4>
+            <p>이용자는 본인의 판단과 책임 하에 콘텐츠를 이용하며, 그 결과에 대한 책임은 이용자 본인에게 있습니다.</p>
+          `,
+        },
+        disclaimer: {
+          title: '면책 조항',
+          body: `
+            <p>본 사이트와 커뮤니티에서 제공하는 모든 콘텐츠는 <b>교육 및 정보 공유 목적</b>으로 제공됩니다.</p>
+            <h4>1. 정보의 성격</h4>
+            <p>제공되는 자료는 일반적인 학습 자료이며, 특정 행위를 권유하거나 어떠한 결과도 보장하지 않습니다.</p>
+            <h4>2. 책임의 한계</h4>
+            <p>이용자가 본 콘텐츠를 참고하여 내린 모든 판단과 그에 따른 결과에 대한 책임은 전적으로 이용자 본인에게 있습니다.</p>
+            <h4>3. 정확성</h4>
+            <p>운영자는 정보의 정확성과 최신성을 위해 노력하나, 그 완전성을 보증하지 않습니다.</p>
+            <h4>4. 외부 링크</h4>
+            <p>커뮤니티 내 안내되는 외부 자료 및 링크에 대한 책임은 해당 제공처에 있습니다.</p>
+            <p style="margin-top:14px;">※ 이용자는 본인의 판단과 책임 하에 본 서비스를 이용해야 합니다.</p>
+          `,
+        },
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const overlay = document.getElementById('modal')
+        const titleEl = document.getElementById('modal-title')
+        const bodyEl = document.getElementById('modal-body')
+
+        const openModal = (key) => {
+          const data = modalContent[key]
+          if (!data || !overlay || !titleEl || !bodyEl)
+            return
+          titleEl.textContent = data.title
+          bodyEl.innerHTML = data.body
+          overlay.classList.add('show')
+          document.body.style.overflow = 'hidden'
+        }
+
+        const closeModal = () => {
+          if (!overlay)
+            return
+          overlay.classList.remove('show')
+          document.body.style.overflow = ''
+        }
+
+        document.querySelectorAll('[data-modal]').forEach((link) => {
+          link.addEventListener('click', (event) => {
+            event.preventDefault()
+            openModal(link.getAttribute('data-modal'))
+          })
+        })
+
+        overlay?.querySelector('.modal-close')?.addEventListener('click', closeModal)
+        overlay?.addEventListener('click', (event) => {
+          if (event.target === overlay)
+            closeModal()
+        })
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape')
+            closeModal()
+        })
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting)
+              return
+            entry.target.classList.add('in')
+            observer.unobserve(entry.target)
+          })
+        }, { threshold: 0.12 })
+
+        document.querySelectorAll('.reveal').forEach(element => observer.observe(element))
+      })
+    </script>
+  </body>
+</html>

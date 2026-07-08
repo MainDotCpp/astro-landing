@@ -1,0 +1,694 @@
+---
+import kakaoIcon from '@/assets/kakao-icon.png'
+import RedirectCode from '@/components/RedirectCode.astro'
+import avatar from './assets/images/avatar.jpg'
+import wafer from './assets/images/wafer.jpg'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>염승환의 AI 밸류체인 리포트 · 7월호 무료 공개</title>
+    <meta
+      name="description"
+      content="엔비디아 다음은 한국 AI 밸류체인입니다. HBM부터 전력기기, 로봇까지 — 염승환이 돈의 흐름을 따라 정리한 종목 리포트를 카톡방에서 매주 무료로 받아보세요."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@900&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --paper: #f6f7f9;
+        --card: #ffffff;
+        --ink: #0f2547;
+        --ink-soft: #4b5871;
+        --up: #d92b2b;
+        --up-bg: #fdefee;
+        --down: #1f6fd6;
+        --line: #dce2ec;
+        --kakao: #fee500;
+        --serif: 'Noto Serif KR', serif;
+        --sans: 'IBM Plex Sans KR', sans-serif;
+        --mono: 'IBM Plex Mono', monospace;
+        --maxw: 560px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.65;
+        padding-bottom: 108px;
+        word-break: keep-all;
+      }
+
+      .wrap {
+        width: min(var(--maxw), 92%);
+        margin: 0 auto;
+      }
+
+      /* ---------- 리포트 헤드 ---------- */
+      .hero {
+        background: var(--card);
+        border-bottom: 1px solid var(--line);
+        padding: 44px 0 36px;
+      }
+
+      .kicker {
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--up);
+        margin-bottom: 14px;
+      }
+
+      .kicker span {
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+
+      h1 {
+        font-family: var(--serif);
+        font-size: 33px;
+        line-height: 1.32;
+        font-weight: 900;
+        letter-spacing: -0.01em;
+      }
+
+      h1 em {
+        font-style: normal;
+        color: var(--up);
+      }
+
+      .lede {
+        margin-top: 18px;
+        font-size: 16.5px;
+        color: var(--ink-soft);
+      }
+
+      .analyst {
+        margin-top: 26px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .analyst img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: top;
+        border: 2px solid var(--ink);
+        display: block;
+      }
+
+      .analyst strong {
+        display: block;
+        font-size: 16px;
+      }
+
+      .analyst small {
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- CTA ---------- */
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 17px 20px;
+        margin-top: 26px;
+        background: var(--kakao);
+        color: #191600;
+        font-size: 17px;
+        font-weight: 700;
+        border-radius: 14px;
+        text-decoration: none;
+        box-shadow: 0 10px 24px -12px rgba(120, 100, 0, 0.55);
+      }
+
+      .cta img {
+        width: 24px;
+        height: 24px;
+        display: block;
+      }
+
+      .cta-note {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- 섹션 공통 ---------- */
+      section {
+        padding: 46px 0;
+      }
+
+      .sec-label {
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--up);
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-family: var(--serif);
+        font-size: 24px;
+        line-height: 1.4;
+        font-weight: 900;
+        margin-bottom: 22px;
+      }
+
+      /* ---------- Ⅰ 데이터 ---------- */
+      .data-row {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 20px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .data-row + .data-row {
+        margin-top: 12px;
+      }
+
+      .data-row p {
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .data-row b {
+        font-family: var(--mono);
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--up);
+        white-space: nowrap;
+      }
+
+      figure {
+        margin-top: 22px;
+      }
+
+      figure img {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        display: block;
+      }
+
+      figcaption {
+        margin-top: 8px;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        font-family: var(--mono);
+      }
+
+      /* ---------- Ⅱ 밸류체인 맵 (시그니처) ---------- */
+      .chain-sec {
+        background: var(--ink);
+        color: #eef2f9;
+      }
+
+      .chain-sec .sec-label {
+        color: #ffb4b4;
+      }
+
+      .chain-sec h2 {
+        color: #fff;
+      }
+
+      .chain-sec .chain-intro {
+        font-size: 15px;
+        color: #b9c4d8;
+        margin: -8px 0 26px;
+      }
+
+      .node {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 14px;
+        padding: 18px 20px;
+      }
+
+      .node-no {
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 600;
+        color: #ff8a8a;
+        letter-spacing: 0.08em;
+      }
+
+      .node h3 {
+        font-size: 18px;
+        margin: 4px 0 8px;
+        color: #fff;
+      }
+
+      .node .tickers {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: #aebadf;
+        line-height: 1.9;
+      }
+
+      .flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6px 0;
+        color: #ff8a8a;
+      }
+
+      .flow svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+
+      .flow small {
+        font-size: 12px;
+        color: #8fa0c0;
+      }
+
+      /* ---------- Ⅲ 애널리스트 ---------- */
+      .quote {
+        font-family: var(--serif);
+        font-size: 19px;
+        font-weight: 900;
+        line-height: 1.6;
+        border-left: 4px solid var(--up);
+        background: var(--card);
+        border-radius: 14px;
+        padding: 22px 24px;
+        margin-bottom: 22px;
+      }
+
+      .cred {
+        list-style: none;
+      }
+
+      .cred li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 15px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cred li:last-child {
+        border-bottom: none;
+      }
+
+      .cred svg {
+        width: 18px;
+        height: 18px;
+        flex: none;
+        margin-top: 4px;
+        fill: var(--up);
+      }
+
+      /* ---------- Ⅳ 받는 것 ---------- */
+      .get {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 22px;
+      }
+
+      .get li {
+        list-style: none;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 10px 0;
+      }
+
+      .get b {
+        display: block;
+        font-size: 15.5px;
+      }
+
+      .get p {
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+
+      .get .num {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 14px;
+        color: #fff;
+        background: var(--up);
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        margin-top: 3px;
+      }
+
+      /* ---------- 후기 (카톡 말풍선) ---------- */
+      .talk {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .bubble {
+        max-width: 88%;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 4px 16px 16px 16px;
+        padding: 12px 16px;
+        font-size: 14.5px;
+      }
+
+.bubble small {
+        display: block;
+        font-size: 12px;
+        color: var(--ink-soft);
+        margin-bottom: 2px;
+      }
+
+      /* ---------- 하단 고정 CTA ---------- */
+      .fixed-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--line);
+        padding: 12px 0 max(12px, env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+
+      .fixed-bar .cta {
+        margin-top: 0;
+        padding: 15px 20px;
+      }
+
+      /* ---------- 푸터 ---------- */
+      footer {
+        padding: 30px 0 40px;
+        font-size: 12px;
+        color: #8b96ab;
+        line-height: 1.7;
+      }
+
+      /* ---------- 스크롤 리빌 ---------- */
+      html.js .rv {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+
+      html.js .rv.on {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html.js .rv {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      @media (min-width: 768px) {
+        h1 {
+          font-size: 40px;
+        }
+
+        .hero {
+          padding: 64px 0 52px;
+        }
+
+        h2 {
+          font-size: 27px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+
+    <!-- 리포트 헤드 -->
+    <header class="hero">
+      <div class="wrap">
+        <p class="kicker">AI 밸류체인 리포트 <span>· 2026년 7월호</span></p>
+        <h1>엔비디아 다음 주인공은<br /><em>한국 AI 밸류체인</em>입니다</h1>
+        <p class="lede">
+          AI가 커질수록 돈은 반도체, 전력, 로봇으로 흘러갑니다. 그 길목에 서 있는 한국 기업들을 염승환이 매주
+          정리해 드립니다.
+        </p>
+
+        <div class="analyst">
+          <img src={avatar.src} alt="염승환 이사" />
+          <div>
+            <strong>염승환</strong>
+            <small>증권사 리테일 이사 · 《주린이가 가장 알고 싶은 최다질문 TOP 77》 저자</small>
+          </div>
+        </div>
+
+        <a class="cta link-btn" href="javascript:void(0)" onclick="mixinJump()">
+          <img src={kakaoIcon.src} alt="" />
+          카톡방에서 7월호 무료로 받기
+        </a>
+        <p class="cta-note">가입비 없음 · 탈퇴 자유 · 1분이면 입장</p>
+      </div>
+    </header>
+
+    <!-- Ⅰ 왜 지금인가 -->
+    <section>
+      <div class="wrap rv">
+        <p class="sec-label">리포트 Ⅰ</p>
+        <h2>왜 지금인가, 숫자로 보시죠</h2>
+
+        <div class="data-row">
+          <p>HBM 시장 연평균 성장률 전망</p>
+          <b>+42%</b>
+        </div>
+        <div class="data-row">
+          <p>AI 데이터센터 전력 수요 (2030년까지)</p>
+          <b>+165%</b>
+        </div>
+        <div class="data-row">
+          <p>올해 상반기 외국인 반도체 순매수</p>
+          <b>14.2조원</b>
+        </div>
+
+        <figure>
+          <img src={wafer.src} alt="HBM 반도체 웨이퍼" />
+          <figcaption>그림 1. HBM, AI 서버 한 대에 수백만 원어치가 들어갑니다</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Ⅱ 밸류체인 맵 -->
+    <section class="chain-sec">
+      <div class="wrap rv">
+        <p class="sec-label">리포트 Ⅱ</p>
+        <h2>돈의 흐름을 따라가는<br />AI 밸류체인 맵</h2>
+        <p class="chain-intro">엔비디아가 벌면, 그 돈은 아래 순서로 한국에 들어옵니다.</p>
+
+        <div class="node">
+          <p class="node-no">CHAIN 01</p>
+          <h3>AI 메모리 · HBM</h3>
+          <p class="tickers">SK하이닉스 000660 · 삼성전자 005930 · 한미반도체 042700</p>
+        </div>
+        <div class="flow">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20l-7-7h4V4h6v9h4z" /></svg>
+          <small>설비 투자</small>
+        </div>
+        <div class="node">
+          <p class="node-no">CHAIN 02</p>
+          <h3>소재 · 부품 · 장비</h3>
+          <p class="tickers">이오테크닉스 039030 · 원익IPS 240810 · 리노공업 058470</p>
+        </div>
+        <div class="flow">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20l-7-7h4V4h6v9h4z" /></svg>
+          <small>전력 수요</small>
+        </div>
+        <div class="node">
+          <p class="node-no">CHAIN 03</p>
+          <h3>전력 인프라</h3>
+          <p class="tickers">HD현대일렉트릭 267260 · LS일렉트릭 010120 · 효성중공업 298040</p>
+        </div>
+        <div class="flow">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20l-7-7h4V4h6v9h4z" /></svg>
+          <small>다음 성장축</small>
+        </div>
+        <div class="node">
+          <p class="node-no">CHAIN 04</p>
+          <h3>AI 로봇</h3>
+          <p class="tickers">레인보우로보틱스 277810 · 두산로보틱스 454910</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ⅲ 애널리스트 -->
+    <section>
+      <div class="wrap rv">
+        <p class="sec-label">리포트 Ⅲ</p>
+        <h2>왜 염승환인가</h2>
+
+        <blockquote class="quote">
+          "어려운 산업 이야기를 쉬운 말로 풀어드리는 게 제 일입니다. 밸류체인을 알고 있으면, 뉴스보다 한발
+          먼저 움직일 수 있습니다."
+        </blockquote>
+
+        <ul class="cred">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z" /></svg>
+            20년 넘게 증권사에서 개인투자자와 함께해 온 '염블리'
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z" /></svg>
+            베스트셀러 《주린이가 가장 알고 싶은 최다질문 TOP 77》 저자
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z" /></svg>
+            방송 · 유튜브에서 매일 시황과 산업 분석 진행
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Ⅳ 카톡방에서 받는 것 -->
+    <section>
+      <div class="wrap rv">
+        <p class="sec-label">리포트 Ⅳ</p>
+        <h2>카톡방에 들어오면<br />매주 이걸 받습니다</h2>
+
+        <ul class="get">
+          <li>
+            <span class="num">1</span>
+            <div>
+              <b>AI 밸류체인 주간 리포트</b>
+              <p>이번 주 돈이 몰린 구간과 종목 정리</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <div>
+              <b>급등 섹터 수급 브리핑</b>
+              <p>외국인 · 기관이 사는 종목을 숫자로 확인</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <div>
+              <b>궁금한 종목 질문 답변</b>
+              <p>보유 종목, 편하게 물어보세요</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 후기 -->
+    <section>
+      <div class="wrap rv">
+        <p class="sec-label">참여자 후기</p>
+        <h2>먼저 들어온 분들의 카톡</h2>
+
+        <div class="talk">
+          <div class="bubble">
+            <small>박○수</small>
+            전력기기가 AI 수혜주라는 걸 여기서 처음 알았습니다. 리포트 덕분에 시야가 넓어졌어요.
+          </div>
+          <div class="bubble">
+            <small>이○호</small>
+            매주 월요일 리포트만 챙겨봐도 한 주 준비가 끝나요. 무료인 게 신기할 정도.
+          </div>
+          <div class="bubble">
+            <small>김○영</small>
+            뉴스 따라다니다 늘 늦었는데, 밸류체인 순서로 보니까 다음에 갈 데가 보이네요.
+          </div>
+        </div>
+
+        <a class="cta link-btn" href="javascript:void(0)" onclick="mixinJump()">
+          <img src={kakaoIcon.src} alt="" />
+          나도 무료로 받아보기
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <p>
+          본 콘텐츠는 투자 참고용 정보 제공을 목적으로 하며, 특정 종목의 매수 · 매도를 권유하지 않습니다. 투자의
+          최종 판단과 책임은 투자자 본인에게 있습니다.
+        </p>
+      </div>
+    </footer>
+
+    <!-- 하단 고정 CTA -->
+    <div class="fixed-bar">
+      <div class="wrap">
+        <a class="cta link-btn" href="javascript:void(0)" onclick="mixinJump()">
+          <img src={kakaoIcon.src} alt="" />
+          카톡방에서 7월호 무료로 받기
+        </a>
+      </div>
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        var els = [].slice.call(document.querySelectorAll('.rv'))
+        function check() {
+          var vh = window.innerHeight
+          els = els.filter(function (el) {
+            if (el.getBoundingClientRect().top < vh * 0.88) {
+              el.classList.add('on')
+              return false
+            }
+            return true
+          })
+          if (!els.length) window.removeEventListener('scroll', check)
+        }
+        window.addEventListener('scroll', check, { passive: true })
+        window.addEventListener('load', check)
+        check()
+      })()
+    </script>
+  </body>
+</html>
