@@ -2,14 +2,14 @@
 import { Image } from 'astro:assets'
 import { Award, CheckCircle, Target, Users } from 'lucide-astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import headerImage from './images/chen_offer.jpg'
-import contentImage from './images/chen_hero.jpg'
+import headerImage from './images/guosir_community.jpg'
+import contentImage from './images/guosir_profile.jpg'
 
-const people = '陳永陸'
-const avatar = '/mjSFqQ/HK/images/陳永陸_avatar.png'
+const people = '郭思治（郭Sir）'
+const avatar = '/mjSFqQ/HK/images/郭Sir_avatar.jpg'
 ---
 
-<BaseLayout title={`${people} | 市場分析師`} description={`${people}多年市場分析經驗，同專家一齊交流情報，提供精準市場數據分析。`} lang="zh-HK">
+<BaseLayout title={`${people} | 香港資深股評人`} description={`${people}縱橫港股逾四十年，專注恒指及藍籌分析，每日拆解大市走勢。`} lang="zh-HK">
   <style>
     @keyframes breathe {
       0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
@@ -30,7 +30,7 @@ const avatar = '/mjSFqQ/HK/images/陳永陸_avatar.png'
     <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-yellow-500/5"></div>
     <div class="max-w-md mx-auto text-center relative z-10">
       <h1 class="text-4xl font-bold text-slate-900 mb-8 tracking-tight leading-tight">
-        <span class="text-red-600">市場分析師</span>
+        <span class="text-red-600">香港資深股評人</span>
       </h1>
 
       <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-red-200 shadow-xl ring-4 ring-red-100">
@@ -106,7 +106,7 @@ const avatar = '/mjSFqQ/HK/images/陳永陸_avatar.png'
           每日整理趨勢數據，方便學習同觀察。
         </p>
         <div class="mb-6">
-          <Image src={headerImage} alt="陳永陸 · 聽日有機會升嘅股票" class="mx-auto rounded-lg shadow-md w-full max-w-full" />
+          <Image src={headerImage} alt="郭Sir市場研究所 · WhatsApp投資交流群組" class="mx-auto rounded-lg shadow-md w-full max-w-full" />
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@ const avatar = '/mjSFqQ/HK/images/陳永陸_avatar.png'
   <section class="py-12 px-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
     <div class="max-w-md mx-auto">
       <div class="mb-6 text-center">
-        <Image src={contentImage} alt="香港股市著名評論人 陳永陸" class="mx-auto rounded-lg shadow-md w-full max-w-full" />
+        <Image src={contentImage} alt="香港資深股評人 郭思治（郭Sir）" class="mx-auto rounded-lg shadow-md w-full max-w-full" />
       </div>
       <div class="space-y-6 mb-8">
         <div class="text-center p-6 bg-white rounded-2xl border-2 border-red-200 shadow-lg">
@@ -152,8 +152,8 @@ const avatar = '/mjSFqQ/HK/images/陳永陸_avatar.png'
           <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
             <Award size={32} class="text-white" />
           </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">多年分析經驗</h3>
-          <p class="text-slate-700 leading-relaxed">喺本地累積咗豐富嘅市場分析經驗。</p>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">逾40年港股經驗</h3>
+          <p class="text-slate-700 leading-relaxed">縱橫股壇超過四十年，專注恒指及藍籌分析。</p>
         </div>
 
         <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl border-2 border-orange-200 shadow-lg">
