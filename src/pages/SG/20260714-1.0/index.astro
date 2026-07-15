@@ -1,0 +1,690 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import bandImg from './images/datacenter.jpg'
+import heroImg from './images/hero.jpg'
+import logoImg from './images/logo.png'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>AI Stock Investment Research — Technology Trends & Market Insights</title>
+    <meta
+      name="description"
+      content="AI foundation models, semiconductors and automation are reshaping global industries. Discover AI-related listed companies, technology sectors and market insights shaping the future."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg:      #05080F;
+        --panel:   #0A111F;
+        --panel-2: #0D1626;
+        --line:    #182740;
+        --ink:     #EDF3FB;
+        --mut:     #8CA0BC;
+        --dim:     #5B6E8C;
+        --cyan:    #4FC8FF;
+        --amber:   #FFAA2B;
+        --amber-d: #E89416;
+        --up:      #35D98B;
+        --display: 'Chakra Petch', system-ui, sans-serif;
+        --sans:    'IBM Plex Sans', system-ui, sans-serif;
+        --mono:    'IBM Plex Mono', ui-monospace, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans); color: var(--ink); background: var(--bg);
+        -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.55;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 20px; }
+
+      /* ---------- shared type ---------- */
+      .sec-tag {
+        font-family: var(--mono); font-size: .68rem; font-weight: 500;
+        letter-spacing: .16em; text-transform: uppercase; color: var(--cyan);
+        display: flex; align-items: center; gap: 10px;
+      }
+      .sec-tag::before { content: ''; width: 18px; height: 1px; background: var(--cyan); }
+      .sec-h {
+        font-family: var(--display); font-weight: 700; text-transform: uppercase;
+        letter-spacing: .01em; line-height: 1.12; font-size: 1.5rem; margin-top: 12px;
+      }
+
+      /* ---------- CTA buttons ---------- */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        font-family: var(--display); font-weight: 700; font-size: .95rem;
+        letter-spacing: .02em; line-height: 1.35; text-align: center; color: #120A00;
+        background: var(--amber); border: none; border-radius: 10px;
+        padding: 17px 26px; width: 100%; cursor: pointer;
+        box-shadow: 0 16px 38px -12px rgba(255,170,43,.55);
+        transition: background .2s ease, transform .15s ease;
+      }
+      .btn:hover { background: var(--amber-d); transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+      .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+      .btn.ghost {
+        background: transparent; color: var(--ink);
+        border: 1px solid var(--line); box-shadow: none;
+      }
+      .btn.ghost:hover { background: rgba(79,200,255,.08); border-color: var(--cyan); }
+
+      /* ---------- header ---------- */
+      .hd {
+        position: relative; z-index: 3;
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding-block: 18px;
+      }
+      .brand { display: flex; align-items: center; gap: 10px; }
+      .brand .mk { width: 34px; height: auto; }
+      .brand .nm { font-family: var(--display); font-weight: 700; font-size: .92rem;
+        letter-spacing: .1em; line-height: 1.15; }
+      .brand .nm small { display: block; font-family: var(--mono); font-weight: 500;
+        font-size: .56rem; letter-spacing: .34em; color: var(--cyan); }
+      .hd .tag { font-family: var(--mono); font-size: .58rem; letter-spacing: .12em;
+        text-transform: uppercase; color: var(--dim); text-align: right; }
+
+      /* ---------- hero ---------- */
+      .hero { position: relative; overflow: hidden; }
+      .hero .ph {
+        position: absolute; inset: 0; z-index: 0;
+      }
+      .hero .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 40%; }
+      .hero .ph::after {
+        content: ''; position: absolute; inset: 0;
+        background:
+          linear-gradient(to top, var(--bg) 4%, rgba(5,8,15,.72) 45%, rgba(5,8,15,.55) 100%);
+      }
+      .hero .wrap { position: relative; z-index: 1; }
+
+      .hero-core { padding-block: 34px 40px; }
+      .hero h1 {
+        font-family: var(--display); font-weight: 700; text-transform: uppercase;
+        font-size: clamp(2.15rem, 10.4vw, 2.7rem); line-height: 1.06; letter-spacing: .005em;
+        margin-top: 14px;
+      }
+      .hero h1 .c { color: var(--cyan); }
+      .hero .sub { margin-top: 18px; color: var(--mut); font-size: 1.02rem; max-width: 34ch; }
+      .hero .sub b { color: var(--ink); font-weight: 600; }
+
+      .hero .cta-row { margin-top: 26px; max-width: 420px; }
+      .hero .assure {
+        margin-top: 13px; font-family: var(--mono); font-size: .68rem;
+        color: var(--dim); display: flex; align-items: center; gap: 7px;
+      }
+      .hero .assure svg { width: 13px; height: 13px; color: var(--up); flex-shrink: 0; }
+
+      /* stats strip */
+      .stats {
+        margin-top: 36px; border-top: 1px solid var(--line);
+        display: grid; grid-template-columns: 1fr;
+      }
+      .stat { padding: 15px 0; border-bottom: 1px solid var(--line);
+        display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+      .stat .lb { font-family: var(--mono); font-size: .62rem; letter-spacing: .14em;
+        text-transform: uppercase; color: var(--dim); }
+      .stat .vl { font-family: var(--display); font-weight: 700; font-size: 1.5rem;
+        color: var(--cyan); white-space: nowrap; }
+      .stat .vl small { font-family: var(--mono); font-weight: 400; font-size: .64rem;
+        color: var(--mut); letter-spacing: .05em; margin-left: 7px; }
+
+      /* ---------- index chart panel ---------- */
+      .chart-sec { padding-block: 26px 8px; }
+      .panel {
+        background: linear-gradient(180deg, var(--panel-2), var(--panel));
+        border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      }
+      .panel .p-hd {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding: 15px 17px; border-bottom: 1px solid var(--line);
+      }
+      .panel .p-hd .t { font-family: var(--display); font-weight: 700; font-size: .92rem;
+        letter-spacing: .08em; display: flex; align-items: center; gap: 9px; }
+      .panel .p-hd .t .live { width: 7px; height: 7px; border-radius: 50%; background: var(--up);
+        animation: ping 2.2s ease-out infinite; }
+      @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(53,217,139,.5) } 70%,100% { box-shadow: 0 0 0 7px rgba(53,217,139,0) } }
+      .panel .p-hd .s { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+        text-transform: uppercase; color: var(--dim); text-align: right; }
+      .panel .p-bd { padding: 16px 6px 8px 6px; position: relative; }
+      .chart { width: 100%; height: auto; display: block; }
+      .chart .grid-l { stroke: var(--line); stroke-width: 1; }
+      .chart .ax { font-family: var(--mono); font-size: 11px; fill: var(--dim); }
+      .chart .area { fill: url(#agrad); opacity: 0; transition: opacity .9s ease .9s; }
+      .chart .ln { stroke: var(--cyan); stroke-width: 2.5; fill: none;
+        stroke-linejoin: round; stroke-linecap: round;
+        stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+      .chart .dot { fill: var(--cyan); opacity: 0; transition: opacity .4s ease 1.5s; }
+      .in .chart .ln { animation: draw 1.8s cubic-bezier(.4,0,.2,1) forwards; }
+      .in .chart .area, .in .chart .dot { opacity: 1; }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+      .panel .p-ft { padding: 10px 17px 14px; font-family: var(--mono); font-size: .62rem;
+        letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
+
+      /* ---------- generic section ---------- */
+      section.blk { padding-block: 52px 0; }
+
+      /* ---------- sectors ---------- */
+      .sector-list { margin-top: 24px; border-top: 1px solid var(--line); }
+      .sector {
+        display: flex; align-items: center; gap: 15px;
+        padding: 17px 2px; border-bottom: 1px solid var(--line);
+      }
+      .sector .ic {
+        width: 40px; height: 40px; flex-shrink: 0; border: 1px solid var(--line);
+        border-radius: 9px; display: flex; align-items: center; justify-content: center;
+        background: var(--panel);
+      }
+      .sector .ic svg { width: 20px; height: 20px; color: var(--cyan); }
+      .sector .tx .n { font-family: var(--display); font-weight: 600; font-size: .98rem;
+        letter-spacing: .04em; text-transform: uppercase; }
+      .sector .tx .d { font-size: .84rem; color: var(--mut); margin-top: 1px; }
+      .sector .no { margin-left: auto; font-family: var(--mono); font-size: .64rem;
+        color: var(--dim); flex-shrink: 0; }
+
+      /* ---------- why cards ---------- */
+      .why-grid { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+      .why {
+        background: var(--panel); border: 1px solid var(--line); border-radius: 13px;
+        padding: 20px 18px;
+      }
+      .why svg { width: 24px; height: 24px; color: var(--amber); }
+      .why .n { font-family: var(--display); font-weight: 700; font-size: .95rem;
+        letter-spacing: .07em; text-transform: uppercase; margin-top: 13px; }
+      .why p { font-size: .89rem; color: var(--mut); margin-top: 7px; }
+
+      /* ---------- themes ---------- */
+      .theme-list { margin-top: 24px; display: grid; gap: 10px; }
+      .theme {
+        border: 1px solid var(--line); border-radius: 12px; padding: 16px 17px;
+        background: linear-gradient(120deg, var(--panel) 60%, rgba(79,200,255,.04));
+      }
+      .theme .hd2 { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .theme .n { font-family: var(--display); font-weight: 700; font-size: .95rem;
+        letter-spacing: .07em; text-transform: uppercase; }
+      .theme .ix { font-family: var(--mono); font-size: .62rem; color: var(--cyan);
+        letter-spacing: .1em; }
+      .theme p { font-size: .87rem; color: var(--mut); margin-top: 6px; }
+
+      /* ---------- CTA band ---------- */
+      .band { position: relative; margin-top: 56px; overflow: hidden; }
+      .band .ph { position: absolute; inset: 0; }
+      .band .ph img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+      .band .ph::after { content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(5,8,15,.94), rgba(5,8,15,.66)); }
+      .band .wrap { position: relative; z-index: 1; padding-block: 58px; }
+      .band h2 { font-family: var(--display); font-weight: 700; text-transform: uppercase;
+        font-size: 1.42rem; line-height: 1.2; max-width: 24ch; }
+      .band p { margin-top: 12px; color: var(--mut); font-size: .96rem; max-width: 42ch; }
+      .band .cta-row { margin-top: 24px; max-width: 420px; }
+
+      /* ---------- leaders wordmark wall ---------- */
+      .wall {
+        margin-top: 24px; display: grid; grid-template-columns: repeat(2, 1fr);
+        border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+      }
+      .co {
+        border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+        padding: 20px 14px; text-align: center;
+      }
+      .co .nm { font-family: var(--display); font-weight: 600; font-size: 1rem;
+        letter-spacing: .05em; color: var(--ink); }
+      .co .tk { font-family: var(--mono); font-size: .6rem; letter-spacing: .16em;
+        color: var(--dim); margin-top: 4px; }
+      .wall-note { margin-top: 12px; font-family: var(--mono); font-size: .6rem;
+        letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
+
+      /* ---------- final CTA ---------- */
+      .final { padding-block: 60px 46px; text-align: center; }
+      .final .sec-tag { justify-content: center; }
+      .final .sec-tag::after { content: ''; width: 18px; height: 1px; background: var(--cyan); }
+      .final h2 { font-family: var(--display); font-weight: 700; text-transform: uppercase;
+        font-size: 1.55rem; line-height: 1.15; margin-top: 14px; }
+      .final p { margin-top: 14px; color: var(--mut); font-size: .98rem;
+        max-width: 46ch; margin-inline: auto; }
+      .final .cta-row { margin-top: 26px; max-width: 420px; margin-inline: auto; }
+      .final .assure {
+        margin-top: 14px; font-family: var(--mono); font-size: .68rem; color: var(--dim);
+        display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 12px;
+      }
+      .final .assure .dt { width: 3px; height: 3px; border-radius: 50%; background: var(--cyan); }
+
+      /* ---------- footer ---------- */
+      footer { border-top: 1px solid var(--line); padding-block: 22px 30px; }
+      footer .wrap { display: flex; flex-direction: column; gap: 6px; }
+      footer .f1 { font-family: var(--display); font-weight: 700; font-size: .78rem;
+        letter-spacing: .1em; }
+      footer .f2 { font-family: var(--mono); font-size: .62rem; color: var(--dim);
+        letter-spacing: .06em; }
+
+      /* ---------- sticky CTA ---------- */
+      .sticky-cta {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+        padding: 10px 16px calc(env(safe-area-inset-bottom) + 10px);
+        background: rgba(5,8,15,.9); backdrop-filter: blur(10px);
+        border-top: 1px solid var(--line);
+        transform: translateY(110%); transition: transform .35s cubic-bezier(.2,.7,.3,1);
+      }
+      .sticky-cta.show { transform: translateY(0); }
+      .sticky-cta .btn { padding: 14px 20px; font-size: .88rem; box-shadow: none; }
+
+      /* ---------- reveal ---------- */
+      html.js .rv { opacity: 0; transform: translateY(18px);
+        transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.3,1); }
+      html.js .rv.in { opacity: 1; transform: none; }
+
+      /* =========================================================
+         ≥ 760px
+         ========================================================= */
+      @media (min-width: 760px) {
+        .wrap { padding-inline: 32px; }
+        .hd { padding-block: 24px; }
+        .hd .tag { font-size: .64rem; }
+
+        .hero-core { padding-block: 56px 64px; display: grid;
+          grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: end; }
+        .hero .ph img { object-position: center 42%; }
+        .hero .ph::after {
+          background: linear-gradient(90deg, var(--bg) 6%, rgba(5,8,15,.82) 44%, rgba(5,8,15,.4) 100%),
+            linear-gradient(to top, var(--bg) 3%, transparent 40%);
+        }
+        .hero h1 { font-size: clamp(2.9rem, 4.6vw, 3.7rem); }
+        .hero .cta-row { display: flex; gap: 12px; max-width: none; }
+        .hero .cta-row .btn { width: auto; }
+        .stats { grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line);
+          border-radius: 13px; background: rgba(10,17,31,.55); backdrop-filter: blur(8px); }
+        .stat { flex-direction: column; align-items: flex-start; gap: 6px;
+          border-bottom: none; border-right: 1px solid var(--line); padding: 18px 20px; }
+        .stat:last-child { border-right: none; }
+        .stat .vl { font-size: 1.85rem; }
+
+        .chart-sec { margin-top: -18px; }
+        .panel .p-bd { padding: 20px 14px 10px; }
+
+        section.blk { padding-block: 72px 0; }
+        .sec-h { font-size: 2rem; }
+
+        .sector-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
+        .sector:nth-last-child(-n+2) { }
+
+        .why-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        .why { padding: 24px 22px; }
+
+        .theme-list { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .theme:first-child { grid-column: 1 / -1; }
+
+        .band .wrap { padding-block: 84px; }
+        .band h2 { font-size: 2rem; }
+
+        .wall { grid-template-columns: repeat(4, 1fr); }
+        .co { padding: 26px 14px; }
+
+        .final { padding-block: 88px 72px; }
+        .final h2 { font-size: 2.1rem; }
+
+        .sticky-cta { display: none; }
+
+        footer .wrap { flex-direction: row; justify-content: space-between; align-items: center; }
+      }
+
+      @media (min-width: 1024px) {
+        .hero h1 { letter-spacing: .01em; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html.js .rv { opacity: 1; transform: none; transition: none; }
+        .chart .ln { stroke-dashoffset: 0; animation: none; }
+        .chart .area, .chart .dot { opacity: 1; transition: none; }
+        .panel .p-hd .t .live { animation: none; }
+        .sticky-cta { transition: none; }
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+      <div class="ph">
+        <img src={heroImg.src} alt="Advanced AI processor on a circuit board" fetchpriority="high" />
+      </div>
+
+      <div class="wrap">
+        <div class="hd">
+          <div class="brand">
+            <img class="mk" src={logoImg.src} alt="AI Capital Research logo" width="34" height="35" />
+            <span class="nm">AI CAPITAL<small>RESEARCH</small></span>
+          </div>
+          <span class="tag">AI Stock Investment<br />Research</span>
+        </div>
+
+        <div class="hero-core">
+          <div>
+            <span class="sec-tag">The Next Technology Cycle</span>
+            <h1>AI Stock Investment <span class="c">Theme is Emerging</span></h1>
+            <p class="sub">
+              AI foundation models, semiconductors and automation are reshaping global industries.
+              Discover <b>AI-related listed companies</b>, technology sectors and market insights shaping the future.
+            </p>
+            <div class="cta-row">
+              <a class="btn link-btn" onclick="mixinJump()">
+                Get AI Stock Investment Opportunities
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+              </a>
+            </div>
+            <span class="assure">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+              Free access · Market information only
+            </span>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <span class="lb">AI Market Size</span>
+              <span class="vl">USD 1.8T+<small>by 2030</small></span>
+            </div>
+            <div class="stat">
+              <span class="lb">Semiconductor Growth</span>
+              <span class="vl">15%+<small>CAGR</small></span>
+            </div>
+            <div class="stat">
+              <span class="lb">AI Listed Companies</span>
+              <span class="vl">500+<small>globally</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== AI TECH INDEX chart ===== -->
+      <section class="chart-sec">
+        <div class="wrap">
+          <div class="panel rv">
+            <div class="p-hd">
+              <span class="t"><span class="live"></span>AI TECH INDEX</span>
+              <span class="s">AI Technology Sector<br />Market Trends</span>
+            </div>
+            <div class="p-bd">
+              <svg class="chart" viewBox="0 0 640 300" role="img" aria-label="AI technology sector index trend, rising from 2021 to 2026">
+                <defs>
+                  <linearGradient id="agrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#4FC8FF" stop-opacity=".28" />
+                    <stop offset="100%" stop-color="#4FC8FF" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <g class="grid-l">
+                  <line x1="34" y1="30" x2="640" y2="30" />
+                  <line x1="34" y1="90" x2="640" y2="90" />
+                  <line x1="34" y1="150" x2="640" y2="150" />
+                  <line x1="34" y1="210" x2="640" y2="210" />
+                  <line x1="34" y1="270" x2="640" y2="270" />
+                </g>
+                <g class="ax">
+                  <text x="0" y="34">500</text>
+                  <text x="0" y="94">400</text>
+                  <text x="0" y="154">300</text>
+                  <text x="0" y="214">200</text>
+                  <text x="0" y="274">100</text>
+                  <text x="44" y="294">2021</text>
+                  <text x="158" y="294">2022</text>
+                  <text x="272" y="294">2023</text>
+                  <text x="386" y="294">2024</text>
+                  <text x="500" y="294">2025</text>
+                  <text x="606" y="294">2026</text>
+                </g>
+                <path class="area" d="M44 268 L100 254 L156 262 L212 236 L268 244 L324 204 L380 214 L436 166 L492 178 L548 118 L604 92 L632 58 L632 270 L44 270 Z" />
+                <path class="ln" pathLength="1000" d="M44 268 L100 254 L156 262 L212 236 L268 244 L324 204 L380 214 L436 166 L492 178 L548 118 L604 92 L632 58" />
+                <circle class="dot" cx="632" cy="58" r="4.5" />
+              </svg>
+            </div>
+            <div class="p-ft">Indexed performance · base 100</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TOP SECTORS ===== -->
+      <section class="blk">
+        <div class="wrap">
+          <span class="sec-tag rv">Where capital flows</span>
+          <h2 class="sec-h rv">Top AI Investment Sectors</h2>
+
+          <div class="sector-list">
+            <div class="sector rv">
+              <span class="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5" /><path d="M4 10h3M4 14h3M17 10h3M17 14h3M10 4v3M14 4v3M10 17v3M14 17v3" /></svg>
+              </span>
+              <span class="tx">
+                <span class="n">AI Chips</span>
+                <span class="d" style="display:block">Semiconductor Innovation</span>
+              </span>
+              <span class="no">01</span>
+            </div>
+            <div class="sector rv">
+              <span class="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="1.5" /><rect x="4" y="13" width="16" height="7" rx="1.5" /><path d="M8 7.5h.01M8 16.5h.01M12 7.5h4M12 16.5h4" /></svg>
+              </span>
+              <span class="tx">
+                <span class="n">Data Centers</span>
+                <span class="d" style="display:block">AI Computing Infrastructure</span>
+              </span>
+              <span class="no">02</span>
+            </div>
+            <div class="sector rv">
+              <span class="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-3.5 3L8 15M16 9l3.5 3L16 15M13 6l-2 12" /></svg>
+              </span>
+              <span class="tx">
+                <span class="n">AI Software</span>
+                <span class="d" style="display:block">Next Generation Applications</span>
+              </span>
+              <span class="no">03</span>
+            </div>
+            <div class="sector rv">
+              <span class="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="7" rx="1.5" /><path d="M12 10v3M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2M10 6.5h.01M14 6.5h.01" /></svg>
+              </span>
+              <span class="tx">
+                <span class="n">Robotics</span>
+                <span class="d" style="display:block">Automation Technology</span>
+              </span>
+              <span class="no">04</span>
+            </div>
+            <div class="sector rv">
+              <span class="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 8.5 4 4 0 0117.5 16H7z" /><path d="M9 18v2M13 18v2M17 18v2" opacity=".6" /></svg>
+              </span>
+              <span class="tx">
+                <span class="n">Cloud Computing</span>
+                <span class="d" style="display:block">Digital Infrastructure</span>
+              </span>
+              <span class="no">05</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WHY ===== -->
+      <section class="blk">
+        <div class="wrap">
+          <span class="sec-tag rv">The setup</span>
+          <h2 class="sec-h rv">Why Investors Are Watching AI</h2>
+
+          <div class="why-grid">
+            <div class="why rv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 015 5c0 1.6-.7 2.9-1.8 3.9-.7.6-1.2 1.4-1.2 2.1v1h-4v-1c0-.7-.5-1.5-1.2-2.1A5.1 5.1 0 017 9a5 5 0 015-5z" /><path d="M10 19h4M11 22h2" /></svg>
+              <div class="n">AI Revolution</div>
+              <p>AI foundation models are becoming a key technology driver across industries.</p>
+            </div>
+            <div class="why rv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="8" height="8" rx="1" /><path d="M4 12h4M16 12h4M12 4v4M12 16v4M6 6l3 3M18 6l-3 3M6 18l3-3M18 18l-3-3" /></svg>
+              <div class="n">Semiconductor Demand</div>
+              <p>Advanced chips and computing power support the expansion of AI applications.</p>
+            </div>
+            <div class="why rv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14" /><path d="M4 21h16M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01" /></svg>
+              <div class="n">Infrastructure Boom</div>
+              <p>Data centers and AI infrastructure are becoming critical parts of the technology ecosystem.</p>
+            </div>
+            <div class="why rv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21c-2.5-2.6-3.9-5.7-3.9-9S9.5 5.6 12 3z" /></svg>
+              <div class="n">Global Opportunity</div>
+              <p>AI innovation is creating new opportunities across global markets.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== THEMES ===== -->
+      <section class="blk">
+        <div class="wrap">
+          <span class="sec-tag rv">Coverage</span>
+          <h2 class="sec-h rv">AI Investment Themes We Track</h2>
+
+          <div class="theme-list">
+            <div class="theme rv">
+              <div class="hd2"><span class="n">AI Software</span><span class="ix">T-01</span></div>
+              <p>Leading AI platforms, applications and software companies</p>
+            </div>
+            <div class="theme rv">
+              <div class="hd2"><span class="n">AI Chips</span><span class="ix">T-02</span></div>
+              <p>GPU, AI processors and semiconductor technology companies</p>
+            </div>
+            <div class="theme rv">
+              <div class="hd2"><span class="n">Semiconductors</span><span class="ix">T-03</span></div>
+              <p>Chip manufacturers, equipment and memory companies</p>
+            </div>
+            <div class="theme rv">
+              <div class="hd2"><span class="n">AI Infrastructure</span><span class="ix">T-04</span></div>
+              <p>Data centers, cloud providers and computing networks</p>
+            </div>
+            <div class="theme rv">
+              <div class="hd2"><span class="n">Robotics & Automation</span><span class="ix">T-05</span></div>
+              <p>Intelligent machines, robotics and industrial automation companies</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA BAND ===== -->
+      <section class="band">
+        <div class="ph">
+          <img src={bandImg.src} alt="Data center server corridor" loading="lazy" />
+        </div>
+        <div class="wrap">
+          <h2 class="rv">The next cycle won't wait</h2>
+          <p class="rv">Discover AI-related companies, market trends and technology investment themes.</p>
+          <div class="cta-row rv">
+            <a class="btn link-btn" onclick="mixinJump()">
+              Get AI Stock Investment Opportunities
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== LEADERS ===== -->
+      <section class="blk">
+        <div class="wrap">
+          <span class="sec-tag rv">On the radar</span>
+          <h2 class="sec-h rv">Global AI Technology Leaders</h2>
+
+          <div class="wall rv">
+            <div class="co"><div class="nm">NVIDIA</div><div class="tk">NVDA</div></div>
+            <div class="co"><div class="nm">TSMC</div><div class="tk">TSM</div></div>
+            <div class="co"><div class="nm">Microsoft</div><div class="tk">MSFT</div></div>
+            <div class="co"><div class="nm">Alphabet</div><div class="tk">GOOGL</div></div>
+            <div class="co"><div class="nm">ASML</div><div class="tk">ASML</div></div>
+            <div class="co"><div class="nm">Meta</div><div class="tk">META</div></div>
+            <div class="co"><div class="nm">Amazon</div><div class="tk">AMZN</div></div>
+            <div class="co"><div class="nm">Tesla</div><div class="tk">TSLA</div></div>
+          </div>
+          <div class="wall-note rv">Companies frequently covered in AI &amp; technology research</div>
+        </div>
+      </section>
+
+      <!-- ===== FINAL CTA (form replaced by direct CTA) ===== -->
+      <section class="final">
+        <div class="wrap">
+          <span class="sec-tag rv">Stay ahead of the cycle</span>
+          <h2 class="rv">Receive AI Stock Insights</h2>
+          <p class="rv">
+            Get updates on AI industry trends, listed companies and technology market research.
+            Stay informed about the sectors shaping the next technology cycle.
+          </p>
+          <div class="cta-row rv">
+            <a class="btn link-btn" onclick="mixinJump()">
+              Get AI Stock Investment Opportunities
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+            </a>
+          </div>
+          <span class="assure rv">
+            Free access <span class="dt"></span> No sign-up needed <span class="dt"></span> Market information only
+          </span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <span class="f1">AI CAPITAL RESEARCH</span>
+        <span class="f2">AI stock investment research · Technology sectors · Market trends</span>
+      </div>
+    </footer>
+
+    <!-- sticky CTA -->
+    <div class="sticky-cta" id="stickyCta">
+      <a class="btn link-btn" onclick="mixinJump()">
+        Get AI Stock Investment Opportunities
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+      </a>
+    </div>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+
+      const rvEls = Array.prototype.slice.call(document.querySelectorAll('.rv'))
+      const hero = document.querySelector('.hero')
+      const sticky = document.getElementById('stickyCta')
+      const finalSec = document.querySelector('.final')
+
+      function tick() {
+        const vh = window.innerHeight
+        for (let i = rvEls.length - 1; i >= 0; i--) {
+          if (rvEls[i].getBoundingClientRect().top < vh * 0.9) {
+            rvEls[i].classList.add('in')
+            rvEls.splice(i, 1)
+          }
+        }
+        // sticky CTA: show after hero, hide when final CTA is on screen
+        const pastHero = hero.getBoundingClientRect().bottom < 0
+        const finalVisible = finalSec.getBoundingClientRect().top < vh * 0.85
+        sticky.classList.toggle('show', pastHero && !finalVisible)
+      }
+      window.addEventListener('scroll', tick, { passive: true })
+      window.addEventListener('resize', tick, { passive: true })
+      tick()
+
+      // fallback: never leave content hidden (previews / webviews that don't fire scroll)
+      setTimeout(() => {
+        for (let i = 0; i < rvEls.length; i++) rvEls[i].classList.add('in')
+        rvEls.length = 0
+      }, 2200)
+    </script>
+  </body>
+</html>
