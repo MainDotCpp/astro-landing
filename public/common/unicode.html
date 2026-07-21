@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFC ⇄ NFD</title>
+    <style>
+      body {
+        font-family: -apple-system, sans-serif;
+        max-width: 560px;
+        margin: 60px auto;
+        padding: 0 20px;
+        color: #222;
+        background: #fafafa;
+      }
+      textarea {
+        width: 100%;
+        min-height: 90px;
+        font-size: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        background: #fff;
+        outline: none;
+        resize: vertical;
+        font-family: inherit;
+      }
+      textarea:focus {
+        border-color: #999;
+      }
+      .row {
+        margin-top: 24px;
+      }
+      .label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: #888;
+        margin-bottom: 6px;
+      }
+      .out {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        min-height: 24px;
+        font-size: 16px;
+        word-break: break-all;
+        background: #fff;
+      }
+      .cps {
+        font-family: Menlo, Consolas, monospace;
+        font-size: 12px;
+        color: #888;
+        margin-top: 6px;
+        line-height: 1.8;
+        word-break: break-all;
+      }
+      button {
+        border: 1px solid #ddd;
+        background: #fff;
+        border-radius: 6px;
+        padding: 4px 12px;
+        font-size: 12px;
+        color: #555;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      button:hover {
+        border-color: #999;
+        color: #222;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="input" placeholder="输入文本" autofocus></textarea>
+
+    <div class="row">
+      <div class="label">NFC <button id="copy-nfc">复制</button></div>
+      <div class="out" id="nfc"></div>
+      <div class="cps" id="nfc-cps"></div>
+    </div>
+
+    <div class="row">
+      <div class="label">NFD <button id="copy-nfd">复制</button></div>
+      <div class="out" id="nfd"></div>
+      <div class="cps" id="nfd-cps"></div>
+    </div>
+
+    <script>
+      const input = document.getElementById('input')
+      const nfcEl = document.getElementById('nfc')
+      const nfdEl = document.getElementById('nfd')
+
+      function codepoints(str) {
+        return [...str].map((c) => 'U+' + c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')).join(' ')
+      }
+
+      function update() {
+        const nfc = input.value.normalize('NFC')
+        const nfd = input.value.normalize('NFD')
+        nfcEl.textContent = nfc
+        nfdEl.textContent = nfd
+        document.getElementById('nfc-cps').textContent = codepoints(nfc)
+        document.getElementById('nfd-cps').textContent = codepoints(nfd)
+      }
+
+      function copy(el, btn) {
+        navigator.clipboard.writeText(el.textContent)
+        btn.textContent = '已复制'
+        setTimeout(() => (btn.textContent = '复制'), 1000)
+      }
+
+      input.addEventListener('input', update)
+      document.getElementById('copy-nfc').onclick = (e) => copy(nfcEl, e.target)
+      document.getElementById('copy-nfd').onclick = (e) => copy(nfdEl, e.target)
+    </script>
+  </body>
+</html>
