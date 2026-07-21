@@ -1,0 +1,1067 @@
+---
+import bandIcon from '@/assets/band-icon.png'
+import kakaoIcon from '@/assets/kakao-icon.png'
+import KRRedirectCode from '@/components/KRRedirectCode.astro'
+import travel from './assets/images/travel.png'
+import trophy from './assets/images/trophy.png'
+
+export function getStaticPaths() {
+  return [
+    { params: { t: '卡扣' } },
+    { params: { t: '卡群' } },
+    { params: { t: '棒群' } },
+  ]
+}
+
+const { t = '卡扣' } = Astro.params
+const isBand = t === '棒群'
+const needNumber = t === '卡扣'
+const channel = isBand ? '네이버 밴드' : '카카오톡'
+const channelRo = isBand ? '네이버 밴드로' : '카카오톡으로'
+const channelShort = isBand ? '밴드' : '카카오톡'
+const jumpFn = isBand ? 'jumpToBand()' : 'jumpToKakao()'
+const bodyClass = isBand ? 'ch-band' : 'ch-kakao'
+const ctaIcon = isBand ? bandIcon : kakaoIcon
+const joinWord = isBand ? '밴드에서 참여 신청하기' : (needNumber ? '카카오톡으로 참여 신청' : '카카오톡에서 바로 참여')
+
+const title = '제5회 마켓 챌린지 | 참가 접수 시작'
+const description = '모의투자 방식으로 수익률 순위를 겨루는 제5회 마켓 챌린지. 누구나 무료 참가, 성적 우수자에게는 항공권과 호텔이 포함된 여행 상품권까지. 접수 기간 한정.'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#070d24" />
+
+    <KRRedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #070d24;
+        --bg-2: #101c42;
+        --bg-3: #16255a;
+        --line: rgba(157, 178, 255, 0.16);
+        --white: #f4f7ff;
+        --dim: #97a4c9;
+        --blue: #3d7bff;
+        --blue-deep: #1f4fd8;
+        --gold: #f2c14e;
+        --gold-2: #ffdf8e;
+        --cta: #fee500;
+        --cta-ink: #191600;
+      }
+
+      .ch-band {
+        --cta: #21c063;
+        --cta-ink: #04210f;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding-bottom: 92px;
+        overflow-x: hidden;
+        background: var(--bg);
+        color: var(--white);
+        font-family: 'Noto Sans KR', sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .display {
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400;
+        line-height: 1.12;
+        letter-spacing: -0.005em;
+      }
+
+      .shell {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      /* ---- hero ---- */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(120% 60% at 50% -8%, #22398c 0%, rgba(34, 57, 140, 0) 62%),
+          var(--bg);
+      }
+
+      .hero-inner {
+        position: relative;
+        padding: 46px 20px 0;
+        text-align: center;
+      }
+
+      .hero-round {
+        color: var(--gold);
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-size: 19px;
+        letter-spacing: 0.34em;
+        text-indent: 0.34em;
+      }
+
+      .hero h1 {
+        margin-top: 6px;
+        font-size: 46px;
+      }
+
+      .hero h1 .em {
+        color: var(--blue);
+        text-shadow: 0 0 34px rgba(61, 123, 255, 0.45);
+      }
+
+      .hero-slogan {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 9px 20px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .hero-sub {
+        max-width: 340px;
+        margin: 18px auto 0;
+        color: var(--dim);
+        font-size: 15px;
+      }
+
+      .hero-sub strong {
+        color: var(--white);
+      }
+
+      .hero-media {
+        position: relative;
+        max-width: 420px;
+        margin: 6px auto 0;
+      }
+
+      .hero-media img {
+        width: 100%;
+        aspect-ratio: 10 / 9;
+        object-fit: cover;
+        object-position: 50% 88%;
+        -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
+        mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
+      }
+
+      /* ---- period strip ---- */
+      .strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: -26px 20px 0;
+        position: relative;
+        z-index: 2;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(16, 28, 66, 0.92);
+        backdrop-filter: blur(8px);
+      }
+
+      .strip > div {
+        padding: 14px 10px 16px;
+        text-align: center;
+      }
+
+      .strip > div + div {
+        border-left: 1px solid var(--line);
+      }
+
+      .strip span {
+        display: block;
+        color: var(--dim);
+        font-size: 12px;
+      }
+
+      .strip b {
+        display: block;
+        margin-top: 3px;
+        font-size: 17px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+      }
+
+      .strip .gold {
+        color: var(--gold);
+      }
+
+      /* ---- sections ---- */
+      .sec {
+        padding: 52px 20px 0;
+      }
+
+      .sec-title {
+        font-size: 27px;
+        text-align: center;
+      }
+
+      .sec-title .em {
+        color: var(--blue);
+      }
+
+      .sec-title .gold {
+        color: var(--gold);
+      }
+
+      .sec-desc {
+        margin-top: 10px;
+        color: var(--dim);
+        font-size: 14.5px;
+        text-align: center;
+      }
+
+      /* ---- points ---- */
+      .points {
+        display: grid;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .point {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 20px 18px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: linear-gradient(160deg, var(--bg-2), rgba(16, 28, 66, 0.4));
+      }
+
+      .point-icon {
+        flex: 0 0 46px;
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: rgba(61, 123, 255, 0.14);
+        border: 1px solid rgba(61, 123, 255, 0.45);
+      }
+
+      .point-icon svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: var(--blue);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .point h3 {
+        font-size: 16.5px;
+        font-weight: 900;
+      }
+
+      .point p {
+        margin-top: 4px;
+        color: var(--dim);
+        font-size: 13.5px;
+      }
+
+      /* ---- prize ---- */
+      .prize-card {
+        margin-top: 26px;
+        overflow: hidden;
+        border: 1px solid rgba(242, 193, 78, 0.4);
+        border-radius: 18px;
+        background: var(--bg-2);
+      }
+
+      .prize-card img {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+
+      .prize-body {
+        padding: 20px 20px 24px;
+        text-align: center;
+        background:
+          radial-gradient(90% 100% at 50% 0%, rgba(242, 193, 78, 0.08) 0%, transparent 70%),
+          var(--bg-2);
+      }
+
+      .prize-body .label {
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .prize-body h3 {
+        margin-top: 6px;
+        font-size: 25px;
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400;
+      }
+
+      .prize-body p {
+        margin-top: 8px;
+        color: var(--dim);
+        font-size: 14px;
+      }
+
+      .prize-body p b {
+        color: var(--white);
+      }
+
+      /* ---- ticket (signature) ---- */
+      .ticket-wrap {
+        padding: 56px 20px 0;
+      }
+
+      .ticket {
+        position: relative;
+        border-radius: 18px;
+        background: linear-gradient(150deg, #1b2c6b, var(--bg-3) 55%, #0e1a45);
+        border: 1px solid rgba(157, 178, 255, 0.28);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      }
+
+      .ticket-top {
+        padding: 24px 22px 22px;
+      }
+
+      .ticket-brand {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .ticket-brand b {
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+      }
+
+      .ticket-brand span {
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+      }
+
+      .ticket-rows {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .trow {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed rgba(157, 178, 255, 0.22);
+      }
+
+      .trow:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .trow span {
+        color: var(--dim);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .trow b {
+        font-size: 15.5px;
+        font-weight: 900;
+        text-align: right;
+      }
+
+      .trow .gold {
+        color: var(--gold);
+      }
+
+      /* perforation */
+      .ticket-cut {
+        position: relative;
+        height: 0;
+        border-top: 2px dashed rgba(157, 178, 255, 0.3);
+      }
+
+      .ticket-cut::before,
+      .ticket-cut::after {
+        content: '';
+        position: absolute;
+        top: -11px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--bg);
+      }
+
+      .ticket-cut::before {
+        left: -12px;
+        border-right: 1px solid rgba(157, 178, 255, 0.28);
+      }
+
+      .ticket-cut::after {
+        right: -12px;
+        border-left: 1px solid rgba(157, 178, 255, 0.28);
+      }
+
+      .ticket-stub {
+        padding: 20px 22px 24px;
+        text-align: center;
+      }
+
+      .count-label {
+        color: var(--dim);
+        font-size: 13px;
+      }
+
+      .count-label b {
+        color: #ff6b6b;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .cd {
+        min-width: 58px;
+        padding: 10px 6px 8px;
+        border-radius: 10px;
+        background: rgba(7, 13, 36, 0.75);
+        border: 1px solid var(--line);
+      }
+
+      .cd b {
+        display: block;
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 1;
+      }
+
+      .cd span {
+        display: block;
+        margin-top: 4px;
+        color: var(--dim);
+        font-size: 11px;
+      }
+
+      /* ---- CTA button ---- */
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        margin-top: 18px;
+        padding: 17px 18px;
+        border-radius: 14px;
+        background: var(--cta);
+        color: var(--cta-ink);
+        font-size: 16.5px;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      .btn img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .btn .num {
+        display: inline-grid;
+        place-items: center;
+        min-width: 26px;
+        height: 24px;
+        padding: 0 7px;
+        border-radius: 7px;
+        background: var(--cta-ink);
+        color: var(--cta);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .btn-hint {
+        margin-top: 10px;
+        color: var(--dim);
+        font-size: 12.5px;
+      }
+
+      /* ---- steps ---- */
+      .steps {
+        display: grid;
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .step {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--bg-2);
+      }
+
+      .sn {
+        flex: 0 0 30px;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .step b {
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .step p {
+        margin-top: 2px;
+        color: var(--dim);
+        font-size: 13px;
+      }
+
+      /* ---- faq ---- */
+      .faq {
+        margin-top: 26px;
+        border-top: 1px solid var(--line);
+      }
+
+      .faq details {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .faq summary {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 2px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq summary::after {
+        content: '+';
+        color: var(--blue);
+        font-size: 20px;
+        font-weight: 400;
+      }
+
+      .faq details[open] summary::after {
+        content: '−';
+      }
+
+      .faq details p {
+        padding: 0 2px 16px;
+        color: var(--dim);
+        font-size: 13.5px;
+      }
+
+      /* ---- notice / footer ---- */
+      .notice {
+        margin-top: 54px;
+        padding: 20px 20px 22px;
+        border-top: 1px solid var(--line);
+        color: #6d7897;
+        font-size: 11.5px;
+        line-height: 1.85;
+      }
+
+      .footer {
+        padding: 4px 20px 40px;
+      }
+
+      .footer p {
+        color: var(--dim);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 14px;
+      }
+
+      .footer-links a {
+        color: var(--white);
+        font-size: 12px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+
+      /* ---- sticky ---- */
+      .sticky {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 80;
+        display: flex;
+        justify-content: center;
+        background: rgba(7, 13, 36, 0.9);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid var(--line);
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      }
+
+      .sticky a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 692px;
+        padding: 15px 18px;
+        border-radius: 12px;
+        background: var(--cta);
+        color: var(--cta-ink);
+        font-size: 16px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .sticky img {
+        width: 22px;
+        height: 22px;
+      }
+
+      .sticky .num {
+        display: inline-grid;
+        place-items: center;
+        min-width: 24px;
+        height: 22px;
+        padding: 0 6px;
+        border-radius: 6px;
+        background: var(--cta-ink);
+        color: var(--cta);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      /* ---- modal ---- */
+      .ov {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(2, 5, 16, 0.78);
+      }
+
+      .ov.show {
+        display: flex;
+      }
+
+      .mbox {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 28px 22px 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--bg-2);
+      }
+
+      .mclose {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        border: 0;
+        background: none;
+        color: var(--dim);
+        cursor: pointer;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .mbox h3 {
+        font-size: 17px;
+        font-weight: 900;
+        padding-right: 24px;
+      }
+
+      .mbody {
+        margin-top: 14px;
+        color: var(--dim);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .mbody h4 {
+        margin: 14px 0 4px;
+        color: var(--white);
+        font-size: 13.5px;
+        font-weight: 700;
+      }
+
+      .mbody ul {
+        margin: 6px 0 6px 18px;
+      }
+
+      @media (min-width: 760px) {
+        .hero h1 { font-size: 58px; }
+        .strip { margin: -30px auto 0; max-width: 560px; }
+        .points { grid-template-columns: 1fr 1fr 1fr; }
+        .point { flex-direction: column; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; }
+      }
+    </style>
+  </head>
+
+  <body class={bodyClass}>
+    <div class="shell">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-inner">
+          <p class="hero-round">제5회</p>
+          <h1 class="display">마켓 <span class="em">챌린지</span></h1>
+          <p class="hero-slogan">실력은 겨루고, 여행은 챙기고!</p>
+          <p class="hero-sub">
+            모의투자 방식으로 수익률 순위를 겨루는 참여형 이벤트.
+            지금 <strong>참가 접수</strong>가 시작됐어요.
+          </p>
+          <div class="hero-media">
+            <img src={trophy.src} width="1024" height="1536" alt="챔피언 트로피" />
+          </div>
+        </div>
+      </header>
+
+      <div class="strip">
+        <div>
+          <span>대회 기간</span>
+          <b>07.06 ~ 07.26</b>
+        </div>
+        <div>
+          <span>참가비</span>
+          <b class="gold">0원</b>
+        </div>
+      </div>
+
+      <!-- POINTS -->
+      <section class="sec">
+        <h2 class="sec-title display">이번 대회, <span class="em">이렇게</span> 진행돼요</h2>
+        <div class="points">
+          <div class="point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v1a4 4 0 0 0 3 3.87M17 6h3v1a4 4 0 0 1-3 3.87"/></svg>
+            </div>
+            <div>
+              <h3>누구나 참여 가능</h3>
+              <p>경력도 조건도 필요 없어요. 신청만 하면 내 실력을 겨뤄볼 수 있어요.</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+            </div>
+            <div>
+              <h3>모의투자 방식 진행</h3>
+              <p>실제 돈이 오가지 않는 모의투자 방식이에요. 수익률 순위로만 경쟁하고, 실제 수익과는 무관해요.</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M10.5 13.5 3 10l1.5-1.5L11 10l5-5 2 .5-3.5 6 3 2.5-2 1-3-2-2.5 2.5.5 3-1.5 1-1.5-4Z"/></svg>
+            </div>
+            <div>
+              <h3>수상자 여행 혜택</h3>
+              <p>성적 우수자에게는 항공권과 호텔이 포함된 여행 상품권을 드려요.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRIZE -->
+      <section class="sec">
+        <h2 class="sec-title display">이번 여름, 1위는 <span class="gold">여행</span> 갑니다</h2>
+        <p class="sec-desc">순위표 맨 위에 이름을 올리면, 다음 휴가지가 달라집니다.</p>
+        <div class="prize-card">
+          <img src={travel.src} width="1536" height="1024" alt="여행 상품권 - 리조트 전경" />
+          <div class="prize-body">
+            <p class="label">성적 우수자 혜택</p>
+            <h3>여행 상품권 제공</h3>
+            <p><b>항공권 + 호텔 포함</b> · 수상자 발표 후 개별 안내</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TICKET -->
+      <section class="ticket-wrap">
+        <div class="ticket">
+          <div class="ticket-top">
+            <div class="ticket-brand">
+              <b>참가권</b>
+              <span>ENTRY TICKET · NO.5</span>
+            </div>
+            <div class="ticket-rows">
+              <div class="trow">
+                <span>대회 기간</span>
+                <b>2026.07.06 ~ 07.26</b>
+              </div>
+              <div class="trow">
+                <span>진행 방식</span>
+                <b>모의투자 · 수익률 순위 경쟁</b>
+              </div>
+              <div class="trow">
+                <span>참가비</span>
+                <b class="gold">무료 (0원)</b>
+              </div>
+              <div class="trow">
+                <span>참여 채널</span>
+                <b>{channel}</b>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-cut"></div>
+          <div class="ticket-stub">
+            <p class="count-label">접수 마감까지 <b>남은 시간</b></p>
+            <div class="countdown">
+              <div class="cd"><b id="cd-d">-</b><span>일</span></div>
+              <div class="cd"><b id="cd-h">-</b><span>시간</span></div>
+              <div class="cd"><b id="cd-m">-</b><span>분</span></div>
+              <div class="cd"><b id="cd-s">-</b><span>초</span></div>
+            </div>
+            <a class="btn link-btn" href="javascript:void(0)" onclick={jumpFn}>
+              <img src={ctaIcon.src} alt="" />
+              <span>지금 바로 참여하기</span>
+              {needNumber && <span class="num">7</span>}
+            </a>
+            {needNumber
+              ? <p class="btn-hint">친구 추가 후 숫자 7을 보내면 접수 안내를 받을 수 있어요</p>
+              : <p class="btn-hint">버튼 한 번이면 {channelShort}에서 바로 접수돼요</p>}
+          </div>
+        </div>
+      </section>
+
+      <!-- STEPS -->
+      <section class="sec">
+        <h2 class="sec-title display">참여 방법</h2>
+        <div class="steps">
+          {needNumber ? (
+            <>
+              <div class="step"><span class="sn">1</span><div><b>{channelShort} 친구 추가</b><p>아래 버튼을 누르면 자동으로 연결돼요.</p></div></div>
+              <div class="step"><span class="sn">2</span><div><b>숫자 '7' 보내기</b><p>채팅창에 숫자 7만 입력해서 보내주세요.</p></div></div>
+              <div class="step"><span class="sn">3</span><div><b>접수 완료</b><p>대회 일정과 참여 안내를 바로 받아보세요.</p></div></div>
+            </>
+          ) : (
+            <>
+              <div class="step"><span class="sn">1</span><div><b>아래 버튼 누르기</b><p>{channelRo} 바로 연결돼요.</p></div></div>
+              <div class="step"><span class="sn">2</span><div><b>입장하기</b><p>복잡한 가입 절차도, 결제도 없어요.</p></div></div>
+              <div class="step"><span class="sn">3</span><div><b>접수 완료</b><p>대회 일정과 참여 안내가 바로 떠 있어요.</p></div></div>
+            </>
+          )}
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec">
+        <h2 class="sec-title display">자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>참가비가 정말 없나요?</summary>
+            <p>네. 접수부터 참여까지 전 과정이 무료입니다. 진행 중 별도의 비용을 요구하지 않습니다.</p>
+          </details>
+          <details>
+            <summary>실제 돈으로 진행되나요?</summary>
+            <p>아니요. 본 대회는 모의투자 방식으로 진행됩니다. 수익률 순위로만 경쟁하며, 실제 수익·손실과는 무관합니다.</p>
+          </details>
+          <details>
+            <summary>처음이라 실력이 없어도 괜찮나요?</summary>
+            <p>괜찮아요. 순위 경쟁 외에도 참가자들과 시장 이야기를 나누는 것 자체가 이번 대회의 큰 재미입니다.</p>
+          </details>
+          <details>
+            <summary>여행 상품은 어떻게 받나요?</summary>
+            <p>대회 종료 후 수상자를 발표하며, 항공권과 호텔이 포함된 여행 상품권은 수상자에게 개별 안내를 통해 전달됩니다.</p>
+          </details>
+        </div>
+      </section>
+
+      <p class="notice">
+        ※ 본 대회는 모의 투자 방식으로 진행되며, 실제 수익과는 무관합니다.<br />
+        ※ 본 페이지의 모든 콘텐츠는 이벤트 안내 및 정보 제공 목적이며, 특정 금융상품의 매수·매도를 권유하지 않습니다. 참여자는 본인의 판단과 책임 하에 참여합니다.
+      </p>
+
+      <footer class="footer">
+        <p>
+          운영: 마켓 챌린지 사무국 &nbsp;|&nbsp; 문의: help@marketchallenge.kr<br />
+          대회 운영 및 수상자 안내는 접수 채널을 통해 공지됩니다.
+        </p>
+        <div class="footer-links">
+          <a data-modal="privacy">개인정보 처리방침</a>
+          <a data-modal="terms">이용약관</a>
+          <a data-modal="disclaimer">면책 조항</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- STICKY -->
+    <div class="sticky">
+      <a class="link-btn" href="javascript:void(0)" onclick={jumpFn}>
+        <img src={ctaIcon.src} alt="" />
+        <span>{joinWord}</span>
+        {needNumber && <span class="num">7</span>}
+      </a>
+    </div>
+
+    <!-- MODAL -->
+    <div class="ov" id="modal">
+      <div class="mbox" role="dialog" aria-modal="true">
+        <button class="mclose" type="button" aria-label="닫기">×</button>
+        <h3 id="mt"></h3>
+        <div class="mbody" id="mb"></div>
+      </div>
+    </div>
+
+    <script>
+      const modalContent = {
+        privacy: {
+          title: '개인정보 처리방침',
+          body: `
+            <p>마켓 챌린지 사무국(이하 "운영자")은 「개인정보 보호법」 등 관련 법령을 준수하며, 참가자의 개인정보를 안전하게 관리합니다.</p>
+            <h4>1. 수집 항목</h4><p>접수 시 닉네임, 연락 가능한 메신저 아이디 등 대회 운영에 필요한 최소한의 정보만 수집합니다. 수상자에 한해 상품 전달을 위한 추가 정보(성명, 연락처)를 별도 동의 후 수집할 수 있습니다.</p>
+            <h4>2. 이용 목적</h4><ul><li>대회 접수 및 참가자 관리</li><li>대회 일정·결과 등 공지 전달</li><li>수상자 선정 및 상품 전달</li></ul>
+            <h4>3. 보유 및 이용 기간</h4><p>이용 목적 달성 후 지체 없이 파기하며, 관련 법령에서 정한 기간 동안만 보관합니다.</p>
+            <h4>4. 제3자 제공</h4><p>참가자의 사전 동의 없이 개인정보를 외부에 제공하지 않습니다. 단, 법령에 따른 요청이 있는 경우는 예외로 합니다.</p>
+            <h4>5. 참가자의 권리</h4><p>참가자는 언제든지 본인의 개인정보 열람·정정·삭제·처리정지를 요청할 수 있습니다.</p>
+            <h4>6. 문의처</h4><p>help@marketchallenge.kr</p>
+          `,
+        },
+        terms: {
+          title: '이용약관',
+          body: `
+            <p>본 약관은 마켓 챌린지(이하 "대회") 참여와 관련하여 운영자와 참가자 간의 권리·의무 및 책임 사항을 규정합니다.</p>
+            <h4>제1조 (목적)</h4><p>본 대회는 모의투자 방식의 참여형 이벤트로, 교육 및 교류를 목적으로 합니다. 특정 금융상품의 매매를 권유하거나 중개하지 않습니다.</p>
+            <h4>제2조 (참가자의 의무)</h4><ul><li>다른 참가자를 존중하고 예의를 지킵니다.</li><li>부정한 방법으로 순위에 영향을 주는 행위를 하지 않습니다.</li><li>허위 정보, 광고, 비방 등 운영을 방해하는 행위를 하지 않습니다.</li></ul>
+            <h4>제3조 (대회의 성격)</h4><p>본 대회는 모의 방식으로 진행되며, 대회 내 수익률·순위는 실제 수익과 무관합니다. 어떠한 결과도 보장하지 않습니다.</p>
+            <h4>제4조 (일정 변경 및 중단)</h4><p>운영자는 부득이한 사정이 있는 경우 대회 일정과 내용을 변경하거나 중단할 수 있으며, 이 경우 접수 채널을 통해 공지합니다.</p>
+            <h4>제5조 (책임의 한계)</h4><p>참가자는 본인의 판단과 책임 하에 대회에 참여하며, 참여 결과에 대한 책임은 참가자 본인에게 있습니다.</p>
+          `,
+        },
+        disclaimer: {
+          title: '면책 조항',
+          body: `
+            <p>본 사이트와 대회에서 제공하는 모든 콘텐츠는 <b style="color:#f4f7ff">이벤트 안내 및 정보 제공 목적</b>으로 제공됩니다.</p>
+            <h4>1. 대회의 성격</h4><p>본 대회는 모의 투자 방식으로 진행되며, 실제 수익과는 무관합니다. 대회 내 순위·수익률은 어떠한 투자 성과도 의미하지 않습니다.</p>
+            <h4>2. 투자 유의</h4><p>본 콘텐츠는 특정 금융상품의 매수·매도를 권유하지 않으며 어떠한 수익도 보장하지 않습니다. 모든 투자 판단과 그 결과에 대한 책임은 전적으로 이용자 본인에게 있습니다.</p>
+            <h4>3. 상품 제공</h4><p>여행 상품권 등 혜택은 대회 운영 정책에 따라 수상자에게 제공되며, 세부 조건은 접수 채널을 통해 안내됩니다.</p>
+            <h4>4. 책임의 한계</h4><p>이용자가 본 콘텐츠를 참고하여 내린 모든 판단과 그 결과에 대한 책임은 전적으로 이용자 본인에게 있습니다.</p>
+          `,
+        },
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // countdown → 접수 마감 (대회 종료일 23:59)
+        const end = new Date('2026-07-26T23:59:59+09:00').getTime()
+        const pad = (n) => String(n).padStart(2, '0')
+        const tick = () => {
+          const diff = Math.max(0, end - Date.now())
+          const d = Math.floor(diff / 86400000)
+          const h = Math.floor((diff % 86400000) / 3600000)
+          const m = Math.floor((diff % 3600000) / 60000)
+          const s = Math.floor((diff % 60000) / 1000)
+          const set = (id, v) => {
+            const el = document.getElementById(id)
+            if (el) el.textContent = v
+          }
+          set('cd-d', pad(d))
+          set('cd-h', pad(h))
+          set('cd-m', pad(m))
+          set('cd-s', pad(s))
+        }
+        tick()
+        setInterval(tick, 1000)
+
+        // modals
+        const ov = document.getElementById('modal')
+        const mt = document.getElementById('mt')
+        const mb = document.getElementById('mb')
+        const open = (k) => {
+          const d = modalContent[k]
+          if (!d || !ov || !mt || !mb) return
+          mt.textContent = d.title
+          mb.innerHTML = d.body
+          ov.classList.add('show')
+          document.body.style.overflow = 'hidden'
+        }
+        const close = () => {
+          if (!ov) return
+          ov.classList.remove('show')
+          document.body.style.overflow = ''
+        }
+        document.querySelectorAll('[data-modal]').forEach((el) => {
+          el.addEventListener('click', (e) => { e.preventDefault(); open(el.getAttribute('data-modal')) })
+        })
+        ov?.querySelector('.mclose')?.addEventListener('click', close)
+        ov?.addEventListener('click', (e) => { if (e.target === ov) close() })
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close() })
+      })
+    </script>
+  </body>
+</html>
