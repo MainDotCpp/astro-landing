@@ -1,0 +1,1005 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import travel from './assets/images/travel.png'
+import trophy from './assets/images/trophy.png'
+
+const title = '5th Market Challenge | Registration Now Open'
+const description = 'A simulated trading challenge ranked purely on returns. Free to enter, open to everyone — and top performers win a travel voucher with flights and hotel included. Registration closes 26 July.'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#070d24" />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #070d24;
+        --bg-2: #101c42;
+        --bg-3: #16255a;
+        --line: rgba(157, 178, 255, 0.16);
+        --white: #f4f7ff;
+        --dim: #97a4c9;
+        --blue: #3d7bff;
+        --blue-deep: #1f4fd8;
+        --gold: #f2c14e;
+        --gold-2: #ffdf8e;
+        --cta: #25d366;
+        --cta-ink: #03150b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding-bottom: 92px;
+        overflow-x: hidden;
+        background: var(--bg);
+        color: var(--white);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .display {
+        font-family: 'Archivo Black', 'Inter', sans-serif;
+        font-weight: 400;
+        line-height: 1.12;
+        letter-spacing: -0.01em;
+      }
+
+      .shell {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      /* ---- hero ---- */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(120% 60% at 50% -8%, #22398c 0%, rgba(34, 57, 140, 0) 62%),
+          var(--bg);
+      }
+
+      .hero-inner {
+        position: relative;
+        padding: 46px 20px 0;
+        text-align: center;
+      }
+
+      .hero-round {
+        color: var(--gold);
+        font-family: 'Archivo Black', 'Inter', sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.34em;
+        text-indent: 0.34em;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        margin-top: 8px;
+        font-size: 40px;
+        text-transform: uppercase;
+      }
+
+      .hero h1 .em {
+        color: var(--blue);
+        text-shadow: 0 0 34px rgba(61, 123, 255, 0.45);
+      }
+
+      .hero-slogan {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 9px 20px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .hero-sub {
+        max-width: 360px;
+        margin: 18px auto 0;
+        color: var(--dim);
+        font-size: 15px;
+      }
+
+      .hero-sub strong {
+        color: var(--white);
+      }
+
+      .hero-media {
+        position: relative;
+        max-width: 420px;
+        margin: 6px auto 0;
+      }
+
+      .hero-media img {
+        width: 100%;
+        aspect-ratio: 10 / 9;
+        object-fit: cover;
+        object-position: 50% 88%;
+        -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
+        mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
+      }
+
+      /* ---- period strip ---- */
+      .strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: -26px 20px 0;
+        position: relative;
+        z-index: 2;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(16, 28, 66, 0.92);
+        backdrop-filter: blur(8px);
+      }
+
+      .strip > div {
+        padding: 14px 10px 16px;
+        text-align: center;
+      }
+
+      .strip > div + div {
+        border-left: 1px solid var(--line);
+      }
+
+      .strip span {
+        display: block;
+        color: var(--dim);
+        font-size: 12px;
+      }
+
+      .strip b {
+        display: block;
+        margin-top: 3px;
+        font-size: 17px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+      }
+
+      .strip .gold {
+        color: var(--gold);
+      }
+
+      /* ---- sections ---- */
+      .sec {
+        padding: 52px 20px 0;
+      }
+
+      .sec-title {
+        font-size: 24px;
+        text-align: center;
+      }
+
+      .sec-title .em {
+        color: var(--blue);
+      }
+
+      .sec-title .gold {
+        color: var(--gold);
+      }
+
+      .sec-desc {
+        margin-top: 10px;
+        color: var(--dim);
+        font-size: 14.5px;
+        text-align: center;
+      }
+
+      /* ---- points ---- */
+      .points {
+        display: grid;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .point {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 20px 18px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: linear-gradient(160deg, var(--bg-2), rgba(16, 28, 66, 0.4));
+      }
+
+      .point-icon {
+        flex: 0 0 46px;
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: rgba(61, 123, 255, 0.14);
+        border: 1px solid rgba(61, 123, 255, 0.45);
+      }
+
+      .point-icon svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: var(--blue);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .point h3 {
+        font-size: 16.5px;
+        font-weight: 900;
+      }
+
+      .point p {
+        margin-top: 4px;
+        color: var(--dim);
+        font-size: 13.5px;
+      }
+
+      /* ---- prize ---- */
+      .prize-card {
+        margin-top: 26px;
+        overflow: hidden;
+        border: 1px solid rgba(242, 193, 78, 0.4);
+        border-radius: 18px;
+        background: var(--bg-2);
+      }
+
+      .prize-card img {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+
+      .prize-body {
+        padding: 20px 20px 24px;
+        text-align: center;
+        background:
+          radial-gradient(90% 100% at 50% 0%, rgba(242, 193, 78, 0.08) 0%, transparent 70%),
+          var(--bg-2);
+      }
+
+      .prize-body .label {
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .prize-body h3 {
+        margin-top: 6px;
+        font-size: 23px;
+        font-family: 'Archivo Black', 'Inter', sans-serif;
+        font-weight: 400;
+      }
+
+      .prize-body p {
+        margin-top: 8px;
+        color: var(--dim);
+        font-size: 14px;
+      }
+
+      .prize-body p b {
+        color: var(--white);
+      }
+
+      /* ---- ticket (signature) ---- */
+      .ticket-wrap {
+        padding: 56px 20px 0;
+      }
+
+      .ticket {
+        position: relative;
+        border-radius: 18px;
+        background: linear-gradient(150deg, #1b2c6b, var(--bg-3) 55%, #0e1a45);
+        border: 1px solid rgba(157, 178, 255, 0.28);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      }
+
+      .ticket-top {
+        padding: 24px 22px 22px;
+      }
+
+      .ticket-brand {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .ticket-brand b {
+        font-family: 'Archivo Black', 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .ticket-brand span {
+        color: var(--gold);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        white-space: nowrap;
+      }
+
+      .ticket-rows {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .trow {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed rgba(157, 178, 255, 0.22);
+      }
+
+      .trow:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .trow span {
+        color: var(--dim);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .trow b {
+        font-size: 15px;
+        font-weight: 900;
+        text-align: right;
+      }
+
+      .trow .gold {
+        color: var(--gold);
+      }
+
+      /* perforation */
+      .ticket-cut {
+        position: relative;
+        height: 0;
+        border-top: 2px dashed rgba(157, 178, 255, 0.3);
+      }
+
+      .ticket-cut::before,
+      .ticket-cut::after {
+        content: '';
+        position: absolute;
+        top: -11px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--bg);
+      }
+
+      .ticket-cut::before {
+        left: -12px;
+        border-right: 1px solid rgba(157, 178, 255, 0.28);
+      }
+
+      .ticket-cut::after {
+        right: -12px;
+        border-left: 1px solid rgba(157, 178, 255, 0.28);
+      }
+
+      .ticket-stub {
+        padding: 20px 22px 24px;
+        text-align: center;
+      }
+
+      .count-label {
+        color: var(--dim);
+        font-size: 13px;
+      }
+
+      .count-label b {
+        color: #ff6b6b;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .cd {
+        min-width: 58px;
+        padding: 10px 6px 8px;
+        border-radius: 10px;
+        background: rgba(7, 13, 36, 0.75);
+        border: 1px solid var(--line);
+      }
+
+      .cd b {
+        display: block;
+        font-family: 'Archivo Black', 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .cd span {
+        display: block;
+        margin-top: 4px;
+        color: var(--dim);
+        font-size: 11px;
+      }
+
+      /* ---- CTA button ---- */
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        margin-top: 18px;
+        padding: 17px 18px;
+        border-radius: 14px;
+        background: var(--cta);
+        color: var(--cta-ink);
+        font-size: 16.5px;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      .btn svg,
+      .sticky svg {
+        flex: 0 0 auto;
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
+      }
+
+      .btn-hint {
+        margin-top: 10px;
+        color: var(--dim);
+        font-size: 12.5px;
+      }
+
+      /* ---- steps ---- */
+      .steps {
+        display: grid;
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .step {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--bg-2);
+      }
+
+      .sn {
+        flex: 0 0 30px;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .step b {
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .step p {
+        margin-top: 2px;
+        color: var(--dim);
+        font-size: 13px;
+      }
+
+      /* ---- faq ---- */
+      .faq {
+        margin-top: 26px;
+        border-top: 1px solid var(--line);
+      }
+
+      .faq details {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .faq summary {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 2px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq summary::after {
+        content: '+';
+        color: var(--blue);
+        font-size: 20px;
+        font-weight: 400;
+      }
+
+      .faq details[open] summary::after {
+        content: '−';
+      }
+
+      .faq details p {
+        padding: 0 2px 16px;
+        color: var(--dim);
+        font-size: 13.5px;
+      }
+
+      /* ---- notice / footer ---- */
+      .notice {
+        margin-top: 54px;
+        padding: 20px 20px 22px;
+        border-top: 1px solid var(--line);
+        color: #6d7897;
+        font-size: 11.5px;
+        line-height: 1.85;
+      }
+
+      .footer {
+        padding: 4px 20px 40px;
+      }
+
+      .footer p {
+        color: var(--dim);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 14px;
+      }
+
+      .footer-links a {
+        color: var(--white);
+        font-size: 12px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+
+      /* ---- sticky ---- */
+      .sticky {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 80;
+        display: flex;
+        justify-content: center;
+        background: rgba(7, 13, 36, 0.9);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid var(--line);
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      }
+
+      .sticky a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 692px;
+        padding: 15px 18px;
+        border-radius: 12px;
+        background: var(--cta);
+        color: var(--cta-ink);
+        font-size: 16px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      /* ---- modal ---- */
+      .ov {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(2, 5, 16, 0.78);
+      }
+
+      .ov.show {
+        display: flex;
+      }
+
+      .mbox {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 28px 22px 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--bg-2);
+      }
+
+      .mclose {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        border: 0;
+        background: none;
+        color: var(--dim);
+        cursor: pointer;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .mbox h3 {
+        font-size: 17px;
+        font-weight: 900;
+        padding-right: 24px;
+      }
+
+      .mbody {
+        margin-top: 14px;
+        color: var(--dim);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .mbody h4 {
+        margin: 14px 0 4px;
+        color: var(--white);
+        font-size: 13.5px;
+        font-weight: 700;
+      }
+
+      .mbody ul {
+        margin: 6px 0 6px 18px;
+      }
+
+      @media (min-width: 760px) {
+        .hero h1 { font-size: 54px; }
+        .strip { margin: -30px auto 0; max-width: 560px; }
+        .points { grid-template-columns: 1fr 1fr 1fr; }
+        .point { flex-direction: column; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="shell">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-inner">
+          <p class="hero-round">Round 5</p>
+          <h1 class="display">Market <span class="em">Challenge</span></h1>
+          <p class="hero-slogan">Compete on skill. Win a getaway.</p>
+          <p class="hero-sub">
+            A simulated trading event where you climb the leaderboard on returns.
+            <strong>Registration is now open.</strong>
+          </p>
+          <div class="hero-media">
+            <img src={trophy.src} width="1024" height="1536" alt="Champion trophy" />
+          </div>
+        </div>
+      </header>
+
+      <div class="strip">
+        <div>
+          <span>Event period</span>
+          <b>6 – 26 July</b>
+        </div>
+        <div>
+          <span>Entry fee</span>
+          <b class="gold">Free</b>
+        </div>
+      </div>
+
+      <!-- POINTS -->
+      <section class="sec">
+        <h2 class="sec-title display">How this round <span class="em">works</span></h2>
+        <div class="points">
+          <div class="point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v1a4 4 0 0 0 3 3.87M17 6h3v1a4 4 0 0 1-3 3.87"/></svg>
+            </div>
+            <div>
+              <h3>Open to everyone</h3>
+              <p>No experience needed, no strings attached. Sign up and see where you rank.</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+            </div>
+            <div>
+              <h3>Simulated trading only</h3>
+              <p>No real money changes hands. You compete on percentage returns alone — rankings have nothing to do with actual profits.</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M10.5 13.5 3 10l1.5-1.5L11 10l5-5 2 .5-3.5 6 3 2.5-2 1-3-2-2.5 2.5.5 3-1.5 1-1.5-4Z"/></svg>
+            </div>
+            <div>
+              <h3>Travel prizes for winners</h3>
+              <p>Top performers receive a travel voucher with flights and hotel included.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRIZE -->
+      <section class="sec">
+        <h2 class="sec-title display">This July, first place <span class="gold">goes on holiday</span></h2>
+        <p class="sec-desc">Get to the top of the leaderboard, and your next holiday's sorted.</p>
+        <div class="prize-card">
+          <img src={travel.src} width="1536" height="1024" alt="Travel voucher — overwater resort" />
+          <div class="prize-body">
+            <p class="label">Top performer reward</p>
+            <h3>Travel Voucher</h3>
+            <p><b>Flights + hotel included</b> · Winners contacted individually after results are announced</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TICKET -->
+      <section class="ticket-wrap">
+        <div class="ticket">
+          <div class="ticket-top">
+            <div class="ticket-brand">
+              <b>Entry Pass</b>
+              <span>ROUND 5 · 2026</span>
+            </div>
+            <div class="ticket-rows">
+              <div class="trow">
+                <span>Event period</span>
+                <b>6 – 26 July 2026</b>
+              </div>
+              <div class="trow">
+                <span>Format</span>
+                <b>Simulated trading · ranked by returns</b>
+              </div>
+              <div class="trow">
+                <span>Entry fee</span>
+                <b class="gold">Free</b>
+              </div>
+              <div class="trow">
+                <span>Where it happens</span>
+                <b>WhatsApp</b>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-cut"></div>
+          <div class="ticket-stub">
+            <p class="count-label">Registration closes in</p>
+            <div class="countdown">
+              <div class="cd"><b id="cd-d">-</b><span>Days</span></div>
+              <div class="cd"><b id="cd-h">-</b><span>Hrs</span></div>
+              <div class="cd"><b id="cd-m">-</b><span>Min</span></div>
+              <div class="cd"><b id="cd-s">-</b><span>Sec</span></div>
+            </div>
+            <a class="btn link-btn" href="javascript:void(0)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2.05 22l5.27-1.38a9.9 9.9 0 0 0 4.72 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.8-.23-.09-.4-.13-.56.12-.17.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
+              <span>Join the Challenge</span>
+            </a>
+            <p class="btn-hint">One tap opens WhatsApp — no forms, you're in straight away.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEPS -->
+      <section class="sec">
+        <h2 class="sec-title display">How to join</h2>
+        <div class="steps">
+          <div class="step"><span class="sn">1</span><div><b>Tap the green button</b><p>It opens WhatsApp directly.</p></div></div>
+          <div class="step"><span class="sn">2</span><div><b>Join the group</b><p>No sign-up forms, no payment.</p></div></div>
+          <div class="step"><span class="sn">3</span><div><b>You're registered</b><p>The event schedule and instructions are pinned right there in the group.</p></div></div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec">
+        <h2 class="sec-title display">Frequently asked questions</h2>
+        <div class="faq">
+          <details>
+            <summary>Is it really free?</summary>
+            <p>Yes. Joining and taking part are completely free — you'll never be asked to pay anything, at any point.</p>
+          </details>
+          <details>
+            <summary>Is real money involved?</summary>
+            <p>No. The challenge runs entirely on simulated trading. Rankings are based on percentage returns only and have no connection to actual profit or loss.</p>
+          </details>
+          <details>
+            <summary>I'm new to markets — can I still take part?</summary>
+            <p>Absolutely. It's all simulated, so there's nothing to lose — and half the fun is talking markets with everyone else in the group.</p>
+          </details>
+          <details>
+            <summary>How do winners receive the travel prize?</summary>
+            <p>Winners are announced after the event ends. The travel voucher, covering both flights and accommodation, is then arranged with each winner individually.</p>
+          </details>
+        </div>
+      </section>
+
+      <p class="notice">
+        * This event is run on a simulated trading basis. Results are unrelated to actual investment returns.<br />
+        * All content on this page is provided for event information purposes only and does not constitute an offer, recommendation or invitation to buy or sell any financial product. Participants take part at their own discretion and responsibility.
+      </p>
+
+      <footer class="footer">
+        <p>
+          Organiser: Market Challenge Committee &nbsp;|&nbsp; Contact: help@marketchallenge.co<br />
+          Event updates and winner announcements are posted through the registration channel.
+        </p>
+        <div class="footer-links">
+          <a data-modal="privacy">Privacy Policy</a>
+          <a data-modal="terms">Terms of Use</a>
+          <a data-modal="disclaimer">Disclaimer</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- STICKY -->
+    <div class="sticky">
+      <a class="link-btn" href="javascript:void(0)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2.05 22l5.27-1.38a9.9 9.9 0 0 0 4.72 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.8-.23-.09-.4-.13-.56.12-.17.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
+        <span>Join on WhatsApp</span>
+      </a>
+    </div>
+
+    <!-- MODAL -->
+    <div class="ov" id="modal">
+      <div class="mbox" role="dialog" aria-modal="true">
+        <button class="mclose" type="button" aria-label="Close">×</button>
+        <h3 id="mt"></h3>
+        <div class="mbody" id="mb"></div>
+      </div>
+    </div>
+
+    <script>
+      const modalContent = {
+        privacy: {
+          title: 'Privacy Policy',
+          body: `
+            <p>The Market Challenge Committee (the "Organiser") handles participants' personal data in accordance with applicable data protection laws, including Singapore's Personal Data Protection Act (PDPA).</p>
+            <h4>1. What we collect</h4><p>Only the minimum needed to run the event: a nickname and a reachable messenger ID at registration. Winners may be asked separately, with consent, for additional details (name, contact number) so prizes can be delivered.</p>
+            <h4>2. How we use it</h4><ul><li>Processing registrations and managing participants</li><li>Sending event schedules, results and announcements</li><li>Selecting winners and delivering prizes</li></ul>
+            <h4>3. How long we keep it</h4><p>Personal data is deleted without undue delay once these purposes are fulfilled, and retained only as long as required by applicable law.</p>
+            <h4>4. Sharing with third parties</h4><p>We do not share personal data with third parties without prior consent, except where required by law.</p>
+            <h4>5. Your rights</h4><p>You may request access to, correction of, or deletion of your personal data, or ask us to stop processing it, at any time.</p>
+            <h4>6. Contact</h4><p>help@marketchallenge.co</p>
+          `,
+        },
+        terms: {
+          title: 'Terms of Use',
+          body: `
+            <p>These terms set out the rights, obligations and responsibilities between the Organiser and participants of the Market Challenge (the "Event").</p>
+            <h4>1. Purpose</h4><p>The Event is a participation-based simulated trading event, run for educational and community purposes. It does not solicit, recommend or broker the purchase or sale of any financial product.</p>
+            <h4>2. Participant conduct</h4><ul><li>Treat other participants with respect.</li><li>Do not manipulate rankings through dishonest means.</li><li>Do not post false information, advertising or abusive content, or otherwise disrupt the Event.</li></ul>
+            <h4>3. Nature of the Event</h4><p>The Event runs on a simulated basis. In-event returns and rankings are unrelated to actual investment performance, and no outcome of any kind is guaranteed.</p>
+            <h4>4. Changes and cancellation</h4><p>The Organiser may change or suspend the Event schedule or content where unavoidable, with notice given through the registration channel.</p>
+            <h4>5. Limitation of liability</h4><p>Participants join the Event at their own discretion and are responsible for their own decisions and outcomes.</p>
+          `,
+        },
+        disclaimer: {
+          title: 'Disclaimer',
+          body: `
+            <p>All content on this site and in the Event is provided <b style="color:#f4f7ff">for event information purposes only</b>.</p>
+            <h4>1. Nature of the Event</h4><p>The Event is run on a simulated trading basis and is unrelated to actual investment returns. In-event rankings and returns do not represent any investment performance.</p>
+            <h4>2. Investment caution</h4><p>Nothing here constitutes an offer, recommendation or invitation to buy or sell any financial product, and no returns of any kind are guaranteed. All investment decisions, and their outcomes, are solely the responsibility of the individual.</p>
+            <h4>3. Prizes</h4><p>Travel vouchers and other benefits are provided to winners under the Event's operating policy; detailed conditions are communicated through the registration channel.</p>
+            <h4>4. Limitation of liability</h4><p>Any decisions made in reliance on this content, and their consequences, rest entirely with the user.</p>
+          `,
+        },
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // countdown → registration closes 26 July, 23:59 SGT
+        const end = new Date('2026-07-26T23:59:59+08:00').getTime()
+        const pad = (n) => String(n).padStart(2, '0')
+        const tick = () => {
+          const diff = Math.max(0, end - Date.now())
+          const d = Math.floor(diff / 86400000)
+          const h = Math.floor((diff % 86400000) / 3600000)
+          const m = Math.floor((diff % 3600000) / 60000)
+          const s = Math.floor((diff % 60000) / 1000)
+          const set = (id, v) => {
+            const el = document.getElementById(id)
+            if (el) el.textContent = v
+          }
+          set('cd-d', pad(d))
+          set('cd-h', pad(h))
+          set('cd-m', pad(m))
+          set('cd-s', pad(s))
+        }
+        tick()
+        setInterval(tick, 1000)
+
+        // modals
+        const ov = document.getElementById('modal')
+        const mt = document.getElementById('mt')
+        const mb = document.getElementById('mb')
+        const open = (k) => {
+          const d = modalContent[k]
+          if (!d || !ov || !mt || !mb) return
+          mt.textContent = d.title
+          mb.innerHTML = d.body
+          ov.classList.add('show')
+          document.body.style.overflow = 'hidden'
+        }
+        const close = () => {
+          if (!ov) return
+          ov.classList.remove('show')
+          document.body.style.overflow = ''
+        }
+        document.querySelectorAll('[data-modal]').forEach((el) => {
+          el.addEventListener('click', (e) => { e.preventDefault(); open(el.getAttribute('data-modal')) })
+        })
+        ov?.querySelector('.mclose')?.addEventListener('click', close)
+        ov?.addEventListener('click', (e) => { if (e.target === ov) close() })
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close() })
+      })
+    </script>
+  </body>
+</html>
