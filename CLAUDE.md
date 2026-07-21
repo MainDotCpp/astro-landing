@@ -124,9 +124,9 @@ Pages specify plugins via props: `plugins={['aos', 'jquery', 'googleFontsKR']}`
 5. **每次开发完必跑文案审查**：见上方 Copywriting Quality 第 5 条——每做完一个落地页都要单独开 agent 做母语者创译审查，杜绝当地人看着别扭的文案。
 6. **每次改动落地页必输出页面链接 (Always output page links)**：**每次修改或新增落地页后**，都必须向用户输出该页面的访问链接，且**本地链接与生产链接分两行、分开输出**：
    - **本地**：`http://localhost:4321/<页面路径>`
-   - **生产**：`https://coincool.top/<页面路径>`
-   - 两者**路径部分完全相同**，仅域名不同；生产域名固定为 `coincool.top`。一个页面有多个渠道 / 变体时，每个都各给一对（本地 + 生产）链接。
-   - 示例（柳秀真卡群版）：本地 `http://localhost:4321/KR/柳秀真/20260621-1.0.卡群`、生产 `https://coincool.top/KR/柳秀真/20260621-1.0.卡群`。
+   - **生产**：`https://t.dd-ll.xyz/<页面路径>`
+   - 两者**路径部分完全相同**，仅域名不同；生产域名固定为 `t.dd-ll.xyz`。一个页面有多个渠道 / 变体时，每个都各给一对（本地 + 生产）链接。
+   - 示例（柳秀真卡群版）：本地 `http://localhost:4321/KR/柳秀真/20260621-1.0.卡群`、生产 `https://t.dd-ll.xyz/KR/柳秀真/20260621-1.0.卡群`。
 
 7. **静态资源一律走构建管线、输出带 `mjSFqQ/` 前缀 (All static assets under mjSFqQ/)**：落地页的图片 / 字体等自托管静态资源，**构建输出后必须落在 `mjSFqQ/` 前缀下**（由 `astro.config.mjs` 的 `build.assets: "mjSFqQ"` 决定）。做法：资源放 **`src/`** 下（推荐页面同级 `images/` 子目录），在 frontmatter 用 `import` 引入，再用 `<Image>` 或 `图片.src` 渲染 `<img>`；CSS 背景图用 `import bg from './images/x.jpg'` + `<style define:vars={{ bgUrl: \`url(${bg.src})\` }}>` → `background-image: var(--bgUrl)`。**禁止**把落地页资源放 `public/` 根再用 `/HK/images/x.png` 这类绝对路径引用——`public/` 文件会原样复制到站点根、**不带 `mjSFqQ` 前缀**（如 `/HK/images/x.png`），不符合要求。
 
