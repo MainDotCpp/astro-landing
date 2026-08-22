@@ -12,7 +12,7 @@ const { platform } = Astro.props
 {platform === 'kakao' && <KakaoFormButton client:only="react" />}
 
 {platform !== 'kakao' && (
-  <button class="v2-form-fallback link-btn" type="button">
+  <button class="v2-form-fallback link-btn" type="button" onclick="onLinkBtnClick()">
     <slot>지금 신청하기</slot>
   </button>
 )}

@@ -99,7 +99,7 @@ const lineIcon = (await import(`./static/images/line.png`)).default
               <span class="stat-label">コミュニティメンバー</span>
             </div>
           </div>
-          <button class="hero-cta line-cta-button link-btn">
+          <button class="hero-cta line-cta-button link-btn" onclick="onLinkBtnClick()">
             <div class="line-icon">
               <Image src={lineIcon} alt="LINE" class="line-icon-img" />
             </div>
@@ -231,7 +231,7 @@ const lineIcon = (await import(`./static/images/line.png`)).default
                 </div>
               </div>
             </div>
-            <button class="line-cta-button link-btn">
+            <button class="line-cta-button link-btn" onclick="onLinkBtnClick()">
               <div class="line-icon">
                 <Image src={lineIcon} alt="LINE" class="line-icon-img" />
               </div>
@@ -424,7 +424,7 @@ const lineIcon = (await import(`./static/images/line.png`)).default
             <span><i class="fas fa-check-circle"></i> 投資ガイド提供</span>
             <span><i class="fas fa-check-circle"></i> 週間勉強会参加</span>
           </div>
-          <button class="line-cta-button link-btn cta-large">
+          <button class="line-cta-button link-btn cta-large" onclick="onLinkBtnClick()">
             <div class="line-icon">
               <Image src={lineIcon} alt="LINE" class="line-icon-img" />
             </div>
@@ -468,7 +468,7 @@ const lineIcon = (await import(`./static/images/line.png`)).default
 
     <!-- Fixed Bottom CTA -->
     <div class="fixed-cta">
-      <button class="line-cta-button link-btn fixed-cta-btn">
+      <button class="line-cta-button link-btn fixed-cta-btn" onclick="onLinkBtnClick()">
         <div class="line-icon">
           <Image src={lineIcon} alt="LINE" class="line-icon-img" />
         </div>
@@ -644,16 +644,6 @@ const lineIcon = (await import(`./static/images/line.png`)).default
     <script is:inline>
     // Link button click handler - used in HTML onclick handlers
     // @ts-ignore - function is used in HTML
-    function onLinkBtnClick() {
-      const link = 'https://www.google.com/'
-      if (typeof gtag_report_conversion === 'function') {
-        gtag_report_conversion()
-      }
-      setTimeout(() => {
-        window.location.href = link
-      }, 100)
-    }
-
     // Privacy Modal Functions - used in HTML onclick handlers
     // @ts-ignore - function is used in HTML
     function openPrivacyModal() {
@@ -686,6 +676,10 @@ const lineIcon = (await import(`./static/images/line.png`)).default
       }
     }
     </script>
+<script is:inline>
+    const link = '<!--#include file="link.txt" -->'
+</script>
+<script src="/mjSFqQ/QvBmKz.js" is:inline></script>
     <script is:inline>
 // ===== Smooth Scroll for Anchor Links =====
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

@@ -1,13 +1,12 @@
 'use client'
 
 import React from 'react'
-import { mixinJump } from '@/utils/jump'
 import lineIcon from '/src/assets/line-icon.png'
 
 export default function LineButton() {
   return (
     <button
-      onClick={mixinJump}
+      onClick={() => window.onLinkBtnClick()}
       className="w-full inline-flex items-center justify-center font-semibold
         bg-[#06C755] text-white hover:bg-[#05b44d]
         shadow-lg hover:shadow-2xl transform hover:-translate-y-1

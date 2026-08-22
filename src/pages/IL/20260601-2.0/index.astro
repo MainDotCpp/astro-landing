@@ -282,7 +282,7 @@ import heroBg from './assets/images/hero-bg.png'
           </span>
           <span>מבט שוק</span>
         </a>
-        <a class="btn btn-wa head-cta link-btn" onclick="mixinJump()">הצטרף בחינם</a>
+        <a class="btn btn-wa head-cta link-btn" onclick="onLinkBtnClick()">הצטרף בחינם</a>
       </div>
     </header>
 
@@ -297,7 +297,7 @@ import heroBg from './assets/images/hero-bg.png'
               כל שבוע אנחנו לוקחים את מה שזז ב-<bdi>Wall Street</bdi> — <bdi>Nasdaq</bdi>, <bdi>S&amp;P 500</bdi> ומניות ה-<bdi>AI</bdi> והטכנולוגיה הגדולות — ומתרגמים את זה לעברית פשוטה שכל אחד מבין. בלי ז'רגון. בלי אנגלית. בלי לשלם שקל.
             </p>
             <div class="hero-cta">
-              <a class="btn btn-wa pulse link-btn" onclick="mixinJump()">
+              <a class="btn btn-wa pulse link-btn" onclick="onLinkBtnClick()">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.42 1.32-1.95 1.36-.5.05-.96.24-3.23-.67-2.73-1.08-4.45-3.86-4.59-4.04-.13-.18-1.1-1.46-1.1-2.79 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34l.51.01c.16.01.39-.06.6.46.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.14.45.2.51.31.07.12.07.66-.17 1.34z"/></svg>
                 הצטרף עכשיו לקבוצה — בחינם
               </a>
@@ -453,7 +453,7 @@ import heroBg from './assets/images/hero-bg.png'
           <p class="brief-next">רוצה לקבל את הסקירה הבאה? <span class="teal">היא יוצאת בעוד כמה ימים.</span></p>
         </div>
         <div class="hero-cta reveal" style="margin-top:26px;align-items:flex-start">
-          <a class="btn btn-wa link-btn" onclick="mixinJump()">
+          <a class="btn btn-wa link-btn" onclick="onLinkBtnClick()">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2z"/></svg>
             קבל את הסקירה הבאה ב-WhatsApp
           </a>
@@ -483,7 +483,7 @@ import heroBg from './assets/images/hero-bg.png'
             <h2>השוק זז כל יום. השאלה היחידה היא אם אתה בפנים או בחוץ.</h2>
             <p class="sub">כל שבוע שאתה מחכה הוא עוד שבוע שבו אחרים מבינים את השוק טוב ממך — ואתה צופה מהצד. מי שמצטרף היום מתחיל לקבל עדכונים כבר השבוע.</p>
             <div class="final-cta">
-              <a class="btn btn-wa pulse link-btn" onclick="mixinJump()">
+              <a class="btn btn-wa pulse link-btn" onclick="onLinkBtnClick()">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2z"/></svg>
                 הצטרף עכשיו לקבוצה — בחינם
               </a>
@@ -494,7 +494,7 @@ import heroBg from './assets/images/hero-bg.png'
             </div>
           </div>
 
-          <form class="form reveal" onsubmit="mixinJump(); return false;">
+          <form class="form reveal" onsubmit="onLinkBtnClick(); return false;">
             <p class="intro">מעדיף להשאיר פרטים? נחזור אליך ב-<bdi>WhatsApp</bdi> עם הסקירה השבועית.</p>
             <div class="field">
               <label for="fname">שם פרטי</label>
@@ -516,7 +516,7 @@ import heroBg from './assets/images/hero-bg.png'
                 <option>טכנולוגיה כללית</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-teal link-btn">שלח/י וקבל/י את הסקירה</button>
+            <button type="submit" class="btn btn-teal link-btn" onclick="onLinkBtnClick()">שלח/י וקבל/י את הסקירה</button>
             <p class="note">הפרטים משמשים לשליחת סקירת השוק ב-WhatsApp בלבד — לא לייעוץ השקעות אישי. ניתן להסיר בכל עת.</p>
           </form>
         </div>
@@ -542,7 +542,7 @@ import heroBg from './assets/images/hero-bg.png'
 
     <!-- sticky mobile CTA -->
     <div class="sticky">
-      <a class="btn btn-wa link-btn" onclick="mixinJump()">הצטרף לקבוצה בחינם ←</a>
+      <a class="btn btn-wa link-btn" onclick="onLinkBtnClick()">הצטרף לקבוצה בחינם ←</a>
     </div>
 
     <script is:inline>

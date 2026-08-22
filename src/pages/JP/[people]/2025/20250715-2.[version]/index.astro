@@ -808,7 +808,7 @@ const mainImg = import(`./static/${img_prefix}main.jpg`);
   </body>
 
   <!-- WhatsApp Icon - Using image instead of SVG -->
-  <div class="whatsapp-icon link-btn">
+  <div class="whatsapp-icon link-btn" onclick="onLinkBtnClick()">
     <Image src={lineIcon} alt="line" style="border-radius: inherit;" />
     <div class="notification-badge">1</div>
   </div>
@@ -819,7 +819,7 @@ const mainImg = import(`./static/${img_prefix}main.jpg`);
       class="btn link-btn"
       style="width: 100%; background: linear-gradient(90deg, var(--yellow), var(--accent-red));"
 
-    >今すぐ{people}のLINEを追加して、無料で情報をゲット</button
+     onclick="onLinkBtnClick()">今すぐ{people}のLINEを追加して、無料で情報をゲット</button
     >
   </div>
 

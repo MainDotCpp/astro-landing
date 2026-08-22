@@ -48,7 +48,7 @@ const mainImg = import(`./static/${img_prefix}main.png`);
       </p>
       <div
         class="button link-btn bg-green-500 text-white px-4 py-2 rounded-md py-4 shadow-xl text-xl mt-12"
-      >
+       onclick="onLinkBtnClick()">
         高橋ダンのアルゴリズム投資戦略 – データが示す勝利の方程式
       </div>
     </div><div class="second-image-container">
@@ -65,7 +65,7 @@ const mainImg = import(`./static/${img_prefix}main.png`);
     <div
       class="second-button font-bold animate-breathe link-btn fixed bottom-8 max-w-screen-sm mx-auto flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-[80px] py-4 shadow-xl text-xl w-[90%] justify-center"
       style="text-decoration: none;"
-    >
+     onclick="onLinkBtnClick()">
       <Image class="w-[48px] h-[48px] rounded-full" src={lineIcon} alt="LINE" />
 
       <span>LINE登録はこちらから</span>

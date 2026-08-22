@@ -1027,7 +1027,7 @@ import RedirectCode from '@/components/RedirectCode.astro'
               <div class="tick"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>100% free — no payment, no obligation</div>
             </div>
             <div class="hero-cta">
-              <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="hero">
+              <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="hero" onclick="onLinkBtnClick()">
                 Get My Free Report
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
               </a>
@@ -1145,7 +1145,7 @@ import RedirectCode from '@/components/RedirectCode.astro'
           <div class="final-card reveal">
             <h2>Get this week's <span class="hl">free report</span></h2>
             <p>A fresh watchlist of researched stock ideas, ready for you to read. No form, no cost.</p>
-            <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="final">
+            <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="final" onclick="onLinkBtnClick()">
               Get My Free Report
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
             </a>
@@ -1175,7 +1175,7 @@ import RedirectCode from '@/components/RedirectCode.astro'
     </footer>
 
     <div class="mobile-cta">
-      <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="sticky">Get My Free Report</a>
+      <a class="btn-primary link-btn" href="javascript:void(0)" data-cta="sticky" onclick="onLinkBtnClick()">Get My Free Report</a>
     </div>
 
     <script type="module" src="/src/utils/jump.ts"></script>
@@ -1183,7 +1183,7 @@ import RedirectCode from '@/components/RedirectCode.astro'
       document.querySelectorAll('.link-btn').forEach((btn) => {
         btn.addEventListener('click', (event) => {
           event.preventDefault()
-          if (typeof window.mixinJump === 'function') window.mixinJump()
+          if (typeof window.onLinkBtnClick === 'function') window.onLinkBtnClick()
           else if (typeof link !== 'undefined') window.location.href = link
         })
       })

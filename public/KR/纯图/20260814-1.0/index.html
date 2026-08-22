@@ -299,28 +299,13 @@ html, body {
   </div>
 </div>
 
+<!--#include file="head.html" -->
 <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
 
 <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
 <script>
-  const onLinkBtnClick = () => {
-    const link = 'https://www.baidu.com';
-
-
-    if (typeof fbq === 'function') {
-      fbq('track', 'AddToCart');
-      fbq('track', 'Contact');
-
-    }
-
-
-    if (typeof gtag_report_conversion === 'function') {
-      gtag_report_conversion();
-    }
-
-
-    setTimeout(() => { window.location.href = link; }, 500);
-  };
+    const link = '<!--#include file="link.txt" -->'
 </script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
 </body>
 </html>

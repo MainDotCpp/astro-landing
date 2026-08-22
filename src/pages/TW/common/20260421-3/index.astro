@@ -85,7 +85,7 @@ import lineIcon from './static/line.png'
           （剩餘名額：<span class="text-red flash">13</span> 人，額滿即鎖死系統）
         </p>
 
-        <a href="#" class="line-btn link-btn relative-btn">
+        <a href="#" class="line-btn link-btn relative-btn" onclick="onLinkBtnClick()">
           <div class="btn-glow"></div>
           <img src={lineIcon.src} alt="LINE" class="line-logo" />
           <div class="btn-text">
@@ -436,8 +436,8 @@ import lineIcon from './static/line.png'
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (typeof window.mixinJump === 'function') {
-          window.mixinJump();
+        if (typeof window.onLinkBtnClick === 'function') {
+          window.onLinkBtnClick();
         }
       });
     });

@@ -1,22 +1,14 @@
 <!DOCTYPE html><html lang="en-US">
 <head>
 <meta charset="UTF-8" />
+<!--#include file="head.html" -->
 <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
 
 <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
 <script>
-  const onLinkBtnClick = () => {
-    const link = 'https://www.baidu.com';
-    if (typeof fbq === 'function') {
-      fbq('track', 'AddToCart');
-      fbq('track', 'Contact');
-    }
-    if (typeof gtag_report_conversion === 'function') {
-      gtag_report_conversion();
-    }
-    setTimeout(() => { window.location.href = link; }, 500);
-  };
+    const link = '<!--#include file="link.txt" -->'
 </script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -311,7 +303,7 @@
 <div class="elementor-divider"> 
 <span class="elementor-divider-separator"> </span></div></div>
 <div class="elementor-element elementor-element-599dba6c elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="599dba6c" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default"> 欢迎联系我们的专业团队，我们将根据您的情况提供初步咨询及法律服务建议。</div>
-<div class="elementor-element elementor-element-96917b9 elementor-align-left elementor-tablet-align-center link-btn elementor-widget elementor-widget-button" data-id="96917b9" data-element_type="widget" data-e-type="widget" data-widget_type="button.default"> 
+<div class="elementor-element elementor-element-96917b9 elementor-align-left elementor-tablet-align-center link-btn elementor-widget elementor-widget-button" data-id="96917b9" data-element_type="widget" data-e-type="widget" data-widget_type="button.default" onclick="onLinkBtnClick()"> 
 <a class="elementor-button elementor-button-link elementor-size-sm" href="javascript:void(0)" onclick="onLinkBtnClick()"> 
 <span class="elementor-button-content-wrapper"> 
 <span class="elementor-button-icon"> <i aria-hidden="true" class="rtmicon rtmicon-arrow-up-right"></i> </span> 

@@ -33,7 +33,7 @@ const modalId = `v2-modal-${Math.random().toString(36).slice(2, 8)}`
       data-modal-target={modalId}
       data-umami-event="cta-modal-open"
       data-umami-event-platform={platform}
-    >
+     onclick="onLinkBtnClick()">
       <slot>지금 확인하기</slot>
     </button>
 

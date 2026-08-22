@@ -125,7 +125,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         data-umami-event-method="line"
         data-umami-event-position="hero"
         data-umami-event-instructor={people}
-      >
+       onclick="onLinkBtnClick()">
         <div class="flex items-center justify-center">
           <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-3" />
           <span>秘密を受け取る</span>
@@ -365,7 +365,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         data-umami-event-method="line"
         data-umami-event-position="urgency-cta"
         data-umami-event-instructor={people}
-      >
+       onclick="onLinkBtnClick()">
         <AlertTriangle size={20} class="mr-2 text-red-600" />
         <span>今すぐ無料で受け取る！</span>
       </button>
@@ -445,7 +445,7 @@ const contentImage = await import(`./static/${img_prefix}img.png`)
         data-umami-event-method="line"
         data-umami-event-position="final-cta"
         data-umami-event-instructor={people}
-      >
+       onclick="onLinkBtnClick()">
         <Target size={24} class="mr-2 text-red-600" />
         <span>今すぐ無料で投資法を受け取る</span>
       </button>

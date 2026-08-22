@@ -60,7 +60,7 @@ import lineIcon from './static/line.png'
         額滿就把連結關掉，錯過真的會後悔一輩子！
       </p>
 
-      <a href="#" class="line-btn link-btn pulse-button">
+      <a href="#" class="line-btn link-btn pulse-button" onclick="onLinkBtnClick()">
         <img src={lineIcon.src} alt="LINE" class="line-logo" />
         <div class="btn-text">
           <span class="top-hint">👉 點這裡加老師的LINE 👈</span>
@@ -394,8 +394,8 @@ import lineIcon from './static/line.png'
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (typeof window.mixinJump === 'function') {
-          window.mixinJump();
+        if (typeof window.onLinkBtnClick === 'function') {
+          window.onLinkBtnClick();
         }
       });
     });

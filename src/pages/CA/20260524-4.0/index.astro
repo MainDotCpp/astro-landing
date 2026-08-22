@@ -1641,7 +1641,7 @@ const description = "Stay ahead in the Canadian mining market. Daily WhatsApp al
           <a href="#coverage">Coverage</a>
           <a href="#brief">The Brief</a>
           <a href="#record">Record</a>
-          <a class="cta-primary cta-primary--sm cta-primary--ghost link-btn" href="#" data-cta="nav">
+          <a class="cta-primary cta-primary--sm cta-primary--ghost link-btn" href="#" data-cta="nav" onclick="onLinkBtnClick()">
             Get today&rsquo;s pick
             <span class="arrow">&rarr;</span>
           </a>
@@ -1676,7 +1676,7 @@ const description = "Stay ahead in the Canadian mining market. Daily WhatsApp al
           </p>
 
           <div class="hero-cta-row reveal">
-            <a class="cta-wa link-btn" href="#" data-cta="hero">
+            <a class="cta-wa link-btn" href="#" data-cta="hero" onclick="onLinkBtnClick()">
               <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
                 <path fill="#FFFFFF" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
               </svg>
@@ -2002,7 +2002,7 @@ const description = "Stay ahead in the Canadian mining market. Daily WhatsApp al
               &ldquo;The market doesn&rsquo;t care how long it took you to write the note. Only that it&rsquo;s right by 9:30 AM Eastern.&rdquo;
             </p>
             <div style="margin-top: 32px;">
-              <a class="cta-secondary cta-secondary--dark link-btn" href="#" data-cta="brief">
+              <a class="cta-secondary cta-secondary--dark link-btn" href="#" data-cta="brief" onclick="onLinkBtnClick()">
                 Send &ldquo;BRIEF&rdquo; to get tomorrow&rsquo;s <span class="arr">&rarr;</span>
               </a>
             </div>
@@ -2314,7 +2314,7 @@ const description = "Stay ahead in the Canadian mining market. Daily WhatsApp al
           and tomorrow&rsquo;s brief lands at 7:30&nbsp;AM Pacific.
         </p>
 
-        <a class="cta-wa link-btn" href="#" data-cta="final" style="font-size: 17px; padding: 20px 36px;">
+        <a class="cta-wa link-btn" href="#" data-cta="final" style="font-size: 17px; padding: 20px 36px;" onclick="onLinkBtnClick()">
           <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
             <path fill="#FFFFFF" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
           </svg>
@@ -2367,7 +2367,7 @@ const description = "Stay ahead in the Canadian mining market. Daily WhatsApp al
     </footer>
 
     {/* ═══════════════════════ FLOATING STICKY CTA (FB Pixel safe — real size, scroll-aware) ═══════════════════════ */}
-    <a class="float-cta link-btn" href="#" data-cta="float" aria-label="Send STOCKS on WhatsApp for today's Canadian mining pick">
+    <a class="float-cta link-btn" href="#" data-cta="float" aria-label="Send STOCKS on WhatsApp for today's Canadian mining pick" onclick="onLinkBtnClick()">
       <span class="dot" aria-hidden="true"></span>
       <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#FFFFFF" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
@@ -2380,9 +2380,7 @@ const description = "Stay ahead in the Canadian mining market. Daily WhatsApp al
   </main>
 
   <script type="module" src="/src/utils/jump.ts"></script>
-  <script type="module" src="/src/utils/main.js"></script>
-
-  <script is:inline>
+<script is:inline>
     const revealEls = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {

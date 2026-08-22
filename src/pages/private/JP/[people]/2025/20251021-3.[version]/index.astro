@@ -283,7 +283,7 @@ const img1 = (await import(`../../images/${people}_${version}_1.jpg`)).default
 
       <p>今すぐLINEで友達追加して、<br /><span class="highlight">無料講座</span>を受け取りましょう！</p>
 
-      <a class="cta-button link-btn">LINEで無料登録はこちら</a>
+      <a class="cta-button link-btn" onclick="onLinkBtnClick()">LINEで無料登録はこちら</a>
 
       <p class="warning">※ 募集人数に達し次第、締め切らせていただきます</p>
       <p class="warning">※ 市場環境により急騰銘柄の情報提供は予告なく終了することがあります</p>
@@ -295,7 +295,7 @@ const img1 = (await import(`../../images/${people}_${version}_1.jpg`)).default
     </div>
 
     <div class="tail-gif" style="max-width: 840px">
-      <a class="link-btn">
+      <a class="link-btn" onclick="onLinkBtnClick()">
         <Image src={btn} alt="" class="tail-gif-img w-full" />
       </a>
     </div>

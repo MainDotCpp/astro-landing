@@ -59,7 +59,7 @@ import lineIcon from './static/line.png'
       </div>
 
       <!-- 巨大的 LINE 按鈕 -->
-      <a href="#" class="line-btn link-btn animate-breathe">
+      <a href="#" class="line-btn link-btn animate-breathe" onclick="onLinkBtnClick()">
         <img src={lineIcon.src} alt="LINE" class="line-icon" style="border-radius: 10px;" />
         <div class="btn-text">
           <span class="click-hint">👉 點擊這裡加入 👈</span>
@@ -331,8 +331,8 @@ import lineIcon from './static/line.png'
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (typeof window.mixinJump === 'function') {
-          window.mixinJump();
+        if (typeof window.onLinkBtnClick === 'function') {
+          window.onLinkBtnClick();
         }
       });
     });

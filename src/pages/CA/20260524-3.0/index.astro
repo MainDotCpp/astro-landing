@@ -862,7 +862,7 @@ const description = "I covered FIL.V at $2. I covered NXE.V before Arrow. A priv
         <div class="links">
           <a href="#channel">Channel</a>
           <a href="#about">About</a>
-          <a class="cta-primary cta-primary--sm link-btn" href="#" data-cta="nav">
+          <a class="cta-primary cta-primary--sm link-btn" href="#" data-cta="nav" onclick="onLinkBtnClick()">
             Get access
             <span class="arrow">&rarr;</span>
           </a>
@@ -885,7 +885,7 @@ const description = "I covered FIL.V at $2. I covered NXE.V before Arrow. A priv
             </p>
 
             <div class="hero-cta-row reveal">
-              <a class="cta-primary cta-primary--lg link-btn" href="#" data-cta="hero">
+              <a class="cta-primary cta-primary--lg link-btn" href="#" data-cta="hero" onclick="onLinkBtnClick()">
                 <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
                   <path fill="#25D366" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
                 </svg>
@@ -1254,7 +1254,7 @@ const description = "I covered FIL.V at $2. I covered NXE.V before Arrow. A priv
           Free. No spam. Leave anytime with one tap inside WhatsApp.
         </p>
 
-        <a class="cta-primary cta-primary--lg link-btn" href="#" data-cta="final">
+        <a class="cta-primary cta-primary--lg link-btn" href="#" data-cta="final" onclick="onLinkBtnClick()">
           <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
             <path fill="#25D366" d="M16.003 3C9.376 3 4 8.376 4 15c0 2.354.685 4.547 1.87 6.4L4 29l7.79-1.847A11.95 11.95 0 0 0 16.003 27C22.628 27 28 21.624 28 15S22.628 3 16.003 3z"/>
           </svg>
@@ -1290,9 +1290,7 @@ const description = "I covered FIL.V at $2. I covered NXE.V before Arrow. A priv
   </main>
 
   <script type="module" src="/src/utils/jump.ts"></script>
-  <script type="module" src="/src/utils/main.js"></script>
-
-  <script is:inline>
+<script is:inline>
     // ─── Reveal-on-scroll (stagger 60ms) ───
     const revealEls = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {

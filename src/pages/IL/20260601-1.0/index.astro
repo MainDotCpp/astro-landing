@@ -443,7 +443,7 @@ import adDashboardTablet from './assets/images/ad-dashboard-tablet.jpg'
           </span>
           <span>מבט שוק</span>
         </a>
-        <a class="btn btn-primary head-cta link-btn" onclick="mixinJump()">קבלו את הסקירה</a>
+        <a class="btn btn-primary head-cta link-btn" onclick="onLinkBtnClick()">קבלו את הסקירה</a>
       </div>
     </header>
 
@@ -469,7 +469,7 @@ import adDashboardTablet from './assets/images/ad-dashboard-tablet.jpg'
             </div>
 
             <div class="hero-actions">
-              <a class="btn btn-primary cta-pulse link-btn" onclick="mixinJump()">
+              <a class="btn btn-primary cta-pulse link-btn" onclick="onLinkBtnClick()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>
                 קבלו את הסקירה
               </a>
@@ -588,7 +588,7 @@ import adDashboardTablet from './assets/images/ad-dashboard-tablet.jpg'
               השאירו פרטים או עברו לשיחה כדי לקבל עדכוני שוק קצרים, גרפים ותובנות על AI, מניות ארה״ב וסקטור הטכנולוגיה.
             </p>
             <div class="convert-actions">
-              <a class="btn btn-wa link-btn" onclick="mixinJump()">
+              <a class="btn btn-wa link-btn" onclick="onLinkBtnClick()">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.42 1.32-1.95 1.36-.5.05-.96.24-3.23-.67-2.73-1.08-4.45-3.86-4.59-4.04-.13-.18-1.1-1.46-1.1-2.79 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34l.51.01c.16.01.39-.06.6.46.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.14.45.2.51.31.07.12.07.66-.17 1.34z"/></svg>
                 קבלו עדכון ב-WhatsApp
               </a>
@@ -600,7 +600,7 @@ import adDashboardTablet from './assets/images/ad-dashboard-tablet.jpg'
             </p>
           </div>
 
-          <form class="lead-form reveal" id="leadform" onsubmit="mixinJump(); return false;">
+          <form class="lead-form reveal" id="leadform" onsubmit="onLinkBtnClick(); return false;">
             <div class="field">
               <label for="email">אימייל</label>
               <input id="email" type="email" inputmode="email" placeholder="name@example.com" required />
@@ -626,7 +626,7 @@ import adDashboardTablet from './assets/images/ad-dashboard-tablet.jpg'
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary link-btn">קבלו את הסקירה</button>
+            <button type="submit" class="btn btn-primary link-btn" onclick="onLinkBtnClick()">קבלו את הסקירה</button>
             <p class="form-note">השארת הפרטים מיועדת לקבלת סקירת שוק ותוכן מידע בלבד. ניתן להסיר את ההרשמה בכל עת.</p>
           </form>
         </div>
@@ -654,7 +654,7 @@ import adDashboardTablet from './assets/images/ad-dashboard-tablet.jpg'
 
     <!-- sticky mobile CTA -->
     <div class="sticky-cta">
-      <a class="btn btn-primary link-btn" onclick="mixinJump()">קבלו את הסקירה</a>
+      <a class="btn btn-primary link-btn" onclick="onLinkBtnClick()">קבלו את הסקירה</a>
     </div>
 
     <script is:inline>

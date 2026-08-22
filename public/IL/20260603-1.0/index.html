@@ -4,31 +4,25 @@
 <head>
 <meta charset="utf-8"/>
 
+<!--#include file="head.html" -->
 <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
 
 <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
 <script>
-  const onLinkBtnClick = () => {
-    const link = 'https://www.baidu.com'; // ← 改成实际目标
-    if (typeof fbq === 'function') {
-      fbq('track', 'AddToCart');
-      fbq('track', 'Contact');
-    }
-    if (typeof gtag_report_conversion === 'function') {
-      gtag_report_conversion();
-    }
-    setTimeout(() => { window.location.href = link; }, 500);
-  };
   // 表单提交 = 唯一转化动作: 拦截原站提交, 改走统一跳转
   document.addEventListener('submit', function (e) {
     const f = e.target;
     if (f && f.nodeType === 1 && (f.classList.contains('elementor-form') || (f.closest && f.closest('.elementor-form')))) {
       e.preventDefault();
       e.stopImmediatePropagation();
-      onLinkBtnClick();
+      window.onLinkBtnClick();
     }
   }, true);
 </script>
+<script>
+    const link = '<!--#include file="link.txt" -->'
+</script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
 <meta content="noindex, nofollow" name="robots">
 <!-- This site is optimized with the Yoast SEO plugin v26.1.1 - https://yoast.com/wordpress/plugins/seo/ -->
 <title>lp-5 - עומר ביבי</title>

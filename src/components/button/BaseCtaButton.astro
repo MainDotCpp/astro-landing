@@ -57,6 +57,9 @@ const baseClasses = unstyled
 <button
     class={`${baseClasses} ${animate && !unstyled ? 'breathing' : ''} ${redirect && variant !== 'mixed' ? 'link-btn' : ''}`}
     id="cta-button"
+    onclick={redirect && variant !== 'mixed'
+        ? (variant === 'band' ? 'onLinkBtnClick(\'band\')' : 'onLinkBtnClick()')
+        : undefined}
     data-umami-event="cta-click"
     data-umami-event-type={variant}
     data-umami-event-size={size}

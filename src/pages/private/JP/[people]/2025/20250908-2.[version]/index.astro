@@ -200,7 +200,7 @@ const { img_prefix, name: people } = Astro.props
 
 
         <!-- CTA Button - 移动端优化 -->
-        <button class="link-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold text-sm py-5 px-3 rounded-xl shadow-lg transform hover:scale-102 transition-all duration-300 mb-6 animate-gentle-float">
+        <button class="link-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold text-sm py-5 px-3 rounded-xl shadow-lg transform hover:scale-102 transition-all duration-300 mb-6 animate-gentle-float" onclick="onLinkBtnClick()">
           <div class="flex items-center justify-center">
             <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-2 flex-shrink-0" />
             <span class="text-center leading-tight whitespace-nowrap">今すぐLINEでお友達になりましょう</span>
@@ -308,7 +308,7 @@ const { img_prefix, name: people } = Astro.props
           <div class="text-lg font-semibold text-indigo-600 mb-3">わずかな時間差が大きな違いを生みます</div>
           <div class="text-slate-700 mb-6 text-sm leading-relaxed">迷っている間に、他の投資家は資産を着実に増やしています</div>
           
-          <button class="link-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold text-sm py-5 px-3 rounded-xl shadow-lg transform hover:scale-102 transition-all duration-300">
+          <button class="link-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold text-sm py-5 px-3 rounded-xl shadow-lg transform hover:scale-102 transition-all duration-300" onclick="onLinkBtnClick()">
             <div class="flex items-center justify-center">
               <Image src={lineIcon} alt="LINE" width={24} height={24} class="mr-2 flex-shrink-0" />
               <span class="text-center leading-tight whitespace-nowrap">今すぐLINEでお友達になりましょう</span>

@@ -22,7 +22,7 @@ const { platform, size = 'md', animate = true } = Astro.props
     data-platform={platform}
     data-umami-event="cta-click"
     data-umami-event-platform={platform}
-  >
+   onclick="onLinkBtnClick()">
     <slot>정보 받기</slot>
   </button>
 )}

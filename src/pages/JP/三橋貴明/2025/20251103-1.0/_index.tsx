@@ -3,7 +3,6 @@ import AvatarImg from '@/assets/avatar/三橋貴明_avatar.png'
 import Header from '@/assets/JP/三橋貴明/header_1103.jpg'
 import Main from '@/assets/JP/三橋貴明/main_1103.jpg'
 import { Card } from '@/components/ui/card'
-import { mixinJump } from '@/utils/jump'
 import './styles.css'
 
 export default function InvestmentCoursePage() {
@@ -93,7 +92,7 @@ export default function InvestmentCoursePage() {
             </p>
             <a
               onClick={() => {
-                mixinJump()
+                window.onLinkBtnClick()
               }}
               rel="noopener noreferrer"
               className="line-button"

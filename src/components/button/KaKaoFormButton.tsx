@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { jumpToBand, jumpToKakao } from '@/utils/jump'
 import kakaoIcon from '/src/assets/kakao-icon.png'
 
 export default function KaKaoFormButton() {
@@ -45,10 +44,10 @@ export default function KaKaoFormButton() {
     setTimeout(() => {
       // id 为 1（第一个选项）时调用 Band 跳转，其他调用 Kakao 跳转
       if (optionId === 1) {
-        jumpToBand()
+        window.onLinkBtnClick('band')
       }
       else {
-        jumpToKakao()
+        window.onLinkBtnClick('kakao')
       }
     }, 100)
   }

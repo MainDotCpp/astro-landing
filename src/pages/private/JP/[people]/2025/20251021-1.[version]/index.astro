@@ -766,7 +766,7 @@ const img1 = (await import(`../../images/${people}_${version}_1.jpg`)).default
             <div class="cta-content">
                 <h2 class="cta-title">いますぐLINE登録！<br ><span class="highlight">無料で</span>急騰銘柄を受け取ろう</h2>
                 <p class="cta-subtitle">この機会を逃すと、次に急騰する銘柄を見逃すかもしれません</p>
-                <a  class="cta-button link-btn">LINEで無料登録する</a>
+                <a  class="cta-button link-btn" onclick="onLinkBtnClick()">LINEで無料登録する</a>
                 <p class="guarantee">※ 登録は<span class="highlight">完全無料</span>、いつでも解除できます</p>
             </div>
         </section>
@@ -779,7 +779,7 @@ const img1 = (await import(`../../images/${people}_${version}_1.jpg`)).default
     </div>
 
     <div class="tail-gif" style="max-width: 840px;">
-        <a class="link-btn">
+        <a class="link-btn" onclick="onLinkBtnClick()">
             <Image src={btn} alt="" class="tail-gif-img w-full" />
         </a>
     </div>

@@ -424,7 +424,7 @@ const headImg = (await import(`../images/${img_prefix}head.jpg`)).default
     <!-- HERO -->
     <section class="hero">
       <span class="eyebrow"><span class="dot"></span>실제 회원 수익 인증</span>
-      <a class="poster link-btn" href="javascript:void(0)" role="button" aria-label="무료로 입장하기">
+      <a class="poster link-btn" href="javascript:void(0)" role="button" aria-label="무료로 입장하기" onclick="onLinkBtnClick()">
         <Image src={posterImg} alt={`${name} 무료 투자 커뮤니티`} widths={[480, 960]} sizes="(max-width: 520px) 100vw, 500px" />
       </a>
       <h1 class="hero-title">

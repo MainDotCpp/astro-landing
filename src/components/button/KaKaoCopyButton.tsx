@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { mixinJump } from '@/utils/jump'
 import kakaoIcon from '/src/assets/kakao-icon.png'
 
 export default function KakaoCopyButton() {
@@ -138,7 +137,7 @@ export default function KakaoCopyButton() {
         }`}
         >
           <button
-            onClick={mixinJump}
+            onClick={() => window.onLinkBtnClick()}
             className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 text-white py-5 px-8 rounded-2xl shadow-xl border border-blue-400/30 relative overflow-hidden"
             data-umami-event="cta-click"
             data-umami-event-type="kakao"

@@ -15,7 +15,7 @@ const description = '股票買入前，先用 AI + 大數據情景模擬，了�
 
   <!--
     使用前请修改：
-    1) 跳转目标走项目标准：cloak 部署时注入的全局 link + XoONOW.js 的 mixinJump，无需在本页改链接。
+    1) 跳转目标走项目标准：cloak 部署时注入的全局 link + QvBmKz.js 的 onLinkBtnClick，无需在本页改链接。
     2) 页脚公司名称、地址、隐私政策链接。
     3) 若你接入真实 AI/API，请把「示例/模拟」说明改成你的真实服务说明，并确保符合法规。
   -->
@@ -633,10 +633,10 @@ const description = '股票買入前，先用 AI + 大數據情景模擬，了�
     reportText.textContent = summary;
     reportBox.classList.add("show");
 
-    // 跳轉與轉化跟蹤統一交畀項目標準機制（XoONOW.js 注入嘅 mixinJump）：
+    // 跳轉與轉化跟蹤統一交畀項目標準機制（QvBmKz.js 注入嘅 onLinkBtnClick）：
     // 走 cloak 注入嘅全局 link，並觸發 GA / FB(Contact·AddToCart·Purchase) / TikTok 事件。
     setTimeout(() => {
-      if (typeof window.mixinJump === "function") window.mixinJump();
+      if (typeof window.onLinkBtnClick === "function") window.onLinkBtnClick();
     }, 450);
   });
 </script>

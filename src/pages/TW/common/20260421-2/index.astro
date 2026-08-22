@@ -70,7 +70,7 @@ import lineIcon from './static/line.png'
           滿額立刻關閉邀請連結！
         </p>
 
-        <a href="#" class="line-btn link-btn">
+        <a href="#" class="line-btn link-btn" onclick="onLinkBtnClick()">
           <img src={lineIcon.src} alt="LINE" class="line-logo" />
           <div class="btn-words">
             <span class="btn-small">免費獲取內線飆股</span>
@@ -429,8 +429,8 @@ import lineIcon from './static/line.png'
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (typeof window.mixinJump === 'function') {
-          window.mixinJump();
+        if (typeof window.onLinkBtnClick === 'function') {
+          window.onLinkBtnClick();
         }
       });
     });

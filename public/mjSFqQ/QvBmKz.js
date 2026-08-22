@@ -10,6 +10,8 @@
  * V1 文件仍在线上被大量存量页面引用，本文件是独立的新实现，两者互不影响。
  */
 
+/* global link, kakao_link, band_link */
+
 // 仅在 keepalive 不可用时（Firefox < 133）才走驻留降级
 const FB_FLUSH_MS = 350
 const TT_FLUSH_MS = 500
@@ -27,7 +29,7 @@ const KEEPALIVE_OK = (function () {
   try {
     return 'keepalive' in new Request('/', { keepalive: true })
   }
-  catch (e) {
+  catch {
     return false
   }
 })()
@@ -44,7 +46,7 @@ function isTracker(url) {
   try {
     return TRACKER_HOST_RE.test(new URL(String(url), window.location.href).hostname)
   }
-  catch (e) {
+  catch {
     return false
   }
 }
@@ -65,7 +67,7 @@ function sendKeepalive(url, method, body) {
       credentials: 'include',
     }).catch(() => {})
   }
-  catch (e) {}
+  catch {}
 }
 
 // ───────────────────────── Transport Shim ─────────────────────────
@@ -93,7 +95,7 @@ function shadowImgSrc(img, nativeDesc) {
       },
     })
   }
-  catch (e) {}
+  catch {}
 }
 
 function installShim() {
@@ -105,7 +107,7 @@ function installShim() {
   try {
     imgDesc = Object.getOwnPropertyDescriptor(window.HTMLImageElement.prototype, 'src')
   }
-  catch (e) {}
+  catch {}
 
   // 1. new Image() —— Meta Pixel 走这条（fbevents.js v2.9.384 实测）
   try {
@@ -118,41 +120,41 @@ function installShim() {
     PatchedImage.prototype = NativeImage.prototype
     window.Image = PatchedImage
   }
-  catch (e) {}
+  catch {}
 
   // 2. document.createElement('img') —— 防止像素库不走 new Image()
   try {
     const nativeCreate = document.createElement
-    document.createElement = function (tag) {
-      const el = nativeCreate.apply(document, arguments)
+    document.createElement = function (tag, ...rest) {
+      const el = nativeCreate.call(document, tag, ...rest)
       try {
         if (String(tag).toLowerCase() === 'img')
           shadowImgSrc(el, imgDesc)
       }
-      catch (e) {}
+      catch {}
       return el
     }
   }
-  catch (e) {}
+  catch {}
 
   // 3. XMLHttpRequest
   try {
     const nativeOpen = XMLHttpRequest.prototype.open
     const nativeSend = XMLHttpRequest.prototype.send
-    XMLHttpRequest.prototype.open = function (method, url) {
+    XMLHttpRequest.prototype.open = function (method, url, ...rest) {
       this.__jumpMethod = method
       this.__jumpUrl = url
-      return nativeOpen.apply(this, arguments)
+      return nativeOpen.call(this, method, url, ...rest)
     }
     XMLHttpRequest.prototype.send = function (body) {
       if (beaconMode && this.__jumpUrl && isTracker(this.__jumpUrl)) {
         sendKeepalive(this.__jumpUrl, this.__jumpMethod, body)
         return
       }
-      return nativeSend.apply(this, arguments)
+      return nativeSend.call(this, body)
     }
   }
-  catch (e) {}
+  catch {}
 
   // 4. fetch —— 给跟踪请求补 keepalive
   try {
@@ -165,11 +167,11 @@ function installShim() {
           init.keepalive = true
         }
       }
-      catch (e) {}
+      catch {}
       return nativeFetch.call(window, input, init)
     }
   }
-  catch (e) {}
+  catch {}
 
   // 5. navigator.sendBeacon 本身就能在卸载后送达，原样透传，不做改写
 }
@@ -179,11 +181,11 @@ function forceFlush() {
   try {
     document.dispatchEvent(new Event('visibilitychange'))
   }
-  catch (e) {}
+  catch {}
   try {
     window.dispatchEvent(new Event('pagehide'))
   }
-  catch (e) {}
+  catch {}
 }
 
 // ───────────────────────── 事件参数 ─────────────────────────
@@ -206,7 +208,7 @@ function getContentId() {
   try {
     return (window.location.pathname || 'lp_default').replace(/^\/+|\/+$/g, '') || 'lp_default'
   }
-  catch (e) {
+  catch {
     return 'lp_default'
   }
 }
@@ -247,14 +249,14 @@ function jump(url) {
     // Google Ads 转化脚本（fire-and-forget，内部通常走 sendBeacon）
     if (hasConv) {
       try { window.gtag_report_conversion(undefined) }
-      catch (e) {}
+      catch {}
     }
 
     // GA4：唯一有可靠送达回调的平台
     if (hasGtag) {
       if (KEEPALIVE_OK) {
         try { window.gtag('event', 'contact', { transport_type: 'beacon' }) }
-        catch (e) {}
+        catch {}
       }
       else {
         pending += 1
@@ -267,7 +269,7 @@ function jump(url) {
           tryNavigate()
         }
         try { window.gtag('event', 'contact', { transport_type: 'beacon', event_callback: onSent }) }
-        catch (e) { onSent() }
+        catch { onSent() }
       }
     }
 
@@ -275,11 +277,11 @@ function jump(url) {
     // V1 传的 eventCallback 不是 API，永远不会回调，白等满 800ms。
     if (hasFb) {
       try { window.fbq('track', 'Contact') }
-      catch (e) {}
+      catch {}
       try { window.fbq('track', 'AddToCart') }
-      catch (e) {}
+      catch {}
       try { window.fbq('track', 'Purchase', { value, currency, content_name: url }) }
-      catch (e) {}
+      catch {}
     }
 
     // TikTok Pixel：无送达回调，靠 shim + forceFlush
@@ -287,9 +289,9 @@ function jump(url) {
       const contentId = getContentId()
       const contents = [{ content_id: contentId, content_type: 'product', content_name: url }]
       try { window.ttq.track('ClickButton', { content_id: contentId, content_type: 'product', content_name: url }) }
-      catch (e) {}
+      catch {}
       try { window.ttq.track('AddToCart', { content_id: contentId, content_type: 'product', content_name: url, contents }) }
-      catch (e) {}
+      catch {}
       try {
         window.ttq.track('CompletePayment', {
           value,
@@ -300,7 +302,7 @@ function jump(url) {
           contents: [{ content_id: contentId, content_type: 'product', content_name: url, quantity: 1, price: value }],
         })
       }
-      catch (e) {}
+      catch {}
       forceFlush()
     }
   }
@@ -337,21 +339,55 @@ function jump(url) {
   tryNavigate()
 }
 
+// 棒群渠道的页面路径由路由参数 [t] 生成，形如 /KR/<人物>/20260321-3.0.棒群/。
+// 这类页面里有些 CTA 是共用模板渲染的、没法在源码里区分渠道，按路径兜底。
+function isBandRoute() {
+  try {
+    return /\.棒群\/?$/.test(decodeURIComponent(window.location.pathname))
+  }
+  catch {
+    return false
+  }
+}
+
+// 页面内由 SSI 注入声明：const link = '<!--#include file="link.txt" -->'
+// typeof 判断只为防止未声明时的 ReferenceError，不是 SSI 失败容错
 function currentLink() {
-  // link 由页面内的 SSI 注入声明：const link = '<!--#include file="link.txt" -->'
-  // typeof 判断只为防止未声明时的 ReferenceError，不是 SSI 失败容错
+  if (isBandRoute() && typeof band_link !== 'undefined' && band_link)
+    return band_link
   return typeof link !== 'undefined' ? link : ''
 }
 
-function onLinkBtnClick() {
-  jump(currentLink())
+// BAND 群与 Kakao 群是两个不同的群，混合渠道的模态框和「提高质量_」渠道的
+// 选项分流都要求二者可区分，所以 band 走独立的 band.txt。
+// 未声明 band_link 的页面（非 KR）回退到主链接。
+function currentBandLink() {
+  return typeof band_link !== 'undefined' && band_link ? band_link : currentLink()
+}
+
+function currentKakaoLink() {
+  return typeof kakao_link !== 'undefined' && kakao_link ? kakao_link : currentLink()
+}
+
+/**
+ * 唯一入口。渠道语义由参数表达，不再用多个函数名：
+ *   onLinkBtnClick()        → 主链接
+ *   onLinkBtnClick('band')  → BAND 群
+ *   onLinkBtnClick('kakao') → Kakao 群
+ */
+function onLinkBtnClick(channel) {
+  if (channel === 'band')
+    return jump(currentBandLink())
+  if (channel === 'kakao')
+    return jump(currentKakaoLink())
+  return jump(currentLink())
 }
 
 if (typeof window !== 'undefined') {
   window.onLinkBtnClick = onLinkBtnClick
-  // 别名：全部指向同一实现，防止批量迁移遗漏。迁移完成后应无调用点。
-  window.mixinJump = onLinkBtnClick
-  window.jumpToKakao = onLinkBtnClick
-  window.jumpToBand = onLinkBtnClick
   window.jump = jump
+  // 别名：保留渠道语义，供存量调用点与 React 组件使用
+  window.mixinJump = function () { return onLinkBtnClick() }
+  window.jumpToKakao = function () { return onLinkBtnClick('kakao') }
+  window.jumpToBand = function () { return onLinkBtnClick('band') }
 }

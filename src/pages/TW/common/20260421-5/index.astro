@@ -63,7 +63,7 @@ import lineIcon from './static/line.png'
         <div class="timer">剩餘 <span class="text-yellow" id="mins">09</span> 分 <span class="text-yellow" id="secs">59</span> 秒</div>
       </div>
 
-      <a href="#" class="line-btn link-btn pulse-shadow">
+      <a href="#" class="line-btn link-btn pulse-shadow" onclick="onLinkBtnClick()">
         <img src={lineIcon.src} alt="LINE" class="line-logo" />
         <div class="btn-text">
           <span class="btn-top">👉 點這裡立刻加LINE 👈</span>
@@ -456,8 +456,8 @@ import lineIcon from './static/line.png'
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (typeof window.mixinJump === 'function') {
-          window.mixinJump();
+        if (typeof window.onLinkBtnClick === 'function') {
+          window.onLinkBtnClick();
         }
       });
     });

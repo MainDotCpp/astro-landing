@@ -15,7 +15,7 @@ const { t = '卡扣' } = Astro.params
 const isBand = t === '棒群'
 const needNumber = t === '卡扣'
 const channelShort = isBand ? '밴드' : '카카오톡'
-const jumpFn = isBand ? 'jumpToBand()' : 'jumpToKakao()'
+const jumpFn = isBand ? "onLinkBtnClick('band')" : "onLinkBtnClick()"
 const bodyClass = isBand ? 'ch-band' : 'ch-kakao'
 const ctaIcon = isBand ? bandIcon : kakaoIcon
 const joinWord = isBand

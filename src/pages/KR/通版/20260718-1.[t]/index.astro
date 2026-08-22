@@ -19,7 +19,7 @@ const needNumber = t === '卡扣'
 const channel = isBand ? '네이버 밴드' : '카카오톡'
 const channelRo = isBand ? '네이버 밴드로' : '카카오톡으로'
 const channelShort = isBand ? '밴드' : '카카오톡'
-const jumpFn = isBand ? 'jumpToBand()' : 'jumpToKakao()'
+const jumpFn = isBand ? "onLinkBtnClick('band')" : "onLinkBtnClick()"
 const bodyClass = isBand ? 'ch-band' : 'ch-kakao'
 const ctaIcon = isBand ? bandIcon : kakaoIcon
 const joinWord = isBand ? '밴드에서 참여 신청하기' : (needNumber ? '카카오톡으로 참여 신청' : '카카오톡에서 바로 참여')

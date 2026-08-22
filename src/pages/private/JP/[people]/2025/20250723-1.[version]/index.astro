@@ -301,10 +301,10 @@ const main_img = import(`./static/${img_prefix}img.png`)
     <div class="cta-section">
       <h2>今すぐ無料で学び、資産を10倍に！</h2>
       <p>1日たった10分でできる<span class="highlight">「ストレスフリー投資法」</span></p>
-      <a class="link-btn cta-button">今すぐ無料で受け取る</a>
+      <a class="link-btn cta-button" onclick="onLinkBtnClick()">今すぐ無料で受け取る</a>
     </div>
 
-    <a class="link-btn line-button">
+    <a class="link-btn line-button" onclick="onLinkBtnClick()">
       <span style="font-size:20px;">📱</span> LINEで今すぐ登録
     </a>
 
@@ -323,7 +323,7 @@ const main_img = import(`./static/${img_prefix}img.png`)
 
 
   <div class="tail-gif" style="max-width: 840px;">
-    <a class="link-btn">
+    <a class="link-btn" onclick="onLinkBtnClick()">
       <Image src={btn} alt="" class="tail-gif-img" />
     </a>
   </div>
