@@ -2,7 +2,13 @@
 // 初始化全局混合模态框（只初始化一次）
 if (!window.hybridModalInitialized) {
   window.hybridModalInitialized = true
-  function redirect(link) {
+  function redirect(url) {
+    // 交给 V2 统一跳转：会触发全平台事件并用 keepalive 保证导航后送达
+    if (typeof window.jump === 'function') {
+      window.jump(url)
+      return
+    }
+    // 兜底：V2 脚本未加载时维持原行为
     try {
       gtag_report_conversion()
     }
@@ -11,7 +17,7 @@ if (!window.hybridModalInitialized) {
     }
     finally {
       setTimeout(() => {
-        window.location.href = link
+        window.location.href = url
       }, 100)
     }
   }

@@ -4,13 +4,18 @@ import GA4 from './GA4.astro'
 const timestamp = Date.now();
 ---
 <meta name="timestamp" content={timestamp.toString()} />
+<!--#include file="head.html" -->
 <!--------------------------- ↓ ↓ ↓ ↓ ↓ ↓ 跟踪代码粘贴在下面 ↓ ↓ ↓ ↓ ↓ ↓ ----------------------------------->
 
 <script is:inline>
+    // 主跳转链接。渠道由路由参数 [t] 在构建时决定，卡扣/卡群/棒群各自的页面只用这一个。
     // eslint-disable-next-line unused-imports/no-unused-vars
-    const kakao_link = 'https://www.baidu.com'
+    const link = '<!--#include file="link.txt" -->'
     // eslint-disable-next-line unused-imports/no-unused-vars
-    const band_link = 'https://www.google.com'
+    const kakao_link = link
+    // 混合渠道的模态框让用户在 BAND 群和 Kakao 群之间二选一，BAND 是另一个群，需要独立链接。
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    const band_link = '<!--#include file="band.txt" -->'
 </script>
-<script src="/mjSFqQ/XoONOW.js" is:inline></script>
+<script src="/mjSFqQ/QvBmKz.js" is:inline></script>
 <GA4 />
