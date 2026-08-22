@@ -1,0 +1,433 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroSg from './assets/images/hero-sg.jpg'
+import researchDesk from './assets/images/research-desk.jpg'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Market Insights for Singapore Investors — Understand Markets, Research Stocks Smarter</title>
+    <meta
+      name="description"
+      content="Current market trends, stocks to watch and educational research for Singapore investors. Learn how to read company fundamentals, market trends and risk — free market insights on WhatsApp."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        heroImg: `url(${heroSg.src})`,
+        deskImg: `url(${researchDesk.src})`,
+      }}
+    >
+      :root {
+        --paper:   #F0F1EA;
+        --card:    #FFFFFF;
+        --ink:     #10201B;
+        --spruce:  #0B3D33;
+        --mut:     #586B64;
+        --dim:     #869388;
+        --mark:    #FFC93D;
+        --rule:    #D7DACF;
+        --wa:      #25D366;
+        --wa-d:    #1BAE52;
+        --display: 'Bricolage Grotesque', 'Instrument Sans', system-ui, sans-serif;
+        --sans:    'Instrument Sans', system-ui, -apple-system, sans-serif;
+        --mono:    'DM Mono', ui-monospace, SFMono-Regular, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans);
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(84px + env(safe-area-inset-bottom));
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+
+      .wrap { width: 100%; padding-inline: 22px; }
+
+      /* ---------- highlighter swipe (signature) ---------- */
+      .mark { position: relative; z-index: 0; }
+      .mark::before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        left: -0.1em; right: -0.14em; top: 0.2em; bottom: 0.06em;
+        background: var(--mark);
+        border-radius: 3px 10px 4px 12px / 10px 4px 12px 5px;
+        transform: rotate(-0.8deg);
+        mix-blend-mode: multiply;
+      }
+
+      /* ---------- ruled kicker ---------- */
+      .kicker {
+        display: flex; align-items: center; gap: 12px;
+        font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+        letter-spacing: 0.14em; text-transform: uppercase; color: var(--spruce);
+      }
+      .kicker::after {
+        content: ''; flex: 1; height: 1px; background: var(--rule);
+      }
+
+      /* ---------- hero (full-bleed photo背景) ---------- */
+      .hero {
+        display: flex; align-items: center;
+        min-height: 100svh;
+        padding-top: calc(env(safe-area-inset-top) + 40px);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 104px);
+        background-image:
+          linear-gradient(178deg, rgba(6,28,23,.88) 0%, rgba(6,28,23,.72) 48%, rgba(6,28,23,.92) 100%),
+          var(--heroImg);
+        /* 竖屏放大取景，避开大片空天，让 CBD 天际线进入画面中部 */
+        background-size: cover, auto 134%;
+        background-position: center, 56% 86%;
+        background-repeat: no-repeat;
+        color: var(--paper);
+      }
+      .hero-inner { text-shadow: 0 1px 24px rgba(3, 18, 14, .5); }
+      .hero-inner .btn { text-shadow: none; }
+      .hero .kicker { color: rgba(240, 241, 234, .72); }
+      .hero .kicker::after { background: rgba(240, 241, 234, .26); }
+      .hero h1 {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: clamp(2.3rem, 10.2vw, 3rem);
+        line-height: 1.04;
+        letter-spacing: -0.028em;
+        margin-top: 22px;
+      }
+      .hero .lede {
+        margin-top: 18px; font-size: 1.04rem; color: rgba(240, 241, 234, .78); max-width: 40ch;
+      }
+      /* 黄色马克块直接压在照片上：正常混合 + 深墨文字 */
+      .hero .mark { color: var(--ink); }
+      .hero .mark::before { mix-blend-mode: normal; }
+
+      .points { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
+      .points li { display: flex; align-items: center; gap: 11px; list-style: none;
+        font-weight: 600; font-size: 0.99rem; }
+      .points svg { width: 19px; height: 19px; flex: none; color: var(--mark); }
+
+      .acts { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+
+      .btn {
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        width: 100%; padding: 18px 22px; border: none; border-radius: 4px;
+        font-family: var(--sans); font-weight: 700; font-size: 1rem;
+        letter-spacing: 0.02em; cursor: pointer;
+        transition: transform .14s ease, background .2s ease, box-shadow .2s ease;
+      }
+      .btn-primary {
+        background: var(--spruce); color: #F6F8F2;
+        box-shadow: 0 10px 26px -12px rgba(11, 61, 51, .8);
+      }
+      .btn-primary:hover { background: #0a3129; transform: translateY(-2px); }
+      .btn-primary:active { transform: translateY(0); }
+      .btn-primary svg { width: 17px; height: 17px; }
+      .btn-ghost {
+        background: transparent; color: var(--spruce);
+        border: 1.5px solid var(--rule);
+      }
+      .btn-ghost:hover { border-color: var(--spruce); }
+      .btn:focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; }
+
+      /* hero 在深色照片上：主按钮反白，次按钮描白边 */
+      .hero .btn-primary {
+        background: var(--paper); color: var(--spruce);
+        box-shadow: 0 14px 34px -14px rgba(0, 0, 0, .85);
+      }
+      .hero .btn-primary:hover { background: #fff; }
+      .hero .btn-ghost { color: var(--paper); border-color: rgba(240, 241, 234, .38); }
+      .hero .btn-ghost:hover { border-color: var(--paper); }
+
+      /* ---------- section frame ---------- */
+      .sec { padding-block: 54px; }
+      .sec h2 {
+        font-family: var(--display); font-weight: 700;
+        font-size: clamp(1.85rem, 8vw, 2.35rem); line-height: 1.1;
+        letter-spacing: -0.024em; margin-top: 20px; max-width: 18ch;
+      }
+
+      /* ---------- watching: index-tab cards ---------- */
+      .watch { background: var(--card); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+      .tabs { margin-top: 34px; display: flex; flex-direction: column; gap: 30px; }
+      .tab { position: relative; padding-top: 20px; border-top: 2px solid var(--ink); }
+      .tab .no {
+        position: absolute; top: -2px; left: 0;
+        background: var(--mark); color: var(--ink);
+        font-family: var(--mono); font-weight: 500; font-size: 0.72rem;
+        letter-spacing: 0.06em; padding: 4px 9px 5px;
+      }
+      .tab h3 {
+        font-family: var(--display); font-weight: 700; font-size: 1.28rem;
+        letter-spacing: -0.015em; margin-top: 22px;
+      }
+      .tab p { margin-top: 8px; color: var(--mut); font-size: 0.98rem; max-width: 42ch; }
+
+      /* ---------- learn ---------- */
+      .desk-shot {
+        margin-top: 30px; height: 200px;
+        background-image: linear-gradient(180deg, rgba(240,241,234,0) 55%, rgba(240,241,234,.55) 100%), var(--deskImg);
+        background-size: cover; background-position: center 55%;
+      }
+      .syllabus { margin-top: 12px; }
+      .syllabus li { list-style: none; padding-block: 22px; border-bottom: 1px solid var(--rule); }
+      .syllabus li:first-child { border-top: 1px solid var(--rule); }
+      .syllabus h3 {
+        font-family: var(--display); font-weight: 700; font-size: 1.18rem;
+        letter-spacing: -0.015em; display: flex; align-items: baseline; gap: 10px;
+      }
+      .syllabus h3::before {
+        content: ''; width: 13px; height: 3px; background: var(--mark); flex: none;
+        transform: translateY(-4px);
+      }
+      .syllabus p { margin-top: 7px; color: var(--mut); font-size: 0.98rem; max-width: 46ch; }
+      .learn .acts { margin-top: 32px; }
+
+      /* ---------- foot ---------- */
+      .foot { padding-block: 30px 40px; border-top: 1px solid var(--rule); }
+      .foot p { font-size: 0.78rem; color: var(--dim); max-width: 62ch; }
+
+      /* ---------- floating whatsapp ---------- */
+      .wa-bar {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+        padding: 12px 22px calc(12px + env(safe-area-inset-bottom));
+        background: rgba(240, 241, 234, .86);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--rule);
+      }
+      .wa-btn {
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        width: 100%; min-height: 56px; padding: 15px 22px; border: none; border-radius: 4px;
+        background: var(--wa); color: #05200F; cursor: pointer;
+        font-family: var(--sans); font-weight: 700; font-size: 1.02rem; letter-spacing: 0.01em;
+        box-shadow: 0 10px 26px -12px rgba(37, 211, 102, .95);
+        transition: background .2s ease, transform .14s ease;
+      }
+      .wa-btn svg { width: 22px; height: 22px; flex: none; }
+      .wa-btn:hover { background: var(--wa-d); transform: translateY(-2px); }
+      .wa-btn:active { transform: translateY(0); }
+      .wa-btn:focus-visible { outline: 3px solid var(--spruce); outline-offset: 3px; }
+
+      /* ---------- motion ---------- */
+      .rise { animation: rise .66s cubic-bezier(.22,.72,.3,1) both; }
+      .d1 { animation-delay: .06s } .d2 { animation-delay: .14s }
+      .d3 { animation-delay: .24s } .d4 { animation-delay: .34s }
+      @keyframes rise { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
+
+      .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,.72,.3,1); }
+      .js .reveal.in { opacity: 1; transform: none; }
+
+      /* ---------- desktop ---------- */
+      @media (min-width: 760px) {
+        .wrap { max-width: 1120px; margin-inline: auto; padding-inline: clamp(30px, 5vw, 64px); }
+        .hero {
+          padding-top: calc(env(safe-area-inset-top) + 72px);
+          padding-bottom: 132px;
+          background-size: cover, cover;
+          background-position: center, center 64%;
+        }
+        .hero-inner { max-width: 40rem; }
+        .hero h1 { font-size: clamp(2.9rem, 4.6vw, 4.1rem); }
+        .hero .lede { font-size: 1.14rem; }
+        .acts { flex-direction: row; }
+        .acts .btn { width: auto; min-width: 220px; }
+        .sec { padding-block: 92px; }
+        .sec h2 { font-size: clamp(2.4rem, 3.4vw, 3.1rem); }
+        .tabs { flex-direction: row; gap: 34px; margin-top: 48px; }
+        .tab { flex: 1; }
+        .learn-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(40px, 5vw, 72px); align-items: start; margin-top: 44px; }
+        .desk-shot { margin-top: 0; height: 100%; min-height: 460px;
+          background-image: linear-gradient(180deg, rgba(240,241,234,0) 70%, rgba(240,241,234,.4) 100%), var(--deskImg); }
+        .syllabus { margin-top: 0; }
+        .wa-bar { padding-inline: 0; }
+        .wa-bar .wrap { display: flex; justify-content: flex-end; }
+        .wa-btn { width: auto; min-width: 280px; }
+        body { padding-bottom: 96px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .rise { animation: none; }
+        .js .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <!-- ============ 1. HERO ============ -->
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-inner">
+          <p class="kicker rise">Market Insights for Singapore Investors</p>
+
+          <h1 class="rise d1">
+            Understand markets.<br />
+            Research stocks <span class="mark">smarter.</span>
+          </h1>
+
+          <p class="lede rise d2">
+            Explore current market trends, stocks to watch and educational research designed to help
+            you understand what is moving the market.
+          </p>
+
+          <ul class="points rise d3">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              Stocks &amp; sectors to watch
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              Company research insights
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              Market education &amp; updates
+            </li>
+          </ul>
+
+          <div class="acts rise d4">
+            <button type="button" class="btn btn-primary link-btn" onclick="mixinJump()">
+              Get free market insights
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+            </button>
+            <a class="btn btn-ghost" href="#watching">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ 2. WHAT INVESTORS ARE WATCHING ============ -->
+    <section class="sec watch" id="watching">
+      <div class="wrap">
+        <p class="kicker reveal">This week on the desk</p>
+        <h2 class="reveal">What are investors watching now?</h2>
+
+        <div class="tabs">
+          <article class="tab reveal">
+            <span class="no">01</span>
+            <h3>Market hotspots</h3>
+            <p>Explore sectors and themes currently attracting market attention.</p>
+          </article>
+          <article class="tab reveal">
+            <span class="no">02</span>
+            <h3>Stocks to research</h3>
+            <p>Discover companies worth researching based on recent market developments.</p>
+          </article>
+          <article class="tab reveal">
+            <span class="no">03</span>
+            <h3>Market risk watch</h3>
+            <p>Understand major factors that may affect market sentiment and volatility.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. LEARN ============ -->
+    <section class="sec learn">
+      <div class="wrap">
+        <p class="kicker reveal">How the research gets done</p>
+        <h2 class="reveal">Learn how to <span class="mark">research</span> stocks</h2>
+
+        <div class="learn-grid">
+          <div class="desk-shot reveal" role="img" aria-label="A printed stock research report marked up with a highlighter"></div>
+
+          <div>
+            <ul class="syllabus">
+              <li class="reveal">
+                <h3>Company fundamentals</h3>
+                <p>Learn how revenue, earnings and business quality can be evaluated.</p>
+              </li>
+              <li class="reveal">
+                <h3>Market trends</h3>
+                <p>Understand how broader economic and sector trends can influence companies.</p>
+              </li>
+              <li class="reveal">
+                <h3>Risk awareness</h3>
+                <p>Learn how investors assess uncertainty before making decisions.</p>
+              </li>
+              <li class="reveal">
+                <h3>Research frameworks</h3>
+                <p>Explore structured approaches to evaluating investment ideas.</p>
+              </li>
+            </ul>
+
+            <div class="acts reveal">
+              <button type="button" class="btn btn-primary link-btn" onclick="mixinJump()">
+                Explore market insights
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Everything shared here is general market information and educational research. It does not
+          take your objectives or financial situation into account, and it is not a recommendation to
+          buy or sell any security. Markets carry risk — do your own research before you invest.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ============ FLOATING WHATSAPP ============ -->
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn" onclick="mixinJump()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Chat on WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        const items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length)
+          return
+
+        function tick() {
+          const vh = window.innerHeight || document.documentElement.clientHeight
+          for (let i = items.length - 1; i >= 0; i--) {
+            const r = items[i].getBoundingClientRect()
+            if (r.top < vh - 70) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+﻿body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    color: #E2E8F0;
+    scroll-behavior: smooth
+}
+
+.hero-gradient-text {
+    background: linear-gradient(90deg, #FDB813, #F57F20);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent
+}
+
+.dynamic-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)), url('../image/003﹖e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv.jpg');
+    background-size: cover;
+    background-position: center
+}
+
+.cta-btn {
+    background: linear-gradient(90deg, #FDB813, #F57F20);
+    color: #1a1a1a;
+    font-weight: 800;
+    transition: all .3s ease;
+    box-shadow: 0 0 20px rgba(253, 184, 19, .4)
+}
+
+.cta-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(253, 184, 19, .6)
+}
+
+.cta-btn:disabled {
+    cursor: not-allowed;
+    opacity: .5
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0)
+    }
+    to {
+        transform: translateX(-100%)
+    }
+}
+
+.scrolling-wrapper {
+    animation: slide 40s linear infinite
+}

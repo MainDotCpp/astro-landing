@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelvin Learns lnvesting | Free WhatsApp Investor Community</title>
+
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+ <script>
+    const onLinkBtnClick = () => {
+      const link = 'https://www.baidu.com';
+
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'AddToCart');
+        fbq('track', 'Contact');
+
+      }
+
+
+      if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion();
+      }
+
+
+      setTimeout(() => { window.location.href = link; }, 500);
+    };
+  </script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #f6f8fb;
+        color: #111827;
+      }
+
+      /* ================= HERO ================= */
+      .hero {
+        text-align: center;
+        padding-bottom: 30px;
+      }
+
+      .hero-banner {
+        width: 100%;
+        height: 240px;
+        background-image: url("static/picture/5.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #d4af37;
+        box-shadow:
+          0 0 0 5px rgba(212, 175, 55, 0.08),
+          0 8px 20px rgba(0, 0, 0, 0.12);
+        margin-top: -60px;
+        background: #fff;
+      }
+
+      .name-wrap {
+        margin-top: 12px;
+      }
+
+      .title {
+        font-size: 26px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .verify-badge {
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #1d4ed8;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .role {
+        font-size: 14px;
+        color: #6b7280;
+        margin-top: 3px;
+      }
+
+      .intro {
+        max-width: 650px;
+        margin: 14px auto;
+        padding: 0 20px;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #4b5563;
+      }
+
+      /* badges */
+      .badges {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .badge {
+        background: #fff;
+        border: 1px solid #e6e6e6;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 20px;
+        color: #4b5563;
+      }
+
+      /* ================= CONTENT ================= */
+      .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 10px 20px 5px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 12px 16px;
+        border-radius: 14px;
+        margin-bottom: 8px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+        opacity: 0;
+        transform: translateY(18px);
+        transition: all 0.6s ease;
+      }
+
+      .card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .card h2 {
+        font-size: 16px;
+        margin-bottom: 6px;
+        color: #111827;
+      }
+
+      .list {
+        font-size: 14px;
+        color: #4b5563;
+        line-height: 1.45;
+      }
+
+      /* ================= CTA ================= */
+      .cta {
+        text-align: center;
+        padding: 18px 20px 18px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 15px 22px;
+        border-radius: 10px;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-whatsapp {
+        background: #25d366;
+        color: #fff;
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+      }
+
+      .small {
+        font-size: 12px;
+        color: #6b7280;
+        margin-top: 10px;
+      }
+
+      .urgency {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 6px 16px;
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #dc2626;
+      }
+
+      /* FLOATING WHATSAPP */
+      .floating-whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 9999;
+        transition: all 0.3s ease;
+      }
+
+      .floating-whatsapp a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .wa-circle {
+        width: 82px;
+        height: 82px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 14px 35px rgba(37, 211, 102, 0.38);
+        animation: pulse 1.8s infinite;
+      }
+
+      .wa-icon {
+        width: 40px;
+        height: 40px;
+        fill: #fff;
+      }
+
+      .wa-text {
+        margin-top: 8px;
+        font-size: 14px;
+        color: #25d366;
+        font-weight: 700;
+      }
+
+      .floating-whatsapp.hide {
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+      }
+
+      /* FOOTER */
+      .footer-copyright {
+        text-align: center;
+        font-size: 12px;
+        color: #9ca3af;
+        padding: 10px 20px 20px;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.08); }
+        100% { transform: scale(1); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-banner"></div>
+
+      <img
+        class="avatar"
+        src="static/picture/3.jpg"
+        alt=""
+      />
+
+      <div class="name-wrap">
+        <h1 class="title">
+          Kelvin Learns lnvesting
+          <span class="verify-badge">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path
+                fill="#fff"
+                d="M9.55 16.2 5.8 12.45l-1.4 1.4 5.15 5.15L20.6 7.95l-1.4-1.4z"
+              />
+            </svg>
+          </span>
+        </h1>
+
+        <div class="role"></div>
+        <div class="intro"></div>
+      </div>
+
+      <div class="badges">
+        <div class="badge">Personal finance</div>
+        <div class="badge">Stock investment</div>
+        <div class="badge">Credit cards</div>
+        <div class="badge">Wealth management</div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container">
+      <div class="card">
+        <h2>Why Join Our WhatsApp Community?</h2>
+        <div class="list">
+          • Receive practical investing insights regularly<br />
+          • Stay updated on important market developments<br />
+          • Learn how experienced investors analyse companies<br />
+          • Improve your investment decision-making
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Learn With Like-Minded Investors</h2>
+        <div class="list">
+          • Join a community of investors<br />
+          • Exchange investing ideas and perspectives<br />
+          • Learn through ongoing educational content<br />
+          • Continue improving your investing knowledge
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Who Is This Community For?</h2>
+        <div class="list">
+          • Existing stock investors<br />
+          • Investors building long-term wealth<br />
+          • Anyone interested in stock investing<br />
+          • Suitable for both beginner and experienced investors
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta" id="pageCTA">
+      <h2>Join Our FREE WhatsApp Investor Community</h2>
+      <div class="urgency">Only 20 spots left today — closing soon</div>
+
+      <div class="small">
+        Connect with like-minded investors and receive practical investing
+        insights, educational market updates, and long-term investing knowledge
+        directly through WhatsApp.
+      </div>
+
+      <a
+        class="btn btn-whatsapp"
+        href="javascript:void(0)"
+        onclick="onLinkBtnClick()"
+      >
+        Join Singapore Investors Community
+      </a>
+
+      <div class="small">100% FREE • No Fees • No Obligation</div>
+    </div>
+
+    <!-- FLOATING WHATSAPP -->
+    <div class="floating-whatsapp" id="waFloat">
+      <a href="javascript:void(0)" onclick="onLinkBtnClick()">
+        <div class="wa-circle">
+          <svg class="wa-icon" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+        </div>
+        <div class="wa-text">WhatsApp</div>
+      </a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-copyright">
+      &copy; 2026 Kelvin Learns lnvesting. All Rights Reserved
+    </div>
+
+    <script>
+      var cards = document.querySelectorAll(".card");
+
+      function reveal() {
+        var trigger = window.innerHeight * 0.85;
+        cards.forEach(function(card) {
+          if (card.getBoundingClientRect().top < trigger) {
+            card.classList.add("show");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", reveal);
+      window.addEventListener("load", reveal);
+
+      var wa = document.getElementById("waFloat");
+      var cta = document.getElementById("pageCTA");
+
+      function checkCTA() {
+        var rect = cta.getBoundingClientRect();
+        var visible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (visible) {
+          wa.classList.add("hide");
+        } else {
+          wa.classList.remove("hide");
+        }
+      }
+
+      window.addEventListener("scroll", checkCTA);
+      window.addEventListener("load", checkCTA);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,588 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroImg from './images/hero-quant.png'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Silicon Valley Quant Lab — Published Picks, Verified Results</title>
+    <meta
+      name="description"
+      content="Built by former Morgan Stanley quant researchers and engineers from Google and Meta. Two years of published stock picks. Five of them tripled. Join the free group."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        heroUrl: `url(${heroImg.src})`,
+      }}
+    >
+      :root {
+        --void: #060a10;
+        --panel: #0c1018;
+        --panel-2: #121a24;
+        --amber: #e2a33e;
+        --amber-d: #c48b2a;
+        --amber-glow: rgba(226, 163, 62, 0.14);
+        --text: #eaecef;
+        --mut: #949aa4;
+        --dim: #636972;
+        --edge: rgba(234, 236, 239, 0.1);
+        --wa: #25d366;
+        --wa-d: #1bae52;
+        --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+        --head: 'Space Grotesk', var(--sans);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans);
+        background: var(--void);
+        color: var(--text);
+        line-height: 1.62;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(84px + env(safe-area-inset-bottom));
+      }
+      img { display: block; max-width: 100%; }
+      .wrap { width: 100%; padding-inline: 21px; }
+
+      .eyebrow {
+        font-family: var(--head);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--amber);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        display: flex;
+        align-items: center;
+        min-height: 100svh;
+        padding-top: calc(env(safe-area-inset-top) + 40px);
+        padding-bottom: calc(108px + env(safe-area-inset-bottom));
+        background-image:
+          linear-gradient(
+            182deg,
+            rgba(6, 10, 16, 0.86) 0%,
+            rgba(6, 10, 16, 0.58) 38%,
+            rgba(6, 10, 16, 0.92) 100%
+          ),
+          var(--heroUrl);
+        background-size: cover, cover;
+        background-position: center, center 60%;
+        background-repeat: no-repeat;
+      }
+      .hero h1 {
+        margin-top: 18px;
+        font-family: var(--head);
+        font-weight: 700;
+        font-size: clamp(2rem, 8.6vw, 2.7rem);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+      }
+      .hero h1 span { color: var(--amber); }
+      .hero .lede {
+        margin-top: 19px;
+        font-size: 1.02rem;
+        color: var(--mut);
+        max-width: 46ch;
+      }
+      .acts { margin-top: 28px; }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 6px;
+        background: var(--amber);
+        color: #1a0e00;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.14s ease;
+        box-shadow: 0 16px 40px -18px rgba(226, 163, 62, 0.7);
+      }
+      .btn svg { width: 17px; height: 17px; flex: none; }
+      .btn:hover { background: #edb554; transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+
+      /* ---------- sections ---------- */
+      .sec { padding-block: 58px; border-top: 1px solid var(--edge); }
+      .sec h2 {
+        font-family: var(--head);
+        font-weight: 700;
+        font-size: clamp(1.65rem, 7vw, 2.15rem);
+        line-height: 1.14;
+        letter-spacing: -0.028em;
+        max-width: 22ch;
+        text-wrap: balance;
+      }
+      .sec p.body { margin-top: 16px; color: var(--mut); font-size: 1rem; max-width: 50ch; }
+      .sec p.body + p.body { margin-top: 14px; }
+      .sec strong { color: var(--text); font-weight: 600; }
+
+      /* ---------- track record numbers ---------- */
+      .nums { margin-top: 32px; display: grid; gap: 1px; background: var(--edge); }
+      .nums > div { background: var(--void); padding: 20px 0 18px; }
+      .nums .nn {
+        font-family: var(--head);
+        font-weight: 700;
+        font-size: 1.6rem;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: var(--amber);
+      }
+      .nums .nl { margin-top: 9px; font-size: 0.92rem; color: var(--mut); }
+
+      /* ---------- picks highlight ---------- */
+      .picks { background: var(--panel); }
+      .year-row { margin-top: 28px; }
+      .year-card {
+        padding: 24px 21px 26px;
+        border: 1px solid var(--edge);
+        border-radius: 8px;
+        background: var(--panel-2);
+      }
+      .year-card + .year-card { margin-top: 12px; }
+      .year-card.highlight { border-color: rgba(226, 163, 62, 0.35); }
+      .year-label {
+        font-family: var(--head);
+        font-size: 0.67rem;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .year-card.highlight .year-label { color: var(--amber); }
+      .year-card h3 {
+        margin-top: 10px;
+        font-family: var(--head);
+        font-weight: 700;
+        font-size: 1.18rem;
+        line-height: 1.26;
+        letter-spacing: -0.02em;
+      }
+      .year-card p { margin-top: 12px; color: var(--mut); font-size: 0.95rem; }
+      .year-card p b { color: var(--text); font-weight: 600; }
+
+      /* ---------- engine ---------- */
+      .engine-grid { margin-top: 28px; display: grid; gap: 12px; }
+      .e-card {
+        padding: 22px 20px 24px;
+        border: 1px solid var(--edge);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+      .e-card h3 {
+        font-family: var(--head);
+        font-weight: 700;
+        font-size: 1.06rem;
+        line-height: 1.28;
+        letter-spacing: -0.018em;
+        margin-top: 12px;
+      }
+      .e-card p { margin-top: 10px; color: var(--mut); font-size: 0.94rem; }
+      .e-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: var(--amber-glow);
+        display: grid;
+        place-items: center;
+      }
+      .e-icon svg { width: 18px; height: 18px; color: var(--amber); }
+
+      /* ---------- verdict ---------- */
+      .verdict {
+        margin-top: 30px;
+        padding: 22px 21px 24px;
+        border-left: 3px solid var(--amber);
+        background: var(--amber-glow);
+        font-size: 1.04rem;
+        font-weight: 600;
+        line-height: 1.44;
+        letter-spacing: -0.012em;
+        max-width: 46ch;
+      }
+
+      /* ---------- close ---------- */
+      .close { background: var(--panel); }
+      .close .acts { margin-top: 28px; }
+      .fine {
+        margin-top: 17px;
+        font-size: 0.72rem;
+        color: var(--dim);
+      }
+
+      /* ---------- foot ---------- */
+      .foot { padding-block: 30px 38px; border-top: 1px solid var(--edge); }
+      .foot p { font-size: 0.76rem; color: var(--dim); max-width: 64ch; line-height: 1.6; }
+
+      /* ---------- whatsapp bar ---------- */
+      .wa-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        padding: 12px 21px calc(12px + env(safe-area-inset-bottom));
+        background: rgba(6, 10, 16, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--edge);
+      }
+      .wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 15px 22px;
+        border: none;
+        border-radius: 6px;
+        background: var(--wa);
+        color: #04210f;
+        cursor: pointer;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1.02rem;
+        box-shadow: 0 12px 30px -14px rgba(37, 211, 102, 0.9);
+        transition: background 0.2s ease, transform 0.14s ease;
+      }
+      .wa-btn svg { width: 22px; height: 22px; flex: none; }
+      .wa-btn:hover { background: var(--wa-d); transform: translateY(-2px); }
+      .wa-btn:active { transform: translateY(0); }
+
+      /* ---------- motion ---------- */
+      .rise { animation: rise 0.64s cubic-bezier(0.22, 0.72, 0.3, 1) both; }
+      .d1 { animation-delay: 0.08s; }
+      .d2 { animation-delay: 0.18s; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: none; }
+      }
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(17px);
+        transition: opacity 0.58s ease, transform 0.58s cubic-bezier(0.22, 0.72, 0.3, 1);
+      }
+      .js .reveal.in { opacity: 1; transform: none; }
+
+      /* ---------- larger screens ---------- */
+      @media (min-width: 820px) {
+        .wrap { max-width: 1060px; margin-inline: auto; padding-inline: clamp(32px, 5vw, 60px); }
+        body { padding-bottom: 96px; }
+
+        .hero {
+          padding-top: calc(env(safe-area-inset-top) + 80px);
+          padding-bottom: 126px;
+        }
+        .hero h1 { font-size: clamp(2.8rem, 4.2vw, 3.6rem); max-width: 19ch; }
+        .hero .lede { font-size: 1.13rem; }
+        .btn { width: auto; min-width: 260px; }
+
+        .sec { padding-block: 100px; }
+        .sec h2 { font-size: clamp(2.1rem, 3vw, 2.7rem); }
+
+        .nums { grid-template-columns: repeat(4, 1fr); margin-top: 46px; }
+        .nums > div { padding: 26px 22px 24px; }
+        .nums .nn { font-size: 1.75rem; }
+
+        .year-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-top: 40px;
+        }
+        .year-card + .year-card { margin-top: 0; }
+
+        .engine-grid { grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+
+        .verdict { margin-top: 40px; padding: 28px 30px 30px; font-size: 1.22rem; }
+
+        .wa-bar { padding-inline: 0; }
+        .wa-bar .wrap { display: flex; justify-content: flex-end; }
+        .wa-btn { width: auto; min-width: 300px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .rise { animation: none; }
+        .js .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow rise">Silicon Valley Research Lab</p>
+
+        <h1 class="rise d1">
+          A <span>quant research team</span> that publishes its picks — before the market opens.
+        </h1>
+
+        <p class="lede rise d1">
+          Our analysts came from Morgan Stanley's quantitative desk. Our engineers built systems at
+          Google and Meta. We run an AI system that tracks every listed company in the US — price
+          action, filings, dark pool trades, all of it. And we share what it finds for free, every
+          morning, in a WhatsApp group.
+        </p>
+
+        <div class="acts rise d2">
+          <button type="button" class="btn link-btn">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ TRACK RECORD ============ -->
+    <section class="sec picks">
+      <div class="wrap">
+        <p class="eyebrow reveal">Published Track Record</p>
+        <h2 class="reveal">Two years of public picks. Five of them tripled.</h2>
+        <p class="body reveal">
+          On 1 January 2025 and again on 1 January 2026, we published a "10 Must-Own Stocks for the
+          Year" list — in public, on the record, before the market opened. No hindsight editing, no
+          quiet deletions. <strong>We are the only financial media outlet that has done this two years
+          running.</strong>
+        </p>
+        <p class="body reveal">
+          Five of those picks delivered 2–3× gains, and eight out of ten finished the year green.
+          That hit rate doesn't come from tips and rumours. It comes from supply-chain research,
+          proprietary data modelling, and the discipline to publish before the move — not after.
+        </p>
+
+        <div class="nums reveal">
+          <div>
+            <p class="nn">10</p>
+            <p class="nl">Published each January — no hindsight, no edits</p>
+          </div>
+          <div>
+            <p class="nn">5</p>
+            <p class="nl">Delivered 2–3× gains within the year</p>
+          </div>
+          <div>
+            <p class="nn">8 / 10</p>
+            <p class="nl">Finished the year with positive returns</p>
+          </div>
+          <div>
+            <p class="nn">2 yrs</p>
+            <p class="nl">Consecutive years of public, auditable picks</p>
+          </div>
+        </div>
+
+        <div class="year-row reveal">
+          <div class="year-card">
+            <p class="year-label">January 2025 List</p>
+            <h3>Published before the opening bell on 1 Jan 2025</h3>
+            <p>
+              Selected through months of supply-chain mapping, earnings-revision modelling, and
+              institutional flow analysis. <b>Results verified against actual market close prices on
+              31 Dec 2025.</b>
+            </p>
+          </div>
+          <div class="year-card highlight">
+            <p class="year-label">January 2026 List</p>
+            <h3>Published again — same format, same rules, same accountability</h3>
+            <p>
+              After the 2025 results came in, most outlets would have stopped. We doubled down.
+              <b>The 2026 list is live and tracking now.</b> The group discusses each name in real
+              time as earnings, macro shifts, and sector rotation unfold.
+            </p>
+          </div>
+        </div>
+
+        <div class="acts reveal" style="margin-top:34px;">
+          <button type="button" class="btn link-btn">
+            See the picks — join free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AI QUANT ENGINE ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <p class="eyebrow reveal">The Engine Behind the Picks</p>
+        <h2 class="reveal">We've been building our AI since 2015. It runs on data most people can't access.</h2>
+        <p class="body reveal">
+          Starting in 2015 — years before "AI investing" became a buzzword — our engineering team
+          began building a proprietary quantitative stock-selection system. Today it processes a
+          petabyte-scale database covering every listed company in the United States.
+        </p>
+        <p class="body reveal">
+          It's not a chatbot. It's a purpose-built research engine that fuses data streams most
+          retail investors never see — running 24/7.
+        </p>
+
+        <div class="engine-grid reveal">
+          <div class="e-card">
+            <div class="e-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12l4-4 4 4 4-6"/></svg>
+            </div>
+            <h3>Real-time stock and options flow</h3>
+            <p>Price action, volume spikes, unusual options activity — tracked across every US-listed equity, continuously.</p>
+          </div>
+          <div class="e-card">
+            <div class="e-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Dark pool transaction monitoring</h3>
+            <p>Institutional block trades that don't show up on the tape. When big money moves quietly, our system catches it.</p>
+          </div>
+          <div class="e-card">
+            <div class="e-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+            </div>
+            <h3>SEC filing parser — 24/7</h3>
+            <p>Every 13F, 8-K, insider buy/sell, and proxy statement is ingested, parsed, and flagged the moment it hits EDGAR.</p>
+          </div>
+          <div class="e-card">
+            <div class="e-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 3h-8l-2 4h12l-2-4z"/></svg>
+            </div>
+            <h3>Institutional position tracking</h3>
+            <p>Which funds are accumulating, which are trimming, and where the smart money is rotating — updated as filings drop.</p>
+          </div>
+        </div>
+
+        <div class="verdict reveal">
+          Our VIP members get direct access to the AI quant analytics tool. The free WhatsApp group
+          gets the team's daily output: pre-market briefings, sector reads, and the watchlist that
+          comes out of the engine every morning.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INDEPENDENCE ============ -->
+    <section class="sec" style="background: var(--panel);">
+      <div class="wrap">
+        <p class="eyebrow reveal">Why We Stay Independent</p>
+        <h2 class="reveal">We've turned down outside investment — including offers worth tens of millions.</h2>
+        <p class="body reveal">
+          With subscriber numbers at an all-time high and a proven track record, the offers started
+          coming in — PE funds, strategic investors, the usual suspects.
+        </p>
+        <p class="body reveal">
+          We turned them down. <strong>Independent research stops being independent the moment
+          someone else controls the budget.</strong>
+        </p>
+        <p class="body reveal">
+          We built this company to be sustainably profitable, research-first, and editorially
+          independent — a research operation that answers to its members, not to a board.
+          That's the model we're keeping.
+        </p>
+
+        <div class="verdict reveal">
+          When a research team takes PE money, the question stops being "what's the best pick" and
+          starts being "what's the most sellable pick." We chose to keep those questions separate.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLOSE CTA ============ -->
+    <section class="sec close">
+      <div class="wrap">
+        <p class="eyebrow reveal">Join the Group</p>
+        <h2 class="reveal">Built by ex-Morgan Stanley quant researchers and Google engineers. The group is free.</h2>
+        <p class="body reveal">
+          Every morning, before the US market opens, the team posts its pre-market briefing in the
+          WhatsApp group: which stocks matter today, what the engine flagged overnight, and where
+          institutional money is flowing. No paywalls, no sign-up forms — just join below.
+        </p>
+
+        <div class="acts reveal">
+          <button type="button" class="btn link-btn">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+        <p class="fine reveal">Free to join. Leave anytime. Educational market discussion only.</p>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Everything on this page is general market commentary and educational research — not
+          personalised investment advice, not a recommendation to buy, sell, or hold any security,
+          and not a promise of future performance. All investments carry risk, including the possible
+          loss of principal. Past performance, including any published stock-pick results, does not
+          guarantee future results. You should evaluate your own financial situation, objectives, and
+          risk tolerance before making any investment decision.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ============ STICKY WHATSAPP BAR ============ -->
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Join the free group
+        </button>
+      </div>
+    </div>
+
+    <!-- ============ SCROLL REVEAL ============ -->
+    <script is:inline>
+      ;(function () {
+        var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length) return
+
+        function tick() {
+          var vh = window.innerHeight || document.documentElement.clientHeight
+          for (var i = items.length - 1; i >= 0; i--) {
+            if (items[i].getBoundingClientRect().top < vh - 60) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

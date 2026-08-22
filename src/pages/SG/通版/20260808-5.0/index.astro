@@ -1,0 +1,532 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroDc from './assets/images/hero-datacentre.png'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>$730 Billion Spent, $211 Billion Booked — The AI Bill Big Tech Hasn't Paid Yet</title>
+    <meta
+      name="description"
+      content="The four biggest US tech companies are putting around $730 billion into AI infrastructure this year, and booking about $211 billion of it as depreciation. Free cash flow is already collapsing. What that does to the tech stocks in your portfolio."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Azeret+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        dcImg: `url(${heroDc.src})`,
+      }}
+    >
+      :root {
+        --bg: #fafaf9;
+        --card: #ffffff;
+        --ink: #0d0f12;
+        --mut: #565b63;
+        --dim: #8e939b;
+        --rule: #e3e3e0;
+        --flag: #c2352a;
+        --deep: #0d0f12;
+        --wa: #25d366;
+        --wa-d: #1bae52;
+        --sans: 'Sora', system-ui, -apple-system, sans-serif;
+        --mono: 'Azeret Mono', ui-monospace, SFMono-Regular, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.58;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(84px + env(safe-area-inset-bottom));
+      }
+      img { display: block; max-width: 100%; }
+
+      .wrap { width: 100%; padding-inline: 21px; }
+
+      /* ---------- hero: pure type, no photo ---------- */
+      .hero {
+        display: flex;
+        align-items: center;
+        min-height: 100svh;
+        padding-top: calc(env(safe-area-inset-top) + 36px);
+        padding-bottom: calc(122px + env(safe-area-inset-bottom));
+        border-bottom: 1px solid var(--rule);
+      }
+      .tagline {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .figures { margin-top: 26px; }
+      .fig { padding-block: 18px; border-top: 2px solid var(--ink); }
+      .fig + .fig { border-top-color: var(--rule); }
+      .fig .n {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: clamp(3rem, 17vw, 4.6rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+      .fig.out .n { color: var(--flag); }
+      .fig .l {
+        margin-top: 10px;
+        font-size: 0.95rem;
+        color: var(--mut);
+        max-width: 30ch;
+      }
+      .hero h1 {
+        margin-top: 30px;
+        font-weight: 700;
+        font-size: clamp(1.42rem, 6.2vw, 1.85rem);
+        line-height: 1.24;
+        letter-spacing: -0.028em;
+        max-width: 24ch;
+        text-wrap: balance;
+      }
+      .hero .lede { margin-top: 15px; color: var(--mut); font-size: 1rem; max-width: 46ch; }
+      .acts { margin-top: 26px; }
+      .src {
+        margin-top: 18px;
+        font-family: var(--mono);
+        font-size: 0.63rem;
+        color: var(--dim);
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 3px;
+        background: var(--deep);
+        color: #fafaf9;
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.14s ease;
+      }
+      .btn svg { width: 17px; height: 17px; flex: none; }
+      .btn:hover { background: #1e2228; transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+      .btn:focus-visible { outline: 3px solid var(--flag); outline-offset: 3px; }
+      .btn-light { background: #fafaf9; color: var(--deep); }
+      .btn-light:hover { background: #fff; }
+
+      /* ---------- sections ---------- */
+      .sec { padding-block: 56px; border-bottom: 1px solid var(--rule); }
+      .sec h2 {
+        font-weight: 700;
+        font-size: clamp(1.66rem, 7.2vw, 2.15rem);
+        line-height: 1.16;
+        letter-spacing: -0.03em;
+        max-width: 21ch;
+        text-wrap: balance;
+      }
+      .sec p.body { margin-top: 16px; color: var(--mut); font-size: 1rem; max-width: 49ch; }
+      .sec p.body + p.body { margin-top: 14px; }
+      .sec strong { color: var(--ink); font-weight: 600; }
+
+      /* ---------- stat strip ---------- */
+      .strip { margin-top: 32px; display: grid; gap: 1px; background: var(--rule); }
+      .strip > div { background: var(--bg); padding: 20px 0 18px; }
+      .strip .sn {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 1.72rem;
+        letter-spacing: -0.035em;
+        line-height: 1;
+        color: var(--flag);
+      }
+      .strip .sl { margin-top: 9px; font-size: 0.9rem; color: var(--mut); }
+      .strip-note {
+        margin-top: 14px;
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--dim);
+      }
+
+      /* ---------- photo band ---------- */
+      .band {
+        height: 260px;
+        background-image: linear-gradient(180deg, rgba(13, 15, 18, 0.32) 0%, rgba(13, 15, 18, 0.1) 45%, rgba(13, 15, 18, 0.4) 100%), var(--dcImg);
+        background-size: cover;
+        background-position: center 46%;
+      }
+
+      /* ---------- callout ---------- */
+      .callout {
+        margin-top: 30px;
+        padding: 24px 22px 26px;
+        background: var(--deep);
+        color: #fafaf9;
+        border-radius: 3px;
+      }
+      .callout .q {
+        font-family: var(--mono);
+        font-size: 0.67rem;
+        font-weight: 500;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: #ef7a6d;
+      }
+      .callout p {
+        margin-top: 12px;
+        font-size: 1.06rem;
+        font-weight: 500;
+        line-height: 1.45;
+        letter-spacing: -0.012em;
+      }
+
+      /* ---------- close ---------- */
+      .close { background: var(--deep); color: #fafaf9; border-bottom: none; }
+      .close h2 { color: #fff; }
+      .close p.body { color: rgba(250, 250, 249, 0.76); }
+      .close .acts { margin-top: 28px; }
+      .fine {
+        margin-top: 17px;
+        font-family: var(--mono);
+        font-size: 0.71rem;
+        color: rgba(250, 250, 249, 0.5);
+      }
+
+      /* ---------- foot ---------- */
+      .foot { padding-block: 30px 38px; }
+      .foot p { font-size: 0.76rem; color: var(--dim); max-width: 64ch; line-height: 1.6; }
+
+      /* ---------- whatsapp bar ---------- */
+      .wa-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        padding: 12px 21px calc(12px + env(safe-area-inset-bottom));
+        background: rgba(250, 250, 249, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--rule);
+      }
+      .wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 15px 22px;
+        border: none;
+        border-radius: 3px;
+        background: var(--wa);
+        color: #04210f;
+        cursor: pointer;
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 1.02rem;
+        box-shadow: 0 12px 28px -14px rgba(37, 211, 102, 0.95);
+        transition: background 0.2s ease, transform 0.14s ease;
+      }
+      .wa-btn svg { width: 22px; height: 22px; flex: none; }
+      .wa-btn:hover { background: var(--wa-d); transform: translateY(-2px); }
+      .wa-btn:active { transform: translateY(0); }
+      .wa-btn:focus-visible { outline: 3px solid var(--deep); outline-offset: 3px; }
+
+      /* ---------- motion ---------- */
+      .rise { animation: rise 0.62s cubic-bezier(0.22, 0.72, 0.3, 1) both; }
+      .d1 { animation-delay: 0.08s; }
+      .d2 { animation-delay: 0.18s; }
+      .d3 { animation-delay: 0.28s; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: none; }
+      }
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 0.72, 0.3, 1);
+      }
+      .js .reveal.in { opacity: 1; transform: none; }
+
+      /* ---------- larger screens ---------- */
+      @media (min-width: 820px) {
+        .wrap { max-width: 1060px; margin-inline: auto; padding-inline: clamp(32px, 5vw, 60px); }
+        body { padding-bottom: 96px; }
+
+        .hero { padding-top: calc(env(safe-area-inset-top) + 80px); padding-bottom: 120px; }
+        .hero-grid {
+          display: grid;
+          grid-template-columns: 1.06fr 0.94fr;
+          gap: clamp(44px, 5vw, 76px);
+          align-items: center;
+        }
+        .figures { margin-top: 0; }
+        .fig .n { font-size: clamp(3.6rem, 6vw, 5rem); }
+        .hero h1 { margin-top: 0; font-size: clamp(1.9rem, 2.7vw, 2.4rem); }
+        .hero .lede { font-size: 1.08rem; }
+        .btn { width: auto; min-width: 260px; }
+
+        .sec { padding-block: 100px; }
+        .sec h2 { font-size: clamp(2.15rem, 3.1vw, 2.75rem); }
+        .strip { grid-template-columns: repeat(3, 1fr); margin-top: 44px; }
+        .strip > div { padding: 26px 26px 24px; }
+        .strip .sn { font-size: 2.1rem; }
+        .band { height: 400px; }
+        .callout { margin-top: 40px; padding: 34px 34px 36px; }
+        .callout p { font-size: 1.2rem; max-width: 44ch; }
+
+        .wa-bar { padding-inline: 0; }
+        .wa-bar .wrap { display: flex; justify-content: flex-end; }
+        .wa-btn { width: auto; min-width: 300px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .rise { animation: none; }
+        .js .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="tagline rise">8 August 2026</p>
+
+          <div class="figures rise d1">
+            <div class="fig out">
+              <p class="n">$730B</p>
+              <p class="l">Going into AI infrastructure this year</p>
+            </div>
+            <div class="fig">
+              <p class="n">$211B</p>
+              <p class="l">Actually counted against profit this year</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h1 class="rise d2">The rest of that bill hasn't arrived yet. It's still coming.</h1>
+
+          <p class="lede rise d2">
+            If you hold a US index fund — most people here do — Alphabet, Microsoft, Amazon and Meta
+            are already a large chunk of what you own. They're spending on a scale nothing in
+            corporate history matches. The cash goes out now, and the cost turns up over exactly the
+            years you're being asked to hold the stock.
+          </p>
+
+          <div class="acts rise d3">
+            <button type="button" class="btn link-btn">
+              Get it free on WhatsApp
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+            </button>
+          </div>
+
+          <p class="src rise d3">2026 estimates for the four biggest US tech companies</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ THE GAP ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">The cash goes out now. The cost shows up later.</h2>
+        <p class="body reveal">
+          Capital spending doesn't hit profit on the day it happens. It gets spread across the life
+          of the thing you bought, a slice at a time. That's ordinary accounting, and for a building
+          or a fibre line it's fine — you write it off over decades.
+        </p>
+        <p class="body reveal">
+          <strong>Chips are not buildings.</strong> Around two thirds of this spending gets written
+          off in under six years, not decades, so the charge doesn't trickle in. It ramps, and it
+          compounds while the next year's spending is still being announced.
+        </p>
+
+        <div class="callout reveal">
+          <p class="q">The part that matters</p>
+          <p>
+            Reported profits today are being set against a fraction of what has actually been spent.
+            The remainder isn't forgiven. It's queued.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="band" role="img" aria-label="Rows of server racks inside a data centre"></div>
+
+    <!-- ============ CASH FLOW ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">It's already visible in the cash</h2>
+        <p class="body reveal">
+          Profit can be smoothed. Free cash flow is harder to dress up, and it moved first. These
+          compare the last twelve months with the same twelve months a year earlier.
+        </p>
+
+        <div class="strip">
+          <div class="reveal">
+            <p class="sn">−95%</p>
+            <p class="sl">Amazon · $26B down to $1.2B</p>
+          </div>
+          <div class="reveal">
+            <p class="sn">−22%</p>
+            <p class="sl">Microsoft</p>
+          </div>
+          <div class="reveal">
+            <p class="sn">−38%</p>
+            <p class="sl">Alphabet</p>
+          </div>
+        </div>
+        <p class="strip-note reveal">Free cash flow, trailing twelve months</p>
+
+        <p class="body reveal">
+          None of these companies is in trouble — that was never the question. What's changed is
+          where the money comes from. The buildout used to be paid for out of cash the business threw
+          off, and increasingly it's paid for by issuing debt, which costs a lot more when rates are
+          heading towards 4% instead of away from it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ THE ASSUMPTION ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">One assumption is holding up every earnings number you see</h2>
+        <p class="body reveal">
+          How fast you write an asset down is a judgement call, and it changes reported profit
+          directly. These four write AI hardware down over roughly five to six years. Data-centre
+          operators and the short sellers betting against all this argue the real economic life is
+          closer to two or three.
+        </p>
+        <p class="body reveal">
+          If the shorter figure is the right one, analysts covering the sector put the understatement
+          at roughly <strong>$176 billion across 2026 to 2028</strong>. That is not an accounting
+          scandal. It's an assumption — and it's flattering every earnings number built on top of it.
+        </p>
+
+        <div class="callout reveal">
+          <p class="q">What to watch</p>
+          <p>
+            A change in depreciation schedules would be a footnote in a filing, and it would move
+            earnings more than most of the headlines you'll read this quarter.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ YOUR SIDE ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">You almost certainly own this</h2>
+        <p class="body reveal">
+          These four are a large slice of the S&amp;P 500 and a larger one of the Nasdaq. If you hold
+          a US index fund, a global equity fund, or the shares themselves, this is a meaningful part
+          of what you actually own, whatever the fund is called.
+        </p>
+        <p class="body reveal">
+          And it compounds with the rate problem. High rates discount distant profits harder, and
+          these are companies asking the market to wait several years for a return on the largest
+          capital programme ever run. <strong>Expensive money and a payoff years away is the worst
+          possible combination</strong> for that kind of stock.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CLOSE ============ -->
+    <section class="sec close">
+      <div class="wrap">
+        <h2 class="reveal">The next few earnings seasons decide this</h2>
+        <p class="body reveal">
+          Depreciation, spending guidance, how much new debt they take on, and any change to
+          useful-life assumptions that nobody announces. We read the filings and send three points to
+          the group every trading morning, by 9.00am, before the Singapore market opens.
+        </p>
+
+        <div class="acts reveal">
+          <button type="button" class="btn btn-light link-btn">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+
+        <p class="fine reveal">Free · nothing to download · leave whenever you like</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Everything here is general market commentary and educational research. It does not take
+          your objectives or financial situation into account, and it is not a recommendation to buy
+          or sell anything. Markets carry risk. Do your own research before you invest.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ============ FLOATING WHATSAPP ============ -->
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join the free group
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        const items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length)
+          return
+
+        function tick() {
+          const vh = window.innerHeight || document.documentElement.clientHeight
+          for (let i = items.length - 1; i >= 0; i--) {
+            const r = items[i].getBoundingClientRect()
+            if (r.top < vh - 70) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

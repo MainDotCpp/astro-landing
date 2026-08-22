@@ -1,0 +1,663 @@
+---
+import { getImage } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import buildoutSrc from './images/buildout-stack.png'
+import deskSrc from './images/desk-3am.png'
+import heroSrc from './images/hero-groundstation.png'
+import noteSrc from './images/note-thread.png'
+import funnelSrc from './images/funnel-screen.png'
+
+const HERO_W = 1100
+const hero = await getImage({ src: heroSrc, format: 'webp', width: HERO_W, quality: 72 })
+
+const FIG_W = 880
+const desk = await getImage({ src: deskSrc, format: 'webp', width: FIG_W, quality: 76 })
+const deskH = Math.round(FIG_W * deskSrc.height / deskSrc.width)
+
+const POR_W = 760
+const funnel = await getImage({ src: funnelSrc, format: 'webp', width: POR_W, quality: 78 })
+const funnelH = Math.round(POR_W * funnelSrc.height / funnelSrc.width)
+const buildout = await getImage({ src: buildoutSrc, format: 'webp', width: POR_W, quality: 78 })
+const buildoutH = Math.round(POR_W * buildoutSrc.height / buildoutSrc.width)
+const note = await getImage({ src: noteSrc, format: 'webp', width: POR_W, quality: 78 })
+const noteH = Math.round(POR_W * noteSrc.height / noteSrc.width)
+
+const stats = [
+  { to: 29.4, suffix: '%', dp: 1, label: 'One-year return on the S&P/TSX Composite. Most of it came from the banks and the gold miners.' },
+  { to: 48, suffix: ' of 51', dp: 0, label: 'Names on the 2026 TSX Venture 50 that are mining companies. Technology got what was left.' },
+  { to: 1531, suffix: '', dp: 0, label: 'Companies listed on the Venture. Most Canadians couldn\'t name ten of them.' },
+  { to: 13.2, suffix: 'B', dp: 1, label: 'Shares traded on the Venture last year, a record. Liquidity was the thing that used to be missing.' },
+]
+
+const screens = [
+  'It has to trade enough that you can get out on a bad day without moving the price yourself.',
+  'There has to be revenue, or a signed contract with somebody who has revenue.',
+  'Somebody on the inside has to own shares they paid for.',
+  'The story has to survive being read out loud to a skeptic.',
+]
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>The Unglamorous Half of the AI Build-Out Is Listed in Canada</title>
+    <meta
+      name="description"
+      content="Ground stations, optical links, cooling, rad-hard silicon, launch slots. The unglamorous half of the AI build-out is listed on the TSX and TSX Venture, mostly below the size an institution is allowed to buy. What our desk reads before the open, free on WhatsApp."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        heroImg: `url(${hero.src})`,
+      }}
+    >
+      :root {
+        --void: #05070c;
+        --panel: #0b1119;
+        --panel-2: #121b26;
+        --ice: #6fb4ff;
+        --flare: #ff9b3d;
+        --text: #e6ebf2;
+        --mut: #8e99a8;
+        --dim: #5d6675;
+        --edge: rgba(230, 235, 242, 0.11);
+        --wa: #25d366;
+        --wa-d: #1bae52;
+        --sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+        --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans);
+        background: var(--void);
+        color: var(--text);
+        line-height: 1.62;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+      }
+      img { display: block; max-width: 100%; height: auto; }
+
+      #field {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.45;
+      }
+
+      .wrap { width: 100%; padding-inline: 21px; }
+      section, footer { position: relative; z-index: 1; }
+
+      .mono {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        display: flex;
+        align-items: flex-end;
+        min-height: 100svh;
+        padding-top: calc(env(safe-area-inset-top) + 56px);
+        padding-bottom: 104px;
+        background-image:
+          linear-gradient(180deg, rgba(5, 7, 12, 0.2) 0%, rgba(5, 7, 12, 0.24) 26%, rgba(5, 7, 12, 0.82) 48%, rgba(5, 7, 12, 0.97) 62%, rgba(5, 7, 12, 0.99) 100%),
+          var(--heroImg);
+        background-size: cover, 200% auto;
+        background-position: center, 72% 0;
+        background-repeat: no-repeat;
+      }
+      .hero h1 {
+        margin-top: 16px;
+        font-weight: 700;
+        font-size: clamp(2rem, 8.6vw, 2.75rem);
+        line-height: 1.08;
+        letter-spacing: -0.033em;
+        text-wrap: balance;
+      }
+      .hero h1 em { font-style: normal; color: var(--ice); }
+      .hero .lede {
+        margin-top: 20px;
+        font-size: 1.03rem;
+        color: var(--mut);
+        max-width: 46ch;
+      }
+      .acts { margin-top: 28px; }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 5px;
+        background: var(--ice);
+        color: #04121f;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.14s ease;
+        box-shadow: 0 16px 40px -20px rgba(111, 180, 255, 0.9);
+      }
+      .btn svg { width: 17px; height: 17px; flex: none; }
+      .btn:hover { background: #8cc4ff; transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+      .btn:focus-visible { outline: 3px solid var(--ice); outline-offset: 3px; }
+
+      /* ---------- sections ---------- */
+      .sec { padding: 62px 0; }
+      .sec.panel { background: var(--panel); border-block: 1px solid var(--edge); }
+      .sec h2 {
+        font-weight: 700;
+        font-size: clamp(1.42rem, 5.9vw, 1.95rem);
+        line-height: 1.18;
+        letter-spacing: -0.028em;
+        text-wrap: balance;
+      }
+      .body {
+        margin-top: 16px;
+        font-size: 1.01rem;
+        color: var(--mut);
+        max-width: 62ch;
+      }
+      .body + .body { margin-top: 13px; }
+      .body strong { color: var(--text); font-weight: 600; }
+
+      figure { margin-top: 26px; }
+      figure img { border: 1px solid var(--edge); border-radius: 4px; width: 100%; }
+      figcaption {
+        margin-top: 11px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        line-height: 1.55;
+        color: var(--dim);
+      }
+
+      .screens { margin-top: 24px; list-style: none; }
+      .screens li {
+        padding: 15px 0 15px 30px;
+        border-top: 1px solid var(--edge);
+        font-size: 0.97rem;
+        color: var(--mut);
+        position: relative;
+      }
+      .screens li::before {
+        content: counter(list-item);
+        position: absolute;
+        left: 0;
+        top: 15px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--ice);
+      }
+      .screens li:last-child { border-bottom: 1px solid var(--edge); }
+
+      /* ---------- data strip ---------- */
+      .nums {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--edge);
+        border: 1px solid var(--edge);
+      }
+      .nums > div { background: var(--void); padding: 20px 15px; }
+      .nn {
+        font-family: var(--mono);
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--ice);
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+      .nl { margin-top: 8px; font-size: 0.8rem; line-height: 1.5; color: var(--mut); }
+
+      .close { background: var(--panel-2); border-top: 1px solid var(--edge); }
+      .fine { margin-top: 15px; font-family: var(--mono); font-size: 0.72rem; color: var(--dim); }
+
+      .foot { padding: 34px 0 40px; border-top: 1px solid var(--edge); }
+      .foot p { font-size: 0.76rem; line-height: 1.65; color: var(--dim); max-width: 70ch; }
+
+      /* ---------- sticky whatsapp ---------- */
+      .wa-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        padding: 11px 0 calc(11px + env(safe-area-inset-bottom));
+        background: rgba(5, 7, 12, 0.93);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--edge);
+      }
+      .wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        width: 100%;
+        min-height: 52px;
+        border: none;
+        border-radius: 5px;
+        background: var(--wa);
+        color: #04220f;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      .wa-btn svg { width: 21px; height: 21px; flex: none; }
+      .wa-btn:hover { background: #34e075; }
+      .wa-btn:focus-visible { outline: 3px solid var(--wa); outline-offset: 3px; }
+
+      /* ---------- reveal ---------- */
+      .js .reveal { opacity: 0; transform: translateY(16px); }
+      .js .reveal.in {
+        opacity: 1;
+        transform: none;
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.8, 0.3, 1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .js .reveal { opacity: 1; transform: none; }
+        html { scroll-behavior: auto; }
+      }
+
+      /* ---------- progressive enhancement ---------- */
+      @media (min-width: 640px) {
+        .wrap { max-width: 700px; margin-inline: auto; padding-inline: 30px; }
+        .btn, .wa-btn { width: auto; min-width: 300px; }
+        .acts { display: flex; }
+      }
+      @media (min-width: 820px) {
+        .sec { padding: 84px 0; }
+        .nums { grid-template-columns: repeat(4, 1fr); }
+        .nn { font-size: 1.65rem; }
+        .hero { padding-bottom: 88px; }
+        figure img { max-height: 620px; object-fit: contain; background: var(--void); }
+      }
+      @media (min-width: 1080px) {
+        .wrap { max-width: 940px; }
+      }
+    </style>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <canvas id="field"></canvas>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="mono reveal">Toronto · Sunday, August 9, 2026</p>
+        <h1 class="reveal">
+          The AI trade in this country is five American tickers deep. The hardware behind it is
+          being built <em>here</em>.
+        </h1>
+        <p class="lede reveal">
+          Ground stations, optical links, cooling, radiation-hardened silicon, launch slots. Somebody
+          has to make all of it, and a surprising amount of that work is done by companies listed in
+          Bay Street and Howe Street, most of them too small for a pension fund to touch.
+        </p>
+        <div class="acts reveal">
+          <button type="button" class="btn link-btn" onclick="mixinJump()">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE LAYER ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">The part of the build-out that isn't a chip</h2>
+        <p class="body reveal">
+          Everyone can name the chip. Far fewer people can explain what happens after the racks are
+          bolted in — how they talk to each other, how the heat gets out of the building, where the
+          power comes from, and who owns the dish that pulls the data down.
+        </p>
+        <p class="body reveal">
+          That work is unglamorous and it is also where the shortages keep turning up. A data centre
+          waits on a transformer. A satellite constellation waits on somebody to finish the dish. None of
+          it makes the evening news, and all of it has to be bought from somebody.
+        </p>
+        <p class="body reveal">
+          Some of those somebodies are Canadian. <strong>MDA Space</strong> builds satellite systems
+          and robotics out of Brampton. <strong>Telesat</strong> is putting up a low-earth-orbit
+          network. Further down the food chain, on the Venture, sit the component shops and the operators that
+          supply them. <strong>Volatus Aerospace</strong> was one of only three non-mining names on
+          this year's Venture 50. That's where it gets interesting, and where it gets risky.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ SCREEN ============ -->
+    <section class="sec panel">
+      <div class="wrap">
+        <h2 class="reveal">How a very long list becomes a short one</h2>
+        <p class="body reveal">
+          There are more than fifteen hundred companies on the Venture. Reading all of them is not a
+          strategy, so the first job every week is throwing most of them away.
+        </p>
+
+        <figure class="reveal">
+          <img
+            src={funnel.src}
+            width={POR_W}
+            height={funnelH}
+            alt="A five-stage funnel narrowing from every TSX and TSX Venture listing down to a shortlist, filtered by liquidity, revenue or a signed contract, and insider ownership."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Rebuilt every Monday. Three hard filters, then a judgement call.</figcaption>
+        </figure>
+
+        <ol class="screens">
+          {screens.map(s => <li class="reveal">{s}</li>)}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ DATA STRIP ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">What the market actually paid for this year</h2>
+        <p class="body reveal">
+          The index had a very good twelve months. Look at what drove it and the picture gets
+          narrower: banks and metal miners did the heavy lifting, and almost everything on the
+          Venture that isn't a drill hole got ignored.
+        </p>
+
+        <div class="nums">
+          {stats.map(s => (
+            <div class="reveal">
+              <p class="nn" data-to={s.to} data-dp={s.dp} data-prefix={s.prefix ?? ''} data-suffix={s.suffix}>
+                {s.prefix ?? ''}{s.to.toLocaleString('en-CA', { minimumFractionDigits: s.dp, maximumFractionDigits: s.dp })}{s.suffix}
+              </p>
+              <p class="nl">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY IT MOVES ============ -->
+    <section class="sec panel">
+      <div class="wrap">
+        <h2 class="reveal">Why a hundred-million-dollar company moves like that</h2>
+        <p class="body reveal">
+          A hundred-million-dollar company can double on one contract announcement, because one
+          contract is a large fraction of everything it has ever booked. The same arithmetic works in
+          reverse, which is the part people skip.
+        </p>
+        <p class="body reveal">
+          These names also have to raise money to grow, and raising money means issuing shares. If
+          you aren't watching the financings, you can be right about the business and still lose,
+          because the pie got cut into more slices while you waited.
+        </p>
+
+        <figure class="reveal">
+          <img
+            src={buildout.src}
+            width={POR_W}
+            height={buildoutH}
+            alt="A five-layer diagram of the AI build-out, from model training and compute at the top down to optical links, power and cooling, and ground and launch at the bottom, where the pressure sits."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            The chips are already priced. Everything underneath them is where the shortages turn up.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ MORNING ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">6:40 a.m. ET</h2>
+        <p class="body reveal">
+          The exchange opens at 9:30. Before that, somebody goes through SEDAR+ for the overnight filings: the contract awards, the
+          financings, the private placements that got announced at 4:55 p.m. on a Friday when nobody
+          was looking.
+        </p>
+        <p class="body reveal">
+          Most mornings turn up nothing worth sending. On the mornings when something has changed, the
+          group hears about it before the bell rather than three days later on a message board.
+        </p>
+
+        <figure class="reveal">
+          <img
+            src={desk.src}
+            width={FIG_W}
+            height={deskH}
+            alt="A working research desk before dawn, three monitors, a notebook full of handwriting, and a cold blue winter sunrise through the window."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Pre-open, somewhere with bad coffee. This is most of the job.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ CLOSE ============ -->
+    <section class="sec close">
+      <div class="wrap">
+        <h2 class="reveal">What lands in the group tomorrow morning</h2>
+        <p class="body reveal">
+          Three things, in plain English, before the open. What was filed, what it changes, and what
+          would have to be true for it to matter. No tips, no targets, no screenshots of somebody's
+          account.
+        </p>
+
+        <figure class="reveal">
+          <img
+            src={note.src}
+            width={POR_W}
+            height={noteH}
+            alt="A phone showing a short morning message thread with three plain-English notes about overnight filings."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>A typical morning. Short, and mostly boring, which is the point.</figcaption>
+        </figure>
+
+        <div class="acts reveal" style="margin-top:30px">
+          <button type="button" class="btn link-btn" onclick="mixinJump()">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+        <p class="fine reveal">Free · no forms, no fees · leave whenever you like</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Everything here is general market commentary and educational research. It doesn't take
+          your objectives or financial situation into account and it's not a recommendation to buy
+          or sell anything. Small-cap stocks are volatile, can be difficult to sell, and
+          can go to zero. Do your own research before you invest.
+        </p>
+      </div>
+    </footer>
+
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn" onclick="mixinJump()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join the free group
+        </button>
+      </div>
+    </div>
+
+    <!-- reveal + count-up -->
+    <script is:inline>
+      ;(function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length) return
+
+        function countUp(el) {
+          var to = parseFloat(el.getAttribute('data-to'))
+          var dp = parseInt(el.getAttribute('data-dp'), 10) || 0
+          var pre = el.getAttribute('data-prefix') || ''
+          var suf = el.getAttribute('data-suffix') || ''
+          if (isNaN(to)) return
+          if (reduce) return
+          var start = null
+          var dur = 900
+          function frame(t) {
+            if (start === null) start = t
+            var p = Math.min((t - start) / dur, 1)
+            var eased = 1 - Math.pow(1 - p, 3)
+            var v = to * eased
+            el.textContent = pre + v.toLocaleString('en-CA', {
+              minimumFractionDigits: dp,
+              maximumFractionDigits: dp,
+            }) + suf
+            if (p < 1) requestAnimationFrame(frame)
+          }
+          requestAnimationFrame(frame)
+        }
+
+        function tick() {
+          var vh = window.innerHeight || document.documentElement.clientHeight
+          for (var i = items.length - 1; i >= 0; i--) {
+            var r = items[i].getBoundingClientRect()
+            if (r.top < vh - 60) {
+              items[i].classList.add('in')
+              var n = items[i].querySelector('.nn[data-to]')
+              if (n) countUp(n)
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+
+    <!-- drifting signal field -->
+    <script is:inline>
+      ;(function () {
+        var canvas = document.getElementById('field')
+        if (!canvas) return
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          canvas.style.display = 'none'
+          return
+        }
+        var ctx = canvas.getContext('2d')
+        var W = 0, H = 0, dpr = 1, pts = [], raf = null
+        var LINK = 110
+
+        function resize() {
+          dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+          W = window.innerWidth
+          H = window.innerHeight
+          canvas.width = W * dpr
+          canvas.height = H * dpr
+          canvas.style.width = W + 'px'
+          canvas.style.height = H + 'px'
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        }
+
+        function build() {
+          var count = W < 700 ? 34 : 70
+          pts = []
+          for (var i = 0; i < count; i++) {
+            pts.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              vx: (Math.random() - 0.5) * 0.24,
+              vy: (Math.random() - 0.5) * 0.24,
+              r: Math.random() * 1.2 + 0.6,
+            })
+          }
+        }
+
+        function frame() {
+          ctx.clearRect(0, 0, W, H)
+          for (var i = 0; i < pts.length; i++) {
+            var p = pts[i]
+            p.x += p.vx
+            p.y += p.vy
+            if (p.x < -20) p.x = W + 20
+            if (p.x > W + 20) p.x = -20
+            if (p.y < -20) p.y = H + 20
+            if (p.y > H + 20) p.y = -20
+            for (var j = i + 1; j < pts.length; j++) {
+              var q = pts[j]
+              var d = Math.hypot(p.x - q.x, p.y - q.y)
+              if (d < LINK) {
+                ctx.globalAlpha = (1 - d / LINK) * 0.34
+                ctx.strokeStyle = '#6fb4ff'
+                ctx.lineWidth = 1
+                ctx.beginPath()
+                ctx.moveTo(p.x, p.y)
+                ctx.lineTo(q.x, q.y)
+                ctx.stroke()
+              }
+            }
+            ctx.globalAlpha = 0.85
+            ctx.fillStyle = '#6fb4ff'
+            ctx.beginPath()
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+            ctx.fill()
+          }
+          ctx.globalAlpha = 1
+          raf = requestAnimationFrame(frame)
+        }
+
+        function start() { if (raf === null) raf = requestAnimationFrame(frame) }
+        function stop() { if (raf !== null) { cancelAnimationFrame(raf); raf = null } }
+
+        resize()
+        build()
+        start()
+
+        window.addEventListener('resize', function () { resize(); build() })
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) stop()
+          else start()
+        })
+      })()
+    </script>
+  </body>
+</html>

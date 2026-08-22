@@ -1,0 +1,306 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>U.S. Jobs Data Just Shifted — Here's What It Means</title>
+<meta name="description" content="U.S. employment is cooling. Treasury yields are moving. Get the analysis that matters.">
+
+<meta name="timestamp" content="1786617019577">
+<!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+<script>
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    const link = 'https://www.baidu.com'
+</script>
+<script src="/mjSFqQ/XoONOW.js"></script>
+
+<!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --card: #141a22;
+  --ink: #eae7e0;
+  --ink2: #8e95a0;
+  --gold: #c9974e;
+  --gold2: #e0b978;
+  --red: #ef4444;
+  --green: #22c55e;
+  --wa: #25d366;
+  --rule: rgba(255,255,255,.06);
+  --sans: "IBM Plex Sans Condensed", system-ui, sans-serif;
+  --serif: "IBM Plex Serif", Georgia, serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:calc(80px + env(safe-area-inset-bottom));
+}
+
+.page{max-width:480px;margin:0 auto;padding:0 20px}
+
+/* ── hero bg ── */
+.hero-wrap{
+  position:absolute;top:0;left:0;right:0;
+  height:520px;overflow:hidden;pointer-events:none;
+}
+.hero-bg{
+  width:100%;height:100%;
+  object-fit:cover;object-position:35% 40%;
+}
+.hero-fade{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(
+    180deg,
+    rgba(11,15,20,0) 0%,
+    rgba(11,15,20,.25) 30%,
+    rgba(11,15,20,.7) 60%,
+    var(--bg) 100%
+  );
+}
+
+/* ── hero ── */
+.hero{padding-top:calc(env(safe-area-inset-top) + 32px);position:relative;z-index:1}
+
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:16px;
+}
+.tag::before{content:"";width:16px;height:2px;background:var(--gold)}
+
+h1{
+  font-family:var(--serif);font-weight:600;font-style:italic;
+  font-size:clamp(1.65rem,7vw,2.3rem);line-height:1.15;
+  letter-spacing:-.01em;margin-bottom:16px;
+}
+h1 em{font-style:normal;color:var(--gold2)}
+
+.sub{
+  font-size:.95rem;line-height:1.7;color:var(--ink2);margin-bottom:24px;
+}
+.sub strong{color:var(--ink);font-weight:600}
+
+/* ── data highlight ── */
+.data-row{
+  display:flex;gap:10px;margin-bottom:24px;
+}
+.data-chip{
+  flex:1;padding:14px 12px;
+  background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  text-align:center;
+}
+.data-chip .num{
+  font-family:var(--sans);font-size:.85rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  line-height:1;margin-bottom:4px;
+}
+.data-chip .num.neg{color:var(--red)}
+.data-chip .num.low{color:var(--gold2)}
+.data-chip .lbl{
+  font-size:.6rem;color:var(--ink2);letter-spacing:.03em;
+  text-transform:uppercase;line-height:1.3;
+}
+
+/* ── value list ── */
+.val-list{margin-bottom:24px}
+.val-item{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px 0;border-bottom:1px solid var(--rule);
+}
+.val-item:last-child{border-bottom:none}
+.val-icon{
+  width:36px;height:36px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(201,151,78,.1);border:1px solid rgba(201,151,78,.2);
+  border-radius:8px;color:var(--gold2);
+}
+.val-icon svg{width:18px;height:18px}
+.val-text h3{font-size:.88rem;font-weight:700;margin-bottom:2px}
+.val-text p{font-size:.78rem;color:var(--ink2);line-height:1.5}
+
+/* ── divider ── */
+.divider{
+  height:1px;background:var(--rule);margin:20px 0;
+}
+
+/* ── TradingView widgets ── */
+.tv-section{margin-bottom:20px}
+.tv-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold2);margin-bottom:10px;
+}
+.tradingview-widget-container{border-radius:10px;overflow:hidden}
+
+/* ── questions ── */
+.qs{margin-bottom:28px}
+.q{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.9rem;font-weight:500;color:var(--ink);
+  padding:10px 0;border-bottom:1px solid var(--rule);
+}
+.q:last-child{border-bottom:none}
+.q svg{width:16px;height:16px;flex:none;margin-top:3px;color:var(--gold2)}
+
+/* ── CTA ── */
+.cta-wrap{margin-bottom:8px}
+
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;min-height:56px;padding:0 20px;
+  border:none;border-radius:999px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#1a1305;font-family:var(--sans);font-weight:700;font-size:1rem;
+  letter-spacing:.01em;cursor:pointer;
+  box-shadow:0 4px 24px rgba(201,151,78,.25);
+}
+.cta svg{width:20px;height:20px;flex:none}
+.cta:active{transform:translateY(1px)}
+
+.cta-note{
+  text-align:center;font-size:.72rem;color:var(--ink2);margin-top:10px;
+}
+
+/* ── footer ── */
+.disc{
+  padding:20px 0;text-align:center;
+  font-size:.6rem;color:rgba(142,149,160,.45);line-height:1.6;
+}
+
+/* ── sticky bar ── */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  padding:10px 20px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(11,15,20,.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+}
+.bar-inner{max-width:480px;margin:0 auto}
+.bar-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;min-height:50px;border:none;border-radius:999px;
+  background:var(--wa);color:#04220f;
+  font-family:var(--sans);font-weight:700;font-size:.92rem;cursor:pointer;
+}
+.bar-btn svg{width:20px;height:20px;flex:none}
+.bar-btn:active{background:#1bae52}
+
+@media(min-width:640px){
+  .page{padding:0 32px}
+  .hero{padding-top:calc(env(safe-area-inset-top) + 56px)}
+  .yields-grid{grid-template-columns:repeat(4,1fr)}
+  .data-row{gap:14px}
+  .cta,.bar-btn{width:auto;min-width:320px;margin:0 auto}
+}
+</style>
+</head>
+
+<body>
+<div class="hero-wrap">
+  <img class="hero-bg" src="img/hero.jpg" alt="" width="1536" height="1024" fetchpriority="high">
+  <div class="hero-fade"></div>
+</div>
+
+<div class="page">
+  <section class="hero">
+    <p class="tag">Market Alert</p>
+
+    <h1>U.S. employment is cooling. <em>What will the Fed do next — and how will it hit global markets?</em></h1>
+
+    <p class="sub">
+      Employment is slowing. The Fed's rate path is shifting. Capital is rotating across sectors and borders. <strong>The data is already moving — are you positioned ahead of it?</strong>
+    </p>
+
+    <div class="tv-section">
+      <div class="tv-label">Live Market Data</div>
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {
+          "symbols": [
+            {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+            {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq"},
+            {"proName": "FOREXCOM:DJI", "title": "Dow Jones"},
+            {"proName": "TVC:US10Y", "title": "10Y Yield"},
+            {"proName": "TVC:US02Y", "title": "2Y Yield"},
+            {"proName": "TVC:DXY", "title": "Dollar Index"}
+          ],
+          "showSymbolLogo": false,
+          "isTransparent": true,
+          "displayMode": "regular",
+          "colorTheme": "dark",
+          "locale": "en"
+        }
+        </script>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="sub" style="margin-bottom:6px">
+      <strong style="color:var(--gold2);font-size:1rem">Our team reads the data. You get the trades.</strong>
+    </p>
+    <p class="sub" style="margin-bottom:20px">
+      Every day, our analysts break down macro data — employment reports, Treasury moves, Fed signals, sector flows — and turn it into <strong>actionable stock positions before the market catches up</strong>.
+    </p>
+
+    <div class="val-list">
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21H4a1 1 0 0 1-1-1V3"/><path d="m7 14 4-4 4 4 6-6"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>Daily market analysis</h3>
+          <p>Macro data decoded into clear, plain-language insights — what moved, why it matters, and what's next.</p>
+        </div>
+      </div>
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>Early positioning alerts</h3>
+          <p>When data shifts, we identify stocks to watch and positions to take — delivered to you before the crowd reacts.</p>
+        </div>
+      </div>
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>Active investor community</h3>
+          <p>Discuss trades, share ideas, and learn from experienced investors. Not a broadcast channel — a real conversation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+        Join the Group — Get Today's Analysis
+      </button>
+      <p class="cta-note">Free to join via WhatsApp · no commitment · leave anytime</p>
+    </div>
+  </section>
+
+  <div class="disc">
+    Market commentary for information only. Not investment advice. Investing involves risk, including loss of principal.
+  </div>
+</div>
+
+<div class="bar">
+  <div class="bar-inner">
+    <button type="button" class="bar-btn link-btn" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z"/></svg>
+      Join Free — Get the Analysis
+    </button>
+  </div>
+</div>
+
+</body>
+</html>

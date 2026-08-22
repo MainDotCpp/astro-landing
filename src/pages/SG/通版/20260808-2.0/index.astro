@@ -1,0 +1,550 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroFlow from './assets/images/hero-flow.png'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>One US Jobs Number, Five Moves — Where It Ends Up in a Singapore Portfolio</title>
+    <meta
+      name="description"
+      content="US payrolls fell by 23,000 in July and the jobless rate still dropped to 4.1%. Follow the chain link by link: why the Fed is stuck, why money stays expensive, who gets squeezed, and the part that reaches your home loan, Singapore banks and S-REITs."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        flowImg: `url(${heroFlow.src})`,
+      }}
+    >
+      :root {
+        --void: #0a0e14;
+        --deep: #0e141d;
+        --panel: #131b26;
+        --amber: #edb05e;
+        --amber-d: #d0934200;
+        --text: #e9e7e2;
+        --mut: #949daa;
+        --dim: #6b7480;
+        --edge: rgba(233, 231, 226, 0.11);
+        --wa: #25d366;
+        --wa-d: #1bae52;
+        --sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+        --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans);
+        background: var(--void);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(84px + env(safe-area-inset-bottom));
+      }
+      img { display: block; max-width: 100%; }
+
+      .wrap { width: 100%; padding-inline: 22px; }
+
+      /* ---------- hero ---------- */
+      .hero {
+        display: flex;
+        align-items: center;
+        min-height: 100svh;
+        padding-top: calc(env(safe-area-inset-top) + 48px);
+        padding-bottom: 96px;
+        background-image:
+          linear-gradient(180deg, rgba(10, 14, 20, 0.82) 0%, rgba(10, 14, 20, 0.5) 40%, rgba(10, 14, 20, 0.86) 100%),
+          var(--flowImg);
+        background-size: cover, cover;
+        background-position: center, center 30%;
+        background-repeat: no-repeat;
+      }
+      .dateline {
+        margin-bottom: 20px;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .hero h1 {
+        font-weight: 600;
+        font-size: clamp(2.15rem, 9.4vw, 2.9rem);
+        line-height: 1.1;
+        letter-spacing: -0.026em;
+        text-wrap: balance;
+      }
+      .hero h1 span { color: var(--amber); }
+      .hero .lede {
+        margin-top: 20px;
+        font-size: 1.04rem;
+        color: var(--mut);
+        max-width: 44ch;
+      }
+      .hero .acts { margin-top: 30px; }
+      .scroll-note {
+        margin-top: 26px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .scroll-note svg { width: 15px; height: 15px; }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 8px;
+        background: var(--amber);
+        color: #1a1206;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.005em;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.14s ease, box-shadow 0.2s ease;
+        box-shadow: 0 16px 40px -18px rgba(237, 176, 94, 0.9);
+      }
+      .btn svg { width: 17px; height: 17px; flex: none; }
+      .btn:hover { background: #f5bd72; transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+      .btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+
+      /* ---------- chain ---------- */
+      .chain-sec {
+        padding-block: 60px 20px;
+        background: linear-gradient(180deg, var(--void) 0%, var(--deep) 22%, var(--deep) 100%);
+      }
+      .chain-head h2 {
+        font-weight: 600;
+        font-size: clamp(1.7rem, 7.2vw, 2.2rem);
+        line-height: 1.16;
+        letter-spacing: -0.022em;
+        max-width: 20ch;
+        text-wrap: balance;
+      }
+      .chain-head p { margin-top: 14px; color: var(--mut); font-size: 1rem; max-width: 46ch; }
+
+      .chain { margin-top: 42px; }
+      .link {
+        position: relative;
+        list-style: none;
+        padding-left: 42px;
+        padding-bottom: 46px;
+      }
+      .link::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 22px;
+        bottom: -6px;
+        width: 1px;
+        background: linear-gradient(180deg, rgba(237, 176, 94, 0.5), rgba(237, 176, 94, 0.08));
+      }
+      .link:last-child { padding-bottom: 8px; }
+      .link:last-child::before { display: none; }
+      .dot {
+        position: absolute;
+        left: 4px;
+        top: 8px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(237, 176, 94, 0.45);
+        background: var(--deep);
+        transition: background 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+      }
+      .link.in .dot {
+        background: var(--amber);
+        border-color: var(--amber);
+        box-shadow: 0 0 0 5px rgba(237, 176, 94, 0.13), 0 0 18px rgba(237, 176, 94, 0.5);
+      }
+
+      .step {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .link h3 {
+        margin-top: 8px;
+        font-weight: 600;
+        font-size: 1.3rem;
+        line-height: 1.24;
+        letter-spacing: -0.018em;
+        max-width: 22ch;
+      }
+      .val {
+        margin-top: 11px;
+        font-family: var(--mono);
+        font-size: 0.86rem;
+        color: var(--amber);
+        letter-spacing: -0.01em;
+      }
+      .link .body { margin-top: 13px; color: var(--mut); font-size: 0.99rem; max-width: 48ch; }
+      .so {
+        margin-top: 16px;
+        padding-left: 15px;
+        border-left: 2px solid rgba(237, 176, 94, 0.55);
+        font-size: 0.99rem;
+        font-weight: 500;
+        color: var(--text);
+        max-width: 42ch;
+      }
+
+      /* ---------- close ---------- */
+      .close {
+        padding-block: 58px;
+        background: var(--deep);
+        border-top: 1px solid var(--edge);
+      }
+      .close h2 {
+        font-weight: 600;
+        font-size: clamp(1.7rem, 7.2vw, 2.2rem);
+        line-height: 1.16;
+        letter-spacing: -0.022em;
+        max-width: 18ch;
+        text-wrap: balance;
+      }
+      .close p { margin-top: 16px; color: var(--mut); font-size: 1.02rem; max-width: 46ch; }
+      .close .acts { margin-top: 28px; }
+      .fine {
+        margin-top: 18px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--dim);
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- foot ---------- */
+      .foot { padding-block: 30px 38px; background: var(--void); }
+      .foot p { font-size: 0.76rem; color: var(--dim); max-width: 64ch; line-height: 1.6; }
+
+      /* ---------- whatsapp bar ---------- */
+      .wa-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        padding: 12px 22px calc(12px + env(safe-area-inset-bottom));
+        background: rgba(10, 14, 20, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--edge);
+      }
+      .wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 15px 22px;
+        border: none;
+        border-radius: 8px;
+        background: var(--wa);
+        color: #04210f;
+        cursor: pointer;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1.02rem;
+        box-shadow: 0 12px 30px -14px rgba(37, 211, 102, 0.9);
+        transition: background 0.2s ease, transform 0.14s ease;
+      }
+      .wa-btn svg { width: 22px; height: 22px; flex: none; }
+      .wa-btn:hover { background: var(--wa-d); transform: translateY(-2px); }
+      .wa-btn:active { transform: translateY(0); }
+      .wa-btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+
+      /* ---------- motion ---------- */
+      .rise { animation: rise 0.66s cubic-bezier(0.22, 0.72, 0.3, 1) both; }
+      .d1 { animation-delay: 0.08s; }
+      .d2 { animation-delay: 0.18s; }
+      .d3 { animation-delay: 0.28s; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: none; }
+      }
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.72, 0.3, 1);
+      }
+      .js .reveal.in { opacity: 1; transform: none; }
+
+      /* ---------- larger screens ---------- */
+      @media (min-width: 760px) {
+        .wrap { max-width: 1020px; margin-inline: auto; padding-inline: clamp(32px, 5vw, 60px); }
+        body { padding-bottom: 96px; }
+
+        .hero { padding-top: calc(env(safe-area-inset-top) + 80px); padding-bottom: 110px; }
+        .hero h1 { font-size: clamp(2.9rem, 4.6vw, 4rem); max-width: 19ch; }
+        .hero .lede { font-size: 1.14rem; }
+        .btn { width: auto; min-width: 260px; }
+
+        .chain-sec { padding-block: 104px 40px; }
+        .chain-head h2 { font-size: clamp(2.2rem, 3.2vw, 2.9rem); }
+        .chain { margin-top: 62px; }
+        .link {
+          display: grid;
+          grid-template-columns: 15rem 1fr;
+          gap: 0 52px;
+          padding-left: 52px;
+          padding-bottom: 62px;
+        }
+        .link h3 { font-size: 1.42rem; }
+        .link .body { margin-top: 0; }
+        .val { margin-top: 13px; }
+        .so { margin-top: 18px; }
+
+        .close { padding-block: 104px; }
+        .close h2 { font-size: clamp(2.2rem, 3.2vw, 2.9rem); }
+
+        .wa-bar { padding-inline: 0; }
+        .wa-bar .wrap { display: flex; justify-content: flex-end; }
+        .wa-btn { width: auto; min-width: 300px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .rise { animation: none; }
+        .js .reveal { opacity: 1; transform: none; transition: none; }
+        .dot { transition: none; }
+      }
+    </style>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <div class="wrap">
+        <p class="dateline rise">8 August 2026</p>
+
+        <h1 class="rise d1">
+          One number out of Washington.<br />
+          <span>Five moves</span> before it reaches you.
+        </h1>
+
+        <p class="lede rise d2">
+          US payrolls fell by 23,000 in July and the jobless rate still dropped to 4.1%. Most people
+          read that headline and stop there. The money starts moving at step two.
+        </p>
+
+        <div class="acts rise d2">
+          <button type="button" class="btn link-btn">
+            Get it every morning, free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+
+        <p class="scroll-note rise d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+          Start at the top of the chain
+        </p>
+      </div>
+    </header>
+
+    <!-- ============ THE CHAIN ============ -->
+    <section class="chain-sec">
+      <div class="wrap">
+        <div class="chain-head">
+          <h2 class="reveal">How a jobs report ends up on your statement</h2>
+          <p class="reveal">
+            None of this happens at once. Each step pushes the next one, and the last step is the
+            only one that touches your money directly.
+          </p>
+        </div>
+
+        <ol class="chain">
+          <li class="link reveal">
+            <span class="dot"></span>
+            <div>
+              <p class="step">Step 01</p>
+              <h3>The jobs number cools</h3>
+              <p class="val">−23,000 payrolls · 4.1% jobless rate</p>
+            </div>
+            <div>
+              <p class="body">
+                Stop looking for work and you're not counted as unemployed any more. Enough people
+                did that in July to drag the rate down while hiring was going backwards. Nobody found
+                a job. The statistic just stopped counting them.
+              </p>
+              <p class="so">The headline and the reality are pointing in opposite directions.</p>
+            </div>
+          </li>
+
+          <li class="link reveal">
+            <span class="dot"></span>
+            <div>
+              <p class="step">Step 02</p>
+              <h3>The Fed gets stuck</h3>
+              <p class="val">September hike odds 57% → 44%</p>
+            </div>
+            <div>
+              <p class="body">
+                Inflation still isn't beaten. Core PCE is running above 3% and August is expected to
+                tick back up, which is why several officials have been arguing for another hike. A
+                jobs report this bad argues for doing nothing at all. Traders repriced within hours,
+                but 44% is a long way from zero.
+              </p>
+              <p class="so">A central bank with no good option is a central bank that surprises people.</p>
+            </div>
+          </li>
+
+          <li class="link reveal">
+            <span class="dot"></span>
+            <div>
+              <p class="step">Step 03</p>
+              <h3>Money stays expensive</h3>
+              <p class="val">Futures pricing near 4% by year end</p>
+            </div>
+            <div>
+              <p class="body">
+                In January the whole market had 2026 written down as the year rates finally came off.
+                It now prices the opposite. Every valuation built on cheaper funding arriving by
+                Christmas has to be rebuilt from scratch.
+              </p>
+              <p class="so">Your US dollar deposits keep paying. Your borrowing keeps costing.</p>
+            </div>
+          </li>
+
+          <li class="link reveal">
+            <span class="dot"></span>
+            <div>
+              <p class="step">Step 04</p>
+              <h3>The expensive-money companies get squeezed</h3>
+              <p class="val">Tech · growth · anything funded by debt</p>
+            </div>
+            <div>
+              <p class="body">
+                High rates hit twice. They discount future profits harder, and a growth stock is
+                mostly future profits. They also raise the cost of the debt paying for the AI
+                buildout, which the big four are now funding with bond issues rather than spare cash.
+              </p>
+              <p class="so">The higher the rate, the less anyone pays today for a profit that arrives in 2032.</p>
+            </div>
+          </li>
+
+          <li class="link reveal">
+            <span class="dot"></span>
+            <div>
+              <p class="step">Step 05</p>
+              <h3>It arrives in Singapore</h3>
+              <p class="val">Your home loan · banks · S-REITs</p>
+            </div>
+            <div>
+              <p class="body">
+                SORA follows US rates, so your floating home loan does too — that one you feel every
+                month. The same rates keep the gap wide that DBS, UOB and OCBC earn between deposits
+                and loans, and keep S-REITs refinancing into money that never got cheap. One number
+                out of Washington, pulling three parts of your finances in different directions.
+              </p>
+              <p class="so">This is the link nobody bothers to put in the headline.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CLOSE ============ -->
+    <section class="close">
+      <div class="wrap">
+        <h2 class="reveal">Tomorrow the chain starts again</h2>
+        <p class="reveal">
+          A different number, the same five steps. We walk through it link by link every trading
+          morning and send it to the group before SGX opens at 9am. Three points, two minutes.
+        </p>
+
+        <div class="acts reveal">
+          <button type="button" class="btn link-btn">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+
+        <p class="fine reveal">Free · nothing to download · leave whenever you like</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Everything here is general market commentary and educational research. It does not take
+          your objectives or financial situation into account, and it is not a recommendation to buy
+          or sell anything. Markets carry risk. Do your own research before you invest.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ============ FLOATING WHATSAPP ============ -->
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join the free group
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        const items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length)
+          return
+
+        function tick() {
+          const vh = window.innerHeight || document.documentElement.clientHeight
+          for (let i = items.length - 1; i >= 0; i--) {
+            const r = items[i].getBoundingClientRect()
+            if (r.top < vh - 80) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

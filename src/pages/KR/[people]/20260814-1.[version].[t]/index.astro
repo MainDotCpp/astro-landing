@@ -1,0 +1,122 @@
+---
+import { Image } from 'astro:assets'
+import CtaButton from '@/components/CtaButton.astro'
+import KRBaseLayout from '@/layouts/KRBaseLayout.astro'
+import { generateKrConfig, Filters } from '@/utils/kr_config'
+
+export function getStaticPaths() {
+  return generateKrConfig(Filters.or(
+    Filters.byPerson('柳秀真'),
+    Filters.byPerson('宣大仁'),
+  ))
+}
+
+const { t = '卡扣' } = Astro.params
+const { name, img_prefix } = Astro.props as { name: string, img_prefix: string }
+
+const headerImg = (await import(`../images/${img_prefix}header.jpg`)).default
+const img1 = (await import(`../images/${img_prefix}img1.jpg`)).default
+
+const isBand = t === '棒群'
+const needNumber = t === '卡扣'
+const channelName = isBand ? '밴드' : '카카오톡'
+
+const mainText = `${name} ${channelName}을 무료로 추가하고${needNumber ? ' "7"을 보내면' : ' 입장하면'}, 다음 날 오를 종목을 바로 확인할 수 있습니다. 매주 300% 이상의 수익이 기대되는 우량 종목 정보까지 무료로 받아보세요.`
+const ctaText = '지금 바로 참여하고, 우량주를 받아보세요!'
+const subText = isBand
+  ? `${channelName}에 가입하면 최신 급등 종목 정보를 무료로 받아볼 수 있습니다!`
+  : needNumber
+    ? `${channelName}을 추가하고 "7"을 보내면, 최신 급등 종목 정보를 무료로 받아볼 수 있습니다!`
+    : `${channelName} 오픈채팅방에 입장하면, 최신 급등 종목 정보를 무료로 받아볼 수 있습니다!`
+---
+
+<KRBaseLayout title={name} description={name}>
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head" />
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+  />
+
+  <main class="page">
+    <Image src={headerImg} alt={name} class="full-img" />
+
+    <div class="body-text">
+      {mainText}
+    </div>
+
+    <h3 class="cta-text">{ctaText}</h3>
+
+    <div class="btn-wrap">
+      <CtaButton social={t} />
+    </div>
+
+    <h3 class="cta-text">{subText}</h3>
+
+    <Image src={img1} alt={name} class="full-img" />
+
+    <div class="btn-wrap">
+      <CtaButton social={t} />
+    </div>
+
+    <p class="privacy">개인정보처리방침</p>
+  </main>
+</KRBaseLayout>
+
+<style>
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+  }
+
+  .full-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .body-text {
+    font-size: 17px;
+    line-height: 1.75;
+    padding: 0 20px;
+    color: #222;
+    word-break: keep-all;
+  }
+
+  .cta-text {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 20px;
+    color: #111;
+    word-break: keep-all;
+  }
+
+  .btn-wrap {
+    width: 85%;
+    animation: breathe 1s ease-in-out infinite;
+  }
+
+  .privacy {
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    padding: 0 20px 20px;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.06); opacity: 0.85; }
+  }
+
+  body, html {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+</style>

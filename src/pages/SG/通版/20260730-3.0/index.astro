@@ -1,0 +1,715 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+
+const title = 'Portfolio Health Check — Are You Protected?'
+const description = 'Run a quick diagnostic on your portfolio risk. Get free daily risk alerts and expert rebalancing guidance.'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0c1222" />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0c1222;
+        color: #e2e8f0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 480px;
+        margin: auto;
+        overflow-x: hidden;
+      }
+
+      /* ── Hero ── */
+      .hero {
+        padding: 48px 24px 40px;
+        text-align: center;
+      }
+
+      .scan-tag {
+        display: inline-block;
+        font-family: 'Outfit', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #06b6d4;
+        margin-bottom: 16px;
+      }
+
+      .hero h1 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1.15;
+        color: #fff;
+        margin-bottom: 14px;
+      }
+
+      .hero-sub {
+        font-size: 16px;
+        line-height: 1.55;
+        color: #94a3b8;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      /* ── Risk Assessment ── */
+      .risk-section {
+        padding: 0 24px 36px;
+      }
+
+      .section-label {
+        font-family: 'Outfit', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #06b6d4;
+        margin-bottom: 24px;
+      }
+
+      .meter {
+        margin-bottom: 20px;
+      }
+
+      .meter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 8px;
+      }
+
+      .meter-label {
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #e2e8f0;
+      }
+
+      .meter-value {
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .meter-value.high { color: #f97316; }
+      .meter-value.critical { color: #ef4444; }
+
+      .meter-bar {
+        height: 8px;
+        border-radius: 4px;
+        background: #1e293b;
+        overflow: hidden;
+      }
+
+      .meter-fill {
+        height: 100%;
+        border-radius: 4px;
+        width: 0;
+        transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .meter-fill.high { background: #f97316; }
+      .meter-fill.critical { background: #ef4444; }
+
+      .meter-fill.animated[data-width="82"] { width: 82%; }
+      .meter-fill.animated[data-width="65"] { width: 65%; }
+      .meter-fill.animated[data-width="34"] { width: 34%; }
+      .meter-fill.animated[data-width="21"] { width: 21%; }
+
+      /* ── Diagnosis ── */
+      .diagnosis {
+        margin: 0 24px 36px;
+        padding: 22px 20px;
+        border: 1px solid #ef4444;
+        border-radius: 12px;
+        background: rgba(239, 68, 68, 0.06);
+      }
+
+      .diagnosis-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #ef4444;
+        margin-bottom: 10px;
+      }
+
+      .diagnosis p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #cbd5e1;
+      }
+
+      /* ── Action Plan ── */
+      .action-section {
+        padding: 36px 24px;
+      }
+
+      .action-label {
+        font-family: 'Outfit', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #10b981;
+        margin-bottom: 24px;
+      }
+
+      .action-item {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .action-dot {
+        flex-shrink: 0;
+        width: 10px;
+        height: 10px;
+        background: #10b981;
+        border-radius: 50%;
+        margin-top: 6px;
+      }
+
+      .action-item h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+
+      .action-item p {
+        font-size: 14px;
+        line-height: 1.55;
+        color: #94a3b8;
+      }
+
+      .btn {
+        display: block;
+        background: #25D366;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        padding: 16px;
+        border-radius: 12px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 8px;
+      }
+
+      /* ── Steps ── */
+      .steps-section {
+        padding: 36px 24px;
+        border-top: 1px solid #1e293b;
+      }
+
+      .steps-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 28px;
+        text-align: center;
+      }
+
+      .step {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .step-num {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #06b6d4;
+        color: #0c1222;
+        font-family: 'Outfit', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .step h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 3px;
+      }
+
+      .step p {
+        font-size: 14px;
+        color: #94a3b8;
+        line-height: 1.45;
+      }
+
+      /* ── FAQ ── */
+      .faq-section {
+        padding: 36px 24px;
+        border-top: 1px solid #1e293b;
+      }
+
+      .faq-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .faq-item {
+        border-bottom: 1px solid #1e293b;
+      }
+
+      .faq-q {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .faq-q span {
+        font-family: 'Outfit', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #e2e8f0;
+        padding-right: 12px;
+      }
+
+      .faq-arrow {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        stroke: #64748b;
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.open .faq-arrow {
+        transform: rotate(180deg);
+      }
+
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+      }
+
+      .faq-item.open .faq-a {
+        max-height: 200px;
+        padding-bottom: 16px;
+      }
+
+      .faq-a p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #94a3b8;
+      }
+
+      /* ── Legal / Footer ── */
+      .legal {
+        padding: 24px 24px 100px;
+        text-align: center;
+      }
+
+      .legal p {
+        font-size: 11px;
+        line-height: 1.6;
+        color: #475569;
+      }
+
+      .legal a {
+        color: #64748b;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      /* ── Sticky CTA ── */
+      .sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(12, 18, 34, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 12px 20px;
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+      }
+
+      .sticky-cta .btn {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ── Scroll Reveal ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Modal ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 0, 0, 0.7);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .modal-overlay.active {
+        display: flex;
+      }
+
+      .modal {
+        background: #1e293b;
+        border-radius: 16px;
+        padding: 28px 24px;
+        max-width: 400px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        position: relative;
+      }
+
+      .modal h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 14px;
+      }
+
+      .modal p {
+        font-size: 13px;
+        line-height: 1.7;
+        color: #94a3b8;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 28px;
+        height: 28px;
+        background: #334155;
+        border: none;
+        border-radius: 50%;
+        color: #e2e8f0;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ── Desktop ── */
+      @media (min-width: 768px) {
+        .hero h1 { font-size: 42px; }
+        .hero-sub { font-size: 17px; max-width: 380px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="scan-tag">DIAGNOSTIC SCAN</div>
+        <h1>Portfolio Health Check</h1>
+        <p class="hero-sub">How exposed are your holdings right now? Run a quick scan.</p>
+      </section>
+
+      <!-- Risk Assessment -->
+      <section class="risk-section">
+        <div class="section-label">Risk Assessment</div>
+
+        <div class="meter">
+          <div class="meter-header">
+            <span class="meter-label">Market Volatility</span>
+            <span class="meter-value high">82%</span>
+          </div>
+          <div class="meter-bar">
+            <div class="meter-fill high" data-width="82"></div>
+          </div>
+        </div>
+
+        <div class="meter">
+          <div class="meter-header">
+            <span class="meter-label">Portfolio Drawdown</span>
+            <span class="meter-value high">65%</span>
+          </div>
+          <div class="meter-bar">
+            <div class="meter-fill high" data-width="65"></div>
+          </div>
+        </div>
+
+        <div class="meter">
+          <div class="meter-header">
+            <span class="meter-label">Diversification Score</span>
+            <span class="meter-value critical">34%</span>
+          </div>
+          <div class="meter-bar">
+            <div class="meter-fill critical" data-width="34"></div>
+          </div>
+        </div>
+
+        <div class="meter">
+          <div class="meter-header">
+            <span class="meter-label">Recovery Readiness</span>
+            <span class="meter-value critical">21%</span>
+          </div>
+          <div class="meter-bar">
+            <div class="meter-fill critical" data-width="21"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diagnosis -->
+      <div class="diagnosis reveal">
+        <div class="diagnosis-title">High Risk Detected</div>
+        <p>If your portfolio looks anything like the average retail investor's right now, you're heavily exposed. Without active monitoring, losses compound faster in volatile markets.</p>
+      </div>
+
+      <!-- Action Plan -->
+      <section class="action-section reveal">
+        <div class="action-label">Your Action Plan</div>
+
+        <div class="action-item">
+          <div class="action-dot"></div>
+          <div>
+            <h3>Get real-time risk alerts</h3>
+            <p>Know immediately when sharp declines are detected, so you can act instead of react.</p>
+          </div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-dot"></div>
+          <div>
+            <h3>Follow expert rebalancing guidance</h3>
+            <p>Daily analysis on what to hold, what to trim, and where the recovery potential lies.</p>
+          </div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-dot"></div>
+          <div>
+            <h3>Join 12,000+ investors taking action</h3>
+            <p>A community sharing real-time analysis — not speculation.</p>
+          </div>
+        </div>
+
+        <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+      </section>
+
+      <!-- Steps -->
+      <section class="steps-section reveal">
+        <div class="steps-title">How It Works</div>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Tap the button below</h3>
+            <p>Opens WhatsApp directly.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Join the group</h3>
+            <p>No sign-up, no fees. Instant access.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Start receiving alerts</h3>
+            <p>Risk analysis and stock picks delivered daily.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section reveal">
+        <div class="faq-title">FAQ</div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Is this really free?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-a">
+            <p>Yes, completely. No hidden fees, no upsells.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>What kind of analysis will I receive?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-a">
+            <p>Daily market risk assessments, specific stock recommendations with entry/exit levels, and real-time alerts during major market moves.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>I've already lost a lot — is it too late?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-a">
+            <p>No. Proper risk management now can prevent further losses and position you to capture the recovery.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Legal / Footer -->
+      <div class="legal">
+        <p>
+          This group provides market commentary and educational content only. It does not constitute financial advice. All investments carry risk, including the loss of principal. Past performance is not indicative of future results. Please consult a licensed financial advisor before making investment decisions.
+        </p>
+        <p style="margin-top: 8px;">
+          <a class="modal-trigger" data-modal="privacy">Privacy Policy</a> &middot;
+          <a class="modal-trigger" data-modal="terms">Terms of Use</a>
+        </p>
+        <p style="margin-top: 8px;">info@marketanalysis.sg</p>
+      </div>
+
+    </div>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+      <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div class="modal-overlay" id="modal-privacy">
+      <div class="modal">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <h3>Privacy Policy</h3>
+        <p>We respect your privacy. We do not collect, store, or share any personal data through this page. Clicking the WhatsApp button will redirect you to the WhatsApp application, which is governed by WhatsApp's own privacy policy. We do not have access to your phone number, messages, or any personal information unless you voluntarily share it within the group. For questions, contact info@marketanalysis.sg.</p>
+      </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal-overlay" id="modal-terms">
+      <div class="modal">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <h3>Terms of Use</h3>
+        <p>By accessing this page, you acknowledge that all content is for educational and informational purposes only and does not constitute financial advice, investment recommendations, or solicitation. We are not a licensed financial advisor, broker, or dealer. Any investment decisions you make are your sole responsibility. We make no guarantees about the accuracy, completeness, or timeliness of the information provided. Use this service at your own risk.</p>
+      </div>
+    </div>
+
+    <script>
+      // ── Meter fill animation on load ──
+      (function () {
+        var fills = document.querySelectorAll('.meter-fill');
+        // Small delay so the transition is visible
+        setTimeout(function () {
+          for (var i = 0; i < fills.length; i++) {
+            fills[i].classList.add('animated');
+          }
+        }, 400);
+      })();
+
+      // ── Scroll reveal ──
+      (function () {
+        var els = document.querySelectorAll('.reveal');
+        function check() {
+          var wh = window.innerHeight;
+          for (var i = 0; i < els.length; i++) {
+            var rect = els[i].getBoundingClientRect();
+            if (rect.top < wh * 0.88) {
+              els[i].classList.add('visible');
+            }
+          }
+        }
+        check();
+        window.addEventListener('scroll', check, { passive: true });
+      })();
+
+      // ── FAQ accordion ──
+      (function () {
+        var items = document.querySelectorAll('.faq-q');
+        for (var i = 0; i < items.length; i++) {
+          items[i].addEventListener('click', function () {
+            var parent = this.parentElement;
+            var wasOpen = parent.classList.contains('open');
+            // Close all
+            var all = document.querySelectorAll('.faq-item');
+            for (var j = 0; j < all.length; j++) all[j].classList.remove('open');
+            if (!wasOpen) parent.classList.add('open');
+          });
+        }
+      })();
+
+      // ── Modal ──
+      (function () {
+        var triggers = document.querySelectorAll('.modal-trigger');
+        for (var i = 0; i < triggers.length; i++) {
+          triggers[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            var id = 'modal-' + this.getAttribute('data-modal');
+            var m = document.getElementById(id);
+            if (m) m.classList.add('active');
+          });
+        }
+        var closes = document.querySelectorAll('.modal-close');
+        for (var j = 0; j < closes.length; j++) {
+          closes[j].addEventListener('click', function () {
+            this.closest('.modal-overlay').classList.remove('active');
+          });
+        }
+        var overlays = document.querySelectorAll('.modal-overlay');
+        for (var k = 0; k < overlays.length; k++) {
+          overlays[k].addEventListener('click', function (e) {
+            if (e.target === this) this.classList.remove('active');
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

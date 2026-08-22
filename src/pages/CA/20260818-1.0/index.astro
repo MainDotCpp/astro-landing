@@ -1,0 +1,529 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>US Stock Research for Canadian Investors</title>
+    <meta name="description" content="AI-driven quantitative research on thousands of US-listed companies. Free pre-market analysis delivered to WhatsApp. Built for Canadian investors." />
+
+    <RedirectCode />
+
+    <script is:inline>document.documentElement.classList.add('js')</script>
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #FFFFFF;
+        color: #334155;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 72px;
+      }
+
+      /* --- Scroll Reveal --- */
+      html.js .reveal {
+        opacity: 0;
+        transform: translateY(17px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+      html.js .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      }
+
+      /* --- Layout --- */
+      .container {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* --- Hero --- */
+      .hero {
+        background: linear-gradient(160deg, #0B2A5B 0%, #103570 60%, #174590 100%);
+        padding: 52px 20px 44px;
+        color: #FFFFFF;
+      }
+      .hero-inner {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .hero-eyebrow {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.75);
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 4px 12px;
+        border-radius: 4px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: #FFFFFF;
+        margin-bottom: 16px;
+      }
+      .hero p {
+        font-size: 15px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 28px;
+      }
+
+      /* --- CTA Button --- */
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #25D366;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 14px 32px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+        width: 100%;
+        text-align: center;
+      }
+      .cta-btn:hover { background: #1fb855; }
+      .cta-btn svg { flex-shrink: 0; }
+
+      /* --- Section --- */
+      .section {
+        padding: 48px 20px;
+      }
+      .section-alt {
+        background: #F7F9FC;
+      }
+      .section-inner {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .section-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #0B2A5B;
+        margin-bottom: 12px;
+        line-height: 1.35;
+      }
+      .section-subtitle {
+        font-size: 15px;
+        color: #64748B;
+        margin-bottom: 32px;
+        line-height: 1.6;
+      }
+
+      /* --- Bullet list (Why US Stocks) --- */
+      .reason-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .reason-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .reason-icon {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        background: #EEF4FF;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .reason-icon svg {
+        width: 20px;
+        height: 20px;
+        color: #1E6BFF;
+      }
+      .reason-item h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #0B2A5B;
+        margin-bottom: 4px;
+      }
+      .reason-item p {
+        font-size: 14px;
+        color: #64748B;
+        line-height: 1.55;
+      }
+
+      /* --- Feature cards (Data-Driven) --- */
+      .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .feature-card {
+        background: #FFFFFF;
+        border: 1px solid #E8EDF3;
+        border-radius: 12px;
+        padding: 24px;
+      }
+      .feature-card-icon {
+        width: 36px;
+        height: 36px;
+        background: #EEF4FF;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+      }
+      .feature-card-icon svg {
+        width: 18px;
+        height: 18px;
+        color: #1E6BFF;
+      }
+      .feature-card h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #0B2A5B;
+        margin-bottom: 6px;
+      }
+      .feature-card p {
+        font-size: 14px;
+        color: #64748B;
+        line-height: 1.55;
+      }
+
+      /* --- WhatsApp benefits card --- */
+      .benefits-card {
+        background: linear-gradient(165deg, #F0FFF4 0%, #DCFCE7 100%);
+        border: 1px solid #BBF7D0;
+        border-radius: 14px;
+        padding: 28px 24px;
+      }
+      .benefits-card h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0B2A5B;
+        margin-bottom: 20px;
+      }
+      .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .benefit-item:last-child { margin-bottom: 0; }
+      .benefit-check {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        background: #25D366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1px;
+      }
+      .benefit-check svg {
+        width: 12px;
+        height: 12px;
+        color: #FFFFFF;
+      }
+      .benefit-item p {
+        font-size: 14px;
+        color: #1E293B;
+        line-height: 1.55;
+      }
+      .benefit-item p strong {
+        font-weight: 600;
+        color: #0B2A5B;
+      }
+
+      /* --- Close CTA --- */
+      .close-cta {
+        text-align: center;
+        padding: 48px 20px 56px;
+      }
+      .close-cta h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #0B2A5B;
+        margin-bottom: 12px;
+        line-height: 1.35;
+      }
+      .close-cta p {
+        font-size: 14px;
+        color: #64748B;
+        margin-bottom: 28px;
+      }
+      .close-note {
+        margin-top: 14px;
+        font-size: 13px;
+        color: #94A3B8;
+      }
+
+      /* --- Footer --- */
+      .footer {
+        padding: 24px 20px;
+        border-top: 1px solid #E8EDF3;
+      }
+      .footer p {
+        max-width: 640px;
+        margin: 0 auto;
+        font-size: 11px;
+        color: #94A3B8;
+        line-height: 1.6;
+      }
+
+      /* --- Sticky bar --- */
+      .sticky-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        border-top: 1px solid #E8EDF3;
+        padding: 12px 20px;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+      }
+      .sticky-bar .cta-btn {
+        max-width: 640px;
+        font-size: 15px;
+        padding: 12px 24px;
+      }
+
+      /* --- Desktop enhancement --- */
+      @media (min-width: 768px) {
+        .hero { padding: 64px 24px 56px; }
+        .hero h1 { font-size: 32px; }
+        .hero p { font-size: 16px; }
+        .section { padding: 56px 24px; }
+        .section-title { font-size: 26px; }
+        .feature-grid { grid-template-columns: 1fr 1fr; }
+        .cta-btn { width: auto; min-width: 320px; }
+        .close-cta { padding: 56px 24px 64px; }
+        .close-cta h2 { font-size: 26px; }
+        body { padding-bottom: 80px; }
+        .sticky-bar { padding: 14px 24px; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">For Canadian Investors</div>
+        <h1>Canadian investors are paying attention to US stocks. We find the opportunities worth watching.</h1>
+        <p>Our quantitative research system scans thousands of US-listed stocks and delivers a pre-market briefing straight to your WhatsApp every morning before the bell. No subscription fees, no obligations.</p>
+        <button type="button" class="cta-btn link-btn" aria-label="Join the Free WhatsApp Group">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Join the Free WhatsApp Group
+        </button>
+      </div>
+    </header>
+
+    <!-- Why US Stocks -->
+    <section class="section reveal">
+      <div class="section-inner">
+        <h2 class="section-title">Why Canadian investors are looking south</h2>
+        <p class="section-subtitle">The TSX is heavy on banks and energy. The companies reshaping the global economy — in AI, semiconductors, cloud infrastructure, and biotech — trade on US exchanges.</p>
+
+        <ul class="reason-list">
+          <li class="reason-item">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h3>Home to the AI revolution</h3>
+              <p>The world's largest AI chipmakers, cloud platforms, and software companies are all US-listed. This sector barely exists on the TSX.</p>
+            </div>
+          </li>
+          <li class="reason-item">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div>
+              <h3>Deeper liquidity, wider selection</h3>
+              <p>Over 6,000 stocks across NYSE and Nasdaq — far more industry coverage and trading volume than what's available domestically.</p>
+            </div>
+          </li>
+          <li class="reason-item">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <div>
+              <h3>TFSA and RRSP compatible</h3>
+              <p>Most Canadian brokerages let you hold US stocks directly in registered accounts. You can diversify without giving up tax-sheltered room.</p>
+            </div>
+          </li>
+          <li class="reason-item">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <h3>Stronger long-term track record</h3>
+              <p>Over the past decade, the S&P 500 has consistently outperformed the TSX Composite in total returns — driven by technology-sector growth.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Data-Driven Research -->
+    <section class="section section-alt reveal">
+      <div class="section-inner">
+        <h2 class="section-title">Research powered by data, not opinions</h2>
+        <p class="section-subtitle">Our quantitative analysis system, built and refined since 2015, processes market data continuously so you don't have to.</p>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>24/7 market monitoring</h3>
+            <p>Real-time tracking of stock prices, options flow, dark pool activity, and institutional block trades — across every US-listed company.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3>SEC filing analysis</h3>
+            <p>Automatic parsing of 13F filings, insider transactions, and earnings reports — flagging material changes the moment they're published.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3>Cross-checked by multiple models</h3>
+            <p>No single algorithm gets everything right. Our system runs several independent analyses and only surfaces ideas where the signals agree.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Daily pre-market delivery</h3>
+            <p>Every morning before the opening bell, you get a concise summary of what our system found overnight — delivered to WhatsApp so it's there when you wake up.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="section reveal">
+      <div class="section-inner">
+        <h2 class="section-title">What you get in the WhatsApp group</h2>
+
+        <div class="benefits-card">
+          <h3>Your daily research feed</h3>
+
+          <div class="benefit-item">
+            <div class="benefit-check">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p><strong>Pre-market briefings</strong> — a quick read on overnight developments, sector moves, and key levels to watch before the bell.</p>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-check">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p><strong>Weekly shortlist of 1 to 3 stocks</strong> that our system flagged as having strong quantitative setups — with the reasoning laid out.</p>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-check">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p><strong>Sector and macro analysis</strong> — from semiconductor supply chain shifts to Fed policy, we cover what's actually moving the market.</p>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-check">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p><strong>Educational content</strong> — how to read options flow, what dark pool data actually tells you, and how to handle the CAD/USD exchange when buying US stocks.</p>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-check">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p><strong>Currently free</strong> — we're building the community and want early members who'll stick around. No credit card, no commitment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Close CTA -->
+    <section class="close-cta reveal">
+      <div class="section-inner">
+        <h2>See what the market's doing before it opens</h2>
+        <p>Join a growing community of Canadian investors who start their morning with better information.</p>
+        <button type="button" class="cta-btn link-btn" aria-label="Join the Free WhatsApp Group">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Join the Free WhatsApp Group
+        </button>
+        <p class="close-note">Free · No payment required · Leave anytime</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Market information is provided for educational and informational purposes only and does not constitute investment advice. Investing involves risk, including possible loss of principal. Past performance does not guarantee future results.</p>
+    </footer>
+
+    <!-- Sticky WhatsApp bar -->
+    <div class="sticky-bar">
+      <button type="button" class="cta-btn link-btn" aria-label="Join WhatsApp Group">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Join Free WhatsApp Group
+      </button>
+    </div>
+
+    <!-- Scroll reveal -->
+    <script is:inline>
+    ;(function () {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+      if (!items.length) return
+      function tick() {
+        var vh = window.innerHeight || document.documentElement.clientHeight
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (items[i].getBoundingClientRect().top < vh - 60) {
+            items[i].classList.add('in')
+            items.splice(i, 1)
+          }
+        }
+        if (!items.length) {
+          window.removeEventListener('scroll', tick)
+          window.removeEventListener('resize', tick)
+        }
+      }
+      window.addEventListener('scroll', tick, { passive: true })
+      window.addEventListener('resize', tick)
+      tick()
+      setTimeout(tick, 300)
+    })()
+    </script>
+  </body>
+</html>

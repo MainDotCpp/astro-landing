@@ -1,0 +1,1172 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+
+import bookMindset from './images/book-mindset.webp'
+import bookTeacher from './images/book-teacher.webp'
+import bookDieWithZero from './images/book-diewithzero.webp'
+import bookOutlive from './images/book-outlive.webp'
+import bookHealth from './images/book-health.webp'
+
+import doorstepImg from './images/scene-doorstep.jpg'
+import unboxingImg from './images/scene-unboxing.jpg'
+import packingImg from './images/scene-packing.jpg'
+
+// 承載內容的主視覺（非裝飾）：文字與版式都排在圖裡
+import posterIntro from './images/poster-intro.jpg'
+import posterWhy from './images/poster-why.jpg'
+// 五本合輯：真實書封合成，不是 AI 畫的（AI 會生出假書名）
+import booksShot from './images/poster-books.jpg'
+import booksShotM from './images/poster-books-m.jpg'
+
+// 用「你現在想解決什麼」領路，而不是用書名。
+// 選項本身就是分眾標籤：選了哪一句，就知道他是誰。
+const books = [
+  {
+    img: bookMindset,
+    ask: '我想先把自己的金錢觀弄清楚',
+    title: '致富心態',
+    author: '摩根‧豪瑟',
+    note: '整本沒有 K 線，也沒有公式。他只講一件事：人一碰到錢，為什麼常常做出連自己都想不通的決定。全球賣破千萬本。',
+  },
+  {
+    img: bookTeacher,
+    ask: '存款是有，就是不知道該放哪',
+    title: '我用死薪水輕鬆理財賺千萬',
+    author: '安德魯‧哈藍',
+    note: '一個高中老師，領死薪水存到千萬。他自己也在國外教了很多年書，寫的方法不用天天看盤。',
+  },
+  {
+    img: bookDieWithZero,
+    ask: '我在想，退休以後要怎麼過',
+    title: '別把你的錢留到死',
+    author: '比爾‧柏金斯',
+    note: '書名就是他的結論：存太多、花太少，其實也是一種浪費。看完大概會想重新算一次，這輩子的錢該留多少、該花多少。',
+  },
+  {
+    img: bookOutlive,
+    ask: '我想活得久，也活得好',
+    title: '超預期壽命 Ⅰ+Ⅱ',
+    author: '彼得‧阿提亞',
+    note: '一個醫生把「怎麼老得慢一點」的研究整理成書，運動、睡眠、吃法都談，也談心理。厚厚兩冊，要有點耐心。',
+  },
+  {
+    img: bookHealth,
+    ask: '我想先把身體顧好',
+    title: '不生病的生活',
+    author: '新谷弘實',
+    note: '在美國看了幾十年腸胃的日本醫生，寫他自己的飲食方法。出版二十年還在賣，全球三百多萬本。',
+  },
+]
+
+// 陌生人落地第一個念頭是「免費送書一定有鬼」，
+// 所以「這是什麼活動」必須緊接 hero，不能埋在頁尾。
+const forWhom = [
+  '存了一點錢，但不知道下一步該怎麼走',
+  '開始會想到退休這件事',
+  '想趁還來得及，把身體顧好',
+]
+
+const steps = [
+  { n: '01', t: '加 LINE 好友', d: '按頁面上任何一顆紅色按鈕，就會直接開 LINE。加完就算報名。' },
+  { n: '02', t: '挑一本書，留下地址', d: '在 LINE 裡挑，五本選一本，然後填收件資料。' },
+  { n: '03', t: '等包裹到你家', d: '書一寄出，就把包裹查詢單號給你。' },
+]
+
+const faqs = [
+  { q: '真的免費？', a: '書錢跟運費都我們出，也不用留信用卡。' },
+  // 台灣人看到「免費送 + 加 LINE + 聊理財」第一個念頭就是詐騙，
+  // 這題不正面回答，前面所有誠實都白費。位置刻意排第二。
+  { q: '之後會叫我投資或付錢嗎？', a: '不會。我們不收錢、不代操、不推薦個股，也不會問你的銀行或證券帳戶。' },
+  { q: '是抽獎嗎？', a: '不是。挑好書、填好地址，就會寄。' },
+  { q: '要按讚分享，或找朋友一起加嗎？', a: '不用。' },
+  { q: '為什麼要地址？', a: '寄書用，只用這一次。' },
+  { q: '可以挑兩本嗎？', a: '一人一本。其他幾本之後在群組裡會再聊到。' },
+  // 不寫天數：國際寄送時間本來就不可控，承諾了只會製造客訴。
+  // 改成把掌控感交回讀者手上。
+  { q: '多久會到？', a: '看你住的地方，時間不太一樣。書一寄出就會把查詢單號給你，進度隨時可以自己看。' },
+]
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>五本書挑一本，我們寄到你家 — 免費贈書</title>
+    <meta
+      name="description"
+      content="不是抽獎。五本繁體中文暢銷書挑一本，實體書寄到你家，書錢跟運費我們出。不用按讚分享，也不用找朋友，點擊加入領取就好。"
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        doorstepUrl: `url(${doorstepImg.src})`,
+        unboxingUrl: `url(${unboxingImg.src})`,
+        packingUrl: `url(${packingImg.src})`,
+      }}
+    >
+      /* ============================================================
+         航空郵件的視覺語言：郵政紅 × 航空藍 × 冷調紙白。
+         底色刻意偏冷，好讓牛皮紙的暖棕與書封的彩度浮出來。
+         ============================================================ */
+      :root {
+        --paper: #eff1f2;
+        --paper-2: #e4e7e9;
+        --card: #f8f9f9;
+        --ink: #111820;
+        --ink-2: #48525e;
+        --ink-3: #7d8792;
+        --post-red: #c8102e;
+        --air-blue: #1b3f8b;
+        --kraft: #b08356;
+
+        --serif: 'Noto Serif TC', serif;
+        --sans: 'Noto Sans TC', system-ui, sans-serif;
+        --mono: 'Space Mono', ui-monospace, monospace;
+
+        --pad: 22px;
+        --dock-h: 76px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.75;
+        /* 給底部 sticky 讓位，避免最後一段被蓋住 */
+        padding-bottom: calc(var(--dock-h) + env(safe-area-inset-bottom, 0px));
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 var(--pad);
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      /* ---------- 共用排版 ---------- */
+      h2 {
+        font-family: var(--serif);
+        font-weight: 900;
+        font-size: 27px;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        margin: 0 0 14px;
+      }
+
+      .lede {
+        color: var(--ink-2);
+        margin: 0 0 32px;
+        max-width: 46ch;
+      }
+
+      /* ---------- CTA ---------- */
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 58px;
+        padding: 0 26px;
+        background: var(--post-red);
+        color: #fff;
+        font-family: var(--sans);
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        border: 0;
+        border-radius: 3px;
+        cursor: pointer;
+        box-shadow: 0 2px 0 #8f0b20;
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .btn:hover {
+        background: #a80d26;
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn:focus-visible {
+        outline: 3px solid var(--air-blue);
+        outline-offset: 3px;
+      }
+
+      .btn-note {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-3);
+        text-align: center;
+        margin: 12px 0 0;
+        letter-spacing: 0.02em;
+      }
+
+      /* ============================================================
+         HERO
+         ============================================================ */
+      .hero {
+        padding: 44px 0 0;
+      }
+
+      .hero h1 {
+        font-family: var(--serif);
+        font-weight: 900;
+        font-size: clamp(40px, 13.5vw, 62px);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        margin: 0 0 20px;
+      }
+
+      /* 「不是抽獎。」單獨成行、加底線 —— 整頁最重要的一句 */
+      .hero h1 .hit {
+        display: block;
+        color: var(--post-red);
+        position: relative;
+      }
+
+      .hero h1 .sub {
+        display: block;
+        font-size: 0.62em;
+        line-height: 1.3;
+        margin-top: 12px;
+        letter-spacing: -0.02em;
+      }
+
+      .hero p.intro {
+        font-size: 16px;
+        color: var(--ink-2);
+        margin: 0 0 26px;
+        max-width: 34ch;
+      }
+
+      .hero-img {
+        margin-top: 34px;
+        aspect-ratio: 16 / 10;
+        background-image: var(--doorstepUrl);
+        background-size: cover;
+        background-position: 62% center;
+      }
+
+      /* ============================================================
+         三個「不用」—— 用郵政紅的刪除線表示「這些都沒有」
+         ============================================================ */
+      .nots {
+        background: var(--ink);
+        color: #fff;
+        padding: 40px 0;
+      }
+
+      .not-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 20px;
+      }
+
+      .not-list li {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+      }
+
+      .not-list .x {
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--post-red);
+        flex: 0 0 auto;
+        letter-spacing: 0.1em;
+      }
+
+      .not-list b {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 20px;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .not-list span {
+        color: #a4adb8;
+        font-size: 14px;
+      }
+
+      /* ============================================================
+         挑哪一本
+         ============================================================ */
+      .books-shot {
+        width: 100%;
+        height: auto;
+        margin-bottom: 34px;
+        border-radius: 2px;
+      }
+
+      .picks {
+        display: grid;
+        gap: 14px;
+      }
+
+      .pick {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 16px;
+        align-items: start;
+        background: var(--card);
+        border: 1px solid var(--paper-2);
+        border-radius: 3px;
+        padding: 18px 16px;
+      }
+
+      /* 書封原圖是白底立體書影；multiply 讓白底融進卡片，省去去背 */
+      .pick .cover {
+        mix-blend-mode: multiply;
+        width: 100%;
+      }
+
+      .pick .ask {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.45;
+        margin: 0 0 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .pick .meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--ink-3);
+        margin: 0 0 8px;
+      }
+
+      /* 書名獨占一行，長書名才不會把作者擠成孤字 */
+      .pick .meta b {
+        display: block;
+        color: var(--air-blue);
+        font-weight: 700;
+        margin-bottom: 1px;
+      }
+
+      .pick .note {
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--ink-2);
+        margin: 0;
+      }
+
+      /* ============================================================
+         情境圖（正常流，不做浮層）
+         ============================================================ */
+      .band {
+        aspect-ratio: 16 / 10;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .band.unboxing {
+        background-image: var(--unboxingUrl);
+      }
+
+      .band.packing {
+        background-image: var(--packingUrl);
+      }
+
+      /* ============================================================
+         怎麼拿到 —— 這裡的編號是真的順序，不是裝飾
+         ============================================================ */
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 26px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 16px;
+      }
+
+      .step .n {
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--post-red);
+        padding-top: 3px;
+      }
+
+      .step h3 {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 19px;
+        margin: 0 0 5px;
+      }
+
+      .step p {
+        margin: 0;
+        color: var(--ink-2);
+        font-size: 15px;
+      }
+
+      /* ============================================================
+         SIGNATURE — 寄件標籤。收件人欄是空的，在等你填。
+         紅藍斜紋是真實航空郵件信封的邊框。
+         ============================================================ */
+      .label-sec {
+        background: var(--ink);
+        padding: 60px 0;
+      }
+
+      .ship {
+        background: #fdfcf8;
+        color: var(--ink);
+        border-radius: 2px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgb(0 0 0 / 35%);
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      .ship .stripe {
+        height: 9px;
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--post-red) 0 11px,
+          #fdfcf8 11px 22px,
+          var(--air-blue) 22px 33px,
+          #fdfcf8 33px 44px
+        );
+      }
+
+      .ship .body {
+        padding: 24px 22px 26px;
+      }
+
+      .ship .par {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        color: var(--air-blue);
+        text-transform: uppercase;
+        margin: 0 0 20px;
+      }
+
+      .ship .row {
+        border-top: 1px dashed #cfcabb;
+        padding: 13px 0 11px;
+      }
+
+      .ship .row:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .ship .k {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        color: var(--ink-3);
+        text-transform: uppercase;
+        margin: 0 0 4px;
+      }
+
+      .ship .v {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 17px;
+        margin: 0;
+      }
+
+      /* 空白的收件人欄 —— 整頁的情緒高點。
+         做成一條真的能寫字的橫線，長度要撐得起「在等你填」。 */
+      .ship .v.blank {
+        display: block;
+        width: 82%;
+        height: 26px;
+        margin: 2px 0 0;
+        padding: 0;
+        border-bottom: 2px solid var(--post-red);
+      }
+
+      .ship .foot {
+        border-top: 1px dashed #cfcabb;
+        margin-top: 4px;
+        padding-top: 13px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        color: var(--ink-3);
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .label-sec .cap {
+        color: #a4adb8;
+        text-align: center;
+        font-size: 14px;
+        margin: 22px auto 0;
+        max-width: 30ch;
+      }
+
+      /* ============================================================
+         承載內容的主視覺：文字排在圖裡，HTML 文案不重複圖上的話
+         ============================================================ */
+      .poster {
+        width: 100%;
+        height: auto;
+        border-radius: 2px;
+      }
+
+      /* ---------- 這是什麼活動 ---------- */
+      .about .poster {
+        margin-bottom: 34px;
+      }
+
+      .about-tx p {
+        color: var(--ink-2);
+        margin: 0 0 14px;
+        max-width: 42ch;
+      }
+
+      .about-tx p.strong {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--ink);
+      }
+
+      .whom {
+        margin-top: 26px;
+        border-top: 2px solid var(--ink);
+        padding-top: 18px;
+      }
+
+      .whom-t {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: var(--ink-3);
+        margin: 0 0 10px;
+      }
+
+      .whom ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 9px;
+      }
+
+      .whom li {
+        position: relative;
+        padding-left: 22px;
+        font-size: 15px;
+        color: var(--ink);
+      }
+
+      .whom li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 11px;
+        width: 12px;
+        height: 2px;
+        background: var(--post-red);
+      }
+
+      /* ---------- 為什麼免費 ---------- */
+      .why {
+        background: var(--paper-2);
+      }
+
+      .why .poster {
+        margin-bottom: 30px;
+      }
+
+      .why-tx p {
+        color: var(--ink-2);
+        margin: 0 0 14px;
+        max-width: 44ch;
+      }
+
+      /* ============================================================
+         FAQ
+         ============================================================ */
+      .faq {
+        background: var(--paper-2);
+      }
+
+      .faq dl {
+        margin: 0;
+        display: grid;
+        gap: 0;
+      }
+
+      .faq .qa {
+        border-top: 1px solid #d3d8db;
+        padding: 18px 0;
+      }
+
+      .faq .qa:last-child {
+        border-bottom: 1px solid #d3d8db;
+      }
+
+      .faq dt {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 17px;
+        margin: 0 0 5px;
+      }
+
+      .faq dd {
+        margin: 0;
+        color: var(--ink-2);
+        font-size: 15px;
+      }
+
+      /* ============================================================
+         結尾
+         ============================================================ */
+      .end {
+        text-align: center;
+      }
+
+      .end h2 {
+        font-size: 30px;
+      }
+
+      .end .lede {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .end .btn {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      footer {
+        padding: 30px 0 40px;
+        color: var(--ink-3);
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      /* ============================================================
+         底部 sticky —— 實心、有真實高度，Pixel 才歸得了因
+         ============================================================ */
+      .dock {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: var(--dock-h);
+        padding: 10px var(--pad) calc(10px + env(safe-area-inset-bottom, 0px));
+        background: rgb(17 24 32 / 97%);
+        border-top: 3px solid var(--post-red);
+      }
+
+      .dock .tx {
+        flex: 1 1 auto;
+        min-width: 0;
+        color: #fff;
+        font-size: 12px;
+        line-height: 1.45;
+        font-family: var(--mono);
+        letter-spacing: 0.02em;
+      }
+
+      .dock .tx b {
+        display: block;
+        font-family: var(--serif);
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0;
+        margin-bottom: 1px;
+      }
+
+      .dock .go {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        min-height: 50px;
+        padding: 0 20px;
+        background: var(--post-red);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .dock .go:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 2px;
+      }
+
+      /* ---------- 滾動顯現 ---------- */
+      .rv {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rv {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      /* ============================================================
+         漸進增強到平板 / 桌面
+         ============================================================ */
+      @media (min-width: 768px) {
+        :root {
+          --pad: 40px;
+          --dock-h: 84px;
+        }
+
+        section {
+          padding: 88px 0;
+        }
+
+        h2 {
+          font-size: 36px;
+        }
+
+        .hero {
+          padding: 0;
+          position: relative;
+          min-height: 84vh;
+          display: flex;
+          align-items: center;
+          background-image: var(--doorstepUrl);
+          background-size: cover;
+          background-position: center right;
+        }
+
+        /* 圖片左側本來就是留白地板，文字壓在那裡不會蓋到包裹 */
+        .hero::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            100deg,
+            rgb(239 241 242 / 97%) 0%,
+            rgb(239 241 242 / 92%) 38%,
+            rgb(239 241 242 / 30%) 62%,
+            rgb(239 241 242 / 5%) 100%
+          );
+        }
+
+        .hero .wrap {
+          position: relative;
+          padding-top: 60px;
+          padding-bottom: 60px;
+        }
+
+        .hero-inner {
+          max-width: 560px;
+        }
+
+        .hero-img {
+          display: none;
+        }
+
+        .hero p.intro {
+          font-size: 17px;
+        }
+
+        .btn {
+          width: auto;
+          display: inline-flex;
+          min-height: 62px;
+        }
+
+        .btn-note {
+          text-align: left;
+        }
+
+        .not-list {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+        }
+
+        .picks {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px;
+        }
+
+        .pick {
+          grid-template-columns: 112px 1fr;
+          padding: 22px 20px;
+        }
+
+        .band {
+          aspect-ratio: 21 / 8;
+        }
+
+        .steps {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 34px;
+        }
+
+        /* 直式海報在桌面改成左右並排，否則頁面會被拉得過長 */
+        .about .wrap,
+        .why .wrap {
+          display: grid;
+          grid-template-columns: 0.8fr 1fr;
+          gap: 56px;
+          align-items: center;
+        }
+
+        .about .poster,
+        .why .poster {
+          margin-bottom: 0;
+        }
+
+        .about-tx p.strong {
+          font-size: 20px;
+        }
+
+        .why-tx p {
+          font-size: 17px;
+        }
+
+        .faq dl {
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 44px;
+        }
+
+        .end .btn {
+          margin: 0 auto;
+        }
+
+        .dock {
+          justify-content: center;
+          gap: 26px;
+        }
+
+        .dock .tx {
+          flex: 0 1 auto;
+        }
+
+        .dock .tx b {
+          font-size: 18px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .picks {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+      <div class="wrap">
+        <div class="hero-inner">
+          <h1>
+            <span class="hit">不是抽獎。</span>
+            <span class="sub">五本書，挑一本，<br />我們寄到你家。</span>
+          </h1>
+          <p class="intro">寄的是實體書，不是電子書。書錢跟運費都我們出，你只負責收件。</p>
+          <a class="btn link-btn" onclick="mixinJump()">點擊加入領取</a>
+          <p class="btn-note">挑完填地址，就等包裹</p>
+        </div>
+      </div>
+      <div class="hero-img"></div>
+    </header>
+
+    <!-- ===================== 這是什麼活動 ===================== -->
+    <section class="about">
+      <div class="wrap">
+        <img class="poster rv" src={posterIntro.src} alt="免費贈書：五本選一本，寄到你家" loading="lazy" />
+
+        <div class="about-tx">
+          <h2 class="rv">這是什麼活動？</h2>
+          <p class="rv">
+            我們是一個聊投資理財、退休規劃跟健康的中文社群。
+          </p>
+          <p class="rv">
+            這次準備了五本書，加入的人可以挑一本，我們寄到你家。書錢跟運費我們出，不用抽獎，也不用做任何任務。
+          </p>
+          <p class="rv">送的是市面上買得到的正版新書，不是影印本，也不是電子檔。</p>
+          <p class="rv strong">至於我們圖什麼——想讓更多人知道這個社群。就這樣，沒有別的條件。</p>
+
+          <div class="whom rv">
+            <p class="whom-t">大概是給這樣的人看的</p>
+            <ul>
+              {forWhom.map(w => <li>{w}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 三個「不用」 ===================== -->
+    <section class="nots">
+      <div class="wrap">
+        <ul class="not-list">
+          <li>
+            <span class="x">NO.1</span>
+            <div>
+              <b>不用抽獎</b>
+              <span>填完就寄，不用等開獎</span>
+            </div>
+          </li>
+          <li>
+            <span class="x">NO.2</span>
+            <div>
+              <b>不用分享</b>
+              <span>不用按讚分享，也不用找朋友一起加</span>
+            </div>
+          </li>
+          <li>
+            <span class="x">NO.3</span>
+            <div>
+              <b>不用付錢</b>
+              <span>書錢、運費我們出，也不用留信用卡</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== 挑哪一本 ===================== -->
+    <section>
+      <div class="wrap">
+        <picture>
+          <source media="(min-width: 768px)" srcset={booksShot.src} />
+          <img
+            class="books-shot rv"
+            src={booksShotM.src}
+            alt="致富心態、我用死薪水輕鬆理財賺千萬、別把你的錢留到死、超預期壽命、不生病的生活，五本任選一本"
+            loading="lazy"
+          />
+        </picture>
+
+        <h2 class="rv">你最想先解決哪一件？</h2>
+        <p class="lede rv">下面五句，哪一句最像你，就挑那一本。挑完在 LINE 裡填地址，我們就寄出去。</p>
+
+        <div class="picks">
+          {
+            books.map(b => (
+              <article class="pick rv">
+                <img class="cover" src={b.img.src} alt={`《${b.title}》書封`} loading="lazy" />
+                <div>
+                  <p class="ask">「{b.ask}」</p>
+                  <p class="meta">
+                    <b>{b.title}</b>
+                    {b.author}
+                  </p>
+                  <p class="note">{b.note}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <div class="band unboxing"></div>
+
+    <!-- ===================== 怎麼拿到 ===================== -->
+    <section>
+      <div class="wrap">
+        <h2 class="rv">怎麼拿到</h2>
+        <p class="lede rv">三個步驟，大概兩分鐘。</p>
+
+        <ol class="steps">
+          {
+            steps.map(s => (
+              <li class="step rv">
+                <span class="n">{s.n}</span>
+                <div>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 為什麼免費 ===================== -->
+    <section class="why">
+      <div class="wrap">
+        <img class="poster rv" src={posterWhy.src} alt="與其買廣告，不如送你一本書" loading="lazy" />
+        <div class="why-tx">
+          <p class="rv">
+            廣告費砸下去，你滑過去、點一下、關掉，然後我們互相忘記對方。同樣一筆錢，變成一本真的書寄到你家，至少你手上會留下一點東西。
+          </p>
+          <p class="rv">你讀完覺得有幫助，願意留下來，那我們就賺到了。拿了書就走，也沒關係。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 用實拍照隔開兩個深色區塊，避免視覺上悶成一團 -->
+    <div class="band packing"></div>
+
+    <!-- ===================== SIGNATURE：寄件標籤 ===================== -->
+    <section class="label-sec">
+      <div class="wrap">
+        <div class="ship rv">
+          <div class="stripe"></div>
+          <div class="body">
+            <p class="par">Par Avion ‧ 航空郵件</p>
+
+            <div class="row">
+              <p class="k">收件人 / To</p>
+              <p class="v blank">&nbsp;</p>
+            </div>
+
+            <div class="row">
+              <p class="k">內容物 / Contents</p>
+              <p class="v">一本你自己挑的書</p>
+            </div>
+
+            <div class="row">
+              <p class="k">運費 / Postage</p>
+              <p class="v">已付</p>
+            </div>
+
+            <div class="foot">
+              <span>NO COMMERCIAL VALUE</span>
+              <span>BOOKS</span>
+            </div>
+          </div>
+        </div>
+        <p class="cap rv">收件人那一欄還空著。名字填上去，這個包裹就會出發。</p>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="faq">
+      <div class="wrap">
+        <h2 class="rv">你可能會想問</h2>
+        <dl>
+          {
+            faqs.map(f => (
+              <div class="qa rv">
+                <dt>{f.q}</dt>
+                <dd>{f.a}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================== 結尾 ===================== -->
+    <section class="end">
+      <div class="wrap">
+        <h2 class="rv">挑一本，我們寄給你</h2>
+        <p class="lede rv">五本裡選一本，實體書，運費我們出，直接寄到你家。</p>
+        <a class="btn link-btn rv" onclick="mixinJump()">點擊加入領取</a>
+        <p class="btn-note rv">一次寄一批，這批送完就等下一批</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <p>贈送書籍均為市售出版品，內容為作者觀點，不構成投資或醫療建議。贈書數量有限，送完為止。</p>
+      </div>
+    </footer>
+
+    <!-- 底部常駐 CTA -->
+    <div class="dock">
+      <div class="tx">
+        <b>五本挑一本</b>
+        書錢運費我們出
+      </div>
+      <a class="go link-btn" onclick="mixinJump()">點擊加入領取</a>
+    </div>
+
+    <script>
+      // 用 scroll 事件 + getBoundingClientRect 做入場，
+      // IntersectionObserver 在部分預覽環境不觸發。
+      const items = Array.from(document.querySelectorAll('.rv'))
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      function reveal() {
+        const vh = window.innerHeight
+        for (let i = items.length - 1; i >= 0; i--) {
+          const el = items[i]
+          if (el.getBoundingClientRect().top < vh - 60) {
+            el.classList.add('in')
+            items.splice(i, 1)
+          }
+        }
+        if (!items.length) window.removeEventListener('scroll', reveal)
+      }
+
+      if (reduce) {
+        items.forEach(el => el.classList.add('in'))
+      } else {
+        reveal()
+        window.addEventListener('scroll', reveal, { passive: true })
+        // 兜底：任何情況下都不讓文字永久停在 opacity:0
+        setTimeout(() => items.forEach(el => el.classList.add('in')), 2500)
+      }
+    </script>
+  </body>
+</html>

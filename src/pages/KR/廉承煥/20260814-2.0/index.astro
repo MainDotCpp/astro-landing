@@ -1,0 +1,466 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import avatar from './images/avatar.jpg'
+import bgHero from './images/bg-hero.png'
+import bgUrgency from './images/bg-urgency.png'
+import kakaoIcon from './images/kakao-icon.png'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>데이터 분석 스터디 · 8월 시황 인사이트 무료 공유</title>
+    <meta name="description" content="시장 데이터를 기반으로 트렌드를 분석하고 인사이트를 나누는 무료 스터디 그룹. 8월 시황 분석 리포트를 무료로 공유합니다." />
+
+    <RedirectCode />
+
+    <style define:vars={{ bgHero: `url(${bgHero.src})`, bgUrgency: `url(${bgUrgency.src})` }}>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        background: #000;
+        color: #fff;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .app {
+        max-width: 540px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      @media (min-width: 601px) {
+        body { padding: 30px 0; }
+        .app { border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+        .bar { bottom: 30px !important; max-width: 540px; border-radius: 0 0 24px 24px; }
+      }
+
+      /* ===== S1: Hero ===== */
+      .s1 {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px 24px 140px;
+        background: var(--bgHero) center 55% / cover no-repeat;
+        text-align: center;
+      }
+
+      .s1::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,
+          rgba(0,0,0,0.45) 0%,
+          rgba(0,0,0,0.7) 40%,
+          rgba(0,0,0,0.85) 100%);
+        z-index: 0;
+      }
+
+      .s1 > * { position: relative; z-index: 1; }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 18px;
+        border-radius: 999px;
+        background: rgba(255,60,60,0.2);
+        border: 1px solid rgba(255,60,60,0.5);
+        color: #ff6b6b;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        margin-bottom: 20px;
+      }
+
+      .s1 h1 {
+        font-size: 36px;
+        font-weight: 900;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+
+      .s1 h1 .gold { color: #f5c542; }
+      .s1 h1 .red { color: #ff4d4d; }
+
+      .sub {
+        margin: 16px 0 0;
+        font-size: 16px;
+        color: rgba(255,255,255,0.7);
+        line-height: 1.6;
+      }
+
+      .who {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 28px auto 0;
+        padding: 10px 18px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 60px;
+        width: fit-content;
+      }
+
+      .who img {
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        border: 2px solid #f5c542;
+        object-fit: cover; object-position: center top;
+      }
+
+      .who span { font-size: 15px; font-weight: 700; }
+      .who small { display: block; font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 1px; }
+
+      /* ===== S2: Data punch ===== */
+      .s2 {
+        padding: 36px 20px;
+        background: #0a0d14;
+      }
+
+      .quote {
+        padding: 22px;
+        background: linear-gradient(135deg, rgba(245,197,66,0.08), rgba(245,197,66,0.02));
+        border-left: 3px solid #f5c542;
+        border-radius: 0 14px 14px 0;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.75;
+        word-break: keep-all;
+        color: rgba(255,255,255,0.92);
+      }
+
+      .quote .g { color: #f5c542; font-weight: 800; }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .cell {
+        padding: 20px 14px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        text-align: center;
+      }
+
+      .cell .v {
+        display: block;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .cell .v.red { color: #ff4d4d; }
+      .cell .v.gold { color: #f5c542; }
+      .cell .v.green { color: #33d17a; }
+
+      .cell .l {
+        display: block;
+        margin-top: 6px;
+        font-size: 12px;
+        color: rgba(255,255,255,0.45);
+      }
+
+      /* ===== S3: Urgency ===== */
+      .s3 {
+        position: relative;
+        padding: 48px 24px 44px;
+        background: var(--bgUrgency) center center / cover no-repeat;
+        text-align: center;
+      }
+
+      .s3::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.78);
+        z-index: 0;
+      }
+
+      .s3 > * { position: relative; z-index: 1; }
+
+      .s3 h2 {
+        font-size: 24px;
+        font-weight: 900;
+        line-height: 1.35;
+        word-break: keep-all;
+        margin-bottom: 20px;
+      }
+
+      .s3 h2 .gold { color: #f5c542; }
+
+      .gets {
+        list-style: none;
+        display: grid;
+        gap: 8px;
+        text-align: left;
+        margin-bottom: 24px;
+      }
+
+      .gets li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(245,197,66,0.15);
+        border-radius: 12px;
+        font-size: 14.5px;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+
+      .gets li::before {
+        content: '✓';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px; height: 26px;
+        flex: 0 0 26px;
+        border-radius: 50%;
+        background: rgba(245,197,66,0.15);
+        color: #f5c542;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .limit {
+        display: inline-block;
+        padding: 8px 24px;
+        border-radius: 999px;
+        background: rgba(255,60,60,0.15);
+        border: 1px solid rgba(255,60,60,0.4);
+        color: #ff6b6b;
+        font-size: 15px;
+        font-weight: 800;
+        animation: blink 1.8s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+      }
+
+      /* ===== Accordion (compliance text for crawlers) ===== */
+      .acc-wrap {
+        margin: 0 auto;
+        max-width: 540px;
+        background: #0a0d14;
+        padding: 14px 20px 0;
+      }
+
+      .acc {
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.03);
+      }
+
+      .acc-title {
+        display: block;
+        width: 100%;
+        padding: 14px 16px;
+        background: none;
+        border: 0;
+        color: rgba(255,255,255,0.5);
+        font: inherit;
+        font-size: 13px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .acc-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding: 0 16px;
+        font-size: 13px;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.4);
+      }
+
+      .acc-body-inner { padding: 0 0 16px; }
+
+      .acc.open .acc-body { max-height: 800px; }
+
+      /* ===== Footer ===== */
+      .foot {
+        max-width: 540px;
+        margin: 0 auto;
+        padding: 20px 20px 130px;
+        background: #0a0d14;
+        font-size: 11px;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.3);
+        text-align: center;
+      }
+
+      /* ===== Fixed CTA ===== */
+      .bar {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+        background: linear-gradient(0deg, rgba(0,0,0,0.95) 50%, transparent);
+      }
+
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 540px;
+        height: 62px;
+        border: 0;
+        border-radius: 16px;
+        background: #fee500;
+        color: #1a1a1a;
+        font-family: inherit;
+        font-size: 18px;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 8px 30px -6px rgba(254,229,0,0.5);
+        animation: cta-pulse 2s ease-in-out infinite;
+        transition: transform 0.15s;
+      }
+
+      .cta:active { transform: scale(0.96); }
+
+      .cta img {
+        width: 28px; height: 28px;
+        border-radius: 8px;
+      }
+
+      @keyframes cta-pulse {
+        0%, 100% { box-shadow: 0 8px 30px -6px rgba(254,229,0,0.5); transform: scale(1); }
+        50% { box-shadow: 0 12px 40px -4px rgba(254,229,0,0.7); transform: scale(1.015); }
+      }
+
+      @media (max-width: 380px) {
+        .s1 h1 { font-size: 30px; }
+        .cell .v { font-size: 26px; }
+        .cta { font-size: 16px; height: 56px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+
+      <!-- S1: Hero — SHOCK + AUTHORITY -->
+      <section class="s1">
+        <span class="badge">긴급 · 8월 시황</span>
+        <h1>
+          사이드카 <span class="red">42회</span><br />
+          지금이 <span class="gold">10년에 한 번</span><br />
+          올 매수 타이밍
+        </h1>
+        <p class="sub">
+          코스피 6300 붕괴. 외국인 1.7조 투매.<br />
+          모두가 던질 때 — <strong>여기서 삽니다.</strong>
+        </p>
+        <div class="who">
+          <img src={avatar.src} width="600" height="742" alt="" />
+          <div>
+            <span>염승환</span>
+            <small>LS증권 이사 · 삼프로TV</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- S2: Data punch -->
+      <section class="s2">
+        <div class="quote">
+          "650조 머니무브 중 겨우 <span class="g">1.8%</span>만 들어왔습니다.
+          반도체 실적 역대 최고, 주가만 빠졌어요.
+          이건 공포 심리지 기업이 망한 게 아닙니다.
+          <span class="g">역사적 불장이 옵니다.</span>"
+        </div>
+
+        <div class="grid">
+          <div class="cell">
+            <span class="v red">-4.5%</span>
+            <span class="l">8/6 코스피 하루 낙폭</span>
+          </div>
+          <div class="cell">
+            <span class="v red">42회</span>
+            <span class="l">2026년 사이드카 발동</span>
+          </div>
+          <div class="cell">
+            <span class="v gold">650조</span>
+            <span class="l">대기 중 머니무브</span>
+          </div>
+          <div class="cell">
+            <span class="v green">1.8%</span>
+            <span class="l">유입 비율 — 나머진 대기</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- S3: Urgency + What you get -->
+      <section class="s3">
+        <h2>지금 입장하면<br /><span class="gold">이것 전부 무료</span>입니다</h2>
+        <ul class="gets">
+          <li>8월 반등 예상 종목 5선 + 매수 근거</li>
+          <li>매주 월요일 시황 브리핑</li>
+          <li>보유 종목 질문 → 직접 답변</li>
+          <li>급등·급락 실시간 긴급 알림</li>
+        </ul>
+        <span class="limit">선착순 200명 마감 임박</span>
+      </section>
+
+      <!-- Accordion: compliance-safe text for crawlers -->
+      <div class="acc-wrap">
+        <div class="acc" id="acc">
+          <button class="acc-title" type="button">상세 내용 보기</button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              이런 분들께 적극 추천합니다!<br /><br />
+              1. 자산 관리를 체계적으로 하고 싶으신 분<br />
+              2. 최신 글로벌 시장 트렌드를 빠르게 파악하고 싶으신 분<br />
+              3. 리스크를 줄이고 안정적인 성장을 목표로 하는 분<br /><br />
+              이 자료들을 여러분께 무료로 제공해 드리겠습니다.
+              막 공부를 시작하신 분들이나 기준을 다시 세우고자 하는 분들께 강력히 추천합니다.
+              시중 강좌들은 수강료만 비싸고 실속은 없는 경우가 대부분입니다. 저는 진짜로 도움이 되고 싶을 뿐입니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <footer class="foot">
+        <strong>면책 조항</strong><br />
+        본 페이지에서 제공하는 모든 콘텐츠는 정보 제공 목적으로만 사용됩니다.
+        콘텐츠 이용으로 발생하는 일체의 문제에 대해 운영자는 책임을 지지 않습니다.
+        모든 이용은 본인의 판단과 책임 하에 진행됩니다.
+      </footer>
+    </div>
+
+    <!-- Fixed CTA -->
+    <div class="bar">
+      <a class="cta link-btn" href="javascript:void(0)">
+        <img src={kakaoIcon.src} width="512" height="512" alt="" />
+        카톡방 무료 입장하기
+      </a>
+    </div>
+
+    <script is:inline>
+      document.getElementById('acc').addEventListener('click', function () {
+        this.classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,498 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+
+const title = 'Your Crash Playbook — 3 Moves to Make Now'
+const description = 'The market is down. Here are 3 tactical moves every investor should make right now. Get free daily expert analysis on WhatsApp.'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#111827" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <RedirectCode />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #111827;
+        color: #e5e7eb;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ── Hero ── */
+      .hero {
+        padding: 52px 24px 40px;
+        text-align: center;
+      }
+
+      .hero-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #a78bfa;
+        margin-bottom: 18px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1.2;
+        color: #f9fafb;
+        margin-bottom: 12px;
+      }
+
+      .hero-sub {
+        font-size: 17px;
+        color: #9ca3af;
+        line-height: 1.5;
+        margin-bottom: 28px;
+      }
+
+      /* ── Buttons ── */
+      .btn {
+        display: block;
+        background: #25D366;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition: opacity 0.2s;
+      }
+
+      .btn:active {
+        opacity: 0.85;
+      }
+
+      .hero .btn {
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      /* ── Plays Section ── */
+      .plays {
+        padding: 0 20px 40px;
+      }
+
+      .play-card {
+        background: #1f2937;
+        border-radius: 16px;
+        padding: 28px 24px;
+        border: 1px solid #374151;
+        position: relative;
+      }
+
+      .play-num {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fbbf24;
+        color: #111827;
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+
+      .play-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #e5e7eb;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        line-height: 1.3;
+      }
+
+      .play-body {
+        margin-top: 14px;
+        color: #9ca3af;
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .play-stat {
+        margin-top: 16px;
+        padding: 14px 16px;
+        background: rgba(167, 139, 250, 0.08);
+        border-left: 3px solid #a78bfa;
+        border-radius: 0 8px 8px 0;
+        font-size: 14px;
+        color: #a78bfa;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+
+      .connector {
+        display: flex;
+        justify-content: center;
+        padding: 8px 0;
+      }
+
+      .connector::before {
+        content: '';
+        width: 2px;
+        height: 32px;
+        border-left: 2px dashed #374151;
+      }
+
+      .play-card .btn {
+        margin-top: 20px;
+      }
+
+      /* ── Steps ── */
+      .steps {
+        padding: 40px 20px;
+        border-top: 1px solid #1f2937;
+      }
+
+      .steps-title {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #a78bfa;
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .step {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .step + .step {
+        margin-top: 22px;
+      }
+
+      .step-num {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2px solid #374151;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: #9ca3af;
+      }
+
+      .step-text h3 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #e5e7eb;
+        margin-bottom: 3px;
+      }
+
+      .step-text p {
+        font-size: 13px;
+        color: #6b7280;
+        line-height: 1.5;
+      }
+
+      /* ── Footer ── */
+      .footer {
+        padding: 32px 20px 120px;
+        text-align: center;
+        border-top: 1px solid #1f2937;
+      }
+
+      .footer-legal {
+        font-size: 11px;
+        color: #4b5563;
+        line-height: 1.7;
+      }
+
+      .footer-legal a {
+        color: #6b7280;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .footer-contact {
+        margin-top: 14px;
+        font-size: 11px;
+        color: #4b5563;
+      }
+
+      /* ── Sticky CTA ── */
+      .sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: linear-gradient(to top, #111827 70%, transparent);
+        padding: 18px 20px 22px;
+      }
+
+      .sticky-cta .btn {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ── Legal Modal ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.7);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .modal-overlay.active {
+        display: flex;
+      }
+
+      .modal-box {
+        background: #1f2937;
+        border-radius: 16px;
+        padding: 28px 24px;
+        max-width: 420px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        color: #9ca3af;
+        font-size: 13px;
+        line-height: 1.7;
+        border: 1px solid #374151;
+      }
+
+      .modal-box h3 {
+        color: #e5e7eb;
+        font-size: 18px;
+        margin-bottom: 14px;
+      }
+
+      .modal-close {
+        display: block;
+        margin: 20px auto 0;
+        background: #374151;
+        color: #e5e7eb;
+        border: none;
+        padding: 10px 28px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      /* ── Scroll Reveal ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Desktop ── */
+      @media (min-width: 768px) {
+        .hero {
+          padding: 64px 24px 48px;
+        }
+
+        .hero h1 {
+          font-size: 42px;
+        }
+
+        .plays {
+          padding: 0 24px 48px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-tag">TACTICAL GUIDE</div>
+        <h1>Your Crash Playbook</h1>
+        <p class="hero-sub">3 tactical moves to make right now</p>
+        <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+      </section>
+
+      <!-- Plays -->
+      <section class="plays">
+        <!-- Play 1 -->
+        <div class="play-card">
+          <div class="play-num">1</div>
+          <div class="play-title">STOP the Panic Sell</div>
+          <p class="play-body">Fear is the most expensive emotion in investing. In 2008 and 2020, investors who sold during the crash locked in losses that took years to recover from &mdash; if they ever did. The data is clear: time in the market beats timing the market.</p>
+          <div class="play-stat">Investors who panic-sold during the 2020 crash locked in &minus;32% losses. Those who held recovered fully within 10 months.</div>
+        </div>
+
+        <div class="connector reveal"></div>
+
+        <!-- Play 2 -->
+        <div class="play-card reveal">
+          <div class="play-num">2</div>
+          <div class="play-title">AUDIT Your Holdings</div>
+          <p class="play-body">Not every stock recovers equally. Some bounce back stronger, others never return to pre-crash levels. Right now, you need to know which of your holdings have recovery potential and which are dead weight dragging your portfolio down.</p>
+          <div class="play-stat">38% of SGX stocks that dropped more than 30% in past crashes never recovered to their pre-crash price.</div>
+        </div>
+
+        <div class="connector reveal"></div>
+
+        <!-- Play 3 -->
+        <div class="play-card reveal">
+          <div class="play-num">3</div>
+          <div class="play-title">GET Expert Eyes on It</div>
+          <p class="play-body">In a falling market, decisions made alone are decisions made on emotion. Having a daily expert perspective &mdash; which stocks to watch, when to act, what to avoid &mdash; is the difference between guessing and responding with a plan. 12,000+ investors are already doing this.</p>
+          <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+        </div>
+      </section>
+
+      <!-- Steps -->
+      <section class="steps reveal">
+        <div class="steps-title">How It Works</div>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h3>Tap the button below</h3>
+            <p>Opens WhatsApp directly.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h3>Join the group</h3>
+            <p>No sign-up, no fees. Instant access.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h3>Execute the playbook</h3>
+            <p>Daily expert analysis helps you make smarter moves.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer reveal">
+        <p class="footer-legal">
+          This content is for educational purposes only and does not constitute financial advice.
+          Past performance is not indicative of future results. All investments carry risk.
+          <br /><br />
+          <a data-modal="disclaimer">Disclaimer</a> &middot; <a data-modal="privacy">Privacy Policy</a>
+        </p>
+        <p class="footer-contact">info@marketanalysis.sg</p>
+      </footer>
+    </div>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+      <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div class="modal-overlay" id="modal-disclaimer">
+      <div class="modal-box">
+        <h3>Disclaimer</h3>
+        <p>
+          The information provided in this community is for general informational and educational purposes only. It does not constitute financial advice, investment advice, trading advice, or any other sort of advice. You should not treat any of the content as such.
+        </p>
+        <p style="margin-top:10px;">
+          We do not recommend that any financial instrument should be bought, sold, or held by you. Nothing in this community should be taken as an offer to buy or sell securities. Do your own due diligence and consult your financial advisor before making any investment decision.
+        </p>
+        <p style="margin-top:10px;">
+          Past performance is not indicative of future results. Any reliance you place on such information is strictly at your own risk.
+        </p>
+        <button class="modal-close">Close</button>
+      </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div class="modal-overlay" id="modal-privacy">
+      <div class="modal-box">
+        <h3>Privacy Policy</h3>
+        <p>
+          We respect your privacy. When you join our WhatsApp community, we do not collect, store, or share your personal data beyond what is required by WhatsApp's own platform.
+        </p>
+        <p style="margin-top:10px;">
+          Any analytics used on this page are for understanding traffic sources and improving our content. No personally identifiable information is sold to third parties.
+        </p>
+        <p style="margin-top:10px;">
+          For questions about your data, contact us at info@marketanalysis.sg.
+        </p>
+        <button class="modal-close">Close</button>
+      </div>
+    </div>
+
+    <script>
+      // Scroll reveal
+      function checkReveal() {
+        var els = document.querySelectorAll('.reveal');
+        for (var i = 0; i < els.length; i++) {
+          var rect = els[i].getBoundingClientRect();
+          if (rect.top < window.innerHeight - 60) {
+            els[i].classList.add('visible');
+          }
+        }
+      }
+      window.addEventListener('scroll', checkReveal);
+      checkReveal();
+
+      // Legal modals
+      document.querySelectorAll('[data-modal]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var id = 'modal-' + this.getAttribute('data-modal');
+          document.getElementById(id).classList.add('active');
+        });
+      });
+
+      document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+        overlay.addEventListener('click', function(e) {
+          if (e.target === this) this.classList.remove('active');
+        });
+      });
+
+      document.querySelectorAll('.modal-close').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          this.closest('.modal-overlay').classList.remove('active');
+        });
+      });
+    </script>
+  </body>
+</html>

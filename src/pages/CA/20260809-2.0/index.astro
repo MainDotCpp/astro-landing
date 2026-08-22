@@ -1,0 +1,1095 @@
+---
+import { getImage } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import assaySrc from './images/specimen-assay.png'
+import coreSrc from './images/specimen-core-master.png'
+import ladderSrc from './images/stage-ladder.png'
+import mapSrc from './images/listings-map.png'
+
+const FIG_W = 880
+const mapFig = await getImage({ src: mapSrc, format: 'webp', width: FIG_W, quality: 76 })
+const mapH = Math.round(FIG_W * mapSrc.height / mapSrc.width)
+
+const PLATE_W = 720
+const core = await getImage({ src: coreSrc, format: 'webp', width: PLATE_W, quality: 76 })
+const coreH = Math.round(PLATE_W * coreSrc.height / coreSrc.width)
+const assay = await getImage({ src: assaySrc, format: 'webp', width: PLATE_W, quality: 76 })
+const assayH = Math.round(PLATE_W * assaySrc.height / assaySrc.width)
+
+const POR_W = 760
+const ladder = await getImage({ src: ladderSrc, format: 'webp', width: POR_W, quality: 78 })
+const ladderH = Math.round(POR_W * ladderSrc.height / ladderSrc.width)
+
+const tape = [
+  { metal: 'Gold', px: 'US$4,350', unit: '/oz', note: 'hit US$5,542 in January' },
+  { metal: 'Copper', px: 'US$6.57', unit: '/lb', note: 'record US$6.77 on Aug. 7' },
+  { metal: 'Uranium', px: 'US$86.50', unit: '/lb', note: 'roughly triple its 2020 level' },
+]
+
+const gainers = [
+  { name: 'Prospector Metals', tk: 'PPP', pct: 1130 },
+  { name: 'Santacruz Silver', tk: 'SCZ', pct: 1103 },
+  { name: 'Millennial Potash', tk: 'MLP', pct: 950 },
+  { name: 'Goldgroup Mining', tk: 'GGA', pct: 875 },
+  { name: 'TDG Gold', tk: 'TDG', pct: 641 },
+  { name: 'Ucore Rare Metals', tk: 'UCU', pct: 627 },
+  { name: 'NorthIsle Copper & Gold', tk: 'NCX', pct: 509 },
+]
+const maxPct = gainers[0].pct
+
+const deals = [
+  {
+    who: 'Great Bear',
+    tk: 'GBR',
+    got: 'Dixie, in Red Lake — Ontario ground that went from nothing to some of the best gold intercepts of the decade.',
+    lead: 'C$29.00 a share.',
+    rest: 'C$1.8 billion from Kinross at a 40% premium to the 20-day average, plus a C$1.00 contingent value right. December 2021.',
+  },
+  {
+    who: 'Filo',
+    tk: 'FIL',
+    got: 'Filo del Sol — copper, gold and silver in the Vicuña belt on the Argentina–Chile border. Lundin called it one of the biggest greenfield finds in 30 years.',
+    lead: 'C$33.00 a share.',
+    rest: 'About C$4.1 billion, split between BHP and Lundin in a 50/50 joint venture. Closed January 2025.',
+  },
+  {
+    who: 'Fokus Mining',
+    tk: 'FKM',
+    got: "1.4 million inferred ounces in Quebec's Abitibi, and the ground next door to it.",
+    lead: 'C$0.26 a share, all cash.',
+    rest: 'About C$65 million — a 36.8% premium. Signed February 2026, six months ago.',
+  },
+]
+
+const stages = [
+  {
+    stage: 'Grassroots',
+    done: 'Soil samples, a geophysics survey, maybe a trench. A geologist likes the rock. Nothing has been drilled.',
+    next: 'Whether they can raise enough to drill at all, and on what terms. Cheapest entry, longest odds, biggest multiple if a hole ever hits.',
+  },
+  {
+    stage: 'Discovery',
+    done: 'A hole hit something. This is the stage that produces the charts people screenshot — Great Bear closed up 62.5% the day it announced Hinge.',
+    next: 'The second and third holes. One hole is an anecdote.',
+  },
+  {
+    stage: 'Resource',
+    done: 'Enough drilling to put out a maiden resource under 43-101. Now there are ounces on the page and a stranger can put a number on them.',
+    next: 'Grade, depth, and whether the number gets revised down on the next update.',
+  },
+  {
+    stage: 'Feasibility',
+    done: 'Engineers have costed the mine — a PEA first, then a pre-feas, then the real study. The numbers are public now, and so is the takeover math.',
+    next: 'What they assumed for the metal price, and how far capex has already moved.',
+  },
+  {
+    stage: 'Permit and build',
+    done: 'The slow years. Regulators, First Nations agreements, financing. Or a major turns up and buys the whole thing instead.',
+    next: 'Whether the capital arrives without wiping out the existing shareholders.',
+  },
+]
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Canada's Venture 50 averaged +431% last year. 48 of the 50 were miners.</title>
+    <meta
+      name="description"
+      content="Canada's Venture 50 averaged a 431% gain last year, and 48 of the 50 were miners. Great Bear went from C$1.17 to a C$29.00 takeover. Filo went for C$4.1 billion. More than a thousand mining companies list in Toronto and Vancouver, and most Canadians own none of them. Free morning notes on WhatsApp."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Archivo:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --paper: #f3eee4;
+        --paper-2: #e9e2d5;
+        --card: #fbf8f2;
+        --ink: #191d21;
+        --ink-2: #4a5158;
+        --rule: rgba(25, 29, 33, 0.16);
+        --rule-2: rgba(25, 29, 33, 0.08);
+        --assay: #9c4221;
+        --brass: #8b6b2e;
+        --wa: #25d366;
+        --wa-d: #1bae52;
+        --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+        --sans: 'Archivo', system-ui, -apple-system, sans-serif;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--serif);
+        color: var(--ink);
+        line-height: 1.66;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+        background-color: var(--paper);
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            rgba(25, 29, 33, 0.022) 0 1px,
+            transparent 1px 24px
+          ),
+          radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.5), transparent 60%);
+      }
+      img { display: block; max-width: 100%; height: auto; }
+
+      .wrap { width: 100%; padding-inline: 22px; }
+
+      .issue {
+        font-family: var(--sans);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: var(--ink-2);
+      }
+
+      hr.rule {
+        border: none;
+        border-top: 1px solid var(--rule);
+        margin: 30px 0;
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      .js hr.rule.in { transform: none; transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.3, 1); }
+
+      /* ---------- masthead / opening ---------- */
+      .open { padding-top: calc(env(safe-area-inset-top) + 42px); padding-bottom: 8px; }
+      .open h1 {
+        margin-top: 14px;
+        font-weight: 700;
+        font-size: clamp(1.95rem, 8.2vw, 2.7rem);
+        line-height: 1.13;
+        letter-spacing: -0.018em;
+        text-wrap: balance;
+      }
+      .standfirst {
+        margin-top: 14px;
+        font-family: var(--sans);
+        font-size: 0.92rem;
+        font-weight: 500;
+        line-height: 1.5;
+        color: var(--assay);
+        max-width: 46ch;
+      }
+      .lede {
+        margin-top: 20px;
+        font-size: 1.09rem;
+        line-height: 1.7;
+        color: var(--ink-2);
+        max-width: 60ch;
+      }
+      .lede::first-letter {
+        float: left;
+        font-size: 3.35rem;
+        line-height: 0.86;
+        font-weight: 700;
+        color: var(--assay);
+        padding-right: 9px;
+        padding-top: 5px;
+      }
+
+      /* ---------- metal tape ---------- */
+      .tape {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 14px 0;
+        border-block: 1px solid var(--rule);
+      }
+      .tape .metal {
+        font-family: var(--sans);
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+      }
+      .tape .px {
+        margin-top: 3px;
+        font-size: clamp(1.05rem, 4.6vw, 1.3rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      .tape .px span { font-size: 0.72em; font-weight: 500; color: var(--ink-2); }
+      .tape .note {
+        margin-top: 4px;
+        font-family: var(--sans);
+        font-size: 0.66rem;
+        line-height: 1.35;
+        color: var(--brass);
+      }
+      .src-note {
+        margin-top: 10px;
+        font-family: var(--sans);
+        font-size: 0.68rem;
+        line-height: 1.5;
+        color: var(--ink-2);
+        max-width: 62ch;
+      }
+
+      /* ---------- buttons ---------- */
+      .acts { margin-top: 26px; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 3px;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.14s ease;
+      }
+      .btn svg { width: 17px; height: 17px; flex: none; }
+      .btn:hover { background: var(--assay); transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+      .btn:focus-visible { outline: 3px solid var(--assay); outline-offset: 3px; }
+
+      /* ---------- sections ---------- */
+      .sec { padding: 12px 0 46px; }
+      .sec h2 {
+        font-weight: 700;
+        font-size: clamp(1.4rem, 5.6vw, 1.85rem);
+        line-height: 1.22;
+        letter-spacing: -0.014em;
+        text-wrap: balance;
+      }
+      .body {
+        margin-top: 15px;
+        font-size: 1.03rem;
+        color: var(--ink-2);
+        max-width: 62ch;
+      }
+      .body + .body { margin-top: 13px; }
+      .body strong { color: var(--ink); font-weight: 600; }
+
+      /* ---------- stat row ---------- */
+      .stats {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px 10px;
+      }
+      .stats .n {
+        font-size: clamp(1.5rem, 7vw, 2.1rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        color: var(--assay);
+      }
+      .stats .k {
+        margin-top: 5px;
+        font-family: var(--sans);
+        font-size: 0.7rem;
+        line-height: 1.4;
+        font-weight: 500;
+        color: var(--ink-2);
+      }
+
+      /* ---------- gainers ---------- */
+      .gainers { list-style: none; margin-top: 26px; border-top: 1px solid var(--rule); }
+      .gainers li {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: baseline;
+        gap: 7px 12px;
+        padding: 12px 0 13px;
+        border-bottom: 1px solid var(--rule-2);
+      }
+      .g-name { font-family: var(--sans); font-size: 0.86rem; font-weight: 600; }
+      .g-name em {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.74rem;
+        letter-spacing: 0.05em;
+        color: var(--ink-2);
+      }
+      .g-pct {
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--assay);
+        white-space: nowrap;
+      }
+      .g-bar { grid-column: 1 / -1; height: 7px; background: var(--rule-2); }
+      .g-bar i {
+        display: block;
+        height: 100%;
+        width: var(--w);
+        background: linear-gradient(90deg, var(--brass), var(--assay));
+      }
+      .js .gainers .g-bar i { width: 0; }
+      .js .gainers.in .g-bar i { width: var(--w); transition: width 1.05s cubic-bezier(0.22, 0.8, 0.3, 1); }
+
+      /* ---------- re-rating figure ---------- */
+      .rerate {
+        margin-top: 26px;
+        background: var(--card);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--assay);
+        padding: 20px 18px;
+      }
+      .rerate .pair { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+      .rerate .n {
+        font-size: clamp(1.6rem, 7.4vw, 2.25rem);
+        font-weight: 700;
+        letter-spacing: -0.022em;
+        line-height: 1.1;
+      }
+      .rerate .n.hi { color: var(--assay); }
+      .rerate .arw { font-family: var(--sans); font-weight: 600; color: var(--brass); font-size: 1.1rem; }
+      .rerate .cap {
+        margin-top: 11px;
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        line-height: 1.55;
+        font-weight: 500;
+        color: var(--ink-2);
+      }
+
+      /* ---------- plates ---------- */
+      figure {
+        margin-top: 26px;
+        background: var(--card);
+        border: 1px solid var(--rule);
+        padding: 13px;
+      }
+      figure img { width: 100%; }
+      figcaption {
+        margin-top: 11px;
+        font-family: var(--sans);
+        font-size: 0.75rem;
+        line-height: 1.55;
+        font-weight: 500;
+        color: var(--ink-2);
+      }
+      .plates { display: grid; gap: 18px; }
+
+      /* ---------- table ---------- */
+      .tbl-scroll { margin-top: 24px; overflow-x: auto; }
+      table { border-collapse: collapse; width: 100%; min-width: 540px; }
+      thead th {
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-align: left;
+        color: var(--ink);
+        padding: 0 12px 9px 0;
+        border-bottom: 2px solid var(--assay);
+        vertical-align: bottom;
+      }
+      tbody td {
+        font-size: 0.93rem;
+        line-height: 1.58;
+        color: var(--ink-2);
+        padding: 13px 12px 13px 0;
+        border-bottom: 1px solid var(--rule-2);
+        vertical-align: top;
+      }
+      tbody td:first-child {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      tbody td strong { color: var(--ink); font-weight: 600; }
+      tbody td .tk { font-weight: 500; color: var(--ink-2); }
+      .js tbody tr { opacity: 0; }
+      .js .tbl-scroll.in tbody tr { opacity: 1; transition: opacity 0.5s ease; }
+
+      /* deals table: stacked cards on phones, real table from 640px up */
+      table.deal-tbl { min-width: 0; width: 100%; }
+      .deal-tbl thead { display: none; }
+      .deal-tbl tbody tr { display: block; padding: 16px 0; border-bottom: 1px solid var(--rule-2); }
+      .deal-tbl tbody td { display: block; padding: 0; border: none; white-space: normal; }
+      .deal-tbl tbody td:first-child {
+        font-family: var(--sans);
+        font-size: 1rem;
+        white-space: normal;
+        margin-bottom: 8px;
+      }
+      .deal-tbl tbody td:first-child .tk { font-size: 0.78rem; letter-spacing: 0.05em; }
+      .deal-tbl tbody td + td { margin-top: 9px; }
+      .deal-tbl tbody td[data-l]::before {
+        content: attr(data-l);
+        display: block;
+        font-family: var(--sans);
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--brass);
+        margin-bottom: 3px;
+      }
+      .deal-tbl tbody td.cheque {
+        background: rgba(156, 66, 33, 0.06);
+        border-left: 2px solid var(--assay);
+        padding: 10px 12px;
+      }
+
+      /* ---------- assay readout ---------- */
+      .hole {
+        margin-top: 24px;
+        background: var(--card);
+        border: 1px solid var(--rule);
+        padding: 18px;
+      }
+      .hole .id {
+        font-family: var(--sans);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+      }
+      .hole .cut {
+        margin-top: 7px;
+        font-size: clamp(1.15rem, 5.2vw, 1.5rem);
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        line-height: 1.3;
+      }
+      .hole .cut b { color: var(--assay); font-weight: 700; }
+      .hole dl { margin-top: 15px; border-top: 1px solid var(--rule-2); }
+      .hole dt { font-family: var(--sans); font-size: 0.78rem; font-weight: 600; padding-top: 11px; }
+      .hole dd {
+        font-size: 0.93rem;
+        line-height: 1.55;
+        color: var(--ink-2);
+        padding-bottom: 11px;
+        border-bottom: 1px solid var(--rule-2);
+      }
+      .hole .fund {
+        margin-top: 13px;
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        line-height: 1.55;
+        color: var(--ink-2);
+      }
+
+      /* ---------- honest ---------- */
+      .honest { background: var(--paper-2); border-block: 1px solid var(--rule); padding: 40px 0; }
+      .honest .body { max-width: 60ch; }
+
+      .steps { margin-top: 20px; padding-left: 20px; }
+      .steps li { font-size: 1rem; color: var(--ink-2); margin-bottom: 9px; padding-left: 5px; }
+      .steps li::marker { font-family: var(--sans); font-weight: 600; color: var(--assay); font-size: 0.85rem; }
+
+      .fine { margin-top: 15px; font-family: var(--sans); font-size: 0.74rem; color: var(--ink-2); }
+
+      .foot { padding: 30px 0 40px; border-top: 1px solid var(--rule); }
+      .foot p { font-size: 0.78rem; line-height: 1.62; color: var(--ink-2); max-width: 70ch; }
+      .foot p + p { margin-top: 10px; }
+
+      /* ---------- sticky whatsapp ---------- */
+      .wa-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        padding: 11px 0 calc(11px + env(safe-area-inset-bottom));
+        background: rgba(243, 238, 228, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--rule);
+      }
+      .wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        width: 100%;
+        min-height: 52px;
+        border: none;
+        border-radius: 3px;
+        background: var(--wa);
+        color: #04220f;
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      .wa-btn svg { width: 21px; height: 21px; flex: none; }
+      .wa-btn:hover { background: var(--wa-d); }
+      .wa-btn:focus-visible { outline: 3px solid var(--assay); outline-offset: 3px; }
+
+      /* ---------- reveal ---------- */
+      .js .reveal { opacity: 0; transform: translateY(14px); }
+      .js .reveal.in {
+        opacity: 1;
+        transform: none;
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.8, 0.3, 1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .js .reveal, .js tbody tr { opacity: 1; transform: none; }
+        .js hr.rule { transform: none; }
+        .js .gainers .g-bar i { width: var(--w); }
+        html { scroll-behavior: auto; }
+      }
+
+      /* ---------- progressive enhancement ---------- */
+      @media (min-width: 640px) {
+        .wrap { max-width: 680px; margin-inline: auto; padding-inline: 32px; }
+        .btn, .wa-btn { width: auto; min-width: 300px; }
+        .acts { display: flex; }
+        .open { padding-top: calc(env(safe-area-inset-top) + 64px); }
+        .gainers li { grid-template-columns: 15rem 1fr auto; align-items: center; gap: 0 16px; }
+        .g-bar { grid-column: auto; }
+        .hole { padding: 24px; }
+        .deal-tbl thead { display: table-header-group; }
+        .deal-tbl tbody tr { display: table-row; padding: 0; }
+        .deal-tbl tbody td {
+          display: table-cell;
+          padding: 13px 12px 13px 0;
+          border-bottom: 1px solid var(--rule-2);
+        }
+        .deal-tbl tbody td:first-child { font-size: 0.85rem; margin-bottom: 0; }
+        .deal-tbl tbody td + td { margin-top: 0; }
+        .deal-tbl tbody td[data-l]::before { display: none; }
+        .deal-tbl tbody td.cheque { background: none; border-left: none; padding: 13px 12px 13px 0; }
+      }
+      @media (min-width: 760px) {
+        .plates { grid-template-columns: 1fr 1fr; gap: 20px; }
+        table { min-width: 0; }
+      }
+      @media (min-width: 1024px) {
+        .wrap { max-width: 880px; }
+        .sec { padding: 16px 0 62px; }
+        .honest { padding: 62px 0; }
+      }
+    </style>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <!-- ============ OPENING ============ -->
+    <section class="open">
+      <div class="wrap">
+        <p class="issue reveal">Field note · Aug. 9, 2026 · Toronto</p>
+        <h1 class="reveal">
+          The world lists its mining companies here. Canadians buy bank stocks.
+        </h1>
+        <p class="standfirst reveal">
+          The fifty best performers on our own Venture exchange averaged a 431% gain. Forty-eight of
+          them were miners.
+        </p>
+        <p class="lede reveal">
+          More than a thousand mining companies are listed across the TSX and the Venture, and the
+          honest math is that most of them will never build a mine. The interesting arithmetic is
+          what the few that do are worth on the way there. Great Bear went from a dollar and change
+          to a C$29.00 takeover in three years, on ground drilled a two-hour flight from Toronto.
+          That gap is why this market exists at all, and why the rest of the world keeps coming here
+          to raise money.
+        </p>
+
+        <div class="tape reveal">
+          {tape.map(t => (
+            <div>
+              <p class="metal">{t.metal}</p>
+              <p class="px">{t.px}<span>{t.unit}</span></p>
+              <p class="note">{t.note}</p>
+            </div>
+          ))}
+        </div>
+        <p class="src-note reveal">
+          Spot levels, week of Aug. 3–9, 2026. Copper set its all-time COMEX high on Aug. 7.
+        </p>
+
+        <div class="acts reveal">
+          <button type="button" class="btn link-btn" onclick="mixinJump()">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+        <hr class="rule reveal" />
+      </div>
+    </section>
+
+    <!-- ============ THE 431% ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">The list nobody at your bank will show you</h2>
+        <p class="body reveal">
+          TMX publishes the Venture 50 every year — the fifty strongest performers on the TSX Venture
+          Exchange. This year's list is almost all one sector. <strong>Forty-eight of the fifty were
+          miners.</strong> The average name gained 431%, and average market cap was up 775%. Volume in
+          those stocks doubled, to 13.2 billion shares.
+        </p>
+
+        <div class="stats reveal">
+          <div>
+            <p class="n">431%</p>
+            <p class="k">Average share-price gain, 2026 TSX Venture 50</p>
+          </div>
+          <div>
+            <p class="n">48 / 50</p>
+            <p class="k">Were mining companies</p>
+          </div>
+          <div>
+            <p class="n">C$1.5B+</p>
+            <p class="k">Raised from investors in a single year</p>
+          </div>
+        </div>
+
+        <p class="body reveal">
+          This isn't some offshore market. These companies trade in Canadian dollars, in the same
+          Wealthsimple or Questrade account you already have, under three- and four-letter tickers,
+          and the paperwork is filed in Toronto and Vancouver.
+        </p>
+
+        <ol class="gainers reveal">
+          {gainers.map((g, i) => (
+            <li>
+              <span class="g-name">{g.name} <em>{g.tk}</em></span>
+              <span class="g-bar"><i style={`--w:${Math.round((g.pct / maxPct) * 100)}%;transition-delay:${i * 70}ms`}></i></span>
+              <span class="g-pct">+{g.pct.toLocaleString('en-CA')}%</span>
+            </li>
+          ))}
+        </ol>
+        <p class="src-note reveal">
+          Share-price gains over the 2026 TSX Venture 50 ranking period. What these names did says
+          nothing about what they do next — the point is how big the moves get here, not a suggestion
+          to buy any of them.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ WHY TORONTO ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">Why the paperwork ends up here</h2>
+        <p class="body reveal">
+          A company with a copper deposit in Peru or a lithium project in Nevada could list almost
+          anywhere. Plenty pick Canada. It's not patriotism. The listing rules were written for
+          companies that have a rock and a plan rather than a profit. The disclosure standard has
+          teeth. NI 43-101 exists because of Bre-X, and everyone here still remembers why. And the
+          brokers on Bay Street and Howe Street have been financing mines for a hundred years.
+        </p>
+        <p class="body reveal">
+          The result is a home market that looks like nowhere else. Gold, silver, copper, uranium,
+          lithium, the rare earths — the whole critical-minerals list trades right here, in companies
+          small enough that one drill hole moves them 60% in an afternoon.
+        </p>
+
+        <figure class="reveal">
+          <img
+            src={mapFig.src}
+            width={FIG_W}
+            height={mapH}
+            alt="A printed atlas plate marking Toronto and Vancouver, with three reasons global mining companies list in Canada: listing rules built for exploration-stage companies, a century of mine finance, and a disclosure standard others copy."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            Three reasons a Peruvian copper project ends up filing in Ontario instead of Lima.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ WHERE THE MONEY COMES FROM ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">Where the money actually comes from</h2>
+        <p class="body reveal">
+          A junior has no revenue and no dividend, so there are only three ways it ever pays you.
+          <strong>One:</strong> a hole hits and the market re-rates the whole company overnight.
+          <strong>Two:</strong> a major runs short of its own ounces and turns up with a cheque.
+          <strong>Three:</strong> the metal itself runs, and everything holding that metal in the
+          ground gets dragged along. All three are live at once right now, which is not the normal
+          state of this market.
+        </p>
+
+        <div class="rerate reveal">
+          <div class="pair">
+            <span class="n">C$1.17</span>
+            <span class="arw">→</span>
+            <span class="n hi">C$29.00</span>
+          </div>
+          <p class="cap">
+            Great Bear announced the Hinge Zone in August 2018 and closed that day at C$1.17 — up
+            62.5% on one news release. Three years and a lot of drilling later, Kinross paid C$29.00
+            a share for the company: C$1.8 billion, a 40% premium to the previous 20-day average,
+            plus a C$1.00 contingent value right, one more dollar a share if Dixie ever goes into
+            production.
+          </p>
+        </div>
+
+        <p class="body reveal">
+          The second route is worth understanding, because it isn't luck — it's structural. The
+          majors gutted their own exploration teams decades ago. They still have to replace every
+          ounce they mine, and they can't find it themselves anymore, so they buy it. They pay up to
+          get there before a rival does, and that premium is your exit.
+        </p>
+
+        <div class="tbl-scroll reveal">
+          <table class="deal-tbl">
+            <thead>
+              <tr>
+                <th>Target</th>
+                <th>What the buyer was really after</th>
+                <th>The cheque</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deals.map((d, i) => (
+                <tr style={`transition-delay:${i * 90}ms`}>
+                  <td>{d.who}<br /><span class="tk">{d.tk}</span></td>
+                  <td data-l="What the buyer got">{d.got}</td>
+                  <td class="cheque" data-l="The cheque"><strong>{d.lead}</strong> {d.rest}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="src-note reveal">
+          Three out of dozens. The pattern repeats every cycle, and it speeds up when metal prices
+          sit where they sit today.
+        </p>
+
+        <div class="acts reveal" style="margin-top:28px">
+          <button type="button" class="btn link-btn" onclick="mixinJump()">
+            Get the morning notes free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE CHAIN ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">The chain: a number in Washington, a stock in the Yukon</h2>
+        <p class="body reveal">
+          Every few weeks a number comes out of Washington that has nothing to do with mining and
+          moves every mining stock in this space anyway — a jobs report, an inflation print,
+          eventually a line from the Fed itself. That's not a detour from the story. It's upstream
+          of it.
+        </p>
+        <p class="body reveal">
+          Gold pays no dividend and no interest. The only cost of holding it is the yield you give
+          up by holding it instead of a bond — so anything that changes what the market expects the
+          Fed to do next changes gold's price that same day, before the Fed has said a word. Core
+          inflation cooled from a seven-month high of 2.9% in May to 2.6% in June, better than
+          economists expected, and the odds on a cut moved with it. Even so, the Fed hasn't cut
+          once in 2026. The policy rate has sat at 3.50%–3.75% since December, and Goldman Sachs
+          has already trimmed its own year-end gold call by US$500 an ounce on the bet that it
+          stays there.
+        </p>
+
+        <div class="rerate reveal">
+          <div class="pair">
+            <span class="n">2.9%</span>
+            <span class="arw">→</span>
+            <span class="n hi">2.6%</span>
+          </div>
+          <p class="cap">
+            U.S. core inflation, May to June 2026. Gold's held above US$4,300 through the pullback
+            from January's high, partly because prints like this one keep a rate cut on the table,
+            even with the Fed on hold.
+          </p>
+        </div>
+
+        <p class="body reveal">
+          A stronger gold price doesn't just lift the metal — it lifts every rung of the ladder
+          underneath it, the value of every ounce still in the ground. That's the difference
+          between a junior that can fund its next drill program and one that's raising at a
+          discount, and none of it shows up in a single company's news release.
+        </p>
+
+        <div class="stats reveal">
+          <div>
+            <p class="n">3.50–3.75%</p>
+            <p class="k">Fed funds rate, unchanged since December 2025</p>
+          </div>
+          <div>
+            <p class="n">0</p>
+            <p class="k">Rate cuts delivered in 2026 so far</p>
+          </div>
+          <div>
+            <p class="n">Sept. 16</p>
+            <p class="k">Next scheduled Fed rate decision</p>
+          </div>
+        </div>
+
+        <p class="body reveal">
+          This is the half of the notes that has nothing to do with a drill rig. Before we read
+          what hit SEDAR+ overnight, we read what hit Washington — a rate call re-rates the whole
+          sector at once; one drill result only re-rates one company. Knowing which regime you're
+          in decides where on the ladder you want to be: producers and near-term builders hold up
+          best when the Fed stays hawkish and the metal has to do all the work on its own, while
+          the grassroots and discovery-stage names are the ones that move first and hardest once a
+          cut finally comes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ STAGE TABLE ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">What stage a company is at — and why it changes everything</h2>
+        <p class="body reveal">
+          Two companies can both call themselves gold explorers and have nothing in common. Know the
+          stage and the headlines start making sense. It's what decides whether a good hole doubles
+          the share price or barely moves it.
+        </p>
+
+        <div class="tbl-scroll reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Stage</th>
+                <th>What has actually happened</th>
+                <th>What we watch next</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stages.map((s, i) => (
+                <tr style={`transition-delay:${i * 90}ms`}>
+                  <td>{s.stage}</td>
+                  <td>{s.done}</td>
+                  <td>{s.next}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HONEST ============ -->
+    <section class="honest">
+      <div class="wrap">
+        <h2 class="reveal">The honest part</h2>
+        <p class="body reveal">
+          Most exploration companies never find anything worth mining. That's not sector-bashing.
+          It's the business model: a lot of holes get drilled so that a couple of them can pay for
+          the rest. That 431% average is the survivors — the names that went nowhere don't make the
+          ranking, and there are far more of them.
+        </p>
+        <p class="body reveal">
+          Then there's dilution. An explorer has no revenue, so it lives by issuing shares. You can
+          be entirely right about the geology and still lose money, because by the time the mine gets
+          built there are four times as many shares as when you bought. Then they roll it back ten to
+          one and start again. Reading the financings matters more than reading the news release
+          about them.
+        </p>
+        <p class="body reveal">
+          And they get halted. Your stock stops trading pending news and reopens somewhere else
+          entirely — could be up, could be down, and you don't get a vote. Anyone who tells you this
+          part is manageable is selling something.
+        </p>
+        <p class="body reveal">
+          None of that is a reason to stay out. It's the reason you check what stage a company is at
+          and what it just filed, before you look at the chart. That's the job. It's what goes out in
+          the group every morning.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ READING A HOLE ============ -->
+    <section class="sec" style="padding-top:44px">
+      <div class="wrap">
+        <h2 class="reveal">How to read the one sentence that moves the stock</h2>
+        <p class="body reveal">
+          Drill results come out as a single line of numbers, and almost nobody outside the industry
+          knows how to read it. Here's a real one, from Prospector Metals' ML project in the Yukon —
+          the name that topped this year's Venture 50 at +1,130%.
+        </p>
+
+        <div class="hole reveal">
+          <p class="id">Hole ML31 · TESS zone · ML project, Yukon</p>
+          <p class="cut"><b>44 m</b> of <b>13.79 g/t</b> gold, <b>1.89%</b> copper and <b>38.08 g/t</b> silver</p>
+          <dl>
+            <dt>44 m</dt>
+            <dd>The length of mineralized rock the drill passed through — not how deep the hole went. Width is what turns a curiosity into something you could mine.</dd>
+            <dt>13.79 g/t gold</dt>
+            <dd>Grams of gold in every tonne of rock. Plenty of producing open pits run on about 1 g/t. This is roughly fourteen times that, held over forty-four metres.</dd>
+            <dt>1.89% copper, 38.08 g/t silver</dt>
+            <dd>The by-products. They pay part of the cost of getting the gold out, which is what keeps a deposit alive when the gold price turns.</dd>
+          </dl>
+          <p class="fund">
+            The company has three rigs turning and a fully funded 25,000 m drill program this season,
+            budgeted at about C$15 million. Nobody spends that on a maybe.
+          </p>
+        </div>
+
+        <p class="body reveal">
+          Width, grade, by-products, and whether there's money in the bank to keep drilling — that's
+          the whole read. Those numbers come off two pieces of paper. Knowing when they're due is
+          most of the edge you get from a laptop at the kitchen table.
+        </p>
+
+        <div class="plates">
+          <figure class="reveal">
+            <img
+              src={core.src}
+              width={PLATE_W}
+              height={coreH}
+              alt="An overhead photograph of a wooden drill core tray with split rock core, a handwritten core log sheet, a pencil and a hand lens."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              The core log. Core comes up, gets laid out in the tray, and somebody logs it metre by
+              metre. Then it's sawn in half — one half goes to the lab, one half stays in the box so
+              somebody can check the work later. That second half exists because of Bre-X, too.
+            </figcaption>
+          </figure>
+
+          <figure class="reveal">
+            <img
+              src={assay.src}
+              width={PLATE_W}
+              height={assayH}
+              alt="An overhead photograph of numbered cloth sample bags and a printed laboratory assay certificate with a ruled results table."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              The assay certificate. Samples go to an independent lab and come back as numbers, and
+              the day those numbers are released is usually the day the share price does something.
+              Labs run queues, so the delay itself is information.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LADDER + MORNING ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="reveal">Where we are on the ladder right now</h2>
+        <p class="body reveal">
+          Gold printed US$5,542 an ounce in January, came off hard, and sits near US$4,350 today.
+          That's still about 65% above where it opened 2025. Copper made a fresh all-time high on
+          COMEX on Aug. 7. Uranium is in the mid-eighties, a level that looked absurd when the last
+          cycle ended. Money follows that down the food chain the way it always does: first into the
+          producers, then the developers, then the explorers who own ground near something that
+          works. That's nearology, and it works every cycle.
+        </p>
+        <p class="body reveal">
+          Risk climbs in that same order. So do the multiples. The bottom three rungs are where
+          almost everything on the Venture actually sits — and where every name on that Venture 50
+          list came from.
+        </p>
+
+        <figure class="reveal">
+          <img
+            src={ladder.src}
+            width={POR_W}
+            height={ladderH}
+            alt="A printed ladder diagram with six rungs from grassroots to build, with a bracket marking the bottom three rungs where most Venture listings sit."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Six rungs. Most listings never leave the bottom three.</figcaption>
+        </figure>
+
+        <hr class="rule reveal" />
+
+        <h2 class="reveal">Three things, before the open</h2>
+        <ol class="steps">
+          <li class="reveal">What moved overnight — a CPI print, a jobs number, a Fed speaker, or a SEDAR+ filing — and what it does to rates, and to gold.</li>
+          <li class="reveal">Whether it changes the numbers or just the mood.</li>
+          <li class="reveal">What has to happen next for any of it to still matter a month from now.</li>
+        </ol>
+        <p class="body reveal">
+          It goes out on WhatsApp before the bell, in plain English, and it costs nothing. One tap,
+          no login, nothing to learn. No forms, no upsell, no trading signals, just what got filed
+          overnight and what it means.
+        </p>
+
+        <div class="acts reveal" style="margin-top:30px">
+          <button type="button" class="btn link-btn" onclick="mixinJump()">
+            Join the free WhatsApp group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+        <p class="fine reveal">Free · no forms, no fees · leave whenever you like</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Everything here is general market commentary and educational research. It doesn't take
+          your objectives or financial situation into account and it's not a recommendation to buy
+          or sell anything. Exploration-stage mining shares are highly speculative, can be halted,
+          are frequently diluted, and can go to zero. Do your own research before you invest.
+        </p>
+        <p>
+          Prices, gains and transaction terms are as publicly reported: TMX's 2026 TSX Venture 50,
+          company news releases, and spot metal quotes for the week of Aug. 3–9, 2026. Past
+          performance is not indicative of future results.
+        </p>
+      </div>
+    </footer>
+
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn" onclick="mixinJump()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join the free group
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length) return
+
+        function tick() {
+          var vh = window.innerHeight || document.documentElement.clientHeight
+          for (var i = items.length - 1; i >= 0; i--) {
+            var r = items[i].getBoundingClientRect()
+            if (r.top < vh - 60) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

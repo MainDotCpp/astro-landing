@@ -1,0 +1,534 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+
+const title = 'A Rare Market Signal — Free Daily SGX Analysis'
+const description = 'The STI is sending a signal that has preceded every major recovery. Get free daily analyst picks delivered to WhatsApp.'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#fafaf9" />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #fafaf9;
+        color: #18181b;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .container {
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        padding: 72px 0 48px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #b45309;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 32px;
+        line-height: 1.25;
+        font-weight: 700;
+        color: #18181b;
+        max-width: 420px;
+      }
+
+      .hero-body {
+        font-size: 16px;
+        line-height: 1.85;
+        color: #57534e;
+        margin-top: 24px;
+        max-width: 520px;
+      }
+
+      .hero .btn {
+        margin-top: 32px;
+      }
+
+      /* ── DIVIDER ── */
+      .divider {
+        border: none;
+        border-top: 1px solid #e7e5e4;
+        margin: 0;
+      }
+
+      /* ── COMPARISON BLOCK ── */
+      .comparison-section {
+        padding: 48px 0;
+      }
+
+      .comparison {
+        padding: 32px 24px;
+        background: #f5f5f4;
+        border-radius: 16px;
+        text-align: center;
+      }
+
+      .comp-labels {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin-bottom: 8px;
+      }
+
+      .comp-label {
+        font-size: 13px;
+        color: #78716c;
+        font-weight: 500;
+      }
+
+      .comp-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .comp-value {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: #18181b;
+      }
+
+      .comp-arrow {
+        color: #b45309;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .comp-result {
+        color: #16a34a;
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 16px;
+      }
+
+      .comp-footnote {
+        font-size: 13px;
+        color: #78716c;
+        margin-top: 20px;
+        line-height: 1.5;
+      }
+
+      /* ── WHAT YOU RECEIVE ── */
+      .receive-section {
+        padding: 48px 0;
+      }
+
+      .receive-section h2 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #18181b;
+        margin-bottom: 28px;
+      }
+
+      .receive-list {
+        list-style: none;
+        counter-reset: receive;
+      }
+
+      .receive-list li {
+        counter-increment: receive;
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: #44403c;
+      }
+
+      .receive-list li::before {
+        content: counter(receive);
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #f5f5f4;
+        color: #78716c;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+      }
+
+      .trust-line {
+        font-size: 15px;
+        font-style: italic;
+        color: #78716c;
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 32px;
+      }
+
+      /* ── STEPS ── */
+      .steps-section {
+        padding: 48px 0;
+      }
+
+      .steps-section h2 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #18181b;
+        margin-bottom: 28px;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .step {
+        display: flex;
+        gap: 16px;
+      }
+
+      .step-num {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid #e7e5e4;
+        color: #b45309;
+        font-size: 14px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .step-text h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #18181b;
+        margin-bottom: 2px;
+      }
+
+      .step-text p {
+        font-size: 14px;
+        color: #78716c;
+        line-height: 1.5;
+      }
+
+      /* ── CTA BUTTON ── */
+      .btn {
+        display: block;
+        background: #25D366;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+      }
+
+      /* ── LEGAL ── */
+      .legal-section {
+        padding: 40px 0 24px;
+        border-top: 1px solid #e7e5e4;
+      }
+
+      .legal-toggle {
+        font-size: 12px;
+        color: #a8a29e;
+        text-align: center;
+        cursor: pointer;
+        padding: 8px;
+        background: none;
+        border: none;
+        width: 100%;
+        font-family: inherit;
+      }
+
+      .legal-toggle:hover {
+        color: #78716c;
+      }
+
+      .legal-content {
+        display: none;
+        font-size: 11px;
+        line-height: 1.7;
+        color: #a8a29e;
+        margin-top: 12px;
+        text-align: center;
+      }
+
+      .legal-content.open {
+        display: block;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 16px 0 32px;
+        font-size: 12px;
+        color: #a8a29e;
+      }
+
+      .footer a {
+        color: #a8a29e;
+        text-decoration: none;
+      }
+
+      /* ── STICKY CTA BAR ── */
+      .sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 249, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid #e7e5e4;
+        padding: 12px 24px calc(12px + env(safe-area-inset-bottom));
+        transform: translateY(100%);
+        transition: transform 0.35s ease;
+      }
+
+      .sticky-cta.visible {
+        transform: translateY(0);
+      }
+
+      .sticky-cta .btn {
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      /* ── bottom spacing for sticky bar ── */
+      .bottom-spacer {
+        height: 80px;
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── DESKTOP ── */
+      @media (min-width: 768px) {
+        .hero {
+          padding: 100px 0 56px;
+        }
+
+        .hero h1 {
+          font-size: 44px;
+          max-width: 480px;
+        }
+
+        .comp-value {
+          font-size: 42px;
+        }
+
+        .comp-labels {
+          gap: 80px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="eyebrow">MARKET SIGNAL</div>
+        <h1>The market is giving you a rare signal.</h1>
+        <p class="hero-body">
+          Three times in the last two decades, Singapore's market dropped sharply — and each time,
+          investors who stayed calm and positioned early captured the strongest gains. We're watching
+          the same pattern unfold right now. Our analysts send one thing every morning: which stocks
+          to watch, and when to act.
+        </p>
+        <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- COMPARISON -->
+      <section class="comparison-section reveal">
+        <div class="comparison">
+          <div class="comp-labels">
+            <span class="comp-label">STI at the bottom</span>
+            <span class="comp-label">STI 12 months later</span>
+          </div>
+          <div class="comp-row">
+            <span class="comp-value">2,648</span>
+            <span class="comp-arrow">&#x2192;</span>
+            <span class="comp-value">3,408</span>
+          </div>
+          <div class="comp-result">+28.7% average recovery</div>
+          <p class="comp-footnote">
+            Based on the average of the last 3 major STI corrections (2008, 2020, 2022)
+          </p>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- WHAT YOU RECEIVE -->
+      <section class="receive-section reveal">
+        <h2>What you receive</h2>
+        <ol class="receive-list">
+          <li>
+            Daily analyst picks — specific SGX stocks with recovery potential, delivered before
+            market open.
+          </li>
+          <li>
+            Entry and exit levels — not just what to buy, but when to buy and when to take profit.
+          </li>
+          <li>
+            Real-time alerts — when market conditions shift, you'll know within minutes, not hours.
+          </li>
+        </ol>
+        <p class="trust-line">
+          12,000+ Singapore investors already receive these insights every morning.
+        </p>
+        <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- STEPS -->
+      <section class="steps-section reveal">
+        <h2>How to join</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <h3>Tap the button below</h3>
+              <p>Opens WhatsApp directly.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <h3>Join the group</h3>
+              <p>No sign-up, no fees. Instant access.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <h3>Receive morning insights</h3>
+              <p>Expert analysis arrives before the market opens.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEGAL -->
+      <section class="legal-section">
+        <button class="legal-toggle" id="legalToggle">Disclaimer</button>
+        <div class="legal-content" id="legalContent">
+          This content is for informational and educational purposes only and does not constitute
+          financial advice, investment advice, or a recommendation to buy or sell any securities. All
+          investment involves risk, including possible loss of principal. Past performance is not
+          indicative of future results. Always consult a qualified financial advisor before making
+          investment decisions.
+        </div>
+      </section>
+
+      <div class="footer">
+        <a href="mailto:info@marketanalysis.sg">info@marketanalysis.sg</a>
+      </div>
+
+      <div class="bottom-spacer"></div>
+    </div>
+
+    <!-- STICKY CTA BAR -->
+    <div class="sticky-cta" id="stickyCta">
+      <a href="javascript:void(0)" class="btn link-btn">Join Free WhatsApp Group</a>
+    </div>
+
+    <script is:inline>
+      // Legal toggle
+      document.getElementById('legalToggle').addEventListener('click', function () {
+        document.getElementById('legalContent').classList.toggle('open');
+      });
+
+      // Sticky CTA: show after scrolling past first CTA
+      (function () {
+        var sticky = document.getElementById('stickyCta');
+        var shown = false;
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 500) {
+            if (!shown) {
+              sticky.classList.add('visible');
+              shown = true;
+            }
+          } else {
+            if (shown) {
+              sticky.classList.remove('visible');
+              shown = false;
+            }
+          }
+        });
+      })();
+
+      // Scroll reveal
+      (function () {
+        var els = document.querySelectorAll('.reveal');
+        function check() {
+          var wh = window.innerHeight;
+          for (var i = 0; i < els.length; i++) {
+            var rect = els[i].getBoundingClientRect();
+            if (rect.top < wh - 60) {
+              els[i].classList.add('visible');
+            }
+          }
+        }
+        window.addEventListener('scroll', check);
+        check();
+      })();
+    </script>
+  </body>
+</html>

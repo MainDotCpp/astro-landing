@@ -130,4 +130,38 @@ Pages specify plugins via props: `plugins={['aos', 'jquery', 'googleFontsKR']}`
 
 7. **静态资源一律走构建管线、输出带 `mjSFqQ/` 前缀 (All static assets under mjSFqQ/)**：落地页的图片 / 字体等自托管静态资源，**构建输出后必须落在 `mjSFqQ/` 前缀下**（由 `astro.config.mjs` 的 `build.assets: "mjSFqQ"` 决定）。做法：资源放 **`src/`** 下（推荐页面同级 `images/` 子目录），在 frontmatter 用 `import` 引入，再用 `<Image>` 或 `图片.src` 渲染 `<img>`；CSS 背景图用 `import bg from './images/x.jpg'` + `<style define:vars={{ bgUrl: \`url(${bg.src})\` }}>` → `background-image: var(--bgUrl)`。**禁止**把落地页资源放 `public/` 根再用 `/HK/images/x.png` 这类绝对路径引用——`public/` 文件会原样复制到站点根、**不带 `mjSFqQ` 前缀**（如 `/HK/images/x.png`），不符合要求。
 
-> **开工前 + 验收时务必把以上 1–7 逐条当 checklist 过一遍**，不要凭设计惯性跳过。
+8. **滚动入场动画只用这一份实现 (Scroll reveal — use this exact snippet)**：用原生 `scroll` + `getBoundingClientRect`，**不要 IntersectionObserver、不要 GSAP ScrollTrigger**（两者在本项目都出过「内容不显示」的事故）。**照抄下面这段，不要自己改判断条件**：
+
+   ```js
+   ;(function () {
+     var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+     if (!items.length) return
+
+     function tick() {
+       var vh = window.innerHeight || document.documentElement.clientHeight
+       for (var i = items.length - 1; i >= 0; i--) {
+         // 只判断 top，绝不能加 r.bottom > 0
+         if (items[i].getBoundingClientRect().top < vh - 60) {
+           items[i].classList.add('in')
+           items.splice(i, 1)
+         }
+       }
+       if (!items.length) {
+         window.removeEventListener('scroll', tick)
+         window.removeEventListener('resize', tick)
+       }
+     }
+
+     window.addEventListener('scroll', tick, { passive: true })
+     window.addEventListener('resize', tick)
+     tick()
+     setTimeout(tick, 300) // 字体/图片加载后布局位移的兜底
+   })()
+   ```
+
+   - **绝对不能写 `if (r.top < vh - 60 && r.bottom > 0)`**。加上 `r.bottom > 0` 后，只要元素被**整段快速跳过**（手机甩动惯性滚动、刷新后浏览器恢复滚动位置、锚点跳转），它就永远不会被标记 `in`，**永久停在 `opacity: 0`**——用户看到大片空白，卖点直接消失。2026-08-09 全仓 7 个 SG 通版页都中过这个招。
+   - 元素清空后必须 `removeEventListener`；必须有 `setTimeout(tick, 300)` 兜底。
+   - **首屏内容不得纯靠 JS 才显示**：`.reveal { opacity: 0 }` 只在 `<html class="js">` 下生效（head 里 `document.documentElement.classList.add('js')`），JS 挂了页面仍要完整可读。
+   - `@media (prefers-reduced-motion: reduce)` 下把 `.reveal` 直接置为 `opacity: 1; transform: none`。
+
+> **开工前 + 验收时务必把以上 1–8 逐条当 checklist 过一遍**，不要凭设计惯性跳过。

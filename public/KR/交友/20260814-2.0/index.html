@@ -1,0 +1,476 @@
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>온라인 데이트</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; min-height: 100%;
+  font-family: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #1a1a2e;
+  color: #fff;
+}
+
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+/* header */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.hero-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.hero-mosaic img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7) saturate(1.1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 40%, rgba(255,30,70,0.3) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(15,5,15,0.15) 0%, rgba(15,5,15,0.45) 35%, rgba(26,26,46,0.95) 85%, #1a1a2e 100%);
+  z-index: 1;
+}
+
+.hero-text {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.brand {
+  font-size: 13px;
+  color: #ff4060;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(255,64,96,0.5);
+}
+
+.hero h1 {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  word-break: keep-all;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+.hero-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+  margin-bottom: 18px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+
+.hero-banner {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff4060, #e91e63);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 24px rgba(255,64,96,0.5);
+  cursor: pointer;
+}
+
+.hero-count {
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+}
+
+/* thumbnail marquee */
+.thumbs-wrap {
+  overflow: hidden;
+  padding: 16px 0;
+}
+
+.thumbs-track {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.thumb {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #ff4060;
+  cursor: pointer;
+}
+
+.thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* card list */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 12px;
+}
+
+.card {
+  display: flex;
+  gap: 0;
+  background: linear-gradient(135deg, rgba(40,20,40,0.9), rgba(30,20,45,0.95));
+  border: 1px solid rgba(255,64,96,0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.card:active {
+  border-color: rgba(255,64,96,0.35);
+}
+
+.card-photo {
+  width: 130px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-photo .photo-badge {
+  position: absolute;
+  bottom: 6px; left: 6px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.8);
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 1px;
+}
+
+.card-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.card-age {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+
+.card-job {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 5px;
+}
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #1a1a2e;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff4060, #ff6b8a);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  align-self: flex-start;
+}
+
+.verified svg {
+  width: 13px; height: 13px;
+  fill: #1a1a2e;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: rgba(255,64,96,0.12);
+  border: 1px solid rgba(255,64,96,0.2);
+  color: #ff8ca0;
+  white-space: nowrap;
+}
+
+.card-stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 6px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.stat svg {
+  width: 13px; height: 13px;
+  fill: rgba(255,255,255,0.4);
+  flex-shrink: 0;
+}
+
+.stat-label {
+  color: rgba(255,255,255,0.35);
+}
+
+.card-btn {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff4060, #e91e63);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  margin-top: auto;
+  box-shadow: 0 2px 12px rgba(255,64,96,0.35);
+  letter-spacing: 0.3px;
+}
+
+.card-btn:active {
+  opacity: 0.8;
+}
+
+/* bottom CTA */
+.bottom-cta {
+  text-align: center;
+  padding: 32px 20px 16px;
+}
+
+.bottom-cta h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ff4060;
+  margin-bottom: 6px;
+}
+
+.bottom-cta p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.cta-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 14px 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff4060, #e91e63);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255,64,96,0.35);
+}
+
+.cta-link svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+.bottom-note {
+  text-align: center;
+  padding: 10px 20px 0;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+}
+
+@media (min-width: 480px) {
+  .card-photo { width: 150px; }
+  .hero h1 { font-size: 28px; }
+  .hero-mosaic { grid-template-columns: repeat(5, 1fr); }
+  .card-name { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-mosaic">
+      <img src="./img/1.jpg" alt=""><img src="./img/11.jpg" alt=""><img src="./img/2.jpg" alt=""><img src="./img/12.jpg" alt="">
+      <img src="./img/13.jpg" alt=""><img src="./img/3.jpg" alt=""><img src="./img/14.jpg" alt=""><img src="./img/4.jpg" alt="">
+      <img src="./img/15.jpg" alt=""><img src="./img/16.jpg" alt=""><img src="./img/5.jpg" alt=""><img src="./img/17.jpg" alt="">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <div class="brand">♥ CHERRY MATCH</div>
+      <h1>전국의 최고의 미인을<br>온라인에서 선택해보세요</h1>
+      <div class="hero-sub">여기서는 지금까지 경험해보지 못했던<br>아름다운 여성들을 만날 수 있습니다</div>
+      <div class="hero-banner" onclick="onLinkBtnClick()">초고속 매칭 서비스</div>
+      <div class="hero-count">오늘 온라인 회원 2,847명</div>
+    </div>
+  </div>
+
+  <div class="thumbs-wrap"><div class="thumbs-track" id="thumbs-track"></div></div>
+
+  <div class="list" id="list"></div>
+
+  <div class="bottom-cta">
+    <h2>온라인 데이트</h2>
+    <p>마음에 드는 여자를 클릭하고<br>데이트를 시작하세요!</p>
+    <a class="cta-link" href="javascript:void(0)" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="#fff"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      더 많은 여성 보기
+    </a>
+  </div>
+
+  <div class="bottom-note">첫사랑의 느낌 · 지금 바로 시작하세요</div>
+</div>
+
+<script>
+var profiles = [
+  {n:"서연",a:22,h:165,sz:"C",km:"2.1",job:"뷰티 블로거",t:["청순한 외모","달콤한 목소리"],img:1},
+  {n:"하윤",a:24,h:170,sz:"D",km:"3.8",job:"피트니스 코치",t:["섹시한 몸매","요가 유니폼"],img:2},
+  {n:"지우",a:21,h:168,sz:"C",km:"1.5",job:"대학생",t:["순수한 느낌","귀여운 미소"],img:3},
+  {n:"수아",a:23,h:173,sz:"D",km:"4.2",job:"프리랜서 모델",t:["글래머 스타일","섹시한 분위기"],img:4},
+  {n:"예린",a:20,h:163,sz:"B",km:"2.8",job:"카페 바리스타",t:["상큼한 매력","엽기도 있으면 단맛도 있다"],img:5},
+  {n:"민서",a:25,h:170,sz:"D",km:"3.3",job:"간호사",t:["섹시한 유니폼","따뜻한 성격"],img:6},
+  {n:"채원",a:22,h:167,sz:"C",km:"1.9",job:"댄스 강사",t:["유연한 몸","리듬감 넘침"],img:7},
+  {n:"소희",a:24,h:171,sz:"D",km:"4.5",job:"행정 직원",t:["섹스 파트너를 찾는 미혼 여성","은밀한 만남"],img:8},
+  {n:"은서",a:21,h:164,sz:"C",km:"2.6",job:"영상 크리에이터",t:["대외 관계","흥분을 좋아"],img:9},
+  {n:"지아",a:23,h:169,sz:"C",km:"3.1",job:"요가 강사",t:["건강한 몸매","유혹적인 눈빛"],img:10}
+];
+
+// Render thumbnail marquee (images 11-47, not used in cards)
+var thumbImgs = [];
+for (var ti = 11; ti <= 47; ti++) thumbImgs.push(ti);
+var trackEl = document.getElementById('thumbs-track');
+var thumbHtml = '';
+thumbImgs.forEach(function(i) {
+  thumbHtml += '<div class="thumb" onclick="onLinkBtnClick()"><img src="./img/'+i+'.jpg" alt="" loading="lazy"></div>';
+});
+trackEl.innerHTML = thumbHtml + thumbHtml;
+
+// Render cards
+var listEl = document.getElementById('list');
+var verifiedSvg = '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>';
+var locSvg = '<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
+var heightSvg = '<svg viewBox="0 0 24 24"><path d="M13 6.99h3L12 3 8 6.99h3V17.01H8L12 21l4-3.99h-3z"/></svg>';
+var cupSvg = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>';
+
+profiles.forEach(function(p) {
+  var tags = p.t.map(function(t){ return '<span class="tag">'+t+'</span>'; }).join('');
+  listEl.innerHTML += '<div class="card" onclick="onLinkBtnClick()">' +
+    '<div class="card-photo"><img src="./img/'+p.img+'.jpg" alt="" loading="lazy"><div class="photo-badge">'+p.km+'km</div></div>' +
+    '<div class="card-body">' +
+      '<div class="card-header"><span class="card-name">'+p.n+'</span><span class="card-age">'+p.a+'세</span></div>' +
+      '<div class="card-job">'+p.job+'</div>' +
+      '<div class="verified">'+verifiedSvg+' 인증완료</div>' +
+      '<div class="card-tags">'+tags+'</div>' +
+      '<div class="card-stats">' +
+        '<span class="stat">'+locSvg+'<span class="stat-label">거리</span> '+p.km+'km</span>' +
+        '<span class="stat">'+heightSvg+'<span class="stat-label">키</span> '+p.h+'cm</span>' +
+        '<span class="stat">'+cupSvg+'<span class="stat-label">Size</span> '+p.sz+'</span>' +
+      '</div>' +
+      '<button class="card-btn" onclick="onLinkBtnClick()">데이트 신청하기</button>' +
+    '</div></div>';
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function(){
+  var track = document.getElementById('thumbs-track');
+  var half = track.scrollWidth / 2;
+  gsap.to(track, {
+    x: -half,
+    duration: 30,
+    ease: 'none',
+    repeat: -1
+  });
+})();
+</script>
+
+<!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+<!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+<script>
+  const onLinkBtnClick = () => {
+    const link = 'https://www.baidu.com';
+
+
+    if (typeof fbq === 'function') {
+      fbq('track', 'AddToCart');
+      fbq('track', 'Contact');
+
+    }
+
+
+    if (typeof gtag_report_conversion === 'function') {
+      gtag_report_conversion();
+    }
+
+
+    setTimeout(() => { window.location.href = link; }, 500);
+  };
+</script>
+</body>
+</html>

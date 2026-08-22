@@ -1,0 +1,1335 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+// hero 標題已排進圖裡：ht-* 為桌面橫版，hv-* 為手機直版
+import ht1 from './images/ht-1.jpg'
+import ht2 from './images/ht-2.jpg'
+import ht3 from './images/ht-3.jpg'
+import hv1 from './images/hv-1.jpg'
+import hv2 from './images/hv-2.jpg'
+import hv3 from './images/hv-3.jpg'
+import reviewImg from './images/day-review.jpg'
+import libraryImg from './images/day-library.jpg'
+import lawyer1 from './images/lawyer-1.jpg'
+import lawyer2 from './images/lawyer-2.jpg'
+import lawyer3 from './images/lawyer-3.jpg'
+import lawyer4 from './images/lawyer-4.jpg'
+import lawyer5 from './images/lawyer-5.jpg'
+
+const FIRM = '###_###'
+
+const heroSlides = [
+  {
+    mob: hv1,
+    pc: ht1,
+    alt: '他們把錢轉走了。我們把錢追回來。',
+    d: 'USDT、比特幣、假交易平台、殺豬盤、老師帶單，每一筆轉帳都在鏈上留下了地址。',
+  },
+  {
+    mob: hv2,
+    pc: ht2,
+    alt: '錢不會憑空消失。它只是換了一個地址。',
+    d: '只要資金進了交易所或銀行體系，就會留下實名記錄，也就有了被凍結的可能。',
+  },
+  {
+    mob: hv3,
+    pc: ht3,
+    alt: '能不能追，24 小時內給您答覆。',
+    d: '把轉帳記錄、對話截圖與平台網址交給我們。沒把握的案子，我們會直接說不接。',
+  },
+]
+
+const stats = [
+  { v: 1900, suffix: '+', k: '位受害人委託我們' },
+  { v: 12, suffix: '', k: '個司法轄區同步進行' },
+  { v: 2.4, prefix: 'US$', suffix: ' 億', dec: 1, k: '累計協助追償金額' },
+  { v: 24, suffix: ' 小時', k: '內回覆能不能追' },
+]
+
+const cases = [
+  {
+    n: '01',
+    t: '假交易所・假錢包 App',
+    d: '錢進得去，就是提不出來；客服說要先補稅金，再補保證金。帳戶裡那串數字，其實只是網頁上的字。',
+  },
+  {
+    n: '02',
+    t: '殺豬盤・網戀投資',
+    d: '網上認識，聊了幾週，正覺得投緣，他帶您進了「內部投資群」。等您把錢投進去，人就不見了。',
+  },
+  {
+    n: '03',
+    t: '老師帶單・喊單群',
+    d: '群裡人人貼出獲利截圖，只有您一個在虧。那個群九成是同一夥人，您是唯一的真客戶。',
+  },
+  {
+    n: '04',
+    t: '外匯・黃金・期貨平台',
+    d: '後台能改點差、能製造滑點。您爆倉的那一刻，不是行情，是設計好的。',
+  },
+  {
+    n: '05',
+    t: 'USDT 場外交易被騙',
+    d: '幣轉出去，對方就消失，收款地址第二天已經空了。但錢去了哪裡，鏈上寫得清清楚楚。',
+  },
+  {
+    n: '06',
+    t: '股票配資・假券商 App',
+    d: '下載連結不在官方商店，帳戶數字漂亮，但一毛錢都提不出來。所謂的券商執照，查不到。',
+  },
+]
+
+const steps = [
+  {
+    n: '01',
+    t: '案情評估與可追性判斷',
+    d: '把轉帳記錄、對話截圖、平台網址交給我們。24 小時內您會收到判斷：這筆錢還在不在鏈上、對方屬於哪一類詐騙集團、值不值得往下走。這一步不收費；我們沒把握的案子，會直接跟您說不接。',
+  },
+  {
+    n: '02',
+    t: '鏈上追蹤與證據固定',
+    d: '順著您的轉帳地址往下追，直到資金落進可以被凍結的地方：中心化交易所、法幣通道、託管錢包。同時把電子證據整理成能在法庭上站得住腳的證據。',
+  },
+  {
+    n: '03',
+    t: '向交易所與司法機關發出文件',
+    d: '以執業律師名義向相關交易所、支付機構發出保全要求，並向有管轄權的法院、檢察機關與執法部門遞交材料。多數個人受害人卡住的地方，正是這一步。',
+  },
+  {
+    n: '04',
+    t: '跨境凍結、扣押與返還',
+    d: '推動凍結令、資產扣押與後續返還程序，一路盯到返還執行完成。全程由承辦律師直接與您溝通進度，不透過中介。',
+  },
+]
+
+const lawyers = [
+  {
+    img: lawyer4,
+    name: '史蒂文·R·佩金',
+    role: '合夥人',
+    field: '跨境資產追償・複雜金融詐欺訴訟',
+    desc: '三十餘年執業經驗，主辦多起橫跨數個司法轄區、涉及離岸架構的資金追討案件。',
+  },
+  {
+    img: lawyer2,
+    name: '約翰·J·利奧洛斯',
+    role: '合夥人',
+    field: '白領犯罪・資產凍結程序',
+    desc: '長期與檢察機關、金融監管單位交涉，負責向法院申請保全令與扣押令。',
+  },
+  {
+    img: lawyer1,
+    name: '妮可·弗里德蘭德',
+    role: '合夥人',
+    field: '虛擬資產合規・鏈上調查',
+    desc: '帶領團隊做資金流向追蹤，並直接對接各大中心化交易所的法務窗口。',
+  },
+  {
+    img: lawyer3,
+    name: '艾德里安·A·哈里斯',
+    role: '資深顧問律師',
+    field: '監管政策・執法聯絡',
+    desc: '協助案件在不同司法轄區之間銜接，處理跨境協查與情報交換的程序問題。',
+  },
+  {
+    img: lawyer5,
+    name: '梅利克·托卡特利奧盧',
+    role: '律師',
+    field: '案件受理・證據固定',
+    desc: '負責受害人第一次諮詢、材料整理與立案文件撰寫，中文、英文皆可直接溝通。',
+  },
+]
+
+const contact = [
+  { k: '事務所地址', v: '###地址###' },
+  { k: '電話', v: '###電話###' },
+  { k: '電子郵件', v: '###信箱###' },
+]
+
+const faqs = [
+  {
+    q: '已經被騙半年多了，還來得及嗎？',
+    a: '時間越久越難，但不是沒有機會。詐騙集團洗錢也需要時間，資金常常會在幾個中轉錢包裡停留，或是被某間交易所的風控凍在帳上。我們接過事發兩年多才來委託、最後仍追回一部分的案子。先讓我們看一眼您的轉帳記錄，能不能追，我們會直說。',
+  },
+  {
+    q: '對方人在境外，錢也轉到境外了，這還有辦法嗎？',
+    a: '跨境案件正是我們每天在做的事。資金只要進了受監管的交易所或銀行體系，就會留下實名記錄和可執行的落點。報案該報，但單靠一地報案往往推不動跨境凍結，這正是我們補上的部分：我們直接在資金落點所在的司法轄區提起程序，由當地合作律師同步推進。',
+  },
+  {
+    q: '我不在當地，也沒有當地身分，可以遠端委託嗎？',
+    a: '可以。我們大多數當事人都不在本所所在的城市，也不具備當地身分。委託、簽署、溝通全程可以線上完成，不需要您本人跑一趟。',
+  },
+  {
+    q: '要先付一大筆律師費嗎？',
+    a: '第一次案情評估不收費。正式受理前，我們會把費用結構、預估週期和最壞情況一次講清楚，白紙黑字寫進委託書。我們不會在您已經被騙一次之後，再讓您承擔一筆不明不白的支出。',
+  },
+  {
+    q: '我的資料會外洩嗎？家裡人還不知道這件事。',
+    a: '律師與當事人之間的保密義務受法律保護。您提供的所有材料僅用於本案，不會對外揭露，也不會出現在任何公開資料中。',
+  },
+]
+
+const whys = [
+  {
+    t: '只做這一類案子',
+    d: '虛擬資產與投資詐騙的跨境追償，是這個團隊的全部工作。其他領域的案子，我們會轉介給更合適的同行。',
+  },
+  {
+    t: '鏈上與法庭，兩邊都在同一間辦公室',
+    d: '追蹤資金流向的人，和上法庭申請凍結令的人，就在同一層樓辦公。從追金流到上法庭，全部自己人做。',
+  },
+  {
+    t: '承辦律師直接對接',
+    d: '從第一次通話到結案，跟您說話的一直是同一位律師。不是客服，也不是業務。',
+  },
+  {
+    t: '配合您的時區，不必熬夜等回覆',
+    d: '按您所在城市的時間安排通話，不必為了聯絡我們請假或半夜爬起來。材料照您手上的原樣遞交即可，整理與翻譯由我們處理。',
+  },
+]
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>虛擬貨幣・投資詐騙跨境資產追償 — {FIRM} 律師事務所</title>
+    <meta
+      name="description"
+      content="USDT、比特幣、假交易平台、殺豬盤、外匯黃金帶單，被騙走的錢留在鏈上。執業律師團隊承辦跨境資產追償，首次案情評估免費，24 小時內回覆。"
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Libre+Franklin:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        reviewUrl: `url(${reviewImg.src})`,
+        libUrl: `url(${libraryImg.src})`,
+        facadeUrl: `url(${reviewImg.src})`,
+      }}
+    >
+      :root {
+        --paper:   #FFFFFF;
+        --paper-2: #F7F5F1;
+        --paper-3: #EEF1F4;
+        --navy:    #0E2340;
+        --navy-2:  #17355C;
+        --navy-3:  #091A31;
+        --ink:     #0E2340;
+        --ink-2:   #4A566A;
+        --ink-3:   #7E8899;
+        --brass:   #9A7B37;
+        --brass-l: #C9A961;
+        --line:    #E2E6EB;
+        --line-2:  #CDD4DD;
+        /* 襯線只保留給數字、字標與序號，當作品牌記號 */
+        --ser:     'Source Serif 4', Georgia, serif;
+        /* 中文標題與內文統一走黑體 */
+        --cjk:     'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+        --san:     'Libre Franklin', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', sans-serif;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--san);
+        font-weight: 400;
+        line-height: 1.9;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: 76px;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+      .nw { white-space: nowrap; }
+      .pcbr { display: none; }
+
+      .wrap { padding: 0 22px; }
+
+      /* ---------- 進場動畫（純 CSS，不依賴 JS） ---------- */
+      @keyframes hFade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+      /* 每張 slide 切到前景時，內容依序浮現；沒有 JS 就是靜態顯示 */
+      .sw-slide-act .hslide-in > *            { animation: hFade .8s cubic-bezier(.16,.84,.28,1) both; }
+      .sw-slide-act .hslide-in > *:nth-child(1) { animation-delay: .06s; }
+      .sw-slide-act .hslide-in > *:nth-child(2) { animation-delay: .16s; }
+      .sw-slide-act .hslide-in > *:nth-child(3) { animation-delay: .24s; }
+      .sw-slide-act .hslide-in > *:nth-child(4) { animation-delay: .32s; }
+      .sw-slide-act .hslide-in > *:nth-child(5) { animation-delay: .40s; }
+
+      /* 滾動顯現：無 JS 時內容照常顯示 */
+      .js-on [data-rev] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .85s cubic-bezier(.16,.84,.28,1), transform .85s cubic-bezier(.16,.84,.28,1);
+      }
+      .js-on [data-rev].in { opacity: 1; transform: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .sw-slide-act .hslide-in > * { animation: none; }
+        .js-on [data-rev] { opacity: 1; transform: none; transition: none; }
+      }
+
+      /* ---------- 共用元件 ---------- */
+      .sec-title {
+        font-family: var(--cjk);
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 1.44;
+        letter-spacing: -.012em;
+        color: var(--navy);
+      }
+      .sec-title .g { color: var(--ink-2); font-weight: 400; }
+      .on-navy .sec-title { color: #fff; }
+      .on-navy .sec-title .g { color: rgba(255,255,255,.72); }
+
+      .sec-lede {
+        margin-top: 18px;
+        font-size: 14.5px;
+        line-height: 2.05;
+        color: var(--ink-2);
+        max-width: 40em;
+      }
+
+      section { padding: 66px 0; position: relative; }
+      .band-2 { background: var(--paper-2); }
+
+      /* 按鈕 */
+      .btn {
+        display: block;
+        width: 100%;
+        margin-top: 26px;
+        padding: 17px 22px;
+        text-align: center;
+        font-family: var(--san);
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: .08em;
+        color: #fff;
+        background: var(--navy);
+        border: 1px solid var(--navy);
+        cursor: pointer;
+        transition: background .25s ease, border-color .25s ease;
+      }
+      .btn:active { background: var(--navy-2); border-color: var(--navy-2); }
+      .btn-l {
+        color: var(--navy);
+        background: #fff;
+        border-color: #fff;
+      }
+      .btn-l:active { background: var(--paper-2); border-color: var(--paper-2); }
+
+      /* ---------- 字標 ---------- */
+      .mast {
+        padding: 20px 22px 17px;
+        text-align: center;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .mast .mk {
+        font-family: var(--ser);
+        font-weight: 600;
+        font-size: 22px;
+        letter-spacing: .3em;
+        text-indent: .3em;
+        color: var(--navy);
+      }
+      .mast .sb {
+        margin-top: 6px;
+        font-size: 9.5px;
+        letter-spacing: .34em;
+        text-indent: .34em;
+        color: var(--ink-3);
+      }
+
+      /* ---------- HERO 輪播 ---------- */
+      .hero { position: relative; background: var(--paper); }
+
+      /* 手機：直版圖（標題已排在圖上）在上，行動區在下 */
+      .hslide { background: var(--paper); }
+      .hslide-pic { display: block; }
+      /* 標題排在圖的上半，往下裁不會傷到字，換來首屏就看得到 CTA */
+      .hslide-pic img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: top center;
+      }
+      .hslide-in { padding: 22px 22px 18px; }
+
+      .sr-only {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* 手機走正常文件流排在最後，才不會被底部懸浮欄蓋住 */
+      .hero-dots {
+        padding: 4px 22px 26px;
+        z-index: 5;
+      }
+
+      .hero .sub {
+        margin-top: 20px;
+        font-size: 14.5px;
+        line-height: 2.05;
+        color: var(--ink-2);
+        max-width: 32em;
+      }
+      .hero .rule {
+        margin-top: 26px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--brass), rgba(154,123,55,0));
+        transform-origin: left center;
+      }
+      .hero .meta {
+        margin-top: 16px;
+        font-size: 11.5px;
+        letter-spacing: .08em;
+        color: var(--ink-3);
+      }
+
+      /* ---------- 數據 ---------- */
+      .stats {
+        background: var(--paper-2);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 6px 22px;
+      }
+      .stat { padding: 20px 0; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: 0; }
+      .stat .v {
+        font-family: var(--ser);
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 1;
+        letter-spacing: -.005em;
+        color: var(--navy);
+      }
+      .stat .v :global(.u) { font-family: var(--cjk); font-size: 20px; font-weight: 500; }
+      .stat .k {
+        margin-top: 8px;
+        font-size: 12.5px;
+        letter-spacing: .05em;
+        color: var(--ink-2);
+      }
+
+      /* ---------- 輪播骨架 ---------- */
+      .sw { overflow: hidden; }
+      .sw-wrap { display: flex; box-sizing: content-box; }
+      .sw-slide { flex-shrink: 0; width: 100%; height: auto; }
+
+      .sw-nav {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 22px;
+        padding: 0 22px;
+      }
+      .dots { display: flex; align-items: center; gap: 7px; flex: 1; }
+      .dots :global(.d) {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--line-2);
+        transition: background .35s ease, width .35s ease;
+        cursor: pointer;
+      }
+      .dots :global(.d.on) { background: var(--navy); width: 34px; }
+      .arw {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--line-2);
+        display: grid;
+        place-items: center;
+        transition: background .25s ease, border-color .25s ease;
+      }
+      .arw:active { background: var(--paper-2); border-color: var(--navy); }
+      .arw svg { width: 13px; height: 13px; stroke: var(--navy); fill: none; stroke-width: 1.5; }
+
+      /* ---------- 案件卡片 ---------- */
+      .case-sw { margin-top: 30px; padding: 0 22px; }
+      .case-card {
+        height: 100%;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 26px 22px 28px;
+      }
+      .case-card .n {
+        font-family: var(--ser);
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 1;
+        color: var(--brass);
+      }
+      .case-card h3 {
+        margin-top: 13px;
+        font-family: var(--cjk);
+        font-weight: 600;
+        font-size: 19px;
+        line-height: 1.5;
+        color: var(--navy);
+      }
+      .case-card p {
+        margin-top: 12px;
+        font-size: 13.5px;
+        line-height: 1.95;
+        color: var(--ink-2);
+      }
+      .case-foot {
+        margin-top: 30px;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        line-height: 2;
+        color: var(--ink-2);
+      }
+
+      /* ---------- 流程 ---------- */
+      .proc-fig {
+        position: relative;
+        height: 230px;
+        margin-top: 30px;
+        overflow: hidden;
+      }
+      .proc-fig .bg {
+        position: absolute;
+        inset: -12% 0;
+        background-image: var(--reviewUrl);
+        background-size: cover;
+        background-position: center 42%;
+        will-change: transform;
+      }
+
+      .rail { position: relative; margin-top: 34px; padding-left: 32px; }
+      .rail::before {
+        content: '';
+        position: absolute;
+        left: 7px; top: 8px; bottom: 8px;
+        width: 1px;
+        background: var(--line-2);
+      }
+      .rail-fill {
+        position: absolute;
+        left: 7px; top: 8px;
+        width: 1px;
+        height: 0;
+        background: var(--navy);
+      }
+      .step { position: relative; padding-bottom: 36px; }
+      .step:last-child { padding-bottom: 0; }
+      .step .dot {
+        position: absolute;
+        left: -29px; top: 10px;
+        width: 9px; height: 9px;
+        border: 1px solid var(--line-2);
+        background: var(--paper);
+        border-radius: 50%;
+        transition: background .4s ease, box-shadow .4s ease, border-color .4s ease;
+      }
+      .step.lit .dot {
+        background: var(--navy);
+        border-color: var(--navy);
+        box-shadow: 0 0 0 4px rgba(14,35,64,.10);
+      }
+      .step .n {
+        font-family: var(--ser);
+        font-weight: 500;
+        font-size: 13px;
+        letter-spacing: .18em;
+        color: var(--brass);
+      }
+      .step h3 {
+        margin-top: 5px;
+        font-family: var(--cjk);
+        font-weight: 600;
+        font-size: 19px;
+        line-height: 1.5;
+        color: var(--navy);
+      }
+      .step p {
+        margin-top: 9px;
+        font-size: 13.5px;
+        line-height: 2;
+        color: var(--ink-2);
+      }
+
+      /* ---------- 律師 ---------- */
+      .lw-sw { margin-top: 30px; padding: 0 22px; }
+      .lw-card {
+        height: 100%;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+      .lw-card .ph {
+        aspect-ratio: 1 / 1;
+        background: #E8EAEC;
+        overflow: hidden;
+      }
+      .lw-card .ph img { width: 100%; height: 100%; object-fit: cover; }
+      .lw-card .bd { padding: 18px 20px 24px; }
+      .lw-card .nm {
+        font-family: var(--cjk);
+        font-weight: 600;
+        font-size: 19px;
+        line-height: 1.4;
+        color: var(--navy);
+      }
+      .lw-card .rl {
+        margin-top: 5px;
+        font-size: 11px;
+        letter-spacing: .16em;
+        color: var(--brass);
+      }
+      .lw-card .fd {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        font-size: 12.5px;
+        letter-spacing: .03em;
+        color: var(--navy);
+      }
+      .lw-card .ds {
+        margin-top: 8px;
+        font-size: 12.5px;
+        line-height: 1.9;
+        color: var(--ink-3);
+      }
+
+      /* ---------- 為什麼 ---------- */
+      .why-fig { height: 210px; margin-top: 30px; overflow: hidden; position: relative; }
+      .why-fig .bg {
+        position: absolute;
+        inset: -12% 0;
+        background-image: var(--libUrl);
+        background-size: cover;
+        background-position: center;
+        will-change: transform;
+      }
+      .why { margin-top: 30px; }
+      .why-item {
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        gap: 4px 12px;
+      }
+      .why-item:last-child { border-bottom: 1px solid var(--line); }
+      .why-item .ix {
+        font-family: var(--ser);
+        font-size: 14px;
+        letter-spacing: .08em;
+        color: var(--brass);
+        padding-top: 3px;
+      }
+      .why-item h3 {
+        font-family: var(--cjk);
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 1.5;
+        color: var(--navy);
+      }
+      .why-item p {
+        grid-column: 2;
+        margin-top: 8px;
+        font-size: 13.5px;
+        line-height: 1.95;
+        color: var(--ink-2);
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq { border-top: 1px solid var(--line); }
+      .faq:last-of-type { border-bottom: 1px solid var(--line); }
+      .faq-q {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+        text-align: left;
+        padding: 20px 0;
+        font-family: var(--cjk);
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--navy);
+      }
+      .faq-q .ic {
+        flex: 0 0 auto;
+        position: relative;
+        width: 13px; height: 13px;
+        margin-top: 7px;
+      }
+      .faq-q .ic::before,
+      .faq-q .ic::after {
+        content: '';
+        position: absolute;
+        background: var(--brass);
+        transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+      }
+      .faq-q .ic::before { left: 0; top: 6px; width: 13px; height: 1px; }
+      .faq-q .ic::after  { left: 6px; top: 0; width: 1px; height: 13px; }
+      .faq.open .faq-q .ic::after { transform: rotate(90deg); opacity: 0; }
+      .faq-a { height: 0; overflow: hidden; }
+      .faq-a p {
+        padding: 0 0 22px 29px;
+        font-size: 13.5px;
+        line-height: 2.05;
+        color: var(--ink-2);
+      }
+
+      /* ---------- 結尾 CTA ---------- */
+      .close {
+        position: relative;
+        overflow: hidden;
+        background: var(--navy);
+        color: #fff;
+        padding: 66px 22px 60px;
+      }
+      .close .bg {
+        position: absolute; inset: -12% 0;
+        background-image: var(--facadeUrl);
+        background-size: cover;
+        background-position: center;
+        opacity: .12;
+        will-change: transform;
+      }
+      .close-in { position: relative; z-index: 2; }
+      .close h2 {
+        font-family: var(--cjk);
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 1.44;
+        letter-spacing: -.012em;
+      }
+      .close p {
+        margin-top: 18px;
+        font-size: 14px;
+        line-height: 2.05;
+        color: rgba(255,255,255,.78);
+      }
+      .close .note {
+        margin-top: 14px;
+        text-align: center;
+        font-size: 11.5px;
+        letter-spacing: .05em;
+        color: rgba(255,255,255,.55);
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: var(--navy-3);
+        color: rgba(255,255,255,.7);
+        padding: 38px 22px 44px;
+      }
+      footer .mk {
+        font-family: var(--ser);
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: .3em;
+        text-indent: .3em;
+        color: #fff;
+      }
+      .fcontact {
+        margin-top: 22px;
+        padding: 18px 0 4px;
+        border-top: 1px solid rgba(255,255,255,.14);
+      }
+      .fc { display: flex; gap: 14px; padding: 7px 0; font-size: 12.5px; }
+      .fc .k { flex: 0 0 76px; letter-spacing: .1em; color: var(--brass-l); }
+      .fc .v { color: rgba(255,255,255,.8); }
+      footer p {
+        margin-top: 14px;
+        font-size: 11px;
+        line-height: 2;
+        color: rgba(255,255,255,.45);
+      }
+
+      /* ---------- sticky dock ---------- */
+      .dock {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(255,255,255,.97);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--line-2);
+      }
+      .dock .tx { flex: 1; min-width: 0; font-size: 11px; line-height: 1.55; color: var(--ink-3); }
+      .dock .tx b {
+        display: block;
+        font-family: var(--cjk);
+        font-weight: 600;
+        font-size: 13.5px;
+        color: var(--navy);
+      }
+      .dock .go {
+        flex: 0 0 auto;
+        padding: 13px 22px;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: .06em;
+        color: #fff;
+        background: var(--navy);
+      }
+      .dock .go:active { background: var(--navy-2); }
+
+      /* ================= 平板 / 桌面 ================= */
+      @media (min-width: 768px) {
+        body { padding-bottom: 96px; line-height: 1.95; }
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 44px; }
+        .mast { padding: 24px 44px 20px; }
+        .mast .mk { font-size: 26px; }
+        section { padding: 100px 0; }
+        .sec-title { font-size: 36px; max-width: 18em; }
+        .pcbr { display: block; }
+        .sec-lede { font-size: 16px; margin-top: 22px; }
+
+        /* 桌面：橫版圖鋪滿，行動區疊在圖左下方，接著圖上的標題往下走 */
+        /* 120px ≈ 字標列實際高度 */
+        .hslide { position: relative; min-height: calc(100svh - 120px); }
+        .hslide-pic { position: absolute; inset: 0; }
+        .hslide-pic img { height: 100%; aspect-ratio: auto; object-fit: cover; object-position: center; }
+        .hslide-in {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          min-height: calc(100svh - 120px);
+          padding: 0 44px 116px;
+          max-width: 1180px;
+          margin: 0 auto;
+        }
+        .hero .sub { font-size: 16.5px; max-width: 30em; }
+        .btn { max-width: 320px; padding: 18px 26px; font-size: 15.5px; }
+        .hero-dots { position: absolute; left: 44px; bottom: 92px; padding: 0; }
+
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding: 44px 44px; }
+        .stat { border-bottom: 0; border-left: 1px solid var(--line-2); padding: 4px 0 4px 24px; }
+        .stat:first-child { border-left: 0; padding-left: 0; }
+        .stat .v { font-size: 46px; }
+
+        .case-sw, .lw-sw, .sw-nav { padding: 0 44px; max-width: 1180px; margin-left: auto; margin-right: auto; }
+        .case-card { padding: 32px 30px 34px; }
+        .case-card h3 { font-size: 21px; }
+        .case-card p { font-size: 14px; }
+
+        .proc-fig { height: 400px; }
+        .rail { margin-top: 56px; padding-left: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 78px; }
+        .rail::before, .rail-fill { left: 50%; }
+        .step { padding: 0 0 54px; }
+        .step.l { grid-column: 1; text-align: right; }
+        .step.r { grid-column: 2; margin-top: 78px; }
+        .step h3 { font-size: 22px; }
+        .step p { font-size: 14px; }
+        .step .dot { left: -44px; top: 12px; }
+        .step.l .dot { left: auto; right: -44px; }
+
+        .why-fig { height: 380px; }
+        .why { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 60px; margin-top: 46px; }
+        .why-item { padding: 26px 0; }
+        .why-item h3 { font-size: 19px; }
+        .why-item p { font-size: 14px; }
+
+        .faq-q { font-size: 19px; padding: 26px 0; }
+        .faq-a p { font-size: 14.5px; max-width: 46em; }
+
+        .close { padding: 118px 44px 106px; text-align: center; }
+        .close h2 { font-size: 40px; max-width: 16em; margin-left: auto; margin-right: auto; }
+        .close p { font-size: 15.5px; max-width: 36em; margin-left: auto; margin-right: auto; }
+        .close .btn { margin-left: auto; margin-right: auto; }
+
+        footer { padding: 52px 44px 60px; }
+        .fcontact, footer p, footer .mk { max-width: 1180px; margin-left: auto; margin-right: auto; }
+        .fcontact { display: flex; gap: 60px; }
+        .fc { padding: 0; }
+
+        .dock { padding: 13px 44px calc(13px + env(safe-area-inset-bottom)); justify-content: center; gap: 30px; }
+        .dock .tx { flex: 0 1 auto; font-size: 12.5px; }
+        .dock .tx b { display: inline; margin-right: 12px; font-size: 15px; }
+        .dock .go { padding: 14px 36px; font-size: 15px; }
+      }
+
+      @media (min-width: 980px) {
+        .hslide-in {
+          padding: 0 44px 118px max(44px, calc((100vw - 1180px) / 2));
+          margin: 0;
+          max-width: none;
+        }
+        .hslide-in > * { max-width: 560px; }
+        .hero-dots { left: max(44px, calc((100vw - 1180px) / 2)); }
+        .case-card { min-height: 292px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="mast">
+      <div class="mk">{FIRM}</div>
+      <div class="sb">ATTORNEYS AT LAW</div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-sw sw" data-hero-sw>
+        <div class="sw-wrap">
+          {heroSlides.map((s, i) => (
+            <div class="sw-slide">
+              <div class="hslide">
+                <picture class="hslide-pic">
+                  <source media="(min-width: 768px)" srcset={s.pc.src} />
+                  <img src={s.mob.src} alt={s.alt} loading={i === 0 ? 'eager' : 'lazy'} />
+                </picture>
+
+                <div class="hslide-in">
+                  {/* 標題已排在圖裡，這裡補一個給搜尋引擎與螢幕閱讀器的 h1 */}
+                  {i === 0 && <h1 class="sr-only">{s.alt}</h1>}
+
+                  <p class="sub">{s.d}</p>
+
+                  <div class="rule"></div>
+
+                  <a class="btn link-btn" onclick="mixinJump()">免費評估我的案件</a>
+                  <div class="meta">首次評估免費 · 24 小時內回覆 · 資料全程保密</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="hero-dots dots" data-hero-dots></div>
+    </header>
+
+    <div class="stats" data-stats>
+      {stats.map(s => (
+        <div class="stat">
+          <div
+            class="v"
+            data-count={s.v}
+            data-dec={s.dec ?? 0}
+            data-prefix={s.prefix ?? ''}
+            data-suffix={s.suffix ?? ''}
+          >{s.prefix ?? ''}0{s.suffix ?? ''}</div>
+          <div class="k">{s.k}</div>
+        </div>
+      ))}
+    </div>
+
+    <section>
+      <div class="wrap">
+        <h2 class="sec-title" data-rev>
+          如果下面有一條讓您心裡一沉，<br class="pcbr" /><span class="g">那不是您太笨，是對方做得太專業。</span>
+        </h2>
+      </div>
+
+      <div class="case-sw sw" data-case-sw>
+        <div class="sw-wrap">
+          {cases.map(c => (
+            <div class="sw-slide">
+              <div class="case-card">
+                <div class="n">{c.n}</div>
+                <h3>{c.t}</h3>
+                <p>{c.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="sw-nav">
+        <div class="dots" data-case-dots></div>
+        <button class="arw" data-case-prev aria-label="上一則">
+          <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20" /></svg>
+        </button>
+        <button class="arw" data-case-next aria-label="下一則">
+          <svg viewBox="0 0 24 24"><polyline points="9 4 17 12 9 20" /></svg>
+        </button>
+      </div>
+
+      <div class="wrap">
+        <p class="case-foot" data-rev>
+          不論是 USDT、比特幣、以太幣等各類加密貨幣，
+          還是股票、黃金、外匯、期貨、理財產品與假 APP 引發的投資糾紛，我們都受理。金額不論大小，先讓我們看一眼。
+        </p>
+      </div>
+    </section>
+
+    <section class="band-2">
+      <div class="wrap">
+        <h2 class="sec-title" data-rev>錢一旦要變成能花的錢，<br class="pcbr" /><span class="g">就必須留下名字。</span></h2>
+        <p class="sec-lede" data-rev>
+          很多人以為錢一轉出去就沒了。實際上，對詐騙集團來說，最難的一步是在錢轉出去之後。
+          騙來的錢要落袋，就必須經過交易所、支付通道或銀行。只要它進了這些地方，就會留下實名記錄，也就有了被凍結的可能。
+        </p>
+      </div>
+
+      <div class="proc-fig">
+        <div class="bg" data-para="0.10"></div>
+      </div>
+
+      <div class="wrap">
+        <div class="rail" data-rail>
+          <div class="rail-fill" data-rail-fill></div>
+          {steps.map((s, i) => (
+            <div class={`step ${i % 2 === 0 ? 'l' : 'r'}`} data-step data-rev>
+              <div class="dot"></div>
+              <div class="n">{s.n}</div>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="sec-title" data-rev>您的案子由誰經手，<br class="pcbr" /><span class="g">從第一天起就寫在委託書上。</span></h2>
+      </div>
+
+      <div class="lw-sw sw" data-lw-sw>
+        <div class="sw-wrap">
+          {lawyers.map(p => (
+            <div class="sw-slide">
+              <div class="lw-card">
+                <div class="ph"><img src={p.img.src} alt={`${p.name}／${p.role}`} loading="lazy" /></div>
+                <div class="bd">
+                  <div class="nm">{p.name}</div>
+                  <div class="rl">{p.role}</div>
+                  <div class="fd">{p.field}</div>
+                  <div class="ds">{p.desc}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="sw-nav">
+        <div class="dots" data-lw-dots></div>
+        <button class="arw" data-lw-prev aria-label="上一位">
+          <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20" /></svg>
+        </button>
+        <button class="arw" data-lw-next aria-label="下一位">
+          <svg viewBox="0 0 24 24"><polyline points="9 4 17 12 9 20" /></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="band-2">
+      <div class="wrap">
+        <h2 class="sec-title" data-rev>被騙過一次的人，<br class="pcbr" /><span class="g">最不需要的就是再被推銷一次。</span></h2>
+      </div>
+
+      <div class="why-fig">
+        <div class="bg" data-para="0.08"></div>
+      </div>
+
+      <div class="wrap">
+        <div class="why">
+          {whys.map((w, i) => (
+            <div class="why-item" data-rev>
+              <div class="ix">{String(i + 1).padStart(2, '0')}</div>
+              <h3>{w.t}</h3>
+              <p>{w.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="sec-title" data-rev>先把話說清楚。</h2>
+
+        <div style="margin-top: 32px;">
+          {faqs.map(f => (
+            <div class="faq" data-faq>
+              <button class="faq-q" type="button">
+                <span class="ic"></span>
+                <span>{f.q}</span>
+              </button>
+              <div class="faq-a"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="close on-navy">
+      <div class="bg" data-para="0.08"></div>
+      <div class="close-in">
+        <h2 data-rev>被騙不是您的錯，<br />但接下來怎麼做，是您能決定的。</h2>
+        <p data-rev>
+          您現在只需要做一件事：把手上還留著的東西整理出來——轉帳記錄、對話截圖、平台網址。
+          剩下的交給我們。能追不能追，24 小時內給您答覆，不收費，也不會拿話術拖著您。
+        </p>
+        <a class="btn btn-l link-btn" onclick="mixinJump()">免費評估我的案件</a>
+        <div class="note">評估階段不收取任何費用 · 資料受律師保密義務保護</div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="mk">{FIRM}</div>
+
+      <div class="fcontact">
+        {contact.map(c => (
+          <div class="fc">
+            <span class="k">{c.k}</span>
+            <span class="v">{c.v}</span>
+          </div>
+        ))}
+      </div>
+
+      <p>
+        {FIRM} 為依法登記之法律事務所，本所承辦律師均具備執業資格並登錄於主管機關名冊，
+        可依姓名查詢其執業狀態。
+      </p>
+      <p>
+        本頁內容為一般性資訊，不構成針對個案的法律意見，瀏覽本頁不因此成立委任關係。
+        個案結果取決於資金流向、對方身分與司法轄區等具體事實，過往案件不代表對本案結果的承諾。
+      </p>
+    </footer>
+
+    <div class="dock">
+      <div class="tx">
+        <b>先確認能不能追</b>
+        評估免費 · 24 小時內回覆
+      </div>
+      <a class="go link-btn" onclick="mixinJump()">免費諮詢</a>
+    </div>
+
+    <script>
+      import gsap from 'gsap'
+      import { ScrollTrigger } from 'gsap/ScrollTrigger'
+      import Swiper from 'swiper'
+      import { Autoplay, Keyboard } from 'swiper/modules'
+
+      gsap.registerPlugin(ScrollTrigger)
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      /**
+       * 滾動顯現：JS 只負責加 .in，樣式由 CSS 過渡完成。
+       * 若 ScrollTrigger 因任何原因沒觸發，兜底計時器會把內容顯示出來，
+       * 不會讓文字永久停在 opacity:0。
+       */
+      function revealOnScroll() {
+        const items = gsap.utils.toArray('[data-rev]')
+        document.documentElement.classList.add('js-on')
+
+        items.forEach((el) => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 90%',
+            once: true,
+            onEnter: () => el.classList.add('in'),
+          })
+        })
+
+        setTimeout(() => items.forEach(el => el.classList.add('in')), 4000)
+      }
+
+      function parallax() {
+        gsap.utils.toArray('[data-para]').forEach((el) => {
+          const amt = parseFloat(el.dataset.para || '0.1')
+          gsap.fromTo(
+            el,
+            { yPercent: -amt * 100 },
+            {
+              yPercent: amt * 100,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: el.parentElement,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+              },
+            },
+          )
+        })
+      }
+
+      function counters() {
+        gsap.utils.toArray('[data-count]').forEach((el) => {
+          const target = parseFloat(el.dataset.count || '0')
+          const dec = parseInt(el.dataset.dec || '0', 10)
+          const prefix = el.dataset.prefix || ''
+          const suffix = el.dataset.suffix || ''
+          const obj = { v: 0 }
+
+          const paint = () => {
+            const n = dec > 0
+              ? obj.v.toFixed(dec)
+              : Math.round(obj.v).toLocaleString('en-US')
+            el.innerHTML = `${prefix}${n}<span class="u">${suffix}</span>`
+          }
+          paint()
+
+          gsap.to(obj, {
+            v: target,
+            duration: 1.9,
+            ease: 'power2.out',
+            onUpdate: paint,
+            scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+          })
+
+          // 兜底：動畫沒跑到底就直接落到終值，不留一排 0 給使用者看
+          setTimeout(() => {
+            if (obj.v !== target) { obj.v = target; paint() }
+          }, 5000)
+        })
+      }
+
+      function processRail() {
+        const rail = document.querySelector('[data-rail]')
+        const fill = document.querySelector('[data-rail-fill]')
+        if (!rail || !fill) return
+
+        const steps = gsap.utils.toArray('[data-step]')
+
+        ScrollTrigger.create({
+          trigger: rail,
+          start: 'top 72%',
+          end: 'bottom 78%',
+          scrub: .5,
+          onUpdate: (self) => {
+            fill.style.height = `${self.progress * 100}%`
+          },
+        })
+
+        steps.forEach((s) => {
+          ScrollTrigger.create({
+            trigger: s,
+            start: 'top 76%',
+            onEnter: () => s.classList.add('lit'),
+            onLeaveBack: () => s.classList.remove('lit'),
+          })
+        })
+      }
+
+      function buildSwiper(rootSel, dotsSel, prevSel, nextSel, opts) {
+        const root = document.querySelector(rootSel)
+        const dotsBox = document.querySelector(dotsSel)
+        if (!root) return
+
+        const sw = new Swiper(root, {
+          modules: [Autoplay, Keyboard],
+          wrapperClass: 'sw-wrap',
+          slideClass: 'sw-slide',
+          slidesPerView: 1.1,
+          spaceBetween: 14,
+          grabCursor: true,
+          keyboard: { enabled: true },
+          autoplay: reduce ? false : { delay: 5200, disableOnInteraction: true },
+          breakpoints: {
+            560: { slidesPerView: 2.05, spaceBetween: 18 },
+            900: { slidesPerView: 3, spaceBetween: 24 },
+          },
+          ...opts,
+        })
+
+        if (dotsBox) {
+          const n = sw.slides.length
+          dotsBox.innerHTML = Array.from({ length: n }, () => '<span class="d"></span>').join('')
+          const dots = Array.from(dotsBox.children)
+          const sync = () => dots.forEach((d, i) => d.classList.toggle('on', i === sw.realIndex))
+          dots.forEach((d, i) => d.addEventListener('click', () => sw.slideTo(i)))
+          sw.on('slideChange', sync)
+          sync()
+        }
+
+        const prev = prevSel ? document.querySelector(prevSel) : null
+        const next = nextSel ? document.querySelector(nextSel) : null
+        if (prev) prev.addEventListener('click', () => sw.slidePrev())
+        if (next) next.addEventListener('click', () => sw.slideNext())
+
+        return sw
+      }
+
+      function faqAccordion() {
+        const items = Array.from(document.querySelectorAll('[data-faq]'))
+
+        items.forEach((item) => {
+          const btn = item.querySelector('.faq-q')
+          const panel = item.querySelector('.faq-a')
+          if (!btn || !panel) return
+
+          btn.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open')
+
+            items.forEach((other) => {
+              if (other === item || !other.classList.contains('open')) return
+              other.classList.remove('open')
+              gsap.to(other.querySelector('.faq-a'), { height: 0, duration: .4, ease: 'power2.inOut' })
+            })
+
+            if (isOpen) {
+              item.classList.remove('open')
+              gsap.to(panel, { height: 0, duration: .4, ease: 'power2.inOut' })
+            }
+            else {
+              item.classList.add('open')
+              gsap.to(panel, {
+                height: 'auto',
+                duration: .5,
+                ease: 'power2.out',
+                onComplete: () => ScrollTrigger.refresh(),
+              })
+            }
+          })
+        })
+      }
+
+      function init() {
+        revealOnScroll()
+        if (!reduce) parallax()
+        counters()
+        processRail()
+        faqAccordion()
+
+        buildSwiper('[data-hero-sw]', '[data-hero-dots]', null, null, {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          rewind: true,
+          slideActiveClass: 'sw-slide-act',
+          autoplay: reduce ? false : { delay: 6200, disableOnInteraction: false },
+          breakpoints: {},
+        })
+
+        buildSwiper('[data-case-sw]', '[data-case-dots]', '[data-case-prev]', '[data-case-next]')
+        buildSwiper('[data-lw-sw]', '[data-lw-dots]', '[data-lw-prev]', '[data-lw-next]', {
+          slidesPerView: 1.15,
+          breakpoints: {
+            560: { slidesPerView: 2.2, spaceBetween: 18 },
+            900: { slidesPerView: 3.4, spaceBetween: 24 },
+          },
+        })
+
+        window.addEventListener('load', () => ScrollTrigger.refresh())
+      }
+
+      if (document.readyState === 'loading')
+        document.addEventListener('DOMContentLoaded', init)
+      else
+        init()
+    </script>
+  </body>
+</html>

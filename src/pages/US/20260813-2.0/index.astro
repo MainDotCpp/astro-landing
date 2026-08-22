@@ -1,0 +1,198 @@
+---
+import { getImage } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import portraitSrc from './images/cathie-wood.jpg'
+
+const POR_W = 640
+const portrait = await getImage({ src: portraitSrc, format: 'webp', width: POR_W, quality: 80 })
+const portraitH = Math.round(POR_W * portraitSrc.height / portraitSrc.width)
+
+const bullets = [
+  'Portfolio return: +15.2% over the last 2 months',
+  'U.S. and Canadian (TSX) stocks covered',
+  'Sent straight to WhatsApp, free to join',
+]
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cathie Wood — Up Over 10% in Just 2 Months. Join Free.</title>
+    <meta
+      name="description"
+      content="I'm Cathie Wood, founder and CIO of ARK Invest. My portfolio is up over 10% in the last 2 months — I share the U.S. and Canadian stock moves behind it for free inside WhatsApp."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --night: #0c1219;
+        --night-2: #161f29;
+        --paper: #f3f1ec;
+        --ink: #f4f1ea;
+        --ink-2: #b9c0c9;
+        --gold: #c9974e;
+        --gold-2: #e0b978;
+        --wa: #25d366;
+        --wa-d: #1bae52;
+        --rule: rgba(244, 241, 234, 0.14);
+        --sans: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+        --serif: 'IBM Plex Serif', Georgia, serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        font-family: var(--sans);
+        background: var(--night);
+        color: var(--ink);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(84px + env(safe-area-inset-bottom));
+      }
+      img { display: block; max-width: 100%; height: auto; }
+      .wrap { width: 100%; padding-inline: 22px; }
+
+      .hero { padding-top: calc(env(safe-area-inset-top) + 34px); padding-bottom: 30px; }
+      .kicker {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--gold-2); margin-bottom: 18px;
+      }
+      .kicker::before { content: ''; width: 20px; height: 2px; background: var(--gold); }
+
+      .portrait {
+        width: 132px; height: 132px; border-radius: 50%; overflow: hidden;
+        border: 2px solid var(--gold); margin-bottom: 20px;
+      }
+      .portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+      h1 {
+        font-family: var(--serif); font-weight: 600; font-style: italic;
+        font-size: clamp(1.8rem, 8.4vw, 2.5rem); line-height: 1.16; letter-spacing: -0.01em;
+        margin-bottom: 14px; text-wrap: balance;
+      }
+      h1 span { color: var(--gold-2); font-style: normal; }
+
+      .lead { font-size: 1rem; line-height: 1.6; color: var(--ink-2); max-width: 46ch; margin-bottom: 22px; }
+
+      .bullets { list-style: none; margin-bottom: 26px; display: grid; gap: 11px; max-width: 46ch; }
+      .bullets li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; font-weight: 500; }
+      .bullets svg { width: 17px; height: 17px; flex: none; margin-top: 2px; color: var(--gold-2); }
+
+      .btn {
+        display: flex; align-items: center; justify-content: center; gap: 9px;
+        width: 100%; min-height: 56px; padding: 0 22px;
+        border: none; border-radius: 999px;
+        background: linear-gradient(135deg, var(--gold), var(--gold-2));
+        color: #1a1305; font-family: var(--sans); font-weight: 700; font-size: 0.98rem;
+        letter-spacing: 0.01em; cursor: pointer;
+      }
+      .btn svg { width: 18px; height: 18px; flex: none; }
+      .btn:active { transform: translateY(1px); }
+      .micro { margin-top: 12px; font-size: 0.76rem; color: var(--ink-2); text-align: center; }
+
+      .trust {
+        margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--rule);
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 46ch;
+      }
+      .trust b { display: block; font-family: var(--serif); font-size: 1.25rem; color: var(--gold-2); line-height: 1; }
+      .trust span { display: block; margin-top: 5px; font-size: 0.68rem; color: var(--ink-2); line-height: 1.4; }
+
+      footer { padding: 20px 22px calc(20px + env(safe-area-inset-bottom)); text-align: center; }
+      footer p { font-size: 0.68rem; color: #6d7683; line-height: 1.6; max-width: 60ch; margin: 0 auto; }
+
+      .wa-bar {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+        padding: 11px 0 calc(11px + env(safe-area-inset-bottom));
+        background: rgba(12, 18, 25, 0.95); backdrop-filter: blur(10px);
+        border-top: 1px solid var(--rule);
+      }
+      .wa-btn {
+        display: flex; align-items: center; justify-content: center; gap: 9px;
+        width: 100%; min-height: 52px; border: none; border-radius: 999px;
+        background: var(--wa); color: #04220f; font-family: var(--sans); font-weight: 700; font-size: 0.95rem;
+        cursor: pointer;
+      }
+      .wa-btn svg { width: 20px; height: 20px; flex: none; }
+      .wa-btn:active { background: var(--wa-d); }
+
+      @media (min-width: 640px) {
+        .wrap { max-width: 620px; margin-inline: auto; padding-inline: 32px; }
+        .hero { padding-top: calc(env(safe-area-inset-top) + 60px); padding-bottom: 50px; }
+        .btn { width: auto; min-width: 300px; }
+        .wa-btn { width: auto; min-width: 300px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker">Founder &amp; CIO, ARK Invest · 2-Month Performance</p>
+
+        <div class="portrait">
+          <img
+            src={portrait.src}
+            width={POR_W}
+            height={portraitH}
+            alt="Cathie Wood"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <h1>My portfolio is up over 10% in just 2 months. <span>Join free.</span></h1>
+        <p class="lead">
+          U.S. and Canadian growth stocks, in one place — the names driving that return, sent straight to WhatsApp before the market opens.
+        </p>
+
+        <ul class="bullets">
+          {bullets.map(b => (
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+              {b}
+            </li>
+          ))}
+        </ul>
+
+        <button type="button" class="btn link-btn" onclick="mixinJump()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join My Free WhatsApp Group
+        </button>
+        <p class="micro">Free · no forms, no cost · two taps to leave</p>
+
+        <div class="trust">
+          <div><b>+15.2%</b><span>Last 2 months</span></div>
+          <div><b>US + CA</b><span>Both markets covered</span></div>
+          <div><b>Free</b><span>To join, always</span></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        General market commentary shared for information and education only. Not personalized investment advice, and not a recommendation to buy or sell any security. Investing involves risk, including loss of principal.
+      </p>
+    </footer>
+
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn" onclick="mixinJump()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join the Free Group
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

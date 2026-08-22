@@ -1,0 +1,253 @@
+---
+import JPComplianceFooter from '../common/JPComplianceFooter.astro'
+import JPSecurityIcons from '../common/JPSecurityIcons.astro'
+import heroImg from './images/hero.png'
+---
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>株式投資を基礎から学ぶ | 無料LINEコミュニティ</title>
+<meta name="description" content="株式投資を基礎から学べる無料コミュニティ。初心者でも安心の環境で、一緒に始めましょう。">
+
+<script is:inline>document.documentElement.classList.add('js')</script>
+
+<!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+<script is:inline>
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const link = 'https://www.baidu.com'
+</script>
+<script is:inline src="/mjSFqQ/XoONOW.js"></script>
+<!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #faf6f0;
+  --card: #fff;
+  --ink: #2d2a26;
+  --ink2: #6b6560;
+  --accent: #d97706;
+  --accent2: #f59e0b;
+  --line: #06C755;
+  --rule: rgba(0,0,0,.07);
+  --sans: "Noto Sans JP", system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:calc(76px + env(safe-area-inset-bottom));
+}
+.page{max-width:480px;margin:0 auto;padding:0 20px}
+
+/* ── hero ── */
+.hero{padding-top:calc(env(safe-area-inset-top) + 48px)}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;
+  color:var(--accent);margin-bottom:16px;
+}
+.tag::before{content:"";width:16px;height:2px;background:var(--accent2)}
+h1{
+  font-weight:700;
+  font-size:clamp(1.5rem,6.5vw,2.1rem);line-height:1.35;
+  letter-spacing:-.01em;margin-bottom:16px;color:var(--ink);
+}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{
+  font-size:.92rem;line-height:1.8;color:var(--ink2);margin-bottom:32px;
+}
+.lead strong{color:var(--ink);font-weight:600}
+
+/* ── hero image ── */
+.hero-img{
+  width:100%;height:auto;
+  aspect-ratio:3/1;object-fit:cover;object-position:center 40%;
+  border-radius:14px;margin-bottom:4px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+
+/* ── divider ── */
+.divider{height:1px;background:var(--rule);margin:28px 0}
+
+/* ── section heading ── */
+.sh{
+  font-weight:700;font-size:1.05rem;
+  color:var(--ink);margin-bottom:20px;line-height:1.4;
+}
+
+/* ── step cards ── */
+.steps{display:flex;flex-direction:column;gap:14px;margin-bottom:8px}
+.step{
+  background:var(--card);border-radius:14px;padding:20px 18px;
+  box-shadow:0 1px 4px rgba(0,0,0,.04);
+  display:flex;gap:14px;align-items:flex-start;
+}
+.step-num{
+  width:32px;height:32px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--accent);color:#fff;
+  font-weight:700;font-size:.85rem;border-radius:50%;
+}
+.step-text h3{font-size:.9rem;font-weight:700;margin-bottom:4px;color:var(--ink)}
+.step-text p{font-size:.8rem;color:var(--ink2);line-height:1.6}
+
+/* ── community ── */
+.comm{margin-bottom:8px}
+.comm p{font-size:.88rem;line-height:1.75;color:var(--ink2);margin-bottom:12px}
+.comm strong{color:var(--ink);font-weight:600}
+
+/* ── CTA ── */
+.cta-wrap{margin:28px 0 8px}
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;min-height:56px;padding:0 20px;
+  border:none;border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-family:var(--sans);font-weight:700;font-size:.95rem;
+  letter-spacing:.02em;cursor:pointer;
+  box-shadow:0 4px 20px rgba(217,119,6,.2);
+}
+.cta svg{width:22px;height:22px;flex:none}
+.cta:active{transform:translateY(1px)}
+.cta-note{
+  text-align:center;font-size:.7rem;color:var(--ink2);margin-top:10px;
+}
+
+/* ── sticky bar ── */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  padding:10px 20px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(250,246,240,.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+}
+.bar-inner{max-width:480px;margin:0 auto}
+.bar-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;min-height:50px;border:none;border-radius:999px;
+  background:var(--line);color:#fff;
+  font-family:var(--sans);font-weight:700;font-size:.9rem;cursor:pointer;
+}
+.bar-btn svg{width:20px;height:20px;flex:none}
+.bar-btn:active{background:#05a948}
+
+/* ── reveal ── */
+html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+html.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+@media(min-width:640px){
+  .page{padding:0 32px}
+  .hero{padding-top:calc(env(safe-area-inset-top) + 64px)}
+  .cta,.bar-btn{width:auto;min-width:320px;margin:0 auto}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+  <section class="hero">
+    <p class="tag">初心者歓迎</p>
+    <h1>株式投資、難しそう？<em>基礎からわかれば、怖くない。</em></h1>
+    <p class="lead">
+      専門用語ばかりで何から手をつけていいかわからない——<strong>その気持ち、よくわかります。</strong>大事なのは、正しい順番で学ぶこと。一人で悩まなくて大丈夫です。
+    </p>
+    <img src={heroImg.src} alt="" width="1536" height="1024" class="hero-img" />
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <p class="sh">こんなことが、わかるようになります</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h3>株の選び方を知る</h3>
+          <p>「どの株を買えばいいの？」の答えは一つじゃない。選ぶための考え方を、実例とセットで学びます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h3>チャートの見方を学ぶ</h3>
+          <p>ローソク足、移動平均線、出来高——覚える用語は意外と少ない。まずはこの3つだけで十分。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h3>少額から実践する</h3>
+          <p>知識だけでは身につかない。少額で実際に売買しながら、感覚をつかんでいきましょう。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="comm reveal">
+    <p class="sh">わからないことは、すぐ聞ける環境。</p>
+    <p>
+      <strong>「こんな初歩的なこと聞いていいのかな」</strong>——そう思って調べ続けるのは時間がもったいない。LINEグループには同じ段階の仲間がいます。
+    </p>
+    <p>
+      経験者のアドバイスも、初心者同士の情報交換も。<strong>聞ける場所があるだけで、学びのスピードは変わります。</strong>
+    </p>
+  </section>
+
+  <div class="cta-wrap reveal">
+    <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 0 1-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595a.62.62 0 0 1 .194-.033c.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEで無料参加する
+    </button>
+    <p class="cta-note">初心者の方が多数参加中 · いつでも退出可能</p>
+  </div>
+
+  <JPSecurityIcons />
+</div>
+
+<JPComplianceFooter />
+
+<div class="bar">
+  <div class="bar-inner">
+    <button type="button" class="bar-btn link-btn" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 0 1-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595a.62.62 0 0 1 .194-.033c.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      無料で参加する
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+;(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+  if (!items.length) return
+
+  function tick() {
+    var vh = window.innerHeight || document.documentElement.clientHeight
+    for (var i = items.length - 1; i >= 0; i--) {
+      if (items[i].getBoundingClientRect().top < vh - 60) {
+        items[i].classList.add('in')
+        items.splice(i, 1)
+      }
+    }
+    if (!items.length) {
+      window.removeEventListener('scroll', tick)
+      window.removeEventListener('resize', tick)
+    }
+  }
+
+  window.addEventListener('scroll', tick, { passive: true })
+  window.addEventListener('resize', tick)
+  tick()
+  setTimeout(tick, 300)
+})()
+</script>
+</body>
+</html>

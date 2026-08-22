@@ -1,0 +1,548 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import avatar from './images/avatar.jpg'
+import hero from './images/hero.png'
+import kakaoIcon from './images/kakao-icon.png'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>사이드카 42회, 그런데 왜 사야 할까 · 염승환의 8월 종목 리포트</title>
+    <meta
+      name="description"
+      content="코스피 6300 폭락, 사이드카 42회 발동. 모두가 팔 때 사야 하는 이유를 데이터로 정리했습니다. 8월 반등 종목 리스트 무료 공개."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #0b0e17;
+        --card: #141826;
+        --card-b: rgba(255, 255, 255, 0.06);
+        --ink: #eef0f6;
+        --ink-2: #9ea4b8;
+        --red: #ff4d4d;
+        --red-bg: rgba(255, 77, 77, 0.1);
+        --gold: #f0b03e;
+        --gold-bg: rgba(240, 176, 62, 0.12);
+        --green: #33d17a;
+        --kakao: #fee500;
+        --maxw: 520px;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html { scroll-behavior: smooth; }
+      html.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+      html.js .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        html.js .reveal { opacity: 1; transform: none; transition: none; }
+      }
+
+      body {
+        font-family: 'IBM Plex Sans KR', -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.72;
+        word-break: keep-all;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img { display: block; max-width: 100%; }
+      a, button { -webkit-tap-highlight-color: transparent; }
+
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* hero */
+      .hero-img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2.4/1;
+        object-fit: cover;
+        object-position: center 60%;
+        border-bottom: 2px solid var(--gold);
+      }
+
+      .hero {
+        padding: 32px 20px 0;
+        max-width: var(--maxw);
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 5px 14px;
+        border-radius: 999px;
+        background: var(--red-bg);
+        border: 1px solid rgba(255, 77, 77, 0.25);
+        color: var(--red);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      h1 {
+        margin: 18px 0 0;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+      }
+
+      h1 em {
+        font-style: normal;
+        color: var(--gold);
+      }
+
+      .hero-sub {
+        margin: 14px 0 0;
+        color: var(--ink-2);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      /* avatar + name */
+      .who {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 28px auto 0;
+        max-width: var(--maxw);
+        padding: 0 20px;
+      }
+
+      .av {
+        width: 56px;
+        height: 56px;
+        flex: 0 0 56px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .who-tx small {
+        display: block;
+        color: var(--ink-2);
+        font-size: 12px;
+      }
+
+      .who-tx b {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      /* quote block */
+      .quote {
+        margin: 24px auto 0;
+        max-width: var(--maxw);
+        padding: 22px 20px;
+        background: var(--card);
+        border-left: 3px solid var(--gold);
+        border-radius: 0 12px 12px 0;
+        color: var(--ink);
+        font-size: 15.5px;
+        line-height: 1.8;
+      }
+
+      .quote strong {
+        color: var(--gold);
+        font-weight: 700;
+      }
+
+      /* stats */
+      .stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 28px auto 0;
+        max-width: var(--maxw);
+        padding: 0 20px;
+      }
+
+      .stat {
+        padding: 18px 16px;
+        background: var(--card);
+        border: 1px solid var(--card-b);
+        border-radius: 14px;
+        text-align: center;
+      }
+
+      .stat-val {
+        display: block;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .stat-val.red { color: var(--red); }
+      .stat-val.gold { color: var(--gold); }
+      .stat-val.green { color: var(--green); }
+
+      .stat-label {
+        display: block;
+        margin-top: 6px;
+        color: var(--ink-2);
+        font-size: 12px;
+      }
+
+      /* section */
+      .sec {
+        margin: 36px auto 0;
+        max-width: var(--maxw);
+        padding: 0 20px;
+      }
+
+      .sec h2 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 16px;
+        line-height: 1.4;
+      }
+
+      .sec h2 em {
+        font-style: normal;
+        color: var(--gold);
+      }
+
+      /* reason list */
+      .reasons {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+
+      .reasons li {
+        display: flex;
+        gap: 14px;
+        padding: 16px;
+        background: var(--card);
+        border: 1px solid var(--card-b);
+        border-radius: 14px;
+        font-size: 14.5px;
+        line-height: 1.65;
+      }
+
+      .reasons li::before {
+        content: attr(data-n);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        flex: 0 0 32px;
+        border-radius: 50%;
+        background: var(--gold-bg);
+        color: var(--gold);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .reasons b { color: var(--gold); font-weight: 600; }
+
+      /* what you get */
+      .gets {
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .gets li {
+        position: relative;
+        padding: 14px 16px 14px 42px;
+        background: var(--card);
+        border: 1px solid var(--card-b);
+        border-radius: 12px;
+        font-size: 14.5px;
+      }
+
+      .gets li::before {
+        content: '';
+        position: absolute;
+        left: 14px;
+        top: 17px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--green);
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat;
+      }
+
+      /* reviews */
+      .reviews {
+        display: grid;
+        gap: 10px;
+      }
+
+      .rev {
+        padding: 16px;
+        background: var(--card);
+        border: 1px solid var(--card-b);
+        border-radius: 12px;
+      }
+
+      .rev small {
+        display: block;
+        color: var(--ink-2);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+
+      .rev p {
+        font-size: 14px;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* inline cta */
+      .cta-wrap {
+        margin: 28px auto 0;
+        max-width: var(--maxw);
+        padding: 0 20px;
+      }
+
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 16px 20px;
+        border: 0;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #f0b03e 0%, #e09520 100%);
+        color: #0b0e17;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 10px 30px -8px rgba(240, 176, 62, 0.45);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .cta:active { transform: scale(0.97); }
+
+      .cta img {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+      }
+
+      /* footer */
+      .foot {
+        margin: 40px auto 0;
+        max-width: var(--maxw);
+        padding: 20px 20px 120px;
+        color: var(--ink-2);
+        font-size: 11.5px;
+        line-height: 1.8;
+        text-align: center;
+      }
+
+      /* fixed bar */
+      .fixed-bar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 90;
+        padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+        background: linear-gradient(0deg, var(--bg) 60%, transparent);
+        display: flex;
+        justify-content: center;
+      }
+
+      .fixed-bar .cta {
+        max-width: var(--maxw);
+        animation: pulse-g 2.2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-g {
+        0%, 100% { box-shadow: 0 10px 30px -8px rgba(240, 176, 62, 0.45); }
+        50% { box-shadow: 0 14px 40px -4px rgba(240, 176, 62, 0.7); }
+      }
+
+      @media (min-width: 768px) {
+        :root { --maxw: 580px; }
+        h1 { font-size: 34px; }
+      }
+
+      @media (max-width: 380px) {
+        h1 { font-size: 24px; }
+        .stat-val { font-size: 22px; }
+      }
+    </style>
+  </head>
+  <body>
+    <script is:inline>document.documentElement.classList.add('js')</script>
+
+    <img
+      class="hero-img"
+      src={hero.src}
+      width="1536"
+      height="1024"
+      alt=""
+      fetchpriority="high"
+    />
+
+    <header class="hero reveal in">
+      <span class="tag">8월 긴급 업데이트</span>
+      <h1>사이드카 42회.<br />지금이 <em>10년에 한 번</em> 올<br />매수 타이밍입니다</h1>
+      <p class="hero-sub">
+        코스피 6300 붕괴, 외국인 1.7조 투매.<br />
+        모두가 공포에 빠진 바로 이 자리 — 여기서 삽니다.
+      </p>
+    </header>
+
+    <div class="who reveal in">
+      <img class="av" src={avatar.src} width="600" height="742" alt="염승환" />
+      <div class="who-tx">
+        <small>LS증권 이사 · 전 유진투자증권 · 삼프로TV · KBS 갓생쇼</small>
+        <b>염승환</b>
+      </div>
+    </div>
+
+    <blockquote class="quote reveal in">
+      "650조 머니무브가 아직 <strong>1.8%</strong>밖에 안 왔습니다.
+      반도체 실적은 역대 최고인데 주가만 빠졌어요.
+      이건 공포 심리지 기업이 나빠진 게 아닙니다. <strong>역사적 불장이 옵니다.</strong>"
+    </blockquote>
+
+    <div class="stats reveal in">
+      <div class="stat">
+        <span class="stat-val red">-4.5%</span>
+        <span class="stat-label">8/6 코스피 하루 낙폭</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val red">42회</span>
+        <span class="stat-label">2026년 사이드카 발동</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val gold">650조</span>
+        <span class="stat-label">대기 중 머니무브 규모</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val green">1.8%</span>
+        <span class="stat-label">유입 비율 — 나머진 대기 중</span>
+      </div>
+    </div>
+
+    <div class="cta-wrap reveal in">
+      <a class="cta link-btn" href="javascript:void(0)">
+        <img src={kakaoIcon.src} width="512" height="512" alt="" />
+        <span>8월 반등 종목 리스트 무료로 받기</span>
+      </a>
+    </div>
+
+    <section class="sec reveal">
+      <h2>모두가 파는 지금,<br />왜 <em>사야</em> 하는가</h2>
+      <ol class="reasons">
+        <li data-n="1">
+          삼성전자 · SK하이닉스 2분기 실적 <b>역대 최대</b>. 주가만 빠졌을 뿐 회사는 돈을 벌고 있다
+        </li>
+        <li data-n="2">
+          외국인 1.7조 투매 → 개인이 받아냈지만 아직 수급 반전 전. <b>기관이 돌아서는 순간 폭등</b>
+        </li>
+        <li data-n="3">
+          중국 반도체 상장 이슈 → 애플 납품 무산, <b>한국 반도체 독점 지위 재확인</b>
+        </li>
+        <li data-n="4">
+          2010년 이후 사이드카 59회 중 42회가 올해. <b>이 정도 공포는 바닥 시그널</b>이다
+        </li>
+      </ol>
+    </section>
+
+    <section class="sec reveal">
+      <h2>카톡방에서 <em>무료로</em> 받는 것들</h2>
+      <ul class="gets">
+        <li>8월 반등 예상 종목 5선 + 매수 근거 리포트</li>
+        <li>매주 월요일 시황 브리핑 (외국인·기관 수급 분석)</li>
+        <li>보유 종목 질문 → 직접 답변</li>
+        <li>급등·급락 시 실시간 긴급 알림</li>
+      </ul>
+    </section>
+
+    <section class="sec reveal">
+      <h2>먼저 들어온 분들</h2>
+      <div class="reviews">
+        <div class="rev">
+          <small>김○현 · 방 가입 3주차</small>
+          <p>사이드카 뜨는 날 혼자였으면 던졌을 텐데, 방에서 데이터 보여주니까 오히려 추가 매수할 수 있었습니다.</p>
+        </div>
+        <div class="rev">
+          <small>박○진 · 방 가입 2개월차</small>
+          <p>7월 폭락 전에 반도체 비중 줄이라는 알림 왔었어요. 덕분에 피해 최소화하고 지금 다시 저점 매수 중입니다.</p>
+        </div>
+        <div class="rev">
+          <small>이○수 · 방 가입 1개월차</small>
+          <p>무료인데 이 정도 퀄리티면 유료 리딩방보다 낫습니다. 월요일 브리핑만 챙겨도 한 주가 편해요.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-wrap reveal">
+      <a class="cta link-btn" href="javascript:void(0)">
+        <img src={kakaoIcon.src} width="512" height="512" alt="" />
+        <span>지금 바로 카톡방 입장하기</span>
+      </a>
+    </div>
+
+    <footer class="foot">
+      ※ 본 콘텐츠는 투자 참고용 정보 제공을 목적으로 하며,
+      특정 종목의 매수·매도를 권유하지 않습니다.
+      투자의 최종 판단과 책임은 투자자 본인에게 있습니다.
+    </footer>
+
+    <div class="fixed-bar">
+      <a class="cta link-btn" href="javascript:void(0)">
+        <img src={kakaoIcon.src} width="512" height="512" alt="" />
+        <span>8월 반등 종목 무료로 받기</span>
+      </a>
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length) return
+
+        function tick() {
+          var vh = window.innerHeight || document.documentElement.clientHeight
+          for (var i = items.length - 1; i >= 0; i--) {
+            if (items[i].getBoundingClientRect().top < vh - 60) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

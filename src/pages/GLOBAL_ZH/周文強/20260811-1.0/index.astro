@@ -1,0 +1,841 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+
+import bgGuilloche from './images/bg-guilloche.jpg'
+// 承載內容的主視覺：文字與版式都排進圖裡，不是裝飾
+import posterMoney from './images/poster-money.jpg'
+import posterCommunity from './images/poster-community.jpg'
+import posterBook from './images/poster-book.jpg'
+
+// 社群真正提供的東西——送書是鉤子，這裡才是留下來的理由
+const offers = [
+  {
+    t: '每週實戰解盤',
+    d: '這一週行情怎麼走、哪裡是機會、哪裡該閃，用真的發生過的盤勢帶你看一遍。',
+  },
+  {
+    t: '精選個股追蹤',
+    d: '我親自篩過的標的，連進場邏輯、要盯什麼訊號一起講。看完你會知道我為什麼挑這一檔。',
+  },
+  {
+    t: '選股方法拆解',
+    d: '把挑股票的判斷流程一步步拆開講。學會方法，下一檔你自己就能挑。',
+  },
+  {
+    t: '財商思維訓練',
+    d: '先把腦袋裡的錢觀念換掉，方法才用得上。',
+  },
+]
+
+// 書的三個價值點（客戶提供文案）
+const bookPoints = [
+  {
+    t: '拆解富豪思維',
+    d: '融合羅伯特‧清崎、巴菲特、羅斯柴爾德家族等頂級富豪的財富智慧。',
+  },
+  {
+    t: '真實實操案例',
+    d: '不停在道理層面，每個案例都給到可以照著做的步驟。',
+  },
+  {
+    t: '開啟財商思維',
+    d: '打破從小被灌輸的金錢觀，從「靠勞力賺錢」轉成「讓資產替你工作」。',
+  },
+]
+
+// 步驟 02 刻意不寫「完成登記」這類講不清的表單動作——
+// 在這個品類裡，任何交代不清的填寫要求都會被讀者當成詐騙訊號。
+// ⚠️ 實際交付方式（寄實體書 / 發電子版）確認後要照實改寫。
+const steps = [
+  { n: '01', t: '加好友', d: '點下方按鈕，直接開啟對話視窗。' },
+  { n: '02', t: '回覆「領書」', d: '兩個字就行，會告訴你這本《用錢賺錢的活法》怎麼拿到。' },
+  { n: '03', t: '進社群', d: '每週跟著看盤、跟著檢討，把方法練成自己的。' },
+]
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>讓錢為你工作 — 周文強財商實戰社群．加好友免費贈書</title>
+    <meta
+      name="description"
+      content="被譽為中國財商教育「富爸爸」的周文強，帶你每週實戰解盤、精選個股追蹤、選股方法拆解。現在加好友，免費贈送《用錢賺錢的活法》實操案例版。"
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style define:vars={{ guillocheUrl: `url(${bgGuilloche.src})` }}>
+      /* ============================================================
+         鈔票雕版印刷的視覺語言：深墨綠近黑 × 古金 × 象牙白。
+         直接呼應「用錢賺錢」，也刻意避開常見的深底+單一亮色套路。
+         ============================================================ */
+      :root {
+        --ink: #0a100e;
+        --ink-2: #111a17;
+        --ink-3: #1a2622;
+        --gold: #c9a227;
+        --gold-hi: #e8c86a;
+        --gold-dim: #8f7526;
+        --ivory: #efeade;
+        --ivory-2: #b9b3a4;
+        --ivory-3: #837e73;
+        --red: #a8302c;
+
+        --sans: 'Noto Sans TC', system-ui, sans-serif;
+        --serif: 'Noto Serif TC', serif;
+
+        --pad: 22px;
+        --dock-h: 78px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--ink);
+        color: var(--ivory);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.8;
+        padding-bottom: calc(var(--dock-h) + env(safe-area-inset-bottom, 0px));
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 var(--pad);
+      }
+
+      section {
+        padding: 62px 0;
+        position: relative;
+      }
+
+      h2 {
+        font-family: var(--sans);
+        font-weight: 900;
+        font-size: 27px;
+        line-height: 1.4;
+        letter-spacing: -0.01em;
+        margin: 0 0 16px;
+        color: var(--ivory);
+      }
+
+      .lede {
+        color: var(--ivory-2);
+        margin: 0 0 30px;
+        max-width: 44ch;
+      }
+
+      /* 金色細線分隔，取自鈔票邊框 */
+      .rule {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold-dim) 22%, var(--gold) 50%, var(--gold-dim) 78%, transparent);
+        margin: 0 0 28px;
+      }
+
+      .poster {
+        width: 100%;
+        height: auto;
+        border: 1px solid rgb(201 162 39 / 22%);
+      }
+
+      /* ---------- CTA ---------- */
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 60px;
+        padding: 0 26px;
+        background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+        color: #1a1405;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        border: 0;
+        border-radius: 2px;
+        cursor: pointer;
+        box-shadow: 0 2px 0 #6f5a1c;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+
+      .btn:hover {
+        filter: brightness(1.07);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn:focus-visible {
+        outline: 3px solid var(--ivory);
+        outline-offset: 3px;
+      }
+
+      .btn-note {
+        font-size: 13px;
+        color: var(--ivory-3);
+        text-align: center;
+        margin: 12px 0 0;
+      }
+
+      /* ============================================================
+         HERO
+         ============================================================ */
+      .hero {
+        padding: 54px 0 58px;
+        background-image: linear-gradient(180deg, rgb(10 16 14 / 82%), rgb(10 16 14 / 94%)), var(--guillocheUrl);
+        background-size: cover;
+        background-position: center;
+        border-bottom: 1px solid rgb(201 162 39 / 25%);
+      }
+
+      /* 全頁用第一人稱，所以開頭就要讓讀者知道「我」是誰 */
+      .hero .sig {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--gold);
+        margin: 0 0 14px;
+      }
+
+      .hero h1 {
+        font-family: var(--sans);
+        font-weight: 900;
+        font-size: clamp(30px, 8.6vw, 46px);
+        line-height: 1.32;
+        letter-spacing: -0.02em;
+        margin: 0 0 20px;
+      }
+
+      .hero h1 em {
+        font-style: normal;
+        color: var(--gold-hi);
+      }
+
+      .hero .sub {
+        color: var(--ivory-2);
+        font-size: 16px;
+        margin: 0 0 30px;
+        max-width: 36ch;
+      }
+
+      /* ============================================================
+         痛點
+         ============================================================ */
+      .pain {
+        background: var(--ink-2);
+      }
+
+      .pain ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 18px;
+      }
+
+      .pain li {
+        position: relative;
+        padding-left: 26px;
+        font-size: 17px;
+        line-height: 1.75;
+        color: var(--ivory);
+      }
+
+      .pain li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 14px;
+        width: 14px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      .pain .answer {
+        margin: 30px 0 0;
+        padding-top: 24px;
+        border-top: 1px solid rgb(201 162 39 / 25%);
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.7;
+        color: var(--gold-hi);
+      }
+
+      /* 「財商」全頁出現多次，第一次就給白話定義 */
+      .pain .answer-sub {
+        margin: 12px 0 0;
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--ivory-2);
+        max-width: 42ch;
+      }
+
+      /* ============================================================
+         周文強
+         ============================================================ */
+      .who p {
+        color: var(--ivory-2);
+        margin: 0 0 14px;
+        max-width: 46ch;
+      }
+
+      .creds {
+        list-style: none;
+        margin: 26px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      .creds li {
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+        font-size: 15px;
+        color: var(--ivory);
+      }
+
+      .creds li b {
+        color: var(--gold);
+        font-weight: 700;
+        flex: 0 0 auto;
+      }
+
+      /* ============================================================
+         社群提供什麼
+         ============================================================ */
+      .offers {
+        background: var(--ink-2);
+      }
+
+      .offer-list {
+        display: grid;
+        gap: 1px;
+        background: rgb(201 162 39 / 20%);
+        border: 1px solid rgb(201 162 39 / 20%);
+        margin-top: 30px;
+      }
+
+      .offer {
+        background: var(--ink-2);
+        padding: 24px 20px;
+      }
+
+      .offer h3 {
+        font-size: 19px;
+        font-weight: 900;
+        margin: 0 0 8px;
+        color: var(--gold-hi);
+      }
+
+      .offer p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--ivory-2);
+      }
+
+      /* ============================================================
+         贈書
+         ============================================================ */
+      .gift {
+        background:
+          linear-gradient(180deg, rgb(10 16 14 / 90%), rgb(10 16 14 / 96%)), var(--guillocheUrl);
+        background-size: cover;
+      }
+
+      .points {
+        display: grid;
+        gap: 22px;
+        margin-top: 32px;
+      }
+
+      .point {
+        border-left: 2px solid var(--gold);
+        padding-left: 18px;
+      }
+
+      .point h3 {
+        font-size: 18px;
+        font-weight: 900;
+        margin: 0 0 6px;
+        color: var(--ivory);
+      }
+
+      .point p {
+        margin: 0;
+        font-size: 15px;
+        color: var(--ivory-2);
+      }
+
+      .gift-cta {
+        margin-top: 32px;
+      }
+
+      /* ============================================================
+         領取步驟
+         ============================================================ */
+      .steps {
+        list-style: none;
+        margin: 30px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 26px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 46px 1fr;
+        gap: 14px;
+      }
+
+      .step .n {
+        font-family: var(--serif);
+        font-weight: 900;
+        font-size: 20px;
+        color: var(--gold);
+        line-height: 1.4;
+      }
+
+      .step h3 {
+        font-size: 18px;
+        font-weight: 900;
+        margin: 0 0 4px;
+      }
+
+      .step p {
+        margin: 0;
+        font-size: 15px;
+        color: var(--ivory-2);
+      }
+
+      /* ============================================================
+         結尾
+         ============================================================ */
+      .end {
+        text-align: center;
+        background: var(--ink-2);
+        border-top: 1px solid rgb(201 162 39 / 25%);
+      }
+
+      .end h2 {
+        font-size: 29px;
+      }
+
+      .end .lede {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .end .btn {
+        max-width: 430px;
+        margin: 0 auto;
+      }
+
+      footer {
+        padding: 28px 0 38px;
+        color: var(--ivory-3);
+        font-size: 12px;
+        line-height: 1.85;
+      }
+
+      /* ============================================================
+         底部常駐 CTA — 實心、有真實高度
+         ============================================================ */
+      .dock {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: var(--dock-h);
+        padding: 10px var(--pad) calc(10px + env(safe-area-inset-bottom, 0px));
+        background: rgb(8 13 11 / 97%);
+        border-top: 1px solid var(--gold);
+      }
+
+      .dock .tx {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 12px;
+        line-height: 1.45;
+        color: var(--ivory-2);
+      }
+
+      .dock .tx b {
+        display: block;
+        font-size: 16px;
+        font-weight: 900;
+        color: var(--gold-hi);
+        margin-bottom: 1px;
+      }
+
+      .dock .go {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 0 20px;
+        background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+        color: #1a1405;
+        font-size: 16px;
+        font-weight: 900;
+        text-decoration: none;
+        border-radius: 2px;
+        cursor: pointer;
+      }
+
+      .dock .go:focus-visible {
+        outline: 3px solid var(--ivory);
+        outline-offset: 2px;
+      }
+
+      /* ---------- 滾動顯現 ---------- */
+      .rv {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rv {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      /* ============================================================
+         漸進增強到平板 / 桌面
+         ============================================================ */
+      @media (min-width: 768px) {
+        :root {
+          --pad: 40px;
+          --dock-h: 86px;
+        }
+
+        section {
+          padding: 92px 0;
+        }
+
+        h2 {
+          font-size: 35px;
+        }
+
+        .hero {
+          padding: 96px 0 100px;
+        }
+
+        .hero h1 {
+          max-width: 17ch;
+        }
+
+        .hero .sub {
+          font-size: 17px;
+        }
+
+        .btn {
+          width: auto;
+          display: inline-flex;
+          min-height: 64px;
+        }
+
+        .btn-note {
+          text-align: left;
+        }
+
+        .pain ul {
+          gap: 22px;
+        }
+
+        .pain li {
+          font-size: 19px;
+        }
+
+        .pain .answer {
+          font-size: 24px;
+        }
+
+        /* 直式海報在桌面左右並排，避免頁面被拉得過長 */
+        .split {
+          display: grid;
+          grid-template-columns: 0.85fr 1fr;
+          gap: 56px;
+          align-items: center;
+        }
+
+        .offer-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .offer {
+          padding: 30px 26px;
+        }
+
+        .points {
+          gap: 26px;
+        }
+
+        .steps {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 34px;
+        }
+
+        .end .btn {
+          margin: 0 auto;
+        }
+
+        .dock {
+          justify-content: center;
+          gap: 26px;
+        }
+
+        .dock .tx {
+          flex: 0 1 auto;
+        }
+
+        .dock .tx b {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+      <div class="wrap">
+        <p class="sig">我是周文強</p>
+        <h1>
+          你還在拿時間跟體力，<br />換那點<em>死薪水</em>嗎？
+        </h1>
+        <p class="sub">
+          我花了十幾年才想明白一件事：能不能翻身，跟你多努力沒什麼關係，跟你怎麼用錢關係很大。
+        </p>
+        <a class="btn link-btn" onclick="mixinJump()">點擊加入領取</a>
+        <p class="btn-note">點擊後直接開啟對話視窗，加好友即可免費領《用錢賺錢的活法》</p>
+      </div>
+    </header>
+
+    <!-- ===================== 贈書（緊接 hero：這是最強的鉤子，不該埋在後面） ===================== -->
+    <section class="gift">
+      <div class="wrap split">
+        <img
+          class="poster rv"
+          src={posterBook.src}
+          alt="免費贈送《用錢賺錢的活法》實操案例版，周文強著"
+          loading="lazy"
+        />
+        <div>
+          <h2 class="rv">現在加好友，這本書我免費送你</h2>
+          <div class="rule rv"></div>
+          <p class="lede rv">
+            《用錢賺錢的活法》實操案例版，我寫給一般人的財富翻盤指南。
+          </p>
+
+          <div class="points">
+            {
+              bookPoints.map(p => (
+                <div class="point rv">
+                  <h3>{p.t}</h3>
+                  <p>{p.d}</p>
+                </div>
+              ))
+            }
+          </div>
+
+          <a class="btn link-btn rv gift-cta" onclick="mixinJump()">點擊加入領取</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 痛點 ===================== -->
+    <section class="pain">
+      <div class="wrap">
+        <ul>
+          <li class="rv">薪水年年漲一點，但存款好像永遠停在原地。</li>
+          <li class="rv">想投資，卻連從哪裡開始都不知道，只能聽別人報明牌。</li>
+          <li class="rv">看過很多理財文章，道理都懂，一進場還是虧。</li>
+          <li class="rv">最怕的不是賺得慢，是這樣一直做下去，五年後跟現在一樣。</li>
+        </ul>
+        <p class="answer rv">差別只有一個：會不會用錢賺錢。</p>
+        <p class="answer-sub rv">
+          財商，講白了就是一個人處理錢的判斷力——錢從哪裡來、該往哪裡去、什麼時候該動。
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== 主張海報 ===================== -->
+    <section>
+      <div class="wrap split">
+        <img class="poster rv" src={posterMoney.src} alt="讓錢為你工作，而不是你為錢工作" loading="lazy" />
+        <div>
+          <h2 class="rv">我也在這個循環裡待過很久</h2>
+          <div class="rule rv"></div>
+          <p class="lede rv">
+            拿時間換薪水，薪水換生活，生活再吃掉薪水。這個循環不打破，收入再高也只是轉得快一點而已。
+          </p>
+          <p class="lede rv">
+            我要教你的就是怎麼跳出來：把錢從「花掉的東西」變成「替你做事的工具」。這不是天賦，是可以學的方法。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 周文強是誰 ===================== -->
+    <section class="who">
+      <div class="wrap">
+        <h2 class="rv">關於我</h2>
+        <div class="rule rv"></div>
+        <p class="rv">
+          我不是含著金湯匙出生的。二十幾歲那幾年也在為房租發愁，靠著把錢的邏輯一條一條想通，才走到今天。所以我講的東西沒有術語，一般人聽得懂、當天就能用。
+        </p>
+        <p class="rv">
+          我不會丟給你一句「買這檔就對了」，而是把「為什麼是這檔」的判斷過程講到你自己能複製。
+        </p>
+        <ul class="creds">
+          <li class="rv"><b>—</b> 中國財商教育「富爸爸」，新思想財商學院創始人</li>
+          <li class="rv"><b>—</b> 《用錢賺錢的活法》作者，山西人民出版社出版</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== 社群提供什麼 ===================== -->
+    <section class="offers">
+      <div class="wrap">
+        <div class="split">
+          <img
+            class="poster rv"
+            src={posterCommunity.src}
+            alt="每週實戰解盤、精選個股追蹤、選股方法拆解"
+            loading="lazy"
+          />
+          <div>
+            <h2 class="rv">加進來，你會拿到什麼</h2>
+            <div class="rule rv"></div>
+            <p class="lede rv">書只是見面禮。真正有用的，是往後每一週我帶你看什麼、教你什麼。</p>
+          </div>
+        </div>
+
+        <div class="offer-list">
+          {
+            offers.map(o => (
+              <div class="offer rv">
+                <h3>{o.t}</h3>
+                <p>{o.d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 怎麼領 ===================== -->
+    <section>
+      <div class="wrap">
+        <h2 class="rv">怎麼領</h2>
+        <div class="rule rv"></div>
+        <ol class="steps">
+          {
+            steps.map(s => (
+              <li class="step rv">
+                <span class="n">{s.n}</span>
+                <div>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 結尾 ===================== -->
+    <section class="end">
+      <div class="wrap">
+        <h2 class="rv">讓錢為你工作</h2>
+        <p class="lede rv">而不是你為錢工作。從這本書、這個社群開始。</p>
+        <a class="btn link-btn rv" onclick="mixinJump()">點擊加入領取</a>
+        <p class="btn-note rv">名額有限，贈書送完為止</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <p>
+          本頁內容為財商知識與投資觀念分享，僅供學習參考，不構成任何投資建議或收益保證。投資有風險，決策請自行評估並承擔。贈書數量有限，送完為止。
+        </p>
+      </div>
+    </footer>
+
+    <!-- 底部常駐 CTA -->
+    <div class="dock">
+      <div class="tx">
+        <b>新書免費送</b>
+        加好友就能領
+      </div>
+      <a class="go link-btn" onclick="mixinJump()">點擊加入領取</a>
+    </div>
+
+    <script>
+      // scroll 事件 + getBoundingClientRect：IntersectionObserver 在部分預覽環境不觸發
+      const items = Array.from(document.querySelectorAll('.rv'))
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      function reveal() {
+        const vh = window.innerHeight
+        for (let i = items.length - 1; i >= 0; i--) {
+          if (items[i].getBoundingClientRect().top < vh - 60) {
+            items[i].classList.add('in')
+            items.splice(i, 1)
+          }
+        }
+        if (!items.length) window.removeEventListener('scroll', reveal)
+      }
+
+      if (reduce) {
+        items.forEach(el => el.classList.add('in'))
+      } else {
+        reveal()
+        window.addEventListener('scroll', reveal, { passive: true })
+        setTimeout(() => items.forEach(el => el.classList.add('in')), 2500)
+      }
+    </script>
+  </body>
+</html>

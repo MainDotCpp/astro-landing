@@ -29,11 +29,8 @@ if [ ! -x "$RSYNC" ]; then
   echo "请运行: brew install rsync"
   exit 1
 fi
-if ! command -v sshpass &>/dev/null; then
-  echo "错误: sshpass 未安装"
-  echo "请运行: brew install sshpass"
-  exit 1
-fi
+# sshpass 仅密码认证目标需要；SSH key 免密目标 (password 字段为 -) 无需 sshpass。
+# 具体检查在 TARGETS 定义之后按需进行。
 
 # ====== 通用配置 ======
 SSH_PORT=5522
@@ -43,11 +40,25 @@ EXCLUDE_BASE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --excl
 EXCLUDE_WITH_PRIVATE="$EXCLUDE_BASE --exclude=private"
 
 # ====== 部署目标 ======
-# 字段顺序: label | ip | password | remote_path | source_dir | exclude_private(true/false)
+# 字段顺序: label | host | password | remote_path | source_dir | exclude_private(true/false)
+#   host     — IP 地址(密码认证) 或 ~/.ssh/config 中的别名(SSH key 免密认证)
+#   password — 登录密码; 填 "-" 表示走 SSH key 免密 (host 用 ~/.ssh/config 别名)
 TARGETS=(
-  "KR|141.164.43.115|Haishi@1688|/www/wwwroot/coincool.top/|$SOURCE_DIR|true"
+  "hskr2|hskr2|-|/www/wwwroot/t.dd-ll.xyz/|$SOURCE_DIR|true"
   "3rd|108.160.141.193|Leuan_3rd|/www/wwwroot/xn--ces516hyxm.com/|$SOURCE_DIR|false"
 )
+
+# 存在密码认证目标时才要求 sshpass
+NEED_SSHPASS=false
+for entry in "${TARGETS[@]}"; do
+  IFS='|' read -r _ _ _pw _ <<<"$entry"
+  [ "$_pw" != "-" ] && NEED_SSHPASS=true
+done
+if $NEED_SSHPASS && ! command -v sshpass &>/dev/null; then
+  echo "错误: sshpass 未安装 (存在密码认证目标)"
+  echo "请运行: brew install sshpass"
+  exit 1
+fi
 
 # ====== 构建 ======
 if $RUN_BUILD; then
@@ -71,8 +82,9 @@ SUCCESS_LABELS=()
 FAILED_TARGETS=()
 
 deploy_one() {
-  local label="$1" ip="$2" pw="$3" remote_path="$4" src="$5" exclude_private="$6"
-  local excl
+  local label="$1" host="$2" pw="$3" remote_path="$4" src="$5" exclude_private="$6"
+  local excl ssh_cmd dest_prefix
+  local -a auth
 
   if [ "$exclude_private" = "true" ]; then
     excl="$EXCLUDE_WITH_PRIVATE"
@@ -80,7 +92,19 @@ deploy_one() {
     excl="$EXCLUDE_BASE"
   fi
 
-  echo ">>> [$label] $src -> $ip:$remote_path"
+  # 认证方式: password 为 "-" 走 SSH key 免密 (host 为 ~/.ssh/config 别名,
+  # 端口/用户/IdentityFile 由 config 提供); 否则用 sshpass 密码认证。
+  if [ "$pw" = "-" ]; then
+    auth=()
+    ssh_cmd="ssh -o StrictHostKeyChecking=no"
+    dest_prefix="$host"
+  else
+    auth=(sshpass -p "$pw")
+    ssh_cmd="ssh -p $SSH_PORT -o StrictHostKeyChecking=no"
+    dest_prefix="root@$host"
+  fi
+
+  echo ">>> [$label] $src -> $dest_prefix:$remote_path"
 
   if [ ! -d "$src" ]; then
     echo "  ⚠ 源目录 $src 不存在，跳过"
@@ -93,42 +117,42 @@ deploy_one() {
   # Otherwise a CDN can request new /mjSFqQ/* files while rsync is still running,
   # cache the temporary 404, and leave the freshly deployed page without styles.
   if [ "$src" = "$SOURCE_DIR" ] && [ -d "${SOURCE_DIR}mjSFqQ" ]; then
-    echo "  先同步静态资源: ${SOURCE_DIR}mjSFqQ/ -> $ip:${remote_path%/}/mjSFqQ/"
+    echo "  先同步静态资源: ${SOURCE_DIR}mjSFqQ/ -> $dest_prefix:${remote_path%/}/mjSFqQ/"
 
     # shellcheck disable=SC2086
-    sshpass -p "$pw" "$RSYNC" -rlptzv \
+    ${auth[@]+"${auth[@]}"} "$RSYNC" -rlptzv \
       --chown=www:www \
       --chmod=D755,F644 \
       --progress \
       $excl \
       "${SOURCE_DIR}mjSFqQ/" \
-      -e "ssh -p $SSH_PORT -o StrictHostKeyChecking=no" \
-      "root@$ip:${remote_path%/}/mjSFqQ/"
+      -e "$ssh_cmd" \
+      "${dest_prefix}:${remote_path%/}/mjSFqQ/"
 
     if [ $? -ne 0 ]; then
       echo "✗ [$label] 静态资源预同步失败"
-      FAILED_TARGETS+=("$label assets ($ip)")
+      FAILED_TARGETS+=("$label assets ($host)")
       echo ""
       return
     fi
   fi
 
   # shellcheck disable=SC2086
-  sshpass -p "$pw" "$RSYNC" -rlptzv \
+  ${auth[@]+"${auth[@]}"} "$RSYNC" -rlptzv \
     --chown=www:www \
     --chmod=D755,F644 \
     --progress \
     $excl \
     "$src" \
-    -e "ssh -p $SSH_PORT -o StrictHostKeyChecking=no" \
-    "root@$ip:$remote_path"
+    -e "$ssh_cmd" \
+    "${dest_prefix}:$remote_path"
 
   if [ $? -eq 0 ]; then
     echo "✓ [$label] 部署成功"
     SUCCESS_LABELS+=("$label")
   else
     echo "✗ [$label] 部署失败"
-    FAILED_TARGETS+=("$label ($ip)")
+    FAILED_TARGETS+=("$label ($host)")
   fi
   echo ""
 }
@@ -140,8 +164,8 @@ echo "================================"
 echo ""
 
 for entry in "${TARGETS[@]}"; do
-  IFS='|' read -r label ip pw remote_path src exclude_private <<<"$entry"
-  deploy_one "$label" "$ip" "$pw" "$remote_path" "$src" "$exclude_private"
+  IFS='|' read -r label host pw remote_path src exclude_private <<<"$entry"
+  deploy_one "$label" "$host" "$pw" "$remote_path" "$src" "$exclude_private"
 done
 
 # ====== 汇总 ======

@@ -1,0 +1,250 @@
+---
+import { getImage } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroPumpjack from './assets/images/hero-pumpjack.png'
+
+const heroImg = await getImage({ src: heroPumpjack, format: 'webp', width: 1536, quality: 78 })
+
+const analysisPillars = [
+  {
+    title: 'Geopolitical risk cycle',
+    body: 'Middle East supply risk and OPEC+ discipline versus record U.S. output.',
+    icon: 'M12 2a9 9 0 1 0 .001 18.001A9 9 0 0 0 12 2zm0 3v2m0 10v2m7-9h2M3 12h2m11.31-5.31l1.42-1.42M5.27 18.73l1.42-1.42m0-10.62L5.27 5.27m13.46 13.46l-1.42-1.42',
+  },
+  {
+    title: 'Global oil prices',
+    body: 'WTI and Brent moves, and how fast they reach a Canadian producer\'s cash flow.',
+    icon: 'M3 3v18h18M7 15l4-6 4 3 4-8',
+  },
+  {
+    title: 'Canadian energy market',
+    body: 'TSX-listed producers, pipelines and infrastructure — priced in Canadian dollars.',
+    icon: 'M12 3l7.5 4v6c0 4.4-3.1 7.6-7.5 8.7C7.6 20.6 4.5 17.4 4.5 13V7L12 3z',
+  },
+  {
+    title: 'Company cash-flow valuation',
+    body: 'What a $5 swing in crude actually does to free cash flow and dividends.',
+    icon: 'M12 2v20m5-17H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6',
+  },
+]
+
+const sectors = [
+  { title: 'Oil & gas', icon: 'M12 2s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z' },
+  { title: 'Pipelines', icon: 'M4 12h16M4 12a4 4 0 014-4h8a4 4 0 014 4M4 12a4 4 0 004 4h8a4 4 0 004-4' },
+  { title: 'LNG / natural gas', icon: 'M13 2L4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z' },
+  { title: 'Energy infrastructure', icon: 'M3 21h18M5 21V7l8-4v18M13 21V11l6 4v6' },
+]
+
+const snapshot = [
+  { k: 'WTI crude', v: '~US$82–83/bbl', note: 'Settled near US$78–82 in early August 2026' },
+  { k: 'Brent crude', v: '~US$87.80/bbl', note: 'Opened Aug. 11, 2026' },
+  { k: 'OPEC+ output', v: 'Modest increase, undershot', note: 'Actual production ran below target' },
+]
+
+const infra = [
+  { k: 'Trans Mountain', v: '890K bbl/d', note: 'Expanded capacity, ~84% utilization' },
+  { k: 'WCS discount', v: '-US$8/bbl narrower', note: 'Since TMX entered service' },
+  { k: 'LNG Canada', v: '14 Mt/yr', note: 'Phase 1 at nameplate, first cargo mid-2025' },
+]
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Oil Prices Are Moving. What It Means for Canadian Energy Stocks — Free Group</title>
+    <meta
+      name="description"
+      content="WTI near US$82, Brent near US$88, and OPEC+ output running below target. A plain-English breakdown of what it means for Canadian oil, gas and pipeline stocks, plus a free WhatsApp group where the current watchlist is shared."
+    />
+
+    <RedirectCode />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: '#0B1B33',
+              navy2: '#0F2542',
+              ink: '#0A1F44',
+              gold: '#D99A2B',
+              gold2: '#F0B84C',
+              mute: '#8695AC',
+              paper: '#F6F7FA',
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style define:vars={{ heroUrl: `url(${heroImg.src})` }}>
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: #F6F7FA;
+      }
+      .hero-media {
+        background:
+          linear-gradient(180deg, rgba(9,17,32,.94) 0%, rgba(9,17,32,.88) 38%, rgba(9,17,32,.72) 68%, rgba(9,17,32,.92) 100%),
+          var(--heroUrl) center 38% / cover no-repeat;
+      }
+      @keyframes ctaPulse {
+        0%, 100% { transform: translateY(0); box-shadow: 0 14px 30px -8px rgba(217, 154, 43, 0.5); }
+        50%      { transform: translateY(-3px); box-shadow: 0 20px 38px -8px rgba(217, 154, 43, 0.6); }
+      }
+      .cta-pulse { animation: ctaPulse 1.9s ease-in-out infinite; }
+    </style>
+  </head>
+
+  <body class="min-h-screen">
+
+    <!-- ===== HERO ===== -->
+    <header class="hero-media relative">
+      <div class="max-w-5xl mx-auto px-6 pt-9 pb-10 md:pt-14 md:pb-14">
+        <p class="inline-flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-[0.18em] text-gold2 font-700 mb-6">
+          <span class="w-4 h-[2px] bg-gold2 inline-block"></span>
+          Canadian Energy Market · Field Notes
+        </p>
+
+        <h1 class="font-800 text-white text-[1.85rem] leading-[1.16] md:text-[3rem] md:leading-[1.08] mb-3 max-w-2xl">
+          Global Oil Prices Are Moving.
+          <span class="text-gold2">What Could It Mean for Canadian Energy Stocks?</span>
+        </h1>
+
+        <p class="text-[#C6D0E0] text-[14.5px] md:text-lg leading-relaxed mb-8 max-w-xl">
+          WTI is trading near US$82 a barrel, Brent near US$88, and OPEC+'s latest output increase came in below target.
+          Here's how that chain reaches a Canadian producer's cash flow — and the free group where this week's watchlist goes out.
+        </p>
+
+        <!-- analysis pillars -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 mb-8 max-w-3xl">
+          {analysisPillars.map(p => (
+            <div class="flex flex-col items-start gap-2.5">
+              <span class="w-10 h-10 rounded-lg border border-white/20 bg-white/[0.04] text-gold2 grid place-items-center shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="w-[18px] h-[18px]"><path d={p.icon} /></svg>
+              </span>
+              <p class="text-white font-700 text-[12.5px] leading-snug">{p.title}</p>
+              <p class="text-[#93A2BC] text-[11.5px] leading-relaxed">{p.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- sector coverage row -->
+        <div class="flex flex-wrap gap-x-6 gap-y-3 mb-8 pt-6 border-t border-white/10">
+          {sectors.map(s => (
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-navy2 border border-white/15 text-gold2 grid place-items-center shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-[15px] h-[15px]"><path d={s.icon} /></svg>
+              </span>
+              <span class="text-white text-[13px] font-600">{s.title}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- stat card -->
+        <div class="bg-navy2/80 border border-white/15 rounded-xl px-5 py-4 sm:px-6 sm:py-5 max-w-xl mb-9 backdrop-blur-sm">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-[10.5px] uppercase tracking-[0.12em] text-[#93A2BC] font-700 mb-1">WTI Crude</p>
+              <p class="font-800 text-gold2 text-xl sm:text-2xl">~US$82<span class="text-sm sm:text-base font-600">/bbl</span></p>
+            </div>
+            <div>
+              <p class="text-[10.5px] uppercase tracking-[0.12em] text-[#93A2BC] font-700 mb-1">WCS Discount</p>
+              <p class="font-800 text-gold2 text-xl sm:text-2xl">-US$8<span class="text-sm sm:text-base font-600">/bbl narrower</span></p>
+            </div>
+          </div>
+          <p class="text-[11px] text-[#7C8BA5] mt-3 pt-3 border-t border-white/10">WTI as of Aug. 11–12, 2026. WCS narrowing measured since Trans Mountain's expansion entered service.</p>
+        </div>
+
+        <div class="flex flex-col items-start gap-3">
+          <a
+            onclick="mixinJump()"
+            class="link-btn cta-pulse inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-gold to-gold2 text-navy font-800 text-sm md:text-base tracking-wide px-7 md:px-9 py-4 rounded-full cursor-pointer text-center leading-snug whitespace-normal sm:whitespace-nowrap w-full sm:w-auto"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-[18px] h-[18px] shrink-0"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+            <span>JOIN THE FREE WHATSAPP GROUP</span>
+          </a>
+          <p class="text-[11.5px] text-[#93A2BC]">Free · no forms, no fees · this week's watchlist goes out inside</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== BODY EXPLAINER ===== -->
+    <main>
+      <section class="max-w-5xl mx-auto px-6 py-12 md:py-16">
+        <p class="text-[11px] uppercase tracking-[0.16em] text-gold font-700 mb-3">How the move actually travels</p>
+        <h2 class="font-800 text-ink text-[1.6rem] md:text-3xl leading-tight mb-5 max-w-2xl">A crude oil swing doesn't hit every energy stock the same way</h2>
+        <div class="grid md:grid-cols-2 gap-6 md:gap-10 text-[14.5px] md:text-[15.5px] leading-relaxed text-[#3E4C63]">
+          <p>
+            "Energy stock" covers at least four different businesses, and a US$5 move in crude does something different to each one. A pure producer feels almost all of it — margin moves nearly dollar-for-dollar with the barrel. A pipeline operator barely feels it at all, because tolls are contracted on volume, not on price.
+          </p>
+          <p>
+            An integrated major sits in between: upstream production gets squeezed or boosted, but downstream refining margins often move the opposite way, cushioning the swing. LNG exporters answer to a different price entirely — the Asian delivered price, which trades on its own supply and demand, loosely tied to crude.
+          </p>
+        </div>
+      </section>
+
+      <!-- three-column band -->
+      <section class="bg-navy">
+        <div class="max-w-5xl mx-auto px-6 py-11 md:py-14 grid md:grid-cols-3 gap-9 md:gap-8">
+          <div>
+            <p class="text-gold2 text-[11px] uppercase tracking-[0.14em] font-700 mb-4">Market snapshot</p>
+            <ul class="space-y-3.5">
+              {snapshot.map(row => (
+                <li class="border-b border-white/10 pb-3.5">
+                  <div class="flex items-baseline justify-between gap-3">
+                    <span class="text-white text-[13.5px] font-600">{row.k}</span>
+                    <span class="text-gold2 font-700 text-[14.5px] whitespace-nowrap">{row.v}</span>
+                  </div>
+                  <p class="text-[#93A2BC] text-[11.5px] mt-1">{row.note}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-gold2 text-[11px] uppercase tracking-[0.14em] font-700 mb-4">Energy infrastructure</p>
+            <ul class="space-y-3.5">
+              {infra.map(row => (
+                <li class="border-b border-white/10 pb-3.5">
+                  <div class="flex items-baseline justify-between gap-3">
+                    <span class="text-white text-[13.5px] font-600">{row.k}</span>
+                    <span class="text-gold2 font-700 text-[14.5px] whitespace-nowrap">{row.v}</span>
+                  </div>
+                  <p class="text-[#93A2BC] text-[11.5px] mt-1">{row.note}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="flex flex-col">
+            <p class="text-gold2 text-[11px] uppercase tracking-[0.14em] font-700 mb-4">Ready to get started</p>
+            <ul class="space-y-3 mb-6 text-[13.5px] text-[#D7DEEA] leading-relaxed">
+              <li class="flex gap-2.5"><span class="text-gold2 shrink-0">✓</span>Same-day notes on what actually moved and why</li>
+              <li class="flex gap-2.5"><span class="text-gold2 shrink-0">✓</span>Which layer — producer, pipeline, LNG — a stock sits in</li>
+              <li class="flex gap-2.5"><span class="text-gold2 shrink-0">✓</span>Free, no forms, leave anytime</li>
+            </ul>
+            <a
+              onclick="mixinJump()"
+              class="link-btn mt-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold to-gold2 text-navy font-800 text-[13.5px] tracking-wide px-6 py-3.5 rounded-full cursor-pointer text-center leading-snug w-full shadow-lg shadow-black/20 hover:opacity-95 transition-opacity"
+            >
+              JOIN THE FREE GROUP →
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-6 text-center text-mute text-[11px] px-4 bg-paper">
+      © 2026 · Canadian Energy Market Notes · General market information only, not financial advice. Capital is at risk.
+    </footer>
+
+  </body>
+</html>

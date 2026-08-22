@@ -1,0 +1,217 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import heroGrid from './assets/images/hero-grid.png'
+import heroPhone from './assets/images/hero-phone.png'
+
+const pillars = [
+  {
+    title: 'Growing demand. Stronger grid.',
+    body: 'Electricity load keeps climbing, and the grid has to be built to carry it.',
+    icon: 'M3 21V9m6 12V4m6 17v-8m6 8V7',
+    fill: false,
+  },
+  {
+    title: 'Powering communities. Powering the future.',
+    body: 'Contracted power revenue is the kind that shows up every single month.',
+    icon: 'M13 2L4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z',
+    fill: false,
+  },
+  {
+    title: 'Canadian owned. Canadian focused.',
+    body: 'Assets on this side of the border, earning in Canadian dollars.',
+    icon: 'M12 2l1.4 4.2 3.1-1.8-.9 3.6 3.9-.5-1.6 2.5 1.1.6-4.7 3.9.7 2.2-3.6-.7-.3 4h-.4l-.3-4-3.6.7.7-2.2L3 11.1l1.1-.6-1.6-2.5 3.9.5-.9-3.6 3.1 1.8L12 2z',
+    fill: true,
+  },
+]
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Small Canadian Power Company With Big Plans — Get the Code Free</title>
+    <meta name="description" content="While the big names get the attention, a small Canadian power company trading near C$2.39 is quietly expanding across the country. Get the stock code free inside our group." />
+
+    <RedirectCode />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: '#0B2A5B',
+              ink: '#0A1F44',
+              flame: '#FB4516',
+              blue: '#1E6BFF',
+              blueDark: '#0A4FD0',
+              mute: '#5A6B86',
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: linear-gradient(180deg, #FFFFFF 0%, #EEF4FF 100%);
+        background-attachment: fixed;
+        color: #0A1F44;
+      }
+
+      @keyframes ctaPulse {
+        0%, 100% { transform: translateY(0); box-shadow: 0 14px 30px -8px rgba(30, 107, 255, 0.55); }
+        50%      { transform: translateY(-3px); box-shadow: 0 20px 38px -8px rgba(30, 107, 255, 0.65); }
+      }
+      .cta-pulse { animation: ctaPulse 1.9s ease-in-out infinite; }
+    </style>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <main class="flex-1">
+
+      <!-- ===== SCREEN 1 — HERO ===== -->
+      <section class="max-w-6xl mx-auto w-full px-6 pt-10 md:pt-16 pb-12 grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-12 items-center">
+
+        <!-- copy -->
+        <div class="order-2 lg:order-1 text-center lg:text-left">
+          <p class="inline-flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-[0.18em] text-blue font-700 mb-5">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-flame animate-pulse"></span>
+            Canada · Power Signal · Released Today
+          </p>
+
+          <h1 class="font-800 text-navy text-[2rem] leading-[1.1] md:text-[2.9rem] md:leading-[1.05] mb-4">
+            A Small Canadian Power Company With Big Plans
+          </h1>
+
+          <p class="text-mute text-[15px] md:text-lg leading-relaxed mb-7 max-w-[480px] mx-auto lg:mx-0">
+            While the big names get all the attention, this one is quietly expanding across the country.
+            The name stays private — but the <span class="font-700 text-navy">stock code goes out free</span>
+            inside our group today.
+          </p>
+
+          <!-- price predictions -->
+          <div class="space-y-3 mb-6 max-w-[440px] mx-auto lg:mx-0">
+            <div class="flex items-center gap-3 justify-center lg:justify-start">
+              <span class="text-mute text-sm font-500 shrink-0 w-[130px] text-right">Trading now</span>
+              <span class="font-800 text-navy text-xl md:text-2xl">C$2.39</span>
+            </div>
+            <div class="flex items-center gap-3 justify-center lg:justify-start">
+              <span class="text-mute text-sm font-500 shrink-0 w-[130px] text-right">Growth potential</span>
+              <span class="font-800 text-flame text-xl md:text-2xl">C$16.65</span>
+              <span class="text-xs font-700 text-flame bg-flame/10 rounded-full px-2 py-0.5">+597%</span>
+            </div>
+          </div>
+
+          <!-- social proof -->
+          <p class="flex items-center gap-2 justify-center lg:justify-start text-sm text-navy font-600 mb-5">
+            <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse shrink-0"></span>
+            <span><span class="font-800">9,200+</span> Canadian investors inside · <span class="font-800">274</span> joined today</span>
+          </p>
+
+          <div class="flex flex-col items-center lg:items-start gap-3">
+            <a
+              onclick="mixinJump()"
+              class="link-btn cta-pulse inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue to-blueDark text-white font-800 text-sm md:text-lg tracking-wide px-6 md:px-9 py-4 md:py-[18px] rounded-full cursor-pointer text-center leading-snug whitespace-normal sm:whitespace-nowrap w-full sm:w-auto"
+            >
+              <span>JOIN THE GROUP FREE TO GET THE STOCK LIST</span>
+            </a>
+            <p class="text-xs text-mute">Code released to the group today only · Free · No payment · Leave anytime</p>
+          </div>
+        </div>
+
+        <!-- visual -->
+        <div class="order-1 lg:order-2">
+          <img src={heroGrid.src} alt="A Canadian lineman working on power distribution lines beside a rural substation" class="w-full h-auto block select-none pointer-events-none rounded-2xl" />
+        </div>
+      </section>
+
+      <!-- ===== SCREEN 1.5 — WHY / TRUST ===== -->
+      <section class="bg-white/70 border-t border-blue/10">
+        <div class="max-w-5xl mx-auto w-full px-6 py-10 md:py-12">
+          <div class="grid lg:grid-cols-2 gap-9 lg:gap-14 items-center">
+
+            <!-- phone proof -->
+            <div class="order-1 text-center">
+              <img src={heroPhone.src} alt="A member's power stock position climbing inside the trading app" class="w-full max-w-[320px] mx-auto h-auto block rounded-2xl shadow-xl shadow-navy/10 select-none pointer-events-none" />
+              <p class="mt-3 text-xs text-mute">Inside the group — a member's position in this week's power pick</p>
+            </div>
+
+            <!-- stats + cta -->
+            <div class="order-2">
+              <p class="text-center lg:text-left text-[11px] uppercase tracking-[0.18em] text-mute font-700 mb-6">Why investors aren't waiting</p>
+
+              <div class="grid grid-cols-3 gap-4 text-center lg:text-left mb-8">
+                <div>
+                  <div class="font-800 text-navy text-2xl md:text-3xl mb-1 leading-none">9,200<span class="text-flame">+</span></div>
+                  <p class="text-mute text-xs">Active members</p>
+                </div>
+                <div>
+                  <div class="font-800 text-flame text-2xl md:text-3xl mb-1 leading-none">+64%</div>
+                  <p class="text-mute text-xs">Avg · last 3 picks</p>
+                </div>
+                <div>
+                  <div class="font-800 text-navy text-2xl md:text-3xl mb-1 leading-none">Today</div>
+                  <p class="text-mute text-xs">Code release</p>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center lg:items-start gap-3">
+                <a
+                  onclick="mixinJump()"
+                  class="link-btn inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue to-blueDark text-white font-800 text-sm md:text-lg tracking-wide px-6 md:px-9 py-4 rounded-full cursor-pointer text-center leading-snug whitespace-normal sm:whitespace-nowrap w-full sm:w-auto shadow-lg shadow-blue/30 hover:opacity-95 transition-opacity"
+                >
+                  <span>JOIN THE GROUP FREE TO GET THE STOCK LIST</span>
+                </a>
+                <p class="text-xs text-mute">Limited to today's session · Free · Leave anytime</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- why this power company -->
+          <div class="mt-10 md:mt-12 pt-8 border-t border-blue/10">
+            <p class="text-center lg:text-left text-[11px] uppercase tracking-[0.18em] text-mute font-700 mb-6">Why this one, right now</p>
+            <div class="grid sm:grid-cols-3 gap-x-8 gap-y-6">
+              {pillars.map(p => (
+                <div class="flex gap-3.5 items-start text-left">
+                  <span class="shrink-0 w-9 h-9 rounded-full bg-blue/10 text-blue grid place-items-center">
+                    {p.fill
+                      ? (
+                          <svg viewBox="0 0 24 24" fill="currentColor" class="w-[17px] h-[17px]">
+                            <path d={p.icon} />
+                          </svg>
+                        )
+                      : (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-[18px] h-[18px]">
+                            <path d={p.icon} />
+                          </svg>
+                        )}
+                  </span>
+                  <div>
+                    <p class="font-700 text-navy text-[15px] leading-snug mb-0.5">{p.title}</p>
+                    <p class="text-mute text-[13px] leading-relaxed">{p.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="py-5 text-center text-mute text-[11px] px-4">
+      © 2026 · Canadian Power Insights · Educational content only, not financial advice. Capital is at risk.
+    </footer>
+
+  </body>
+</html>

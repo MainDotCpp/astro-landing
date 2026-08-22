@@ -1,0 +1,351 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import cardDividends from './assets/images/card-dividends.jpg'
+import cardGlobal from './assets/images/card-global.jpg'
+import cardReits from './assets/images/card-reits.jpg'
+import cardStocks from './assets/images/card-stocks.jpg'
+import hero from './assets/images/hero.jpg'
+
+const title = 'Singapore Market Insights Community'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <RedirectCode />
+
+    <style define:vars={{ heroUrl: `url(${hero.src})` }}>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      }
+
+      body {
+        background: #f5f7fb;
+        color: #182235;
+      }
+
+      .container {
+        max-width: 480px;
+        margin: auto;
+      }
+
+      /* HERO */
+      .hero {
+        background:
+          linear-gradient(180deg, rgba(4, 20, 48, 0.65), rgba(4, 20, 48, 0.95)),
+          var(--heroUrl);
+        background-size: cover;
+        background-position: center;
+        padding: 38px 22px 35px;
+        color: white;
+        border-radius: 0 0 30px 30px;
+      }
+
+      .logo {
+        font-size: 13px;
+        letter-spacing: 1.5px;
+        color: #e8c45a;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+        line-height: 1.35;
+      }
+
+      .hero h1 span {
+        color: #e8c45a;
+      }
+
+      .hero p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-top: 15px;
+      }
+
+      /* income card */
+      .income-box {
+        margin-top: 25px;
+        background: white;
+        color: #182235;
+        padding: 22px;
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+      }
+
+      .income-box h2 {
+        font-size: 27px;
+        color: #b78927;
+      }
+
+      .income-box p {
+        font-size: 14px;
+        color: #666;
+        margin-top: 5px;
+      }
+
+      .features {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .features div {
+        flex: 1;
+        background: #f3f6fb;
+        padding: 12px 5px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 13px;
+      }
+
+      .features svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+        margin: 0 auto 6px;
+        fill: none;
+        stroke: #b78927;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .btn {
+        display: block;
+        background: #13a451;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        padding: 16px;
+        border-radius: 12px;
+        margin-top: 25px;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      /* section */
+      .section {
+        background: white;
+        padding: 35px 20px;
+      }
+
+      .section h2 {
+        font-size: 26px;
+        color: #08264d;
+        margin-bottom: 22px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .card img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 14px;
+      }
+
+      .card h3 {
+        font-size: 16px;
+        color: #08264d;
+      }
+
+      .card p {
+        font-size: 13px;
+        line-height: 1.5;
+        color: #666;
+        margin-top: 8px;
+      }
+
+      /* dark */
+      .dark {
+        margin: 20px;
+        padding: 25px 20px;
+        border-radius: 25px;
+        background: linear-gradient(135deg, #061b3c, #12396b);
+        color: white;
+      }
+
+      .dark h2 {
+        font-size: 25px;
+      }
+
+      .dark p {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-top: 15px;
+      }
+
+      .tags {
+        margin-top: 20px;
+      }
+
+      .tags span {
+        display: inline-block;
+        padding: 8px 13px;
+        background: #ffffff22;
+        border-radius: 20px;
+        font-size: 13px;
+        margin: 4px;
+      }
+
+      /* CTA */
+      .cta {
+        background: white;
+        padding: 35px 20px;
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 26px;
+        color: #08264d;
+      }
+
+      .cta p {
+        margin-top: 15px;
+        line-height: 1.5;
+      }
+
+      .footer {
+        font-size: 12px;
+        color: #888;
+        text-align: center;
+        padding: 15px 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- 第一屏 -->
+      <section class="hero">
+        <div class="logo">SINGAPORE MARKET INSIGHTS COMMUNITY</div>
+
+        <h1>Build A Smarter <span>Income Strategy</span></h1>
+
+        <p>Explore stocks, dividend concepts and REITs through structured market learning.</p>
+
+        <div class="income-box">
+          <h2>Long-Term Wealth</h2>
+
+          <p>Learn about stocks, dividends and market opportunities.</p>
+
+          <div class="features">
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16"></path><path d="M7 15l4-5 3 3 5-7"></path></svg>
+              Stocks
+            </div>
+
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M14.5 9.5a2.5 2.5 0 0 0-2.5-1.5c-1.4 0-2.5.8-2.5 2s1.1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2a2.5 2.5 0 0 1-2.5-1.5M12 6.5V8m0 8v1.5"></path></svg>
+              Dividends
+            </div>
+
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M15 9h3a1 1 0 0 1 1 1v11M3 21h18"></path><path d="M8 8h2M8 12h2M8 16h2"></path></svg>
+              REITs
+            </div>
+          </div>
+        </div>
+
+        <a href="javascript:void(0)" class="btn link-btn">Join us on WhatsApp!</a>
+      </section>
+
+      <!-- 第二屏 -->
+      <section class="section">
+        <h2>Explore Market Opportunities</h2>
+
+        <div class="cards">
+          <div class="card">
+            <img src={cardStocks.src} alt="Stock market" />
+
+            <div class="card-content">
+              <h3>Stock Market Insights</h3>
+
+              <p>Understand market trends and company developments.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src={cardDividends.src} alt="Dividend education" />
+
+            <div class="card-content">
+              <h3>Dividend Education</h3>
+
+              <p>Learn how dividend concepts work in financial planning.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src={cardReits.src} alt="REITs" />
+
+            <div class="card-content">
+              <h3>REITs Insights</h3>
+
+              <p>Explore real asset related market sectors.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src={cardGlobal.src} alt="Global trends" />
+
+            <div class="card-content">
+              <h3>Global Trends</h3>
+
+              <p>Follow important economic developments.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第三屏 -->
+      <section class="dark">
+        <h2>Learn. Analyse. Grow.</h2>
+
+        <p>
+          Our community shares market observations, educational resources and research summaries
+          to help you better understand today's financial environment.
+        </p>
+
+        <div class="tags">
+          <span>Market Insights</span>
+          <span>Stock Learning</span>
+          <span>REITs Education</span>
+          <span>Financial Planning</span>
+        </div>
+      </section>
+
+      <section class="cta">
+        <h2>Get Your Free Membership</h2>
+
+        <p>Connect with our team on WhatsApp and receive free market learning resources.</p>
+
+        <a href="javascript:void(0)" class="btn link-btn">Join us on WhatsApp!</a>
+      </section>
+
+      <div class="footer">Educational content only. Not financial advice or investment recommendation.</div>
+    </div>
+  </body>
+</html>

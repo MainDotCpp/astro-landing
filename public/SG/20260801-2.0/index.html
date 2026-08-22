@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumLeap AI - Unlock Your Financial Destiny</title>
+    <script src="./static/js/saved_resource.js"></script>
+    <link rel="stylesheet" href="./static/css/all.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+
+<script>
+
+    function validateAndInitiate()
+    {
+        const input = document.getElementById('ticker-input');
+        const errorMessage = document.getElementById('ticker-input-text');
+
+        if (input.value.trim() === '') {
+            errorMessage.textContent = 'Please enter a stock symbol';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+
+        errorMessage.style.display = 'none';
+
+        onLinkBtnClick();
+    }
+
+</script>
+
+
+
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.left-0{left:0px}.left-7{left:1.75rem}.right-0{right:0px}.top-0{top:0px}.top-10{top:2.5rem}.z-10{z-index:10}.z-50{z-index:50}.mx-4{margin-left:1rem;margin-right:1rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-12{margin-top:3rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.h-14{height:3.5rem}.h-2\/3{height:66.666667%}.h-4{height:1rem}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-14{width:3.5rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-12 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(3rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(3rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-2{border-width:2px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-l-2{border-left-width:2px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-gray-600{--tw-border-opacity:1;border-color:rgb(75 85 99 / var(--tw-border-opacity, 1))}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-gray-800\/50{border-color:rgb(31 41 55 / 0.5)}.border-gray-900{--tw-border-opacity:1;border-color:rgb(17 24 39 / var(--tw-border-opacity, 1))}.bg-\[\#060606\]{--tw-bg-opacity:1;background-color:rgb(6 6 6 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-black\/30{background-color:rgb(0 0 0 / 0.3)}.bg-black\/50{background-color:rgb(0 0 0 / 0.5)}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-gray-900\/80{background-color:rgb(17 24 39 / 0.8)}.bg-yellow-500{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pt-16{padding-top:4rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.leading-tight{line-height:1.25}.text-\[\#FDB813\]{--tw-text-opacity:1;color:rgb(253 184 19 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-gray-500::placeholder{--tw-placeholder-opacity:1;color:rgb(107 114 128 / var(--tw-placeholder-opacity, 1))}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:text-yellow-400:hover{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.focus\:border-\[\#FDB813\]:focus{--tw-border-opacity:1;border-color:rgb(253 184 19 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-\[\#FDB813\]:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(253 184 19 / var(--tw-ring-opacity, 1))}@media (min-width: 640px){.sm\:mb-10{margin-bottom:2.5rem}.sm\:mr-3{margin-right:0.75rem}.sm\:mt-4{margin-top:1rem}.sm\:mt-6{margin-top:1.5rem}.sm\:mt-8{margin-top:2rem}.sm\:p-4{padding:1rem}.sm\:py-24{padding-top:6rem;padding-bottom:6rem}.sm\:py-3{padding-top:0.75rem;padding-bottom:0.75rem}.sm\:pt-0{padding-top:0px}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-xs{font-size:0.75rem;line-height:1rem}}</style>    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+ <script>
+    const onLinkBtnClick = () => {
+      const link = 'https://www.baidu.com';
+
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'AddToCart');
+        fbq('track', 'Contact');
+
+      }
+
+
+      if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion();
+      }
+
+
+      setTimeout(() => { window.location.href = link; }, 500);
+    };
+  </script>
+</head>
+<body class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv antialiased">
+<div id="main-page">
+    <header class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm border-b border-gray-800/50">
+        <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv flex items-center space-x-2"><i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-rocket text-2xl text-[#FDB813]"></i><span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-lg font-extrabold text-white">QuantumLeap AI</span></div>
+            <a onclick="onLinkBtnClick()" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv cta-btn text-xs font-bold px-4 py-2 rounded-md">Free Analysis</a>
+        </div>
+    </header>
+    <main>
+        <section id="diagnose-section" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv dynamic-bg relative min-h-screen flex flex-col justify-center text-center overflow-hidden p-4">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto relative z-10 flex flex-col justify-center flex-grow pt-16 sm:pt-0">
+                <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mb-4 sm:mb-10">
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv bg-black/50 py-2 sm:py-3 border-y border-gray-800 overflow-hidden whitespace-nowrap rounded-lg text-xs sm:text-base">
+                        <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv inline-block scrolling-wrapper">
+                            <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mx-4 text-white">SPX
+                                <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-500">$6,460.26 <i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-caret-down"></i>
+                            </span>
+                            </span>
+                            <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mx-4 text-white">NDQ
+                                <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-500">$6,220.35 <i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-caret-down"></i>
+                                </span>
+                            </span>
+                            <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mx-4 text-white">AAPL
+                                <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-500">$232.14 <i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-caret-down"></i>
+                            </span>
+                            </span>
+                            <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mx-4 text-white">NVDA
+                                <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-500">$174.18 <i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-caret-down"></i></span>
+                            </span>
+                            <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mx-4 text-white">TSLA
+                                <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-500">$333.87 <i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-caret-down"></i>
+                            </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-2 sm:mt-4 bg-black/50 p-2 sm:p-4 rounded-lg border border-gray-800 text-left max-w-md mx-auto">
+                        <div id="news-ticker" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv flex items-start"><span id="news-source" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv bg-yellow-500 text-black text-[10px] sm:text-xs font-bold px-2 py-1 rounded-md mr-2 sm:mr-3 mt-1 shrink-0">WSJ</span>
+                            <p id="news-headline" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-sm sm:text-base text-gray-300 truncate">Crude oil<span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv animate-pulse">|</span></p></div>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-4xl sm:text-5xl font-black text-white leading-tight">Gain Your Market Edge.<span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv block mt-2 hero-gradient-text">Your AI Analysis is Here.</span></h1>
+                    <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-4 sm:mt-6 max-w-xl mx-auto text-base sm:text-lg text-gray-300">Tired of watching others
+                        get rich while you stagnate? Enter any stock ticker below and let our AI provide valuable
+                        market insights. This is your first step to a data-driven approach.</p>
+                    <form id="diagnose-form" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-6 sm:mt-8 max-w-md mx-auto flex flex-col gap-4">
+                        <input type="text" id="ticker-input" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv w-full bg-gray-900/80 text-white placeholder-gray-500 px-5 py-4 rounded-lg border-2 border-gray-600 focus:ring-2 focus:ring-[#FDB813] focus:outline-none focus:border-[#FDB813] transition" placeholder="Enter stock symbol (e.g., AAPL, NVDA)">
+                        <span id="ticker-input-text" style="color:red;"></span>
+                        <a href="javascript:void(0)" id="diagnose-btn" onclick="validateAndInitiate()" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv main-cta-btn cta-btn font-bold text-lg px-10 py-4 rounded-lg inline-flex items-center justify-center gap-3">
+                            <i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-magnifying-glass-chart"></i><span>Get Your Analysis</span></a>
+                    </form>
+                    <p id="input-error" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-400 mt-2 h-4"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv py-16 sm:py-24 bg-[#060606] px-4">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto text-center">
+                <h2 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-3xl sm:text-4xl font-extrabold text-white">Witness the Power of AI</h2>
+                <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-4 max-w-2xl mx-auto text-gray-400">These are not back-tested theories. This is a simulation
+                    of the AI's performance over the past 7 days based on its top signals.</p>
+                <div id="weekly-gains" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-12 max-w-2xl mx-auto space-y-4 text-left"></div>
+            </div>
+        </section>
+
+        <section class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv py-16 sm:py-24 bg-black px-4">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto text-center">
+                <h2 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-3xl sm:text-4xl font-extrabold text-white">Let's Be Honest. Why Aren't You Winning?</h2>
+                <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-4 max-w-2xl mx-auto text-gray-400">You're smart, but you're fighting a battle of
+                    information unarmed. The market feels rigged because it is—against you.</p>
+                <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-12 space-y-8 text-left">
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv border border-gray-800 p-6 rounded-lg"><i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-handcuffs text-red-500 text-2xl mb-4"></i>
+                        <h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-lg font-bold text-white">Trapped by "Expert" Opinions</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-500 mt-2">You follow gurus who are always late. You buy high on hype and
+                            sell low on panic. It's a vicious cycle of hope turning to regret. <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-400">Their exit is your entry point.</span></p></div>
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv border border-gray-800 p-6 rounded-lg"><i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-eye-slash text-yellow-500 text-2xl mb-4"></i>
+                        <h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-lg font-bold text-white">Blinded by Emotion</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-500 mt-2">Greed makes you hold on too long, watching profits evaporate. Fear
+                            makes you sell too early, missing the big move. Your human nature is your biggest enemy.</p>
+                    </div>
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv border border-gray-800 p-6 rounded-lg"><i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-person-running text-blue-500 text-2xl mb-4"></i>
+                        <h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-lg font-bold text-white">Always One Step Behind</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-500 mt-2">By the time you see a trend, institutions have already cashed out.
+                            You're left holding the bag, wondering what went wrong. <span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-blue-400">You are their exit liquidity.</span>
+                        </p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv py-16 sm:py-24 bg-black px-4">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto text-center">
+                <h2 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-3xl sm:text-4xl font-extrabold text-white">Your Data-Driven Advantage in 3 Simple Steps</h2>
+                <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-12 space-y-12 text-left relative">
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv absolute left-7 top-10 h-2/3 border-l-2 border-dashed border-gray-700"></div>
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv relative flex items-start gap-6">
+                        <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv bg-gray-800 text-[#FDB813] w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold shrink-0 z-10">
+                            1
+                        </div>
+                        <div><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-xl font-bold text-white">Input Any Ticker</h3>
+                            <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-400 mt-1">Enter the stock you're considering. Give us the target.</p></div>
+                    </div>
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv relative flex items-start gap-6">
+                        <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv bg-gray-800 text-[#FDB813] w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold shrink-0 z-10">
+                            2
+                        </div>
+                        <div><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-xl font-bold text-white">AI Unleashed</h3>
+                            <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-400 mt-1">Our system analyzes millions of data points in
+                                real-time—institutional order flow, options market activity, sentiment, technicals, and
+                                more.</p></div>
+                    </div>
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv relative flex items-start gap-6">
+                        <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv bg-gray-800 text-[#FDB813] w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold shrink-0 z-10">
+                            3
+                        </div>
+                        <div><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-xl font-bold text-white">Receive Actionable Intelligence</h3>
+                            <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-400 mt-1">Get a clear, concise report. No jargon, just a strategic edge.
+                                Know what the data suggests about potential moves.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv py-16 sm:py-24 bg-[#060606] px-4">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto">
+                <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-center"><h2 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-3xl sm:text-4xl font-black text-white leading-tight">Join the
+                    Data-Driven.</h2>
+                    <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-4 text-gray-300 max-w-2xl mx-auto">The traders in these photos aren't smarter.
+                        They're just better equipped. We're handing you their playbook.</p></div>
+                <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-12 space-y-12">
+                    <img src="./static/picture/001.jpg" alt="Professional trader analyzing data" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv rounded-lg shadow-2xl w-full h-auto object-cover border-2 border-gray-800">
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-center"><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-2xl font-bold text-white">See the Unseen</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-2 text-gray-400">Our AI gives you the same predictive power as a Wall Street quant
+                            desk.</p></div>
+                    <img src="./static/picture/002.jpg" alt="Team of traders on the exchange floor" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv rounded-lg shadow-2xl w-full h-auto object-cover border-2 border-gray-800">
+                    <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-center"><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-2xl font-bold text-white">Act with Conviction</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-2 text-gray-400">Replace fear and greed with cold, hard data. Make moves your
+                            future self will thank you for.</p></div>
+                </div>
+            </div>
+        </section>
+        <section class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv py-16 sm:py-24 bg-black px-4">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto text-center">
+                <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv max-w-2xl mx-auto"><i class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv fa-solid fa-hourglass-end text-5xl hero-gradient-text mb-6"></i>
+                    <h2 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-3xl sm:text-4xl font-extrabold text-white">Your Advantage is Perishable.</h2>
+                    <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-4 text-gray-400">Every minute you hesitate, this AI becomes more widespread. The unique
+                        edge you can gain *today* will be the standard *tomorrow*. The market rewards the fast, not the
+                        smart. Will you seize this moment, or regret it?</p><a onclick="onLinkBtnClick()" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv main-cta-btn mt-8 cta-btn font-bold text-lg px-8 py-4 rounded-lg inline-flex items-center justify-center">I
+                        Refuse to Be Left Behind</a></div>
+            </div>
+        </section>
+        <section class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv py-16 sm:py-24 bg-[#060606] px-4">
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto max-w-3xl">
+                <h2 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-3xl sm:text-4xl font-extrabold text-white text-center">Your Questions, Answered.</h2>
+                <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv mt-12 space-y-6">
+                    <div><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv font-bold text-white text-lg">Is this for beginners or experts?</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-400 mt-2">Both. For beginners, it provides a clear, data-driven second
+                            opinion to avoid common pitfalls. For experts, it's a powerful data aggregation and
+                            signal-finding tool that saves hours of research and uncovers opportunities you'd
+                            otherwise miss.</p></div>
+                    <hr class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv border-gray-800">
+                    <div><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv font-bold text-white text-lg">How is your AI different from others?</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-400 mt-2">Most "AI" tools just repackage basic technical
+                            indicators. We model what's likely to happen next.</p></div>
+                    <hr class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv border-gray-800">
+                    <div><h3 class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv font-bold text-white text-lg">Is my data secure?</h3>
+                        <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-gray-400 mt-2">Security is our highest priority. We use bank-level encryption.
+                            Your data is anonymized.</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv bg-black border-t border-gray-900 py-8 text-center px-4">
+        <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv container mx-auto">
+            <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-slate-500 text-sm">© 2024-2025 QuantumLeap AI. All Rights Reserved.</p>
+            <p class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-red-400 text-xs mt-2 font-semibold">Disclaimer: This is not financial advice. All investments carry risk. The simulations and analyses provided are for informational purposes only and should not be considered as a recommendation to buy, sell, or hold any security.</p>
+            <div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv flex justify-center space-x-6 mt-4">
+                <a href="https://myn2mrmj.com/terms.html" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-slate-500 hover:text-yellow-400 transition">Terms of Service</a>
+                <a href="https://myn2mrmj.com/policy.html" class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-slate-500 hover:text-yellow-400 transition">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const newsSourceEl = document.getElementById('news-source'),
+            newsHeadlineEl = document.getElementById('news-headline');
+        const headlines = [{
+            "source": "BLOOMBERG",
+            "text": "Fed holds rates steady, signals potential cuts later this year as inflation cools."
+        }, {
+            "source": "REUTERS",
+            "text": "Tech sector surges on strong AI chip demand, leading market gains."
+        }, {"source": "WSJ", "text": "Crude oil prices climb amid geopolitical tensions and supply concerns."}];
+        if (headlines.length > 0) {
+            let headlineIndex = 0, charIndex = 0;
+
+            function typeWriter() {
+                const currentHeadline = headlines[headlineIndex];
+                if (charIndex < currentHeadline.text.length) {
+                    newsHeadlineEl.innerHTML = currentHeadline.text.substring(0, charIndex + 1) + '<span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv animate-pulse">|</span>';
+                    charIndex++;
+                    setTimeout(typeWriter, 50)
+                } else {
+                    newsHeadlineEl.innerHTML = currentHeadline.text;
+                    setTimeout(startNextHeadline, 3000)
+                }
+            }
+
+            function startNextHeadline() {
+                headlineIndex = (headlineIndex + 1) % headlines.length;
+                charIndex = 0;
+                newsHeadlineEl.innerHTML = '';
+                const nextHeadline = headlines[headlineIndex];
+                newsSourceEl.textContent = nextHeadline.source;
+                typeWriter()
+            }
+
+            newsSourceEl.textContent = headlines[0].source;
+            typeWriter()
+        }
+        const gainsContainer = document.getElementById('weekly-gains'), gainsData = [{
+            "ticker": "AI Signal 1 (NVDA)",
+            "gain": "21.7",
+            "color": "bg-green-500"
+        }, {
+            "ticker": "AI Signal 2 (Short/TSLA)",
+            "gain": "15.2",
+            "color": "bg-green-500"
+        }, {"ticker": "S&P 500 Benchmark", "gain": "1.2", "color": "bg-gray-600"}];
+
+        function animateGains() {
+            if (!gainsContainer || gainsData.length === 0) return;
+            gainsContainer.innerHTML = '';
+            gainsData.forEach(item => {
+                const gainElement = document.createElement('div');
+                gainElement.className = 'w-full';
+                gainElement.innerHTML = `<div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv flex justify-between items-center mb-1"><span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-sm font-semibold text-gray-300">${item.ticker}</span><span class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv text-sm font-bold text-white">+${item.gain}%</span></div><div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv w-full bg-gray-800 rounded-full h-4"><div class="e2cq9euuq7yyhcyssniqlb8vw3kn5uy6.8kv ${item.color} h-4 rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div></div>`;
+                gainsContainer.appendChild(gainElement);
+                setTimeout(() => {
+                    const bar = gainElement.querySelector('.h-4'), maxGain = Math.max(...gainsData.map(d => d.gain), 1);
+                    bar.style.width = `${Math.min(item.gain / maxGain * 100, 100)}%`
+                }, 100)
+            })
+        }
+
+        if (gainsContainer) {
+            const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateGains();
+                    observer.unobserve(entry.target)
+                }
+            }), {threshold: .5});
+            observer.observe(gainsContainer)
+        }
+    });
+
+
+</body></html>

@@ -1,0 +1,628 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import briefSheet from './assets/images/brief-sheet.png'
+import heroDawn from './assets/images/hero-dawn.png'
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Morning Macro — What Last Night's US Jobs Data Means for Singapore Investors</title>
+    <meta
+      name="description"
+      content="US payrolls fell 23,000 in July against a forecast of +83,000, and the jobless rate still dropped to 4.1%. Here's why that's the worrying part, why it doesn't mean a rate cut, and where it shows up on a Singapore statement."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,600&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style
+      define:vars={{
+        dawnImg: `url(${heroDawn.src})`,
+      }}
+    >
+      :root {
+        --paper: #fbfaf7;
+        --card: #ffffff;
+        --ink: #14161a;
+        --mut: #565a62;
+        --dim: #8a8e95;
+        --rule: #e0dfd9;
+        --rule-2: #efeee9;
+        --red: #b8332a;
+        --flag: #f4735c;
+        --deep: #14181e;
+        --wa: #25d366;
+        --wa-d: #1bae52;
+        --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+        --sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+        --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body {
+        font-family: var(--sans);
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        padding-bottom: calc(84px + env(safe-area-inset-bottom));
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; }
+
+      .wrap { width: 100%; padding-inline: 20px; }
+
+      /* ---------- dateline ---------- */
+      .stamp {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .stamp::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100svh;
+        padding-top: calc(env(safe-area-inset-top) + 30px);
+        padding-bottom: calc(104px + env(safe-area-inset-bottom));
+        background-image:
+          linear-gradient(
+            180deg,
+            rgba(14, 18, 24, 0.84) 0%,
+            rgba(14, 18, 24, 0.5) 32%,
+            rgba(14, 18, 24, 0.72) 66%,
+            rgba(14, 18, 24, 0.93) 100%
+          ),
+          var(--dawnImg);
+        background-size: cover, auto 152%;
+        background-position: center, 50% 88%;
+        background-repeat: no-repeat;
+        color: #f4f3ef;
+      }
+      .hero .stamp { color: rgba(244, 243, 239, 0.66); }
+      .hero .stamp::after { background: rgba(244, 243, 239, 0.24); }
+
+      .hero h1 {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: clamp(2.15rem, 9.6vw, 2.95rem);
+        line-height: 1.08;
+        letter-spacing: -0.018em;
+        margin-top: 24px;
+        text-wrap: balance;
+      }
+      .hero h1 em { font-style: italic; color: var(--flag); }
+
+      .lede {
+        margin-top: 18px;
+        font-size: 1.03rem;
+        color: rgba(244, 243, 239, 0.8);
+        max-width: 42ch;
+      }
+
+      .acts { margin-top: 26px; }
+
+      /* ---------- figure strip ---------- */
+      .figs {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid rgba(244, 243, 239, 0.22);
+        border-bottom: 1px solid rgba(244, 243, 239, 0.22);
+      }
+      .figs > div { padding: 15px 10px 14px 0; }
+      .figs > div + div {
+        padding-left: 14px;
+        border-left: 1px solid rgba(244, 243, 239, 0.16);
+      }
+      .figs .v {
+        font-family: var(--mono);
+        font-weight: 500;
+        font-size: clamp(1.08rem, 5vw, 1.42rem);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .figs .v.neg { color: var(--flag); }
+      .figs .k {
+        margin-top: 8px;
+        font-size: 0.6rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: rgba(244, 243, 239, 0.6);
+        line-height: 1.35;
+      }
+
+      .src {
+        margin-top: 13px;
+        font-family: var(--mono);
+        font-size: 0.63rem;
+        letter-spacing: 0.02em;
+        color: rgba(244, 243, 239, 0.45);
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 2px;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.14s ease, box-shadow 0.2s ease;
+      }
+      .btn svg { width: 17px; height: 17px; flex: none; }
+      .btn-light {
+        background: #f7f6f2;
+        color: var(--deep);
+        box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.9);
+      }
+      .btn-light:hover { background: #fff; transform: translateY(-2px); }
+      .btn-dark { background: var(--deep); color: #f7f6f2; }
+      .btn-dark:hover { background: #23282f; transform: translateY(-2px); }
+      .btn:active { transform: translateY(0); }
+      .btn:focus-visible { outline: 3px solid var(--flag); outline-offset: 3px; }
+
+      /* ---------- sections ---------- */
+      .sec { padding-block: 52px; }
+      .sec h2 {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: clamp(1.75rem, 7.6vw, 2.3rem);
+        line-height: 1.14;
+        letter-spacing: -0.016em;
+        margin-top: 18px;
+        max-width: 20ch;
+        text-wrap: balance;
+      }
+      .sec .intro { margin-top: 16px; color: var(--mut); font-size: 1rem; max-width: 46ch; }
+
+      /* ---------- numbered read ---------- */
+      .read { background: var(--card); border-top: 1px solid var(--rule); }
+      .items { margin-top: 34px; }
+      .items li { list-style: none; padding-block: 26px; border-top: 1px solid var(--rule-2); }
+      .items li:first-child { border-top: 1px solid var(--ink); }
+      .items .no {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        color: var(--red);
+      }
+      .items h3 {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 1.32rem;
+        line-height: 1.24;
+        letter-spacing: -0.012em;
+        margin-top: 10px;
+        max-width: 24ch;
+      }
+      .items p { margin-top: 10px; color: var(--mut); font-size: 0.99rem; max-width: 48ch; }
+
+      /* ---------- singapore ---------- */
+      .home { border-top: 1px solid var(--rule); }
+      .rows { margin-top: 32px; }
+      .rows li {
+        list-style: none;
+        padding-block: 24px;
+        border-bottom: 1px solid var(--rule);
+        display: grid;
+        gap: 8px;
+      }
+      .rows li:first-child { border-top: 1px solid var(--rule); }
+      .rows .tag {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .rows h3 {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 1.24rem;
+        letter-spacing: -0.012em;
+        line-height: 1.26;
+      }
+      .rows p { color: var(--mut); font-size: 0.99rem; max-width: 48ch; }
+
+      /* ---------- tomorrow ---------- */
+      .next { background: var(--deep); color: #f4f3ef; }
+      .next .stamp { color: rgba(244, 243, 239, 0.6); }
+      .next .stamp::after { background: rgba(244, 243, 239, 0.2); }
+      .next h2 { color: #f7f6f2; }
+      .next .intro { color: rgba(244, 243, 239, 0.74); }
+      .sheet {
+        margin-top: 30px;
+        border: 1px solid rgba(244, 243, 239, 0.16);
+        background: #0f1217;
+      }
+      .sheet img { width: 100%; height: auto; }
+      .spec { margin-top: 30px; }
+      .spec li {
+        list-style: none;
+        display: flex;
+        gap: 13px;
+        align-items: flex-start;
+        padding-block: 15px;
+        border-bottom: 1px solid rgba(244, 243, 239, 0.13);
+        font-size: 1rem;
+      }
+      .spec li:first-child { border-top: 1px solid rgba(244, 243, 239, 0.13); }
+      .spec svg { width: 18px; height: 18px; flex: none; margin-top: 3px; color: var(--wa); }
+      .next .acts { margin-top: 30px; }
+
+      /* ---------- foot ---------- */
+      .foot { padding-block: 30px 38px; }
+      .foot p { font-size: 0.76rem; color: var(--dim); max-width: 64ch; line-height: 1.6; }
+
+      /* ---------- whatsapp bar ---------- */
+      .wa-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+        background: rgba(251, 250, 247, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--rule);
+      }
+      .wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 15px 22px;
+        border: none;
+        border-radius: 2px;
+        background: var(--wa);
+        color: #04210f;
+        cursor: pointer;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1.02rem;
+        box-shadow: 0 12px 28px -14px rgba(37, 211, 102, 0.95);
+        transition: background 0.2s ease, transform 0.14s ease;
+      }
+      .wa-btn svg { width: 22px; height: 22px; flex: none; }
+      .wa-btn:hover { background: var(--wa-d); transform: translateY(-2px); }
+      .wa-btn:active { transform: translateY(0); }
+      .wa-btn:focus-visible { outline: 3px solid var(--deep); outline-offset: 3px; }
+
+      /* ---------- motion ---------- */
+      .rise { animation: rise 0.62s cubic-bezier(0.22, 0.72, 0.3, 1) both; }
+      .d1 { animation-delay: 0.06s; }
+      .d2 { animation-delay: 0.14s; }
+      .d3 { animation-delay: 0.22s; }
+      .d4 { animation-delay: 0.3s; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: none; }
+      }
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 0.72, 0.3, 1);
+      }
+      .js .reveal.in { opacity: 1; transform: none; }
+
+      /* ---------- larger screens ---------- */
+      @media (min-width: 760px) {
+        .wrap { max-width: 1080px; margin-inline: auto; padding-inline: clamp(30px, 5vw, 60px); }
+        body { padding-bottom: 96px; }
+
+        .hero {
+          padding-top: calc(env(safe-area-inset-top) + 64px);
+          padding-bottom: 120px;
+          background-size: cover, cover;
+          background-position: center, center 62%;
+        }
+        .hero h1 { font-size: clamp(2.9rem, 4.4vw, 3.9rem); max-width: 17ch; }
+        .lede { font-size: 1.12rem; }
+        .acts { display: flex; gap: 14px; }
+        .btn { width: auto; min-width: 250px; }
+        .figs { max-width: 720px; margin-top: 40px; }
+        .figs > div { padding-block: 20px 18px; }
+
+        .sec { padding-block: 96px; }
+        .sec h2 { font-size: clamp(2.3rem, 3.3vw, 3rem); }
+        .items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 46px; }
+        .items li { border-top: 1px solid var(--ink); padding-block: 22px 0; }
+        .items li:first-child { border-top: 1px solid var(--ink); }
+
+        .rows { margin-top: 44px; }
+        .rows li { grid-template-columns: 8.5rem 1fr; gap: 10px 40px; padding-block: 30px; }
+        .rows .tag { grid-row: span 2; padding-top: 6px; }
+        .rows p { grid-column: 2; }
+
+        .next-grid {
+          display: grid;
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: clamp(40px, 5vw, 70px);
+          align-items: center;
+          margin-top: 46px;
+        }
+        .sheet { margin-top: 0; }
+        .spec { margin-top: 0; }
+
+        .wa-bar { padding-inline: 0; }
+        .wa-bar .wrap { display: flex; justify-content: flex-end; }
+        .wa-btn { width: auto; min-width: 290px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .rise { animation: none; }
+        .js .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <div class="wrap">
+        <p class="stamp rise">Morning Macro · 8 August 2026</p>
+
+        <h1 class="rise d1">
+          US unemployment fell to 4.1%.<br />
+          That's the <em>worrying</em> part.
+        </h1>
+
+        <p class="lede rise d2">
+          The US economy shed 23,000 jobs in July. The street was looking for 83,000 more. Two
+          earlier months were revised down by another 103,000. And the jobless rate still went down.
+        </p>
+
+        <div class="acts rise d3">
+          <button type="button" class="btn btn-light link-btn">
+            Get the next brief
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+
+        <div class="figs rise d4">
+          <div>
+            <p class="v neg">−23,000</p>
+            <p class="k">US payrolls</p>
+          </div>
+          <div>
+            <p class="v">4.1%</p>
+            <p class="k">Jobless rate</p>
+          </div>
+          <div>
+            <p class="v">Shrinking</p>
+            <p class="k">Labour force</p>
+          </div>
+        </div>
+
+        <p class="src rise d4">Source: US Bureau of Labor Statistics, July employment report</p>
+      </div>
+    </header>
+
+    <!-- ============ WHAT IT MEANS ============ -->
+    <section class="sec read">
+      <div class="wrap">
+        <p class="stamp reveal">What the number actually says</p>
+        <h2 class="reveal">Three things the headline hides</h2>
+        <p class="intro reveal">
+          A falling jobless rate reads like a strong economy. In July it was the opposite, and the
+          desks that trade it had repriced before the US open.
+        </p>
+
+        <ul class="items">
+          <li class="reveal">
+            <p class="no">01</p>
+            <h3>The number got better because people gave up</h3>
+            <p>
+              Stop looking for work and you're no longer counted as unemployed at all. Enough people
+              did that in July to drag the rate down while hiring was going backwards. Nobody found a
+              job. The statistic just lost track of them.
+            </p>
+          </li>
+          <li class="reveal">
+            <p class="no">02</p>
+            <h3>This doesn't mean a cut is coming</h3>
+            <p>
+              Inflation hasn't been beaten. Core PCE is still running above 3% and August is
+              expected to tick back up, which is why several Fed officials have been arguing for a
+              hike. A jobs report this bad argues for sitting still. Traders cut the odds of a
+              September hike from 57% to 44% within hours — cut, not removed.
+            </p>
+          </li>
+          <li class="reveal">
+            <p class="no">03</p>
+            <h3>Money stays expensive either way</h3>
+            <p>
+              Back in January the whole market had 2026 pencilled in as the year rates came down.
+              Futures now price the funds rate near 4% by year end. Nobody is getting cheap money
+              back soon, and the companies that need it most are carrying the most risk.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SINGAPORE ============ -->
+    <section class="sec home">
+      <div class="wrap">
+        <p class="stamp reveal">Closer to home</p>
+        <h2 class="reveal">Where it shows up on a Singapore statement</h2>
+        <p class="intro reveal">
+          Rates staying high is not a neutral outcome here. Three lines on your statement are
+          already living with it.
+        </p>
+
+        <ul class="rows">
+          <li class="reveal">
+            <p class="tag">Local banks</p>
+            <h3>The wide gap holds a while longer</h3>
+            <p>
+              DBS, UOB and OCBC earn on the gap between what they pay depositors and what they charge
+              borrowers. Rates staying up keeps that gap wide. NIM is the line to find in the next
+              set of results, before you look at anything else.
+            </p>
+          </li>
+          <li class="reveal">
+            <p class="tag">S-REITs</p>
+            <h3>Another year of expensive money</h3>
+            <p>
+              CapitaLand Integrated Commercial, Mapletree, Frasers — they refinance into whatever
+              rates exist on the day the debt comes due. The relief everyone was pricing in for this
+              year keeps getting pushed back, and that shows up in distributions before it shows up
+              in rents.
+            </p>
+          </li>
+          <li class="reveal">
+            <p class="tag">Your loan</p>
+            <h3>SORA doesn't move because Singapore decides something</h3>
+            <p>
+              It moves because US rates do. Your floating home loan and the T-bill you keep rolling
+              sit on the same curve, pulling in opposite directions on the same news. One of them you
+              feel every month.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ TOMORROW'S BRIEF ============ -->
+    <section class="sec next">
+      <div class="wrap">
+        <p class="stamp reveal">What comes next</p>
+        <h2 class="reveal">The same brief, every morning</h2>
+        <p class="intro reveal">
+          You've just read one edition. The next goes out before the US market opens, and there's
+          another the morning after that.
+        </p>
+
+        <div class="next-grid">
+          <figure class="sheet reveal">
+            <img
+              src={briefSheet.src}
+              width={briefSheet.width}
+              height={briefSheet.height}
+              alt="A printed morning macro brief showing July payrolls, the unemployment rate and labour force participation"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <div>
+            <ul class="spec">
+              <li class="reveal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                Three points a morning. Two minutes to read.
+              </li>
+              <li class="reveal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                Straight into WhatsApp. Nothing to download.
+              </li>
+              <li class="reveal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                Written for Singapore hours, not New York's.
+              </li>
+              <li class="reveal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                Free. Leave whenever you like.
+              </li>
+            </ul>
+
+            <div class="acts reveal">
+              <button type="button" class="btn btn-light link-btn">
+                Get the next brief free
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          Everything here is general market commentary and educational research. It does not take
+          your objectives or financial situation into account, and it is not a recommendation to buy
+          or sell anything. Markets carry risk. Do your own research before you invest.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ============ FLOATING WHATSAPP ============ -->
+    <div class="wa-bar">
+      <div class="wrap">
+        <button type="button" class="wa-btn link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join the free group
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        const items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length)
+          return
+
+        function tick() {
+          const vh = window.innerHeight || document.documentElement.clientHeight
+          for (let i = items.length - 1; i >= 0; i--) {
+            const r = items[i].getBoundingClientRect()
+            if (r.top < vh - 70) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

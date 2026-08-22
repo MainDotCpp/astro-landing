@@ -1,0 +1,251 @@
+---
+import JPComplianceFooter from '../common/JPComplianceFooter.astro'
+import JPSecurityIcons from '../common/JPSecurityIcons.astro'
+---
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>注目銘柄を毎日分析 | 無料LINE配信</title>
+<meta name="description" content="毎日の注目銘柄を分析し、次に動く株を見逃さない。プロの視点をLINEで無料配信中。">
+
+<script is:inline>document.documentElement.classList.add('js')</script>
+
+<!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+<script is:inline>
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const link = 'https://www.baidu.com'
+</script>
+<script is:inline src="/mjSFqQ/XoONOW.js"></script>
+<!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --card: #141a22;
+  --ink: #eae7e0;
+  --ink2: #8e95a0;
+  --gold: #c9974e;
+  --gold2: #e0b978;
+  --line: #06C755;
+  --rule: rgba(255,255,255,.06);
+  --sans: "Noto Sans JP", system-ui, sans-serif;
+  --serif: "Shippori Mincho", serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:calc(76px + env(safe-area-inset-bottom));
+}
+.page{max-width:480px;margin:0 auto;padding:0 20px}
+
+/* ── hero ── */
+.hero{padding-top:calc(env(safe-area-inset-top) + 48px)}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:16px;
+}
+.tag::before{content:"";width:16px;height:2px;background:var(--gold)}
+h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.5rem,6.5vw,2.1rem);line-height:1.3;
+  letter-spacing:-.01em;margin-bottom:16px;
+}
+h1 em{font-style:normal;color:var(--gold2)}
+.lead{
+  font-size:.92rem;line-height:1.8;color:var(--ink2);margin-bottom:32px;
+}
+.lead strong{color:var(--ink);font-weight:600}
+
+/* ── divider ── */
+.divider{height:1px;background:var(--rule);margin:28px 0}
+
+/* ── section heading ── */
+.sh{
+  font-family:var(--serif);font-weight:600;font-size:1.05rem;
+  color:var(--gold2);margin-bottom:20px;line-height:1.4;
+}
+
+/* ── value list ── */
+.val-list{margin-bottom:8px}
+.val-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+}
+.val-item:last-child{border-bottom:none}
+.val-icon{
+  width:38px;height:38px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(201,151,78,.08);border:1px solid rgba(201,151,78,.15);
+  border-radius:8px;color:var(--gold2);
+}
+.val-icon svg{width:18px;height:18px}
+.val-text h3{font-size:.88rem;font-weight:700;margin-bottom:3px}
+.val-text p{font-size:.78rem;color:var(--ink2);line-height:1.55}
+
+/* ── community section ── */
+.comm{margin-bottom:8px}
+.comm p{font-size:.88rem;line-height:1.75;color:var(--ink2);margin-bottom:12px}
+.comm strong{color:var(--ink);font-weight:600}
+
+/* ── CTA ── */
+.cta-wrap{margin:28px 0 8px}
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;min-height:56px;padding:0 20px;
+  border:none;border-radius:999px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#1a1305;font-family:var(--sans);font-weight:700;font-size:.95rem;
+  letter-spacing:.02em;cursor:pointer;
+  box-shadow:0 4px 20px rgba(201,151,78,.25);
+}
+.cta svg{width:22px;height:22px;flex:none}
+.cta:active{transform:translateY(1px)}
+.cta-note{
+  text-align:center;font-size:.7rem;color:var(--ink2);margin-top:10px;
+}
+
+/* ── sticky bar ── */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  padding:10px 20px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(11,15,20,.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+}
+.bar-inner{max-width:480px;margin:0 auto}
+.bar-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;min-height:50px;border:none;border-radius:999px;
+  background:var(--line);color:#fff;
+  font-family:var(--sans);font-weight:700;font-size:.9rem;cursor:pointer;
+}
+.bar-btn svg{width:20px;height:20px;flex:none}
+.bar-btn:active{background:#05a948}
+
+/* ── reveal ── */
+html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+html.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+@media(min-width:640px){
+  .page{padding:0 32px}
+  .hero{padding-top:calc(env(safe-area-inset-top) + 64px)}
+  .cta,.bar-btn{width:auto;min-width:320px;margin:0 auto}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+  <section class="hero">
+    <p class="tag">銘柄分析</p>
+    <h1>注目銘柄を毎日分析。<em>次に動く株を、見逃さない。</em></h1>
+    <p class="lead">
+      決算、業績修正、セクターローテーション——<strong>相場を動かすシグナルは、毎日出ている。</strong>問題は、それを拾えるかどうか。
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <p class="sh">毎日の分析で、こうした視点をお届けします</p>
+    <div class="val-list">
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>銘柄スクリーニング</h3>
+          <p>出来高急増、チャート転換、テーマ性——複数の切り口から注目銘柄を選定。</p>
+        </div>
+      </div>
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21H4a1 1 0 0 1-1-1V3"/><path d="m7 14 4-4 4 4 6-6"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>業績・決算の読み解き</h3>
+          <p>数字の裏にある意味を解説。増収だから買い、ではない判断軸を共有。</p>
+        </div>
+      </div>
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>タイミングの考え方</h3>
+          <p>エントリーと利確の目安を、テクニカルとファンダの両面から提示。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="comm reveal">
+    <p class="sh">プロの視点を、あなたのLINEに。</p>
+    <p>
+      毎日の分析結果を、LINEで直接お届けします。<strong>朝の銘柄ピックアップ、場中の速報コメント、引け後のまとめ</strong>——相場に向き合う時間を、もっと濃くする情報を。
+    </p>
+    <p>
+      閲覧だけでもOK。気になったら質問も歓迎。<strong>まずは覗いてみてください。</strong>
+    </p>
+  </section>
+
+  <div class="cta-wrap reveal">
+    <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 0 1-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595a.62.62 0 0 1 .194-.033c.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEで分析を受け取る
+    </button>
+    <p class="cta-note">無料で参加 · いつでも退出可能</p>
+  </div>
+
+  <JPSecurityIcons />
+</div>
+
+<JPComplianceFooter />
+
+<div class="bar">
+  <div class="bar-inner">
+    <button type="button" class="bar-btn link-btn" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 0 1-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595a.62.62 0 0 1 .194-.033c.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      無料で参加する
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+;(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+  if (!items.length) return
+
+  function tick() {
+    var vh = window.innerHeight || document.documentElement.clientHeight
+    for (var i = items.length - 1; i >= 0; i--) {
+      if (items[i].getBoundingClientRect().top < vh - 60) {
+        items[i].classList.add('in')
+        items.splice(i, 1)
+      }
+    }
+    if (!items.length) {
+      window.removeEventListener('scroll', tick)
+      window.removeEventListener('resize', tick)
+    }
+  }
+
+  window.addEventListener('scroll', tick, { passive: true })
+  window.addEventListener('resize', tick)
+  tick()
+  setTimeout(tick, 300)
+})()
+</script>
+</body>
+</html>

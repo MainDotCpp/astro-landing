@@ -1,0 +1,1049 @@
+---
+import { getImage } from 'astro:assets'
+import RedirectCode from '@/components/RedirectCode.astro'
+import portraitSrc from './images/cathie-wood.jpg'
+import rhythmSrc from './images/daily-rhythm.png'
+import deskSrc from './images/hero-desk.png'
+
+const desk = await getImage({ src: deskSrc, format: 'webp', width: 1200, quality: 72 })
+const deskSm = await getImage({ src: deskSrc, format: 'webp', width: 720, quality: 70 })
+
+const FIG_W = 720
+const rhythm = await getImage({ src: rhythmSrc, format: 'webp', width: FIG_W, quality: 76 })
+const rhythmH = Math.round(FIG_W * rhythmSrc.height / rhythmSrc.width)
+
+const POR_W = 660
+const portrait = await getImage({ src: portraitSrc, format: 'webp', width: POR_W, quality: 78 })
+const portraitH = Math.round(POR_W * portraitSrc.height / portraitSrc.width)
+
+const cv = [
+  { yr: '1980', ev: 'Started at <b>Jennison Associates</b> in New York as an assistant economist. Spent eighteen years there, ended as managing director.' },
+  { yr: '1998', ev: 'Co-founded <b>Tupelo Capital Management</b>, my first hedge fund.' },
+  { yr: '2000s', ev: 'Twelve years at <b>AllianceBernstein</b> as CIO of global thematic strategies, running about US$5 billion.' },
+  { yr: '2014', ev: 'Founded <b>ARK Invest</b> — because I believed disruptive innovation needed its own firm, not a sleeve inside someone else\'s.' },
+  { yr: 'Now', ev: 'Founder, CEO and CIO of ARK. And the person sending you those trade notifications every evening.' },
+]
+
+const blotter = [
+  { act: 'BUY', tk: 'NVDA', co: 'Nvidia', sh: '122,422', val: 'US$27.42M' },
+  { act: 'BUY', tk: 'AVGO', co: 'Broadcom', sh: '39,020', val: 'US$16.69M' },
+  { act: 'BUY', tk: 'SpaceX', co: 'private · no public price', sh: '181,830', val: 'across 4 funds' },
+  { act: 'BUY', tk: 'CRCL', co: 'Circle', sh: '273,343', val: 'across 3 funds' },
+  { act: 'SELL', tk: 'DE', co: 'Deere & Co.', sh: '60,458', val: 'US$37.53M' },
+  { act: 'SELL', tk: 'PLTR', co: 'Palantir', sh: '70,259', val: 'across 5 funds' },
+]
+
+const positions = [
+  { tk: 'SpaceX', note: 'Fifth-largest position in ARKK. About US$282 million, roughly 4.73% of the fund.', flag: 'Private company' },
+  { tk: 'Circle', note: 'Eighth-largest, around US$233 million, close to 3.9%.', flag: 'Listed' },
+  { tk: 'OpenAI', note: 'Also a significant holding. You can\'t buy a share of it on any exchange at any price.', flag: 'Private company' },
+  { tk: 'Tesla · Coinbase · Robinhood · Palantir', note: 'The public names that have anchored the fund for years.', flag: 'Listed' },
+]
+
+const desk_notes = [
+  {
+    q: 'On the "AI bubble" talk',
+    a: 'I\'ve said this directly: we are years away from anything resembling a bubble. What everyone keeps calling a peak in AI spending is closer to a floor.',
+  },
+  {
+    q: 'On the economy',
+    a: 'I see the U.S. as a coiled spring — held down for a long stretch, with the potential to snap back hard over the next few years.',
+  },
+  {
+    q: 'On the adoption curve',
+    a: 'Our research shows people are adopting AI tools about twice as fast as they adopted the internet in the \'90s. That\'s what I\'m positioning around.',
+  },
+]
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cathie Wood — I publish every trade. Join my WhatsApp.</title>
+    <meta
+      name="description"
+      content="I'm Cathie Wood, founder and CIO of ARK Invest. I publish my full buy-and-sell list after every U.S. close. Join my WhatsApp group and get the trades, in plain English, before the Canadian market opens."
+    />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --paper: #e8ebef;
+        --paper-2: #dde2e8;
+        --card: #f8fafb;
+        --night: #0c1219;
+        --night-2: #16202b;
+        --ink: #0f1720;
+        --ink-2: #4b5763;
+        --ink-3: #6d7883;
+        --rule: rgba(15, 23, 32, 0.14);
+        --rule-soft: rgba(15, 23, 32, 0.07);
+        --buy: #0f6b4f;
+        --sell: #a33a2b;
+        --maple: #c8102e;
+
+        --sans: 'IBM Plex Sans Condensed', 'Helvetica Neue', Arial, sans-serif;
+        --serif: 'IBM Plex Serif', Georgia, serif;
+        --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { -webkit-text-size-adjust: 100%; }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.62;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 84px;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 660px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      p { margin: 0 0 1.05em; }
+      p:last-child { margin-bottom: 0; }
+
+      /* ---------- reveal ---------- */
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+      .js .reveal.in { opacity: 1; transform: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .js .reveal { opacity: 1; transform: none; transition: none; }
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        background: var(--night);
+        color: #eef2f6;
+        overflow: hidden;
+      }
+
+      .hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 26%;
+        opacity: 0.92;
+      }
+
+      .hero-veil {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(12, 18, 25, 0.42) 0%, rgba(12, 18, 25, 0.7) 34%, rgba(12, 18, 25, 0.9) 68%, rgba(12, 18, 25, 0.98) 100%);
+      }
+
+      .hero-in {
+        position: relative;
+        padding: 118px 0 34px;
+      }
+
+      .stamp {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #8fa2b3;
+        margin: 0 0 20px;
+      }
+      .stamp b {
+        color: #cdd8e2;
+        font-weight: 500;
+      }
+
+      h1 {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 1.14;
+        letter-spacing: -0.012em;
+        margin: 0 0 15px;
+        color: #fff;
+        text-shadow: 0 1px 22px rgba(8, 12, 17, 0.7);
+      }
+      h1 em {
+        font-style: normal;
+        color: #9fd8c2;
+      }
+
+      .lede {
+        font-size: 17px;
+        line-height: 1.6;
+        color: #b9c6d2;
+        margin: 0;
+        max-width: 44ch;
+      }
+      .lede strong { color: #eaf1f7; font-weight: 500; }
+
+      /* ---------- blotter ---------- */
+      .blot-hold {
+        background: linear-gradient(180deg, var(--night) 0%, var(--night) 52%, var(--paper) 52%, var(--paper) 100%);
+        padding: 0 0 34px;
+      }
+
+      .blot {
+        background: var(--card);
+        border: 1px solid var(--rule);
+        box-shadow: 0 18px 40px -22px rgba(9, 15, 22, 0.55);
+      }
+
+      .blot-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 2px 10px;
+        flex-wrap: wrap;
+        padding: 13px 16px 11px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .blot-head h2 {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 0;
+        color: var(--ink);
+      }
+      .blot-head span {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-3);
+        white-space: nowrap;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 46px 1fr auto;
+        gap: 4px 10px;
+        align-items: baseline;
+        padding: 11px 16px;
+        border-bottom: 1px solid var(--rule-soft);
+        font-family: var(--mono);
+        font-size: 13px;
+      }
+      .row:last-of-type { border-bottom: 0; }
+
+      .js .row {
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.34s ease, transform 0.34s ease;
+      }
+      .js .blot.print .row { opacity: 1; transform: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .js .row { opacity: 1; transform: none; transition: none; }
+      }
+
+      .act {
+        font-weight: 600;
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        padding: 2px 0;
+      }
+      .act.b { color: var(--buy); }
+      .act.s { color: var(--sell); }
+
+      .tk {
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: -0.01em;
+      }
+      .co {
+        grid-column: 2;
+        font-family: var(--serif);
+        font-size: 13px;
+        color: var(--ink-3);
+        line-height: 1.3;
+      }
+      .num {
+        text-align: right;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+      .num.val { grid-column: 3; }
+      .num b { font-weight: 500; font-size: 13.5px; }
+      .num i {
+        font-style: normal;
+        font-size: 11px;
+        color: var(--ink-3);
+        margin-left: 3px;
+      }
+      .num.val b { color: var(--ink-2); font-size: 12.5px; }
+
+      .blot-foot {
+        padding: 12px 16px 14px;
+        border-top: 1px solid var(--rule);
+        background: rgba(15, 23, 32, 0.025);
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: var(--ink-2);
+      }
+
+      /* ---------- sections ---------- */
+      .sec { padding: 8px 0 44px; }
+
+      h2.head {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 1.16;
+        letter-spacing: -0.01em;
+        margin: 0 0 14px;
+      }
+
+      .kicker {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin: 0 0 9px;
+      }
+
+      .rule {
+        height: 1px;
+        background: var(--rule);
+        border: 0;
+        margin: 0 0 26px;
+      }
+
+      figure {
+        margin: 24px 0;
+      }
+      figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--rule);
+      }
+      figcaption {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        line-height: 1.5;
+        color: var(--ink-3);
+        margin-top: 9px;
+      }
+
+      /* ---------- profile ---------- */
+      .who {
+        display: grid;
+        gap: 18px;
+        margin: 0 0 22px;
+      }
+      .who-intro { margin: 0; }
+      .who-rest .cv { margin-bottom: 20px; }
+      .who-shot {
+        margin: 0;
+      }
+      .who-shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: 50% 20%;
+        border: 1px solid var(--rule);
+      }
+      .who-shot figcaption {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        line-height: 1.45;
+        color: var(--ink-3);
+        margin-top: 7px;
+      }
+      .who-shot figcaption a { color: inherit; }
+
+      .cv {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .cv li {
+        display: grid;
+        grid-template-columns: 58px 1fr;
+        gap: 3px 12px;
+        border-top: 1px solid var(--rule);
+        padding: 12px 0;
+      }
+      .cv li:last-child { border-bottom: 1px solid var(--rule); }
+      .cv .yr {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 12.5px;
+        color: var(--ink-3);
+        letter-spacing: 0.02em;
+        padding-top: 3px;
+      }
+      .cv .ev {
+        font-size: 15.5px;
+        line-height: 1.5;
+        color: var(--ink-2);
+      }
+      .cv .ev b { color: var(--ink); font-weight: 500; }
+
+      /* ---------- positions ---------- */
+      .pos {
+        border-top: 1px solid var(--rule);
+        padding: 15px 0;
+      }
+      .pos:last-of-type { border-bottom: 1px solid var(--rule); }
+      .pos h3 {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 1.4;
+        margin: 0 0 5px;
+        letter-spacing: -0.02em;
+      }
+      .pos p {
+        margin: 0;
+        font-size: 15.5px;
+        line-height: 1.55;
+        color: var(--ink-2);
+      }
+      .tag {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        border: 1px solid var(--rule);
+        padding: 2px 6px;
+        margin-bottom: 7px;
+      }
+      .tag.pv {
+        color: var(--card);
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+
+      /* ---------- record / honesty ---------- */
+      .record {
+        background: var(--paper-2);
+        border-left: 3px solid var(--ink);
+        padding: 18px 18px 16px;
+        margin: 26px 0;
+      }
+      .record h3 {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 0 8px;
+      }
+      .record p {
+        font-size: 15.5px;
+        line-height: 1.55;
+        color: var(--ink-2);
+      }
+      .record .fig {
+        font-family: var(--mono);
+        font-weight: 600;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ---------- quotes / desk notes ---------- */
+      .note {
+        border-top: 1px solid var(--rule);
+        padding: 14px 0;
+      }
+      .note:last-of-type { border-bottom: 1px solid var(--rule); }
+      .note h3 {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin: 0 0 5px;
+      }
+      .note p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.56;
+      }
+
+      /* ---------- canada block ---------- */
+      .canada {
+        background: var(--card);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--maple);
+        padding: 20px 18px;
+        margin: 0 0 24px;
+      }
+      .canada h2 {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 1.18;
+        margin: 0 0 12px;
+      }
+      .canada p { font-size: 16px; }
+
+      .split {
+        display: grid;
+        gap: 12px;
+        margin: 18px 0 4px;
+      }
+      .acct {
+        border: 1px solid var(--rule);
+        padding: 13px 14px;
+        background: var(--paper);
+      }
+      .acct .nm {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        margin: 0 0 6px;
+      }
+      .acct .vl {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 1.1;
+        margin: 0 0 5px;
+      }
+      .acct.t .vl { color: var(--sell); }
+      .acct.r .vl { color: var(--buy); }
+      .acct .ds {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.45;
+        color: var(--ink-2);
+      }
+
+      /* ---------- list ---------- */
+      .does { margin: 0; padding: 0; list-style: none; }
+      .does li {
+        border-top: 1px solid var(--rule);
+        padding: 14px 0;
+        font-size: 16px;
+        line-height: 1.56;
+      }
+      .does li:last-child { border-bottom: 1px solid var(--rule); }
+      .does b {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 13px;
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .not {
+        font-size: 15.5px;
+        line-height: 1.58;
+        color: var(--ink-2);
+        border: 1px dashed var(--rule);
+        padding: 16px 16px 14px;
+        margin: 24px 0 0;
+      }
+      .not h3 {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin: 0 0 8px;
+      }
+
+      /* ---------- cta ---------- */
+      .close {
+        background: var(--night);
+        color: #e9eff4;
+        padding: 40px 0 42px;
+        margin-top: 34px;
+      }
+      .close h2 {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 1.16;
+        margin: 0 0 12px;
+        color: #fff;
+      }
+      .close p {
+        color: #aebccb;
+        font-size: 16px;
+        max-width: 46ch;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        width: 100%;
+        border: 0;
+        cursor: pointer;
+        background: #1fa855;
+        color: #fff;
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 17.5px;
+        letter-spacing: 0.005em;
+        padding: 16px 20px;
+        margin-top: 20px;
+        border-radius: 2px;
+        transition: background 0.18s ease;
+      }
+      .btn:hover { background: #1b9349; }
+      .btn:focus-visible { outline: 3px solid #9fd8c2; outline-offset: 3px; }
+      .btn svg { width: 21px; height: 21px; flex: none; }
+
+      .free {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #7f8f9e;
+        margin: 11px 0 0;
+        text-align: center;
+      }
+
+      /* ---------- footer ---------- */
+      .foot {
+        background: var(--paper-2);
+        padding: 26px 0 30px;
+      }
+      .foot p {
+        font-size: 12.5px;
+        line-height: 1.55;
+        color: var(--ink-3);
+        margin: 0 0 10px;
+      }
+
+      /* ---------- sticky bar ---------- */
+      .bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        background: rgba(12, 18, 25, 0.94);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+      }
+      .bar .wrap { padding: 0 14px; }
+      .bar .btn { margin-top: 0; padding: 13px 18px; font-size: 16.5px; }
+
+      /* ---------- tablet / desktop ---------- */
+      @media (min-width: 700px) {
+        body { font-size: 18px; }
+        .wrap { padding: 0 28px; }
+        .hero-in { padding: 74px 0 58px; }
+        h1 { font-size: 47px; }
+        .lede { font-size: 19px; }
+        .row { grid-template-columns: 62px 1fr auto; padding: 14px 22px; font-size: 14px; }
+        .co { font-size: 14px; }
+        .blot-head { padding: 16px 22px 14px; }
+        .blot-foot { padding: 14px 22px 16px; }
+        h2.head { font-size: 31px; }
+        .sec { padding: 10px 0 58px; }
+        .who {
+          grid-template-columns: 240px 1fr;
+          gap: 22px 26px;
+          align-items: center;
+        }
+        .who-shot { grid-column: 1; grid-row: 1; }
+        .who-shot img { aspect-ratio: 4 / 5; }
+        .who-intro { grid-column: 2; grid-row: 1; }
+        .who-rest { grid-column: 1 / -1; grid-row: 2; }
+        .cv li { grid-template-columns: 78px 1fr; }
+        .canada { padding: 28px 26px; }
+        .canada h2 { font-size: 28px; }
+        .split { grid-template-columns: 1fr 1fr; gap: 14px; }
+        .close h2 { font-size: 33px; }
+        .btn { width: auto; min-width: 340px; }
+        .bar .btn { width: 100%; }
+        .free { text-align: left; }
+      }
+    </style>
+
+    <script is:inline>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+
+  <body>
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <img
+        class="hero-img"
+        src={desk.src}
+        srcset={`${deskSm.src} 720w, ${desk.src} 1200w`}
+        sizes="100vw"
+        width="1200"
+        height="800"
+        alt=""
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div class="hero-veil"></div>
+      <div class="hero-in">
+        <div class="wrap">
+          <p class="stamp">Tuesday <b>·</b> Aug. 11, 2026 <b>·</b> Cathie Wood</p>
+          <h1>
+            I publish every trade I make — every buy, every sell, the same evening it happens.
+            <em>Most people in Canada have never seen the list.</em>
+          </h1>
+          <p class="lede">
+            I'm Cathie Wood, founder and CIO of ARK Invest.
+            <strong>I started a WhatsApp group to walk you through my trades before the Canadian market opens.</strong>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= BLOTTER ================= -->
+    <div class="blot-hold">
+      <div class="wrap">
+        <section class="blot" id="blot">
+          <div class="blot-head">
+            <h2>My trades · ARK</h2>
+            <span>early Aug. 2026 · US$</span>
+          </div>
+
+          {blotter.map(r => (
+            <div class="row">
+              <span class={`act ${r.act === 'BUY' ? 'b' : 's'}`}>{r.act}</span>
+              <span class="tk">{r.tk}</span>
+              <span class="num"><b>{r.sh}</b><i>sh</i></span>
+              <span class="co">{r.co}</span>
+              <span class="num val"><b>{r.val}</b></span>
+            </div>
+          ))}
+
+          <div class="blot-foot">
+            <p>
+              That's one week of mine. Nvidia and Broadcom went in, Deere got cut back, Palantir
+              trimmed across five funds. I publish these the same evening — the mistakes are as
+              public as the wins. No delay, no polish.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ================= ABOUT ME ================= -->
+    <section class="sec">
+      <div class="wrap">
+        <p class="kicker reveal">About me</p>
+        <h2 class="head reveal">I've been doing this since 1980. The public part is newer.</h2>
+        <hr class="rule" />
+
+        <div class="who">
+          <figure class="who-shot reveal">
+            <img
+              src={portrait.src}
+              width={POR_W}
+              height={portraitH}
+              alt="Cathie Wood, founder and chief investment officer of ARK Invest"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              Photo by Caroline Wood, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener nofollow" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons.
+            </figcaption>
+          </figure>
+
+          <p class="who-intro reveal">
+            I grew up in Los Angeles, daughter of Irish immigrants, raised by a radar engineer who
+            taught me to take technology seriously. I studied economics and finance at USC, graduated
+            summa cum laude — and spent the next forty-six years in this business, most of them
+            somewhere you'd never have heard of me.
+          </p>
+
+          <div class="who-rest">
+            <ul class="cv">
+              {cv.map(c => (
+                <li class="reveal">
+                  <span class="yr">{c.yr}</span>
+                  <span class="ev" set:html={c.ev}></span>
+                </li>
+              ))}
+            </ul>
+
+            <p class="reveal">
+              Publishing my trades every evening was a deliberate choice. Most managers disclose
+              quarterly and on a delay — it flatters everybody. I publish the same day, so the bad
+              calls are as visible as the good ones. It's cut both ways this year, and I've kept
+              publishing anyway.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHAT I OWN ================= -->
+    <section class="sec">
+      <div class="wrap">
+        <p class="kicker reveal">What I'm holding</p>
+        <h2 class="head reveal">Two of my fund's ten biggest positions are companies you can't buy on any exchange.</h2>
+        <hr class="rule" />
+
+        <p class="reveal">
+          Open up ARKK's top ten and you'll find private businesses sitting next to public tech
+          tickers — inside an ETF that any Canadian can pick up through an online brokerage on a
+          Tuesday morning. That surprises most people the first time they look.
+        </p>
+
+        {positions.map(p => (
+          <div class="pos reveal">
+            <span class={`tag ${p.flag === 'Private company' ? 'pv' : ''}`}>{p.flag}</span>
+            <h3>{p.tk}</h3>
+            <p>{p.note}</p>
+          </div>
+        ))}
+
+        <div class="record reveal">
+          <h3>I won't hide the rough part</h3>
+          <p>
+            The fund is roughly <span class="fig">flat</span> so far in 2026: down about
+            <span class="fig">1%</span> year to date as of early August, up around
+            <span class="fig">4.9%</span> over the trailing twelve months. I've had years that
+            were far worse and years that were spectacular. If you're looking for a straight line,
+            I'm the wrong person to follow.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MY TAKE ================= -->
+    <section class="sec">
+      <div class="wrap">
+        <p class="kicker reveal">Where I stand right now</p>
+        <h2 class="head reveal">I'm not hedging about what I think comes next.</h2>
+        <hr class="rule" />
+
+        {desk_notes.map(n => (
+          <div class="note reveal">
+            <h3>{n.q}</h3>
+            <p>{n.a}</p>
+          </div>
+        ))}
+
+        <p class="reveal" style="margin-top: 22px;">
+          You don't have to agree with me. Plenty of serious people don't. But I show you every
+          trade the same evening, so you can judge my conviction against my actual decisions —
+          whichever side you end up on.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= CANADA ================= -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="canada reveal">
+          <p class="kicker">A note for my Canadian readers</p>
+          <h2>Same U.S. stock, same dividend. One account hands 15% of it to the IRS and never gets
+            it back.</h2>
+          <p>
+            Canada's tax treaty with the U.S. recognizes an RRSP as a retirement account. It doesn't
+            recognize a TFSA. So U.S. dividends paid into a TFSA get 15% withheld at the source, and
+            since TFSA income isn't taxable here, you have no foreign tax credit to recover it with.
+            That 15% is just gone.
+          </p>
+
+          <div class="split">
+            <div class="acct t">
+              <p class="nm">TFSA</p>
+              <p class="vl">15% withheld</p>
+              <p class="ds">Not recoverable. No credit to offset it against.</p>
+            </div>
+            <div class="acct r">
+              <p class="nm">RRSP</p>
+              <p class="vl">Exempt</p>
+              <p class="ds">The treaty lets them land in full. Nothing is withheld.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="reveal">
+          Now look at my actual holdings. Nvidia pays a token dividend. Palantir, Coinbase and
+          Robinhood pay nothing at all. Tesla never has. The withholding problem barely touches the
+          names I hold — which is why growth stocks sit fine in a TFSA while your dividend payers
+          belong in the RRSP. Every advisor will tell you this. It's just that almost nobody checks
+          at the moment they place the order, which is the only moment it matters. I cover this in
+          the group.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= THE GROUP ================= -->
+    <section class="sec">
+      <div class="wrap">
+        <p class="kicker reveal">What you get in my group</p>
+        <h2 class="head reveal">My trades, in plain English, before the market opens here.</h2>
+        <hr class="rule" />
+
+        <figure class="reveal">
+          <img
+            src={rhythm.src}
+            width={FIG_W}
+            height={rhythmH}
+            alt="The daily sequence, from the U.S. close to the note arriving on your phone"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>One cycle a day. It takes about four minutes to read.</figcaption>
+        </figure>
+
+        <ul class="does">
+          <li class="reveal">
+            <b>My trades, explained</b>
+            What I bought, what I sold, and how big the move was relative to the existing position.
+            I'm not telling you to copy me. I explain what I did and why.
+          </li>
+          <li class="reveal">
+            <b>The Canadian listing, when there is one</b>
+            Several of these names also trade as CDRs on Cboe Canada, priced in Canadian dollars
+            with a currency hedge. If a name on my list has one, I'll tell you. The hedge isn't free
+            and it removes your U.S. dollar exposure, so whether it suits you is your call.
+          </li>
+          <li class="reveal">
+            <b>Which account it belongs in</b>
+            Does it pay a dividend or not, and does that put it in the TFSA or the RRSP? One line,
+            every time, so the tax question is settled before you place the order.
+          </li>
+        </ul>
+
+        <div class="not reveal">
+          <h3>Who this group isn't for</h3>
+          <p>
+            If you want a daily buy signal, this will disappoint you — I won't tell you what to buy.
+            If you already read my ARK notifications and have your own take, you don't need me
+            here. And if you need this money within two or three years, these aren't the right kind
+            of holdings.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CLOSE ================= -->
+    <section class="close">
+      <div class="wrap">
+        <h2>Tonight's list goes out after the close.</h2>
+        <p>
+          You'll have it before the market opens here. Free to join and free to leave — nobody
+          asks for your account details or calls you. It's one note a day from me, and you can mute
+          it or walk away without telling anyone. Read it for a week and see if it's worth your
+          four minutes.
+        </p>
+        <button type="button" class="btn link-btn" onclick="mixinJump()">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join my WhatsApp group
+        </button>
+        <p class="free">Free · read it before the open</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p>
+          General market commentary and educational research only. All figures are in U.S. dollars
+          unless marked otherwise. Nothing here takes your objectives or financial situation into
+          account and none of it is a recommendation to buy or sell any security. Innovation and technology shares carry real risk, including the loss of capital,
+          and funds of this type have had drawdowns well beyond the broad market. Past performance is
+          not indicative of future results.
+        </p>
+        <p>
+          Trade details, holdings weights and fund returns are as publicly disclosed by ARK Invest and
+          as reported in the financial press in early August 2026, and change daily. Withholding tax
+          treatment reflects the Canada–U.S. tax treaty as generally applied to RRSPs and TFSAs and is
+          not tax advice; speak to a qualified advisor about your own situation.
+        </p>
+      </div>
+    </footer>
+
+    <div class="bar">
+      <div class="wrap">
+        <button type="button" class="btn link-btn" onclick="mixinJump()">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.14 1.02-2.43.27-.29.59-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.71-.17 1.39z" /></svg>
+          Join Cathie Wood's WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+;(function () {
+  var blot = document.getElementById('blot')
+  if (blot) {
+    var rows = blot.querySelectorAll('.row')
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].style.transitionDelay = (i * 90 + 120) + 'ms'
+    }
+    var fired = false
+    var printTick = function () {
+      if (fired)
+        return
+      var r = blot.getBoundingClientRect()
+      var vh = window.innerHeight || document.documentElement.clientHeight
+      if (r.top < vh - 40) {
+        fired = true
+        blot.classList.add('print')
+        window.removeEventListener('scroll', printTick)
+      }
+    }
+    window.addEventListener('scroll', printTick, { passive: true })
+    printTick()
+    setTimeout(printTick, 260)
+  }
+
+  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+  if (!items.length)
+    return
+
+  function tick() {
+    var vh = window.innerHeight || document.documentElement.clientHeight
+    for (var i = items.length - 1; i >= 0; i--) {
+      if (items[i].getBoundingClientRect().top < vh - 60) {
+        items[i].classList.add('in')
+        items.splice(i, 1)
+      }
+    }
+    if (!items.length) {
+      window.removeEventListener('scroll', tick)
+      window.removeEventListener('resize', tick)
+    }
+  }
+
+  window.addEventListener('scroll', tick, { passive: true })
+  window.addEventListener('resize', tick)
+  tick()
+  setTimeout(tick, 300)
+})()
+</script>
+  </body>
+</html>

@@ -1,0 +1,312 @@
+---
+import JPComplianceFooter from '../common/JPComplianceFooter.astro'
+import JPSecurityIcons from '../common/JPSecurityIcons.astro'
+import heroBg from './images/hero-bg.png'
+---
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AI・半導体・高配当テーマ株分析 | 無料LINE配信</title>
+<meta name="description" content="AI、半導体、高配当など注目テーマ株を業績と市場環境から分析。LINEで無料配信中。">
+
+<script is:inline>document.documentElement.classList.add('js')</script>
+
+<!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+<script is:inline>
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const link = 'https://www.baidu.com'
+</script>
+<script is:inline src="/mjSFqQ/XoONOW.js"></script>
+<!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --card: #141a22;
+  --ink: #eae7e0;
+  --ink2: #8e95a0;
+  --cyan: #06b6d4;
+  --purple: #a855f7;
+  --emerald: #10b981;
+  --line: #06C755;
+  --rule: rgba(255,255,255,.06);
+  --sans: "Noto Sans JP", system-ui, sans-serif;
+  --serif: "Shippori Mincho", serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:calc(76px + env(safe-area-inset-bottom));
+}
+.page{max-width:480px;margin:0 auto;padding:0 20px}
+
+/* ── hero bg ── */
+.hero-wrap{
+  position:absolute;top:0;left:0;right:0;
+  height:520px;overflow:hidden;pointer-events:none;
+}
+.hero-bg{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 70%;
+}
+.hero-fade{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(
+    180deg,
+    rgba(11,15,20,.3) 0%,
+    rgba(11,15,20,.5) 40%,
+    rgba(11,15,20,.85) 70%,
+    var(--bg) 100%
+  );
+}
+
+/* ── hero ── */
+.hero{padding-top:calc(env(safe-area-inset-top) + 48px);position:relative;z-index:1}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:16px;
+}
+.tag::before{content:"";width:16px;height:2px;background:var(--cyan)}
+h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.45rem,6.5vw,2rem);line-height:1.3;
+  letter-spacing:-.01em;margin-bottom:16px;
+}
+h1 em{font-style:normal;color:var(--cyan)}
+.lead{
+  font-size:.92rem;line-height:1.8;color:var(--ink2);margin-bottom:32px;
+}
+.lead strong{color:var(--ink);font-weight:600}
+
+/* ── divider ── */
+.divider{height:1px;background:var(--rule);margin:28px 0}
+
+/* ── section heading ── */
+.sh{
+  font-family:var(--serif);font-weight:600;font-size:1.05rem;
+  margin-bottom:20px;line-height:1.4;
+}
+
+/* ── theme cards ── */
+.themes{display:flex;flex-direction:column;gap:12px;margin-bottom:8px}
+.theme-card{
+  background:var(--card);border-radius:12px;padding:18px 16px;
+  border-left:3px solid var(--accent);
+}
+.theme-card.ai{--accent:var(--cyan)}
+.theme-card.semi{--accent:var(--purple)}
+.theme-card.div{--accent:var(--emerald)}
+.theme-card h3{
+  font-size:.92rem;font-weight:700;margin-bottom:6px;
+  color:var(--accent);
+}
+.theme-card p{font-size:.8rem;color:var(--ink2);line-height:1.6}
+
+/* ── analysis approach ── */
+.approach{margin-bottom:8px}
+.approach p{font-size:.88rem;line-height:1.75;color:var(--ink2);margin-bottom:14px}
+.approach strong{color:var(--ink);font-weight:600}
+
+/* ── value list ── */
+.val-list{margin-bottom:8px}
+.val-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+}
+.val-item:last-child{border-bottom:none}
+.val-icon{
+  width:38px;height:38px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.15);
+  border-radius:8px;color:var(--cyan);
+}
+.val-icon svg{width:18px;height:18px}
+.val-text h3{font-size:.88rem;font-weight:700;margin-bottom:3px}
+.val-text p{font-size:.78rem;color:var(--ink2);line-height:1.55}
+
+/* ── CTA ── */
+.cta-wrap{margin:28px 0 8px}
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;min-height:56px;padding:0 20px;
+  border:none;border-radius:999px;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  color:#fff;font-family:var(--sans);font-weight:700;font-size:.95rem;
+  letter-spacing:.02em;cursor:pointer;
+  box-shadow:0 4px 20px rgba(6,182,212,.2);
+}
+.cta svg{width:22px;height:22px;flex:none}
+.cta:active{transform:translateY(1px)}
+.cta-note{
+  text-align:center;font-size:.7rem;color:var(--ink2);margin-top:10px;
+}
+
+/* ── sticky bar ── */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  padding:10px 20px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(11,15,20,.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+}
+.bar-inner{max-width:480px;margin:0 auto}
+.bar-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;min-height:50px;border:none;border-radius:999px;
+  background:var(--line);color:#fff;
+  font-family:var(--sans);font-weight:700;font-size:.9rem;cursor:pointer;
+}
+.bar-btn svg{width:20px;height:20px;flex:none}
+.bar-btn:active{background:#05a948}
+
+/* ── reveal ── */
+html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+html.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+@media(min-width:640px){
+  .page{padding:0 32px}
+  .hero{padding-top:calc(env(safe-area-inset-top) + 64px)}
+  .cta,.bar-btn{width:auto;min-width:320px;margin:0 auto}
+}
+</style>
+</head>
+
+<body>
+<div class="hero-wrap">
+  <img class="hero-bg" src={heroBg.src} alt="" width="1536" height="1024" fetchpriority="high">
+  <div class="hero-fade"></div>
+</div>
+
+<div class="page">
+  <section class="hero">
+    <p class="tag">テーマ株分析</p>
+    <h1>AI、半導体、高配当——<em>いま注目すべきテーマを、業績から読む。</em></h1>
+    <p class="lead">
+      話題のテーマに飛びつくだけでは勝てない。<strong>業績の裏付けがあるテーマだけが、持続する。</strong>
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <p class="sh" style="color:var(--ink)">いま分析しているテーマ</p>
+    <div class="themes">
+      <div class="theme-card ai">
+        <h3>AI関連</h3>
+        <p>生成AI需要の波はどこまで続くか。データセンター投資、半導体需要、ソフトウェア収益化——恩恵を受ける企業の見極め方。</p>
+      </div>
+      <div class="theme-card semi">
+        <h3>半導体・電子部品</h3>
+        <p>シリコンサイクルの今の位置は。設備投資の回復タイミングと、受注動向から読む業績の転換点。</p>
+      </div>
+      <div class="theme-card div">
+        <h3>高配当・ディフェンシブ</h3>
+        <p>利回りだけで選ぶと罠にはまる。配当性向、フリーキャッシュフロー、増配余力——本当に持てる高配当株の条件。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="approach reveal">
+    <p class="sh" style="color:var(--cyan)">業績 × 市場環境、両面から分析。</p>
+    <p>
+      テーマの「物語」に惑わされず、<strong>決算の数字と需給の両面から判断。</strong>エントリーの精度を上げる。
+    </p>
+    <p>
+      新しいテーマが浮上したら即座にカバー。<strong>次に来るテーマを、早く掴む。</strong>
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <div class="val-list">
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21H4a1 1 0 0 1-1-1V3"/><path d="m7 14 4-4 4 4 6-6"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>テーマ別の定期分析</h3>
+          <p>注目テーマごとに業績・チャート・需給を整理し、定期的に配信。</p>
+        </div>
+      </div>
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>新テーマの早期発見</h3>
+          <p>政策・技術・市場の変化から次のテーマを先読み。話題になる前にキャッチ。</p>
+        </div>
+      </div>
+      <div class="val-item">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="val-text">
+          <h3>投資家同士の意見交換</h3>
+          <p>テーマの見方は人それぞれ。異なる視点をぶつけることで、分析の精度が上がる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-wrap reveal">
+    <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 0 1-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595a.62.62 0 0 1 .194-.033c.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEでテーマ分析を受け取る
+    </button>
+    <p class="cta-note">無料で参加 · いつでも退出可能</p>
+  </div>
+
+  <JPSecurityIcons />
+</div>
+
+<JPComplianceFooter />
+
+<div class="bar">
+  <div class="bar-inner">
+    <button type="button" class="bar-btn link-btn" onclick="onLinkBtnClick()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 0 1-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595a.62.62 0 0 1 .194-.033c.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      無料で参加する
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+;(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+  if (!items.length) return
+
+  function tick() {
+    var vh = window.innerHeight || document.documentElement.clientHeight
+    for (var i = items.length - 1; i >= 0; i--) {
+      if (items[i].getBoundingClientRect().top < vh - 60) {
+        items[i].classList.add('in')
+        items.splice(i, 1)
+      }
+    }
+    if (!items.length) {
+      window.removeEventListener('scroll', tick)
+      window.removeEventListener('resize', tick)
+    }
+  }
+
+  window.addEventListener('scroll', tick, { passive: true })
+  window.addEventListener('resize', tick)
+  tick()
+  setTimeout(tick, 300)
+})()
+</script>
+</body>
+</html>

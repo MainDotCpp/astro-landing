@@ -1,5 +1,7 @@
 // @ts-nocheck
-const NAV_TIMEOUT_MS = 300
+const HARD_TIMEOUT_MS = 800 // 硬兜底：无论回调是否返回，最迟都跳转，避免卡死
+const TIKTOK_FLUSH_MS = 500 // TikTok 无送达回调，至少驻留这么久让其批量事件发出
+const CONV_FLUSH_MS = 250 // 仅有 Google Ads 转化脚本、无回调可等时的最小驻留
 const FB_DEFAULT_VALUE = 50
 const FB_DEFAULT_CURRENCY = 'USD'
 
@@ -27,102 +29,116 @@ function getContentId() {
   catch (e) { return 'lp_default' }
 }
 
-function fireGoogle(onCallback) {
-  const hasGtag = typeof gtag === 'function'
-  const hasConv = typeof gtag_report_conversion === 'function'
-  if (!hasGtag && !hasConv) return false
-
-  try {
-    if (hasConv) {
-      try { gtag_report_conversion(undefined) } catch (e) {}
-    }
-    if (hasGtag) {
-      let done = false
-      gtag('event', 'contact', {
-        event_callback() {
-          if (done) return
-          done = true
-          onCallback()
-        },
-      })
-    }
-    return true
-  }
-  catch (error) {
-    console.error(error)
-    return false
-  }
-}
-
-function fireFacebook(link) {
-  if (typeof window.fbq !== 'function') return false
-  const value = getPurchaseValue()
-  const currency = getPurchaseCurrency()
-  try { window.fbq('track', 'Contact') } catch (e) {}
-  try { window.fbq('track', 'AddToCart') } catch (e) {}
-  try {
-    window.fbq('track', 'Purchase', {
-      value,
-      currency,
-      content_name: link,
-    })
-  }
-  catch (e) {}
-  return true
-}
-
-function fireTiktok(link) {
-  if (typeof window.ttq === 'undefined' || typeof window.ttq.track !== 'function') return false
-  const value = getPurchaseValue()
-  const currency = getPurchaseCurrency()
-  const contentId = getContentId()
-  const contents = [{ content_id: contentId, content_type: 'product', content_name: link }]
-  try { window.ttq.track('ClickButton', { content_id: contentId, content_type: 'product', content_name: link }) } catch (e) {}
-  try { window.ttq.track('AddToCart', { content_id: contentId, content_type: 'product', content_name: link, contents }) } catch (e) {}
-  try {
-    window.ttq.track('CompletePayment', {
-      value,
-      currency,
-      content_id: contentId,
-      content_type: 'product',
-      content_name: link,
-      contents: [{ content_id: contentId, content_type: 'product', content_name: link, quantity: 1, price: value }],
-    })
-  }
-  catch (e) {}
-  return true
-}
-
+// 统一跳转：先并行触发各平台转化事件，等「有送达回调的平台」全部确认送达、
+// 且「fire-and-forget 平台（TikTok/纯转化脚本）」的最小驻留时间已过，再跳转；
+// 任何情况下最迟 HARD_TIMEOUT_MS 兜底跳转。navigateOnce 去重，保证只跳一次。
 function jump(link) {
   if (!link) return
-  let trackerFired = false
 
-  try {
-    if (fireGoogle(() => navigateOnce(link))) trackerFired = true
-    if (fireFacebook(link)) trackerFired = true
-    if (fireTiktok(link)) trackerFired = true
-  }
-  catch (error) {
-    console.error(error)
-  }
+  const hasGtag = typeof gtag === 'function'
+  const hasConv = typeof gtag_report_conversion === 'function'
+  const hasFb = typeof window.fbq === 'function'
+  const hasTt = typeof window.ttq !== 'undefined' && typeof window.ttq.track === 'function'
 
-  if (!trackerFired) {
+  // 没有任何跟踪器：直接跳，不浪费时间
+  if (!hasGtag && !hasConv && !hasFb && !hasTt) {
     navigateOnce(link)
     return
   }
-  setTimeout(() => navigateOnce(link), NAV_TIMEOUT_MS)
+
+  const value = getPurchaseValue()
+  const currency = getPurchaseCurrency()
+
+  // pending：仍在等待「送达回调」的跟踪器数（仅 GA4 / Facebook 有可靠回调）
+  // minWaitDone：fire-and-forget 跟踪器（TikTok / 纯转化脚本）的最小驻留时间是否已过
+  let pending = 0
+  let minWaitDone = true
+
+  function tryNavigate() {
+    if (pending <= 0 && minWaitDone) navigateOnce(link)
+  }
+
+  try {
+    // Google Ads 转化脚本（fire-and-forget，内部通常走 sendBeacon）
+    if (hasConv) {
+      try { gtag_report_conversion(undefined) }
+      catch (e) {}
+    }
+
+    // GA4：显式 beacon + event_callback 确认送达后再计数归零
+    if (hasGtag) {
+      pending += 1
+      let done = false
+      const onSent = () => { if (done) return; done = true; pending -= 1; tryNavigate() }
+      try { gtag('event', 'contact', { transport_type: 'beacon', event_callback: onSent }) }
+      catch (e) { onSent() }
+    }
+
+    // Facebook Pixel：eventCallback 确认 Purchase 送达后再计数归零
+    if (hasFb) {
+      try { window.fbq('track', 'Contact') }
+      catch (e) {}
+      try { window.fbq('track', 'AddToCart') }
+      catch (e) {}
+      pending += 1
+      let done = false
+      const onSent = () => { if (done) return; done = true; pending -= 1; tryNavigate() }
+      try { window.fbq('track', 'Purchase', { value, currency, content_name: link }, { eventCallback: onSent }) }
+      catch (e) { onSent() }
+    }
+
+    // TikTok Pixel：无可靠送达回调，靠 TIKTOK_FLUSH_MS 最小驻留兜住其批量上报
+    if (hasTt) {
+      const contentId = getContentId()
+      const contents = [{ content_id: contentId, content_type: 'product', content_name: link }]
+      try { window.ttq.track('ClickButton', { content_id: contentId, content_type: 'product', content_name: link }) }
+      catch (e) {}
+      try { window.ttq.track('AddToCart', { content_id: contentId, content_type: 'product', content_name: link, contents }) }
+      catch (e) {}
+      try {
+        window.ttq.track('CompletePayment', {
+          value,
+          currency,
+          content_id: contentId,
+          content_type: 'product',
+          content_name: link,
+          contents: [{ content_id: contentId, content_type: 'product', content_name: link, quantity: 1, price: value }],
+        })
+      }
+      catch (e) {}
+    }
+  }
+  catch (error) {
+    console.error(error)
+  }
+
+  // fire-and-forget 跟踪器需要的最小驻留时间
+  let minWaitMs = 0
+  if (hasTt) minWaitMs = TIKTOK_FLUSH_MS
+  else if (hasConv && !hasGtag && !hasFb) minWaitMs = CONV_FLUSH_MS
+
+  if (minWaitMs > 0) {
+    minWaitDone = false
+    setTimeout(() => { minWaitDone = true; tryNavigate() }, minWaitMs)
+  }
+
+  // 硬兜底：任何情况下最迟 HARD_TIMEOUT_MS 跳转
+  setTimeout(() => navigateOnce(link), HARD_TIMEOUT_MS)
+
+  // 处理「无需等待任何回调 / 驻留」的情形（例如回调已同步触发）
+  tryNavigate()
 }
 
 function jumpToKakao() {
-  jump(kakao_link)
+  jump(typeof kakao_link !== 'undefined' ? kakao_link : null)
 }
 
 function jumpToBand() {
-  jump(band_link)
+  jump(typeof band_link !== 'undefined' ? band_link : null)
 }
 
 function jumpToWhatsApp() {
-  jump(whatsapp_link)
+  jump(typeof whatsapp_link !== 'undefined' ? whatsapp_link : null)
 }
 
 function mixinJump() {

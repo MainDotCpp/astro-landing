@@ -1,0 +1,525 @@
+---
+// CA 20260818-2.0 — US market opportunity for Canadian investors, WhatsApp group
+import RedirectCode from '@/components/RedirectCode.astro'
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>US Market Intelligence for Canadian Investors</title>
+    <meta name="description" content="Free daily pre-market analysis of US tech, AI, and semiconductor stocks. Join the WhatsApp community built for Canadian investors." />
+
+    <RedirectCode />
+
+    <script is:inline>document.documentElement.classList.add('js')</script>
+
+    <style>
+      /* ── Reset & Base (mobile-first) ── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg-deep: #060B14;
+        --bg-panel: #0F1A2E;
+        --accent: #E8A832;
+        --cta-green: #25D366;
+        --cta-green-hover: #1EBE5A;
+        --text-muted: #8B95A5;
+        --text-light: #E8ECF1;
+        --text-white: #FFFFFF;
+        --border-subtle: rgba(232, 168, 50, 0.12);
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: var(--bg-deep);
+        color: var(--text-muted);
+        line-height: 1.65;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 72px; /* space for sticky bar */
+      }
+
+      img { max-width: 100%; height: auto; display: block; }
+
+      /* ── Reveal animation ── */
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .js .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .js .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      /* ── Layout ── */
+      .container {
+        width: 100%;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      /* ── Typography ── */
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.25;
+        color: var(--text-white);
+        letter-spacing: -0.01em;
+      }
+
+      h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--text-light);
+        margin-bottom: 20px;
+      }
+
+      .accent { color: var(--accent); }
+
+      /* ── Hero ── */
+      .hero {
+        padding: 56px 0 40px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .hero-eyebrow {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      .hero h1 {
+        margin-bottom: 18px;
+      }
+
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--text-muted);
+        margin-bottom: 28px;
+        max-width: 520px;
+      }
+
+      /* ── CTA Buttons ── */
+      .btn-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--cta-green);
+        color: var(--text-white);
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease;
+        text-decoration: none;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-cta:hover {
+        background: var(--cta-green-hover);
+      }
+
+      .btn-cta:active {
+        transform: scale(0.98);
+      }
+
+      .btn-cta svg {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+      }
+
+      /* ── Sector Cards ── */
+      .sectors {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .sector-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .sector-card {
+        background: var(--bg-panel);
+        border: 1px solid rgba(232, 168, 50, 0.08);
+        border-radius: 10px;
+        padding: 22px 20px;
+      }
+
+      .sector-card h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      .sector-card p {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--text-muted);
+      }
+
+      /* ── How Section ── */
+      .how-section {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .step-list {
+        list-style: none;
+        counter-reset: steps;
+      }
+
+      .step-list li {
+        counter-increment: steps;
+        display: flex;
+        gap: 16px;
+        margin-bottom: 22px;
+        align-items: flex-start;
+      }
+
+      .step-list li:last-child {
+        margin-bottom: 0;
+      }
+
+      .step-num {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        background: rgba(232, 168, 50, 0.1);
+        border: 1px solid rgba(232, 168, 50, 0.2);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .step-content h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-light);
+        margin-bottom: 4px;
+      }
+
+      .step-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      /* ── Community Section ── */
+      .community-section {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .benefit-list {
+        list-style: none;
+        margin-bottom: 24px;
+      }
+
+      .benefit-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(139, 149, 165, 0.1);
+        font-size: 0.95rem;
+        color: var(--text-light);
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .benefit-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 18px;
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+      }
+
+      .benefit-list li:last-child {
+        border-bottom: none;
+      }
+
+      .urgency-note {
+        background: rgba(232, 168, 50, 0.06);
+        border: 1px solid rgba(232, 168, 50, 0.15);
+        border-radius: 8px;
+        padding: 14px 18px;
+        font-size: 0.9rem;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 24px;
+      }
+
+      /* ── Close CTA ── */
+      .close-cta {
+        text-align: center;
+        padding: 48px 0 56px;
+      }
+
+      .close-cta h2 {
+        margin-bottom: 10px;
+      }
+
+      .close-cta p {
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+      }
+
+      .fine-print {
+        margin-top: 16px;
+        font-size: 0.75rem;
+        color: rgba(139, 149, 165, 0.6);
+        line-height: 1.5;
+      }
+
+      /* ── Footer ── */
+      footer {
+        padding: 24px 0 32px;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      footer p {
+        font-size: 0.72rem;
+        color: rgba(139, 149, 165, 0.45);
+        line-height: 1.6;
+      }
+
+      /* ── Sticky Bar ── */
+      .sticky-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(6, 11, 20, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 12px 16px;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        border-top: 1px solid rgba(232, 168, 50, 0.1);
+      }
+
+      .sticky-bar .btn-cta {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ── Desktop ── */
+      @media (min-width: 768px) {
+        body { font-size: 17px; }
+
+        .container { padding: 0 32px; }
+
+        section { padding: 64px 0; }
+
+        h1 { font-size: 2.2rem; }
+
+        h2 { font-size: 1.55rem; }
+
+        .hero { padding: 72px 0 56px; }
+
+        .sector-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .btn-cta {
+          width: auto;
+          padding: 14px 36px;
+        }
+
+        .sticky-bar .btn-cta {
+          width: auto;
+        }
+
+        .close-cta { padding: 64px 0 72px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+      <div class="container">
+        <span class="hero-eyebrow">Canadian Investors</span>
+        <h1>
+          The AI boom is happening on <span class="accent">US exchanges</span>. Here's how Canadian investors are getting in.
+        </h1>
+        <p class="hero-sub">
+          Data-driven pre-market analysis of AI, semiconductors, and high-growth US stocks — delivered free to your WhatsApp every morning before the bell.
+        </p>
+        <button type="button" class="btn-cta link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Join the Free WhatsApp Group
+        </button>
+      </div>
+    </section>
+
+    <!-- ═══ INNOVATION MAP ═══ -->
+    <section class="sectors reveal">
+      <div class="container">
+        <h2>US sectors Canadian investors are <span class="accent">watching closely</span></h2>
+        <div class="sector-grid">
+          <div class="sector-card">
+            <h3>AI &amp; Machine Learning</h3>
+            <p>The companies training the models, building the chips, and selling the cloud compute. Most of them trade exclusively on NASDAQ or NYSE — you won't find equivalents on the TSX.</p>
+          </div>
+          <div class="sector-card">
+            <h3>Cloud &amp; Data Centres</h3>
+            <p>Enterprise software is migrating to the cloud faster than projected. The hyperscalers driving that shift are all US-listed — and growing faster than most names on the TSX.</p>
+          </div>
+          <div class="sector-card">
+            <h3>Semiconductors</h3>
+            <p>Every AI model, every data centre, every autonomous vehicle runs on chips. Demand for advanced semiconductors is growing across every major industry — and it's not slowing down.</p>
+          </div>
+          <div class="sector-card">
+            <h3>Clean Energy &amp; EVs</h3>
+            <p>Billions in US government incentives are reshaping energy infrastructure. Canadian investors with exposure to these names are positioned for a structural shift, not a trend.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HOW WE TRACK IT ═══ -->
+    <section class="how-section reveal">
+      <div class="container">
+        <h2>How the analysis gets made</h2>
+        <ul class="step-list">
+          <li>
+            <span class="step-num">01</span>
+            <div class="step-content">
+              <h3>AI quantitative system, running since 2015</h3>
+              <p>Built over a decade of market cycles. The model learns from crashes, rallies, and everything between.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">02</span>
+            <div class="step-content">
+              <h3>Deep data on every US-listed company</h3>
+              <p>Fundamentals, technicals, filings, transcripts, pricing history — all normalized and queryable in real time.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">03</span>
+            <div class="step-content">
+              <h3>Real-time signal monitoring</h3>
+              <p>Options flow, dark pool prints, SEC filings, and institutional position changes. Unusual activity surfaces immediately.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">04</span>
+            <div class="step-content">
+              <h3>Turned into a morning note you can actually read</h3>
+              <p>Complex data, condensed into a morning note you can read with your coffee. What moved, what's moving, and what to watch.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ COMMUNITY ═══ -->
+    <section class="community-section reveal">
+      <div class="container">
+        <h2>What the <span class="accent">WhatsApp group</span> delivers</h2>
+        <ul class="benefit-list">
+          <li>Daily pre-market briefings before the US open — in your pocket by 9 AM ET</li>
+          <li>Weekly watchlist of 1 to 3 stocks worth researching further</li>
+          <li>Sector rotation and macro trend analysis as conditions shift</li>
+          <li>AI and tech industry deep dives when earnings or product launches matter</li>
+          <li>Educational content that works whether you've traded for ten years or ten days</li>
+        </ul>
+        <div class="urgency-note">
+          We keep the group small so the content stays useful. Currently free — join while there's room.
+        </div>
+        <button type="button" class="btn-cta link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Join the Free WhatsApp Group
+        </button>
+      </div>
+    </section>
+
+    <!-- ═══ CLOSE CTA ═══ -->
+    <section class="close-cta reveal">
+      <div class="container">
+        <h2>Start your morning with <span class="accent">better information.</span></h2>
+        <p>See what the data says. Then decide.</p>
+        <button type="button" class="btn-cta link-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Join the Free WhatsApp Group
+        </button>
+        <p class="fine-print">Free to join. No credit card required. Leave anytime.</p>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+      <div class="container">
+        <p>Market information is provided for educational and informational purposes only and does not constitute investment advice. Investing involves risk, including possible loss of principal. Past performance does not guarantee future results.</p>
+      </div>
+    </footer>
+
+    <!-- ═══ STICKY BAR ═══ -->
+    <div class="sticky-bar">
+      <button type="button" class="btn-cta link-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Join Free WhatsApp Group
+      </button>
+    </div>
+
+    <!-- ═══ Scroll Reveal ═══ -->
+    <script is:inline>
+      ;(function () {
+        var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if (!items.length) return
+        function tick() {
+          var vh = window.innerHeight || document.documentElement.clientHeight
+          for (var i = items.length - 1; i >= 0; i--) {
+            if (items[i].getBoundingClientRect().top < vh - 60) {
+              items[i].classList.add('in')
+              items.splice(i, 1)
+            }
+          }
+          if (!items.length) {
+            window.removeEventListener('scroll', tick)
+            window.removeEventListener('resize', tick)
+          }
+        }
+        window.addEventListener('scroll', tick, { passive: true })
+        window.addEventListener('resize', tick)
+        tick()
+        setTimeout(tick, 300)
+      })()
+    </script>
+  </body>
+</html>

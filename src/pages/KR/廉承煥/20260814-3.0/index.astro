@@ -1,0 +1,191 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+import poster from './images/poster.png'
+import kakaoIcon from './images/kakao-icon.png'
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>데이터 분석 스터디 · 8월 시황 인사이트 무료 공유</title>
+    <meta name="description" content="시장 데이터를 기반으로 트렌드를 분석하고 인사이트를 나누는 무료 스터디 그룹." />
+
+    <RedirectCode />
+
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #050a18;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .wrap {
+        position: relative;
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .poster {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      /* ===== Compliance accordion ===== */
+      .acc-wrap {
+        max-width: 540px;
+        margin: 0 auto;
+        background: #050a18;
+        padding: 10px 20px 0;
+      }
+
+      .acc {
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.03);
+      }
+
+      .acc-title {
+        display: block;
+        width: 100%;
+        padding: 12px 16px;
+        background: none;
+        border: 0;
+        color: rgba(255,255,255,0.4);
+        font: 13px/1.4 -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .acc-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding: 0 16px;
+        font: 13px/1.7 -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+        color: rgba(255,255,255,0.35);
+      }
+
+      .acc-body-inner { padding: 0 0 16px; }
+      .acc.open .acc-body { max-height: 800px; }
+
+      /* ===== Footer ===== */
+      .foot {
+        max-width: 540px;
+        margin: 0 auto;
+        padding: 16px 20px 120px;
+        background: #050a18;
+        font: 11px/1.7 -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+        color: rgba(255,255,255,0.25);
+        text-align: center;
+      }
+
+      /* ===== Fixed CTA ===== */
+      .bar {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+        background: linear-gradient(0deg, rgba(5,10,24,0.97) 55%, transparent);
+      }
+
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 540px;
+        height: 60px;
+        border: 0;
+        border-radius: 16px;
+        background: #fee500;
+        color: #1a1a1a;
+        font: 800 18px/1 -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 8px 30px -6px rgba(254,229,0,0.5);
+        animation: pulse 2s ease-in-out infinite;
+        transition: transform 0.15s;
+      }
+
+      .cta:active { transform: scale(0.96); }
+
+      .cta img {
+        width: 28px; height: 28px;
+        border-radius: 8px;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 8px 30px -6px rgba(254,229,0,0.5); transform: scale(1); }
+        50% { box-shadow: 0 12px 40px -4px rgba(254,229,0,0.7); transform: scale(1.015); }
+      }
+
+      @media (min-width: 601px) {
+        body { padding: 30px 0; }
+        .wrap { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+        .bar { bottom: 30px !important; max-width: 540px; left: 50%; transform: translateX(-50%); border-radius: 0 0 20px 20px; }
+        .bar .cta { max-width: 500px; }
+        @keyframes pulse {
+          0%, 100% { box-shadow: 0 8px 30px -6px rgba(254,229,0,0.5); }
+          50% { box-shadow: 0 12px 40px -4px rgba(254,229,0,0.7); }
+        }
+      }
+
+      @media (max-width: 380px) {
+        .cta { font-size: 16px; height: 54px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <img class="poster" src={poster.src} alt="" />
+    </div>
+
+    <!-- Compliance text for crawlers -->
+    <div class="acc-wrap">
+      <div class="acc" id="acc">
+        <button class="acc-title" type="button">상세 내용 보기</button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            이런 분들께 적극 추천합니다!<br /><br />
+            1. 자산 관리를 체계적으로 하고 싶으신 분<br />
+            2. 최신 글로벌 시장 트렌드를 빠르게 파악하고 싶으신 분<br />
+            3. 리스크를 줄이고 안정적인 성장을 목표로 하는 분<br /><br />
+            이 자료들을 여러분께 무료로 제공해 드리겠습니다.
+            막 공부를 시작하신 분들이나 기준을 다시 세우고자 하는 분들께 강력히 추천합니다.
+            시중 강좌들은 수강료만 비싸고 실속은 없는 경우가 대부분입니다. 저는 진짜로 도움이 되고 싶을 뿐입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <strong>면책 조항</strong><br />
+      본 페이지에서 제공하는 모든 콘텐츠는 정보 제공 목적으로만 사용됩니다.
+      콘텐츠 이용으로 발생하는 일체의 문제에 대해 운영자는 책임을 지지 않습니다.
+      모든 이용은 본인의 판단과 책임 하에 진행됩니다.
+    </footer>
+
+    <!-- Fixed CTA -->
+    <div class="bar">
+      <a class="cta link-btn" href="javascript:void(0)">
+        <img src={kakaoIcon.src} width="512" height="512" alt="" />
+        카톡방 무료 입장하기
+      </a>
+    </div>
+
+    <script is:inline>
+      document.getElementById('acc').addEventListener('click', function () {
+        this.classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>

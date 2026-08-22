@@ -1,0 +1,415 @@
+---
+// CA — US stocks WhatsApp community, warm community-first variant
+import RedirectCode from '@/components/RedirectCode.astro'
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Join the Free US Stock WhatsApp Group for Canadian Investors</title>
+    <meta name="description" content="Canadian investors tracking US stocks — get daily pre-market analysis, weekly watchlists, and AI sector deep dives delivered to WhatsApp. Free, no commitment." />
+
+    <RedirectCode />
+
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #FAFAF8;
+        color: #6B7280;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.65;
+        padding-bottom: 72px;
+      }
+
+      h1, h2, h3 { color: #1A1A1A; line-height: 1.25; }
+
+      .wrap {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ── Reveal ── */
+      html.js .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .55s ease, transform .55s ease;
+      }
+      html.js .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1 !important; transform: none !important; }
+      }
+
+      /* ── Hero ── */
+      .hero {
+        padding: 52px 20px 44px;
+        text-align: center;
+      }
+      .hero-eyebrow {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 500;
+        color: #0D9488;
+        letter-spacing: 0.04em;
+        margin-bottom: 16px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      .hero p {
+        font-size: 15px;
+        max-width: 480px;
+        margin: 0 auto 28px;
+      }
+
+      /* ── CTA Button ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #25D366;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 14px 32px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background .2s ease, transform .15s ease;
+        width: 100%;
+        max-width: 380px;
+      }
+      .btn:hover { background: #20bd5a; }
+      .btn:active { transform: scale(0.97); }
+      .btn svg { flex-shrink: 0; }
+
+      /* ── Section Alternation ── */
+      .section {
+        padding: 44px 0;
+      }
+      .section-alt {
+        background: #F5F0E8;
+      }
+      .section-title {
+        font-size: 21px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      /* ── Deliverables Grid ── */
+      .deliverables {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .deliverable-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 16px 18px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.05);
+      }
+      .deliverable-icon {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        background: #E6F7F5;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .deliverable-icon svg { width: 18px; height: 18px; color: #0D9488; }
+      .deliverable-item strong {
+        display: block;
+        color: #1A1A1A;
+        font-size: 15px;
+        margin-bottom: 2px;
+      }
+      .deliverable-item span {
+        font-size: 13.5px;
+        color: #6B7280;
+      }
+
+      /* ── Why US Section ── */
+      .reasons {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .reason-card {
+        border-left: 3px solid #0D9488;
+        padding: 14px 18px;
+        background: #fff;
+        border-radius: 0 8px 8px 0;
+      }
+      .reason-card strong {
+        display: block;
+        color: #1A1A1A;
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+      .reason-card span {
+        font-size: 14px;
+        color: #6B7280;
+      }
+
+      /* ── Research Block ── */
+      .research-block {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px 20px;
+        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      }
+      .research-block p {
+        font-size: 14.5px;
+        margin-bottom: 14px;
+      }
+      .research-block p:last-child { margin-bottom: 0; }
+      .research-highlight {
+        font-size: 15px;
+        color: #1A1A1A;
+        font-weight: 600;
+        border-left: 3px solid #0D9488;
+        padding-left: 14px;
+        margin: 20px 0;
+        line-height: 1.5;
+      }
+
+      /* ── Close CTA ── */
+      .close-section {
+        text-align: center;
+        padding: 48px 0 40px;
+      }
+      .close-section h2 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .close-section p {
+        font-size: 15px;
+        margin-bottom: 24px;
+      }
+      .trust-line {
+        font-size: 13px;
+        color: #9CA3AF;
+        margin-top: 14px;
+      }
+
+      /* ── Sticky Bar ── */
+      .sticky-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid #E5E7EB;
+        padding: 12px 16px;
+        z-index: 50;
+        display: flex;
+        justify-content: center;
+      }
+      .sticky-bar .btn {
+        max-width: 420px;
+        padding: 12px 24px;
+        font-size: 15px;
+      }
+
+      /* ── Footer ── */
+      .disclaimer {
+        text-align: center;
+        font-size: 11.5px;
+        color: #9CA3AF;
+        padding: 20px 20px 28px;
+        line-height: 1.55;
+      }
+
+      /* ── Desktop ── */
+      @media (min-width: 768px) {
+        .hero { padding: 64px 24px 52px; }
+        .hero h1 { font-size: 32px; }
+        .hero p { font-size: 16px; }
+        .section { padding: 56px 0; }
+        .section-title { font-size: 24px; }
+        .deliverables { gap: 16px; }
+        .deliverable-item { padding: 18px 22px; }
+        .btn { width: auto; }
+        .close-section { padding: 60px 0 52px; }
+      }
+    </style>
+
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+
+  <body>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="wrap">
+        <span class="hero-eyebrow">Free to join. Leave anytime.</span>
+        <h1>The US market moves fast. This WhatsApp group helps you keep up.</h1>
+        <p>Every morning you get a market briefing, a shortlist of stocks to watch, and the macro context behind it — straight to WhatsApp. Free to join, free to leave.</p>
+        <button type="button" class="btn link-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Join the Free WhatsApp Group
+        </button>
+      </div>
+    </header>
+
+    <!-- What You Get -->
+    <section class="section section-alt reveal">
+      <div class="wrap">
+        <h2 class="section-title">What you get every week</h2>
+        <ul class="deliverables">
+          <li class="deliverable-item">
+            <div class="deliverable-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <strong>Daily pre-market briefing</strong>
+              <span>Lands in your WhatsApp before 9:30 AM ET. Overnight moves, key levels, what to watch at the open.</span>
+            </div>
+          </li>
+          <li class="deliverable-item">
+            <div class="deliverable-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <strong>Weekly watchlist</strong>
+              <span>1 to 3 US stocks worth digging into, with a short thesis on each. Research starting points, not buy signals.</span>
+            </div>
+          </li>
+          <li class="deliverable-item">
+            <div class="deliverable-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <strong>Macro and market updates</strong>
+              <span>Fed decisions, jobs data, earnings season recaps — the macro context that actually moves prices.</span>
+            </div>
+          </li>
+          <li class="deliverable-item">
+            <div class="deliverable-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+            </div>
+            <div>
+              <strong>AI and semiconductor deep dives</strong>
+              <span>The sectors driving US market leadership right now. We break down what matters and what's noise.</span>
+            </div>
+          </li>
+          <li class="deliverable-item">
+            <div class="deliverable-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div>
+              <strong>Practical education</strong>
+              <span>Options basics, reading SEC filings, understanding earnings calls. Built for every experience level.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Why US Market -->
+    <section class="section reveal">
+      <div class="wrap">
+        <h2 class="section-title">Why Canadian investors are looking south</h2>
+        <div class="reasons">
+          <div class="reason-card">
+            <strong>Where the growth companies are</strong>
+            <span>The world's leading AI, cloud, semiconductor, and biotech companies trade on US exchanges. Most of these sectors barely exist on the TSX.</span>
+          </div>
+          <div class="reason-card">
+            <strong>Break out of the TSX bubble</strong>
+            <span>The TSX leans heavily on financials, energy, and mining. Adding US exposure means your portfolio isn't riding the same handful of sectors.</span>
+          </div>
+          <div class="reason-card">
+            <strong>Research over guesswork</strong>
+            <span>US markets generate enormous amounts of real-time data — options flow, institutional positioning, SEC filings. More signal means better-informed decisions.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Behind It -->
+    <section class="section section-alt reveal">
+      <div class="wrap">
+        <h2 class="section-title">How the research gets done</h2>
+        <div class="research-block">
+          <p>Behind the daily briefings is an AI-powered quantitative system that tracks every US-listed company — earnings, guidance, options flow, institutional positioning, SEC filings.</p>
+          <p>The system surfaces what's moving and why. Then a team of analysts turns the raw data into plain-English summaries you can actually use.</p>
+          <div class="research-highlight">
+            You get the summary. The system does the digging.
+          </div>
+          <p>Think of it as a research desk that works overnight so you don't have to. The output shows up in your WhatsApp by breakfast.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Close CTA -->
+    <section class="close-section reveal">
+      <div class="wrap">
+        <h2>Understand the market first. Decide later.</h2>
+        <p>Join a growing community of Canadian investors who start their morning with better information.</p>
+        <button type="button" class="btn link-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Join the Free WhatsApp Group
+        </button>
+        <p class="trust-line">Free to join — No payment required — Leave anytime</p>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <footer class="disclaimer">
+      Market information is provided for educational and informational purposes only and does not constitute investment advice. Investing involves risk, including possible loss of principal.
+    </footer>
+
+    <!-- Sticky WhatsApp Bar -->
+    <div class="sticky-bar">
+      <button type="button" class="btn link-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Join Free WhatsApp Group
+      </button>
+    </div>
+
+    <!-- Scroll Reveal -->
+    <script is:inline>
+    ;(function () {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+      if (!items.length) return
+      function tick() {
+        var vh = window.innerHeight || document.documentElement.clientHeight
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (items[i].getBoundingClientRect().top < vh - 60) {
+            items[i].classList.add('in')
+            items.splice(i, 1)
+          }
+        }
+        if (!items.length) {
+          window.removeEventListener('scroll', tick)
+          window.removeEventListener('resize', tick)
+        }
+      }
+      window.addEventListener('scroll', tick, { passive: true })
+      window.addEventListener('resize', tick)
+      tick()
+      setTimeout(tick, 300)
+    })()
+    </script>
+
+  </body>
+</html>
