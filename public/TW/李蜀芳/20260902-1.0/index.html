@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>李蜀芳｜領取本週觀察名單・股市全芳位投資社群</title>
+    <meta name="description" content="加入李蜀芳 LINE 投資交流社群，領取本週台股觀察名單，一起看產業輪動、關鍵價位與籌碼變化。">
+
+<!-- #include file="head.html" -->
+
+<!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+<script>
+    const link = '<!-- #include file="link.txt" -->'
+</script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
+
+<!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding-bottom: 92px;
+            background: #eef1f4;
+            color: #1f2933;
+            font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 540px;
+            min-height: 100vh;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 0 26px rgba(21, 32, 43, 0.08);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: flex-end;
+            padding: 28px 22px 32px;
+            color: #ffffff;
+            background:
+                    linear-gradient(180deg, rgba(8, 22, 32, 0.05) 0%, rgba(8, 22, 32, 0.42) 46%, rgba(8, 22, 32, 0.88) 74%, rgba(8, 22, 32, 0.96) 100%),
+                    url("img/hero.jpg") center top / cover no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 14px;
+            padding: 7px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero h1 {
+            margin-bottom: 12px;
+            font-size: 30px;
+            font-weight: 850;
+            line-height: 1.24;
+            letter-spacing: 0;
+        }
+
+        .hero p {
+            margin-bottom: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            line-height: 1.72;
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 16px 0 6px;
+        }
+
+        .metric {
+            min-height: 62px;
+            padding: 9px 6px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            background: rgba(9, 19, 29, 0.5);
+            text-align: center;
+        }
+
+        .metric strong {
+            display: block;
+            margin-bottom: 2px;
+            color: #f7c948;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .metric span {
+            display: block;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 11px;
+            line-height: 1.35;
+        }
+
+        .section {
+            padding: 28px 20px;
+            border-bottom: 1px solid #e7edf3;
+            background: #ffffff;
+        }
+
+        .section.alt {
+            background: #f7f9fb;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 13px;
+            color: #132f4c;
+            font-size: 20px;
+            font-weight: 850;
+            line-height: 1.35;
+        }
+
+        .section-title .mark {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 28px;
+            background: #132f4c;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .lead-text {
+            color: #4b5c6b;
+            font-size: 14px;
+            line-height: 1.78;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px;
+            border: 1px solid #dfe8f1;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(31, 45, 61, 0.04);
+        }
+
+        .feature-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 28px;
+            background: linear-gradient(135deg, #0f766e, #1d4ed8);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 4px;
+            color: #17212b;
+            font-size: 15px;
+            line-height: 1.45;
+        }
+
+        .feature-item p {
+            color: #5d6b78;
+            font-size: 13px;
+            line-height: 1.62;
+        }
+
+        .image-panel {
+            margin: 18px 0 10px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #e7edf3;
+            box-shadow: 0 12px 24px rgba(31, 45, 61, 0.09);
+        }
+
+        .image-panel img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .pain-item {
+            min-height: 112px;
+            padding: 13px 8px;
+            border-radius: 8px;
+            background: #eef4f8;
+            color: #263846;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.55;
+        }
+
+        .pain-item span {
+            display: block;
+            margin-bottom: 8px;
+            color: #b42318;
+            font-size: 20px;
+        }
+
+        .quote {
+            margin-top: 18px;
+            padding: 15px;
+            border-left: 4px solid #c78a2f;
+            border-radius: 8px;
+            background: #fff7e8;
+            color: #7a4b08;
+            font-size: 14px;
+            font-weight: 650;
+            line-height: 1.72;
+        }
+
+        .author {
+            background: linear-gradient(180deg, #f7f9fb 0%, #ffffff 100%);
+        }
+
+        .author-head {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .author-avatar {
+            width: 76px;
+            height: 76px;
+            border: 2px solid #c78a2f;
+            border-radius: 50%;
+            flex: 0 0 76px;
+            background: #f2f4f7 url("img/avatar.jpg") center center / cover no-repeat;
+            box-shadow: 0 8px 18px rgba(199, 138, 47, 0.18);
+        }
+
+        .author-name {
+            color: #111827;
+            font-size: 20px;
+            font-weight: 850;
+            line-height: 1.38;
+        }
+
+        .author-meta {
+            margin-top: 4px;
+            color: #52616f;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tag {
+            padding: 7px 10px;
+            border: 1px solid rgba(19, 47, 76, 0.14);
+            border-radius: 999px;
+            background: #ffffff;
+            color: #132f4c;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .inline-counter {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 9px 12px;
+            border-radius: 999px;
+            background: #eaf3ef;
+            color: #087443;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .comment-section {
+            padding: 24px 20px 30px;
+            background: #ffffff;
+            border-top: 8px solid #eef1f4;
+        }
+
+        .comment-section h2 {
+            margin-bottom: 14px;
+            color: #132f4c;
+            font-size: 19px;
+            line-height: 1.35;
+        }
+
+        .comment {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 16px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 42px;
+            background: #132f4c;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 850;
+        }
+
+        .comment-body {
+            flex: 1;
+            padding: 12px 13px;
+            border-radius: 8px;
+            background: #f1f5f8;
+            color: #344250;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .comment-name {
+            margin-bottom: 4px;
+            color: #182635;
+            font-weight: 800;
+        }
+
+        .comment-meta {
+            display: flex;
+            gap: 12px;
+            margin-top: 7px;
+            color: #8492a0;
+            font-size: 11px;
+        }
+
+        .comment-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 6px;
+            border: 1px solid #dce5ed;
+            border-radius: 999px;
+            background: #ffffff;
+        }
+
+        .comment-input input {
+            min-width: 0;
+            flex: 1;
+            border: 0;
+            outline: 0;
+            padding: 11px 8px 11px 12px;
+            background: transparent;
+            color: #1f2933;
+            font-size: 14px;
+        }
+
+        .comment-input button {
+            border: 0;
+            border-radius: 999px;
+            padding: 0 18px;
+            background: #132f4c;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .btn {
+            width: 100%;
+            min-height: 54px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 18px;
+            border: 0;
+            border-radius: 999px;
+            background: #06c755;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 850;
+            line-height: 1.25;
+            box-shadow: 0 10px 20px rgba(6, 199, 85, 0.24);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover,
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(6, 199, 85, 0.3);
+        }
+
+        .btn.secondary {
+            border: 1.5px solid #132f4c;
+            background: #ffffff;
+            color: #132f4c;
+            box-shadow: none;
+        }
+
+        .note {
+            margin-top: 10px;
+            color: #778491;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .fixed-btn {
+            position: fixed;
+            z-index: 1000;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 62px;
+            padding: 13px 18px calc(13px + env(safe-area-inset-bottom));
+            background: #06c755;
+            color: #ffffff;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 850;
+            line-height: 1.25;
+            box-shadow: 0 -8px 22px rgba(21, 32, 43, 0.16);
+            cursor: pointer;
+        }
+
+        .floating-tools {
+            position: fixed;
+            z-index: 1002;
+            right: 12px;
+            top: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .counter-card,
+        .timer-card {
+            min-width: 112px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: rgba(10, 22, 34, 0.93);
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 10px 24px rgba(21, 32, 43, 0.24);
+            pointer-events: auto;
+        }
+
+        .counter-card {
+            border: 1px solid rgba(247, 201, 72, 0.48);
+        }
+
+        .counter-number {
+            color: #f7c948;
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .counter-label,
+        .timer-label {
+            margin-top: 4px;
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .timer-value {
+            margin-top: 4px;
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #243447;
+            color: #ffffff;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .flash {
+            animation: flash 0.42s ease-out;
+        }
+
+        @keyframes flash {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); color: #fff4c2; }
+            100% { transform: scale(1); }
+        }
+
+        .popup-container {
+            position: fixed;
+            z-index: 1001;
+            bottom: 96px;
+            left: 50%;
+            width: min(90vw, 360px);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .popup-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 12px;
+            border-left: 4px solid #c78a2f;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #263846;
+            box-shadow: 0 8px 22px rgba(21, 32, 43, 0.16);
+            font-size: 13px;
+            line-height: 1.45;
+            animation: fadeUp 0.24s ease;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(7, 13, 20, 0.72);
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-box {
+            position: relative;
+            width: min(100%, 340px);
+            padding: 28px 20px 30px;
+            border-radius: 8px;
+            background: #ffffff;
+            text-align: center;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.26);
+            animation: scaleIn 0.22s ease;
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.94); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 34px;
+            height: 34px;
+            border: 0;
+            border-radius: 50%;
+            background: #eef1f4;
+            color: #536271;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            margin-bottom: 14px;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: #fff7e8;
+            color: #8a5a12;
+            font-size: 12px;
+            font-weight: 850;
+        }
+
+        .modal-box h2 {
+            color: #111827;
+            font-size: 22px;
+            line-height: 1.42;
+        }
+
+        .modal-box p {
+            margin-top: 10px;
+            color: #52616f;
+            font-size: 14px;
+            line-height: 1.72;
+        }
+
+        @media (max-width: 640px) {
+            .hero { min-height: 500px; }
+            .hero h1 { font-size: 27px; }
+            .floating-tools {
+                top: auto;
+                right: 8px;
+                bottom: 92px;
+                flex-direction: row;
+                transform: none;
+            }
+            .counter-card,
+            .timer-card { min-width: 94px; padding: 8px 9px; }
+            .counter-number { font-size: 21px; }
+            .timer-value { font-size: 14px; }
+        }
+
+        @media (max-width: 390px) {
+            .hero-metrics,
+            .pain-grid { gap: 7px; }
+            .metric strong { font-size: 16px; }
+            .pain-item { padding: 11px 6px; font-size: 11px; }
+            .fixed-btn { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+<main class="page">
+    <section class="hero">
+        <div class="hero-content">
+            <div class="eyebrow">中視《股市全芳位》・台股交流社群</div>
+            <h1>領取本週觀察名單<br>加入李蜀芳台股社群</h1>
+            <p>盤天天在跳。方向卻不是天天都清楚。社群裡分享盤後的觀察重點、產業輪動與籌碼變化，讓你下單前，心裡先有個底。</p>
+            <div class="hero-metrics" aria-label="李蜀芳三大特色">
+                <div class="metric">
+                    <strong>中視</strong>
+                    <span>《股市全芳位》主講</span>
+                </div>
+                <div class="metric">
+                    <strong>三面向</strong>
+                    <span>產業×技術×籌碼</span>
+                </div>
+                <div class="metric">
+                    <strong>週一至五</strong>
+                    <span>盤後解讀台股</span>
+                </div>
+            </div>
+            <button class="btn link-btn" onclick="onLinkBtnClick()">免費加入 LINE 社群，領本週名單</button>
+            <div class="note">加入後由專人在 LINE 發送 · 內容僅供研究參考</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title"><span class="mark">1</span>加入社群可以獲得什麼？</div>
+        <p class="lead-text">社群裡，李蜀芳會從產業、技術、籌碼三個面向來看盤，再對一下外圍走勢。每週分享盤後的觀察名單與產業輪動方向，也聊進出場要看哪些訊號。</p>
+        <div class="feature-list">
+            <article class="feature-item">
+                <span class="feature-icon">產</span>
+                <div>
+                    <h3>產業面選股</h3>
+                    <p>先確認產業有沒有需求與轉機，再從裡面挑體質好的公司。產業選對，勝率才會站在你這邊。</p>
+                </div>
+            </article>
+            <article class="feature-item">
+                <span class="feature-icon">技</span>
+                <div>
+                    <h3>技術面解讀</h3>
+                    <p>K 線、量價、趨勢線要配著看。哪個位置可以進場、哪個位置該減碼，圖上都有跡可循。</p>
+                </div>
+            </article>
+            <article class="feature-item">
+                <span class="feature-icon">籌</span>
+                <div>
+                    <h3>籌碼面追蹤</h3>
+                    <p>三大法人買賣超、主力進出的變化，往往在股價轉折之前就先露出馬腳。</p>
+                </div>
+            </article>
+            <article class="feature-item">
+                <span class="feature-icon">經</span>
+                <div>
+                    <h3>外圍對照</h3>
+                    <p>外圍怎麼走——美股、匯率、利率，最後都會反映在台股的錢往哪一邊靠。</p>
+                </div>
+            </article>
+        </div>
+        <div class="image-panel">
+            <img src="img/teaching.jpg" alt="李蜀芳形象照">
+        </div>
+    </section>
+
+    <section class="section alt">
+        <div class="section-title"><span class="mark">2</span>投資路上不必一個人摸索</div>
+        <div class="pain-grid">
+            <div class="pain-item"><span>追</span>追飆股，每次都買在最高點，然後站崗</div>
+            <div class="pain-item"><span>猜</span>線圖看半天還是霧煞煞，買賣全憑感覺</div>
+            <div class="pain-item"><span>慌</span>大盤一黑就慌，認賠殺出，賣完它就漲</div>
+        </div>
+        <div class="quote">李蜀芳的做法是三面交叉比對：產業、技術、籌碼有沒有站在同一邊。三邊訊號都對得上才動手，少賭一點運氣。</div>
+        <button class="btn secondary link-btn" onclick="onLinkBtnClick()">加入 LINE 社群，領本週名單</button>
+    </section>
+
+    <section class="section author">
+        <div class="section-title"><span class="mark">3</span>關於李蜀芳</div>
+        <div class="author-head">
+            <div class="author-avatar" aria-hidden="true"></div>
+            <div>
+                <div class="author-name">李蜀芳</div>
+                <div class="author-meta">永誠國際投顧分析師 / 中視《股市全芳位》主講人</div>
+            </div>
+        </div>
+        <p class="lead-text">李蜀芳是永誠國際投顧分析師，也是中視《股市全芳位》的主講人，週一到週五在節目上解讀台股盤勢與產業動向。</p>
+        <p class="lead-text" style="margin-top: 10px;">她從不只看一面。產業、技術、籌碼三邊都要對得上，再拉遠一點看國際情勢，才敢下結論——錢到底往哪一邊靠。比起丟一檔代號就要你追，她更常講的是為什麼現在可以進、出現什麼狀況就該走。</p>
+        <div class="tags">
+            <span class="tag">產業輪動</span>
+            <span class="tag">抓進出場位置</span>
+            <span class="tag">籌碼追蹤</span>
+            <span class="tag">總經趨勢</span>
+            <span class="tag">台股操作</span>
+        </div>
+        <div class="inline-counter">已有 6,800+ 位投資人加入社群交流</div>
+    </section>
+
+    <section class="comment-section">
+        <h2>社群成員交流回饋</h2>
+        <div id="commentList">
+            <div class="comment">
+                <div class="avatar">林</div>
+                <div class="comment-body">
+                    <div class="comment-name">林先生</div>
+                    以前追消息追到很累，現在會先看產業和籌碼站在哪一邊，安心不少。
+                    <div class="comment-meta"><span>昨天</span><span>讚 38</span></div>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="avatar" style="background:#0f766e;">陳</div>
+                <div class="comment-body">
+                    <div class="comment-name">陳小姐</div>
+                    盤後的觀察重點寫得很清楚，第一次覺得進出場真的有東西可以照著看。
+                    <div class="comment-meta"><span>4 小時前</span><span>讚 26</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-input">
+            <input id="commentInput" type="text" placeholder="想問什麼、想聊什麼都可以留言…" autocomplete="off">
+            <button id="sendCommentBtn">送出</button>
+        </div>
+        <div class="note">每天都有投資人在社群交流盤勢與選股觀點</div>
+    </section>
+</main>
+
+<div class="fixed-btn link-btn" onclick="onLinkBtnClick()">免費領本週觀察名單</div>
+
+<aside class="floating-tools" aria-label="領取狀態">
+    <div class="counter-card" id="counterCard">
+        <div class="counter-number" id="liveNumber">6,826</div>
+        <div class="counter-label">社群交流人數</div>
+    </div>
+    <div class="timer-card">
+        <div class="timer-label">限時開放</div>
+        <div class="timer-value" id="countdownTimer">09:59</div>
+    </div>
+</aside>
+
+<div class="popup-container" id="popup"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+        <button class="modal-close" id="modalClose" type="button" aria-label="關閉">×</button>
+        <div class="modal-badge">投資社群免費開放</div>
+        <h2 id="modalTitle">加入社群，一起看懂台股方向</h2>
+        <p>加 LINE 領本週觀察名單，一起看產業輪動、關鍵價位與籌碼變化。</p>
+        <button class="btn link-btn" onclick="onLinkBtnClick()">名單今天還開放，現在進來拿</button>
+        <div class="note">內容僅供投資研究與方法交流，不代表獲利保證，投資有其風險。</div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        "use strict";
+
+        function triggerLead(source) {
+            if (typeof window.onLinkBtnClick === "function") {
+                window.onLinkBtnClick();
+                return;
+            }
+        }
+
+        let currentCount = 6826;
+        var liveNumber = document.getElementById("liveNumber");
+        var counterCard = document.getElementById("counterCard");
+
+        function updateCounter() {
+            currentCount += Math.floor(Math.random() * 4) + 1;
+            if (liveNumber) {
+                liveNumber.textContent = currentCount.toLocaleString();
+                liveNumber.classList.add("flash");
+                window.setTimeout(function () {
+                    liveNumber.classList.remove("flash");
+                }, 420);
+            }
+            if (counterCard) {
+                counterCard.style.borderColor = "rgba(6, 199, 85, 0.65)";
+                window.setTimeout(function () {
+                    counterCard.style.borderColor = "rgba(247, 201, 72, 0.48)";
+                }, 260);
+            }
+        }
+
+        function initCountdown() {
+            var timer = document.getElementById("countdownTimer");
+            if (!timer) return;
+            var remain = 9 * 60 + 59;
+            function render() {
+                var minutes = String(Math.floor(remain / 60)).padStart(2, "0");
+                var seconds = String(remain % 60).padStart(2, "0");
+                timer.textContent = minutes + ":" + seconds;
+                remain = remain > 0 ? remain - 1 : 9 * 60 + 59;
+            }
+            render();
+            window.setInterval(render, 1000);
+        }
+
+        var popupUsers = [
+            { name: "王*婷", msg: "已領取本週觀察名單", initial: "王", color: "#132f4c" },
+            { name: "李*明", msg: "產業輪動那段很有感", initial: "李", color: "#0f766e" },
+            { name: "陳*華", msg: "已加入，想學怎麼看籌碼", initial: "陳", color: "#8a5a12" },
+            { name: "張*君", msg: "三個面向一起對，邏輯滿清楚的", initial: "張", color: "#9f1239" }
+        ];
+
+        function escapeHtml(text) {
+            return String(text).replace(/[&<>"]/g, function (char) {
+                if (char === "&") return "&amp;";
+                if (char === "<") return "&lt;";
+                if (char === ">") return "&gt;";
+                return "&quot;";
+            });
+        }
+
+        function showPopup() {
+            var container = document.getElementById("popup");
+            if (!container) return;
+            var item = popupUsers[Math.floor(Math.random() * popupUsers.length)];
+            var bubble = document.createElement("div");
+            bubble.className = "popup-item";
+            bubble.innerHTML =
+                '<div class="avatar" style="width:32px;height:32px;flex-basis:32px;background:' + item.color + ';">' + escapeHtml(item.initial) + "</div>" +
+                "<div><strong>" + escapeHtml(item.name) + "</strong> " + escapeHtml(item.msg) + "</div>";
+            container.appendChild(bubble);
+            window.setTimeout(function () { bubble.remove(); }, 7600);
+        }
+
+        var autoNames = ["台股新手", "波段練習生", "上班族阿凱", "Ming", "看盤看到眼花", "小資族小陳"];
+        var autoMsgs = [
+            "本週的觀察方向剛好可以對照自己的持股",
+            "產業和籌碼一起看，判斷確實比較不會亂",
+            "希望後續多講一點三大法人買賣超怎麼看",
+            "該跑的時候手軟，那段講到我了",
+            "終於知道進出場要看哪幾個訊號"
+        ];
+
+        function addAutoComment() {
+            var list = document.getElementById("commentList");
+            if (!list) return;
+            var name = autoNames[Math.floor(Math.random() * autoNames.length)];
+            var msg = autoMsgs[Math.floor(Math.random() * autoMsgs.length)];
+            var comment = document.createElement("div");
+            comment.className = "comment";
+            comment.innerHTML =
+                '<div class="avatar" style="background:#344250;">' + escapeHtml(name.charAt(0)) + "</div>" +
+                '<div class="comment-body"><div class="comment-name">' + escapeHtml(name) + "</div>" +
+                escapeHtml(msg) +
+                '<div class="comment-meta"><span>剛剛</span><span>讚 ' + (Math.floor(Math.random() * 36) + 12) + "</span></div></div>";
+            list.appendChild(comment);
+            if (list.children.length > 24) list.removeChild(list.children[0]);
+        }
+
+        var modal = null;
+        var modalTimer = null;
+        var scrollTriggered = false;
+
+        function showModal() {
+            if (modal) modal.style.display = "flex";
+        }
+
+        function hideModal() {
+            if (!modal) return;
+            modal.style.display = "none";
+            if (modalTimer) clearTimeout(modalTimer);
+            modalTimer = window.setTimeout(showModal, 13000);
+        }
+
+        function submitComment() {
+            var input = document.getElementById("commentInput");
+            var list = document.getElementById("commentList");
+            var text = input ? input.value.trim() : "";
+            if (!text || !list) return;
+            var comment = document.createElement("div");
+            comment.className = "comment";
+            comment.innerHTML =
+                '<div class="avatar" style="background:#1d4ed8;">您</div>' +
+                '<div class="comment-body"><div class="comment-name">您</div>' +
+                escapeHtml(text) +
+                '<div class="comment-meta"><span>剛剛</span><span>讚 1</span></div></div>';
+            list.appendChild(comment);
+            input.value = "";
+            window.setTimeout(function () {
+                var reply = document.createElement("div");
+                reply.className = "comment";
+                reply.innerHTML =
+                    '<div class="avatar" style="background:#c78a2f;">李</div>' +
+                    '<div class="comment-body"><div class="comment-name">李蜀芳團隊 <span style="padding:2px 6px;border-radius:999px;background:#fff7e8;color:#8a5a12;font-size:10px;">官方回覆</span></div>' +
+                    "感謝留言，可以直接加入社群領取本週觀察名單，一起交流盤勢與選股。" +
+                    '<div class="comment-meta"><span>剛剛</span></div></div>';
+                list.appendChild(reply);
+            }, 900);
+            showModal();
+        }
+
+        function initModal() {
+            modal = document.getElementById("modal");
+            var close = document.getElementById("modalClose");
+            if (close) close.addEventListener("click", hideModal);
+            if (modal) {
+                modal.addEventListener("click", function (event) {
+                    if (event.target === modal) hideModal();
+                });
+            }
+            window.addEventListener("scroll", function () {
+                if (scrollTriggered) return;
+                var denominator = document.body.scrollHeight - window.innerHeight;
+                var percent = denominator > 0 ? window.scrollY / denominator : 0;
+                if (percent > 0.58) {
+                    scrollTriggered = true;
+                    showModal();
+                }
+            }, { passive: true });
+        }
+
+        function initComments() {
+            var sendButton = document.getElementById("sendCommentBtn");
+            var input = document.getElementById("commentInput");
+            if (sendButton) sendButton.addEventListener("click", submitComment);
+            if (input) {
+                input.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter") submitComment();
+                });
+            }
+        }
+
+        function init() {
+            initCountdown();
+            initComments();
+            initModal();
+            updateCounter();
+            window.setInterval(updateCounter, 16000);
+            window.setTimeout(showPopup, 1000);
+            window.setInterval(showPopup, 5200);
+            window.setTimeout(function () {
+                addAutoComment();
+                addAutoComment();
+            }, 1800);
+            window.setInterval(addAutoComment, 9800);
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+    })();
+</script>
+</body>
+</html>
