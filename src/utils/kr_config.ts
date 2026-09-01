@@ -234,6 +234,12 @@ const c = {
       { static_prefix: 'pdh_', version: 0, social_type: ['卡扣', '棒群'], images: ['head'] as ImageKey[] },
     ],
   },
+  约翰李: {
+    name: '존리',
+    versions: [
+      { static_prefix: 'yhl_', version: 0, social_type: ALL_SOCIAL, images: ['head'] as ImageKey[] },
+    ],
+  },
 }
 
 interface GenerateOptions {

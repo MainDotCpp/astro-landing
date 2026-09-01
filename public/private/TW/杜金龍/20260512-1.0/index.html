@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW" style="--gold: 0 100% 70%; --gold-light: 0 100% 83%; --gold-muted: 0 80% 55%; --primary: 0 100% 70%; --accent: 0 100% 70%; --ring: 0 100% 70%; --primary-foreground: 20 10% 10%; --accent-foreground: 20 10% 10%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杜金龍｜限時線上教學</title>
+    <meta name="description" content="K線會說話，你聽懂了嗎？杜金龍限時線上教學，40年實戰心法，帶你讀懂市場語言。">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .cta-btn {
+        display: block; width: 100%; max-width: 420px; margin: 0 auto;
+        padding: 1rem 2rem; border-radius: 0.75rem; border: none;
+        font-size: 1.25rem; font-weight: 800; cursor: pointer;
+        text-decoration: none; text-align: center;
+        background: linear-gradient(135deg, hsl(var(--gold-muted)), hsl(var(--gold)));
+        color: hsl(var(--primary-foreground));
+        box-shadow: 0 4px 20px hsl(var(--gold) / .3);
+        transition: transform .2s, box-shadow .2s;
+      }
+      .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px hsl(var(--gold) / .45); }
+      .cta-btn:active { transform: translateY(0); }
+
+      .sticky-cta {
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+        padding: 0.75rem 1rem; background: hsl(var(--background) / .95);
+        backdrop-filter: blur(8px); border-top: 1px solid hsl(var(--border) / .3);
+      }
+      .sticky-cta .cta-btn { font-size: 1.1rem; padding: 0.875rem 1.5rem; }
+    </style>
+</head>
+<body>
+  <div id="root">
+    <div class="min-h-screen bg-background">
+      <!-- Navigation -->
+      <nav class="border-b border-border/50 bg-background/80 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <img src="data:image/png;base64,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" alt="ShiFu Logo" class="h-12">
+          <span class="text-sm text-muted-foreground hidden sm:block">杜金龍 ｜ 限時線上教學</span>
+        </div>
+      </nav>
+
+      <!-- Hero Image -->
+      <div class="relative w-full">
+        <img src="hero.jpg" alt="杜金龍｜限時線上教學" class="w-full object-cover object-top" loading="eager" style="aspect-ratio: 16 / 9;">
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-40"></div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="max-w-2xl mx-auto px-4 py-10 lg:py-14">
+        <div class="space-y-8">
+          <!-- Pain Points -->
+          <div class="bg-card/80 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-border/30 text-center">
+            <h2 class="text-xl sm:text-2xl font-bold text-foreground text-center mb-6 tracking-wide">你是不是也這樣？</h2>
+            <ul class="space-y-2 inline-block text-left mx-auto w-auto">
+              <li class="flex items-center gap-3 text-foreground text-base sm:text-lg leading-8 border-b border-border/30 pb-2 last:border-b-0 last:pb-0">
+                <span class="w-3 h-3 rounded-full bg-gold shrink-0"></span>K線圖天天看，卻越看越沒信心？
+              </li>
+              <li class="flex items-center gap-3 text-foreground text-base sm:text-lg leading-8 border-b border-border/30 pb-2 last:border-b-0 last:pb-0">
+                <span class="w-3 h-3 rounded-full bg-gold shrink-0"></span>指標一堆，MACD、KD 全開，結果訊號打架？
+              </li>
+              <li class="flex items-center gap-3 text-foreground text-base sm:text-lg leading-8 border-b border-border/30 pb-2 last:border-b-0 last:pb-0">
+                <span class="w-3 h-3 rounded-full bg-gold shrink-0"></span>進場時機總是慢半拍，出場又捨不得？
+              </li>
+            </ul>
+          </div>
+
+          <!-- Solution -->
+          <div class="bg-card/80 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-border/30 text-center space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-black text-foreground tracking-widest border-b border-border/50 pb-3 inline-block">K線其實很簡單</h2>
+            <p class="text-foreground/80 text-base sm:text-lg leading-8">
+              <span>40 年市場實戰經驗，化繁為簡。<br></span>
+              <span>學會聽 K 線說話，進出場不再猶豫。</span>
+            </p>
+          </div>
+
+          <!-- Course Content -->
+          <div class="bg-card/80 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-border/30 text-center">
+            <h2 class="text-xl sm:text-2xl font-black text-foreground text-center mb-6 tracking-wide border-b border-border/50 pb-3 mx-auto inline-block w-full">這堂課你會學到</h2>
+            <ul class="space-y-2 inline-block text-left mx-auto w-auto">
+              <li class="flex items-center gap-3 text-foreground text-base sm:text-lg leading-8 border-b border-border/30 pb-2 last:border-b-0 last:pb-0">
+                <span class="w-3 h-3 rounded-full bg-gold shrink-0"></span>三根 K 棒判轉折，不靠直覺靠邏輯
+              </li>
+              <li class="flex items-center gap-3 text-foreground text-base sm:text-lg leading-8 border-b border-border/30 pb-2 last:border-b-0 last:pb-0">
+                <span class="w-3 h-3 rounded-full bg-gold shrink-0"></span>量價關係一次搞懂，抓住主力進場訊號
+              </li>
+            </ul>
+          </div>
+
+          <!-- Inline CTA -->
+          <div class="text-center pt-4 pb-16">
+            <a href="#" class="cta-btn" onclick="onLinkBtnClick();return false;">立即免費報名</a>
+            <p class="text-center text-sm text-muted-foreground pt-3">已有 21,125 人加入學習</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Bottom CTA -->
+      <div class="sticky-cta">
+        <a href="#" class="cta-btn" onclick="onLinkBtnClick();return false;">立即免費報名</a>
+      </div>
+
+      <!-- Footer -->
+      <footer class="border-t border-border/30 py-6 text-center space-y-3">
+        <div class="flex items-center justify-center gap-4">
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+  <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+  <script>
+    const onLinkBtnClick = () => {
+      const link = 'https://www.baidu.com';
+
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'AddToCart');
+        fbq('track', 'Contact');
+
+      }
+
+
+      if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion();
+      }
+
+
+      setTimeout(() => { window.location.href = link; }, 500);
+    };
+  </script>
+</body>
+</html>

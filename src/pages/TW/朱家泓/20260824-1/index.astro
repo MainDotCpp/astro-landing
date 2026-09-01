@@ -1,0 +1,385 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import lineIcon from './static/line.png'
+import teacherImg from './static/teacher.jpg'
+---
+
+<BaseLayout
+  title="不用聽明牌，自己看懂線圖"
+  description="「飆股上校」朱家泓，40 年線圖實戰。不報明牌，教你自己抓進場點跟停損點。"
+  lang="zh-TW"
+>
+  <main class="landing-container">
+
+    <!-- 頂部緊迫性橫幅 -->
+    <div class="alert-bar blink-bg">
+      ⚠ 本週教的：怎麼用一根 K 線，決定明天該不該跑
+    </div>
+
+    <!-- 主視覺區塊 -->
+    <header class="header-section">
+      <h1 class="main-title">
+        <span class="highlight-yellow">【完全免費】</span><br/>
+        我看了 40 年線圖，方法這次全公開
+      </h1>
+
+      <img src={teacherImg.src} alt="「飆股上校」朱家泓" class="teacher-img" />
+      <p class="teacher-name">「飆股上校」朱家泓</p>
+
+      <div class="subtitle-box">
+        加 LINE 免費看：<br/>
+        <span class="text-red animate-flash">🔥 不用等人喊，自己抓進場點跟停損點 🔥</span>
+      </div>
+    </header>
+
+    <!-- 直白的內文區 -->
+    <section class="content-section">
+      <p class="big-text">別再靠聽明牌買股票！</p>
+      <p class="normal-text">
+        我是朱家泓。人家叫我「飆股上校」，<br/>
+        但我從來不報明牌——<strong>飆股是你自己從線圖裡看出來的。</strong><br/>
+        我不喊進喊出，<strong>我只教你看懂線圖，自己抓進出場點！</strong>
+      </p>
+
+      <div class="proof-box">
+        <ul>
+          <li>✅ 我當了 <span class="text-red font-bold">22 年</span>職業軍人，上校退伍；1985 年進股市，看到今天</li>
+          <li>✅ 寫過《活用技術分析寶典》上下冊，近千張線圖一張一張拆給你看</li>
+          <li>✅ Money 錢雜誌專欄、飆股學堂技術分析講師，<span class="font-bold">名字你可以自己去查</span></li>
+        </ul>
+      </div>
+
+      <p class="urgency-text">
+        從 1985 年進場到現在，<br/>
+        我把 <span class="text-red font-bold">40 年</span>繳過的學費，<br/>
+        整理成你聽得懂的方法。
+      </p>
+    </section>
+
+    <!-- 強烈引導按鈕與倒數計時 -->
+    <section class="cta-section">
+      <div class="countdown-wrapper">
+        <p class="countdown-title">本梯次報名倒數</p>
+        <div class="timer">
+          <div class="time-box">00</div><span>天</span>
+          <div class="time-box">00</div><span>時</span>
+          <div class="time-box" id="min">14</div><span>分</span>
+          <div class="time-box" id="sec">59</div><span>秒</span>
+        </div>
+      </div>
+
+      <!-- 巨大的 LINE 按鈕 -->
+      <a href="#" class="line-btn link-btn animate-breathe" onclick="onLinkBtnClick()">
+        <img src={lineIcon.src} alt="LINE" class="line-icon" style="border-radius: 10px;" />
+        <div class="btn-text">
+          <span class="click-hint">👉 點擊這裡加入 👈</span>
+          <span class="main-action">免費教你看懂線圖</span>
+        </div>
+      </a>
+
+      <p class="privacy-text">加好友後，直接傳「學習」兩個字，我就把教學傳給你，完全免費。</p>
+    </section>
+
+    <!-- 俗套的免責與頁尾 -->
+    <footer class="footer-section">
+      <p>※ 投資一定有風險，進場前請自行評估</p>
+      <p>本活動為免費教學分享，全程不收費、不代操、不碰你的錢</p>
+    </footer>
+
+  </main>
+
+  <style>
+    /* 基礎設定 */
+    body {
+      background-color: #f5f5f5;
+      font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .landing-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      padding-bottom: 50px;
+    }
+
+    .text-red { color: #e53935; }
+    .font-bold { font-weight: bold; }
+
+    /* 頂部橫幅 */
+    .alert-bar {
+      background-color: #d32f2f;
+      color: #ffffff;
+      text-align: center;
+      padding: 12px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* 標題與視覺 */
+    .header-section {
+      text-align: center;
+      padding: 30px 15px;
+      background: linear-gradient(180deg, #fffde7 0%, #ffffff 100%);
+      border-bottom: 3px solid #ffeb3b;
+    }
+
+    .main-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: #212121;
+      line-height: 1.4;
+      margin: 0 0 20px 0;
+    }
+
+    .highlight-yellow {
+      background-color: #ffeb3b;
+      color: #d32f2f;
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    /* 人物照（沿用原版式語言，僅置中不另設風格） */
+    .teacher-img {
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto 8px auto;
+    }
+
+    .teacher-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #d32f2f;
+      margin: 0 0 20px 0;
+      letter-spacing: 1px;
+    }
+
+    .subtitle-box {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1565c0;
+      line-height: 1.6;
+      border: 2px dashed #e53935;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+
+    /* 內文區塊 */
+    .content-section {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .big-text {
+      font-size: 28px;
+      color: #d32f2f;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .normal-text {
+      font-size: 20px;
+      color: #424242;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .proof-box {
+      background-color: #f1f8e9;
+      border: 1px solid #c5e1a5;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: left;
+      margin-bottom: 25px;
+    }
+
+    .proof-box ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .proof-box li {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2e7d32;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .proof-box li:last-child { margin-bottom: 0; }
+
+    .urgency-text {
+      font-size: 18px;
+      color: #616161;
+      background-color: #fff3e0;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    /* CTA 區塊 */
+    .cta-section {
+      padding: 0 20px 40px 20px;
+      text-align: center;
+    }
+
+    .countdown-wrapper {
+      background-color: #212121;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: inline-block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .countdown-title {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: #ffeb3b;
+      font-weight: bold;
+    }
+
+    .timer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .time-box {
+      background-color: #e53935;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      min-width: 35px;
+    }
+
+    /* LINE 按鈕 */
+    .line-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #06C755;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 15px 20px;
+      border-radius: 50px;
+      box-shadow: 0 6px 15px rgba(6, 199, 85, 0.4);
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .line-icon {
+      width: 45px;
+      height: 45px;
+      margin-right: 15px;
+    }
+
+    .btn-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .click-hint {
+      font-size: 14px;
+      color: #e8f5e9;
+      margin-bottom: 2px;
+    }
+
+    .main-action {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .privacy-text {
+      font-size: 14px;
+      color: #757575;
+      margin-top: 15px;
+    }
+
+    /* 頁尾 */
+    .footer-section {
+      border-top: 1px solid #e0e0e0;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #9e9e9e;
+    }
+
+    .footer-section p { margin: 5px 0; }
+
+    /* 動畫配置 */
+    @keyframes blink-bg {
+      0% { background-color: #d32f2f; }
+      50% { background-color: #b71c1c; }
+      100% { background-color: #d32f2f; }
+    }
+    .blink-bg { animation: blink-bg 1s infinite; }
+
+    @keyframes flash {
+      0% { opacity: 1; text-shadow: 0 0 5px #ffcccc; }
+      50% { opacity: 0.6; text-shadow: none; }
+      100% { opacity: 1; text-shadow: 0 0 5px #ffcccc; }
+    }
+    .animate-flash { animation: flash 1.5s infinite; }
+
+    @keyframes breathe {
+      0% { transform: scale(1); box-shadow: 0 5px 15px rgba(6,199,85,0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 15px 25px rgba(6,199,85,0.6); }
+      100% { transform: scale(1); box-shadow: 0 5px 15px rgba(6,199,85,0.4); }
+    }
+    .animate-breathe { animation: breathe 1.2s infinite ease-in-out; }
+
+    /* RWD 適應 */
+    @media (max-width: 480px) {
+      .main-title { font-size: 28px; }
+      .subtitle-box { font-size: 20px; }
+      .big-text { font-size: 24px; }
+      .main-action { font-size: 20px; }
+    }
+  </style>
+
+  <script>
+    // 綁定跳轉邏輯
+    document.querySelectorAll('.link-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof window.onLinkBtnClick === 'function') {
+          window.onLinkBtnClick();
+        }
+      });
+    });
+
+    // 倒數計時邏輯 (15分鐘)
+    let totalSeconds = 15 * 60;
+
+    function updateTimer() {
+      if (totalSeconds <= 0) return; // 停在 0
+      totalSeconds--;
+
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+
+      const minEl = document.getElementById('min');
+      const secEl = document.getElementById('sec');
+
+      if (minEl) minEl.innerText = m < 10 ? '0' + m : m.toString();
+      if (secEl) secEl.innerText = s < 10 ? '0' + s : s.toString();
+    }
+
+    setInterval(updateTimer, 1000);
+  </script>
+</BaseLayout>

@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import btn from './static/btn.png'
 
 export const getStaticPaths = (() => {
   return [
@@ -27,14 +26,28 @@ const img1 = await import(`../../../images/${img_prefix}img.png`);
     <h3 class="text-xl font-bold text-center px-4">
       立即參加，獲得優質股票！
     </h3>
-    <Image class="link-btn animate-breathe" src={btn} alt="按鈕" />
+    <a
+      class="link-btn cta-line animate-breathe"
+      href="javascript:void(0)"
+      onclick="onLinkBtnClick()"
+    >
+      <span class="cta-line__icon">LINE</span>
+      <span class="cta-line__text">加入好友 免費領取</span>
+    </a>
     <h3 class="text-xl font-bold text-center px-4">
       加入LINE並傳送「領取」訊息<br />
       就能免費獲得最新的股票上漲<br />
       新聞資訊！
     </h3>
     <Image src={img1.default} alt="圖片1" />
-    <Image class="link-btn animate-breathe" src={btn} alt="按鈕" />
+    <a
+      class="link-btn cta-line animate-breathe"
+      href="javascript:void(0)"
+      onclick="onLinkBtnClick()"
+    >
+      <span class="cta-line__icon">LINE</span>
+      <span class="cta-line__text">加入好友 免費領取</span>
+    </a>
     <h3 class="text-xl font-bold text-center mb-10 px-4">
       隱私權政策
     </h3>
@@ -54,6 +67,49 @@ const img1 = await import(`../../../images/${img_prefix}img.png`);
 
     .animate-breathe {
       animation: breathe 1s ease-in-out infinite;
+    }
+
+    /* 文字 CTA：沿用 LINE 品牌綠，取代原本印死文案的按鈕圖 */
+    .cta-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: calc(100% - 2rem);
+      max-width: 30rem;
+      padding: 1rem 1.25rem;
+      border-radius: 9999px;
+      background: #06c755;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(6, 199, 85, 0.35);
+      cursor: pointer;
+    }
+
+    .cta-line:active {
+      transform: scale(0.98);
+    }
+
+    .cta-line__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.15em 0.5em;
+      border-radius: 0.4em;
+      background: #fff;
+      color: #06c755;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    @media (min-width: 480px) {
+      .cta-line {
+        font-size: 1.4rem;
+      }
     }
 
     /* 繁體中文字體設定 */

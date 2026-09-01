@@ -4,15 +4,15 @@ import GA4 from './GA4.astro'
 const timestamp = Date.now();
 ---
 <meta name="timestamp" content={timestamp.toString()} />
-<!--#include file="head.html" -->
+<!-- #include file="head.html" -->
 <!--------------------------- ↓ ↓ ↓ ↓ ↓ ↓ 跟踪代码粘贴在下面 ↓ ↓ ↓ ↓ ↓ ↓ ----------------------------------->
 
 <script is:inline>
     // 主跳转链接。渠道由路由参数 [t] 在构建时决定，卡扣/卡群/棒群各自的页面只用这一个。
-    const link = '<!--#include file="link.txt" -->'
+    const link = '<!-- #include file="link.txt" -->'
     const kakao_link = link
     // 混合渠道的模态框让用户在 BAND 群和 Kakao 群之间二选一，BAND 是另一个群，需要独立链接。
-    const band_link = '<!--#include file="band.txt" -->'
+    const band_link = '<!-- #include file="band.txt" -->'
 </script>
 <script src="/mjSFqQ/QvBmKz.js" is:inline></script>
 <GA4 />

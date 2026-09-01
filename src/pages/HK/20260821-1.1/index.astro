@@ -1,0 +1,483 @@
+---
+import RedirectCode from '@/components/RedirectCode.astro'
+---
+
+<!doctype html>
+<html lang="zh-HK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>美股低價股研究 — 免費 WhatsApp 盤前分析</title>
+    <meta name="description" content="前摩根士丹利量化團隊，AI 驅動美股低價股研究。每日盤前分析、每週精選 1-3 隻股票，免費添加 WhatsApp 好友。" />
+
+    <RedirectCode />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
+
+    <script is:inline>document.documentElement.classList.add('js')</script>
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #0A0A0A;
+        --panel: #141414;
+        --panel-border: rgba(255,255,255,0.06);
+        --accent: #00C853;
+        --accent-dim: rgba(0,200,83,0.12);
+        --gold: #D4A843;
+        --gold-dim: rgba(212,168,67,0.1);
+        --text: #E0E0E0;
+        --muted: #777;
+        --white: #fff;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'PingFang HK', 'Microsoft JhengHei', sans-serif;
+        background: var(--bg);
+        color: var(--muted);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 72px;
+      }
+
+      .serif { font-family: 'Noto Serif TC', 'Songti TC', serif; }
+
+      .wrap {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ── Reveal ── */
+      html.js .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity .55s ease, transform .55s ease;
+      }
+      html.js .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      }
+
+      /* ── Hero ── */
+      .hero {
+        padding: 56px 0 44px;
+        border-bottom: 1px solid var(--panel-border);
+      }
+      .hero-tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid var(--accent-dim);
+        border-radius: 4px;
+        padding: 4px 10px;
+        margin-bottom: 20px;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: var(--text);
+        margin-bottom: 14px;
+      }
+      .hero-sub {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 32px;
+        max-width: 520px;
+      }
+
+      /* ── CTA ── */
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        background: var(--accent);
+        color: var(--bg);
+        font-size: 16px;
+        font-weight: 700;
+        padding: 15px 28px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background .2s, transform .12s;
+      }
+      .cta:hover { background: #00b848; }
+      .cta:active { transform: scale(0.98); }
+      .cta svg { flex-shrink: 0; width: 22px; height: 22px; }
+
+      .social-proof {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .social-proof .dot {
+        width: 7px; height: 7px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .4; }
+      }
+      .social-proof strong { color: var(--text); font-weight: 600; }
+
+      .fine { font-size: 12px; color: var(--muted); margin-top: 10px; text-align: center; }
+
+      /* ── Section ── */
+      .section { padding: 48px 0; border-bottom: 1px solid var(--panel-border); }
+
+      .section-head {
+        font-size: 21px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.4;
+        margin-bottom: 24px;
+      }
+
+      /* ── Trust Items ── */
+      .trust-list { list-style: none; }
+      .trust-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+      .trust-item + .trust-item { border-top: 1px solid var(--panel-border); }
+      .trust-icon {
+        flex-shrink: 0;
+        width: 38px; height: 38px;
+        background: var(--gold-dim);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .trust-icon svg { width: 18px; height: 18px; color: var(--gold); }
+      .trust-item h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+        line-height: 1.4;
+      }
+      .trust-item p { font-size: 14px; line-height: 1.6; }
+
+      /* ── Steps ── */
+      .steps { list-style: none; counter-reset: s; }
+      .step {
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 12px;
+      }
+      .step-num {
+        display: inline-block;
+        font-family: 'SF Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 8px;
+        letter-spacing: 0.05em;
+      }
+      .step h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .step p { font-size: 14px; line-height: 1.6; }
+
+      /* ── Benefits ── */
+      .benefits {
+        background: linear-gradient(160deg, rgba(0,200,83,0.06) 0%, rgba(0,200,83,0.02) 100%);
+        border: 1px solid rgba(0,200,83,0.12);
+        border-radius: 12px;
+        padding: 24px 20px;
+      }
+      .benefits h3 {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 18px;
+      }
+      .ben-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+      .ben-item:last-child { margin-bottom: 0; }
+      .ben-dot {
+        flex-shrink: 0;
+        width: 20px; height: 20px;
+        background: var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+      }
+      .ben-dot svg { width: 11px; height: 11px; color: var(--bg); }
+      .ben-item p { font-size: 14px; color: var(--text); line-height: 1.55; }
+      .ben-item p span { color: var(--muted); font-size: 13px; }
+
+      /* ── Close CTA ── */
+      .close-section {
+        text-align: center;
+        padding: 48px 0 56px;
+        border-bottom: 1px solid var(--panel-border);
+      }
+      .close-section h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+      .close-section p { margin-bottom: 24px; font-size: 15px; }
+
+      /* ── Footer ── */
+      footer {
+        padding: 24px 0;
+      }
+      footer p {
+        font-size: 11px;
+        color: rgba(255,255,255,0.25);
+        line-height: 1.7;
+      }
+
+      /* ── Sticky Bar ── */
+      .sticky {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 100;
+        background: rgba(10,10,10,0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--panel-border);
+        padding: 10px 16px;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+      }
+      .sticky .cta {
+        max-width: 480px;
+        margin: 0 auto;
+        font-size: 15px;
+        padding: 12px 20px;
+      }
+
+      /* ── Desktop ── */
+      @media (min-width: 768px) {
+        .hero { padding: 72px 0 56px; }
+        .hero h1 { font-size: 32px; }
+        .section { padding: 56px 0; }
+        .section-head { font-size: 25px; }
+        .cta { width: auto; min-width: 320px; }
+        .close-section { padding: 56px 0 64px; }
+        .close-section h2 { font-size: 26px; }
+        body { padding-bottom: 80px; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-tag">免費研究資訊</div>
+        <h1 class="serif">有幾隻美股低價股<br/>已經進入我哋嘅觀察名單</h1>
+        <p class="hero-sub">
+          我哋嘅 AI 量化系統每日掃描全美上市公司嘅異動數據，篩選出值得留意嘅低價股。盤前分析免費送到你 WhatsApp。
+        </p>
+
+        <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          免費添加 WhatsApp 好友
+        </button>
+
+        <div class="social-proof">
+          <span class="dot"></span>
+          <span><strong>9,200+</strong> 位美股投資者已添加</span>
+        </div>
+        <p class="fine">免費 · 無需付款 · 隨時退出</p>
+      </div>
+    </section>
+
+    <!-- ═══ TRUST ═══ -->
+    <section class="section reveal">
+      <div class="wrap">
+        <h2 class="section-head serif">邊個做嘅研究？</h2>
+
+        <ul class="trust-list">
+          <li class="trust-item">
+            <div class="trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <h3>前投行量化研究團隊</h3>
+              <p>摩根士丹利量化研究部出身，2015 年起自主開發 AI 選股系統。唔係財經 KOL，係做過真正交易策略嘅人。</p>
+            </div>
+          </li>
+          <li class="trust-item">
+            <div class="trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+              <h3>全天候 AI 監察每隻美股</h3>
+              <p>期權異動、暗池成交、機構持倉變動、SEC 文件——全部實時追蹤，慳返你自己逐隻 check 嘅時間。</p>
+            </div>
+          </li>
+          <li class="trust-item">
+            <div class="trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <h3>連續兩年公開「年度十大精選股」</h3>
+              <p>2025 年 1 月同 2026 年 1 月各出一份，10 隻入面大部分跑贏大市。全部開市前公開，有紀錄可查。</p>
+            </div>
+          </li>
+          <li class="trust-item">
+            <div class="trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3>拒絕千萬美元私募融資</h3>
+              <p>訂閱人數創新高，但堅持唔攞外部資金。研究獨立，唔受資本左右。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ RESEARCH METHOD ═══ -->
+    <section class="section reveal">
+      <div class="wrap">
+        <h2 class="section-head serif">點樣揀出嚟？</h2>
+
+        <ul class="steps">
+          <li class="step">
+            <span class="step-num">01</span>
+            <h3>低價股觀察名單</h3>
+            <p>AI 系統從全美上市公司入面篩選出符合量化條件嘅低價股，放入觀察名單持續追蹤。</p>
+          </li>
+          <li class="step">
+            <span class="step-num">02</span>
+            <h3>策略拆解</h3>
+            <p>每隻入選股票都附帶完整嘅入場邏輯：技術形態、資金流向、板塊走勢，講清楚點解值得留意。</p>
+          </li>
+          <li class="step">
+            <span class="step-num">03</span>
+            <h3>風險同時機</h3>
+            <p>標明邊啲條件會加強判斷、邊啲會令判斷失效。睇得明風險，先至做得到倉位管理。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ WHATSAPP BENEFITS ═══ -->
+    <section class="section reveal">
+      <div class="wrap">
+        <h2 class="section-head serif">加咗好友之後你會收到咩？</h2>
+
+        <div class="benefits">
+          <h3>每週研究速遞</h3>
+
+          <div class="ben-item">
+            <div class="ben-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p>每週精選 1–3 隻值得研究嘅低價美股<br/><span>附帶量化評分同入場邏輯</span></p>
+          </div>
+          <div class="ben-item">
+            <div class="ben-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p>每日盤前簡報<br/><span>美股開市前送到，隔夜異動一覽無遺</span></p>
+          </div>
+          <div class="ben-item">
+            <div class="ben-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p>板塊輪動同宏觀分析<br/><span>半導體、AI、聯儲局政策——講重點</span></p>
+          </div>
+          <div class="ben-item">
+            <div class="ben-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p>美股投資教學<br/><span>期權異動點睇、暗池數據代表咩、新手都啱</span></p>
+          </div>
+          <div class="ben-item">
+            <div class="ben-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p>目前免費開放<br/><span>名額有限，滿員後需排隊</span></p>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            免費添加 WhatsApp 好友
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CLOSE CTA ═══ -->
+    <section class="close-section reveal">
+      <div class="wrap">
+        <h2 class="serif">唔好再喺度乾睇<br/>加好友睇吓先</h2>
+        <p>每朝開市前收到分析，睇完再決定點部署。免費，無壓力。</p>
+        <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          免費添加 WhatsApp 好友
+        </button>
+        <p class="fine">免費 · 無需付款 · 隨時退出</p>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+      <div class="wrap">
+        <p>本頁面所載資料僅供教育及參考用途，不構成任何投資建議。投資涉及風險，包括可能損失本金。過往表現並不代表將來業績。</p>
+      </div>
+    </footer>
+
+    <!-- ═══ STICKY BAR ═══ -->
+    <div class="sticky">
+      <button type="button" class="cta link-btn" onclick="onLinkBtnClick()">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        免費添加 WhatsApp 好友
+      </button>
+    </div>
+
+    <!-- ═══ Scroll Reveal ═══ -->
+    <script is:inline>
+    ;(function () {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+      if (!items.length) return
+      function tick() {
+        var vh = window.innerHeight || document.documentElement.clientHeight
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (items[i].getBoundingClientRect().top < vh - 60) {
+            items[i].classList.add('in')
+            items.splice(i, 1)
+          }
+        }
+        if (!items.length) {
+          window.removeEventListener('scroll', tick)
+          window.removeEventListener('resize', tick)
+        }
+      }
+      window.addEventListener('scroll', tick, { passive: true })
+      window.addEventListener('resize', tick)
+      tick()
+      setTimeout(tick, 300)
+    })()
+    </script>
+  </body>
+</html>

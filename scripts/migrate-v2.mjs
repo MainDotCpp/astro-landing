@@ -7,6 +7,10 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { execSync } from 'node:child_process'
 import { findDef } from './classify-v2.mjs'
 
+// 注意：SSI 注入当前是停用状态（`<!--` 与 `#` 之间留一个空格，nginx 不识别）。
+// 原因见 CLAUDE.md —— 目标文件缺失时 nginx 会把整张 404 页塞进 const link 的
+// 字符串字面量里，撑破 JS 导致整个 script 块 SyntaxError。
+// 若要重新启用，用 CLAUDE.md 里那条 sed 整站切换，不要单独改这里。
 const APPLY = process.argv.includes('--apply')
 const V2 = '/mjSFqQ/QvBmKz.js'
 
@@ -42,7 +46,7 @@ for (const f of files) {
 
     if (rest === '') {
       // 纯定义块 → 换成 SSI link 声明 + V2 脚本引用
-      const repl = `<script${inlineAttr}>\n    const link = '<!--#include file="link.txt" -->'\n</script>\n<script src="${V2}"${inlineAttr}></script>`
+      const repl = `<script${inlineAttr}>\n    const link = '<!-- #include file="link.txt" -->'\n</script>\n<script src="${V2}"${inlineAttr}></script>`
       s = s.slice(0, m.index) + repl + s.slice(m.index + m[0].length)
       bump('内嵌定义-整块替换')
     }
@@ -58,7 +62,7 @@ for (const f of files) {
         newBody = newBody.replace(/(?<!\.)\bonLinkBtnClick\b/g, 'window.onLinkBtnClick')
         bump('裸引用→window.onLinkBtnClick', dangling.length)
       }
-      const newBlock = `<script${m[1]}>${newBody}</script>\n<script${inlineAttr}>\n    const link = '<!--#include file="link.txt" -->'\n</script>\n<script src="${V2}"${inlineAttr}></script>`
+      const newBlock = `<script${m[1]}>${newBody}</script>\n<script${inlineAttr}>\n    const link = '<!-- #include file="link.txt" -->'\n</script>\n<script src="${V2}"${inlineAttr}></script>`
       s = s.slice(0, m.index) + newBlock + s.slice(m.index + m[0].length)
       bump('内嵌定义-保留同块其他代码')
       skipped.push(`${f}  (同块保留: ${rest.slice(0, 60).replace(/\s+/g, ' ')})`)
@@ -74,14 +78,14 @@ for (const f of files) {
   // ── 3. 独立的 link 占位 → SSI 注入 ──
   s = s.replace(/((?:const|var|let)\s+link\s*=\s*)(['"])(?:https?:\/\/[^'"]*|)\2/g, (mm, head) => {
     bump('link 占位→SSI')
-    return `${head}'<!--#include file="link.txt" -->'`
+    return `${head}'<!-- #include file="link.txt" -->'`
   })
 
   // ── 4. 槽位上方插入 head.html ──
   if (!/include file="head\.html"/.test(s)) {
     const slot = /([ \t]*)(<!--+\s*[⬇↓][^\n]*?(?:跟踪代码粘贴|PASTE TRACKING CODE)[^\n]*?-->)/i.exec(s)
     if (slot) {
-      s = s.slice(0, slot.index) + `${slot[1]}<!--#include file="head.html" -->\n` + s.slice(slot.index)
+      s = s.slice(0, slot.index) + `${slot[1]}<!-- #include file="head.html" -->\n` + s.slice(slot.index)
       bump('插入 head.html')
     }
   }

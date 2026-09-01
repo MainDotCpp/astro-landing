@@ -36,7 +36,9 @@ fi
 SSH_PORT=5522
 SOURCE_DIR="./dist/"
 
-EXCLUDE_BASE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=*_/ --exclude=**/*_/ --exclude=YY/ --exclude=**/YY/"
+# 画廊：只部署 index.php（密码门 + 内嵌索引）与缩略图；
+# index.html / *.json 是本地开发用的裸文件，传上去就能绕过密码门直接读到全部路径
+EXCLUDE_BASE="--exclude=.htaccess --exclude=.DS_Store --exclude=.user.ini --exclude=.well-known --exclude=*_/ --exclude=**/*_/ --exclude=YY/ --exclude=**/YY/ --exclude=/_gallery/index.html --exclude=/_gallery/index.json --exclude=/_gallery/shots.json"
 EXCLUDE_WITH_PRIVATE="$EXCLUDE_BASE --exclude=private"
 
 # ====== 部署目标 ======
@@ -167,6 +169,30 @@ for entry in "${TARGETS[@]}"; do
   IFS='|' read -r label host pw remote_path src exclude_private <<<"$entry"
   deploy_one "$label" "$host" "$pw" "$remote_path" "$src" "$exclude_private"
 done
+
+# ====== 部署后自检：确认 PHP 真的在执行 ======
+# 画廊入口 index.php 内嵌了密码与全部落地页路径。
+# 一旦服务器没执行 PHP，它会被当普通文件原样返回 —— 等于公开下载。
+verify_php() {
+  local url="https://t.dd-ll.xyz/"
+  echo "自检: $url"
+  local ct
+  ct=$(curl -sI --max-time 20 "$url" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type"{print $2}')
+  if [ -z "$ct" ]; then
+    echo "  ⚠ 取不到响应头，请手动确认"
+  elif [ "${ct#text/html}" != "$ct" ]; then
+    if curl -s --max-time 20 "${url}index.php" | grep -q 'correct_password'; then
+      echo "  ✗ 危险: 源码可下载，密码与索引已暴露！立即换回占位并排查 PHP 配置"
+    else
+      echo "  ✓ PHP 正常执行 ($ct)"
+    fi
+  else
+    echo "  ✗ 危险: content-type 是 $ct —— PHP 没执行，index.php 正被当文件下载"
+    echo "     密码与全部落地页路径已暴露，立即处理"
+  fi
+  echo ""
+}
+verify_php
 
 # ====== 汇总 ======
 echo "================================"

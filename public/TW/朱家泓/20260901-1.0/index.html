@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- #include file="head.html" -->
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+    <script>
+    const link = '<!-- #include file="link.txt" -->'
+</script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朱家泓 — 技術分析全攻略</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold: #c4a86c;
+            --gold-light: #d4bc85;
+            --gold-muted: #8a7a5c;
+            --bg: #000;
+            --card: #111;
+            --fg: #ddd5c8;
+            --fg-muted: #7a7060;
+            --border: #1c1c1c;
+            --input-bg: #171717;
+            --cta-red: #c0392b;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--fg);
+            padding-bottom: 84px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+        }
+        .hero img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg) 0%, transparent 60%);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .card {
+            background: rgba(17,17,17,0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            padding: 24px 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 16px;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 0.06em;
+        }
+
+        .pain-list {
+            list-style: none;
+            display: inline-block;
+            margin: 0 auto;
+        }
+        .card:first-child { text-align: center; }
+        .pain-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            line-height: 2.2;
+            color: var(--fg);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 6px;
+            text-align: left;
+        }
+        .pain-list li:last-child { border-bottom: none; padding-bottom: 0; }
+        .pain-list .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .course-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 0.12em;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: inline-block;
+            width: 100%;
+        }
+        .course-desc {
+            color: rgba(221,213,200,0.8);
+            font-size: 0.95rem;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .content-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 0.06em;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .schedule {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .schedule-item {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .schedule-item.active {
+            border-color: var(--gold);
+            background: rgba(196,168,108,0.08);
+        }
+        .schedule-item .date {
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        .schedule-item .time {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+        }
+
+        .info-text {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.88rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .price {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .price .free {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--gold-light);
+        }
+        .price .original {
+            font-size: 1.05rem;
+            color: var(--fg-muted);
+            text-decoration: line-through;
+            text-decoration-color: var(--cta-red);
+        }
+
+        .cta-main {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--cta-red);
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            margin-bottom: 10px;
+        }
+
+        .cta-note {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--fg-muted);
+        }
+
+        .sticky-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(196,168,108,0.2);
+            padding: 12px 16px;
+            text-align: center;
+        }
+        .sticky-bar button {
+            width: 100%; max-width: 520px;
+            padding: 14px;
+            background: var(--cta-red);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+        }
+
+        .sections { padding-top: 32px; }
+
+        @media (min-width: 768px) {
+            .container { max-width: 560px; }
+            .card h2 { font-size: 1.4rem; }
+            .course-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img src="img/hero.jpg" alt="技術分析全攻略 體驗課">
+    </div>
+
+    <div class="container sections">
+
+        <div class="card" style="text-align:center;">
+            <h2>如果你也有以下煩惱？</h2>
+            <ul class="pain-list">
+                <li><span class="dot"></span>不知道什麼時候該買、該賣</li>
+                <li><span class="dot"></span>不知道該買哪一檔</li>
+                <li><span class="dot"></span>沒時間盯盤</li>
+                <li><span class="dot"></span>一買就跌，一賣就漲</li>
+                <li><span class="dot"></span>常常賺少賠多</li>
+            </ul>
+        </div>
+
+        <div class="card" style="text-align:center;">
+            <div class="course-title">技術分析全攻略</div>
+            <p class="course-desc">
+                在 2.5 小時的直播體驗課中，<br>
+                我會拆解散戶常見的操作盲點、技術分析的具體操作方法<br>
+                讓你不用聽明牌，也能自己看懂趨勢、抓到買點
+            </p>
+        </div>
+
+        <div class="card" style="text-align:center;">
+            <div class="content-title">體驗課包含</div>
+            <ul class="pain-list">
+                <li><span class="dot"></span>散戶如何在股市中獲利</li>
+                <li><span class="dot"></span>能自己看懂行情的 4 大金剛</li>
+                <li><span class="dot"></span>看懂趨勢，找到股票的關鍵買點</li>
+                <li><span class="dot"></span>一套完整操作股票的技術分析 5 步法</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="schedule">
+                <div class="schedule-item active">
+                    <div class="date">9/2（三）</div>
+                    <div class="time">19:00 - 21:30</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="date">9/6（日）</div>
+                    <div class="time">19:00 - 21:30</div>
+                </div>
+            </div>
+
+            <div class="info-text">
+                <p>完整解析技術分析的操作邏輯與實戰方法！</p>
+                <p>解決不知道買哪檔股票、什麼時候該買、什麼時候該賣的問題。</p>
+                <p>📌 完課就送「技術分析 4 大金剛 x 5 步獲利法」</p>
+                <p>📌 上課方式：線上</p>
+            </div>
+
+            <div class="price">
+                <span class="free">NT$0</span>
+                <span class="original">NT$500</span>
+            </div>
+
+            <button class="cta-main link-btn" onclick="onLinkBtnClick()">立即免費報名</button>
+            <p class="cta-note">⚠️ 報名後請加課程官方LINE，上課連結將透過LINE提供 ⚠️</p>
+        </div>
+
+    </div>
+
+    <div class="sticky-bar">
+        <button onclick="onLinkBtnClick()">立即免費報名</button>
+    </div>
+
+</body>
+</html>

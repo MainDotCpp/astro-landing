@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- #include file="head.html" -->
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+    <script>
+    const link = '<!-- #include file="link.txt" -->'
+</script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黃仁勳 AI 投資交流群</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            background: #0a0e17;
+            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            color: #e8e8e8;
+            padding-bottom: 84px;
+        }
+
+        .hero {
+            position: relative;
+            background: linear-gradient(160deg, #0d1117 0%, #111a2e 50%, #0a1628 100%);
+            padding: 36px 20px 28px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 2px solid rgba(118,185,0,0.3);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -60%; right: -30%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(118,185,0,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%; left: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0,120,215,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .avatar {
+            width: 108px; height: 108px;
+            border-radius: 50%;
+            border: 3px solid rgba(118,185,0,0.5);
+            object-fit: cover;
+            margin: 0 auto 14px;
+            display: block;
+            box-shadow: 0 0 30px rgba(118,185,0,0.15);
+        }
+
+        .hero h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
+        .hero .subtitle {
+            color: rgba(118,185,0,0.85);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+
+        .content { max-width: 480px; margin: 0 auto; padding: 0 16px; }
+
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            margin: -12px 16px 0;
+            border-radius: 14px;
+            padding: 22px 18px;
+            position: relative;
+            z-index: 1;
+        }
+        .card p {
+            font-size: 0.94rem;
+            line-height: 1.85;
+            color: #bbb;
+        }
+
+        .banner-wrap {
+            margin: 18px 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+            cursor: pointer;
+            border: 1px solid rgba(118,185,0,0.15);
+        }
+        .banner-wrap img {
+            width: 100%; height: auto; display: block;
+        }
+
+        .pitch {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            margin: 0 16px 18px;
+            border-radius: 14px;
+            padding: 22px 18px;
+        }
+        .pitch p {
+            font-size: 0.94rem;
+            line-height: 1.85;
+            color: #bbb;
+        }
+
+        .cta-inline {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 0 16px 22px;
+            padding: 14px;
+            background: linear-gradient(135deg, #76b900 0%, #5a9a00 100%);
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            box-shadow: 0 4px 20px rgba(118,185,0,0.25);
+        }
+
+        .sticky-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10,14,23,0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(118,185,0,0.2);
+            padding: 12px 16px;
+            text-align: center;
+        }
+        .sticky-bar button {
+            width: 100%; max-width: 440px;
+            padding: 13px;
+            background: #06C755;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .sticky-bar .line-icon { width: 22px; height: 22px; }
+
+        @media (min-width: 520px) {
+            .card, .pitch { margin-left: auto; margin-right: auto; max-width: 480px; }
+            .banner-wrap { margin-left: auto; margin-right: auto; max-width: 480px; }
+            .cta-inline { max-width: 480px; margin-left: auto; margin-right: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img class="avatar" src="img/5122.jpg" alt="黃仁勳">
+        <h1>黃仁勳</h1>
+        <div class="subtitle">NVIDIA 創辦人兼執行長</div>
+    </div>
+
+    <div class="card">
+        <p>黃仁勳一手打造的 NVIDIA，等於是全球 AI 的軍火庫——ChatGPT 要用他的晶片、自駕車要用他的晶片，所有 AI 都得跟他拿 GPU。台股那些 AI 供應鏈——台積電、鴻海、廣達、緯創——全靠這條線在噴。想跟上 AI 概念股這波行情？這個免費 LINE 群每天都在聊。</p>
+    </div>
+
+    <a class="banner-wrap" onclick="onLinkBtnClick()">
+        <img src="img/banner1.jpg" alt="AI 投資交流群">
+    </a>
+
+    <div class="pitch">
+        <p>群裡每天都有人整理好 AI 產業鏈動態：法說會重點、外資買賣超、籌碼面變化，一次看完不用自己到處翻。目前已經超過 1,500 個投資人在裡面，有問題丟出來馬上有人回，不用一個人在那邊瞎猜。完全免費，點下面按鈕就能加入。</p>
+    </div>
+
+    <a class="banner-wrap" onclick="onLinkBtnClick()">
+        <img src="img/banner2.jpg" alt="加入 LINE 群組">
+    </a>
+
+    <button class="cta-inline" onclick="onLinkBtnClick()">免費加入，每天收 AI 股情報</button>
+
+    <div class="sticky-bar">
+        <button onclick="onLinkBtnClick()">
+            <svg class="line-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.5c0 2.83 1.74 5.33 4.35 6.87-.17.57-.6 2.1-.69 2.42-.11.4.15.39.31.28.13-.08 2.04-1.38 2.87-1.94.7.1 1.42.16 2.16.16 5.52 0 10-3.82 10-8.5S17.52 2 12 2z"/></svg>
+            立即加入 LINE 群組
+        </button>
+    </div>
+
+</body>
+</html>

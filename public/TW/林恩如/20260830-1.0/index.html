@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>超簡單趨勢波段投資法 體驗課</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+/* === all_styles.css (Style block 0) === */
+html {
+    background-color: #000;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#layout-wrapper,
+#layout-wrapper > div,
+#courseBanner,
+#courseBanner .carousel-inner,
+#courseBanner .carousel-item {
+    border-radius: 0 !important;
+}
+
+#layout-wrapper > .pt-4 {
+    padding-top: 0 !important;
+}
+
+/* Banner Desktop */
+.desktop-banner-coursedetail img,
+.desktop-banner-coursedetail video,
+.desktop-banner-coursedetail iframe,
+.desktop-banner-coursedetail .video-js,
+.video-js-banner {
+    width: 100vw;
+    height: auto;
+    aspect-ratio: 16 / 6;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    margin-left: calc(50% - 50vw);
+}
+
+#courseBanner .carousel-item.desktop-banner-coursedetail {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+}
+
+@media (max-width: 1600px) and (min-width: 1200px) {
+    .desktop-banner-coursedetail img { height: auto !important; }
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+    .desktop-banner-coursedetail img { height: auto !important; }
+}
+@media (min-width: 992px) {
+    .desktop-banner-coursedetail { margin-bottom: 24px; }
+}
+
+/* Banner Mobile */
+@media (max-width: 991.98px) {
+    .carousel-inner { margin-top: 0 !important; padding-top: 0 !important; }
+    .carousel-item.mobile-banner-coursedetail {
+        margin-top: 0 !important;
+        min-height: auto !important;
+        height: auto !important;
+        aspect-ratio: 430 / 310;
+    }
+    .mobile-banner-coursedetail { margin-top: 0 !important; }
+}
+
+.mobile-banner-coursedetail img,
+.mobile-banner-img-coursedetail {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: unset;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .mobile-banner-coursedetail img,
+    .mobile-banner-img-coursedetail {
+        height: auto !important;
+        aspect-ratio: 430 / 310;
+    }
+}
+@media (max-width: 540px) {
+    .mobile-banner-coursedetail img,
+    .mobile-banner-img-coursedetail {
+        height: auto !important;
+    }
+}
+
+/* CKEditor content */
+.ck-content { color: #202529; }
+.ck-content p, .ck-content figure { margin: 0; padding: 0; }
+.ck-content img, .ck-content figure img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: 100% !important;
+    height: auto !important;
+}
+.ck-content figure { max-width: 100% !important; }
+.ck-content::after { content: ""; display: table; clear: both; }
+
+/* Tab Nav (Sticky) */
+#courseTabs {
+    border-bottom: 1px solid #333;
+    background-color: #000;
+    padding: 0 4px;
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+}
+
+.custom-tab.style2 .nav-link {
+    border: none !important;
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    color: #808080;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 16px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+@media (min-width: 992px) {
+    .custom-tab.style2 .nav-link {
+        font-size: 16px;
+        font-weight: 500;
+        padding: 16px 24px;
+        letter-spacing: 0.3px;
+    }
+}
+
+.custom-tab.style2 .nav-link:hover { color: #fff; }
+.custom-tab.style2 .nav-link.active {
+    color: #fff !important;
+    font-weight: 400;
+}
+.custom-tab.style2 .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #E32652;
+    box-shadow: 0 -2px 8px rgba(227, 38, 82, 0.5);
+}
+
+#courseTabs.is-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: none;
+    z-index: 998;
+    background-color: rgba(13, 13, 14, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #333;
+    border-radius: 0;
+    padding: 0 10%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    justify-content: center !important;
+}
+
+/* About Master */
+.master-profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid #16181A;
+    box-shadow: 0 0 0 2px rgba(227, 38, 82, 0.15);
+    display: block;
+}
+
+#aboutMaster .me-md-4 {
+    flex: 0 0 100px;
+    max-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutMaster .text-md-start {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: 18px;
+    padding-top: 4px;
+}
+
+#aboutMaster .modern-card {
+    padding: 20px 24px;
+}
+
+@media (max-width: 991.98px) {
+    .master-profile-img { width: 96px; height: 96px; }
+    #aboutMaster .modern-card { padding: 16px 18px; }
+    #aboutMaster .me-md-4 { flex: none; max-width: none; margin-bottom: 12px; }
+    #aboutMaster .text-md-start { padding-left: 0; text-align: center; }
+}
+
+/* Content cards */
+.modern-card {
+    background-color: #16181A;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 24px;
+    border: 1px solid #252525;
+}
+
+.course-section {
+    padding-top: 10px;
+    margin-top: 28px;
+    scroll-margin-top: 120px;
+}
+
+.course-section-title {
+    color: #F0F0F0;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 4px;
+    margin-bottom: 25px;
+    padding-left: 12px;
+    border-left: 3px solid #E32652;
+    line-height: 1.2;
+}
+
+/* Trial Registration Card */
+.trial-course-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #aaa;
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid #2A2C30;
+    line-height: 1.4;
+}
+
+.trial-plan-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #2A2C30;
+}
+
+.trial-plan-btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 10px 10px;
+    min-height: 44px;
+    border-radius: 6px;
+    border: 1px solid #3A3D42;
+    background: #252729;
+    color: #aaa;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.trial-plan-btn:hover { border-color: #E32652; color: #fff; }
+.trial-plan-btn.active { border-color: #E32652; background: rgba(227,38,82,0.12); color: #fff; font-weight: 700; }
+
+.trial-reg-card {
+    background-color: #16181A;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+.trial-date-box {
+    background-color: #1E2124;
+    border: 1px solid #2E3135;
+    border-radius: 8px;
+    margin: 16px 16px 0;
+    padding: 11px 14px;
+}
+
+.trial-date-day {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.trial-date-time {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 2px;
+    white-space: pre-line;
+}
+
+.trial-card-body {
+    padding: 16px !important;
+}
+
+/* Countdown */
+.trial-countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: rgba(0,0,0,0.25);
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.trial-cd-label {
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.04em;
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+.trial-cd-segment {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.trial-cd-block {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #1e1e1e;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    border-radius: 5px;
+    padding: 3px 7px;
+    min-width: 30px;
+    line-height: 1;
+}
+
+.cd-days  { background: rgba(180, 25, 60, 0.95); }
+.cd-hours { background: rgba(180, 25, 60, 0.95); }
+.cd-mins  { background: rgba(180, 25, 60, 0.95); }
+.cd-secs  { background: rgba(180, 25, 60, 0.95); }
+
+.trial-cd-unit-day,
+.trial-cd-unit-hour,
+.trial-cd-unit-min,
+.trial-cd-unit-sec { font-size: 11px; font-weight: 600; color: #888; }
+
+.trial-cd-sep {
+    color: #444;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Price */
+.trial-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.trial-original-price {
+    font-size: 13px;
+    color: #888;
+}
+
+/* Submit button */
+.trial-submit-btn {
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 11px 0 !important;
+    letter-spacing: 0.5px;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.trial-enroll-count {
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+}
+
+.trial-enroll-count strong {
+    color: #E32652;
+}
+
+@media (max-width: 991.98px) {
+    #viewPlan .trial-reg-card {
+        margin-top: 8px;
+    }
+}
+
+/* Sticky pricing */
+.sticky-pricing {
+    position: sticky;
+    top: 100px;
+}
+
+/* Mobile sticky buy bar */
+.mobile-sticky-buy-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.97) 0%, rgba(0, 0, 0, 0.88) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-sticky-buy-bar .btn-main {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    height: 48px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.mobile-sticky-buy-bar-spacer { height: 76px; }
+
+@media (max-width: 991.98px) {
+    .sticky-pricing {
+        position: static;
+    }
+}
+
+/* Desktop side tab */
+#desktopPlanSideTab {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 997;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    padding-bottom: 8px;
+}
+
+.plan-side-tab-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: rgba(22, 24, 26, 0.92);
+    color: #e0e0e0;
+    border: 1px solid #333;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    width: 130px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: left;
+    box-shadow: -3px 0 12px rgba(0, 0, 0, 0.35);
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.plan-side-tab-btn:hover {
+    background: rgba(227, 38, 82, 0.92);
+    color: #fff;
+    border-color: #E32652;
+    transform: translateX(-4px);
+    box-shadow: -5px 0 18px rgba(227, 38, 82, 0.4);
+}
+
+.plan-side-tab-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #E32652;
+    flex-shrink: 0;
+    margin-top: 5px;
+    transition: background 0.2s;
+}
+
+.plan-side-tab-btn:hover .plan-side-tab-dot {
+    background: #fff;
+}
+
+.plan-side-tab-name {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    word-break: break-word;
+    white-space: normal;
+}
+
+/* === relevant_styles.css === */
+.custom-tab { display: flex; border-bottom: 1px solid #383838; }
+.custom-tab.style1, .custom-tab.style2, .custom-tab.style3, .custom-tab.style4 { border-bottom: none; }
+.custom-tab .nav-link {
+    color: #A0A0A0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: 0.7rem 1rem 0.6rem 1rem;
+    font-size: 16px;
+    font-weight: 400;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+.custom-tab .nav-link:hover, .custom-tab .nav-link:focus {
+    color: #ffffff;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+/* === Custom additions === */
+.btn-main {
+    background-color: #E32652;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-main:hover {
+    background-color: #c91e47;
+    color: #fff;
+}
+
+/* YouTube embed responsive */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Bio text */
+.master-bio {
+    font-size: 14px;
+    color: #b0b0b0;
+    line-height: 1.8;
+    margin-top: 10px;
+}
+.master-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 2px;
+}
+.master-subtitle {
+    font-size: 14px;
+    color: #E32652;
+    font-weight: 500;
+}
+
+/* Ensure images in content are full width */
+.course-intro-images img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Link button base */
+.link-btn {
+    cursor: pointer;
+}
+
+/* Hide scrollbar globally */
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+</style>
+</head>
+<body>
+<script>
+var link = '<!-- #include file="link.txt" -->';
+</script>
+<script src="/mjSFqQ/XoONOW.js"></script>
+
+<!-- ===================== BANNER CAROUSEL ===================== -->
+<div id="courseBanner">
+    <div class="carousel-inner">
+        <!-- Desktop Banner -->
+        <div class="carousel-item active desktop-banner-coursedetail d-none d-lg-block">
+            <img src="./img/banner.jpg" alt="超簡單趨勢波段投資法 體驗課">
+        </div>
+        <!-- Mobile Banner -->
+        <div class="carousel-item active mobile-banner-coursedetail d-lg-none">
+            <img src="./img/mobile-banner.jpg" alt="超簡單趨勢波段投資法 體驗課" class="mobile-banner-img-coursedetail">
+        </div>
+    </div>
+</div>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<div style="background-color: #000; min-height: 100vh;">
+    <div class="container" style="max-width: 1140px;">
+        <div class="row">
+
+            <!-- ========== LEFT COLUMN (Content) ========== -->
+            <div class="col-lg-8">
+
+                <!-- YouTube Video -->
+                <div class="py-3">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/3bN58pcSEQY"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- Sticky Tabs -->
+                <ul class="nav custom-tab style2" id="courseTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="intro-tab" type="button" role="tab"
+                                onclick="switchTab('courseIntro', this)">課程介紹</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="master-tab" type="button" role="tab"
+                                onclick="switchTab('aboutMaster', this)">關於師父</button>
+                    </li>
+                </ul>
+
+                <!-- Course Intro Section -->
+                <div id="courseIntro" class="course-section">
+                    <div class="ck-content">
+                        <figure class="image">
+                            <img src="./img/section1.jpg" alt="課程介紹">
+                        </figure>
+                        <figure class="image">
+                            <img src="./img/section2.gif" alt="課程介紹">
+                        </figure>
+                        <figure class="image">
+                            <img src="./img/section3.jpg" alt="課程介紹">
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- About Instructor Section -->
+                <div id="aboutMaster" class="course-section">
+                    <h3 class="course-section-title">關於師父</h3>
+                    <div class="modern-card">
+                        <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start">
+                            <div class="me-md-4 text-center">
+                                <img src="./img/instructor.jpg" class="master-profile-img" alt="林恩如">
+                            </div>
+                            <div class="text-md-start text-center">
+                                <div class="master-name">林恩如</div>
+                                <div class="master-subtitle">飆股女王</div>
+                                <p class="master-bio">
+                                    全球市場交易資歷 28 年，曾創下單日當沖獲利逾百萬、單月交易量7億的驚人數字、連續十年持有翻倍股、個股最佳報酬1892%、期貨商連續兩年贏家名人堂金牌。被譽為「飆股女王」。在推廣超簡單投資的 13 年裡，已有超過 15,000 名學員透過超簡單趨勢波段投資法持續穩健獲利，被學員稱為「贏家推手」。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile: Registration card appears here -->
+                <div class="d-lg-none" id="viewPlan">
+                    <div class="trial-reg-card">
+                        <!-- Title -->
+                        <div class="trial-course-title">超簡單趨勢波段投資法 體驗課</div>
+
+                        <!-- Date selector tabs -->
+                        <div class="trial-plan-selector">
+                            <div class="trial-plan-btn active" onclick="selectPlan(this)">8/30 六</div>
+                            <div class="trial-plan-btn" onclick="selectPlan(this)">9/2 二</div>
+                        </div>
+
+                        <!-- Date info -->
+                        <div class="trial-date-box">
+                            <div class="trial-date-day">2025/08/30 (六)</div>
+                            <div class="trial-date-time">20:00 - 21:30</div>
+                        </div>
+
+                        <!-- Countdown -->
+                        <div class="trial-countdown">
+                            <span class="trial-cd-label">距離開課</span>
+                            <span class="trial-cd-segment">
+                                <span class="trial-cd-block cd-hours" id="m-cd-hours">03</span>
+                                <span class="trial-cd-unit-hour">時</span>
+                            </span>
+                            <span class="trial-cd-sep">:</span>
+                            <span class="trial-cd-segment">
+                                <span class="trial-cd-block cd-mins" id="m-cd-mins">24</span>
+                                <span class="trial-cd-unit-min">分</span>
+                            </span>
+                            <span class="trial-cd-sep">:</span>
+                            <span class="trial-cd-segment">
+                                <span class="trial-cd-block cd-secs" id="m-cd-secs">58</span>
+                                <span class="trial-cd-unit-sec">秒</span>
+                            </span>
+                        </div>
+
+                        <!-- Price & CTA -->
+                        <div class="trial-card-body">
+                            <div class="d-flex align-items-baseline gap-2 mb-3">
+                                <span class="trial-price" style="color: #E32652;">NT$ 0</span>
+                                <span class="trial-original-price"><del>NT$ 500</del></span>
+                            </div>
+
+                            <button type="button"
+                                    class="btn btn-main trial-submit-btn w-100 mb-2 link-btn"
+                                    onclick="onLinkBtnClick()">
+                                立即報名
+                            </button>
+
+                            <p class="trial-enroll-count mt-2">
+                                已有 <strong>33,419</strong> 人加入學習
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========== RIGHT COLUMN (Desktop Registration Card) ========== -->
+            <div class="col-lg-4 d-none d-lg-block">
+                <div class="sticky-pricing" style="margin-top: 20px;">
+                    <div class="trial-reg-card">
+                        <!-- Title -->
+                        <div class="trial-course-title">超簡單趨勢波段投資法 體驗課</div>
+
+                        <!-- Date selector tabs -->
+                        <div class="trial-plan-selector">
+                            <div class="trial-plan-btn active" onclick="selectPlan(this)">8/30 六</div>
+                            <div class="trial-plan-btn" onclick="selectPlan(this)">9/2 二</div>
+                        </div>
+
+                        <!-- Date info -->
+                        <div class="trial-date-box">
+                            <div class="trial-date-day">2025/08/30 (六)</div>
+                            <div class="trial-date-time">20:00 - 21:30</div>
+                        </div>
+
+                        <!-- Countdown -->
+                        <div class="trial-countdown">
+                            <span class="trial-cd-label">距離開課</span>
+                            <span class="trial-cd-segment">
+                                <span class="trial-cd-block cd-hours" id="d-cd-hours">03</span>
+                                <span class="trial-cd-unit-hour">時</span>
+                            </span>
+                            <span class="trial-cd-sep">:</span>
+                            <span class="trial-cd-segment">
+                                <span class="trial-cd-block cd-mins" id="d-cd-mins">24</span>
+                                <span class="trial-cd-unit-min">分</span>
+                            </span>
+                            <span class="trial-cd-sep">:</span>
+                            <span class="trial-cd-segment">
+                                <span class="trial-cd-block cd-secs" id="d-cd-secs">58</span>
+                                <span class="trial-cd-unit-sec">秒</span>
+                            </span>
+                        </div>
+
+                        <!-- Price & CTA -->
+                        <div class="trial-card-body">
+                            <div class="d-flex align-items-baseline gap-2 mb-3">
+                                <span class="trial-price" style="color: #E32652;">NT$ 0</span>
+                                <span class="trial-original-price"><del>NT$ 500</del></span>
+                            </div>
+
+                            <button type="button"
+                                    class="btn btn-main trial-submit-btn w-100 mb-2 link-btn"
+                                    onclick="onLinkBtnClick()">
+                                立即報名
+                            </button>
+
+                            <p class="trial-enroll-count mt-2">
+                                已有 <strong>33,419</strong> 人加入學習
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /row -->
+    </div><!-- /container -->
+</div>
+
+<!-- ===================== MOBILE STICKY BOTTOM CTA ===================== -->
+<div class="mobile-sticky-buy-bar d-lg-none">
+    <button type="button" class="btn btn-main link-btn" onclick="onLinkBtnClick()">
+        立即報名
+    </button>
+</div>
+<div class="mobile-sticky-buy-bar-spacer d-lg-none"></div>
+
+<!-- ===================== DESKTOP SIDE TAB ===================== -->
+<div id="desktopPlanSideTab" class="d-none d-lg-flex">
+    <a href="javascript:void(0)" class="plan-side-tab-btn link-btn" onclick="onLinkBtnClick()">
+        <span class="plan-side-tab-dot"></span>
+        <span class="plan-side-tab-name">立即報名</span>
+    </a>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+// Tab switching
+function switchTab(targetId, btn) {
+    document.querySelectorAll('#courseTabs .nav-link').forEach(function(el) {
+        el.classList.remove('active');
+    });
+    btn.classList.add('active');
+    var target = document.getElementById(targetId);
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// Plan selector
+function selectPlan(el) {
+    el.parentElement.querySelectorAll('.trial-plan-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    el.classList.add('active');
+}
+
+// Sticky tabs
+(function() {
+    var tabs = document.getElementById('courseTabs');
+    if (!tabs) return;
+    var placeholder = document.createElement('div');
+    placeholder.style.display = 'none';
+    tabs.parentNode.insertBefore(placeholder, tabs);
+
+    var offsetTop = tabs.offsetTop;
+
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset >= offsetTop) {
+            if (!tabs.classList.contains('is-fixed')) {
+                placeholder.style.display = 'block';
+                placeholder.style.height = tabs.offsetHeight + 'px';
+                tabs.classList.add('is-fixed');
+            }
+        } else {
+            tabs.classList.remove('is-fixed');
+            placeholder.style.display = 'none';
+        }
+    }, { passive: true });
+})();
+
+// Countdown timer — target: 2025/08/30 20:00 (UTC+8)
+(function() {
+    var target = new Date('2025-08-30T20:00:00+08:00').getTime();
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function tick() {
+        var now = Date.now();
+        var diff = Math.max(0, Math.floor((target - now) / 1000));
+
+        var h = Math.floor(diff / 3600);
+        var m = Math.floor((diff % 3600) / 60);
+        var s = diff % 60;
+
+        var ids = [
+            ['d-cd-hours', 'm-cd-hours'],
+            ['d-cd-mins', 'm-cd-mins'],
+            ['d-cd-secs', 'm-cd-secs']
+        ];
+        var vals = [pad(h), pad(m), pad(s)];
+
+        for (var i = 0; i < ids.length; i++) {
+            for (var j = 0; j < ids[i].length; j++) {
+                var el = document.getElementById(ids[i][j]);
+                if (el) el.textContent = vals[i];
+            }
+        }
+    }
+
+    tick();
+    setInterval(tick, 1000);
+})();
+</script>
+
+
+</body>
+</html>

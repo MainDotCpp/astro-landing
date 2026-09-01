@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- #include file="head.html" -->
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+    <script>
+    const link = '<!-- #include file="link.txt" -->'
+</script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>賴憲政 — 股市憲哥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100vh;
+            background: #f5f0ea;
+            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            color: #2c2c2c;
+            padding-bottom: 88px;
+        }
+
+        .hero {
+            background: linear-gradient(160deg, #1a2340 0%, #0d1a2e 60%, #162235 100%);
+            padding: 40px 20px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(212,175,95,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .avatar {
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            border: 3px solid rgba(212,175,95,0.6);
+            object-fit: cover;
+            margin: 0 auto 16px;
+            display: block;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
+        .hero .subtitle {
+            color: rgba(212,175,95,0.9);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        .content {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .intro {
+            background: #fff;
+            margin: -16px 16px 0;
+            border-radius: 16px;
+            padding: 24px 20px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .intro p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .banner-wrap {
+            margin: 20px 16px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .banner-wrap:active { transform: scale(0.98); }
+        .banner-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .pitch {
+            background: #fff;
+            margin: 0 16px 20px;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .pitch p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .cta-inline {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 0 16px 24px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #d4af5f 0%, #c9983a 100%);
+            color: #1a1a1a;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(201,152,58,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.04em;
+        }
+        .cta-inline:active {
+            transform: scale(0.97);
+        }
+
+        .sticky-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(26,35,64,0.97);
+            backdrop-filter: blur(10px);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+        }
+        .sticky-bar button {
+            flex: 1;
+            max-width: 360px;
+            padding: 13px 16px;
+            background: #06C755;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 0.02em;
+            transition: transform 0.2s;
+        }
+        .sticky-bar button:active { transform: scale(0.97); }
+        .sticky-bar .line-icon {
+            width: 24px; height: 24px;
+        }
+
+        @media (min-width: 520px) {
+            .intro, .pitch { margin-left: auto; margin-right: auto; max-width: 480px; }
+            .banner-wrap { margin-left: auto; margin-right: auto; max-width: 480px; }
+            .cta-inline { max-width: 480px; margin-left: auto; margin-right: auto; display: block; }
+            .hero h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img class="avatar" src="img/5122.jpg" alt="賴憲政">
+        <h1>賴憲政</h1>
+        <div class="subtitle">股市憲哥</div>
+    </div>
+
+    <div class="intro">
+        <p>我是憲哥，在股市打滾超過 30 年了。最近開了一個免費的 LINE 交流群，每天分享我的操盤佈局跟潛力股。目前群裡已經有 1,500 多位股友，上禮拜點到的標的，平均漲了 12.8%。</p>
+    </div>
+
+    <div class="banner-wrap" onclick="onLinkBtnClick()">
+        <img src="img/banner1.jpg" alt="1500+ 位投資人已加入免費股市交流群">
+    </div>
+
+    <div class="pitch">
+        <p>技術面、籌碼面，我每天花時間整理好——盤前告訴你今天重點在哪，盤中有狀況即時提醒，收盤再一起複盤檢討。不用自己死盯螢幕，也能跟上行情節奏。想一起研究的，免費加入就對了。</p>
+    </div>
+
+    <div class="banner-wrap" onclick="onLinkBtnClick()">
+        <img src="img/banner2.jpg" alt="加入 LINE 群組，每日免費分享操盤策略">
+    </div>
+
+    <button class="cta-inline" onclick="onLinkBtnClick()">免費加入 LINE 投資交流群</button>
+
+    <div class="sticky-bar">
+        <button onclick="onLinkBtnClick()">
+            <svg class="line-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.5c0 2.83 1.74 5.33 4.35 6.87-.17.57-.6 2.1-.69 2.42-.11.4.15.39.31.28.13-.08 2.04-1.38 2.87-1.94.7.1 1.42.16 2.16.16 5.52 0 10-3.82 10-8.5S17.52 2 12 2z"/></svg>
+            立即加入 LINE 群組
+        </button>
+    </div>
+
+</body>
+</html>

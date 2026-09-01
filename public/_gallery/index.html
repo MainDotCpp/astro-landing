@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>落地页预览</title>
+<style>
+:root{
+  --bg:#14161a; --panel:#1b1e24; --panel-2:#20242b; --line:#2b3038; --line-hi:#3a4048;
+  --ink:#e8e6e1; --ink-2:#a8adb6; --muted:#71767f;
+  --mark:#e8402a;          /* 暗房红蜡笔：选中、计数、当前项 */
+  --live:#3fae9b;          /* 实时回源 */
+  --warn:#d8a13a;          /* 仅本地可见（目录以 _ 结尾，rsync 会跳过）*/
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,"Cascadia Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans","Noto Sans KR",sans-serif;
+  --card-w:220px; --card-w-px:220;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  background:var(--bg); color:var(--ink);
+  font:13px/1.5 var(--mono);
+  -webkit-font-smoothing:antialiased;
+  display:grid; grid-template-rows:auto 1fr; height:100vh; overflow:hidden;
+}
+button,input,select{font:inherit;color:inherit}
+::selection{background:var(--mark);color:#fff}
+
+/* ---------- 顶栏 ---------- */
+header{
+  border-bottom:1px solid var(--line); background:var(--panel);
+  display:flex; align-items:center; gap:14px; padding:0 14px; height:52px;
+}
+.brand{font-family:var(--sans);font-weight:650;letter-spacing:-.02em;font-size:14px;white-space:nowrap}
+.brand em{font-style:normal;color:var(--mark)}
+.count{color:var(--muted);font-size:11px;white-space:nowrap}
+.search{
+  flex:1; min-width:120px; max-width:420px; background:var(--bg); border:1px solid var(--line);
+  padding:7px 10px; outline:none; border-radius:0;
+}
+.search:focus{border-color:var(--mark)}
+.search::placeholder{color:var(--muted)}
+.ctl{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.ctl label{color:var(--muted);font-size:11px}
+select{background:var(--bg);border:1px solid var(--line);padding:6px 8px;outline:none;border-radius:0}
+select:focus{border-color:var(--mark)}
+.toggle{
+  background:var(--bg);border:1px solid var(--line);padding:6px 9px;cursor:pointer;
+  color:var(--muted);font-size:11px;user-select:none
+}
+.toggle[aria-pressed="true"]{border-color:var(--mark);color:var(--ink)}
+.toggle:hover{border-color:var(--line-hi)}
+.seg{display:flex;border:1px solid var(--line);background:var(--bg)}
+.seg button{background:none;border:0;padding:6px 11px;color:var(--muted);cursor:pointer;
+  font-size:11px;white-space:nowrap}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button:hover:not(.on){color:var(--ink-2)}
+.seg button.on{background:var(--panel-2);color:var(--ink);box-shadow:inset 0 -2px 0 var(--mark)}
+
+/* ---------- 主体 ---------- */
+.body{display:grid;grid-template-columns:210px 1fr;min-height:0}
+aside{border-right:1px solid var(--line);background:var(--panel);overflow-y:auto;padding:10px 0 40px}
+.tree-h{padding:6px 14px;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.tree a{
+  display:flex;justify-content:space-between;gap:8px;padding:4px 14px;color:var(--ink-2);
+  text-decoration:none;cursor:pointer;border-left:2px solid transparent
+}
+.tree a:hover{background:var(--panel-2);color:var(--ink)}
+.tree a.on{border-left-color:var(--mark);color:var(--ink);background:var(--panel-2)}
+.tree a .n{color:var(--muted);font-size:11px}
+.tree a.sub{padding-left:26px;font-size:12px;color:var(--muted)}
+.tree a.sub:hover{color:var(--ink-2)}
+
+main{overflow-y:auto;padding:0 14px 120px;scroll-behavior:smooth}
+
+/* ---------- 分组 ---------- */
+.group{margin-top:22px}
+.group-h{
+  position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;gap:10px;
+  padding:8px 0 7px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none
+}
+.group-h h2{margin:0;font:600 13px/1 var(--sans);letter-spacing:.01em}
+.group-h .n{color:var(--mark);font-size:11px}
+.group-h .chev{color:var(--muted);font-size:10px;transition:transform .15s}
+.group.closed .chev{transform:rotate(-90deg)}
+.group.closed .grid,.group.closed .subgroup{display:none}
+.sub-h{
+  display:flex;align-items:baseline;gap:8px;padding:14px 0 6px;color:var(--ink-2);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase
+}
+.sub-h .n{color:var(--muted);text-transform:none;letter-spacing:0}
+.sub-h::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--card-w),1fr));gap:10px}
+
+/* ---------- 卡片（一格底片） ---------- */
+.frame{
+  border:1px solid var(--line);background:var(--panel);cursor:pointer;outline:none;
+  display:flex;flex-direction:column;transition:border-color .12s
+}
+.frame:hover,.frame:focus-visible{border-color:var(--mark)}
+.frame:focus-visible{box-shadow:0 0 0 1px var(--mark)}
+.shot{
+  position:relative;aspect-ratio:390/844;overflow:hidden;background:#0c0e11;
+  border-bottom:1px solid var(--line)
+}
+.shot img{position:absolute;inset:0;width:100%;display:block}
+.shot img.card{height:100%;object-fit:cover;object-position:top}
+/* 签名动作：悬停时沿整条底片扫过一遍 */
+.shot img.full{height:auto;opacity:0;transition:opacity .18s;transform:translateY(0)}
+.frame:hover .shot img.full{
+  opacity:1;transform:translateY(calc(-100% * (1 - 1 / var(--ratio,1))));
+  transition:opacity .18s,transform 2.6s cubic-bezier(.4,0,.5,1)
+}
+.frame:hover .shot img.card{opacity:0;transition:opacity .18s}
+.shot iframe{
+  position:absolute;top:0;left:0;width:390px;height:844px;border:0;background:#fff;
+  transform:scale(calc(var(--card-w-px) / 390));transform-origin:top left;pointer-events:none
+}
+.seq{
+  position:absolute;top:0;left:0;z-index:2;background:rgba(10,12,15,.72);color:var(--ink-2);
+  font-size:9px;letter-spacing:.06em;padding:2px 5px
+}
+.badge{position:absolute;top:0;right:0;z-index:2;font-size:9px;padding:2px 5px;
+  letter-spacing:.04em;background:rgba(10,12,15,.78)}
+.badge.live{color:var(--live)}
+.badge.none{color:var(--muted)}
+.placeholder{
+  position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;
+  color:var(--muted);font-size:10px;padding:12px;line-height:1.7
+}
+.meta{padding:6px 7px 7px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.meta .path{color:var(--ink-2);font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.meta .t{font-family:var(--sans);font-size:11.5px;color:var(--ink);overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:1px}
+.tag{font-size:9px;color:var(--muted);border:1px solid var(--line);padding:0 4px;line-height:15px}
+.tag.ch{color:var(--ink-2);border-color:var(--line-hi)}
+.tag.x{color:var(--mark);border-color:transparent;padding-left:0}
+.tag.local{color:var(--warn);border-color:transparent;padding-left:0}
+.tag.note{color:var(--live);border-color:transparent;padding-left:0}
+
+.empty{padding:60px 0;text-align:center;color:var(--muted);line-height:2}
+
+/* ---------- 抽屉 ---------- */
+.scrim{position:fixed;inset:0;background:rgba(8,9,11,.66);opacity:0;pointer-events:none;
+  transition:opacity .18s;z-index:20}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(860px,100vw);background:var(--panel);
+  border-left:1px solid var(--line-hi);z-index:21;transform:translateX(100%);
+  transition:transform .22s cubic-bezier(.3,0,.2,1);display:grid;grid-template-columns:390px 1fr
+}
+.drawer.on{transform:none}
+.dv{border-right:1px solid var(--line);background:#0c0e11;overflow:hidden;position:relative}
+.dv iframe{width:390px;height:100%;border:0;display:block;background:#fff}
+.dp{overflow-y:auto;padding:16px 16px 40px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.dp h3{margin:0;font:600 15px/1.35 var(--sans);letter-spacing:-.01em}
+.dp .desc{color:var(--ink-2);font-size:11.5px;line-height:1.65;font-family:var(--sans)}
+.row{display:flex;flex-direction:column;gap:5px}
+.row .k{color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.linkbar{display:flex;border:1px solid var(--line);background:var(--bg)}
+.linkbar span{flex:1;padding:7px 9px;font-size:10.5px;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;color:var(--ink-2)}
+.linkbar button{background:none;border:0;border-left:1px solid var(--line);padding:0 10px;
+  cursor:pointer;color:var(--muted);font-size:10px;letter-spacing:.06em}
+.linkbar button:hover{color:var(--mark)}
+.dp select{width:100%}
+.dp .src{color:var(--muted);font-size:10.5px;word-break:break-all}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:11px;color:var(--ink-2)}
+.kv b{color:var(--muted);font-weight:400}
+.dclose{position:absolute;top:8px;right:8px;z-index:3;background:rgba(10,12,15,.8);
+  border:1px solid var(--line-hi);color:var(--ink-2);width:26px;height:26px;cursor:pointer;line-height:1}
+.dclose:hover{color:var(--mark);border-color:var(--mark)}
+.hint{color:var(--muted);font-size:10px;line-height:1.7}
+kbd{border:1px solid var(--line-hi);padding:0 4px;font-size:9px;color:var(--ink-2)}
+
+@media (max-width:900px){
+  .body{grid-template-columns:1fr}
+  aside{display:none}
+  .drawer{grid-template-columns:1fr;width:100vw}
+  .dv{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important}
+  .frame:hover .shot img.full{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">落地页<em>预览</em></div>
+  <div class="count" id="count">读取索引…</div>
+  <input class="search" id="q" placeholder="搜索标题 / 路径 / 人物 / 备注   ( / )" autocomplete="off">
+  <div class="ctl">
+    <label for="groupBy">分组</label>
+    <select id="groupBy">
+      <option value="region+category">区域 → 人物·分类</option>
+      <option value="region">区域</option>
+      <option value="category">人物·分类</option>
+      <option value="month">日期（按月）</option>
+      <option value="channel">渠道</option>
+      <option value="suffix">变体后缀</option>
+      <option value="">不分组</option>
+    </select>
+  </div>
+  <div class="ctl">
+    <label for="sortBy">排序</label>
+    <select id="sortBy">
+      <option value="date">日期新→旧</option>
+      <option value="path">路径</option>
+      <option value="variants">变体数</option>
+    </select>
+  </div>
+  <div class="ctl">
+    <label>排版</label>
+    <div class="seg" id="segLayout" role="group" aria-label="排版">
+      <button data-w="150">紧凑</button>
+      <button data-w="220" class="on">标准</button>
+      <button data-w="300">大图</button>
+    </div>
+  </div>
+</header>
+
+<div class="body">
+  <aside><div class="tree-h">目录</div><nav class="tree" id="tree"></nav></aside>
+  <main id="main"><div class="empty">读取索引…</div></main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="drawer" role="dialog" aria-label="页面预览">
+  <div class="dv">
+    <button class="dclose" id="dclose" title="关闭 (Esc)">×</button>
+    <iframe id="dframe" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe>
+  </div>
+  <div class="dp" id="dpanel"></div>
+</div>
+
+<script>
+const PROD = 'https://t.dd-ll.xyz'
+const DEV = 'http://localhost:4321'
+const HERE = location.origin
+/* 画廊本身既可能跑在 dev，也可能跑在生产域名下 */
+const ONLINE = !/^https?:\/\/(?:localhost|127\.|\[::1\])/.test(HERE)
+/* 线上一律不自动回源：iframe 打开的是真实生产页，SSI 注入的 FB Pixel / GA 会真的打点，
+   批量自动加载等于给这些落地页刷假量。线上缺图就显示占位，让人自己决定点开哪一张。 */
+const MAX_LIVE = ONLINE ? 0 : 24
+/* 本地入口在 /_gallery/index.html，缩略图就在旁边；线上入口是根目录的 index.php，要带前缀 */
+const SHOTS_BASE = window.__SHOTS_BASE__ ?? 'shots/'
+const CH_LABEL = {
+  卡扣:'卡扣', 卡群:'卡群', 棒群:'棒群', 混合:'混合', 引导弹窗:'弹窗', 提高质量_:'表单',
+  kakao:'kakao', band:'band', 'modal-kakao':'弹窗', 'form-kakao':'表单', choice:'选择',
+}
+
+let DATA = [], SHOTS = {}, view = [], current = null
+const state = { q: '', groupBy: 'region+category', sortBy: 'date', cardW: 220 }
+
+const $ = s => document.querySelector(s)
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))
+
+/* dev server 下 public/ 里的静态页必须带 index.html 才打得开（目录 URL 会 404）；
+   线上 nginx 自己会找 index，不能加。 */
+const needsIndex = (t, url) => t.source.startsWith('public/') && url.endsWith('/')
+const prodUrl = (t, url) => PROD + url
+const hereUrl = (t, url) => HERE + encodeURI(!ONLINE && needsIndex(t, url) ? `${url}index.html` : url)
+
+function shotState(t){
+  const s = SHOTS[t.id]
+  if (!s) return 'none'
+  return s.hash === t.rep.hash ? 'fresh' : 'stale'
+}
+
+async function load(){
+  /* 线上由 index.php 在密码门后把索引内嵌进页面（见 scripts/gallery/bundle.mjs）；
+     本地 dev 没有 PHP，走静态 JSON。 */
+  const boot = window.__GALLERY__
+  const [idx, shots] = boot
+    ? [boot.index, boot.shots]
+    : await Promise.all([
+      fetch('./index.json').then(r => r.json()),
+      fetch('./shots.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    ])
+  DATA = idx.templates.filter(t => !t.fragment && !t.private
+    && t.region !== 'common' && t.region !== 'test' && t.region !== 'YY')
+  SHOTS = shots
+  const shot = DATA.filter(t => shotState(t) !== 'none').length
+  $('#count').textContent = `${DATA.length} 个版式 · 已截图 ${shot}`
+  render()
+}
+
+/* ---------- 筛选 / 排序 / 分组 ---------- */
+function filtered(){
+  const q = state.q.trim().toLowerCase()
+  return DATA.filter((t) => {
+    if (!q) return true
+    return (t.title + ' ' + t.rep.url + ' ' + (t.category ?? '') + ' ' + (t.note ?? '')
+      + ' ' + t.people.join(' ') + ' ' + (t.description ?? '')).toLowerCase().includes(q)
+  })
+}
+
+const monthOf = t => t.date ? t.date.slice(0, 6).replace(/(\d{4})(\d{2})/, '$1-$2') : '无日期'
+const keyOf = (t, dim) => ({
+  region: t.region,
+  category: t.category ?? '—',
+  month: monthOf(t),
+  channel: t.channels.length ? t.channels.map(c => CH_LABEL[c] ?? c).join('/') : '无渠道',
+  suffix: t.suffix ?? '—',
+}[dim] ?? '')
+
+function sorted(list){
+  const by = state.sortBy
+  return list.slice().sort((a, b) =>
+    by === 'variants' ? b.variantCount - a.variantCount
+    : by === 'path' ? a.rep.url.localeCompare(b.rep.url)
+    : (b.date ?? '').localeCompare(a.date ?? '') || a.rep.url.localeCompare(b.rep.url))
+}
+
+/* ---------- 渲染 ---------- */
+function cardHTML(t, seq){
+  const st = shotState(t)
+  const ratio = Math.max(1, (SHOTS[t.id]?.height ?? 844) / 844)
+  const shot = st === 'none'
+    ? `<div class="placeholder" data-live="${esc(hereUrl(t, t.rep.url))}">未截图<br><span>bun run gallery:shots</span></div>`
+    : `<img class="card" loading="lazy" src="${SHOTS_BASE}${t.id}.card.webp" alt="">
+       <img class="full" loading="lazy" src="${SHOTS_BASE}${t.id}.full.webp" alt="" style="--ratio:${ratio.toFixed(3)}">`
+  const badge = st === 'none' ? '<span class="badge none">实时</span>' : ''
+  const chans = t.channels.slice(0, 3).map(c => `<span class="tag ch">${esc(CH_LABEL[c] ?? c)}</span>`).join('')
+  return `<article class="frame" data-id="${t.id}" tabindex="0">
+    <div class="shot">${shot}<span class="seq">${String(seq).padStart(3,'0')}</span>${badge}</div>
+    <div class="meta">
+      <div class="t">${esc(t.title ?? '（无标题）')}</div>
+      <div class="path">${esc(t.rep.url)}</div>
+      <div class="tags">
+        <span class="tag">${esc(t.region)}</span>
+        ${t.date ? `<span class="tag">${esc(t.date.slice(4))}</span>` : ''}
+        ${chans}
+        ${t.variantCount > 1 ? `<span class="tag x">×${t.variantCount}</span>` : ''}
+        ${t.deployable ? '' : '<span class="tag local">仅本地</span>'}
+        ${t.note ? `<span class="tag note">${esc(t.note)}</span>` : ''}
+      </div>
+    </div>
+  </article>`
+}
+
+function render(){
+  view = sorted(filtered())
+  const main = $('#main'), tree = $('#tree')
+  document.body.style.setProperty('--card-w', `${state.cardW}px`)
+
+  if (!view.length){
+    main.innerHTML = '<div class="empty">没有匹配的页面。<br>换个关键词，或打开 private / 工具页开关。</div>'
+    tree.innerHTML = ''
+    return
+  }
+
+  const flat = state.q.trim() || !state.groupBy
+  let seq = 0, html = '', nav = ''
+
+  if (flat){
+    html = `<div class="group"><div class="grid">${view.map(t => cardHTML(t, ++seq)).join('')}</div></div>`
+  } else {
+    const [d1, d2] = state.groupBy.split('+')
+    const g1 = new Map()
+    for (const t of view){
+      const k = keyOf(t, d1)
+      if (!g1.has(k)) g1.set(k, [])
+      g1.get(k).push(t)
+    }
+    for (const [k, items] of g1){
+      const gid = 'g_' + k.replace(/\W/g, '_')
+      nav += `<a data-to="${gid}"><span>${esc(k)}</span><span class="n">${items.length}</span></a>`
+      let inner = ''
+      if (d2){
+        const g2 = new Map()
+        for (const t of items){
+          const k2 = keyOf(t, d2)
+          if (!g2.has(k2)) g2.set(k2, [])
+          g2.get(k2).push(t)
+        }
+        for (const [k2, items2] of g2){
+          const sid = gid + '_' + k2.replace(/\W/g, '_')
+          if (g2.size > 1){
+            nav += `<a class="sub" data-to="${sid}"><span>${esc(k2)}</span><span class="n">${items2.length}</span></a>`
+            inner += `<div class="subgroup" id="${sid}"><div class="sub-h">${esc(k2)}<span class="n">${items2.length}</span></div>
+              <div class="grid">${items2.map(t => cardHTML(t, ++seq)).join('')}</div></div>`
+          } else {
+            inner += `<div class="grid">${items2.map(t => cardHTML(t, ++seq)).join('')}</div>`
+          }
+        }
+      } else {
+        inner = `<div class="grid">${items.map(t => cardHTML(t, ++seq)).join('')}</div>`
+      }
+      html += `<section class="group" id="${gid}">
+        <div class="group-h"><span class="chev">▼</span><h2>${esc(k)}</h2><span class="n">${items.length}</span></div>
+        ${inner}</section>`
+    }
+  }
+  main.innerHTML = html
+  tree.innerHTML = nav
+  measure()
+  mountLive()
+}
+
+/* iframe 缩放要的是无单位比例：存纯数字，calc(230px / 390) 会算出长度并让 transform 静默失效 */
+function measure(){
+  const c = document.querySelector('.frame .shot')
+  if (c) document.body.style.setProperty('--card-w-px', String(c.clientWidth))
+}
+addEventListener('resize', measure)
+
+/* 缺图卡片回源成实时 iframe。
+   不用 IntersectionObserver —— 这个项目里它已经出过「内容永远不显示」的事故。
+   iframe 原生 loading="lazy" 由浏览器决定何时真正发请求，效果一样且不会失灵。
+   MAX_LIVE 是保护阀：一张截图都没有时不至于同时开几百个 iframe。 */
+function mountLive(){
+  const phs = [...document.querySelectorAll('.placeholder')]
+  phs.slice(0, MAX_LIVE).forEach((ph) => {
+    const f = document.createElement('iframe')
+    f.loading = 'lazy'
+    f.setAttribute('sandbox', 'allow-scripts allow-same-origin')
+    f.setAttribute('referrerpolicy', 'no-referrer')
+    f.src = ph.dataset.live
+    const badge = ph.parentElement.querySelector('.badge')
+    ph.replaceWith(f)
+    badge?.classList.replace('none', 'live')
+  })
+  phs.slice(MAX_LIVE).forEach((ph) => {
+    ph.innerHTML = ONLINE
+      ? '未截图<br><span>本地跑 bun run gallery 后重新部署</span>'
+      : '未截图 · 超出实时预览上限<br><span>bun run gallery:shots</span>'
+  })
+}
+
+/* ---------- 抽屉 ---------- */
+function openDrawer(id){
+  const t = DATA.find(x => x.id === id)
+  if (!t) return
+  current = t
+  const variants = t.variants ?? []
+  const opts = variants.map((v, i) => {
+    const bits = [v.people ?? v.name, v.version != null ? 'v' + v.version : null, v.t, v.variant]
+      .filter(Boolean).join(' · ')
+    return `<option value="${i}">${esc(bits || v.url)}</option>`
+  }).join('')
+
+  $('#dpanel').innerHTML = `
+    <h3>${esc(t.title ?? '（无标题）')}</h3>
+    ${t.description ? `<div class="desc">${esc(t.description)}</div>` : ''}
+    ${variants.length > 1 ? `<div class="row"><span class="k">变体 · 共 ${t.variantCount}</span>
+      <select id="dvariant">${opts}</select></div>` : ''}
+    <div class="row"><span class="k">链接</span>
+      <div class="linkbar"><span id="lProd"></span><button data-copy="lProd">复制</button>
+      <button data-open="lProd">打开</button></div></div>
+    <div class="row"><span class="k">明细</span>
+      <div class="kv">
+        <b>区域</b><span>${esc(t.region)}${t.category ? ' / ' + esc(t.category) : ''}</span>
+        <b>日期</b><span>${esc(t.date ?? '—')}${t.serial ? ' · ' + esc(t.serial) : ''}</span>
+        <b>渠道</b><span>${t.channels.length ? esc(t.channels.join('、')) : '—'}</span>
+        <b>语言</b><span>${esc(t.lang ?? '—')}</span>
+        <b>体积</b><span>${Math.round(t.rep.bytes / 1024)} KB</span>
+        ${t.deployable ? '' : '<b>部署</b><span style="color:var(--warn)">目录以 _ 结尾，rsync 会跳过，仅本地可见</span>'}
+      </div></div>
+    <div class="hint"><kbd>←</kbd> <kbd>→</kbd> 切换页面 · <kbd>Esc</kbd> 关闭</div>`
+
+  const setUrl = (i) => {
+    const u = (variants[i] ?? { url: t.rep.url }).url
+    $('#lProd').textContent = prodUrl(t, u)
+    $('#dframe').src = hereUrl(t, u)
+  }
+  setUrl(0)
+  $('#dvariant')?.addEventListener('change', e => setUrl(+e.target.value))
+
+  $('#drawer').classList.add('on')
+  $('#scrim').classList.add('on')
+}
+
+function closeDrawer(){
+  $('#drawer').classList.remove('on')
+  $('#scrim').classList.remove('on')
+  $('#dframe').src = 'about:blank'
+  current = null
+}
+function step(dir){
+  if (!current) return
+  const n = view[view.findIndex(t => t.id === current.id) + dir]
+  if (n) openDrawer(n.id)
+}
+
+/* ---------- 事件 ---------- */
+$('#dpanel').addEventListener('click', (e) => {
+  const c = e.target.dataset.copy, o = e.target.dataset.open
+  if (c){
+    navigator.clipboard.writeText($('#' + c).textContent)
+    e.target.textContent = '已复制'
+    setTimeout(() => { e.target.textContent = '复制' }, 1200)
+  }
+  if (o) window.open($('#' + o).textContent, '_blank', 'noopener')
+})
+$('#main').addEventListener('click', (e) => {
+  const gh = e.target.closest('.group-h')
+  if (gh){ gh.parentElement.classList.toggle('closed'); return }
+  const f = e.target.closest('.frame')
+  if (f) openDrawer(f.dataset.id)
+})
+$('#main').addEventListener('keydown', (e) => {
+  const f = e.target.closest('.frame')
+  if (f && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); openDrawer(f.dataset.id) }
+})
+$('#tree').addEventListener('click', (e) => {
+  const a = e.target.closest('a')
+  if (!a) return
+  document.querySelectorAll('.tree a').forEach(x => x.classList.remove('on'))
+  a.classList.add('on')
+  document.getElementById(a.dataset.to)?.scrollIntoView({ block: 'start' })
+})
+$('#scrim').addEventListener('click', closeDrawer)
+$('#dclose').addEventListener('click', closeDrawer)
+
+let debounce
+$('#q').addEventListener('input', (e) => {
+  clearTimeout(debounce)
+  debounce = setTimeout(() => { state.q = e.target.value; render() }, 160)
+})
+$('#groupBy').addEventListener('change', e => { state.groupBy = e.target.value; render() })
+$('#sortBy').addEventListener('change', e => { state.sortBy = e.target.value; render() })
+$('#segLayout').addEventListener('click', (e) => {
+  const b = e.target.closest('button')
+  if (!b) return
+  $('#segLayout').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b))
+  state.cardW = Number(b.dataset.w)
+  render()
+})
+addEventListener('keydown', (e) => {
+  if (e.key === '/' && document.activeElement !== $('#q')){ e.preventDefault(); $('#q').focus() }
+  if (e.key === 'Escape'){ if (current) closeDrawer(); else $('#q').blur() }
+  if (current && e.key === 'ArrowRight'){ e.preventDefault(); step(1) }
+  if (current && e.key === 'ArrowLeft'){ e.preventDefault(); step(-1) }
+})
+
+load().catch((err) => {
+  $('#main').innerHTML = `<div class="empty">索引读不到：${esc(err.message)}<br><br>
+    先跑 <span style="color:var(--ink)">bun run gallery</span> 生成索引与截图。</div>`
+})
+</script>
+</body>
+</html>

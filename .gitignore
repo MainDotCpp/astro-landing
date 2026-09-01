@@ -34,3 +34,12 @@ pnpm-debug.log*
 
 # Local debug screenshots
 .tmp-shots/
+
+# 落地页画廊：截图缓存与索引（本地生成，不入库）
+public/_gallery/shots/
+public/_gallery/index.json
+public/_gallery/shots.json
+
+# 画廊线上入口：由 scripts/gallery/bundle.mjs 从 index.html + 索引生成（833KB，每次构建都变）
+public/index.php
+.gallery-password
