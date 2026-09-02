@@ -674,9 +674,11 @@
             .modal .disclaimer { font-size: 17px; }
         }
 
-        /* 排版：標題高亮詞與股票名整體換行，避免在詞中間斷開產生孤字 */
-        .hero h1 span { white-space: nowrap; }
+        /* 排版：股票名整體換行，避免在詞中間斷開產生孤字 */
         .nb { white-space: nowrap; }
+        /* 兜底：單欄落地頁不應有橫向滾動。頁內唯一的 position:fixed 是彈窗遮罩，
+           沒有 sticky 元素，所以此設定不會有副作用。 */
+        html, body { overflow-x: hidden; max-width: 100%; }
     </style>
 </head>
 <body>
@@ -693,7 +695,7 @@
     <!-- Hero -->
     <div class="hero">
         <div class="badge-top"><i class="fas fa-fire"></i> 限時全網公開</div>
-        <h1>Sky Sir <span>LEGO港股拆盤法</span></h1>
+        <h1>Sky Sir<br /><span>LEGO港股拆盤法</span></h1>
         <div class="subhead">
             形態、動力、質量三重拆解港股，限時免費公開爆發股名單 · 上次精準捕捉 <strong><span class="nb">阿里巴巴</span>・<span class="nb">比亞迪電子</span>・<span class="nb">地平線機器人</span></strong>
         </div>
