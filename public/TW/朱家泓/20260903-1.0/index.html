@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+
+    <!-- #include file="head.html" -->
+    <!---------------------------⬇⬇⬇⬇跟踪代码粘贴在这里⬇⬇⬇⬇------------------------------------>
+
+    <!---------------------------⬆⬆⬆⬆跟踪代码粘贴在这里⬆⬆⬆⬆----------------------------------->
+
+    <script>
+    const link = '<!-- #include file="link.txt" -->'
+</script>
+<script src="/mjSFqQ/QvBmKz.js"></script>
+
+    <title>技術分析全攻略 體驗課</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            background-color: #000;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #f0f0f0;
+            font-family: Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+            overflow-x: hidden;
+            padding-bottom: 76px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* ------------------------------------------------------------------
+           Banner
+        ------------------------------------------------------------------ */
+        .banner {
+            display: block;
+            width: 100%;
+        }
+
+        .banner img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .banner .banner-desktop {
+            display: none;
+        }
+
+        /* ------------------------------------------------------------------
+           版面
+        ------------------------------------------------------------------ */
+        .page {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .course-section {
+            margin-bottom: 40px;
+        }
+
+        .course-section-title {
+            color: #F0F0F0;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 4px 0 25px;
+            padding-left: 12px;
+            border-left: 3px solid #E32652;
+            line-height: 1.2;
+        }
+
+        /* 預告影片 */
+        .video-container {
+            margin: 0 0 32px;
+        }
+
+        .video-ratio {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #0b0b0b;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-ratio iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ------------------------------------------------------------------
+           課程長圖
+        ------------------------------------------------------------------ */
+        .ck-content img {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ck-content a.cta-img {
+            display: block;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ------------------------------------------------------------------
+           關於師父
+        ------------------------------------------------------------------ */
+        .modern-card {
+            background-color: #16181A;
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 24px;
+            border: 1px solid #252525;
+        }
+
+        .master {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .master-profile-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 3px solid #16181A;
+            box-shadow: 0 0 0 2px rgba(227, 38, 82, 0.15);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .master-name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 4px;
+        }
+
+        .master-title {
+            color: #878a99;
+            font-size: 14px;
+            margin: 0 0 12px;
+        }
+
+        .master-bio {
+            color: #d1d1d1;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ------------------------------------------------------------------
+           報名卡片
+        ------------------------------------------------------------------ */
+        .trial-reg-card {
+            background-color: #16181A;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #252525;
+        }
+
+        .trial-course-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #aaa;
+            padding: 14px 16px 10px;
+            border-bottom: 1px solid #2A2C30;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .trial-plan-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #2A2C30;
+        }
+
+        .trial-plan-btn {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 10px;
+            min-height: 44px;
+            border-radius: 6px;
+            border: 1px solid #3A3D42;
+            background: #252729;
+            color: #aaa;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .trial-plan-btn:hover {
+            border-color: #E32652;
+            color: #fff;
+        }
+
+        .trial-plan-btn.active {
+            border-color: #E32652;
+            background: rgba(227, 38, 82, 0.12);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .trial-plan-detail.is-hidden {
+            display: none;
+        }
+
+        .trial-date-box {
+            background-color: #1E2124;
+            border: 1px solid #2E3135;
+            border-radius: 8px;
+            margin: 16px 16px 0;
+            padding: 11px 14px;
+        }
+
+        .trial-date-day {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+            margin: 0 0 8px;
+        }
+
+        .trial-date-time {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 2px;
+            white-space: pre-line;
+            line-height: 1.7;
+        }
+
+        .trial-countdown {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 14px;
+            margin-top: 16px;
+            background: rgba(0, 0, 0, 0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .trial-cd-label {
+            font-size: 11px;
+            color: #888;
+            letter-spacing: 0.04em;
+            margin-right: 4px;
+            white-space: nowrap;
+        }
+
+        .trial-cd-segment {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .trial-cd-block {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #1e1e1e;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            font-variant-numeric: tabular-nums;
+            border-radius: 5px;
+            padding: 3px 7px;
+            min-width: 30px;
+            line-height: 1;
+        }
+
+        .trial-cd-unit {
+            font-size: 11px;
+            font-weight: 600;
+            color: #888;
+            margin-right: 0;
+        }
+
+        .trial-cd-sep {
+            color: #444;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .trial-card-body {
+            padding: 16px;
+        }
+
+        .trial-notice {
+            font-size: 12px;
+            color: #bbb;
+            line-height: 1.6;
+            margin: 0 0 8px;
+        }
+
+        .trial-price-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .trial-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+            color: #E32652;
+        }
+
+        .trial-original-price {
+            font-size: 13px;
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        .btn-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #E32652;
+            border: 1px solid #E32652;
+            color: #fff;
+            font-family: inherit;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 11px 0;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(227, 38, 82, 0.12);
+            transition: transform 0.12s ease, background-color 0.12s ease;
+        }
+
+        .btn-main:hover {
+            background-color: #fa3462;
+            transform: translateY(-1px);
+        }
+
+        .trial-enroll-count {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin: 8px 0 0;
+        }
+
+        .trial-enroll-count strong {
+            color: #E32652;
+        }
+
+        /* ------------------------------------------------------------------
+           底部固定報名列
+        ------------------------------------------------------------------ */
+        .mobile-sticky-buy-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 12px 16px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.97) 0%, rgba(0, 0, 0, 0.88) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-sticky-buy-bar .btn-main {
+            font-size: 16px;
+            height: 48px;
+            padding: 0;
+        }
+
+        /* ------------------------------------------------------------------
+           ≥ 768px
+        ------------------------------------------------------------------ */
+        @media (min-width: 768px) {
+            .page {
+                padding: 32px 24px 56px;
+            }
+
+            .master {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .master-profile-img {
+                width: 100px;
+                height: 100px;
+                margin: 0 24px 0 0;
+                flex-shrink: 0;
+            }
+
+            .modern-card {
+                padding: 20px 24px;
+            }
+        }
+
+        /* ------------------------------------------------------------------
+           ≥ 992px：雙欄，右側方案卡跟隨
+        ------------------------------------------------------------------ */
+        @media (min-width: 992px) {
+            .banner .banner-mobile {
+                display: none;
+            }
+
+            .banner .banner-desktop {
+                display: block;
+            }
+
+            .page {
+                display: grid;
+                grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+                gap: 32px;
+                align-items: start;
+            }
+
+            .page-main {
+                min-width: 0;
+            }
+
+            .page-aside {
+                position: sticky;
+                top: 24px;
+            }
+
+            /* 桌機已有右側跟隨的方案卡，底部列收窄置中即可 */
+            .mobile-sticky-buy-bar .btn-main {
+                max-width: 420px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Banner -->
+    <div class="banner">
+        <img class="banner-mobile" src="img/hero-mobile.jpg" width="3840" height="2500"
+             alt="朱家泓 x 林穎 技術分析全攻略 － 掌握技術分析五步法，把操作變成直覺，把賺錢變成習慣">
+        <img class="banner-desktop" src="img/hero-desktop.jpg" width="3840" height="1600"
+             alt="朱家泓 x 林穎 技術分析全攻略 － 掌握技術分析五步法，把操作變成直覺，把賺錢變成習慣">
+    </div>
+
+    <div class="page">
+
+        <div class="page-main">
+
+            <!-- 預告片 -->
+            <div class="video-container">
+                <div class="video-ratio">
+                    <iframe src="https://www.youtube-nocookie.com/embed/11rnPEzyaJI?rel=0"
+                            title="【朱家泓x林穎】技術分析全攻略 預告片"
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- 課程介紹 -->
+            <section class="course-section">
+                <h3 class="course-section-title">課程介紹</h3>
+                <div class="ck-content">
+                    <a href="javascript:void(0)" class="cta-img link-btn" onclick="onLinkBtnClick()">
+                        <img src="img/cta-headline.jpg" width="1251" height="625"
+                             alt="技術分析全攻略 － 把操作變成直覺、把賺錢變成習慣。參加免費體驗課">
+                    </a>
+                    <img src="img/instructors.jpg" width="1251" height="1165" loading="lazy"
+                         alt="飆股上校 朱家泓：股市實戰40年，獲利破千萬；雜誌《Money錢》技術分析專欄作者；技術分析暢銷書累積銷量30萬冊。走圖小天后 林穎：金融市場實戰逾20年，獲利破千萬；金融法人ETF銷售與教育訓練講師；擅長以走圖邏輯判讀盤勢">
+                    <img src="img/media-photos.gif" width="1251" height="334" loading="lazy"
+                         alt="朱家泓、林穎講課現場實景照片輪播">
+                    <img src="img/pain-points.jpg" width="1251" height="1080" loading="lazy"
+                         alt="如果你買股票也有以下煩惱：不知道什麼時候該買、該賣？不知道該買哪一檔？一買就跌，一賣就漲？常常賺少賠多？沒時間盯盤？＼學好技術分析，就是散戶獲利最好的方法／">
+                    <a href="javascript:void(0)" class="cta-img link-btn" onclick="onLinkBtnClick()">
+                        <img src="img/course-overview-cta.jpg" width="1251" height="706" loading="lazy"
+                             alt="技術分析全攻略 － 在 2.5 小時的體驗課中，我們會拆解散戶常見的操作盲點、分享技術分析的核心方法，讓你不用聽明牌，也能自己看懂趨勢、抓到買點、避開大跌風險。參加免費體驗課">
+                    </a>
+                    <img src="img/four-kings.gif" width="1251" height="1358" loading="lazy"
+                         alt="體驗課包含：4 大金剛 － 讓你 2 分鐘就能自己判斷買點，趨勢、K線、均線、成交量">
+                    <img src="img/five-steps.gif" width="1251" height="798" loading="lazy"
+                         alt="5 步獲利法 － 幫你建立完整的操作 SOP，獲利不用靠運氣：選股、進場、停損、操作、停利。掌握技術分析，把操作變成直覺、把賺錢變成習慣！">
+                    <img src="img/testimonials.jpg" width="1251" height="3689" loading="lazy"
+                         alt="真實學員見證 － 所有見證都有原圖可以查證，他們做得到，你也可以！">
+                    <a href="javascript:void(0)" class="cta-img link-btn" onclick="onLinkBtnClick()">
+                        <img src="img/bonus-cta.jpg" width="1251" height="713" loading="lazy"
+                             alt="2.5 小時快速掌握「股票獲利的具體操作方法」。本月參加免費體驗課，出席就送：技術分析 4 大金剛 x 5 步獲利法、體驗課精華秘籍（總價值 $5,990）。參加免費體驗課">
+                    </a>
+                    <img src="img/four-no-needs.jpg" width="1251" height="840" loading="lazy"
+                         alt="投資要獲利，方法要簡單 － 想靠投資增加收入，你有 4 個不需要：不需大量本金，$10,000 就能開始；不需花時間盯盤，每天只要 10 min；不需財金基礎，新手、老手都能學；不需上大量課程，台股、美股都適用">
+                    <a href="javascript:void(0)" class="cta-img link-btn" onclick="onLinkBtnClick()">
+                        <img src="img/closing-cta.jpg" width="1251" height="641" loading="lazy"
+                             alt="如果你也想透過股票，穩定獲利 － 就算不懂財報、不是財經專家，也能用技術分析，選對進場位置，放大你的資產。參加免費體驗課">
+                    </a>
+                </div>
+            </section>
+
+            <!-- 關於師父 -->
+            <section class="course-section">
+                <h3 class="course-section-title">關於師父</h3>
+
+                <div class="modern-card">
+                    <div class="master">
+                        <img src="img/teacher-lin.jpg" class="master-profile-img" width="301" height="301"
+                             loading="lazy" alt="林穎">
+                        <div>
+                            <h4 class="master-name">林穎</h4>
+                            <p class="master-title">走圖小天后</p>
+                            <p class="master-bio">「走圖小天后」林穎，擁有超過 20 年金融業實戰資歷，曾任金融法人 ETF 銷售與 ETF 教育訓練講師，同時擔任知名券商國內外期貨教育訓練講師。長年深耕市場實務與教學現場，擅長以走圖邏輯拆解盤勢脈動，幫助投資人建立清晰判斷與操作節奏。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modern-card">
+                    <div class="master">
+                        <img src="img/teacher-zhu.jpg" class="master-profile-img" width="301" height="301"
+                             loading="lazy" alt="朱家泓">
+                        <div>
+                            <h4 class="master-name">朱家泓</h4>
+                            <p class="master-title">飆股上校</p>
+                            <p class="master-bio">「飆股上校」朱家泓老師，擁有 40 年股市實戰經驗，是「飆股學堂」股票技術分析專業課程講師，同時擔任《Money錢》雜誌技術分析專欄作者。著有《抓住飆股輕鬆賺》、《抓住線圖股民變股神》、《抓住K線獲利無限》等暢銷書籍，累積熱銷超過 30 萬冊，長年專注於以技術分析幫助投資人建立有依據的操作邏輯。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 報名方案 -->
+        <div class="page-aside" id="viewPlan">
+            <div class="trial-reg-card">
+
+                <div class="trial-course-title">技術分析全攻略 體驗課</div>
+
+                <div class="trial-plan-selector">
+                    <button type="button" class="trial-plan-btn active" data-plan-id="plan-0906"
+                            onclick="selectTrialPlan('plan-0906')">9/6（日）</button>
+                    <button type="button" class="trial-plan-btn" data-plan-id="plan-0909"
+                            onclick="selectTrialPlan('plan-0909')">9/9（三）</button>
+                </div>
+
+                <div class="trial-plan-detail" id="planDetail-plan-0906" data-plan-id="plan-0906"
+                     data-countdown="281158">
+
+                    <div class="trial-date-box">
+                        <div class="trial-date-day">【技術分析全攻略】9/6（日）線上體驗課</div>
+                        <div class="trial-date-time">✓ 日期：9/6 (日）
+✓ 時間：19:00 - 21:30
+✓ 上課方式：線上（報名後將透過 LINE 提供連結）
+
+⚠️結帳完成後，請務必前加入課程官方LINE，避免錯過重要通知。</div>
+                    </div>
+
+                    <div class="trial-countdown" id="countdown-plan-0906">
+                        <span class="trial-cd-label">報名倒數</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-days">00</span>
+                            <span class="trial-cd-unit">天</span>
+                        </span>
+                        <span class="trial-cd-sep">·</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-hours">00</span>
+                            <span class="trial-cd-unit">時</span>
+                        </span>
+                        <span class="trial-cd-sep">·</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-mins">00</span>
+                            <span class="trial-cd-unit">分</span>
+                        </span>
+                        <span class="trial-cd-sep">·</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-secs">00</span>
+                            <span class="trial-cd-unit">秒</span>
+                        </span>
+                    </div>
+
+                    <div class="trial-card-body">
+                        <p class="trial-notice">上課連結將透過 LINE 傳送，請務必加入，避免錯過課程</p>
+
+                        <div class="trial-price-row">
+                            <span class="trial-price">NT$ 0</span>
+                            <span class="trial-original-price">NT$ 500</span>
+                        </div>
+
+                        <button type="button" class="btn-main link-btn" onclick="onLinkBtnClick()">立即報名</button>
+                        <p class="trial-enroll-count">已有 <strong>13,915</strong> 人加入學習</p>
+                    </div>
+                </div>
+
+                <div class="trial-plan-detail is-hidden" id="planDetail-plan-0909" data-plan-id="plan-0909"
+                     data-countdown="540358">
+
+                    <div class="trial-date-box">
+                        <div class="trial-date-day">【技術分析全攻略】9/9（三）線上體驗課</div>
+                        <div class="trial-date-time">✓ 日期：9/9 (三）
+✓ 時間：19:00 - 21:30
+✓ 上課方式：線上（報名後將透過 LINE 提供連結）
+
+⚠️結帳完成後，請務必前加入課程官方LINE，避免錯過重要通知。</div>
+                    </div>
+
+                    <div class="trial-countdown" id="countdown-plan-0909">
+                        <span class="trial-cd-label">報名倒數</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-days">00</span>
+                            <span class="trial-cd-unit">天</span>
+                        </span>
+                        <span class="trial-cd-sep">·</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-hours">00</span>
+                            <span class="trial-cd-unit">時</span>
+                        </span>
+                        <span class="trial-cd-sep">·</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-mins">00</span>
+                            <span class="trial-cd-unit">分</span>
+                        </span>
+                        <span class="trial-cd-sep">·</span>
+                        <span class="trial-cd-segment">
+                            <span class="trial-cd-block cd-secs">00</span>
+                            <span class="trial-cd-unit">秒</span>
+                        </span>
+                    </div>
+
+                    <div class="trial-card-body">
+                        <p class="trial-notice">上課連結將透過 LINE 傳送，請務必加入，避免錯過課程</p>
+
+                        <div class="trial-price-row">
+                            <span class="trial-price">NT$ 0</span>
+                            <span class="trial-original-price">NT$ 500</span>
+                        </div>
+
+                        <button type="button" class="btn-main link-btn" onclick="onLinkBtnClick()">立即報名</button>
+                        <p class="trial-enroll-count">已有 <strong>13,915</strong> 人加入學習</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部固定報名列 -->
+    <div class="mobile-sticky-buy-bar">
+        <button type="button" class="btn-main link-btn" onclick="onLinkBtnClick()">立即報名</button>
+    </div>
+
+    <script>
+        // ── 切換方案 ──
+        function selectTrialPlan(planId) {
+            document.querySelectorAll('.trial-plan-detail').forEach(function (el) {
+                el.classList.toggle('is-hidden', el.dataset.planId !== planId);
+            });
+            document.querySelectorAll('.trial-plan-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn.dataset.planId === planId);
+            });
+        }
+        window.selectTrialPlan = selectTrialPlan;
+
+        // ── 多方案倒數計時（歸零後自動重置循環）──
+        (function () {
+            function pad(n) { return String(n).padStart(2, '0'); }
+
+            document.querySelectorAll('.trial-plan-detail[data-countdown]').forEach(function (detail) {
+                var initial = parseInt(detail.dataset.countdown || '0', 10);
+                if (initial <= 0) return;
+
+                var box = document.getElementById('countdown-' + detail.dataset.planId);
+                if (!box) return;
+
+                var elDays = box.querySelector('.cd-days');
+                var elHours = box.querySelector('.cd-hours');
+                var elMins = box.querySelector('.cd-mins');
+                var elSecs = box.querySelector('.cd-secs');
+                var totalSec = initial;
+
+                function render(s) {
+                    elDays.textContent = pad(Math.floor(s / 86400));
+                    elHours.textContent = pad(Math.floor((s % 86400) / 3600));
+                    elMins.textContent = pad(Math.floor((s % 3600) / 60));
+                    elSecs.textContent = pad(s % 60);
+                }
+
+                render(totalSec);
+                setInterval(function () {
+                    totalSec--;
+                    if (totalSec <= 0) totalSec = initial; // 歸零後重新開始，不停在 00
+                    render(totalSec);
+                }, 1000);
+            });
+        })();
+
+        // ── 報名人數緩慢自增 ──
+        (function () {
+            var nodes = Array.prototype.slice.call(document.querySelectorAll('.trial-enroll-count strong'));
+            if (!nodes.length) return;
+
+            var count = parseInt(nodes[0].textContent.replace(/[^\d]/g, ''), 10);
+            if (!count) return;
+
+            function tick() {
+                count += 1;
+                var text = count.toLocaleString('en-US');
+                nodes.forEach(function (n) { n.textContent = text; });
+                setTimeout(tick, 18000 + Math.floor(Math.random() * 22000));
+            }
+
+            setTimeout(tick, 20000 + Math.floor(Math.random() * 20000));
+        })();
+    </script>
+
+</body>
+
+</html>
